@@ -4,16 +4,16 @@ import { InputComponent } from "../../../components/Form";
 const ForgotPassword = () => {
   return (
     <AuthLayout>
-      <div class="auth-content">
-        <div class="auth-title">
-          <p class="fw-bold">Forgot Password</p>
-          <p class="mt-0 lg-position-relative text-center">
+      <div className="auth-content">
+        <div className="auth-title">
+          <p className="fw-bold">Forgot Password</p>
+          <p className="mt-0 lg-position-relative text-center">
             Submit your email address and we will send recovery password to your
             email
           </p>
         </div>
 
-        <div class="mb-5 text-start">
+        <div className="mb-5 text-start">
           <InputComponent
             label="Email Address"
             type="email"
@@ -22,20 +22,20 @@ const ForgotPassword = () => {
             className="mb-4"
           />
         </div>
-        <div class="d-flex gap-3 mb-5">
-          <button class="btn btn-warning fs-5 border col text-gray-700 btn-rounded">
+        <div className="d-flex gap-3 mb-5">
+          <button className="btn btn-warning fs-5 border col text-gray-700 btn-rounded">
             Reset Password
           </button>
         </div>
-        <div class="d-flex align-items-center mb-4">
-          <div class="rectangle"></div>
-          <span class="px-2">or&nbsp;try</span>
-          <div class="rectangle"></div>
+        <div className="d-flex align-items-center mb-4">
+          <div className="rectangle"></div>
+          <span className="px-2">or&nbsp;try</span>
+          <div className="rectangle"></div>
         </div>
-        <div class="d-flex gap-3 mb-5">
+        <div className="d-flex gap-3 mb-5">
           <a
             href=""
-            class="btn btn-white fs-5 border col text-gray-700 btn-rounded"
+            className="btn btn-white fs-5 border col text-gray-700 btn-rounded"
           >
             Sign In
           </a>

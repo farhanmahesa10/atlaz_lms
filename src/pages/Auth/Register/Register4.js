@@ -24,22 +24,22 @@ const Register4 = () => {
             icon={<i className="bi bi-lock"></i>}
             className="mb-2"
           />
-          <div class="row  text-gray-400">
-            <div class="col-6 d-flex align-items-center">
+          <div className="row  text-gray-400">
+            <div className="col-6 d-flex align-items-center">
               <DotIcon />
-              <small class="ps-2">One lowercase characters</small>
+              <small className="ps-2">One lowercase characters</small>
             </div>
-            <div class="col-6 d-flex align-items-center">
+            <div className="col-6 d-flex align-items-center">
               <DotIcon />
-              <small class="ps-2">One numeric</small>
+              <small className="ps-2">One numeric</small>
             </div>
-            <div class="col-6 d-flex align-items-center">
+            <div className="col-6 d-flex align-items-center">
               <DotIcon />
-              <small class="ps-2">One uppercase characters</small>
+              <small className="ps-2">One uppercase characters</small>
             </div>
-            <div class="col-6 d-flex align-items-center">
+            <div className="col-6 d-flex align-items-center">
               <DotIcon />
-              <small class="ps-2">6 minimum characters</small>
+              <small className="ps-2">6 minimum characters</small>
             </div>
           </div>
         </div>
