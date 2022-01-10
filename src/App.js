@@ -1,21 +1,10 @@
 import logo from "./logo.svg";
 import "./assets/css/App.css";
-
+import Routing from "./config/Routing";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>First Init Atlaz LMS</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routing />
     </div>
   );
 }
