@@ -20,7 +20,7 @@ const DotIcon = (props) => {
             fill="#8ECFEE"
           />
         </svg>
-        <span className="text-primary">{props.children}</span>
+        <span className="text-dark">{props.children}</span>
       </div>
     );
   }

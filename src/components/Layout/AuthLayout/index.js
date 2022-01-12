@@ -7,7 +7,7 @@ const AuthLayout = (props) => {
       <Header />
       <main class="flex-shrink-0  mb-5">
         <div class="container ">
-          <div className="d-flex justify-content-center align-items-center text-center">
+          <div className="d-sm-flex  justify-content-center align-items-center text-center">
             {props.children}
           </div>
         </div>

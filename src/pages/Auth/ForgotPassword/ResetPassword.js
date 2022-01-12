@@ -58,7 +58,7 @@ const ResetPassword = () => {
               }}
             />
             <div className="row  text-gray-400">
-              <div className="col-6 d-flex align-items-center">
+              <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
                     isLower == true
@@ -71,7 +71,7 @@ const ResetPassword = () => {
                   <small className="ps-2">One lowercase characters</small>
                 </DotIcon>
               </div>
-              <div className="col-6 d-flex align-items-center">
+              <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
                     isNumeric == true
@@ -84,7 +84,7 @@ const ResetPassword = () => {
                   <small className="ps-2">One numeric</small>
                 </DotIcon>
               </div>
-              <div className="col-6 d-flex align-items-center">
+              <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
                     isUpper == true
@@ -97,7 +97,7 @@ const ResetPassword = () => {
                   <small className="ps-2">One uppercase characters</small>
                 </DotIcon>
               </div>
-              <div className="col-6 d-flex align-items-center">
+              <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
                     isSix == true ? "success" : isSix == false ? "danger" : ""

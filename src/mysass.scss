@@ -5,8 +5,12 @@ $danger: #ffc107;
   width: 450px;
   @media (max-width: 576px) {
     width: unset;
+    margin-top: 32px;
   }
-  margin-top: 159px;
+  @media (min-width: 576px) {
+    margin-top: 159px;
+  }
+
   .auth-title {
     color: #2a384c;
     margin-bottom: 80px;
