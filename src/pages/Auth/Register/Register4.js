@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputComponent, GoogleButton } from "../../../components/Form";
-import { RegisterHeader } from "../../../components";
+import { InputComponent } from "../../../components/Form";
+import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
@@ -39,15 +38,13 @@ const Register4 = () => {
     if (allowNext) navigate("/register-finish");
   };
   return (
-    <AuthLayout>
+    <RegisterLayout
+      totalProgress={4}
+      activeProgress={4}
+      title="Let's set this up for your account"
+    >
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <RegisterHeader
-            totalProgress={4}
-            activeProgress={4}
-            title="Let's set this up for your account"
-          />
-
           <div className="mb-5 text-start">
             <InputComponent
               label="Password"
@@ -129,7 +126,7 @@ const Register4 = () => {
           </div>
         </div>
       </form>
-    </AuthLayout>
+    </RegisterLayout>
   );
 };
 

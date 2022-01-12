@@ -8,6 +8,7 @@ import {
 } from "../../../components/Form";
 import { RegisterHeader } from "../../../components";
 import { Link } from "react-router-dom";
+import RegisterLayout from "../../../components/Layout/RegisterLayout";
 const Register1 = () => {
   const [email, setEmail] = useState("");
   const [allowNext, setAllowNext] = useState(false);
@@ -17,14 +18,13 @@ const Register1 = () => {
     if (allowNext) navigate("/register-step-2");
   };
   return (
-    <AuthLayout>
+    <RegisterLayout
+      totalProgress={4}
+      activeProgress={1}
+      title="Sign up to get started"
+    >
       <form onSubmit={handleSubmit}>
-        <div className="auth-content">
-          <RegisterHeader
-            totalProgress={4}
-            activeProgress={1}
-            title="Sign up to get started"
-          />
+        <div className=" ">
           <div className="mb-3">
             <GoogleButton label="Register" />
           </div>
@@ -72,7 +72,7 @@ const Register1 = () => {
           </div>
         </div>
       </form>
-    </AuthLayout>
+    </RegisterLayout>
   );
 };
 

@@ -23,7 +23,6 @@ const Login = () => {
       <form className="" onSubmit={loginSubmit}>
         <div className="auth-content">
           <div className="auth-title">
-            <img src="/images/logo.png" className="d-sm-none mb-4" alt="" />
             <h3 className="fw-bold ">Welcome back, Atlazen!</h3>
           </div>
           <div className="mb-3">
@@ -63,7 +62,7 @@ const Login = () => {
             <div>
               <input
                 type="checkbox"
-                className="text-warning me-1"
+                className="text-warning me-1 form-check-input custom-checkbox"
                 id="remember"
               />
               <label htmlFor="remember"> Remember me</label>

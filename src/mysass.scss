@@ -11,7 +11,7 @@ $danger: #ffc107;
 
   .auth-title {
     color: #2a384c;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
     p:first-child {
       font-size: 24px;
     }
@@ -24,6 +24,15 @@ $danger: #ffc107;
 
 a:hover {
   color: $warning !important;
+}
+
+.register-title {
+  @media (max-width: 576px) {
+    padding-top: 32px;
+  }
+  @media (min-width: 576px) {
+    padding-top: 80px;
+  }
 }
 
 input:focus {
@@ -376,6 +385,14 @@ input[type="number"] {
 .btn-rounded {
   border-radius: 10px 10px;
 }
+//input.form-check-input:checked {
+.form-check-input:checked {
+  background-color: $warning !important;
+  border-color: $warning !important;
+}
+.form-check-input {
+  border-color: black !important;
+}
 .input-group {
   border-radius: 50px !important;
 }
@@ -387,7 +404,7 @@ input[type="number"] {
     border-radius: 10px 10px;
   }
 }
-
+//</input
 .text-gray {
   color: #707070;
 }

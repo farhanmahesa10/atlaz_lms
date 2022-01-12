@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputText, GoogleButton } from "../../../components/Form";
-import { RegisterHeader } from "../../../components";
+import { InputText } from "../../../components/Form";
 import { useNavigate, Link } from "react-router-dom";
+import RegisterLayout from "../../../components/Layout/RegisterLayout";
 const Register2 = () => {
   const [fullName, setFullName] = useState("");
   const [allowNext, setAllowNext] = useState(false);
@@ -12,15 +11,13 @@ const Register2 = () => {
     if (allowNext) navigate("/register-step-3");
   };
   return (
-    <AuthLayout>
+    <RegisterLayout
+      totalProgress={4}
+      activeProgress={2}
+      title="Let's set this up for your account"
+    >
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <RegisterHeader
-            totalProgress={4}
-            activeProgress={2}
-            title="Let's set this up for your account"
-          />
-
           <div className="mb-5 text-start">
             <InputText
               label="Fullname"
@@ -53,7 +50,7 @@ const Register2 = () => {
           </div>
         </div>
       </form>
-    </AuthLayout>
+    </RegisterLayout>
   );
 };
 

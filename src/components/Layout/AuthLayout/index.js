@@ -3,16 +3,13 @@ import Footer from "./Footer";
 import Header from "./Header";
 const AuthLayout = (props) => {
   return (
-    <div className="d-flex flex-column justify-content-between h-screen">
+    <div className=" h-screen">
       <div>
         <Header />
       </div>
 
       <div className="d-sm-flex  container py-5 justify-content-center align-items-center text-center">
         {props.children}
-      </div>
-      <div>
-        <Footer />
       </div>
     </div>
   );
