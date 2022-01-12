@@ -1,48 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputComponent, GoogleButton } from "../../../components/Form";
+import { useNavigate } from "react-router-dom";
+import {
+  InputComponent,
+  InputEmail,
+  GoogleButton,
+} from "../../../components/Form";
 import { ProgressComponent } from "../../../components";
+import { Link } from "react-router-dom";
 const Register1 = () => {
+  const [email, setEmail] = useState("");
+  const [allowNext, setAllowNext] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (allowNext) navigate("/register-step-2");
+  };
   return (
     <AuthLayout>
-      <div className="auth-content">
-        <div>
-          <ProgressComponent totalProgress={4} activeProgress={1} />
-        </div>
-        <div className="auth-title">
-          <p className="fw-bold text-center">Welcome! First things first...</p>
-        </div>
-        <div className="mb-3">
-          <GoogleButton />
-        </div>
-        <div className="d-flex align-items-center mb-4">
-          <div className="rectangle"></div>
-          <span className="px-2">or</span>
-          <div className="rectangle"></div>
-        </div>
+      <form onSubmit={handleSubmit}>
+        <div className="auth-content">
+          <div>
+            <ProgressComponent totalProgress={4} activeProgress={1} />
+          </div>
+          <div className="auth-title">
+            <p className="fw-bold text-center">Sign up to get started</p>
+          </div>
+          <div className="mb-3">
+            <GoogleButton label="Register" />
+          </div>
+          <div className="d-flex align-items-center mb-4">
+            <div className="rectangle"></div>
+            <span className="px-2">or</span>
+            <div className="rectangle"></div>
+          </div>
 
-        <div className="mb-5 text-start">
-          <InputComponent
-            label="Email Address"
-            type="email"
-            placeholder="Enter your email"
-            icon={<i className="bi bi-envelope"></i>}
-            className="mb-4"
-          />
+          <div className="mb-5 text-start">
+            <InputEmail
+              label="Email Address"
+              type="email"
+              placeholder="Enter your email"
+              icon={<i className="bi bi-envelope"></i>}
+              className="mb-4"
+              onChange={(val) => {
+                setEmail(val);
+              }}
+              onError={(val) => {
+                val ? setAllowNext(false) : setAllowNext(true);
+              }}
+            />
+          </div>
+          <div className="d-flex gap-3 mb-5">
+            <button className="btn btn-white border col btn-rounded">
+              Back
+            </button>
+            <button
+              type={`${allowNext ? "submit" : "button"}`}
+              className={`border  col btn-rounded  ${
+                allowNext ? "bg-warning" : "bg-gray-300"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+          <div>
+            <small>
+              Already have account?
+              <Link to="/login" className={`text-warning text-decoration-none`}>
+                &nbsp;Sign in now
+              </Link>
+            </small>
+          </div>
         </div>
-        <div className="d-flex gap-3 mb-5">
-          <button className="btn btn-white border col btn-rounded">Back</button>
-          <button className="border bg-gray-300 col btn-rounded">Next</button>
-        </div>
-        <div>
-          <small>
-            Already have account?
-            <a href="" className="text-warning text-decoration-none">
-              &nbsp;Sign in now
-            </a>
-          </small>
-        </div>
-      </div>
+      </form>
     </AuthLayout>
   );
 };

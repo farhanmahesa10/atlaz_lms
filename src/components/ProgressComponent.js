@@ -22,6 +22,12 @@ const ProgressComponent = (props) => {
         }
       }
     }
+    if (props.activeProgress == props.totalProgress) {
+      data.push(progressLine(Math.random(), true));
+    } else {
+      data.push(inactiveLine(Math.random(), true));
+    }
+
     setProgressBar(data);
   }, []);
   const checkedRound = (key) => (
@@ -69,7 +75,7 @@ const ProgressComponent = (props) => {
     </svg>
   );
 
-  const progressLine = (key) => (
+  const progressLine = (key, isLast) => (
     <svg
       key={key}
       width="80"
@@ -77,6 +83,7 @@ const ProgressComponent = (props) => {
       viewBox="0 0 80 6"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={`${isLast ? "d-sm-none" : ""}`}
     >
       <rect width="80" height="6" rx="3" fill="#FFF2DA" />
       <rect width="40" height="6" rx="3" fill="#FED991" />
@@ -90,11 +97,12 @@ const ProgressComponent = (props) => {
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="d-none d-sm-block"
     >
       <circle cx="20" cy="20" r="20" fill="#FFF2DA" />
     </svg>
   );
-  const inactiveLine = (key) => (
+  const inactiveLine = (key, isLast) => (
     <svg
       key={key}
       width="80"
@@ -102,6 +110,7 @@ const ProgressComponent = (props) => {
       viewBox="0 0 80 6"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={`${isLast ? "d-sm-none" : ""}`}
     >
       <rect width="80" height="6" rx="3" fill="#FFF2DA" />
     </svg>

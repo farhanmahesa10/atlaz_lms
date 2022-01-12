@@ -3,9 +3,11 @@ import Header from "./Header";
 const AuthLayout = (props) => {
   return (
     <div>
-      <Header />
-      <div className="d-flex justify-content-center text-center">
-        {props.children}
+      <Header hideBackButton={props.hideBackButton} />
+      <div className="px-4 ">
+        <div className="d-sm-flex justify-content-center text-center px-2">
+          {props.children}
+        </div>
       </div>
     </div>
   );

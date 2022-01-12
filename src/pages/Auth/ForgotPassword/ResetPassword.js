@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputComponent, GoogleButton } from "../../../components/Form";
+import { InputPassword, GoogleButton } from "../../../components/Form";
 import { ProgressComponent } from "../../../components";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
-const Register4 = () => {
+const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [isLower, setIsLower] = useState("first");
   const [isUpper, setIsUpper] = useState("first");
@@ -39,22 +39,16 @@ const Register4 = () => {
     if (allowNext) navigate("/register-finish");
   };
   return (
-    <AuthLayout>
+    <AuthLayout hideBackButton={true}>
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div>
-            <ProgressComponent totalProgress={4} activeProgress={4} />
-          </div>
           <div className="auth-title">
-            <p className="fw-bold text-center">
-              Let's set this up for your account
-            </p>
+            <p className="fw-bold text-center">Reset password</p>
           </div>
 
           <div className="mb-5 text-start">
-            <InputComponent
+            <InputPassword
               label="Password"
-              type="password"
               placeholder="Create your password"
               icon={<i className="bi bi-lock"></i>}
               className="mb-2"
@@ -115,15 +109,9 @@ const Register4 = () => {
             </div>
           </div>
           <div className="d-flex gap-3 mb-5">
-            <Link
-              to="/register-step-3"
-              className="btn btn-white border col btn-rounded"
-            >
-              Back
-            </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
-              className={`border  col btn-rounded  ${
+              className={`border py-2 col btn-rounded  ${
                 allowNext ? "bg-warning" : "bg-gray-300"
               }`}
             >
@@ -136,4 +124,4 @@ const Register4 = () => {
   );
 };
 
-export default Register4;
+export default ResetPassword;

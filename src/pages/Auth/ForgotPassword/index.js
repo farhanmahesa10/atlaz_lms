@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputComponent } from "../../../components/Form";
+import { InputEmail } from "../../../components/Form";
+import { Link } from "react-router-dom";
 const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+  const [validationError, setValidationError] = useState({});
   return (
-    <AuthLayout>
+    <AuthLayout hideBackButton={true}>
       <div className="auth-content">
         <div className="auth-title">
           <p className="fw-bold">Forgot Password</p>
@@ -14,12 +17,20 @@ const ForgotPassword = () => {
         </div>
 
         <div className="mb-5 text-start">
-          <InputComponent
+          <InputEmail
             label="Email Address"
-            type="email"
             placeholder="Enter your email"
             icon={<i className="bi bi-envelope"></i>}
             className="mb-4"
+            onChange={(val) => {
+              setEmail(val);
+            }}
+            onError={(val) => {
+              setValidationError({
+                ...validationError,
+                email: val,
+              });
+            }}
           />
         </div>
         <div className="d-flex gap-3 mb-5">
@@ -33,12 +44,12 @@ const ForgotPassword = () => {
           <div className="rectangle"></div>
         </div>
         <div className="d-flex gap-3 mb-5">
-          <a
-            href=""
+          <Link
+            to="/login"
             className="btn btn-white fs-5 border col text-gray-700 btn-rounded"
           >
             Sign In
-          </a>
+          </Link>
         </div>
       </div>
     </AuthLayout>
