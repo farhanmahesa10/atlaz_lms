@@ -11,7 +11,6 @@ $danger: #ffc107;
 
   .auth-title {
     color: #2a384c;
-    padding-top: 50px;
     padding-bottom: 50px;
     p:first-child {
       font-size: 24px;
@@ -532,4 +531,8 @@ input[type="number"] {
 }
 .h-screen {
   height: 100vh;
+}
+
+.pb-50-px {
+  padding-bottom: 50px;
 }
