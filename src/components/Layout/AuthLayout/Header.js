@@ -20,7 +20,7 @@ const Header = (props) => {
       <div className="row justify-content-center w-full">
         <div className="d-flex justify-content-center mt-3">
           <div>
-            <img src="images/Logo.png" className="img-fluid" alt="..." />
+            <img src="/images/logo.png" className="img-fluid" alt="..." />
           </div>
         </div>
       </div>
