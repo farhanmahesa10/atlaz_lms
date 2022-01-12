@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./Footer";
 import Header from "./Header";
 const AuthLayout = (props) => {
   return (
@@ -9,6 +10,7 @@ const AuthLayout = (props) => {
           {props.children}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

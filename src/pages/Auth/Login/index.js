@@ -26,7 +26,7 @@ const Login = () => {
             <p className="fw-bold ">Welcome back, Atlazen!</p>
           </div>
           <div className="mb-3">
-            <GoogleButton />
+            <GoogleButton label="Login" />
           </div>
           <div className="d-flex align-items-center mb-4">
             <div className="rectangle"></div>
@@ -78,8 +78,11 @@ const Login = () => {
           </div>
           <div>
             <small>
-              New to Atlaz? Sign Up?
-              <Link to="/login" className={`text-warning text-decoration-none`}>
+              New to Atlaz?
+              <Link
+                to="/register"
+                className={`text-warning text-decoration-none`}
+              >
                 &nbsp;Sign up now
               </Link>
             </small>
