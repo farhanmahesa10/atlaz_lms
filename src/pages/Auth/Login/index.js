@@ -20,7 +20,7 @@ const Login = () => {
 
   return (
     <AuthLayout>
-      <form onSubmit={loginSubmit}>
+      <form className="" onSubmit={loginSubmit}>
         <div className="auth-content ">
           <div className="auth-title">
             <p className="fw-bold ">Welcome back, Atlazen!</p>

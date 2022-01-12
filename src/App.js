@@ -3,9 +3,9 @@ import "./assets/css/App.css";
 import Routing from "./config/Routing";
 function App() {
   return (
-    <div>
+    <>
       <Routing />
-    </div>
+    </>
   );
 }
 
