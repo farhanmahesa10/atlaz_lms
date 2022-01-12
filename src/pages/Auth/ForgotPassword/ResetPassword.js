@@ -43,6 +43,7 @@ const ResetPassword = () => {
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
           <div className="auth-title">
+            <img src="/images/logo.png" className="d-sm-none mb-4" alt="" />
             <p className="fw-bold text-center">Reset password</p>
           </div>
 

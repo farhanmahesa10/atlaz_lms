@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { InputNumber, GoogleButton } from "../../../components/Form";
-import { ProgressComponent } from "../../../components";
+import { RegisterHeader } from "../../../components";
 import { useNavigate, Link } from "react-router-dom";
 const Register3 = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -15,14 +15,11 @@ const Register3 = () => {
     <AuthLayout>
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div>
-            <ProgressComponent totalProgress={4} activeProgress={3} />
-          </div>
-          <div className="auth-title">
-            <p className="fw-bold text-center">
-              Let's set this up for your account
-            </p>
-          </div>
+          <RegisterHeader
+            totalProgress={4}
+            activeProgress={3}
+            title="Let's set this up for your account"
+          />
 
           <div className="mb-5 text-start">
             <InputNumber

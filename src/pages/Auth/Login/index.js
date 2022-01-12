@@ -21,9 +21,10 @@ const Login = () => {
   return (
     <AuthLayout>
       <form className="" onSubmit={loginSubmit}>
-        <div className="auth-content ">
+        <div className="auth-content">
           <div className="auth-title">
-            <p className="fw-bold ">Welcome back, Atlazen!</p>
+            <img src="/images/logo.png" className="d-sm-none mb-4" alt="" />
+            <h3 className="fw-bold ">Welcome back, Atlazen!</h3>
           </div>
           <div className="mb-3">
             <GoogleButton label="Continue" />

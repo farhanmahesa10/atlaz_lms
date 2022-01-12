@@ -6,7 +6,7 @@ import {
   InputEmail,
   GoogleButton,
 } from "../../../components/Form";
-import { ProgressComponent } from "../../../components";
+import { RegisterHeader } from "../../../components";
 import { Link } from "react-router-dom";
 const Register1 = () => {
   const [email, setEmail] = useState("");
@@ -20,12 +20,11 @@ const Register1 = () => {
     <AuthLayout>
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div>
-            <ProgressComponent totalProgress={4} activeProgress={1} />
-          </div>
-          <div className="auth-title">
-            <p className="fw-bold text-center">Sign up to get started</p>
-          </div>
+          <RegisterHeader
+            totalProgress={4}
+            activeProgress={1}
+            title="Sign up to get started"
+          />
           <div className="mb-3">
             <GoogleButton label="Register" />
           </div>
