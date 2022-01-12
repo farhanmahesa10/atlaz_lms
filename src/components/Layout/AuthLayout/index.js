@@ -8,7 +8,7 @@ const AuthLayout = (props) => {
         <Header />
       </div>
 
-      <div className="d-sm-flex container justify-content-center align-items-center text-center">
+      <div className="d-sm-flex  container py-5 justify-content-center align-items-center text-center">
         {props.children}
       </div>
       <div>

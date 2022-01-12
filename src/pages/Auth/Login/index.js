@@ -61,7 +61,12 @@ const Login = () => {
           />
           <div className="d-flex mb-5 justify-content-between">
             <div>
-              <input type="checkbox" className="text-warning" /> Remember me
+              <input
+                type="checkbox"
+                className="text-warning me-1"
+                id="remember"
+              />
+              <label htmlFor="remember"> Remember me</label>
             </div>
             <div>
               <Link
@@ -73,7 +78,7 @@ const Login = () => {
             </div>
           </div>
           <div className="d-flex gap-3 mb-5">
-            <button className="btn btn-warning text-white border col btn-rounded">
+            <button className=" btn-warning text-white border py-2 col btn-rounded">
               Sign in
             </button>
           </div>

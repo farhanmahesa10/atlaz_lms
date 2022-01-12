@@ -5,14 +5,12 @@ $danger: #ffc107;
   width: 450px;
   @media (max-width: 576px) {
     width: unset;
-    margin-top: 32px;
   }
   @media (min-width: 576px) {
   }
 
   .auth-title {
     color: #2a384c;
-    margin-top: 80px;
     margin-bottom: 80px;
     p:first-child {
       font-size: 24px;
@@ -376,7 +374,7 @@ input[type="number"] {
 }
 
 .btn-rounded {
-  border-radius: 8px;
+  border-radius: 10px 10px;
 }
 .input-group {
   border-radius: 50px !important;
