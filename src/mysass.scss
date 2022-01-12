@@ -6,12 +6,9 @@ $danger: #ffc107;
   @media (max-width: 576px) {
     width: unset;
   }
-  margin-top: 140px;
-
+  margin-top: 159px;
   .auth-title {
     color: #2a384c;
-
-    margin-top: 80px;
     margin-bottom: 80px;
     p:first-child {
       font-size: 24px;
@@ -22,6 +19,7 @@ $danger: #ffc107;
     margin-bottom: 33px;
   }
 }
+
 a:hover {
   color: $warning !important;
 }

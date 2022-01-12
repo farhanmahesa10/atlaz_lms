@@ -26,7 +26,7 @@ const Login = () => {
             <p className="fw-bold ">Welcome back, Atlazen!</p>
           </div>
           <div className="mb-3">
-            <GoogleButton label="Login" />
+            <GoogleButton label="Continue" />
           </div>
           <div className="d-flex align-items-center mb-4">
             <div className="rectangle"></div>
