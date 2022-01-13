@@ -5,7 +5,7 @@ const Register5 = () => {
       <div className="row justify-content-center w-full">
         <div className="d-flex justify-content-center ">
           <div>
-            <img src="images/Logo.png" className="img-fluid" alt="..." />
+            <img src="/images/Logo.png" className="img-fluid" alt="..." />
           </div>
         </div>
       </div>
