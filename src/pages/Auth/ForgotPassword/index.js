@@ -9,7 +9,6 @@ const ForgotPassword = () => {
     <AuthLayout hideBackButton={true}>
       <div className="auth-content">
         <div className="auth-title">
-          <img src="/images/logo.png" className="d-sm-none mb-4" alt="" />
           <p className="fw-bold">Forgot Password</p>
           <p className="mt-0 lg-position-relative text-center">
             Submit your email address and we will send recovery password to your
