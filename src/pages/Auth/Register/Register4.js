@@ -108,22 +108,6 @@ const Register4 = () => {
               </div>
             </div>
           </div>
-          <div className="d-flex gap-3 mb-5">
-            <Link
-              to="/register-step-3"
-              className="btn btn-white border col btn-rounded"
-            >
-              Back
-            </Link>
-            <button
-              type={`${allowNext ? "submit" : "button"}`}
-              className={`border  col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-gray-300"
-              }`}
-            >
-              Next
-            </button>
-          </div>
         </div>
       </form>
     </RegisterLayout>

@@ -81,18 +81,6 @@ const Login = () => {
               Sign in
             </button>
           </div>
-          <div className="" style={{ paddingTop: "60px" }}>
-            <small>
-              New to Atlaz?
-              <Link
-                to="/register"
-                className={`text-warning text-decoration-none`}
-              >
-                <br />
-                &nbsp;Register
-              </Link>
-            </small>
-          </div>
         </div>
       </form>
     </AuthLayout>

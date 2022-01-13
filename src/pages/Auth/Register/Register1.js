@@ -56,15 +56,6 @@ const Register1 = () => {
               Next
             </button>
           </div>
-          <div className="" style={{ paddingTop: "60px" }}>
-            <small>
-              Already have account?
-              <Link to="/login" className={`text-warning text-decoration-none`}>
-                <br />
-                Log in
-              </Link>
-            </small>
-          </div>
         </div>
       </form>
     </RegisterLayout>
