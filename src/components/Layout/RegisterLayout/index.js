@@ -1,6 +1,6 @@
 import React from "react";
 import { ProgressComponent } from "../..";
-import { InputComponent } from "../../Form";
+import { Link } from "react-router-dom";
 const RegisterLayout = (props) => {
   return (
     <div className=" w-full ">
@@ -21,12 +21,15 @@ const RegisterLayout = (props) => {
         <div className="col-4 col-md-3 ">
           {!props.hideBackButton ? (
             <div className="d-flex align-items-center h-full">
-              <a href="" className="text-gray-900 text-decoration-none d-flex">
+              <Link
+                to="/"
+                className="text-gray-900 text-decoration-none d-flex"
+              >
                 <i className="bi bi-chevron-left d-sm-none"></i>
                 <span className="d-none d-sm-block">
                   <i className="bi bi-arrow-left"></i>&nbsp; Back to Home
                 </span>
-              </a>
+              </Link>
               &nbsp;
             </div>
           ) : (
