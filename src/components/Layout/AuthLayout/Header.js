@@ -2,10 +2,13 @@ import React from "react";
 import { ProgressComponent } from "../..";
 const Header = (props) => {
   return (
-    <div className="row w-full bg-white">
+    <div
+      className="row w-full px-2 align-items-center "
+      style={{ paddingTop: "24px" }}
+    >
       <div className="col-4 col-md-3 ">
         {!props.hideBackButton ? (
-          <div className="mt-3 ms-4 back-link ">
+          <div className="d-flex align-items-center h-full">
             <a href="" className="text-gray-900 text-decoration-none d-flex">
               <i className="bi bi-chevron-left d-sm-none"></i>
               <span className="d-none d-sm-block">
@@ -20,7 +23,7 @@ const Header = (props) => {
       </div>
       <div className="col-5 col-md-6 ">
         <div className=" justify-content-center  ">
-          <div className="d-flex justify-content-center mt-3">
+          <div className="d-flex justify-content-center ">
             <div>
               <img src="/images/logo.png" className="img-fluid" alt="..." />
             </div>

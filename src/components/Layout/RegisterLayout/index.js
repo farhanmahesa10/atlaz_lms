@@ -51,14 +51,14 @@ const RegisterLayout = (props) => {
           <ProgressComponent
             totalProgress={props.totalProgress}
             activeProgress={props.activeProgress}
-            className="register-content"
+            className="auth-content-width "
           />
         </div>
         <div className="register-title">
           <h3 className="fw-bold text-center">{props.title}</h3>
         </div>
         <div className="d-sm-flex w-full  py-5 justify-content-center align-items-center text-center ">
-          <div className="register-content">{props.children}</div>
+          <div className="auth-content-width ">{props.children}</div>
         </div>
       </div>
     </div>
