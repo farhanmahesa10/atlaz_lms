@@ -68,11 +68,9 @@ const RegisterLayout = (props) => {
         <div className="" style={{ marginBottom: "91px" }}>
           <small>
             New to Atlaz?
-            <Link
-              to="/register"
-              className={`text-warning text-decoration-none`}
-            >
-              &nbsp;Register
+            <Link to="/login" className={`text-warning text-decoration-none`}>
+              <br className="d-sm-none d-block" />
+              &nbsp;Login
             </Link>
           </small>
         </div>
