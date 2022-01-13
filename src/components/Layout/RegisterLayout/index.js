@@ -1,16 +1,17 @@
 import React from "react";
-import RegisterHeader from "./";
 import { ProgressComponent } from "../..";
+import { InputComponent } from "../../Form";
 const RegisterLayout = (props) => {
   return (
-    <div className="  ">
+    <div className=" w-full ">
       <div
-        className="d-sm-none w-full  justify-content-center   d-flex "
+        className="d-sm-none w-full   justify-content-center px-2  d-flex "
         style={{ paddingTop: "24px", paddingBottom: "26px" }}
       >
         <ProgressComponent
           totalProgress={props.totalProgress}
           activeProgress={props.activeProgress}
+          className="w-full"
         />
       </div>
       <div
@@ -42,20 +43,23 @@ const RegisterLayout = (props) => {
           </div>
         </div>
       </div>
-      <div
-        className="d-sm-flex w-full justify-content-center  d-none "
-        style={{ paddingTop: "123px" }}
-      >
-        <ProgressComponent
-          totalProgress={props.totalProgress}
-          activeProgress={props.activeProgress}
-        />
-      </div>
-      <div className="register-title">
-        <h3 className="fw-bold text-center">{props.title}</h3>
-      </div>
-      <div className="d-sm-flex container py-5 justify-content-center align-items-center text-center">
-        {props.children}
+      <div className=" container ">
+        <div
+          className="d-sm-flex w-full justify-content-center col-12  d-none "
+          style={{ paddingTop: "123px" }}
+        >
+          <ProgressComponent
+            totalProgress={props.totalProgress}
+            activeProgress={props.activeProgress}
+            className="register-content"
+          />
+        </div>
+        <div className="register-title">
+          <h3 className="fw-bold text-center">{props.title}</h3>
+        </div>
+        <div className="d-sm-flex w-full  py-5 justify-content-center align-items-center text-center ">
+          <div className="register-content">{props.children}</div>
+        </div>
       </div>
     </div>
   );

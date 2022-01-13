@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import AuthLayout from "../../../components/Layout/AuthLayout";
 import { useNavigate } from "react-router-dom";
-import {
-  InputComponent,
-  InputEmail,
-  GoogleButton,
-} from "../../../components/Form";
-import { RegisterHeader } from "../../../components";
+import { InputEmail, GoogleButton } from "../../../components/Form";
 import { Link } from "react-router-dom";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 const Register1 = () => {
@@ -23,7 +17,7 @@ const Register1 = () => {
       activeProgress={1}
       title="Sign up to get started"
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="w-full">
         <div className=" ">
           <div className="mb-3">
             <GoogleButton label="Register" />
@@ -49,7 +43,7 @@ const Register1 = () => {
               }}
             />
           </div>
-          <div className="d-flex gap-3 mb-5">
+          <div className="d-flex gap-3 mb-5 ">
             <button className="btn btn-white border col btn-rounded">
               Back
             </button>
