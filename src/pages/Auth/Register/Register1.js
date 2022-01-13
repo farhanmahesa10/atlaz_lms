@@ -56,11 +56,15 @@ const Register1 = () => {
               Next
             </button>
           </div>
-          <div>
+          <div
+            className="position-absolute  text-center w-full "
+            style={{ bottom: "30px" }}
+          >
             <small>
               Already have account?
               <Link to="/login" className={`text-warning text-decoration-none`}>
-                &nbsp;Sign in now
+                <br />
+                Sign in
               </Link>
             </small>
           </div>
