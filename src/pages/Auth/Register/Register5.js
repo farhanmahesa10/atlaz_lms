@@ -14,10 +14,7 @@ const Register5 = () => {
         className="w-full  h-full d-flex justify-content-center align-items-center"
         style={{ marginTop: "-100px" }}
       >
-        <div
-          className=" bg-gray-50 p-4 rounded shadow-sm"
-          style={{ width: "773px" }}
-        >
+        <div className="p-4 " style={{ width: "773px" }}>
           <h1 className="text-warning mb-0">Please check your email</h1>
           <div className="d-flex align-items-center gap-28 align-items">
             <div>
