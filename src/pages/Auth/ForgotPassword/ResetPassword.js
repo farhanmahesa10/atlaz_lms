@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { InputPassword, GoogleButton } from "../../../components/Form";
-import { ProgressComponent } from "../../../components";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
@@ -38,12 +37,13 @@ const ResetPassword = () => {
     e.preventDefault();
     if (allowNext) navigate("/register-finish");
   };
+
   return (
     <AuthLayout hideBackButton={true}>
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div className="auth-title">
-            <p className="fw-bold text-center">Reset password</p>
+          <div className="auth-title" style={{ paddingTop: "90px" }}>
+            <h4 className="fw-bold text-center">Reset password</h4>
           </div>
 
           <div className="mb-5 text-start">

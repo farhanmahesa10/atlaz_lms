@@ -55,7 +55,7 @@ const RegisterLayout = (props) => {
           />
         </div>
         <div className="register-title">
-          <h3 className="fw-bold text-center">{props.title}</h3>
+          <h4 className="fw-bold text-center">{props.title}</h4>
         </div>
         <div className="d-sm-flex w-full  py-5 justify-content-center align-items-center text-center ">
           <div className="auth-content-width ">{props.children}</div>

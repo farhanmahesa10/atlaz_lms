@@ -1,6 +1,8 @@
 $warning: #ffc107;
 $danger: #ffc107;
+
 @import "~bootstrap/scss/bootstrap.scss";
+
 .auth-content {
   width: 450px;
   @media (max-width: 576px) {
@@ -12,9 +14,6 @@ $danger: #ffc107;
   .auth-title {
     color: #2a384c;
     padding-bottom: 80px;
-    p:first-child {
-      font-size: 24px;
-    }
   }
 
   .or-content {

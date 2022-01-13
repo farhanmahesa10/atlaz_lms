@@ -10,7 +10,7 @@ const RegisterHeader = (props) => {
         />
       </div>
       <div className="auth-title">
-        <h3 className="fw-bold text-center">{props.title}</h3>
+        <h6 className="fw-bold text-center">{props.title}</h6>
       </div>
     </div>
   );
