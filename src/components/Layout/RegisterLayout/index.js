@@ -25,7 +25,10 @@ const RegisterLayout = (props) => {
                 to="/"
                 className="text-gray-900 text-decoration-none d-flex"
               >
-                <i className="bi bi-chevron-left d-sm-none"></i>
+                <i
+                  className="bi bi-arrow-left-short d-sm-none text-gray-500"
+                  style={{ fontSize: "30px" }}
+                ></i>
                 <span className="d-none d-sm-block">
                   <i className="bi bi-arrow-left"></i>&nbsp; Back to Home
                 </span>
