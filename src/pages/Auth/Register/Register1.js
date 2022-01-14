@@ -43,7 +43,7 @@ const Register1 = () => {
               }}
             />
           </div>
-          <div className="d-flex gap-3 mb-5 ">
+          <div className="d-flex gap-3  ">
             <button className="btn btn-white border col btn-rounded">
               Back
             </button>
@@ -58,6 +58,17 @@ const Register1 = () => {
           </div>
         </div>
       </form>
+      <footer className="footer mt-auto py-3 bg-white text-center">
+        <div className="" style={{ marginBottom: "91px" }}>
+          <small>
+            New to Atlaz?
+            <Link to="/login" className={`text-warning text-decoration-none`}>
+              <br className="d-sm-none d-block" />
+              &nbsp;Login
+            </Link>
+          </small>
+        </div>
+      </footer>
     </RegisterLayout>
   );
 };

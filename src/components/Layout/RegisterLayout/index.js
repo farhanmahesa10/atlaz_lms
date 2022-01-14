@@ -3,7 +3,7 @@ import { ProgressComponent } from "../..";
 import { Link } from "react-router-dom";
 const RegisterLayout = (props) => {
   return (
-    <div className="  h-screen">
+    <div className=" w-full d-flex flex-column h-screen">
       <div
         className="d-sm-none w-full   justify-content-center px-2  d-flex "
         style={{ paddingTop: "24px", paddingBottom: "26px" }}
@@ -64,17 +64,6 @@ const RegisterLayout = (props) => {
           <div className="auth-content-width ">{props.children}</div>
         </div>
       </div>
-      <footer className="footer mt-auto py-3 bg-white text-center">
-        <div className="" style={{ marginBottom: "91px" }}>
-          <small>
-            New to Atlaz?
-            <Link to="/login" className={`text-warning text-decoration-none`}>
-              <br className="d-sm-none d-block" />
-              &nbsp;Login
-            </Link>
-          </small>
-        </div>
-      </footer>
     </div>
   );
 };

@@ -76,7 +76,7 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          <div className="d-flex gap-3 mb-5">
+          <div className="d-flex gap-3 ">
             <button className=" btn-warning text-white border py-2 col btn-rounded">
               Sign in
             </button>
