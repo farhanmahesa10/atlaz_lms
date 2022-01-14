@@ -36,11 +36,8 @@ const ForgotPassword = () => {
     <AuthLayout hideBackButton={true}>
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div className="auth-title" style={{ paddingBottom: "56px" }}>
-            <h4
-              className="fw-bold "
-              style={{ paddingBottom: "16px", paddingTop: "120px" }}
-            >
+          <div className="auth-title">
+            <h4 className=" " style={{ paddingBottom: "16px" }}>
               Forgot Password
             </h4>
             <p className="mt-0 lg-position-relative text-center">

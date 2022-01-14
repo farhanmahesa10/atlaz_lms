@@ -83,6 +83,17 @@ const Login = () => {
           </div>
         </div>
       </form>
+      <footer className="footer mt-auto py-3 bg-white text-center">
+        <div className="">
+          <small>
+            New to Atlaz?
+            <Link to="/login" className={`text-warning text-decoration-none`}>
+              <br className="d-sm-none d-block" />
+              &nbsp;Login
+            </Link>
+          </small>
+        </div>
+      </footer>
     </AuthLayout>
   );
 };
