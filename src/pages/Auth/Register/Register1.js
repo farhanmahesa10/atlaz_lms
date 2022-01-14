@@ -49,7 +49,7 @@ const Register1 = () => {
             </button>
             <button
               type={`${allowNext ? "submit" : "button"}`}
-              className={`border  col btn-rounded  ${
+              className={`border col btn-rounded  ${
                 allowNext ? "bg-warning" : "bg-gray-300"
               }`}
             >
@@ -58,13 +58,12 @@ const Register1 = () => {
           </div>
         </div>
       </form>
-      <footer className="footer mt-auto py-3 bg-white text-center">
-        <div className="" style={{ marginBottom: "91px" }}>
+      <footer className="footer app-mt-64 mob-mt-32 bg-white text-center">
+        <div className="">
           <small>
             New to Atlaz?
             <Link to="/login" className={`text-warning text-decoration-none`}>
-              <br className="d-sm-none d-block" />
-              &nbsp;Login
+              &nbsp;Login now
             </Link>
           </small>
         </div>

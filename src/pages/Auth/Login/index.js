@@ -89,7 +89,7 @@ const Login = () => {
                   to="/register"
                   className={`text-warning text-decoration-none`}
                 >
-                  &nbsp;Register
+                  &nbsp;Sign up now
                 </Link>
               </small>
             </div>
