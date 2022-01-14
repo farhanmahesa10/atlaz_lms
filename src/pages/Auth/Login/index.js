@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   InputComponent,
   GoogleButton,
@@ -22,8 +22,8 @@ const Login = () => {
     <AuthLayout>
       <form className="" onSubmit={loginSubmit}>
         <div className="auth-content">
-          <div className="auth-title mt-4">
-            <h4 className="">Welcome back, Atlazen!</h4>
+          <div className="">
+            <h4 className="app-pb-80 mob-pb-24 m-0">Welcome back, Atlazen!</h4>
           </div>
           <div className="mb-3">
             <GoogleButton label="Continue" />
@@ -76,12 +76,12 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          <div className="d-flex gap-3 ">
+          <div className="d-flex gap-3 mob-pb-32 app-pb-64">
             <button className=" btn-warning text-white border py-2 col btn-rounded">
               Sign in
             </button>
           </div>
-          <footer className="footer mt-auto py-3 bg-white text-center">
+          <footer className="footer mt-auto  bg-white text-center">
             <div className="">
               <small>
                 New to Atlaz?
@@ -89,7 +89,6 @@ const Login = () => {
                   to="/register"
                   className={`text-warning text-decoration-none`}
                 >
-                  <br className="d-sm-none d-block" />
                   &nbsp;Register
                 </Link>
               </small>
