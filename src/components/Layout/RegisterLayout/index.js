@@ -16,7 +16,7 @@ const RegisterLayout = (props) => {
       </div>
       <div
         className="row w-full px-2 align-items-center "
-        style={{ paddingTop: "24px" }}
+        style={{ paddingTop: "" }}
       >
         <div className="col-4 col-md-3 ">
           {!props.hideBackButton ? (
