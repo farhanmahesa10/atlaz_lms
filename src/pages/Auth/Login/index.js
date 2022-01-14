@@ -23,7 +23,7 @@ const Login = () => {
       <form className="" onSubmit={loginSubmit}>
         <div className="auth-content">
           <div className="auth-title mt-4">
-            <h4 className="fw-bold ">Welcome back, Atlazen!</h4>
+            <h4 className="">Welcome back, Atlazen!</h4>
           </div>
           <div className="mb-3">
             <GoogleButton label="Continue" />

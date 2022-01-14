@@ -13,7 +13,13 @@ $danger: #ffc107;
 
   .auth-title {
     color: #2a384c;
-    padding-bottom: 80px;
+    @media (min-width: 576px) {
+      padding-bottom: 80px;
+    }
+    @media (max-width: 576px) {
+      padding-bottom: 24px;
+      margin-bottom: 0;
+    }
   }
 
   .or-content {
@@ -33,10 +39,12 @@ a:hover {
 
 .register-title {
   @media (max-width: 576px) {
-    padding-top: 32px;
+    padding-top: 66px;
+    padding-bottom: 24px;
   }
   @media (min-width: 576px) {
     padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
 
