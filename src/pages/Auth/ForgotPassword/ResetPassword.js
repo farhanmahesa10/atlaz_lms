@@ -42,7 +42,7 @@ const ResetPassword = () => {
     <AuthLayout hideBackButton={true}>
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div className="auth-title" style={{ paddingTop: "90px" }}>
+          <div className="auth-title">
             <h4 className="fw-bold text-center">Reset password</h4>
           </div>
 
