@@ -81,22 +81,22 @@ const Login = () => {
               Sign in
             </button>
           </div>
+          <footer className="footer mt-auto py-3 bg-white text-center">
+            <div className="">
+              <small>
+                New to Atlaz?
+                <Link
+                  to="/register"
+                  className={`text-warning text-decoration-none`}
+                >
+                  <br className="d-sm-none d-block" />
+                  &nbsp;Register
+                </Link>
+              </small>
+            </div>
+          </footer>
         </div>
       </form>
-      <footer className="footer mt-auto py-3 bg-white text-center">
-        <div className="">
-          <small>
-            New to Atlaz?
-            <Link
-              to="/register"
-              className={`text-warning text-decoration-none`}
-            >
-              <br className="d-sm-none d-block" />
-              &nbsp;Register
-            </Link>
-          </small>
-        </div>
-      </footer>
     </AuthLayout>
   );
 };
