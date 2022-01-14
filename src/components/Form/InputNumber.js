@@ -31,7 +31,7 @@ const InputNumber = (props) => {
           <input
             type="number"
             className={`form-control border-gray-400 ${
-              isRequired ? "border-danger border-right-none" : ""
+              isRequired ? "border-danger " : ""
             }   border-left-none  py-2 
             }`}
             placeholder={props.placeholder}
@@ -40,15 +40,6 @@ const InputNumber = (props) => {
               validation(e.target.value);
             }}
           />
-          {isRequired ? (
-            <div className="input-group-text cursor-pointer bg-white border-danger border-left-none border-gray-400 ">
-              <span className="text-gray-400">
-                <i className="bi bi-exclamation-circle text-danger"></i>
-              </span>
-            </div>
-          ) : (
-            ""
-          )}
         </div>
       </div>
       <small className="text-danger text-start">{isRequired}</small>

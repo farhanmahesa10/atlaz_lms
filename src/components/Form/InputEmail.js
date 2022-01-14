@@ -29,7 +29,7 @@ const InputEmail = (props) => {
           <input
             type="email"
             className={`form-control border-gray-400  ${
-              isEmail ? "border-danger border-right-none" : ""
+              isEmail ? "border-danger " : ""
             }   border-left-none  py-2 
             }`}
             placeholder={props.placeholder}
@@ -38,15 +38,6 @@ const InputEmail = (props) => {
               validation(e.target.value);
             }}
           />
-          {isEmail ? (
-            <div className="input-group-text cursor-pointer bg-white border-danger border-left-none border-gray-400 ">
-              <span className="text-gray-400">
-                <i className="bi bi-exclamation-circle text-danger"></i>
-              </span>
-            </div>
-          ) : (
-            ""
-          )}
         </div>
       </div>
       <small className="text-danger text-start">{isEmail}</small>

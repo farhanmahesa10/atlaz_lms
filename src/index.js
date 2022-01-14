@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./mysass.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/sass/app.scss";
 import "./assets/sass/mobile.scss";
 import App from "./App";
