@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "./mysass.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/sass/app.scss";
-import "./assets/sass/mobile.scss";
+// import "./mysass.scss";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/sass/main.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";

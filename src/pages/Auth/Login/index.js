@@ -21,9 +21,9 @@ const Login = () => {
   return (
     <AuthLayout>
       <form className="" onSubmit={loginSubmit}>
-        <div className="auth-content">
+        <div className="auth-content ">
           <div className="">
-            <h4 className="app-pb-80 mob-pb-24 m-0">Welcome back, Atlazen!</h4>
+            <h4 className="pb-80 xs-pb-24 m-0">Welcome back, Atlazen!</h4>
           </div>
           <div className="mb-3">
             <GoogleButton label="Continue" />
@@ -76,7 +76,7 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          <div className="d-flex gap-3 mob-pb-32 app-pb-64">
+          <div className="d-flex gap-3 xs-pb-32 pb-64">
             <button className=" btn-warning text-white border py-2 col btn-rounded">
               Sign in
             </button>

@@ -24,13 +24,13 @@ const InputText = (props) => {
           <div
             className={`input-group-text ${
               isRequired ? "border-danger" : ""
-            } bg-white  border-gray-400`}
+            } bg-white  border-neutral-100`}
           >
-            <span className="text-gray-400"> {props.icon}</span>
+            <span className="text-neutral-400"> {props.icon}</span>
           </div>
           <input
             type="text"
-            className={`form-control border-gray-400 ${
+            className={`form-control border-neutral-100 ${
               isRequired ? "border-danger " : ""
             }   border-left-none    py-2 
             }`}

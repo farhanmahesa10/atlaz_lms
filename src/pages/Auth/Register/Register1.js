@@ -58,7 +58,7 @@ const Register1 = () => {
           </div>
         </div>
       </form>
-      <footer className="footer app-mt-64 mob-mt-32 bg-white text-center">
+      <footer className="footer mt-64 xs-mt-32 bg-white text-center">
         <div className="">
           <small>
             New to Atlaz?

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InputComponent } from "../../../components/Form";
+import { InputPassword } from "../../../components/Form";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
@@ -46,7 +46,7 @@ const Register4 = () => {
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
           <div className="mb-5 text-start">
-            <InputComponent
+            <InputPassword
               label="Password"
               type="password"
               placeholder="Create your password"

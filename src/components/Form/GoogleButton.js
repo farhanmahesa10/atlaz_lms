@@ -2,7 +2,7 @@ import React from "react";
 
 const GoogleButton = (props) => {
   return (
-    <button className="btn btn-rounded btn-white col border-gray-400 w-full py-2">
+    <button className="btn btn-rounded border-neutral-100 col  w-full py-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 48 48"

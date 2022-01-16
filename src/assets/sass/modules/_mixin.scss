@@ -1,0 +1,72 @@
+@import "variable";
+
+@mixin colorGenerator($colors, $code, $selector: ".") {
+  @for $i from 1 through length($colors) {
+    $a: $i * 100;
+    #{$selector}bg-#{$code}-#{$a} {
+      background-color: nth($colors, $i);
+    }
+    #{$selector}border-#{$code}-#{$a} {
+      border: 1px solid nth($colors, $i);
+      // &:focus {
+      //   border: 1px solid nth($colors, $i);
+      // }
+    }
+    #{$selector}text-#{$code}-#{$a} {
+      color: nth($colors, $i);
+    }
+  }
+}
+
+@mixin marginPaddingGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}ml-#{$i} {
+      margin-left: #{$i}px;
+    }
+    #{$selector}mr-#{$i} {
+      margin-right: #{$i}px;
+    }
+    #{$selector}mt-#{$i} {
+      margin-top: #{$i}px;
+    }
+    #{$selector}mb-#{$i} {
+      margin-bottom: #{$i}px;
+    }
+    #{$selector}pl-#{$i} {
+      padding-left: #{$i}px;
+    }
+    #{$selector}pr-#{$i} {
+      padding-right: #{$i}px;
+    }
+    #{$selector}pt-#{$i} {
+      padding-top: #{$i}px;
+    }
+    #{$selector}pb-#{$i} {
+      padding-bottom: #{$i}px;
+    }
+  }
+}
+@mixin gapGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}gap-#{$i} {
+      gap: #{$i}px;
+    }
+    #{$selector}gap-x-#{$i} {
+      column-gap: #{$i}px;
+    }
+    #{$selector}gap-y-#{$i} {
+      row-gap: #{$i}px;
+    }
+  }
+}
+@mixin firstSetup($selector: ".") {
+  @include colorGenerator($neutralColor, $neutralCode, $selector);
+  @include colorGenerator($primaryColor, $primaryCode, $selector);
+  @include colorGenerator($warningColor, $warningCode, $selector);
+  @include colorGenerator($successColor, $successCode, $selector);
+  @include colorGenerator($dangerColor, $dangerCode, $selector);
+  @include colorGenerator($infoColor, $infoCode, $selector);
+  @include colorGenerator($secondaryColor, $secondaryCode, $selector);
+  @include marginPaddingGenerator(300, $selector);
+  @include gapGenerator(300, $selector);
+}
