@@ -64,7 +64,7 @@ const ForgotPassword = () => {
             />
           </div>
           <div className="d-flex gap-3 mb-4">
-            <button className="btn btn-warning fs-5 border col text-gray-700 btn-rounded">
+            <button className="btn btn-warning fs-5 border col text-neutral-700 btn-rounded">
               Reset Password
             </button>
           </div>
@@ -76,7 +76,7 @@ const ForgotPassword = () => {
           <div className="d-flex gap-3 mb-5">
             <Link
               to="/login"
-              className="btn btn-white fs-5 border col text-gray-700 btn-rounded"
+              className="btn btn-white fs-5 border col text-neutral-700 btn-rounded"
             >
               Sign In
             </Link>

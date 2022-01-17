@@ -57,7 +57,7 @@ const Register4 = () => {
                 validate(val);
               }}
             />
-            <div className="row  text-gray-400">
+            <div className="row  text-neutral-400">
               <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
@@ -118,7 +118,7 @@ const Register4 = () => {
             <button
               type={`${allowNext ? "submit" : "button"}`}
               className={`border  col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-gray-300"
+                allowNext ? "bg-warning" : "bg-neutral-100"
               }`}
             >
               Next

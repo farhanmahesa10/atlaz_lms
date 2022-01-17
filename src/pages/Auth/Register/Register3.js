@@ -42,7 +42,7 @@ const Register3 = () => {
             <button
               type={`${allowNext ? "submit" : "button"}`}
               className={`border  col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-gray-300"
+                allowNext ? "bg-warning" : "bg-neutral-100"
               }`}
             >
               Next

@@ -15,14 +15,6 @@ const InputPassword = (props) => {
     }
   };
 
-  // let errorIcon = (
-  //   <div className="input-group-text cursor-pointer bg-white border-danger border-left-none border-gray-400 ">
-  //     <span className="text-gray-400">
-  //       <i className="bi bi-exclamation-circle text-danger"></i>
-  //     </span>
-  //   </div>
-  // );
-
   return (
     <div className={`text-start ${props.className}`}>
       <label htmlFor="" className="form-label text-start">

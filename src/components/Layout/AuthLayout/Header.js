@@ -6,9 +6,12 @@ const Header = (props) => {
       <div className="col-4 col-md-3 ">
         {!props.hideBackButton ? (
           <div className="d-flex align-items-center h-full">
-            <Link to="/" className="text-gray-900 text-decoration-none d-flex">
+            <Link
+              to="/"
+              className="text-neutral-900 text-decoration-none d-flex"
+            >
               <i
-                className="bi bi-arrow-left-short d-sm-none text-gray-500"
+                className="bi bi-arrow-left-short d-sm-none text-neutral-500"
                 style={{ fontSize: "30px" }}
               ></i>
               <span className="d-none d-sm-block">

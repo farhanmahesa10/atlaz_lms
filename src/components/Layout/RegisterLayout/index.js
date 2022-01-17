@@ -3,9 +3,9 @@ import { ProgressComponent } from "../..";
 import { Link } from "react-router-dom";
 const RegisterLayout = (props) => {
   return (
-    <div className=" w-full d-flex flex-column h-screen">
+    <div className=" w-full d-flex flex-column align-items-center sm-mt-24  h-screen">
       <div
-        className="d-sm-none w-full   justify-content-center px-2  d-flex "
+        className="d-sm-none w-full    justify-content-center px-2  d-flex "
         style={{ paddingTop: "24px", paddingBottom: "26px" }}
       >
         <ProgressComponent
@@ -14,19 +14,16 @@ const RegisterLayout = (props) => {
           className="w-full"
         />
       </div>
-      <div
-        className="row w-full px-2 align-items-center "
-        style={{ paddingTop: "" }}
-      >
+      <div className="row w-full px-2 align-items-center ">
         <div className="col-4 col-md-3 ">
           {!props.hideBackButton ? (
             <div className="d-flex align-items-center h-full">
               <Link
                 to="/"
-                className="text-gray-900 text-decoration-none d-flex"
+                className="text-neutral-900 text-decoration-none d-flex"
               >
                 <i
-                  className="bi bi-arrow-left-short d-sm-none text-gray-500"
+                  className="bi bi-arrow-left-short d-sm-none text-neutral-500"
                   style={{ fontSize: "30px" }}
                 ></i>
                 <span className="d-none d-sm-block">

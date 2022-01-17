@@ -57,7 +57,7 @@ const ResetPassword = () => {
                 validate(val);
               }}
             />
-            <div className="row  text-gray-400">
+            <div className="row  text-neutral-400">
               <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
@@ -112,7 +112,7 @@ const ResetPassword = () => {
             <button
               type={`${allowNext ? "submit" : "button"}`}
               className={`border py-2 col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-gray-300"
+                allowNext ? "bg-warning" : "bg-neutral-100"
               }`}
             >
               Next

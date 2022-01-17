@@ -70,7 +70,7 @@ const Login = () => {
             <div>
               <Link
                 to="/forgot-password"
-                className="text-decoration-none text-gray-900"
+                className="text-decoration-none text-neutral-900"
               >
                 Forgot password
               </Link>
