@@ -30,7 +30,7 @@ const Carousel = () => {
         </div>
         <div className="carousel-inner">
           <div
-            className="carousel-item active d-flex justify-content-center"
+            className="carousel-item active d-flex  justify-content-center"
             data-bs-interval="10000"
           >
             <img
