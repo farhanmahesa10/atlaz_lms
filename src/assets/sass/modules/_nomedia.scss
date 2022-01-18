@@ -4,8 +4,19 @@ $warning: #ffc107;
 $link-decoration: none;
 $link-color: black;
 $input-focus-border-color: #d4d7db;
+$carousel-indicator-width: 10px;
+$carousel-indicator-height: 10px;
+$carousel-indicator-active-bg: black;
 @import "~bootstrap/scss/bootstrap.scss";
 @include firstSetup();
+
+.carousel-indicators button {
+  border-radius: 100% !important;
+}
+
+.list-style-none {
+  list-style: none;
+}
 .bg-neutral-50 {
   background-color: #fdfdfe;
 }
@@ -47,6 +58,10 @@ input:focus {
   @media (min-width: 576px) {
     width: 438px;
   }
+}
+
+.rounded-circle {
+  border-radius: 100%;
 }
 
 a:hover {
@@ -127,4 +142,18 @@ input[type="number"] {
   input {
     border-radius: 10px 10px;
   }
+}
+
+@media (max-height: 442px) {
+  .img-carousel {
+    width: 50%;
+  }
+}
+
+.rounded-8 {
+  border-radius: 8px 8px !important;
+}
+
+.rounded-full {
+  border-radius: 100%;
 }

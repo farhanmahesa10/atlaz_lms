@@ -30,9 +30,9 @@ const InputText = (props) => {
           </div>
           <input
             type="text"
-            className={`form-control border-neutral-100 ${
+            className={`form-control h-48 border-neutral-100 ${
               isRequired ? "border-danger " : ""
-            }   border-left-none    py-2 
+            }   border-left-none    
             }`}
             placeholder={props.placeholder}
             onChange={(e) => {

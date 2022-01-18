@@ -32,6 +32,14 @@
     #{$selector}mb-#{$i} {
       margin-bottom: #{$i}px;
     }
+    #{$selector}my-#{$i} {
+      margin-bottom: #{$i}px;
+      margin-top: #{$i}px;
+    }
+    #{$selector}mx-#{$i} {
+      margin-left: #{$i}px;
+      margin-right: #{$i}px;
+    }
     #{$selector}pl-#{$i} {
       padding-left: #{$i}px;
     }
@@ -43,6 +51,14 @@
     }
     #{$selector}pb-#{$i} {
       padding-bottom: #{$i}px;
+    }
+    #{$selector}py-#{$i} {
+      padding-bottom: #{$i}px;
+      padding-top: #{$i}px;
+    }
+    #{$selector}px-#{$i} {
+      padding-left: #{$i}px;
+      padding-right: #{$i}px;
     }
   }
 }
@@ -59,6 +75,39 @@
     }
   }
 }
+@mixin heightWidthGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}h-#{$i} {
+      height: #{$i}px;
+    }
+    #{$selector}w-#{$i} {
+      width: #{$i}px;
+    }
+  }
+}
+
+@mixin heightWidthPesenGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}h-p-#{$i} {
+      height: #{$i}#{"%"};
+    }
+    #{$selector}w-p-#{$i} {
+      width: #{$i}#{"%"};
+    }
+  }
+}
+
+@mixin borderRadiusGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}radius-p-#{$i} {
+      border-radius: #{$i}#{"%"};
+    }
+    #{$selector}radius-#{$i} {
+      border-radius: #{$i}#{"px"};
+    }
+  }
+}
+
 @mixin firstSetup($selector: ".") {
   @include colorGenerator($neutralColor, $neutralCode, $selector);
   @include colorGenerator($primaryColor, $primaryCode, $selector);
@@ -69,4 +118,7 @@
   @include colorGenerator($secondaryColor, $secondaryCode, $selector);
   @include marginPaddingGenerator(300, $selector);
   @include gapGenerator(300, $selector);
+  @include heightWidthGenerator(500, $selector);
+  @include heightWidthPesenGenerator($selector);
+  @include borderRadiusGenerator($selector);
 }

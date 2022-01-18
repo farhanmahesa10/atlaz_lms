@@ -7,6 +7,8 @@ import Register4 from "./Auth/Register/Register4.js";
 import Register5 from "./Auth/Register/Register5.js";
 import ForgotPassword from "./Auth/ForgotPassword";
 import ResetPassword from "./Auth/ForgotPassword/ResetPassword";
+import Redirecting from "./Redirecting";
+import Home from "./Home";
 export {
   Login,
   Register1,
@@ -16,4 +18,6 @@ export {
   ForgotPassword,
   Register5,
   ResetPassword,
+  Redirecting,
+  Home,
 };

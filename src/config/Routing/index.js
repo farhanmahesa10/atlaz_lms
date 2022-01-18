@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { RegisterMail } from "../../components/Mail";
 import {
   Login,
   Register1,
@@ -9,10 +10,13 @@ import {
   Register5,
   ForgotPassword,
   ResetPassword,
+  Redirecting,
+  Home,
 } from "../../pages";
 const Routing = () => {
   return (
     <Routes>
+      <Route path="/" exac element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register1 />} />
       <Route path="/register-step-2" element={<Register2 />} />
@@ -21,6 +25,8 @@ const Routing = () => {
       <Route path="/register-finish" element={<Register5 />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/redirecting" element={<Redirecting />} />
+      <Route path="/mail-design" element={<RegisterMail />} />
     </Routes>
   );
 };
