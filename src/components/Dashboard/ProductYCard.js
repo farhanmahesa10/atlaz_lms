@@ -21,13 +21,13 @@ const ProductYCard = () => {
         <h6 className="m-0 font-size-14 sm-font-size-16">
           English Escalate - Fourth
         </h6>
-        <p className="text-neutral-300 m-0 pb-0 md-pb-24 font-size-11 sm-font-size-14">
+        <p className="text-neutral-300 m-0 xs-pb-0  md-pb-24 sm-pb-24 font-size-11 sm-font-size-14">
           Atlaz
         </p>
         <div className="d-flex justify-content-between pb-0 md-pb-24">
           <div>
             <h6 className="m-0 text-center font-size-12 sm-font-size-16">6</h6>
-            <p className="m-0 text-neutral-200  font-size-9 sm-font-size-12">
+            <p className="m-0 text-neutral-200 xs-pb-0  md-pb-24 sm-pb-24  font-size-9 sm-font-size-12">
               Lesson
             </p>
           </div>
