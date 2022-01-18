@@ -4,9 +4,13 @@ import CarouselDot from "../SVG/CarouselDot";
 const Carousel = () => {
   return (
     <>
-      <div id="my-carousel" className="carousel  slide" data-bs-ride="carousel">
+      <div
+        id="my-carousel"
+        className="carousel  slide "
+        data-bs-ride="carousel"
+      >
         <div
-          className="carousel-indicators position-absolute "
+          className="carousel-indicators  position-absolute "
           style={{ bottom: "-40px" }}
         >
           <button
@@ -56,13 +60,13 @@ const Carousel = () => {
           </div>
         </div>
         <button
-          className="carousel-control-prev text-white"
+          className="carousel-control-prev text-white d-none d-md-block"
           type="button"
           data-bs-target="#my-carousel"
           data-bs-slide="prev"
         >
           <span
-            className=" radius-8 h-48 w-48 position-absolute start-0 d-flex align-items-center justify-content-center "
+            className=" radius-8 h-48 w-48  d-flex align-items-center justify-content-center "
             aria-hidden="true"
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -76,13 +80,13 @@ const Carousel = () => {
           <span className="visually-hidden">Previous</span>
         </button>
         <button
-          className="carousel-control-next"
+          className="carousel-control-next d-none d-md-flex justify-content-end  "
           type="button"
           data-bs-target="#my-carousel"
           data-bs-slide="next"
         >
           <span
-            className=" radius-8 h-48 w-48 position-absolute end-0 d-flex align-items-center justify-content-center"
+            className=" radius-8 h-48 w-48 position-relative end-0 d-flex align-items-center justify-content-center"
             aria-hidden="true"
             style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
           >
