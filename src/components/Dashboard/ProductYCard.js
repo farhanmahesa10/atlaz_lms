@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductYCard = () => {
   return (
-    <div className="sm-w-456 w-300 mr-10 sm-mr-28 flex-grow-0  flex-shrink-0  d-flex gap-20 align-items-center p-1">
+    <div className="sm-w-456 w-300 xs-mr-10 sm-mr-28 flex-grow-0 book-shadow radius-14 flex-shrink-0  d-flex gap-20 align-items-center p-1">
       <div
         className="lg-w-196 lg-h-196 md-w-160 md-h-160 w-104 h-104  
        radius-14 d-flex align-items-center justify-content-center bg-book-product"
