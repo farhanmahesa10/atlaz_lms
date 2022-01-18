@@ -27,11 +27,15 @@ const Home = () => {
         </div>
         <div className="pt-79 sm-pl-48 pl-24 m-0">
           <div className="d-flex gap-24 pb-24 align-items-center">
-            <h3 className="m-0">Limited Deals</h3>
-            <p className="m-0 text-neutral-300">Ends in</p>
+            <h3 className="m-0 font-size-20 sm-font-size-24">Limited Deals</h3>
+            <p className="m-0 text-neutral-300 font-size-12 sm-font-size-14">
+              Ends in
+            </p>
             <div className="d-flex align-items-center gap-11">
               <Clock />
-              <p className="text-primary-500 m-0">2 Days</p>
+              <p className="text-primary-500 m-0 font-size-12 sm-font-size-14">
+                2 Days
+              </p>
             </div>
           </div>
           <EmblaSlider
@@ -50,31 +54,31 @@ const Home = () => {
         <div className="sm-px-48 px-24 m-0">
           <div className=" pt-64">
             <h3 className="m-0">Redeem Activation Code</h3>
-            <div className="w-full border-1 border-neutral-100 rounded d-lg-flex align-items-center gap-24 pr-24 lg-pl-0 pl-24 mt-24 lg-py-0 py-24 ">
+            <div className="w-full  border-1 border-neutral-100 rounded d-lg-flex flex-grow-0 flex-shrink-0 align-items-center gap-24 pr-24 lg-pl-0 pl-24 mt-24 lg-py-0 py-24 ">
               <img
                 src="/images/redem.png"
                 alt=""
                 className="d-none d-lg-block"
               />
-              <div className="">
+              <div className=" lg-pb-0 pb-24 lg-w-432 flex-grow-0 flex-shrink-0">
                 <h3 className="m-0">Where is the code?</h3>
                 <p className="m-0">
                   You can be found on the first page after cover of the book you
                   have purchased.
                 </p>
               </div>
-              <div className="input-group mb-3  ">
+              <div className="d-sm-flex w-full  ">
                 <input
                   type="text"
-                  className="form-control rounded"
-                  placeholder="Input activation code here"
+                  className="form-control sm-radius-l-8 radius-8"
+                  placeholder="Input activation code here "
                 />
-                <span
-                  className="input-group-text cursor-pointer px-64 bg-primary-400 border-primary-400"
+                <button
+                  className="input-group-text sm-radius-r-8 radius-8 btn cursor-pointer w-full  sm-w-210 mt-24 sm-mt-0  bg-primary-400 border-primary-400"
                   id="basic-addon2"
                 >
                   Redeem
-                </span>
+                </button>
               </div>
             </div>
           </div>

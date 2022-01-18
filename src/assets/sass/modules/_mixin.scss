@@ -105,6 +105,20 @@
     #{$selector}radius-#{$i} {
       border-radius: #{$i}#{"px"};
     }
+    #{$selector}radius-r-#{$i} {
+      border-radius: 0px #{$i}px #{$i}px 0px;
+    }
+    #{$selector}radius-l-#{$i} {
+      border-radius: #{$i}px 0px 0px #{$i}px;
+    }
+  }
+}
+
+@mixin fontSizeGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}font-size-#{$i} {
+      font-size: #{$i}px;
+    }
   }
 }
 
@@ -121,4 +135,5 @@
   @include heightWidthGenerator(500, $selector);
   @include heightWidthPesenGenerator($selector);
   @include borderRadiusGenerator($selector);
+  @include fontSizeGenerator($selector);
 }

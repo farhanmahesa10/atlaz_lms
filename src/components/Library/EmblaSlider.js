@@ -14,7 +14,7 @@ const EmblaSlider = (props) => {
         <div className="embla__container">
           {props.content.map((r) => {
             return (
-              <div className="embla__slide">
+              <div className="embla__slide" key={Math.random()}>
                 <div className="embla__slide__inner" style={{ height: "100%" }}>
                   {r}
                 </div>
