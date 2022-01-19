@@ -9,7 +9,6 @@ import Clock from "../../components/SVG/Clock";
 import LineIcon from "../../components/SVG/LineIcon";
 
 const Home = () => {
-  const [isGrabingList, setIsGrabingList] = useState(false);
   return (
     <>
       <MainLayout>
@@ -25,8 +24,8 @@ const Home = () => {
           </div>
           <Carousel />
         </div>
-        <div className="pt-79 sm-pl-48 pl-24 m-0">
-          <div className="d-flex gap-24 pb-24 align-items-center">
+        <div className="pt-79 sm-pl-48 pl-24 m-0 xl-pr-24">
+          <div className="d-flex gap-24  align-items-center">
             <h3 className="m-0 font-size-20 sm-font-size-24">Limited Deals</h3>
             <p className="m-0 text-neutral-300 font-size-12 sm-font-size-14">
               Ends in
@@ -38,6 +37,10 @@ const Home = () => {
               </p>
             </div>
           </div>
+          <div className="pb-24">
+            <LineIcon />
+          </div>
+
           <EmblaSlider
             content={[
               <ProductYCard />,
@@ -51,7 +54,7 @@ const Home = () => {
             ]}
           />
         </div>
-        <div className="sm-px-48 px-24 m-0">
+        <div className="sm-px-48 px-24 m-0 xl-pr-24">
           <div className=" pt-64">
             <h3 className="m-0">Redeem Activation Code</h3>
             <div className="w-full  border-1 border-neutral-100 rounded d-lg-flex flex-grow-0 flex-shrink-0 align-items-center gap-24 pr-24 lg-pl-0 pl-24 mt-24 lg-py-0 py-24 ">
@@ -83,14 +86,19 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="pt-64 sm-pl-48 pl-24 m-0">
-          <div className="d-flex gap-24 pb-24 align-items-center">
-            <h3 className="m-0">Limited Deals</h3>
+        <div className="pt-64 sm-pl-48 pl-24 m-0 xl-pr-24">
+          <div className="d-flex gap-24  align-items-center">
+            <div className="">
+              <h3 className="m-0">Our Book List</h3>
+            </div>
             <p className="m-0 text-neutral-300">Ends in</p>
             <div className="d-flex align-items-center gap-11">
               <Clock />
               <p className="text-primary-500 m-0">2 Days</p>
             </div>
+          </div>
+          <div className="pb-24">
+            <LineIcon />
           </div>
           <EmblaSlider
             content={[
@@ -178,7 +186,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="px-48 mt-148">
+        <div className="px-48 xl-px-0 mt-148">
           <div className="text-center mb-54">
             <h3 className="m-0">What they say</h3>
             <div style={{ marginTop: "-10px" }}>

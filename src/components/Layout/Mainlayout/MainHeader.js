@@ -42,7 +42,10 @@ const MainHeader = () => {
           <Navbar.Brand href="#" className="pt-20 pb-24  m-0 ">
             <img src="/images/logo.png" alt="" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav "
+            style={{ border: "none" }}
+          />
           <Nav className=" d-none d-lg-flex justify-content-center align-items-center">
             {menus.map((r) => {
               return (
@@ -90,7 +93,7 @@ const MainHeader = () => {
             {/* off canvas */}
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">
-                Offcanvas
+                <img src="/images/logo.png" alt="" />
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>

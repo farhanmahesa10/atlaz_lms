@@ -7,7 +7,11 @@ const MainLayout = (props) => {
     <>
       <div className="d-flex flex-column " style={{ minHeight: "100vh" }}>
         <MainHeader />
-        <main className="flex-shrink-0 mb-128">{props.children}</main>
+        <main className="flex-shrink-0 mb-128 row justify-content-center">
+          <div style={{ maxWidth: "1440px" }}>
+            <div className="col">{props.children}</div>
+          </div>
+        </main>
         <MainFooter />
       </div>
     </>
