@@ -178,24 +178,26 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="px-48">
+        <div className="px-48 mt-148">
           <div className="text-center mb-54">
             <h3 className="m-0">What they say</h3>
             <div style={{ marginTop: "-10px" }}>
               <LineIcon />
             </div>
           </div>
-          <div className="d-flex gap-4 ">
-            <div className=" radius-14 shadow-lg px-24 py-24  w-p-30">
-              <WhatTheySayCard />
-            </div>
-            <div className=" radius-14 shadow-lg px-24 py-24  w-p-60">
-              <WhatTheySayCard />
-            </div>
-            <div className=" radius-14 shadow-lg px-24 py-24  w-p-30">
-              <WhatTheySayCard />
-            </div>
-          </div>
+          <EmblaSlider
+            content={[
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+              <WhatTheySayCard />,
+            ]}
+          />
         </div>
       </MainLayout>
     </>

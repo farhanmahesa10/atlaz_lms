@@ -8,6 +8,38 @@
     }
     #{$selector}border-#{$code}-#{$a} {
       border: 1px solid nth($colors, $i);
+    }
+    #{$selector}text-#{$code}-#{$a} {
+      color: nth($colors, $i);
+    }
+
+    //hover
+
+    #{$selector}hover-bg-#{$code}-#{$a} {
+      &:hover {
+        background-color: nth($colors, $i);
+      }
+    }
+    #{$selector}hover-border-#{$code}-#{$a} {
+      &:hover {
+        border: 1px solid nth($colors, $i);
+      }
+    }
+    #{$selector}hover-text-#{$code}-#{$a} {
+      &:hover {
+        color: nth($colors, $i);
+      }
+    }
+  }
+}
+@mixin hoverColorGenerator($colors, $code, $selector: ".") {
+  @for $i from 1 through length($colors) {
+    $a: $i * 100;
+    #{$selector}#{"hover:"}bg-#{$code}-#{$a} {
+      background-color: nth($colors, $i);
+    }
+    #{$selector}border-#{$code}-#{$a} {
+      border: 1px solid nth($colors, $i);
       // &:focus {
       //   border: 1px solid nth($colors, $i);
       // }
@@ -132,7 +164,7 @@
   @include colorGenerator($secondaryColor, $secondaryCode, $selector);
   @include marginPaddingGenerator(300, $selector);
   @include gapGenerator(300, $selector);
-  @include heightWidthGenerator(500, $selector);
+  @include heightWidthGenerator(700, $selector);
   @include heightWidthPesenGenerator($selector);
   @include borderRadiusGenerator($selector);
   @include fontSizeGenerator($selector);
