@@ -85,7 +85,7 @@ const MainHeader = () => {
           <Navbar.Offcanvas
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
+            placement="start"
           >
             {/* off canvas */}
             <Offcanvas.Header closeButton>
