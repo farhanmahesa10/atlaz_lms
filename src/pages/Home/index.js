@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />}>
-        <div className="pt-48 md-pl-64 pl-24 m-0 xl-pr-24">
+        <div className="pt-48 md-pl-64 pl-12 m-0 xl-pr-12">
           <EmblaSlider
             content={[
               <ProductYCard />,
@@ -54,7 +54,7 @@ const Home = () => {
             }
           />
         </div>
-        <div className="sm-px-48 px-24 m-0 xl-pr-24">
+        <div className="sm-px-48 px-12 m-0 xl-pr-12">
           <div className=" pt-64">
             <h3 className="m-0">Redeem Activation Code</h3>
             <div style={{ marginTop: "-12px" }}>
@@ -89,7 +89,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="pt-64 sm-pl-48 pl-24 m-0 xl-pr-24">
+        <div className="pt-64 sm-pl-48 pl-12 m-0 xl-pr-12">
           <div className="d-flex gap-24  align-items-center">
             <div className="">
               <h3 className="m-0 font-size-20 sm-font-size-24">
@@ -115,7 +115,7 @@ const Home = () => {
             <ProductXCard />
           </div>
         </div>
-        <div className="sm-px-48 px-24 m-0">
+        <div className="sm-px-48 px-12 m-0">
           <div className="pb-128 ">
             <div className="d-flex gap-100 align-items-center ">
               <div className="py-58 lg-w-p-50 w-p-100 d-none bg-neutral-50 rounded d-lg-flex justify-content-center align-items-center">
@@ -160,7 +160,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className=" row  bg-secondary-200  px-48 py-41  align-items-center">
+        <div className=" row  bg-secondary-200  px-32 py-41  align-items-center">
           <div className="col-lg-3 col-12">
             <h4 className="m-0 text-left">Our Partnership</h4>
             <LineIcon />
