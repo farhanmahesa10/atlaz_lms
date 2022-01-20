@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 import CarouselDot from "../SVG/CarouselDot";
 import Slider from "react-slick";
+
+const SampleNextArrow = (props) => {
+  const { className, style, onClick } = props;
+
+  return (
+    <div className="bg-secondary-400 d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "></div>
+  );
+};
+
+const SamplePrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div className="bg-secondary-400  d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "></div>
+  );
+};
 const Carousel = () => {
   const [settings, setSettings] = useState({
-    // dots: true,
-    // dots: true,
-    className: "center",
-    centerMode: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 2,
-    initialSlide: 0,
+    slidesToScroll: 1,
     variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-          // dots: true,
-        },
-      },
-    ],
-    // variableHeight: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   });
 
   return (
@@ -123,30 +123,23 @@ const Carousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="d-xs-block d-sm-none">
-        <div>
-          <Slider {...settings}>
+      <div className="d-block d-sm-none position-relative">
+        <Slider {...settings}>
+          <div style={{ width: "312px" }}>
             <img
               src="/images/example-car.png"
-              className=""
-              height="100"
+              className="d-block w-p-98"
               alt="/images/example-car.png"
             />
-
+          </div>
+          <div>
             <img
               src="/images/example-car.png"
-              className=""
-              height="100"
+              className="d-block w-p-98"
               alt="/images/example-car.png"
             />
-            <img
-              src="/images/example-car.png"
-              className=""
-              height="100"
-              alt="/images/example-car.png"
-            />
-          </Slider>
-        </div>
+          </div>
+        </Slider>
       </div>
     </>
   );
