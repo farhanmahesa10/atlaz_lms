@@ -5,7 +5,7 @@ const DashboardHead = () => {
   return (
     <>
       <div className="bg-secondary-200 d-sm-flex justify-content-center pb-55 xs-pb-24">
-        <div className="sm-px-48 pl-24 m-0 " style={{ maxWidth: "1440px" }}>
+        <div className="sm-px-32 pl-12 m-0 " style={{ maxWidth: "1440px" }}>
           <div className="pb-24 d-flex justify-content-center">
             <div class="input-group mt-24  " style={{ maxWidth: "423px" }}>
               <button

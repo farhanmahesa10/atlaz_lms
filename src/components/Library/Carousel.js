@@ -123,7 +123,7 @@ const Carousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="d-block d-sm-none position-relative">
+      <div className="d-block d-sm-none ">
         <Slider {...settings}>
           <div style={{ width: "312px" }}>
             <img

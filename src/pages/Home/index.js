@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />}>
-        <div className="pt-48 md-pl-64 pl-12 m-0 xl-pr-12">
+        <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12">
           <EmblaSlider
             content={[
               <ProductYCard />,
@@ -56,7 +56,9 @@ const Home = () => {
         </div>
         <div className="sm-px-48 px-12 m-0 xl-pr-12">
           <div className=" pt-64">
-            <h3 className="m-0">Redeem Activation Code</h3>
+            <h3 className="m-0 font-size-20 sm-font-size-24">
+              Redeem Activation Code
+            </h3>
             <div style={{ marginTop: "-12px" }}>
               <LineIcon />
             </div>
