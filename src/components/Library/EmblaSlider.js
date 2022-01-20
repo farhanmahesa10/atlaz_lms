@@ -59,12 +59,21 @@ const EmblaSlider = (props) => {
     variableWidth: true,
     responsive: [
       {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          // dots: true,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true,
+          // dots: true,
         },
       },
       {

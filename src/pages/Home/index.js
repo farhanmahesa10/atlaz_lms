@@ -121,7 +121,7 @@ const Home = () => {
               <div className="py-58 lg-w-p-50 w-p-100 d-none bg-neutral-50 rounded d-lg-flex justify-content-center align-items-center">
                 <img src="/images/english-book.png" alt="" />
               </div>
-              <div className="lg-w-p-50 w-p-100">
+              <div className="lg-w-p-50 w-p-100 pt-80 lg-pt-0">
                 <div className="row">
                   <h3 className="m-0 ">How to Purchase</h3>
                   <div className="text-left " style={{ marginTop: "-12px" }}>
