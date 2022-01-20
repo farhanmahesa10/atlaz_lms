@@ -106,7 +106,7 @@ const Home = () => {
           <div className="pb-24 " style={{ marginTop: "-12px" }}>
             <LineIcon />
           </div>
-          <div className="d-flex gap-12">
+          <div className="d-flex gap-12" style={{ overflow: "hidden" }}>
             <ProductXCard />
             <ProductXCard />
             <ProductXCard />
