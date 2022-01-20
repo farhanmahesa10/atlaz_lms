@@ -38,13 +38,14 @@ const MainHeader = () => {
         className="border-b-1 m-0 p-0 border-secondary-300"
         expand="lg"
       >
-        <Container fluid className="m-0 pl-24 lg-pl-72 pt-0 pr-24 lg-pr-48">
+        <Container fluid className="m-0 pl-24 lg-pl-72 pt-0 pr-12 lg-pr-48">
           <Navbar.Brand href="#" className="pt-20 pb-24  m-0 ">
             <img src="/images/logo.png" alt="" />
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav "
             style={{ border: "none" }}
+            className="m-0 p-0"
           />
           <Nav className=" d-none d-lg-flex justify-content-center align-items-center">
             {menus.map((r) => {
