@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />}>
-        <div className="pt-79 sm-pl-48 pl-24 m-0 xl-pr-24">
+        <div className="pt-48 md-pl-64 pl-24 m-0 xl-pr-24">
           <EmblaSlider
             content={[
               <ProductYCard />,
