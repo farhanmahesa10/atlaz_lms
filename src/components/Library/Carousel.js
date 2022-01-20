@@ -18,7 +18,9 @@ const SamplePrevArrow = (props) => {
 };
 const Carousel = () => {
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
-
+  window.addEventListener("resize", (e) => {
+    setwindowWidth(e.target.innerWidth);
+  });
   const [settings, setSettings] = useState({
     className: "slider variable-width",
     // dots: true,
@@ -31,9 +33,6 @@ const Carousel = () => {
     prevArrow: <SamplePrevArrow />,
   });
 
-  useEffect(() => {
-    console.log(windowWidth);
-  }, []);
   return (
     <>
       <div

@@ -16,7 +16,7 @@ const CarouselCenter = (props) => {
     <div>
       <Slider {...settings}>
         {props.content.map((r) => {
-          return r;
+          <div key={Math.random()}>{r}</div>;
         })}
       </Slider>
     </div>

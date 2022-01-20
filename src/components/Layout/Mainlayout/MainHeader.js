@@ -50,9 +50,9 @@ const MainHeader = () => {
           <Nav className=" d-none d-lg-flex justify-content-center align-items-center">
             {menus.map((r) => {
               return (
-                <Nav.Link href="/features" key={Math.random()}>
-                  <Link to={r.link}> {r.label}</Link>
-                </Nav.Link>
+                <Link key={Math.random()} to={r.link} className="px-12">
+                  {r.label}
+                </Link>
               );
             })}
 
@@ -68,23 +68,20 @@ const MainHeader = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav className=" d-none d-lg-flex">
-            <Nav.Link>
-              <Link
-                to="/login"
-                className="py-2 px-4 border-1 border-neutral-500 rounded"
-              >
-                Login
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link
-                to="/register"
-                className="py-2 bg-primary-500 border-1 text-black hover-text-neutral-500 border-primary-500   px-4  rounded"
-              >
-                Sign up
-              </Link>
-            </Nav.Link>
+          <Nav className=" d-none d-lg-flex gap-3">
+            <Link
+              to="/login"
+              className="py-1 px-4 border-1 border-neutral-500 rounded"
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="py-1 bg-primary-500 border-1 text-black hover-text-neutral-500 border-primary-500   px-4  rounded"
+            >
+              Sign up
+            </Link>
           </Nav>
           <Navbar.Offcanvas
             id="offcanvasNavbar"
@@ -101,9 +98,9 @@ const MainHeader = () => {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 {menus.map((r) => {
                   return (
-                    <Nav.Link href="/features" key={Math.random()}>
-                      <Link to={r.link}> {r.label}</Link>
-                    </Nav.Link>
+                    <Link key={Math.random()} to={r.link} className="py-12">
+                      {r.label}
+                    </Link>
                   );
                 })}
                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
@@ -117,23 +114,20 @@ const MainHeader = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-              <div className="d-flex justify-content-center">
-                <Nav.Link>
-                  <Link
-                    to="/login"
-                    className="py-2 px-4 border-1 border-neutral-500 rounded"
-                  >
-                    Login
-                  </Link>
-                </Nav.Link>
-                <Nav.Link>
-                  <Link
-                    to="/register"
-                    className="py-2 bg-primary-500 border-1 text-black hover-text-neutral-500 border-primary-500   px-4  rounded"
-                  >
-                    Sign up
-                  </Link>
-                </Nav.Link>
+              <div className="d-flex justify-content-center gap-2">
+                <Link
+                  to="/login"
+                  className="py-1 px-4 border-1 border-neutral-500 rounded"
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to="/register"
+                  className="py-1 bg-primary-500 border-1 text-black hover-text-neutral-500 border-primary-500   px-4  rounded"
+                >
+                  Sign up
+                </Link>
               </div>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

@@ -108,7 +108,11 @@ const EmblaSlider = (props) => {
       {props.header}
       <Slider {...settings}>
         {props.content.map((r) => {
-          return <div className="pb-1">{r}</div>;
+          return (
+            <div className="pb-1" key={Math.random()}>
+              {r}
+            </div>
+          );
         })}
       </Slider>
     </div>
