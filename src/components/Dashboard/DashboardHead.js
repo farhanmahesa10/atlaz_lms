@@ -4,8 +4,8 @@ import { InputText } from "../Form";
 const DashboardHead = () => {
   return (
     <>
-      <div className="bg-secondary-200 d-sm-flex justify-content-center pb-55 xs-pb-24">
-        <div className="sm-px-32 pl-12 m-0 " style={{ maxWidth: "1440px" }}>
+      <div className="bg-secondary-200 d-md-flex justify-content-center pb-55 xs-pb-24">
+        <div className="md-px-32 pl-12 m-0 " style={{ maxWidth: "1440px" }}>
           <div className="pb-24 d-flex justify-content-center">
             <div className="input-group mt-24  " style={{ maxWidth: "423px" }}>
               <button
