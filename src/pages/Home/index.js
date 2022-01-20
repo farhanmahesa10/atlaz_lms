@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { ProductXCard, ProductYCard, WhatTheySayCard } from "../../components";
+import { Link } from "react-router-dom";
+import {
+  CarouselCenter,
+  DashboardHead,
+  ProductXCard,
+  ProductYCard,
+  WhatTheySayCard,
+} from "../../components";
 import PurchaseCard from "../../components/Dashboard/PurchaseCard";
 import { InputText } from "../../components/Form";
 import MainLayout from "../../components/Layout/Mainlayout";
@@ -11,36 +18,8 @@ import LineIcon from "../../components/SVG/LineIcon";
 const Home = () => {
   return (
     <>
-      <MainLayout>
-        <div className="sm-px-48 px-24 m-0">
-          <div className="pb-24">
-            <InputText
-              placeholder="Search anything here"
-              icon={<i className="bi bi-search pl-24"></i>}
-              onChange={(e) => {
-                console.log(e);
-              }}
-            />
-          </div>
-          <Carousel />
-        </div>
+      <MainLayout beforeChildren={<DashboardHead />}>
         <div className="pt-79 sm-pl-48 pl-24 m-0 xl-pr-24">
-          <div className="d-flex gap-24  align-items-center">
-            <h3 className="m-0 font-size-20 sm-font-size-24">Limited Deals</h3>
-            <p className="m-0 text-neutral-300 font-size-12 sm-font-size-14">
-              Ends in
-            </p>
-            <div className="d-flex align-items-center gap-11">
-              <Clock />
-              <p className="text-primary-500 m-0 font-size-12 sm-font-size-14">
-                2 Days
-              </p>
-            </div>
-          </div>
-          <div className="pb-24">
-            <LineIcon />
-          </div>
-
           <EmblaSlider
             content={[
               <ProductYCard />,
@@ -52,11 +31,35 @@ const Home = () => {
               <ProductYCard />,
               <ProductYCard />,
             ]}
+            header={
+              <>
+                <div className="d-flex gap-24  align-items-center">
+                  <h3 className="m-0 font-size-20 sm-font-size-24">
+                    Limited Deals
+                  </h3>
+                  <p className="m-0 text-neutral-300 font-size-12 sm-font-size-14">
+                    Ends in
+                  </p>
+                  <div className="d-flex align-items-center gap-11">
+                    <Clock />
+                    <p className="text-primary-500 m-0 font-size-12 sm-font-size-14">
+                      2 Days
+                    </p>
+                  </div>
+                </div>
+                <div className="pb-24" style={{ marginTop: "-12px" }}>
+                  <LineIcon />
+                </div>
+              </>
+            }
           />
         </div>
         <div className="sm-px-48 px-24 m-0 xl-pr-24">
           <div className=" pt-64">
             <h3 className="m-0">Redeem Activation Code</h3>
+            <div style={{ marginTop: "-12px" }}>
+              <LineIcon />
+            </div>
             <div className="w-full  border-1 border-neutral-100 rounded d-lg-flex flex-grow-0 flex-shrink-0 align-items-center gap-24 pr-24 lg-pl-0 pl-24 mt-24 lg-py-0 py-24 ">
               <img
                 src="/images/redem.png"
@@ -89,32 +92,28 @@ const Home = () => {
         <div className="pt-64 sm-pl-48 pl-24 m-0 xl-pr-24">
           <div className="d-flex gap-24  align-items-center">
             <div className="">
-              <h3 className="m-0">Our Book List</h3>
+              <h3 className="m-0 font-size-20 sm-font-size-24">
+                Our Book List
+              </h3>
             </div>
-            <p className="m-0 text-neutral-300">Ends in</p>
-            <div className="d-flex align-items-center gap-11">
-              <Clock />
-              <p className="text-primary-500 m-0">2 Days</p>
-            </div>
+            <Link
+              to="/"
+              className="mt-1 text-primary-500 hover-text-primary-300 "
+            >
+              View all
+            </Link>
           </div>
-          <div className="pb-24">
+          <div className="pb-24 " style={{ marginTop: "-12px" }}>
             <LineIcon />
           </div>
-          <EmblaSlider
-            content={[
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-            ]}
-          />
+          <div className="d-flex gap-12">
+            <ProductXCard />
+            <ProductXCard />
+            <ProductXCard />
+            <ProductXCard />
+            <ProductXCard />
+            <ProductXCard />
+          </div>
         </div>
         <div className="sm-px-48 px-24 m-0">
           <div className="pb-128 ">
@@ -125,7 +124,7 @@ const Home = () => {
               <div className="lg-w-p-50 w-p-100">
                 <div className="row">
                   <h3 className="m-0 ">How to Purchase</h3>
-                  <div className="text-left " style={{ marginTop: "-10px" }}>
+                  <div className="text-left " style={{ marginTop: "-12px" }}>
                     <LineIcon />
                   </div>
                   <div className=" col-sm-6 pt-24 ">
@@ -193,7 +192,7 @@ const Home = () => {
               <LineIcon />
             </div>
           </div>
-          <EmblaSlider
+          <CarouselCenter
             content={[
               <WhatTheySayCard />,
               <WhatTheySayCard />,

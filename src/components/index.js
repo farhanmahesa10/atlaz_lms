@@ -6,7 +6,10 @@ import MainFooter from "./Layout/Mainlayout/MainFooter.js";
 import WhatTheySayCard from "./Dashboard/WhatTheySayCard.js";
 import ProductYCard from "./Dashboard/ProductYCard.js";
 import ProductXCard from "./Dashboard/ProductXCard.js";
+import DashboardHead from "./Dashboard/DashboardHead.js";
+import CarouselCenter from "./Library/CarouselCenter.js";
 export {
+  DashboardHead,
   ProgressComponent,
   RegisterHeader,
   MainHeader,
@@ -14,4 +17,5 @@ export {
   WhatTheySayCard,
   ProductYCard,
   ProductXCard,
+  CarouselCenter,
 };

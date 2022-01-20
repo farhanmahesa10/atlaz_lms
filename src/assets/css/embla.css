@@ -59,19 +59,19 @@
 .embla__button {
   outline: 0;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #e7edf5;
   touch-action: manipulation;
   position: absolute;
   z-index: 1;
   top: 50%;
   transform: translateY(-50%);
   border: 0;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   justify-content: center;
   align-items: center;
-  fill: #1bcacd;
-  padding: 0;
+  fill: #fdbf47;
+  padding-top: 0px;
 }
 
 .embla__button:disabled {
@@ -86,6 +86,7 @@
 
 .embla__button--prev {
   left: 27px;
+  transform: rotate(180deg);
 }
 
 .embla__button--next {

@@ -34,8 +34,8 @@ const MainHeader = () => {
   return (
     <>
       <Navbar
-        bg="white"
-        className="border-b-1 m-0 p-0 border-neutral-100"
+        bg="secondary-200"
+        className="border-b-1 m-0 p-0 border-secondary-300"
         expand="lg"
       >
         <Container fluid className="m-0 pl-24 lg-pl-72 pt-0 pr-24 lg-pr-48">
