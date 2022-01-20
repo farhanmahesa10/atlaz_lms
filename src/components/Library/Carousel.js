@@ -18,11 +18,13 @@ const SamplePrevArrow = (props) => {
 };
 const Carousel = () => {
   const [settings, setSettings] = useState({
-    infinite: false,
+    infinite: true,
+    className: "center",
+    centerMode: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    variableWidth: true,
+    variableWidth: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   });
@@ -125,7 +127,7 @@ const Carousel = () => {
       </div>
       <div className="d-block d-sm-none ">
         <Slider {...settings}>
-          <div style={{ width: "312px" }}>
+          <div>
             <img
               src="/images/example-car.png"
               className="d-block w-p-98"
