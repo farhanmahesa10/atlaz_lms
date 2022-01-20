@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CarouselDot from "../SVG/CarouselDot";
 import Slider from "react-slick";
 
@@ -17,18 +17,23 @@ const SamplePrevArrow = (props) => {
   );
 };
 const Carousel = () => {
+  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
+
   const [settings, setSettings] = useState({
+    className: "slider variable-width",
+    // dots: true,
     infinite: true,
-    className: "center",
-    centerMode: true,
-    speed: 500,
+    centerMode: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    variableWidth: false,
+    variableWidth: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   });
 
+  useEffect(() => {
+    console.log(windowWidth);
+  }, []);
   return (
     <>
       <div
@@ -127,14 +132,14 @@ const Carousel = () => {
       </div>
       <div className="d-block d-sm-none ">
         <Slider {...settings}>
-          <div>
+          <div style={{ width: windowWidth - 70 }} className=" ">
             <img
               src="/images/example-car.png"
               className="d-block w-p-98"
               alt="/images/example-car.png"
             />
           </div>
-          <div>
+          <div style={{ width: windowWidth - 70 }} className=" ">
             <img
               src="/images/example-car.png"
               className="d-block w-p-98"
