@@ -4,7 +4,7 @@ import StarIcon from "../SVG/StarIcon";
 const ProductXCard = () => {
   return (
     <>
-      <div className="xs-mr-10 sm-mr-28 flex-grow-0 book-shadow   radius-14 flex-shrink-0   align-items-center p-1">
+      <div className=" sm-mr-28 flex-grow-0 book-shadow   radius-14 flex-shrink-0   align-items-center p-1">
         <div
           className="lg-w-196 lg-h-196 md-w-160 md-h-160 w-109 h-104  
        radius-14 d-flex align-items-center gap-2  flex-column bg-book-product"
@@ -29,13 +29,13 @@ const ProductXCard = () => {
             className="m-0 font-size-12 pt-2 md-font-size-16 p-0"
             style={{ lineHeight: "15px" }}
           >
-            English Escalate - Fourth
+            English Escalate - <br className="d-lg-none d-block" /> Fourth
           </h6>
           <p className="text-neutral-300 m-0 xs-pb-12 xs-pt-2  md-pb-24 sm-pb-24 font-size-9 sm-font-size-14">
             Atlaz
           </p>
 
-          <div className="d-sm-flex d-block gap-2 align-items-center font-size-14 ">
+          <div className="d-md-flex d-block gap-2 align-items-center font-size-14 ">
             <h5 className="font-size-12 sm-font-size-16 m-0 p-0">Rp 120.000</h5>
             <p className="text-neutral-200 m-0 font-size-9 sm-font-size-12">
               <s>Rp 999.999</s>

@@ -85,6 +85,14 @@ const EmblaSlider = (props) => {
         },
       },
       {
+        breakpoint: 678,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+      {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
@@ -100,7 +108,7 @@ const EmblaSlider = (props) => {
       {props.header}
       <Slider {...settings}>
         {props.content.map((r) => {
-          return r;
+          return <div className="pb-1">{r}</div>;
         })}
       </Slider>
     </div>
