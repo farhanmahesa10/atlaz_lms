@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import CarouselDot from "../SVG/CarouselDot";
-
+import Slider from "react-slick";
 const Carousel = () => {
+  const [settings, setSettings] = useState({
+    // dots: true,
+    // dots: true,
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          // dots: true,
+        },
+      },
+    ],
+    // variableHeight: true,
+  });
+
   return (
     <>
       <div
         id="my-carousel"
-        className="carousel  slide "
+        className="carousel  slide d-sm-block d-none"
         data-bs-ride="carousel"
       >
         <div
@@ -97,6 +122,31 @@ const Carousel = () => {
           </span>
           <span className="visually-hidden">Next</span>
         </button>
+      </div>
+      <div className="d-xs-block d-sm-none">
+        <div>
+          <Slider {...settings}>
+            <img
+              src="/images/example-car.png"
+              className=""
+              height="100"
+              alt="/images/example-car.png"
+            />
+
+            <img
+              src="/images/example-car.png"
+              className=""
+              height="100"
+              alt="/images/example-car.png"
+            />
+            <img
+              src="/images/example-car.png"
+              className=""
+              height="100"
+              alt="/images/example-car.png"
+            />
+          </Slider>
+        </div>
       </div>
     </>
   );
