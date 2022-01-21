@@ -120,42 +120,44 @@ const Home = () => {
         <div className="sm-px-48 px-12 m-0">
           <div className="pb-128 ">
             <div className="d-flex gap-100 align-items-center ">
-              <div className="py-58 lg-w-p-50 w-p-100 d-none bg-neutral-50 rounded d-lg-flex justify-content-center align-items-center">
-                <img src="/images/english-book.png" alt="" />
-              </div>
-              <div className="lg-w-p-50 w-p-100 pt-80 lg-pt-0">
-                <div className="row">
-                  <h3 className="m-0 ">How to Purchase</h3>
-                  <div className="text-left " style={{ marginTop: "-12px" }}>
-                    <LineIcon />
-                  </div>
-                  <div className=" col-sm-6 pt-24 ">
-                    <PurchaseCard
-                      number={1}
-                      title="Pick your favorite"
-                      body="Choose the book you want to purchase."
-                    />
-                  </div>
-                  <div className=" col-sm-6 pt-24">
-                    <PurchaseCard
-                      number={2}
-                      title="Proceed to purchase"
-                      body="Please select an available marketplace to continue the purchase process."
-                    />
-                  </div>
-                  <div className=" col-sm-6 pt-24">
-                    <PurchaseCard
-                      number={3}
-                      title="Book is on its way"
-                      body="The marketplace will process the purchase, please wait for your book to arrive."
-                    />
-                  </div>
-                  <div className=" col-sm-6 pt-24">
-                    <PurchaseCard
-                      number={4}
-                      title="Redeem Code"
-                      body="Enter the activation code on this page to be able to access the interactive book."
-                    />
+              <div className="pt-128  rounded d-lg-flex  justify-content-between align-items-center">
+                <div className=" d-none d-lg-block">
+                  <img src="/images/english-book.png" alt="" />
+                </div>
+                <div className="lg-w-p-50 w-p-100 ">
+                  <div className="row">
+                    <h3 className="m-0 ">How to Purchase</h3>
+                    <div className="text-left " style={{ marginTop: "-12px" }}>
+                      <LineIcon />
+                    </div>
+                    <div className=" col-sm-6 pt-24 ">
+                      <PurchaseCard
+                        number={1}
+                        title="Pick your favorite"
+                        body="Choose the book you want to purchase."
+                      />
+                    </div>
+                    <div className=" col-sm-6 pt-24">
+                      <PurchaseCard
+                        number={2}
+                        title="Proceed to purchase"
+                        body="Please select an available marketplace to continue the purchase process."
+                      />
+                    </div>
+                    <div className=" col-sm-6 pt-24">
+                      <PurchaseCard
+                        number={3}
+                        title="Book is on its way"
+                        body="The marketplace will process the purchase, please wait for your book to arrive."
+                      />
+                    </div>
+                    <div className=" col-sm-6 pt-24">
+                      <PurchaseCard
+                        number={4}
+                        title="Redeem Code"
+                        body="Enter the activation code on this page to be able to access the interactive book."
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -187,26 +189,21 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="px-48 xl-px-0 mt-148">
+        <div className="px-48 xl-px-0 mt-148" style={{ maxWidth: "1440" }}>
           <div className="text-center mb-54">
             <h3 className="m-0">What they say</h3>
             <div style={{ marginTop: "-10px" }}>
               <LineIcon />
             </div>
           </div>
-          <CarouselCenter
-            content={[
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-              <WhatTheySayCard />,
-            ]}
-          />
+          <div
+            className="d-flex justify-content-between gap-24 align-items-center"
+            style={{ width: "1440" }}
+          >
+            <WhatTheySayCard className="flex-shrink-0 flex-grow-0" />
+            <WhatTheySayCard className="w-660 flex-shrink-0 flex-grow-0 h-320 " />
+            <WhatTheySayCard classNam="flex-shrink-0 flex-grow-0" />
+          </div>
         </div>
       </MainLayout>
     </>
