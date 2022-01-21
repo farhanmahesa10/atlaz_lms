@@ -3,8 +3,9 @@ import StarIcon from "../SVG/StarIcon";
 const WhatTheySayCard = (props) => {
   return (
     <div
-      style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
-      className={`px-46 py-24 radius-20 d-flex   flex-column justify-content-between ${props.className}`}
+      // style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
+      style={props.style}
+      className={` py-24  d-flex   flex-column justify-content-between ${props.className}`}
     >
       <div>
         <div className=" d-flex  mr-60  align-items-center gap-2 mb-24">

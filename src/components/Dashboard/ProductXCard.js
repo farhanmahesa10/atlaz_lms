@@ -4,7 +4,7 @@ import StarIcon from "../SVG/StarIcon";
 const ProductXCard = () => {
   return (
     <>
-      <div className=" sm-mr-28 flex-grow-0 book-shadow   radius-14 flex-shrink-0   align-items-center p-1">
+      <div className=" sm-mr-28 mr-8 flex-grow-0 book-shadow   radius-14 flex-shrink-0   align-items-center p-1">
         <div
           className="lg-w-196 lg-h-196 md-w-160 md-h-160 w-140 h-140  
        radius-14 d-flex align-items-center gap-2  flex-column bg-book-product"

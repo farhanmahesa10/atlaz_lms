@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
 import Clock from "../SVG/Clock";
 import LineIcon from "../SVG/LineIcon";
@@ -47,22 +47,27 @@ const SamplePrevArrow = (props) => {
 };
 const EmblaSlider = (props) => {
   // const [initialState, setinitialState] = useState(second);
+  const [w768, setW768] = useState(props.w768 ? props.w768 : 1);
+  const [w980, setW980] = useState(props.w980 ? props.w980 : 2);
+  const [w1035, setW1035] = useState(props.w1035 ? props.w1035 : 1);
+  const [w1440, setW1440] = useState(props.w1440 ? props.w1440 : 2);
+  const [wDefault, setWDefault] = useState(props.wDefault ? props.wDefault : 2);
 
   const [settings, setSettings] = useState({
     // dots: true,
     // dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: wDefault,
+    slidesToScroll: wDefault,
     initialSlide: 0,
     variableWidth: true,
     responsive: [
       {
         breakpoint: 1440,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: w1440,
+          slidesToScroll: w1440,
           infinite: false,
           // dots: true,
         },
@@ -70,8 +75,8 @@ const EmblaSlider = (props) => {
       {
         breakpoint: 1035,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: w1035,
+          slidesToScroll: w1035,
           infinite: false,
           // dots: true,
         },
@@ -80,16 +85,16 @@ const EmblaSlider = (props) => {
       {
         breakpoint: 980,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: w980,
+          slidesToScroll: w980,
           initialSlide: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: w768,
+          slidesToScroll: w768,
           initialSlide: 1,
         },
       },

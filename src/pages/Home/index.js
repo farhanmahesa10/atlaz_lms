@@ -91,31 +91,39 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="pt-64 sm-pl-48 pl-12 m-0 xl-pr-12">
-          <div className="d-flex gap-24  align-items-center">
-            <div className="">
-              <h3 className="m-0 font-size-20 sm-font-size-24">
-                Our Book List
-              </h3>
-            </div>
-            <Link
-              to="/"
-              className="mt-1 text-primary-500 hover-text-primary-300 "
-            >
-              View all
-            </Link>
-          </div>
-          <div className="pb-24 " style={{ marginTop: "-12px" }}>
-            <LineIcon />
-          </div>
-          <div className="d-flex gap-12" style={{ overflow: "hidden" }}>
-            <ProductXCard />
-            <ProductXCard />
-            <ProductXCard />
-            <ProductXCard />
-            <ProductXCard />
-            <ProductXCard />
-          </div>
+        <div className="pt-128 sm-pl-48 pl-12 m-0 xl-pr-12">
+          <EmblaSlider
+            wDefault={5}
+            w1035={3}
+            w980={3}
+            w768={2}
+            content={[
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+            ]}
+            header={
+              <>
+                <div className="d-flex gap-24  align-items-center">
+                  <h3 className="m-0 font-size-20 sm-font-size-24">
+                    Our Book List
+                  </h3>
+                  <Link
+                    to="/"
+                    className="mt-1 text-primary-500 hover-text-primary-300 "
+                  >
+                    View all
+                  </Link>
+                </div>
+                <div className="pb-24" style={{ marginTop: "-12px" }}>
+                  <LineIcon />
+                </div>
+              </>
+            }
+          />
         </div>
         <div className="sm-px-48 px-12 m-0">
           <div className="pb-128 ">
@@ -189,20 +197,32 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="px-48 xl-px-0 mt-148" style={{ maxWidth: "1440" }}>
+        <div className=" mt-148" style={{ maxWidth: "1440" }}>
           <div className="text-center mb-54">
             <h3 className="m-0">What they say</h3>
             <div style={{ marginTop: "-10px" }}>
               <LineIcon />
             </div>
           </div>
-          <div
-            className="d-flex justify-content-between gap-24 align-items-center"
-            style={{ width: "1440" }}
-          >
-            <WhatTheySayCard className="flex-shrink-0 flex-grow-0" />
-            <WhatTheySayCard className="w-660 flex-shrink-0 flex-grow-0 h-320 " />
-            <WhatTheySayCard classNam="flex-shrink-0 flex-grow-0" />
+          <div className="d-flex gap-24 align-items-center flex-column flex-md-row">
+            <div className="">
+              <WhatTheySayCard
+                className="radius-r-14  pl-16 pr-16 md-pl-0 lg-pl-16"
+                style={{ boxShadow: "5px 4px 16px rgba(0, 0, 0, 0.16) " }}
+              />
+            </div>
+            <div className="">
+              <WhatTheySayCard
+                className="radius-14 md-h-320 md-w-360 lg-w-660  px-16 md-px-46"
+                style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
+              />
+            </div>
+            <div className="">
+              <WhatTheySayCard
+                className="w-full radius-l-14  pl-16 pr-16  md-pr-0 lg-pr-16"
+                style={{ boxShadow: "-9px 4px 16px rgba(0, 0, 0, 0.16) " }}
+              />
+            </div>
           </div>
         </div>
       </MainLayout>
