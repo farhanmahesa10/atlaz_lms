@@ -37,7 +37,7 @@ const Carousel = () => {
     <>
       <div
         id="my-carousel"
-        className="carousel  slide d-md-block d-none"
+        className="carousel  slide d-md-block"
         data-bs-ride="carousel"
       >
         <div
@@ -129,7 +129,7 @@ const Carousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className=" d-md-none ">
+      {/* <div className=" d-md-none ">
         <Slider {...settings}>
           <div style={{ width: windowWidth - 70 }} className=" ">
             <img
@@ -146,7 +146,7 @@ const Carousel = () => {
             />
           </div>
         </Slider>
-      </div>
+      </div> */}
     </>
   );
 };

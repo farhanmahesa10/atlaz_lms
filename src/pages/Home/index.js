@@ -18,18 +18,18 @@ import LineIcon from "../../components/SVG/LineIcon";
 const Home = () => {
   return (
     <>
-      <MainLayout beforeChildren={<DashboardHead />}>
+      <MainLayout beforeChildren={<DashboardHead />} navbarBg="secondary-200">
         <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12">
           <EmblaSlider
             content={[
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
+              <ProductXCard />,
             ]}
             header={
               <>
@@ -98,12 +98,12 @@ const Home = () => {
             w980={3}
             w768={2}
             content={[
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
-              <ProductXCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
             ]}
             header={
               <>

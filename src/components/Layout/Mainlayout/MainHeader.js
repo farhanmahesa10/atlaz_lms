@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  Button,
   Container,
-  Form,
-  FormControl,
   Nav,
   Navbar,
   NavDropdown,
@@ -11,7 +8,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavToggler from "../../SVG/NavToggler";
-const MainHeader = () => {
+const MainHeader = (props) => {
   const menus = [
     {
       link: "/",
@@ -34,7 +31,7 @@ const MainHeader = () => {
   return (
     <>
       <Navbar
-        bg="secondary-200"
+        bg={`${props.navbarBg ? "secondary-200" : "bg-white"}`}
         className="border-b-1 m-0 p-0 border-secondary-300"
         expand="lg"
       >

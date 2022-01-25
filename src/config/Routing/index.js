@@ -12,6 +12,7 @@ import {
   ResetPassword,
   Redirecting,
   Home,
+  SearchResult,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -27,6 +28,7 @@ const Routing = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/redirecting" element={<Redirecting />} />
       <Route path="/mail-design" element={<RegisterMail />} />
+      <Route path="/search-result/:keyword" element={<SearchResult />} />
     </Routes>
   );
 };

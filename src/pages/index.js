@@ -9,6 +9,7 @@ import ForgotPassword from "./Auth/ForgotPassword";
 import ResetPassword from "./Auth/ForgotPassword/ResetPassword";
 import Redirecting from "./Redirecting";
 import Home from "./Home";
+import SearchResult from "./SearchResult";
 export {
   Login,
   Register1,
@@ -20,4 +21,5 @@ export {
   ResetPassword,
   Redirecting,
   Home,
+  SearchResult,
 };

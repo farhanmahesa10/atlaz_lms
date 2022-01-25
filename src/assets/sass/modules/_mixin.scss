@@ -143,6 +143,12 @@
     #{$selector}radius-l-#{$i} {
       border-radius: #{$i}px 0px 0px #{$i}px;
     }
+    #{$selector}radius-t-#{$i} {
+      border-radius: #{$i}px #{$i}px 0px 0px;
+    }
+    #{$selector}radius-b-#{$i} {
+      border-radius: 0px 0px #{$i}px #{$i}px;
+    }
   }
 }
 
@@ -154,6 +160,27 @@
   }
 }
 
+@mixin borderGenerator($colors, $code, $selector: ".") {
+  @for $i from 1 through length($colors) {
+    $a: $i * 100;
+
+    #{$selector}border-#{$code}-#{$a} {
+      border: 1px solid nth($colors, $i);
+    }
+    #{$selector}border-r-#{$code}-#{$a} {
+      border-right: 1px solid nth($colors, $i);
+    }
+    #{$selector}border-l-#{$code}-#{$a} {
+      border-left: 1px solid nth($colors, $i);
+    }
+    #{$selector}border-t-#{$code}-#{$a} {
+      border-top: 1px solid nth($colors, $i);
+    }
+    #{$selector}border-b-#{$code}-#{$a} {
+      border-bottom: 1px solid nth($colors, $i);
+    }
+  }
+}
 @mixin firstSetup($selector: ".") {
   @include colorGenerator($neutralColor, $neutralCode, $selector);
   @include colorGenerator($primaryColor, $primaryCode, $selector);
@@ -168,4 +195,5 @@
   @include heightWidthPesenGenerator($selector);
   @include borderRadiusGenerator($selector);
   @include fontSizeGenerator($selector);
+  @include borderGenerator($secondaryColor, $secondaryCode, $selector);
 }

@@ -60,3 +60,13 @@ h6 {
 .form-control:focus {
   border-left: none;
 }
+
+.optionContainer li:hover {
+  background: #e1e9f3 !important;
+  color: #fff;
+}
+
+.optionContainer .highlight {
+  background: white !important;
+  color: #2a384c;
+}

@@ -21,6 +21,10 @@ $carousel-indicator-active-bg: black;
     #cccccc 114.03%
   );
 }
+.fw-medium {
+  font-weight: 600;
+}
+
 .cursor-grab {
   cursor: grab;
 }
@@ -35,6 +39,9 @@ $carousel-indicator-active-bg: black;
   list-style: none;
 }
 .bg-neutral-50 {
+  background-color: #fdfdfe;
+}
+.hover-bg-neutral-50:hover {
   background-color: #fdfdfe;
 }
 input:focus {
@@ -146,6 +153,15 @@ input[type="number"] {
 .form-check-input {
   border-color: black !important;
 }
+
+.form-check-success:checked {
+  background-color: #080b0c !important;
+  border-color: #10171a !important;
+}
+.form-check-success {
+  border-color: white !important;
+}
+
 .bordered {
   border-color: black;
 }

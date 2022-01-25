@@ -16,23 +16,30 @@ const InputNumber = (props) => {
   };
   return (
     <div className={`text-start ${props.className}`}>
-      <label htmlFor="" className="form-label text-start">
+      <label
+        htmlFor=""
+        className={`form-label text-start ${props.labelClassName}`}
+      >
         {props.label}
       </label>
       <div className="col-auto">
         <div className="input-group bg-white   input-icon-rounded ">
-          <div
-            className={`input-group-text ${
-              isRequired ? "border-danger" : ""
-            } bg-white  border-neutral-100`}
-          >
-            <span className="text-neutral-400"> {props.icon}</span>
-          </div>
+          {props.icon ? (
+            <div
+              className={`input-group-text ${
+                isRequired ? "border-danger" : ""
+              } bg-white  border-neutral-100`}
+            >
+              <span className="text-neutral-400"> {props.icon}</span>
+            </div>
+          ) : (
+            ""
+          )}
           <input
             type="number"
             className={`form-control border-neutral-100 ${
               isRequired ? "border-danger " : ""
-            }   border-left-none  py-2 
+            }  ${props.icon ? " border-left-none" : ""}  py-2 
             }`}
             placeholder={props.placeholder}
             onChange={(e) => {
