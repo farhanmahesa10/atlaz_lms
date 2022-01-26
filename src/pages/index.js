@@ -10,6 +10,7 @@ import ResetPassword from "./Auth/ForgotPassword/ResetPassword";
 import Redirecting from "./Redirecting";
 import Home from "./Home";
 import SearchResult from "./SearchResult";
+import ProductDetail from "./ProductDetail";
 export {
   Login,
   Register1,
@@ -22,4 +23,5 @@ export {
   Redirecting,
   Home,
   SearchResult,
+  ProductDetail,
 };

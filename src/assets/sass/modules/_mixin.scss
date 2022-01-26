@@ -138,7 +138,7 @@
       border-radius: #{$i}#{"px"};
     }
     #{$selector}radius-r-#{$i} {
-      border-radius: 0px #{$i}px #{$i}px 0px;
+      border-radius: 0px #{$i}px #{$i}px 0px !important;
     }
     #{$selector}radius-l-#{$i} {
       border-radius: #{$i}px 0px 0px #{$i}px;

@@ -33,9 +33,9 @@ const SearchDropdown = (props) => {
     <ClickAwayListener onClickAway={handleClickAway}>
       <form action="" onSubmit={handleSubmit}>
         <div className=" ">
-          <div className="input-group mt-24  w-full book-shadow ">
+          <div className="input-group mt-24  w-full book-shadow  ">
             <span
-              className="btn bg-white radius-l-8  d-flex align-items-center pl-25  border-top border-bottom border-start  "
+              className="btn bg-white radius-8  d-flex align-items-center pl-25   border-top border-bottom border-start  "
               type="button"
             >
               <i className="bi bi-search text-neutral-200 "></i>
@@ -44,13 +44,17 @@ const SearchDropdown = (props) => {
               onFocus={handleSearch}
               type="text"
               ref={inputRef}
-              className="form-control py-16 border-top border-bottom border-top"
+              className={`form-control py-16 border-top  ${
+                !showPopup ? " rounded  border-end" : ""
+              } border-bottom border-top`}
               placeholder="Search anything here"
               style={{ borderRight: "none" }}
               onChange={handleChange}
             />
             <span
-              className="btn bg-white radius-r-8 font-size-27 text-neutral-200 border-top border-bottom  border-end pr-35"
+              className={`btn bg-white rounded-3 font-size-27 text-neutral-200 border-top border-bottom  border-end pr-35 ${
+                !showPopup ? " d-none" : ""
+              }`}
               type="button"
             >
               &times;
