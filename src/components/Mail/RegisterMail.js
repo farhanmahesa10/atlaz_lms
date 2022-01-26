@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const RegisterMail = () => {
   return (
-    <div className="d-flex justify-content-center ">
+    <div className="d-flex justify-content-center pt-24">
       <div className="bg-secondary-100" style={{ maxWidth: "500px" }}>
         <img src="/images/mail-img.png" alt="" style={{ width: "100%" }} />
         <div className="px-2 m-0 pt-40">
