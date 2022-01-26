@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { default as ReactSelect, components } from "react-select";
-
 const OptionCheck = (props) => {
   return (
     <div>

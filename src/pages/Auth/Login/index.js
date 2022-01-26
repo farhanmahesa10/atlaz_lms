@@ -7,7 +7,7 @@ import {
 } from "../../../components/Form";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { Link } from "react-router-dom";
-
+import "../../../assets/css/inputcheckprimary.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

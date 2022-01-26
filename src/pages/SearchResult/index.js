@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MainLayout from "../../components/Layout/Mainlayout";
 import { SearchDropdown, SelectCheckbox } from "../../components/utilities";
 import { ProductYCard } from "../../components";
-import "../../assets/css/inputcheck.css";
+
 const SearchResult = (props) => {
   const [searchData, setSearchData] = useState([]);
   const handleChange = (val) => {
