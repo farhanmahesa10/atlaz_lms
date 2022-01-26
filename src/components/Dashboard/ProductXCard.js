@@ -146,7 +146,7 @@ const ProductXCard = () => {
               <p className="  m-0 text-neutral-200">Ratings</p>
             </div>
           </div>
-          <div className=" mx-32 mb-24 d-flex flex-column gap-4">
+          <div className=" mx-28 mb-24 d-flex flex-column gap-4">
             <div className="  row " key={Math.random()}>
               {data.map((r) => {
                 return (
