@@ -37,7 +37,9 @@ const MainHeader = (props) => {
       >
         <Container fluid className="m-0 pl-24 lg-pl-72 pt-0 pr-12 lg-pr-48">
           <Navbar.Brand href="#" className="pt-20 pb-24  m-0 ">
-            <img src="/images/logo.png" alt="" />
+            <Link to="/">
+              <img src="/images/logo.png" alt="" />
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav "

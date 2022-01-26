@@ -132,7 +132,7 @@ const ProductYCard = () => {
             </div>
           </div>
           <div className=" mx-28 mb-24 d-flex flex-column gap-4">
-            <div className="  row " key={Math.random()}>
+            <div className="  row ">
               {data.map((r) => {
                 return (
                   <div className="col-6 mb-16" key={Math.random()}>

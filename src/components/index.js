@@ -8,6 +8,7 @@ import ProductYCard from "./Dashboard/ProductYCard.js";
 import ProductXCard from "./Dashboard/ProductXCard.js";
 import DashboardHead from "./Dashboard/DashboardHead.js";
 import CarouselCenter from "./Library/CarouselCenter.js";
+import DropdownButton from "./utilities/DropdownButton.js";
 export {
   DashboardHead,
   ProgressComponent,
@@ -18,4 +19,5 @@ export {
   ProductYCard,
   ProductXCard,
   CarouselCenter,
+  DropdownButton,
 };
