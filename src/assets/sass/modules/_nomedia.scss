@@ -93,16 +93,16 @@ a:hover {
   text-decoration: none;
 }
 
-.register-title {
-  @media (max-width: 576px) {
-    padding-top: 66px;
-    padding-bottom: 24px;
-  }
-  @media (min-width: 576px) {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-}
+// .register-title {
+//   @media (max-width: 576px) {
+//     padding-top: 66px;
+//     padding-bottom: 24px;
+//   }
+//   @media (min-width: 576px) {
+//     padding-top: 80px;
+//     padding-bottom: 80px;
+//   }
+// }
 
 .cursor-pointer {
   cursor: pointer;
@@ -147,8 +147,8 @@ input[type="number"] {
 }
 //input.form-check-input:checked {
 .form-check-input:checked {
-  background-color: $warning !important;
-  border-color: $warning !important;
+  background-color: #8ecfee !important;
+  border-color: #8ecfee !important;
 }
 .form-check-input {
   border-color: black !important;

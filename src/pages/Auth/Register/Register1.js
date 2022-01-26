@@ -19,10 +19,10 @@ const Register1 = () => {
     >
       <form onSubmit={handleSubmit} className="w-full">
         <div className=" ">
-          <div className="mb-3">
+          <div className="mb-24">
             <GoogleButton label="Register" />
           </div>
-          <div className="d-flex align-items-center mb-4">
+          <div className="d-flex align-items-center mb-12">
             <div className="rectangle"></div>
             <span className="px-2">or</span>
             <div className="rectangle"></div>
@@ -61,7 +61,7 @@ const Register1 = () => {
       <footer className="footer mt-64 xs-mt-32 bg-white text-center">
         <div className="">
           <small>
-            New to Atlaz?
+            Already have account?
             <Link to="/login" className={`text-warning text-decoration-none`}>
               &nbsp;Login now
             </Link>

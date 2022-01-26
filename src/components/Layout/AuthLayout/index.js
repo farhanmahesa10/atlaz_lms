@@ -4,7 +4,7 @@ import Header from "./Header";
 const AuthLayout = (props) => {
   return (
     <div className=" h-screen">
-      <div>
+      <div className="md-mb-132 mb-66">
         <Header />
       </div>
 

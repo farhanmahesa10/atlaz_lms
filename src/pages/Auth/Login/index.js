@@ -7,7 +7,6 @@ import {
 } from "../../../components/Form";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { Link } from "react-router-dom";
-import "../../../assets/css/inputcheckprimary.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,32 +22,33 @@ const Login = () => {
       <form className="" onSubmit={loginSubmit}>
         <div className="auth-content ">
           <div className="">
-            <h4 className="pb-80 xs-pb-24 m-0">Welcome back, Atlazen!</h4>
+            <h4 className="pb-80 xs-pb-32 m-0">Welcome back, Atlazen!</h4>
           </div>
-          <div className="mb-3">
+          <div className="mb-24">
             <GoogleButton label="Continue" />
           </div>
-          <div className="d-flex align-items-center mb-4">
+          <div className="d-flex align-items-center mb-12">
             <div className="rectangle"></div>
             <span className="px-2">or</span>
             <div className="rectangle"></div>
           </div>
-          <InputEmail
-            label="Email Address"
-            key="email"
-            placeholder="Enter your email"
-            icon={<i className="bi bi-envelope"></i>}
-            onChange={(val) => {
-              setEmail(val);
-            }}
-            onError={(val) => {
-              setValidationError({
-                ...validationError,
-                email: val,
-              });
-            }}
-            className="mb-3"
-          />
+          <div className=" mb-24">
+            <InputEmail
+              label="Email Address"
+              key="email"
+              placeholder="Enter your email"
+              icon={<i className="bi bi-envelope"></i>}
+              onChange={(val) => {
+                setEmail(val);
+              }}
+              onError={(val) => {
+                setValidationError({
+                  ...validationError,
+                  email: val,
+                });
+              }}
+            />
+          </div>
           <InputPassword
             label="Password"
             type="password"
