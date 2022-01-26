@@ -46,7 +46,7 @@ const MainHeader = (props) => {
             style={{ border: "none" }}
             className="m-0 p-0"
           />
-          <Nav className=" d-none d-lg-flex justify-content-center align-items-center">
+          <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
             {menus.map((r) => {
               return (
                 <Link key={Math.random()} to={r.link} className="px-12">

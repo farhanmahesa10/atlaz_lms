@@ -20,7 +20,7 @@ const Register2 = () => {
         <div className="auth-content">
           <div className="mb-5 text-start">
             <InputText
-              label="Fullname"
+              label="Full name"
               type="text"
               required={true}
               placeholder="Enter your name"
