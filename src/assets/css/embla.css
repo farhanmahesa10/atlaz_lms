@@ -59,7 +59,7 @@
 .embla__button {
   outline: 0;
   cursor: pointer;
-  background-color: #e7edf5;
+  /* background-color: #e7edf5; */
   touch-action: manipulation;
   position: absolute;
   z-index: 1;

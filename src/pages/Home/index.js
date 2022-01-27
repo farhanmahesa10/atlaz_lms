@@ -102,6 +102,7 @@ const Home = () => {
               <ProductYCard />,
               <ProductYCard />,
               <ProductYCard />,
+              <ProductYCard />,
             ]}
             header={
               <>
