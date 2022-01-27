@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />} navbarBg="secondary-200">
-        {/* <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12">
+        {/* <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12 ">
           <EmblaSlider
             content={[
               <ProductXCard />,
