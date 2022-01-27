@@ -36,7 +36,10 @@ const MainHeader = (props) => {
         expand="lg"
       >
         <Container fluid className="m-0 pl-24 lg-pl-72 pt-0 pr-12 lg-pr-48">
-          <Navbar.Brand href="#" className="pt-20 pb-24  m-0 ">
+          <Navbar.Brand
+            className="pt-20 pb-24  m-0 position-relative "
+            style={{ zIndex: 9 }}
+          >
             <Link to="/">
               <img src="/images/logo.png" alt="" />
             </Link>
@@ -67,7 +70,10 @@ const MainHeader = (props) => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav className=" d-none d-lg-flex gap-3">
+          <Nav
+            className=" d-none d-lg-flex gap-3 position-relative"
+            style={{ zIndex: 9 }}
+          >
             <Link
               to="/login"
               className="py-1 px-4 border-1 border-neutral-500 rounded"

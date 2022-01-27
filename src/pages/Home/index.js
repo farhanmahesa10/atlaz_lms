@@ -53,7 +53,7 @@ const Home = () => {
           />
         </div> */}
         <div className="sm-px-48 px-12 m-0 xl-pr-12">
-          <div className=" pt-64">
+          <div className=" mt-64">
             <h3 className="m-0 font-size-20 sm-font-size-24">
               Redeem Activation Code
             </h3>
@@ -89,7 +89,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="pt-128 sm-pl-48 pl-12 m-0 xl-pr-12">
+        <div className="mt-128 sm-pl-48 pl-12  xl-pr-12">
           <EmblaSlider
             wDefault={5}
             w1035={3}
@@ -195,7 +195,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className=" mt-148" style={{ maxWidth: "1440" }}>
+        <div className=" mt-128" style={{ maxWidth: "1440" }}>
           <div className="text-center mb-54">
             <h3 className="m-0">What they say</h3>
             <div style={{ marginTop: "-10px" }}>
