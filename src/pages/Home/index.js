@@ -8,9 +8,7 @@ import {
   WhatTheySayCard,
 } from "../../components";
 import PurchaseCard from "../../components/Dashboard/PurchaseCard";
-import { InputText } from "../../components/Form";
 import MainLayout from "../../components/Layout/Mainlayout";
-import Carousel from "../../components/Library/Carousel";
 import EmblaSlider from "../../components/Library/EmblaSlider";
 import Clock from "../../components/SVG/Clock";
 import LineIcon from "../../components/SVG/LineIcon";
@@ -19,7 +17,7 @@ const Home = () => {
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />} navbarBg="secondary-200">
-        <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12">
+        {/* <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12">
           <EmblaSlider
             content={[
               <ProductXCard />,
@@ -53,7 +51,7 @@ const Home = () => {
               </>
             }
           />
-        </div>
+        </div> */}
         <div className="sm-px-48 px-12 m-0 xl-pr-12">
           <div className=" pt-64">
             <h3 className="m-0 font-size-20 sm-font-size-24">
