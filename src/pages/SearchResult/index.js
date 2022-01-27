@@ -45,7 +45,7 @@ const SearchResult = (props) => {
             searchRecomend={searchData}
           />
         </div>
-        <div className="row mt-16">
+        <div className="row mt-16 ">
           <div className="col-12 mb-16 ">
             <div className="row">
               <div className="col-12 col-sm-8 mb-16">
@@ -111,7 +111,7 @@ const SearchResult = (props) => {
             </div>
           </div>
         </div>
-        <div className=" row justify-content-center">
+        <div className=" row justify-content-center ml-12">
           <div className="col-6 col-sm-4 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
             <ProductYCard />
           </div>

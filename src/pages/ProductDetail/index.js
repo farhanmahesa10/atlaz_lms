@@ -100,11 +100,11 @@ const ProductDetail = () => {
   return (
     <MainLayout>
       <div className="mt-16 mx-14">
-        <SearchDropdown
+        {/* <SearchDropdown
           submitLink="/search-result"
           onChange={handleSearchChange}
           searchRecomend={searchData}
-        />
+        /> */}
         <div className="d-flex gap-8 mt-24 align-items-center">
           <Link to="/" className="text-primary-500">
             Home
