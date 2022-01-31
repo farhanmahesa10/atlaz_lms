@@ -1,0 +1,64 @@
+@mixin fontSm {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: $neutral_500;
+}
+
+@mixin fontSmMedium {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin fontSmBold {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: $neutral_500;
+}
+@mixin fontSmItalic {
+  font-family: Nunito;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: $neutral_500;
+}
+
+@mixin callFontSm($selector: ".") {
+  #{$selector}font-sm {
+    @include fontSm();
+  }
+}
+
+@mixin callFontSmMedium($selector: ".") {
+  #{$selector}font-sm-medium {
+    @include fontSmMedium();
+  }
+}
+
+@mixin callFontSmBold($selector: ".") {
+  #{$selector}font-sm-bold {
+    @include fontSmBold();
+  }
+}
+
+@mixin callFontSmItalic($selector: ".") {
+  #{$selector}font-sm-italic {
+    @include fontSmItalic();
+  }
+}
+
+@mixin callFontSmTypo($selector: ".") {
+  @include callFontSm($selector);
+  @include callFontSmMedium($selector);
+  @include callFontSmBold($selector);
+  @include callFontSmItalic($selector);
+}

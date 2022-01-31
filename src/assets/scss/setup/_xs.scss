@@ -1,0 +1,9 @@
+@media (max-width: 575px) {
+  @include firstSetup(".xs-");
+  .xs- {
+    //create only xs here
+    &example {
+      //declare css here
+    }
+  }
+}

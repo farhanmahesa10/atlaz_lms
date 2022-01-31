@@ -1,0 +1,31 @@
+@mixin borderRadiusGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}radius-p-#{$i} {
+      border-radius: #{$i}#{"%"};
+    }
+    #{$selector}radius-#{$i} {
+      border-radius: #{$i}#{"px"};
+    }
+
+    #{$selector}radius-t-#{$i} {
+      border-radius: #{$i}px #{$i}px 0px 0px;
+    }
+    #{$selector}radius-b-#{$i} {
+      border-radius: 0px 0px #{$i}px #{$i}px;
+    }
+
+    #{$selector}radius-tl-#{$i} {
+      border-top-left-radius: #{$i}px;
+    }
+    #{$selector}radius-tr-#{$i} {
+      border-top-right-radius: #{$i}px;
+    }
+
+    #{$selector}radius-bl-#{$i} {
+      border-bottom-left-radius: #{$i}px;
+    }
+    #{$selector}radius-br-#{$i} {
+      border-bottom-right-radius: #{$i}px;
+    }
+  }
+}

@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { InputEmail, GoogleButton } from "../../../components/Form";
+import { InputComponent, GoogleButton } from "../../../components";
 import { Link } from "react-router-dom";
+import validator from "validator";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 const Register1 = () => {
   const [email, setEmail] = useState("");
+  const [mailValidation, setMailValidation] = useState("");
+
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
+
+  const validateEmail = () => {
+    if (!validator.isEmail(email)) {
+      setMailValidation("Please input the correct format email address.");
+    } else {
+      setMailValidation("");
+      setAllowNext(true);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (allowNext) navigate("/register-step-2");
@@ -20,7 +33,7 @@ const Register1 = () => {
       <form onSubmit={handleSubmit} className="w-full">
         <div className=" ">
           <div className="mb-24">
-            <GoogleButton label="Register" />
+            <GoogleButton label="Register" className="w-p-100 " />
           </div>
           <div className="d-flex align-items-center mb-12">
             <div className="rectangle"></div>
@@ -28,37 +41,35 @@ const Register1 = () => {
             <div className="rectangle"></div>
           </div>
 
-          <div className="mb-5 text-start">
-            <InputEmail
+          <div className="mb-40 text-start">
+            <InputComponent
               label="Email Address"
-              type="email"
+              key="email"
+              labelClassName="font-xs-bold"
               placeholder="Enter your email"
-              icon={<i className="bi bi-envelope"></i>}
-              className="mb-4"
+              icon={<i className="bi bi-envelope text-neutral-400"></i>}
               onChange={(val) => {
                 setEmail(val);
+                validateEmail();
               }}
-              onError={(val) => {
-                val ? setAllowNext(false) : setAllowNext(true);
-              }}
+              error={mailValidation ? true : false}
+              description={mailValidation}
+              autoFocus
             />
           </div>
-          <div className="d-flex gap-3  ">
-            <button className="btn btn-white border col btn-rounded">
-              Back
-            </button>
+          <div className="">
             <button
-              type={`${allowNext ? "submit" : "button"}`}
-              className={`border col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-neutral-100"
-              }`}
+              className={` ${
+                allowNext ? "btn-primary" : "btn-disable"
+              } w-p-100`}
+              type={`${allowNext ? "sumbit" : "button"}`}
             >
               Next
             </button>
           </div>
         </div>
       </form>
-      <footer className="footer mt-64 xs-mt-32 bg-white text-center">
+      <footer className=" bg-white mt-32 sm-mt-64 text-center">
         <div className="">
           <small>
             Already have account?

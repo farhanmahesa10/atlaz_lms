@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputPassword, GoogleButton } from "../../../components/Form";
+import InputPassword from "../../../components/Design/InputPassword";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
@@ -40,86 +40,94 @@ const ResetPassword = () => {
 
   return (
     <AuthLayout hideBackButton={true}>
-      <form onSubmit={handleSubmit}>
-        <div className="auth-content">
-          <div className="auth-title">
-            <h4 className="fw-bold text-center">Reset password</h4>
-          </div>
+      <div className="d-flex justify-content-center px-24 px-0">
+        <div className="auth-wrapper w-full mt-66 md-mt-132">
+          <div className="w-full">
+            <h4 className="text-center mb-56">Reset Password</h4>
+            <form onSubmit={handleSubmit}>
+              <div className="auth-content">
+                <div className=" text-start">
+                  <InputPassword
+                    label="Password"
+                    type="password"
+                    placeholder="Create your password"
+                    icon={<i className="bi bi-lock"></i>}
+                    onChange={(val) => {
+                      setPassword(val);
+                      validate(val);
+                    }}
+                  />
+                  <div className="row mt-16 mb-48 text-neutral-400">
+                    <div className="col-sm-6 d-flex align-items-center">
+                      <DotIcon
+                        status={
+                          isLower == true
+                            ? "success"
+                            : isLower == false
+                            ? "danger"
+                            : ""
+                        }
+                      >
+                        <small className="ps-2">One lowercase characters</small>
+                      </DotIcon>
+                    </div>
+                    <div className="col-sm-6  d-flex align-items-center">
+                      <DotIcon
+                        status={
+                          isNumeric == true
+                            ? "success"
+                            : isNumeric == false
+                            ? "danger"
+                            : ""
+                        }
+                      >
+                        <small className="ps-2">One numeric</small>
+                      </DotIcon>
+                    </div>
+                    <div className="col-sm-6 d-flex align-items-center">
+                      <DotIcon
+                        status={
+                          isUpper == true
+                            ? "success"
+                            : isUpper == false
+                            ? "danger"
+                            : ""
+                        }
+                      >
+                        <small className="ps-2">One uppercase characters</small>
+                      </DotIcon>
+                    </div>
+                    <div className="col-sm-6 d-flex align-items-center">
+                      <DotIcon
+                        status={
+                          isSix == true
+                            ? "success"
+                            : isSix == false
+                            ? "danger"
+                            : ""
+                        }
+                      >
+                        <small className="ps-2">6 minimum characters</small>
+                      </DotIcon>
+                    </div>
+                  </div>
+                </div>
 
-          <div className="mb-5 text-start">
-            <InputPassword
-              label="Password"
-              placeholder="Create your password"
-              icon={<i className="bi bi-lock"></i>}
-              className="mb-2"
-              onChange={(val) => {
-                setPassword(val);
-                validate(val);
-              }}
-            />
-            <div className="row  text-neutral-400">
-              <div className="col-sm-6 d-flex align-items-center">
-                <DotIcon
-                  status={
-                    isLower == true
-                      ? "success"
-                      : isLower == false
-                      ? "danger"
-                      : ""
-                  }
-                >
-                  <small className="ps-2">One lowercase characters</small>
-                </DotIcon>
+                <div className="d-flex gap-3 w-p-100 ">
+                  <button
+                    type={`${allowNext ? "submit" : "button"}`}
+                    className={`${
+                      allowNext ? "btn-primary" : "btn-disable"
+                    } w-p-100`}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
-              <div className="col-sm-6 d-flex align-items-center">
-                <DotIcon
-                  status={
-                    isNumeric == true
-                      ? "success"
-                      : isNumeric == false
-                      ? "danger"
-                      : ""
-                  }
-                >
-                  <small className="ps-2">One numeric</small>
-                </DotIcon>
-              </div>
-              <div className="col-sm-6 d-flex align-items-center">
-                <DotIcon
-                  status={
-                    isUpper == true
-                      ? "success"
-                      : isUpper == false
-                      ? "danger"
-                      : ""
-                  }
-                >
-                  <small className="ps-2">One uppercase characters</small>
-                </DotIcon>
-              </div>
-              <div className="col-sm-6 d-flex align-items-center">
-                <DotIcon
-                  status={
-                    isSix == true ? "success" : isSix == false ? "danger" : ""
-                  }
-                >
-                  <small className="ps-2">6 minimum characters</small>
-                </DotIcon>
-              </div>
-            </div>
-          </div>
-          <div className="d-flex gap-3 mb-5">
-            <button
-              type={`${allowNext ? "submit" : "button"}`}
-              className={`border py-2 col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-neutral-100"
-              }`}
-            >
-              Next
-            </button>
+            </form>
           </div>
         </div>
-      </form>
+      </div>
     </AuthLayout>
   );
 };

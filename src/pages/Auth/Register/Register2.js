@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import { InputText } from "../../../components/Form";
+import { InputComponent, GoogleButton } from "../../../components";
 import { useNavigate, Link } from "react-router-dom";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
+import validator from "validator";
 const Register2 = () => {
   const [fullName, setFullName] = useState("");
+  const [fullNameValidation, setFullNameValidation] = useState("");
+
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
+
+  const validateFullName = (val) => {
+    if (validator.isEmpty(val)) {
+      setFullNameValidation("full name is required.");
+    } else {
+      setFullNameValidation("");
+      setAllowNext(true);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (allowNext) navigate("/register-step-3");
@@ -18,32 +31,29 @@ const Register2 = () => {
     >
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div className="mb-5 text-start">
-            <InputText
+          <div className="mb-48 text-start">
+            <InputComponent
               label="Full name"
-              type="text"
-              required={true}
-              placeholder="Enter your name"
-              icon={<i className="bi bi-person"></i>}
-              className="mb-4"
-              onChange={(val) => setFullName(val)}
-              onError={(err) => {
-                err ? setAllowNext(false) : setAllowNext(true);
+              key="email"
+              labelClassName="font-xs-bold"
+              placeholder="Enter your full name"
+              icon={<i className="bi bi-person text-neutral-400"></i>}
+              onChange={(val) => {
+                setFullName(val);
+                validateFullName(val);
               }}
+              error={fullNameValidation ? true : false}
+              description={fullNameValidation}
+              autoFocus
             />
           </div>
-          <div className="d-flex gap-3 mb-5">
-            <Link
-              to="/register"
-              className="btn btn-white border col btn-rounded"
-            >
+          <div className="d-flex gap-3 w-p-100 ">
+            <Link to="/register" className=" text-center btn-outline w-p-100">
               Back
             </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
-              className={`border  col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-neutral-100"
-              }`}
+              className={`${allowNext ? "btn-primary" : "btn-disable"} w-p-100`}
             >
               Next
             </button>

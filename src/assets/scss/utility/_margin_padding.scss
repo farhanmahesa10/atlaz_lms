@@ -1,0 +1,50 @@
+@mixin marginPaddingGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}m-#{$i} {
+      margin: #{$i}px !important;
+    }
+    #{$selector}ml-#{$i} {
+      margin-left: #{$i}px !important;
+    }
+    #{$selector}mr-#{$i} {
+      margin-right: #{$i}px !important;
+    }
+    #{$selector}mt-#{$i} {
+      margin-top: #{$i}px !important;
+    }
+    #{$selector}mb-#{$i} {
+      margin-bottom: #{$i}px !important;
+    }
+    #{$selector}my-#{$i} {
+      margin-bottom: #{$i}px !important;
+      margin-top: #{$i}px !important;
+    }
+    #{$selector}mx-#{$i} {
+      margin-left: #{$i}px !important;
+      margin-right: #{$i}px !important;
+    }
+    #{$selector}p-#{$i} {
+      padding: #{$i}px !important;
+    }
+    #{$selector}pl-#{$i} {
+      padding-left: #{$i}px !important;
+    }
+    #{$selector}pr-#{$i} {
+      padding-right: #{$i}px !important;
+    }
+    #{$selector}pt-#{$i} {
+      padding-top: #{$i}px !important;
+    }
+    #{$selector}pb-#{$i} {
+      padding-bottom: #{$i}px !important;
+    }
+    #{$selector}py-#{$i} {
+      padding-bottom: #{$i}px !important;
+      padding-top: #{$i}px !important;
+    }
+    #{$selector}px-#{$i} {
+      padding-left: #{$i}px !important;
+      padding-right: #{$i}px !important;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import "../variables";
+@import "./font_body";
+@import "./font_sm";
+@import "./font_xs";
+
+@mixin callBodyTypo($selector: ".") {
+  @include callFontBodyTypo($selector);
+  @include callFontSmTypo($selector);
+  @include callFontXsTypo($selector);
+}

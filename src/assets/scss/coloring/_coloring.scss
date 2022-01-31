@@ -1,0 +1,126 @@
+@import "../variables";
+
+$neutralColor: $neutral_50, $neutral_100, $neutral_200, $neutral_300,
+  $neutral_400, $neutral_500, $neutral_600, $neutral_700, $neutral_800,
+  $neutral_900, $neutral_1000;
+$neutralCode: "neutral";
+
+$primaryColor: $primary_100, $primary_200, $primary_300, $primary_400,
+  $primary_500;
+$primaryCode: "primary";
+
+$warningColor: $warning_100, $warning_200, $warning_300, $warning_400,
+  $warning_500;
+$warningCode: "warning";
+
+$successColor: $success_100, $success_200, $success_300, $success_400,
+  $success_500;
+$successCode: "success";
+
+$dangerColor: $danger_100, $danger_200, $danger_300, $danger_400, $danger_500;
+$dangerCode: "danger";
+
+$infoColor: $info_100, $info_200, $info_300, $info_400, $info_500;
+$infoCode: "info";
+
+$secondaryColor: $secondary_100, $secondary_200, $secondary_300, $secondary_400,
+  $secondary_500;
+$secondaryCode: "secondary";
+
+@mixin colorGenerator($colors, $code, $selector: ".") {
+  #{$selector}bg-black {
+    background-color: $black !important;
+  }
+  #{$selector}border-black {
+    border-color: $black !important;
+  }
+  #{$selector}text-black {
+    color: $black !important;
+  }
+
+  //hover
+
+  #{$selector}hover-bg-black {
+    &:hover {
+      background-color: $black !important;
+    }
+  }
+  #{$selector}hover-border-black {
+    &:hover {
+      border-color: $black !important;
+    }
+  }
+  #{$selector}hover-text-black {
+    &:hover {
+      color: $black !important;
+    }
+  }
+  //white
+  #{$selector}bg-white {
+    background-color: $white !important;
+  }
+  #{$selector}border-white {
+    border-color: $white !important;
+  }
+  #{$selector}text-white {
+    color: $white !important;
+  }
+
+  //hover
+
+  #{$selector}hover-bg-white {
+    &:hover {
+      background-color: $white !important;
+    }
+  }
+  #{$selector}hover-border-white {
+    &:hover {
+      border-color: $white !important;
+    }
+  }
+  #{$selector}hover-text-white {
+    &:hover {
+      color: $white !important;
+    }
+  }
+  @for $i from 1 through length($colors) {
+    $a: $i * 100;
+    #{$selector}bg-#{$code}-#{$a} {
+      background-color: nth($colors, $i) !important;
+    }
+    #{$selector}border-#{$code}-#{$a} {
+      border-color: nth($colors, $i) !important;
+    }
+    #{$selector}text-#{$code}-#{$a} {
+      color: nth($colors, $i) !important;
+    }
+
+    //hover
+
+    #{$selector}hover-bg-#{$code}-#{$a} {
+      &:hover {
+        background-color: nth($colors, $i) !important;
+      }
+    }
+    #{$selector}hover-border-#{$code}-#{$a} {
+      &:hover {
+        border-color: nth($colors, $i) !important;
+      }
+    }
+    #{$selector}hover-text-#{$code}-#{$a} {
+      &:hover {
+        color: nth($colors, $i) !important;
+      }
+    }
+  }
+}
+
+@mixin callColorGenerator($selector: ".") {
+  @include colorGenerator($neutralColor, $neutralCode, $selector);
+  @include colorGenerator($primaryColor, $primaryCode, $selector);
+  @include colorGenerator($warningColor, $warningCode, $selector);
+  @include colorGenerator($successColor, $successCode, $selector);
+  @include colorGenerator($dangerColor, $dangerCode, $selector);
+  @include colorGenerator($infoColor, $infoCode, $selector);
+  @include colorGenerator($secondaryColor, $secondaryCode, $selector);
+}

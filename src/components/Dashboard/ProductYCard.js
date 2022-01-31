@@ -43,7 +43,7 @@ const ProductYCard = () => {
   return (
     <>
       <div
-        className=" sm-mr-28 mr-8 flex-grow-0 book-shadow  cursor-pointer w-148 md-w-168 lg-w-204 radius-14 flex-shrink-0   align-items-center p-1"
+        className=" sm-mr-28 mr-8 flex-grow-0 book-shadow   w-148 md-w-168 lg-w-204 radius-14 flex-shrink-0   align-items-center p-1"
         onClick={handleShowCanvas}
       >
         <div
@@ -165,7 +165,7 @@ const ProductYCard = () => {
           </div>
         </div>
         <div className="w-280 mt-8 h-36 py-2 align-items-center d-flex justify-content-center rounded-8 bg-secondary-400">
-          <Link to="/product-detail" className="">
+          <Link to="/" className="">
             View Detail
           </Link>
         </div>

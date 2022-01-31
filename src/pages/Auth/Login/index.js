@@ -1,25 +1,102 @@
-import React, { useState, useEffect } from "react";
-import {
-  InputComponent,
-  GoogleButton,
-  InputPassword,
-  InputEmail,
-} from "../../../components/Form";
+import React, { useState, useRef } from "react";
+import { InputComponent, GoogleButton } from "../../../components";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { Link } from "react-router-dom";
+import validator from "validator";
+import InputPassword from "../../../components/Design/InputPassword";
+
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [mailValidation, setMailValidation] = useState("");
+
   const [password, setPassword] = useState("");
-  const [validationError, setValidationError] = useState({});
+  const [passwordValidation, setPasswordValidation] = useState("");
+
+  const emailRef = useRef();
 
   const loginSubmit = (e) => {
     e.preventDefault();
+    if (!validator.isEmail(email)) {
+      setMailValidation("Please input the correct format email address!");
+    } else {
+      setMailValidation("");
+    }
+    if (validator.isEmpty(password)) {
+      setPasswordValidation("Please could not empty");
+    } else {
+      setPasswordValidation(false);
+    }
+
     console.log(email, password);
   };
 
   return (
     <AuthLayout>
-      <form className="" onSubmit={loginSubmit}>
+      <div className="d-flex justify-content-center px-24 px-0">
+        <div className="auth-wrapper w-full mt-66 md-mt-132">
+          <div className="w-full">
+            <h4 className="text-center">Welcome back, Atlazen!</h4>
+            <GoogleButton label="Log in" className="py-8 w-p-100 mt-32 mb-32" />
+            <form className="" onSubmit={loginSubmit}>
+              <div className="d-flex align-items-center mb-24 ">
+                <div className="rectangle"></div>
+                <span className="px-2 text-neutral-300">or</span>
+                <div className="rectangle"></div>
+              </div>
+              <div className=" mb-32">
+                <InputComponent
+                  label="Email Address"
+                  key="email"
+                  labelClassName="font-xs-bold"
+                  placeholder="Enter your email"
+                  icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                  onChange={(val) => {
+                    setEmail(val);
+                  }}
+                  error={mailValidation ? true : false}
+                  description={mailValidation}
+                  autoFocus
+                />
+              </div>
+              <div className=" mb-32">
+                <InputPassword
+                  label="Password"
+                  key="email"
+                  labelClassName="font-xs-bold"
+                  placeholder="Enter your password"
+                  icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                  onChange={(val) => {
+                    setPassword(val);
+                  }}
+                  error={passwordValidation ? true : false}
+                  description={passwordValidation}
+                  autoFocus
+                />
+              </div>
+              <div className="mb-48 d-flex justify-content-between">
+                <div>
+                  <input type="checkbox" className=" form-check-input" />{" "}
+                  Remember me
+                </div>
+                <div>
+                  <Link to="/forgot-password">Forgot password</Link>
+                </div>
+              </div>
+              <div className="mb-32">
+                <button className="btn-primary w-p-100">Log in</button>
+              </div>
+              <div className="text-center">
+                New in Atlaz?{" "}
+                <Link to="/register" className="text-primary-400">
+                  Sign up now
+                </Link>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* <form className="" onSubmit={loginSubmit}>
         <div className="auth-content ">
           <div className="">
             <h4 className="pb-80 xs-pb-32 m-0">Welcome back, Atlazen!</h4>
@@ -95,7 +172,7 @@ const Login = () => {
             </div>
           </footer>
         </div>
-      </form>
+      </form> */}
     </AuthLayout>
   );
 };

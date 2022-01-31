@@ -1,0 +1,26 @@
+@mixin heightWidthGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}h-#{$i} {
+      height: #{$i}px;
+    }
+    #{$selector}w-#{$i} {
+      width: #{$i}px;
+    }
+  }
+}
+
+@mixin heightWidthPesenGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}h-p-#{$i} {
+      height: #{$i}#{"%"};
+    }
+    #{$selector}w-p-#{$i} {
+      width: #{$i}#{"%"};
+    }
+  }
+}
+
+@mixin callHeightWidthGenerator($total: 0, $selector: ".") {
+  @include heightWidthPesenGenerator($selector);
+  @include heightWidthGenerator($total, $selector);
+}

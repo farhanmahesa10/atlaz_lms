@@ -1,0 +1,22 @@
+@mixin fontSizeGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}fs-#{$i} {
+      font-size: #{$i}px !important;
+    }
+  }
+}
+
+@mixin fontWeightGenerator($selector: ".") {
+  $total: 10;
+  @for $i from 0 through $total {
+    $wight: $i * 100;
+    #{$selector}fw-#{$i} {
+      font-weight: #{$i}px !important;
+    }
+  }
+}
+
+@mixin callFontGenerator($total: 0, $selector: ".") {
+  @include fontSizeGenerator($total, $selector);
+  @include fontWeightGenerator($selector);
+}

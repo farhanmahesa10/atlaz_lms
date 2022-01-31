@@ -1,0 +1,13 @@
+@mixin gapGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}gap-#{$i} {
+      gap: #{$i}px;
+    }
+    #{$selector}gap-x-#{$i} {
+      column-gap: #{$i}px;
+    }
+    #{$selector}gap-y-#{$i} {
+      row-gap: #{$i}px;
+    }
+  }
+}

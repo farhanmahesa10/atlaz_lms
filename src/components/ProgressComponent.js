@@ -31,7 +31,7 @@ const ProgressComponent = (props) => {
     setProgressBar(data);
   }, []);
   const checkedRound = (key) => (
-    <div className="d-none d-sm-block">
+    <div className="d-none d-md-block">
       <svg
         key={key}
         width="40"
@@ -67,7 +67,7 @@ const ProgressComponent = (props) => {
   );
 
   const activeRound = (key) => (
-    <div key={key} className="d-none d-sm-block">
+    <div key={key} className="d-none d-md-block">
       <svg
         width="40"
         height="40"
@@ -83,7 +83,7 @@ const ProgressComponent = (props) => {
   const progressLine = (key, isLast) => (
     <div
       key={key}
-      className={`progress w-full ${isLast ? "d-sm-none" : ""}`}
+      className={`progress w-full ${isLast ? "d-md-none" : ""}`}
       style={{ backgroundColor: "#FFF2DA", height: "5px" }}
     >
       <div
@@ -97,7 +97,7 @@ const ProgressComponent = (props) => {
     </div>
   );
   const inactiveRound = (key) => (
-    <div key={key} className="d-none d-sm-block">
+    <div key={key} className="d-none d-md-block">
       <svg
         width="40"
         height="40"
@@ -112,7 +112,7 @@ const ProgressComponent = (props) => {
   const inactiveLine = (key, isLast) => (
     <div
       key={key}
-      className={`progress w-full ${isLast ? "d-sm-none" : ""}`}
+      className={`progress w-full ${isLast ? "d-md-none" : ""}`}
       style={{ backgroundColor: "#FFF2DA", height: "5px" }}
     >
       <div

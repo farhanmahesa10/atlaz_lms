@@ -1,0 +1,9 @@
+@media (min-width: 576px) {
+  @include firstSetup(".sm-");
+  .sm- {
+    //create only sm here
+    &example {
+      //declare css here
+    }
+  }
+}

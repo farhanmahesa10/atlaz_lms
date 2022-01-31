@@ -1,0 +1,200 @@
+@import "../variables";
+
+h1 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  color: $neutral_500;
+}
+h2 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: $neutral_500;
+}
+h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 40px;
+  color: $neutral_500;
+}
+h4 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: $neutral_500;
+}
+h5 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+h6 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin headingH0 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 72px;
+  color: $neutral_500;
+}
+@mixin headingH1 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  color: $neutral_500;
+}
+@mixin headingH2 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: $neutral_500;
+}
+@mixin headingH3 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 40px;
+  color: $neutral_500;
+}
+@mixin headingH4 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: $neutral_500;
+}
+@mixin headingH5 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+@mixin headingH6 {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin callHeadingH0($selector: ".") {
+  #{$selector}h0 {
+    @include headingH0();
+  }
+}
+@mixin callHeadingH1($selector: ".") {
+  #{$selector}h1 {
+    @include headingH1();
+  }
+}
+@mixin callHeadingH2($selector: ".") {
+  #{$selector}h2 {
+    @include headingH2();
+  }
+}
+@mixin callHeadingH3($selector: ".") {
+  #{$selector}h3 {
+    @include headingH3();
+  }
+}
+@mixin callHeadingH4($selector: ".") {
+  #{$selector}h4 {
+    @include headingH4();
+  }
+}
+@mixin callHeadingH5($selector: ".") {
+  #{$selector}h5 {
+    @include headingH5();
+  }
+}
+@mixin callHeadingH6($selector: ".") {
+  #{$selector}h6 {
+    @include headingH6();
+  }
+}
+
+@mixin callHeadingTypo($selector: ".") {
+  @include callHeadingH0($selector);
+  @include callHeadingH1($selector);
+  @include callHeadingH2($selector);
+  @include callHeadingH3($selector);
+  @include callHeadingH4($selector);
+  @include callHeadingH5($selector);
+  @include callHeadingH6($selector);
+  h1 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 48px;
+    color: $neutral_500;
+  }
+  h2 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 40px;
+    color: $neutral_500;
+  }
+  h3 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 40px;
+    color: $neutral_500;
+  }
+  h4 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    color: $neutral_500;
+  }
+  h5 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: $neutral_500;
+  }
+  h6 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: $neutral_500;
+  }
+}

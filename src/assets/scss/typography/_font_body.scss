@@ -1,0 +1,66 @@
+@mixin fontNormal {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin fontMedium {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin fontBold {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin fontItalic {
+  font-family: Nunito;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin callFontNormal($selector: ".") {
+  #{$selector}font-normal {
+    @include fontNormal();
+  }
+}
+
+@mixin callFontMedium($selector: ".") {
+  #{$selector}font-medium {
+    @include fontMedium();
+  }
+}
+
+@mixin callFontBold($selector: ".") {
+  #{$selector}font-bold {
+    @include fontBold();
+  }
+}
+
+@mixin callFontItalic($selector: ".") {
+  #{$selector}font-italic {
+    @include fontItalic();
+  }
+}
+
+@mixin callFontBodyTypo($selector: ".") {
+  @include callFontNormal($selector);
+  @include callFontMedium($selector);
+  @include callFontBold($selector);
+  @include callFontItalic($selector);
+}

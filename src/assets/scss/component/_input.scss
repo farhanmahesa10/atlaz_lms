@@ -1,0 +1,79 @@
+@import "../variables";
+@mixin inputSimple($selector: ".") {
+  ::placeholder {
+    color: $neutral_200;
+  }
+  .hide-arrow::-webkit-outer-spin-button,
+  .hide-arrow::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  .hide-arrow {
+    -moz-appearance: textfield;
+  }
+  #{$selector}form-input {
+    .input-area {
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      // padding: 0px 16px;
+      color: $neutral_500;
+      border: 1px solid $neutral_100;
+      &:focus-within {
+        border: 1px solid $primary_500;
+        outline-color: $primary_500;
+      }
+
+      .input-control {
+        outline: none;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        &:focus {
+          outline: none;
+          border: none;
+        }
+        &:disabled {
+          background-color: $neutral_100;
+          color: $neutral_200;
+        }
+      }
+    }
+
+    .input-desc {
+      color: $neutral_400;
+    }
+  }
+
+  #{$selector}form-input-error {
+    .input-area {
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      // padding: 0px 16px;
+      color: $neutral_500;
+      border: 1px solid $danger_500;
+
+      .input-control {
+        outline: none;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        &:focus {
+          outline: none;
+          border: none;
+        }
+      }
+    }
+
+    .input-desc {
+      color: $danger_400;
+    }
+  }
+}
+
+@mixin callInputGenerator($selector: ".") {
+  @include inputSimple($selector);
+}

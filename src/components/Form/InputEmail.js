@@ -14,7 +14,10 @@ const InputEmail = (props) => {
   };
   return (
     <div className={`text-start  ${props.className}`}>
-      <label htmlFor="" className="form-label text-start">
+      <label
+        htmlFor=""
+        className={`form-label text-start ${props.labelClassName}`}
+      >
         {props.label}
       </label>
       <div className="col-auto">

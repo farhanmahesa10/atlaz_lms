@@ -15,9 +15,11 @@ const RegisterMail = () => {
               To get started, please confirm your email address by click the
               button below. If you didn’t register, please ignore this message.
             </p>
-            <Link className="btn m-0  bg-primary-400 w-full" to="/">
-              Confirm email
-            </Link>
+            <div className="w-full">
+              <Link className="" to="/">
+                <button className="btn-primary w-p-100">Confirm email</button>
+              </Link>
+            </div>
 
             <div className="border-top mt-50 py-4 text-center">
               © 2022 PT Atlaz Belajar Bahasa. All Right Reserved

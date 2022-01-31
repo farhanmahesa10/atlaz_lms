@@ -9,6 +9,8 @@ import ProductXCard from "./Dashboard/ProductXCard.js";
 import DashboardHead from "./Dashboard/DashboardHead.js";
 import CarouselCenter from "./Library/CarouselCenter.js";
 import DropdownButton from "./utilities/DropdownButton.js";
+import InputComponent from "./Design/InputComponent.js";
+import GoogleButton from "./Form/GoogleButton.js";
 export {
   DashboardHead,
   ProgressComponent,
@@ -20,4 +22,6 @@ export {
   ProductXCard,
   CarouselCenter,
   DropdownButton,
+  InputComponent,
+  GoogleButton,
 };

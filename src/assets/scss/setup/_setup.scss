@@ -1,0 +1,86 @@
+@import "./nomedia";
+
+// // bootstrap
+@import "bootstrap/scss/functions";
+
+// Default variable overrides
+$body-bg: #000;
+$body-color: #111;
+
+// Required
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// Optional Bootstrap components here
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/bootstrap-grid";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/bootstrap-utilities";
+// // </boorstrap
+
+// @import "bootstrap/dist/css/bootstrap.min.css";
+@import "./css_reset";
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+//typography & coloring
+@import "../typography/body";
+@import "../typography/heading";
+@import "../coloring/coloring";
+
+//component
+@import "../component/button";
+@import "../component/card";
+@import "../component/input";
+
+//utility
+@import "../utility/margin_padding";
+@import "../utility/height_width_generator";
+@import "../utility/gap";
+@import "../utility/font";
+@import "../utility/border_radius";
+
+body {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+* {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: $neutral_500;
+}
+
+@mixin firstSetup($selector: ".") {
+  //typography
+  @include callBodyTypo($selector);
+  @include callHeadingTypo($selector);
+
+  //component
+  @include callCardGenerator($selector);
+  @include callColorGenerator($selector);
+  @include callBtnGenerator($selector);
+  @include callInputGenerator($selector);
+
+  //utility
+  @include callHeightWidthGenerator(500, $selector);
+  @include marginPaddingGenerator(500, $selector);
+  @include gapGenerator(100, $selector);
+  @include callFontGenerator(100, $selector);
+  @include borderRadiusGenerator($selector);
+}
+
+@include firstSetup();
+@import "./xxl";
+@import "./xl";
+@import "./lg";
+@import "./md";
+@import "./sm";
+@import "./xs";

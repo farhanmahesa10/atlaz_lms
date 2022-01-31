@@ -4,13 +4,8 @@ import Header from "./Header";
 const AuthLayout = (props) => {
   return (
     <div className=" h-screen">
-      <div className="md-mb-132 mb-66">
-        <Header />
-      </div>
-
-      <div className="  container d-sm-flex  justify-content-center align-items-center text-center">
-        {props.children}
-      </div>
+      <Header hideBackButton={props.hideBackButton} />
+      <div>{props.children}</div>
     </div>
   );
 };

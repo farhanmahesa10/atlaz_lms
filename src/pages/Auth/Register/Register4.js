@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { InputPassword } from "../../../components/Form";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
+import InputPassword from "../../../components/Design/InputPassword";
 import { useNavigate, Link } from "react-router-dom";
 const Register4 = () => {
   const [password, setPassword] = useState("");
@@ -45,19 +45,18 @@ const Register4 = () => {
     >
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div className="mb-5 text-start">
+          <div className=" text-start">
             <InputPassword
               label="Password"
               type="password"
               placeholder="Create your password"
               icon={<i className="bi bi-lock"></i>}
-              className="mb-2"
               onChange={(val) => {
                 setPassword(val);
                 validate(val);
               }}
             />
-            <div className="row  text-neutral-400">
+            <div className="row mt-16 mb-48 text-neutral-400">
               <div className="col-sm-6 d-flex align-items-center">
                 <DotIcon
                   status={
@@ -71,7 +70,7 @@ const Register4 = () => {
                   <small className="ps-2">One lowercase characters</small>
                 </DotIcon>
               </div>
-              <div className="col-sm-6 d-flex align-items-center">
+              <div className="col-sm-6  d-flex align-items-center">
                 <DotIcon
                   status={
                     isNumeric == true
@@ -108,18 +107,21 @@ const Register4 = () => {
               </div>
             </div>
           </div>
-          <div className="d-flex gap-3 mb-5">
+          <div className="mb-40">
+            By clicking Create account, I agree that I have read and accepted
+            the <span className="text-primary-400">Terms of Use</span> and
+            <span className="text-primary-400"> Privacy Policy.</span>
+          </div>
+          <div className="d-flex gap-3 w-p-100 ">
             <Link
               to="/register-step-3"
-              className="btn btn-white border col btn-rounded"
+              className=" text-center btn-outline w-p-100"
             >
               Back
             </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
-              className={`border  col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-neutral-100"
-              }`}
+              className={`${allowNext ? "btn-primary" : "btn-disable"} w-p-100`}
             >
               Next
             </button>

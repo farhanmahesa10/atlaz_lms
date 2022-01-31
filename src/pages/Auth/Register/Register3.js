@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import { InputNumber } from "../../../components/Form";
+import { InputComponent, GoogleButton } from "../../../components";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import { useNavigate, Link } from "react-router-dom";
+import validator from "validator";
 const Register3 = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumberValidation, setPhoneNumberValidation] = useState("");
+
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
+
+  const validatePhoneNumber = (val) => {
+    if (validator.isEmpty(val)) {
+      setPhoneNumberValidation("Phone number is required.");
+    } else {
+      setPhoneNumberValidation("");
+      setAllowNext(true);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (allowNext) navigate("/register-step-4");
@@ -18,32 +31,34 @@ const Register3 = () => {
     >
       <form onSubmit={handleSubmit}>
         <div className="auth-content">
-          <div className="mb-5 text-start">
-            <InputNumber
+          <div className="mb-48 text-start">
+            <InputComponent
               label="Phone number"
-              type="text"
-              required={true}
+              key="phone"
+              type="number"
+              labelClassName="font-xs-bold"
               placeholder="Enter your number"
-              icon={"+62"}
-              className="mb-4"
-              onChange={(val) => setPhoneNumber(val)}
-              onError={(err) => {
-                err ? setAllowNext(false) : setAllowNext(true);
+              icon={<span className=" text-neutral-400">+62</span>}
+              onChange={(val) => {
+                setPhoneNumber(val);
+                validatePhoneNumber(val);
               }}
+              inputClassName="hide-arrow"
+              error={phoneNumberValidation ? true : false}
+              description={phoneNumberValidation}
+              autoFocus
             />
           </div>
-          <div className="d-flex gap-3 mb-5">
+          <div className="d-flex gap-3 w-p-100 ">
             <Link
               to="/register-step-2"
-              className="btn btn-white border col btn-rounded"
+              className=" text-center btn-outline w-p-100"
             >
               Back
             </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
-              className={`border  col btn-rounded  ${
-                allowNext ? "bg-warning" : "bg-neutral-100"
-              }`}
+              className={`${allowNext ? "btn-primary" : "btn-disable"} w-p-100`}
             >
               Next
             </button>

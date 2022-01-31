@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import "./mysass.scss";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/sass/main.scss";
+import "./assets/scss/main.scss";
 import "./index.css";
 import "./assets/css/embla.css";
 import App from "./App";
