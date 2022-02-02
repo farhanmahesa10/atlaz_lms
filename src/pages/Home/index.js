@@ -156,14 +156,14 @@ const Home = () => {
                 alt=""
                 className="d-none d-lg-block radius-8"
               />
-              <div className=" lg-pb-0 w-full  pb-24 lg-w-432 flex-grow-0 flex-shrink-0">
+              <div className=" lg-pb-0    p-24 lg-w-432 flex-grow-0 flex-shrink-0">
                 <h3 className="">Where is the code?</h3>
                 <p className="">
                   You can be found on the first page after cover of the book you
                   have purchased.
                 </p>
               </div>
-              <div className="  w-full mr-28">
+              <div className=" lg-w-p-100 p-24">
                 <InputComponent
                   type="text"
                   placeholder="Input activation code here "

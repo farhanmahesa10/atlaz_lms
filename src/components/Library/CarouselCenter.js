@@ -85,7 +85,7 @@ const CarouselCenter = (props) => {
       <Slider {...settings}>
         {props.content.map((r) => {
           return (
-            <div className=" m-6 sm-m-8 md-m-12 " key={Math.random()}>
+            <div className=" m-12 sm-m-16 md-m-30 " key={Math.random()}>
               {r}
             </div>
           );

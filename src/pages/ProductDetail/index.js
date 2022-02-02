@@ -6,55 +6,6 @@ import StarIcon from "../../components/SVG/StarIcon";
 import { SearchDropdown } from "../../components/utilities";
 import { Link } from "react-router-dom";
 
-const ProductRecomend = (props) => {
-  return (
-    <div className=" sm-mr-28 mr-8 flex-grow-0 book-shadow   w-148 md-w-168 radius-14 flex-shrink-0   align-items-center p-1">
-      <div
-        className="   md-h-160 h-140 
-       radius-14 d-flex align-items-center gap-2  flex-column"
-        style={{
-          backgroundImage: 'url("/images/product.png")',
-          backgroundSize: "100%",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div
-          className=" md-h-36 h-26 bg-white  d-flex align-items-center justify-content-center py-8 px-8"
-          style={{ borderRadius: "0px 8px 0px 8px", alignSelf: "flex-end" }}
-        >
-          <span className="text-success-500 fw-bold font-size-12 md-font-size-16">
-            Best Seller
-          </span>
-        </div>
-      </div>
-      <div className=" pl-8">
-        <h6
-          className="m-0 font-size-12 pt-2 md-font-size-16 p-0 px-12"
-          style={{ lineHeight: "15px" }}
-        >
-          English Escalate - Fourth
-        </h6>
-        <p className="text-neutral-300 m-0 xs-pb-12 xs-pt-2  md-pb-24 sm-pb-24 font-size-9 sm-font-size-14">
-          Atlaz
-        </p>
-
-        <div className="d-md-flex d-block gap-2 align-items-center font-size-14 ">
-          <h5 className="font-size-12 sm-font-size-16 m-0 p-0">Rp 120.000</h5>
-          <p className="text-neutral-200 m-0 font-size-9 sm-font-size-12">
-            <s>Rp 999.999</s>
-          </p>
-        </div>
-      </div>
-      <div className="d-flex gap-2 align-items-center pb-8 pl-10">
-        <StarIcon />
-        <p className="text-neutral-300 m-0 font-size-9 sm-font-size-12">
-          4.8 | Sold 1.1k
-        </p>
-      </div>
-    </div>
-  );
-};
-
 const ProductDetail = () => {
   const [searchData, setSearchData] = useState([]);
   const handleSearchChange = (val) => {
@@ -122,29 +73,6 @@ const ProductDetail = () => {
           <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center mt-24">
             <div className="w-180 md-w-p-100 lg-w-p-100">
               <img src="/images/product.png" className="w-full" alt="" />
-              <div className="mt-8 row gap-8 lg-gap-0">
-                <div className="col-12 col-lg-6  lg-gap-0 font-size-12">
-                  <DropdownButton width="w-full">
-                    <div className="py-8 d-flex gap-16 hover-bg-neutral-100 cursor-pointer px-12 ">
-                      <img src="/icons/tokped.png" alt="" />
-                      <span className="text-neutral-400">Buy at Tokopedia</span>
-                    </div>
-                    <div className="py-8 d-flex gap-16  hover-bg-neutral-100 cursor-pointer px-12">
-                      <img src="/icons/bukalapak.png" alt="" />
-                      <span className="text-neutral-400">Buy at Bukalapak</span>
-                    </div>
-                    <div className="py-8 d-flex gap-16  hover-bg-neutral-100 cursor-pointer px-12">
-                      <img src="/icons/shopee.png" alt="" />
-                      <span className="text-neutral-400"> Buy at Shopee</span>
-                    </div>
-                  </DropdownButton>
-                </div>
-                <div className="col-12 col-lg-6">
-                  <button className="bg-white border  radius-8 w-full py-2  md-mt-0 px-16  font-size-12   d-flex justify-content-between">
-                    Contact marketing <i className="bi bi-whatsapp"></i>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
           <div className="col-12 col-md-7 col-lg-8 mt-32">
@@ -171,6 +99,13 @@ const ProductDetail = () => {
                 <p className="text-neutral-200 m-0 font-size-9 sm-font-size-12">
                   <s>Rp999.999</s>
                 </p>
+              </div>
+              <div className="mt-24 row gap-8 lg-gap-0">
+                <div className="col-6">
+                  <button className="btn-primary ">Contact marketing</button>
+                  <span className="mx-16">or</span>
+                  <button className="btn-outline ">Contact marketing</button>
+                </div>
               </div>
             </div>
             <p className="h6 md-h5 lg-h4">Overview</p>

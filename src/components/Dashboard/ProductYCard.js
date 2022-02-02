@@ -75,24 +75,21 @@ const ProductYCard = (props) => {
         show={showCanvas}
         onHide={handleHideCanvas}
         placement="end"
-        className="sm-radius-l-14 sm-w-366 d-flex  flex-column justify-content-between align-items-center xs-radius-t-14 px-40 py-40 "
+        className="d-flex flex-column justify-content-between align-items-center pb-40 sm-radius-tl-16 sm-radius-bl-16"
         // style={{ background: "none" }}
       >
         <div
-          className="d-flex h-screen  flex-column "
+          className="d-flex h-screen px-24 py-40 flex-column "
           style={{ maxHeight: "668px" }}
         >
-          <div className="lh-1 mb-32">
+          <div className=" mb-32">
             <div className="d-flex  justify-content-between align-items-center">
-              <h4 className="m-0 font-size-20">English Escalate Fourth</h4>
-              <p
-                className="m-0 p-0  font-size-35 cursor-pointer"
-                onClick={handleHideCanvas}
-              >
+              <h4 className="h5 md-h4">English Escalate Fourth</h4>
+              <p className=" fs-35 cursor-pointer" onClick={handleHideCanvas}>
                 &times;
               </p>
             </div>
-            <p className="m-0 font-size-16 text-neutral-300">Atlaz</p>
+            <p className="">Atlaz</p>
           </div>
           <div className="d-flex mt-2 justify-content-center mb-32">
             <div className="w-140  ">
@@ -101,16 +98,16 @@ const ProductYCard = (props) => {
           </div>
           <div className=" border h-56 mt-2 row align-items-center justify-content-between radius-8 mb-40">
             <div className="text-center lh-1 col-4 border-end">
-              <h6 className="m-0">6</h6>
-              <p className=" m-0 text-neutral-200">Lesson</p>
+              <p className="font-medium">6</p>
+              <p className="  text-neutral-200 font-xs">Lesson</p>
             </div>
-            <div className=" m-0 text-center col-4 lh-1 border-end">
-              <h6 className=" m-0 ">1.1K</h6>
-              <p className=" m-0 text-neutral-200">Sold</p>
+            <div className="  text-center col-4 lh-1 border-end">
+              <p className=" font-medium ">1.1K</p>
+              <p className="  text-neutral-200 font-xs">Sold</p>
             </div>
-            <div className=" m-0 text-center col-4 lh-1">
-              <h6 className=" m-0 ">4.8</h6>
-              <p className="  m-0 text-neutral-200">Ratings</p>
+            <div className="  text-center col-4 lh-1">
+              <p className=" font-medium ">4.8</p>
+              <p className="   text-neutral-200 font-xs">Ratings</p>
             </div>
           </div>
           <div className=" mx-28 mb-24 d-flex flex-column gap-4">
@@ -123,15 +120,11 @@ const ProductYCard = (props) => {
                         className="w-8 h-8 radius-p-100 "
                         style={{ backgroundColor: r.color }}
                       ></div>
-                      <p className="text-neutral-200 m-0 font-size-12">
-                        {r.title}
-                      </p>
+                      <p className="font-xs text-neutral-300">{r.title}</p>
                     </div>
                     <div className="m-0 d-flex align-items-center gap-2">
                       <div className="w-8 h-8 radius-p-100"></div>
-                      <p className="text-neutral-500 m-0  font-size-16 fw-medium">
-                        {r.subTitle}
-                      </p>
+                      <p className="font-sm-medium">{r.subTitle}</p>
                     </div>
                   </div>
                 );
@@ -139,7 +132,7 @@ const ProductYCard = (props) => {
             </div>
           </div>
           <div className="">
-            <p className="fw-medium mb-8">Overview</p>
+            <p className="h6 md-h5">Overview</p>
             <p className="font-size-12 m-0">
               Cut from geometric cotton lace mimicking decorative fretwork, this
               blouse reveals hints of skin...

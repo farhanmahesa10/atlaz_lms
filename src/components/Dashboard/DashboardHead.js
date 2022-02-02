@@ -29,42 +29,48 @@ const DashboardHead = () => {
         <div className="text-center mb-12 mt-40">
           <h5>Trusted on 10+ Marketplace</h5>
         </div>
-        <div className="d-flex gx-0 pb-32 justify-content-center">
-          <div className="d-md-flex">
-            <div className="m-auto">
-              <img
-                src="/images/blibli-thumb.png"
-                alt=""
-                style={{ opacity: "0.5" }}
-              />
-              <img
-                src="/images/tokopedia-thumb.png"
-                alt=""
-                style={{ opacity: "0.5" }}
-              />
-              <img
-                src="/images/shopee-thumb.png"
-                alt=""
-                style={{ opacity: "0.5" }}
-              />
-            </div>
-            <div className="">
-              <img
-                src="/images/gramedia-thumb.png"
-                alt=""
-                style={{ opacity: "0.5" }}
-              />
-              <img
-                src="/images/bukalapak-thumb.png"
-                alt=""
-                style={{ opacity: "0.5" }}
-              />
-              <img
-                src="/images/blibli-thumb.png"
-                alt=""
-                style={{ opacity: "0.5" }}
-              />
-            </div>
+        <div className="row gx-0  text-center pb-32 justify-content-center">
+          <div className="col-4 col-md-2">
+            <img
+              src="/images/blibli-thumb.png"
+              alt=""
+              style={{ opacity: "0.5" }}
+            />
+          </div>
+          <div className="col-4 col-md-2">
+            <img
+              src="/images/tokopedia-thumb.png"
+              alt=""
+              style={{ opacity: "0.5" }}
+            />
+          </div>
+          <div className="col-4 col-md-2">
+            <img
+              src="/images/shopee-thumb.png"
+              alt=""
+              style={{ opacity: "0.5" }}
+            />
+          </div>
+          <div className="col-4 col-md-2">
+            <img
+              src="/images/gramedia-thumb.png"
+              alt=""
+              style={{ opacity: "0.5" }}
+            />
+          </div>
+          <div className="col-4 col-md-2">
+            <img
+              src="/images/bukalapak-thumb.png"
+              alt=""
+              style={{ opacity: "0.5" }}
+            />
+          </div>
+          <div className="col-4 col-md-2">
+            <img
+              src="/images/blibli-thumb.png"
+              alt=""
+              style={{ opacity: "0.5" }}
+            />
           </div>
         </div>
       </div>

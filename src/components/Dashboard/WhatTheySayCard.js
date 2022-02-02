@@ -7,7 +7,7 @@ const WhatTheySayCard = (props) => {
         boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) ",
       }}
       // style={props.style}
-      className={` py-24 w-150 md-w-450 lg-w-660 d-flex px-46  radius-14 flex-column justify-content-between ${props.className}`}
+      className={` py-24  w-150 md-w-450 lg-w-660 d-flex px-46 slick-opacity-50  radius-14 flex-column justify-content-between ${props.className}`}
     >
       <div className="">
         <div className=" d-flex   align-items-center gap-2 ">

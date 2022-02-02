@@ -119,37 +119,29 @@ const SearchResult = (props) => {
           </div>
           <div className=" row justify-content-center ml-12">
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />
-              ,
+              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />
-              ,
+              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />
-              ,
+              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />
-              ,
+              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />
-              ,
+              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />
-              ,
+              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
             </div>
           </div>
 
           <div className="d-flex justify-content-between align-items-center">
-            <div className="text-neutral-300 font-size-12">1-5 of 40</div>
+            <div className="text-neutral-300 fs-12">1-5 of 40</div>
             <div className="d-flex gap-10  align-items-center">
-              <span className="text-neutral-300 font-size-12">
-                You’re in page
-              </span>
+              <span className="text-neutral-300 fs-12">You’re in page</span>
               <select
                 name=""
                 className="book-shadow border-neutral-500 border radius-4 py-1 px-1"
@@ -158,12 +150,16 @@ const SearchResult = (props) => {
                 <option value="">1</option>
                 <option value="">2</option>
               </select>
-
-              <button className="book-shadow bg-white radius-4 border ">
-                <i className="bi bi-arrow-left-short font-size-18"></i>
+              <div className="border-end mx-8">&nbsp;</div>
+              <button className="cursor-pointer bg-white radius-4 border ">
+                <p className="fs-24">
+                  <i className="bi bi-arrow-left-short "></i>
+                </p>
               </button>
-              <button className="book-shadow bg-white radius-4 border ">
-                <i className="bi bi-arrow-right-short font-size-18"></i>
+              <button className="cursor-pointer bg-white radius-4 border ">
+                <p className="fs-24">
+                  <i className="bi bi-arrow-right-short "></i>
+                </p>
               </button>
             </div>
           </div>
