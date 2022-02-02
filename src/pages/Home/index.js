@@ -49,12 +49,21 @@ const Home = () => {
             }
           />
         </div> */}
-        <div className="sm-px-48  px-12  mt-99">
+        <div
+          className="sm-px-130   px-12  pt-99 pb-104"
+          style={{
+            backgroundImage: "url('/images/bg-htp.png')",
+          }}
+        >
           <div className=" ">
             <div className="d-flex gap-100 align-items-center ">
               <div className=" rounded d-lg-flex  justify-content-between align-items-center">
                 <div className=" d-none d-lg-block">
-                  <img src="/images/english-book.png" alt="" />
+                  <img
+                    src="/images/english-book.png"
+                    alt=""
+                    className="w-p-100"
+                  />
                 </div>
                 <div className="lg-w-p-50 w-p-100 ">
                   <div className="row">
@@ -62,28 +71,28 @@ const Home = () => {
                     <div className="text-left " style={{ marginTop: "-12px" }}>
                       <LineIcon />
                     </div>
-                    <div className=" col-sm-6 pt-24 ">
+                    <div className=" col-sm-6  pt-24 ">
                       <PurchaseCard
                         number={1}
                         title="Pick your favorite"
                         body="Choose the book you want to purchase."
                       />
                     </div>
-                    <div className=" col-sm-6 pt-24">
+                    <div className=" col-sm-6  pt-24">
                       <PurchaseCard
                         number={2}
                         title="Proceed to purchase"
                         body="Please select an available marketplace to continue the purchase process."
                       />
                     </div>
-                    <div className=" col-sm-6 pt-24">
+                    <div className=" col-sm-6  pt-24">
                       <PurchaseCard
                         number={3}
                         title="Book is on its way"
                         body="The marketplace will process the purchase, please wait for your book to arrive."
                       />
                     </div>
-                    <div className=" col-sm-6 pt-24">
+                    <div className=" col-sm-6  pt-24">
                       <PurchaseCard
                         number={4}
                         title="Redeem Code"
@@ -96,20 +105,26 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="mt-138 md-px-32 px-12 ">
+        <div className=" md-px-32 px-12 ">
           <EmblaSlider
             wDefault={5}
             w1035={3}
             w980={3}
             w768={2}
             content={[
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
             ]}
             header={
               <>
@@ -139,7 +154,7 @@ const Home = () => {
               <img
                 src="/images/redem.png"
                 alt=""
-                className="d-none d-lg-block"
+                className="d-none d-lg-block radius-8"
               />
               <div className=" lg-pb-0 w-full  pb-24 lg-w-432 flex-grow-0 flex-shrink-0">
                 <h3 className="">Where is the code?</h3>

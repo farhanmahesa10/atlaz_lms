@@ -2,6 +2,25 @@ import React, { useEffect, useState } from "react";
 
 const Carousel = () => {
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
+  const [imgPhone, setimgPhone] = useState([
+    "/images/car-y.png",
+    "/images/car-y.png",
+  ]);
+  const [img, setImg] = useState([
+    "/images/example-car.png",
+    "/images/example-car.png",
+  ]);
+
+  const [imgView, setImgView] = useState([]);
+
+  useEffect(() => {
+    if (windowWidth < 576) {
+      setImgView(imgPhone);
+    } else {
+      setImgView(img);
+    }
+  }, [windowWidth]);
+
   window.addEventListener("resize", (e) => {
     setwindowWidth(e.target.innerWidth);
   });
@@ -37,71 +56,26 @@ const Carousel = () => {
               data-bs-slide-to="1"
               aria-label="Slide 2"
             ></button>
-            <button
-              type="button"
-              data-bs-target="#my-carousel"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#my-carousel"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
           </div>
         </div>
-        <div className="carousel-inner d-none d-sm-block">
-          <div className="carousel-item active " data-bs-interval="10000">
-            <img
-              src="/images/example-car.png"
-              className="d-block "
-              style={{ width: "100%" }}
-              alt="/images/example-car.png"
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div
-            className="carousel-item"
-            data-bs-interval="10000"
-            style={{ width: "100%" }}
-          >
-            <img
-              src="/images/example-car.png"
-              className="d-block "
-              style={{ width: "100%" }}
-              alt="/images/mail-img.png"
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-inner d-sm-none">
-          <div
-            className="carousel-item active d-flex  justify-content-center"
-            data-bs-interval="10000"
-          >
-            <img
-              src="/images/car-y.png"
-              className="d-block w-p-100"
-              alt="/images/car.png"
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
+        <div className="carousel-inner ">
+          {imgView.map((r, i) => {
+            return (
+              <div
+                className={`carousel-item ${i == 0 ? "active" : ""}`}
+                data-bs-interval="10000"
+                key={i}
+              >
+                <img src={r} className="d-block " style={{ width: "100%" }} />
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>First slide label</h5>
+                  <p>
+                    Some representative placeholder content for the first slide.
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <button
           className={` carousel-control-prev cursor-pointer text-white d-none d-md-block`}
