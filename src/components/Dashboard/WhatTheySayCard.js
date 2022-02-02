@@ -3,12 +3,14 @@ import StarIcon from "../SVG/StarIcon";
 const WhatTheySayCard = (props) => {
   return (
     <div
-      // style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
-      style={props.style}
-      className={` py-24  d-flex   flex-column justify-content-between ${props.className}`}
+      style={{
+        boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) ",
+      }}
+      // style={props.style}
+      className={` py-24 w-150 md-w-450 lg-w-660 d-flex px-46  radius-14 flex-column justify-content-between ${props.className}`}
     >
-      <div>
-        <div className=" d-flex  mr-60  align-items-center gap-2 mb-24">
+      <div className="">
+        <div className=" d-flex   align-items-center gap-2 ">
           <img
             src="/images/english-book.png"
             height="32"
@@ -17,12 +19,16 @@ const WhatTheySayCard = (props) => {
             className="bg-danger rounded-circle"
           />
           <div>
-            <h6 className="m-0">Devon Lane</h6>
-            <p className="m-0">Teacher</p>
+            <p className="font-sm-bold">Devon Lane</p>
+            <p className="font-sm">Teacher</p>
           </div>
         </div>
-        <div className="content text-neutral-400 pb-27">
-          The Dropbox HQ in San Francisco is one of the best designed & most
+        <div className="pb-42 pt-24">
+          <p className="font-medium">
+            "Wow what great service, I love it! It's is the most valuable
+            business resource we have EVER purchased. We can't understand how
+            we've been living without it."
+          </p>
         </div>
       </div>
       <div>

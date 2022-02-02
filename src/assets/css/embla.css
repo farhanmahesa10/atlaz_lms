@@ -85,10 +85,10 @@
 }
 
 .embla__button--prev {
-  left: 27px;
+  /* left: 27px; */
   transform: rotate(180deg);
 }
 
 .embla__button--next {
-  right: 27px;
+  /* right: 27px; */
 }

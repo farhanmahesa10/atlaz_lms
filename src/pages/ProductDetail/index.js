@@ -173,9 +173,7 @@ const ProductDetail = () => {
                 </p>
               </div>
             </div>
-            <h6 className="fw-bold font-size-16 md-font-size-20 lg-font-size-24 ">
-              Overview
-            </h6>
+            <p className="h6 md-h5 lg-h4">Overview</p>
             <p className="text-neutral-400 font-size-12 font-size-12 md-font-size-14 lg-font-size-16">
               Up is opinion message manners correct hearing husband my.
               Disposing commanded dashwoods cordially depending at at. Its
@@ -184,9 +182,7 @@ const ProductDetail = () => {
               extremity. Easy mr pain felt in. Too northward affection additions
               nay. He no an nature ye talent houses wisdom vanity denied.
             </p>
-            <h6 className="fw-bold font-size-16 md-font-size-20 lg-font-size-24 ">
-              Subject Focus
-            </h6>
+            <p className="h6 md-h5 lg-h4 mt-48">Subject Focus</p>
             <div className="text-neutral-400 font-size-12 md-font-size-14 lg-font-size-16 ">
               <button className="bg-white border p-2 mr-8  radius-4 mb-8">
                 Possesive adjective
@@ -211,9 +207,7 @@ const ProductDetail = () => {
               </button>
             </div>
             <div className="mt-32">
-              <h6 className="fw-bold font-size-16 md-font-size-20 lg-font-size-24 ">
-                Book Features
-              </h6>
+              <p className="h6 md-h5 lg-h4">Book Features</p>
               <div className="  row  ">
                 {data.map((r) => {
                   return (
@@ -238,22 +232,20 @@ const ProductDetail = () => {
                 })}
               </div>
             </div>
-            <div className="mt-56 xl-pr-12">
-              <h6 className="fw-bold font-size-16 md-font-size-20 lg-font-size-24 ">
-                Book FeaturesOther Recommendation
-              </h6>
+            <div className="mt-48 xl-pr-12">
+              <p className="h6 md-h5 lg-h4">Other Recommendation</p>
               <SliderNoArrow
                 wDefault={2}
                 w1035={2}
                 w980={2}
                 w768={2}
                 content={[
-                  <ProductRecomend />,
-                  <ProductRecomend />,
-                  <ProductRecomend />,
-                  <ProductRecomend />,
-                  <ProductRecomend />,
-                  <ProductRecomend />,
+                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
                 ]}
               />
             </div>

@@ -80,7 +80,7 @@ body {
   @include callInputGenerator($selector);
 
   //utility
-  @include callHeightWidthGenerator(500, $selector);
+  @include callHeightWidthGenerator(1000, $selector);
   @include marginPaddingGenerator(500, $selector);
   @include gapGenerator(100, $selector);
   @include callFontGenerator(100, $selector);

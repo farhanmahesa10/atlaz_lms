@@ -18,7 +18,7 @@ const SampleNextArrow = (props) => {
       className="0 d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
       style={{
         position: "absolute",
-        right: "0",
+        right: "30px",
         top: "-50px",
       }}
       onClick={onClick}
@@ -52,7 +52,7 @@ const SamplePrevArrow = (props) => {
       className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
       style={{
         position: "absolute",
-        right: "150px",
+        right: "90px",
         top: "-66.5px",
       }}
       onClick={onClick}

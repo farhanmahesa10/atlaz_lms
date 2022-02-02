@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StarIcon from "../SVG/StarIcon";
 import { Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const ProductYCard = () => {
+const ProductYCard = (props) => {
   const [showCanvas, setShowCanvas] = useState(false);
   const [data, setData] = useState([
     {
@@ -43,7 +43,7 @@ const ProductYCard = () => {
   return (
     <>
       <div onClick={handleShowCanvas} className=" mr-12 md-mr-24 lg-mr-32">
-        <div className="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk position-relative">
+        <div className={` position-relative ${props.responsiveClass}`}>
           <div className="bg-white radius-bl-8 end-0 text-success-500 radius-rt-8 promo-label">
             Best Seller
           </div>
@@ -146,8 +146,8 @@ const ProductYCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-280 mt-8 h-36 py-2 align-items-center d-flex justify-content-center rounded-8 bg-secondary-400">
-          <Link to="/" className="">
+        <div className="w-280 btn-secondary text-center">
+          <Link to="/product-detail" className="">
             View Detail
           </Link>
         </div>

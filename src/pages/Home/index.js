@@ -49,7 +49,7 @@ const Home = () => {
             }
           />
         </div> */}
-        <div className="sm-px-48 mt-99 px-12 ">
+        <div className="sm-px-48  px-12  mt-99">
           <div className=" ">
             <div className="d-flex gap-100 align-items-center ">
               <div className=" rounded d-lg-flex  justify-content-between align-items-center">
@@ -103,13 +103,13 @@ const Home = () => {
             w980={3}
             w768={2}
             content={[
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
             ]}
             header={
               <>
@@ -129,7 +129,7 @@ const Home = () => {
             }
           />
         </div>
-        <div className=" px-12 ">
+        <div className=" sm-px-48  px-12 ">
           <div className=" mt-104 ">
             <h3 className=" fs-20 sm-fs-24">Redeem Activation Code</h3>
             <div style={{ marginTop: "-12px" }}>
@@ -188,34 +188,25 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {/* <div className=" mt-128" style={{ maxWidth: "1440" }}>
-              <div className="text-center mb-54">
-                <h3 className="m-0">What they say</h3>
-                <div style={{ marginTop: "-10px" }}>
-                  <LineIcon />
-                </div>
-              </div>
-              <div className="d-flex gap-24 align-items-center flex-column flex-md-row">
-                <div className="">
-                  <WhatTheySayCard
-                    className="radius-r-14  pl-16 pr-16 md-pl-0 lg-pl-16"
-                    style={{ boxShadow: "5px 4px 16px rgba(0, 0, 0, 0.16) " }}
-                  />
-                </div>
-                <div className="">
-                  <WhatTheySayCard
-                    className="radius-14 md-h-320 md-w-360 lg-w-660  px-16 md-px-46"
-                    style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
-                  />
-                </div>
-                <div className="">
-                  <WhatTheySayCard
-                    className="w-full radius-l-14  pl-16 pr-16  md-pr-0 lg-pr-16"
-                    style={{ boxShadow: "-9px 4px 16px rgba(0, 0, 0, 0.16) " }}
-                  />
-                </div>
-              </div>
-            </div> */}
+        <div className=" px-25 mt-128 ">
+          <div className="text-center mb-54">
+            <h3 className="m-0">What they say</h3>
+            <div style={{ marginTop: "-10px" }}>
+              <LineIcon />
+            </div>
+          </div>
+          <div className="">
+            <CarouselCenter
+              content={[
+                <WhatTheySayCard />,
+                <WhatTheySayCard />,
+                <WhatTheySayCard />,
+                <WhatTheySayCard />,
+                <WhatTheySayCard />,
+              ]}
+            />
+          </div>
+        </div>
       </MainLayout>
     </>
   );
