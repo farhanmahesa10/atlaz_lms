@@ -11,7 +11,7 @@ const Header = (props) => {
               className="text-neutral-900 text-decoration-none d-flex"
             >
               <i
-                className="bi bi-arrow-left-short d-sm-none text-neutral-500"
+                className="bi bi-arrow-left-short d-sm-none cursor-pointer text-neutral-500"
                 style={{ fontSize: "30px" }}
               ></i>
               <span className="d-none d-sm-block">

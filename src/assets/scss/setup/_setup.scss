@@ -6,7 +6,10 @@
 // Default variable overrides
 $body-bg: #000;
 $body-color: #111;
-
+$carousel-indicator-width: 8px;
+$carousel-indicator-height: 8px;
+$carousel-indicator-active-bg: black;
+$carousel-indicator-bg: #aaafb7;
 // Required
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
@@ -17,6 +20,12 @@ $body-color: #111;
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/bootstrap-utilities";
 @import "bootstrap/scss/progress";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/close";
+// @import "bootstrap/scss/containers";
 // // </boorstrap
 
 // @import "bootstrap/dist/css/bootstrap.min.css";
@@ -79,9 +88,9 @@ body {
 }
 
 @include firstSetup();
-@import "./xxl";
-@import "./xl";
-@import "./lg";
-@import "./md";
-@import "./sm";
 @import "./xs";
+@import "./sm";
+@import "./md";
+@import "./lg";
+@import "./xl";
+@import "./xxl";

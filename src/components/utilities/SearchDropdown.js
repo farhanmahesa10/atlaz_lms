@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ClickAwayListener from "react-click-away-listener";
 import { Link, useNavigate } from "react-router-dom";
+import { InputComponent } from "..";
 const SearchDropdown = (props) => {
   const [showPopup, setShowPopup] = useState(false);
   const [keyword, setKeyword] = useState("");
@@ -18,10 +19,15 @@ const SearchDropdown = (props) => {
     setShowPopup(false);
   };
 
-  const handleChange = (e) => {
-    setKeyword(e.target.value);
-    props.onChange(e.target.value);
+  const handleChange = (val) => {
+    setKeyword(val);
+    props.onChange(val);
     setShowPopup(true);
+  };
+
+  const handleClear = () => {
+    setKeyword("");
+    console.log(keyword);
   };
 
   const handleSubmit = (e) => {
@@ -33,32 +39,23 @@ const SearchDropdown = (props) => {
     <ClickAwayListener onClickAway={handleClickAway}>
       <form action="" onSubmit={handleSubmit}>
         <div className=" ">
-          <div className="input-group mt-24  w-full book-shadow  ">
-            <span
-              className="btn bg-white radius-8  d-flex align-items-center pl-25   border-top border-bottom border-start  "
-              type="button"
-            >
-              <i className="bi bi-search text-neutral-200 "></i>
-            </span>
-            <input
-              onFocus={handleSearch}
-              type="text"
-              ref={inputRef}
-              className={`form-control py-16 border-top  ${
-                !showPopup ? " rounded  border-end" : ""
-              } border-bottom border-top`}
-              placeholder="Search anything here"
-              style={{ borderRight: "none" }}
-              onChange={handleChange}
-            />
-            <span
-              className={`btn bg-white rounded-3 font-size-27 text-neutral-200 border-top border-bottom  border-end pr-35 ${
-                !showPopup ? " d-none" : ""
-              }`}
-              type="button"
-            >
-              &times;
-            </span>
+          <InputComponent
+            labelClassName="font-xs-bold"
+            placeholder="Search anything here"
+            icon={<i className="bi bi-search text-neutral-400"></i>}
+            onChange={handleChange}
+            icon2={
+              <span
+                className={`text-neutral-200 pr-16 cursor-pointer ${
+                  !showPopup ? "d-none" : "d-block"
+                }`}
+                onClick={handleClear}
+              >
+                &times;
+              </span>
+            }
+          />
+          <div className="input-group  w-full book-shadow  ">
             <div style={{ width: "100%" }}>
               {showPopup ? (
                 <div

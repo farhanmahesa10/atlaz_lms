@@ -1,9 +1,9 @@
 import React from "react";
 const InputComponent = (props) => {
   return (
-    <div className={`form-input${props.error ? "-error" : ""} text-start`}>
+    <div className={`form-input${props.error ? "-error" : ""} text-start `}>
       <label className="font-sm-bold ">{props.label}</label>
-      <div className="input-area pl-16">
+      <div className="input-area pl-16 bg-white">
         {props.icon}
         <input
           type={props.type}
@@ -15,6 +15,7 @@ const InputComponent = (props) => {
           readOnly={props.readOnly}
           autoFocus={props.autoFocus}
         />
+        {props.icon2}
       </div>
       <span className="font-sm input-desc">{props.description}</span>
     </div>

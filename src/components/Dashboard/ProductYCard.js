@@ -42,51 +42,33 @@ const ProductYCard = () => {
   };
   return (
     <>
-      <div
-        className=" sm-mr-28 mr-8 flex-grow-0 book-shadow   w-148 md-w-168 lg-w-204 radius-14 flex-shrink-0   align-items-center p-1"
-        onClick={handleShowCanvas}
-      >
-        <div
-          className=" lg-h-196  md-h-160 h-140 
-       radius-14 d-flex align-items-center gap-2  flex-column"
-          style={{
-            backgroundImage: 'url("/images/product.png")',
-            backgroundSize: "100%",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <div
-            className=" md-h-36 h-26 bg-white  d-flex align-items-center justify-content-center py-8 px-8"
-            style={{ borderRadius: "0px 8px 0px 8px", alignSelf: "flex-end" }}
-          >
-            <span className="text-success-500 fw-bold font-size-12 md-font-size-16">
-              Best Seller
-            </span>
+      <div onClick={handleShowCanvas} className=" mr-12 md-mr-24 lg-mr-32">
+        <div className="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk position-relative">
+          <div className="bg-white radius-bl-8 end-0 text-success-500 radius-rt-8 promo-label">
+            Best Seller
           </div>
-        </div>
-        <div className=" pl-8">
-          <h6
-            className="m-0 font-size-12 pt-2 md-font-size-16 p-0 px-12"
-            style={{ lineHeight: "15px" }}
-          >
-            English Escalate - <br className="d-lg-none d-block" /> Fourth
-          </h6>
-          <p className="text-neutral-300 m-0 xs-pb-12 xs-pt-2  md-pb-24 sm-pb-24 font-size-9 sm-font-size-14">
-            Atlaz
-          </p>
+          <div className="card-product-img">
+            <img src="/images/product.png" alt="" />
+          </div>
+          <div className="d-flex card-content flex-column justify-content-between">
+            <div className="">
+              <p className="font-card-head">English Escalate - Fourth</p>
+              <p className="font-card-content">Atlaz</p>
+            </div>
 
-          <div className="d-md-flex d-block gap-2 align-items-center font-size-14 ">
-            <h5 className="font-size-12 sm-font-size-16 m-0 p-0">Rp 120.000</h5>
-            <p className="text-neutral-200 m-0 font-size-9 sm-font-size-12">
-              <s>Rp 999.999</s>
-            </p>
+            <div className="price-section align-items-end mt-8 gap-8">
+              <h5 className="font-card-price">Rp111.111</h5>
+              <s className="font-card-price-scribble text-neutral-300">
+                Rp999.999
+              </s>
+            </div>
+            <div className="d-flex align-items-center">
+              <i className="bi bi-star-fill text-primary-500 mr-7 fs-14"></i>
+              <span className="text-neutral-300 font-card-content">
+                4.8 | Sold1.1k
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="d-flex gap-2 align-items-center pb-8 pl-10">
-          <StarIcon />
-          <p className="text-neutral-300 m-0 font-size-9 sm-font-size-12">
-            4.8 | Sold 1.1k
-          </p>
         </div>
       </div>
       <Offcanvas

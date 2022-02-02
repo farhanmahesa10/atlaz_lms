@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   CarouselCenter,
   DashboardHead,
+  InputComponent,
   ProductXCard,
   ProductYCard,
   WhatTheySayCard,
@@ -17,7 +18,7 @@ const Home = () => {
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />} navbarBg="secondary-200">
-        {/* <div className="pt-48 sm-px-48 px-12 m-0 xl-pr-12 ">
+        {/* <div className="md-px-32 px-12  ">
           <EmblaSlider
             content={[
               <ProductXCard />,
@@ -32,15 +33,11 @@ const Home = () => {
             header={
               <>
                 <div className="d-flex gap-24  align-items-center">
-                  <h3 className="m-0 font-size-20 sm-font-size-24">
-                    Limited Deals
-                  </h3>
-                  <p className="m-0 text-neutral-300 font-size-12 sm-font-size-14">
-                    Ends in
-                  </p>
+                  <h3 className="m-0 fs-20 sm-fs-24">Limited Deals</h3>
+                  <p className="m-0 text-neutral-300 fs-12 sm-fs-14">Ends in</p>
                   <div className="d-flex align-items-center gap-11">
                     <Clock />
-                    <p className="text-primary-500 m-0 font-size-12 sm-font-size-14">
+                    <p className="text-primary-500 m-0 fs-12 sm-fs-14">
                       2 Days
                     </p>
                   </div>
@@ -52,82 +49,10 @@ const Home = () => {
             }
           />
         </div> */}
-        <div className="sm-px-48 px-12 m-0 xl-pr-12">
-          <div className=" mt-64">
-            <h3 className="m-0 font-size-20 sm-font-size-24">
-              Redeem Activation Code
-            </h3>
-            <div style={{ marginTop: "-12px" }}>
-              <LineIcon />
-            </div>
-            <div className="w-full  border-1 border-neutral-100 rounded d-lg-flex flex-grow-0 flex-shrink-0 align-items-center gap-24 pr-24 lg-pl-0 pl-24 mt-24 lg-py-0 py-24 ">
-              <img
-                src="/images/redem.png"
-                alt=""
-                className="d-none d-lg-block"
-              />
-              <div className=" lg-pb-0 pb-24 lg-w-432 flex-grow-0 flex-shrink-0">
-                <h3 className="m-0">Where is the code?</h3>
-                <p className="m-0">
-                  You can be found on the first page after cover of the book you
-                  have purchased.
-                </p>
-              </div>
-              <div className="d-sm-flex w-full  ">
-                <input
-                  type="text"
-                  className="form-control sm-radius-l-8 radius-8"
-                  placeholder="Input activation code here "
-                />
-                <button
-                  className="input-group-text sm-radius-r-8 radius-8 btn cursor-pointer w-full  sm-w-210 mt-24 sm-mt-0  bg-primary-400 border-primary-400"
-                  id="basic-addon2"
-                >
-                  Redeem
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mt-128 sm-pl-48 pl-12  xl-pr-12">
-          <EmblaSlider
-            wDefault={5}
-            w1035={3}
-            w980={3}
-            w768={2}
-            content={[
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-              <ProductYCard />,
-            ]}
-            header={
-              <>
-                <div className="d-flex gap-24  align-items-center">
-                  <h3 className="m-0 font-size-20 sm-font-size-24">
-                    Our Book List
-                  </h3>
-                  <Link
-                    to="/"
-                    className="mt-1 text-primary-500 hover-text-primary-300 "
-                  >
-                    View all
-                  </Link>
-                </div>
-                <div className="pb-24" style={{ marginTop: "-12px" }}>
-                  <LineIcon />
-                </div>
-              </>
-            }
-          />
-        </div>
-        <div className="sm-px-48 px-12 m-0">
-          <div className="pb-128 ">
+        <div className="sm-px-48 mt-99 px-12 ">
+          <div className=" ">
             <div className="d-flex gap-100 align-items-center ">
-              <div className="pt-128  rounded d-lg-flex  justify-content-between align-items-center">
+              <div className=" rounded d-lg-flex  justify-content-between align-items-center">
                 <div className=" d-none d-lg-block">
                   <img src="/images/english-book.png" alt="" />
                 </div>
@@ -171,7 +96,74 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className=" row  bg-secondary-200  px-32 py-41  align-items-center">
+        <div className="mt-138 md-px-32 px-12 ">
+          <EmblaSlider
+            wDefault={5}
+            w1035={3}
+            w980={3}
+            w768={2}
+            content={[
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+              <ProductYCard />,
+            ]}
+            header={
+              <>
+                <div className="d-flex gap-24  align-items-center">
+                  <h3 className="m-0 fs-20 sm-fs-24">Our Book List</h3>
+                  <Link
+                    to="/"
+                    className="mt-1 text-primary-500 hover-text-primary-300 "
+                  >
+                    View all
+                  </Link>
+                </div>
+                <div className="pb-24" style={{ marginTop: "-12px" }}>
+                  <LineIcon />
+                </div>
+              </>
+            }
+          />
+        </div>
+        <div className=" px-12 ">
+          <div className=" mt-104 ">
+            <h3 className=" fs-20 sm-fs-24">Redeem Activation Code</h3>
+            <div style={{ marginTop: "-12px" }}>
+              <LineIcon />
+            </div>
+            <div className="w-full d-lg-flex align-items-center border radius-8 mt-24 ">
+              <img
+                src="/images/redem.png"
+                alt=""
+                className="d-none d-lg-block"
+              />
+              <div className=" lg-pb-0 w-full  pb-24 lg-w-432 flex-grow-0 flex-shrink-0">
+                <h3 className="">Where is the code?</h3>
+                <p className="">
+                  You can be found on the first page after cover of the book you
+                  have purchased.
+                </p>
+              </div>
+              <div className="  w-full mr-28">
+                <InputComponent
+                  type="text"
+                  placeholder="Input activation code here "
+                  icon2={
+                    <div className="p-4">
+                      <button className="btn-secondary">Redeem</button>
+                    </div>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className=" row gx-0 bg-secondary-200  px-32 py-41 mt-104  align-items-center">
           <div className="col-lg-3 col-12">
             <h4 className="m-0 text-left">Our Partnership</h4>
             <LineIcon />
@@ -196,34 +188,34 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className=" mt-128" style={{ maxWidth: "1440" }}>
-          <div className="text-center mb-54">
-            <h3 className="m-0">What they say</h3>
-            <div style={{ marginTop: "-10px" }}>
-              <LineIcon />
-            </div>
-          </div>
-          <div className="d-flex gap-24 align-items-center flex-column flex-md-row">
-            <div className="">
-              <WhatTheySayCard
-                className="radius-r-14  pl-16 pr-16 md-pl-0 lg-pl-16"
-                style={{ boxShadow: "5px 4px 16px rgba(0, 0, 0, 0.16) " }}
-              />
-            </div>
-            <div className="">
-              <WhatTheySayCard
-                className="radius-14 md-h-320 md-w-360 lg-w-660  px-16 md-px-46"
-                style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
-              />
-            </div>
-            <div className="">
-              <WhatTheySayCard
-                className="w-full radius-l-14  pl-16 pr-16  md-pr-0 lg-pr-16"
-                style={{ boxShadow: "-9px 4px 16px rgba(0, 0, 0, 0.16) " }}
-              />
-            </div>
-          </div>
-        </div>
+        {/* <div className=" mt-128" style={{ maxWidth: "1440" }}>
+              <div className="text-center mb-54">
+                <h3 className="m-0">What they say</h3>
+                <div style={{ marginTop: "-10px" }}>
+                  <LineIcon />
+                </div>
+              </div>
+              <div className="d-flex gap-24 align-items-center flex-column flex-md-row">
+                <div className="">
+                  <WhatTheySayCard
+                    className="radius-r-14  pl-16 pr-16 md-pl-0 lg-pl-16"
+                    style={{ boxShadow: "5px 4px 16px rgba(0, 0, 0, 0.16) " }}
+                  />
+                </div>
+                <div className="">
+                  <WhatTheySayCard
+                    className="radius-14 md-h-320 md-w-360 lg-w-660  px-16 md-px-46"
+                    style={{ boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) " }}
+                  />
+                </div>
+                <div className="">
+                  <WhatTheySayCard
+                    className="w-full radius-l-14  pl-16 pr-16  md-pr-0 lg-pr-16"
+                    style={{ boxShadow: "-9px 4px 16px rgba(0, 0, 0, 0.16) " }}
+                  />
+                </div>
+              </div>
+            </div> */}
       </MainLayout>
     </>
   );

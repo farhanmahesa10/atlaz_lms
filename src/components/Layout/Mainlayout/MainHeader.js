@@ -41,13 +41,16 @@ const MainHeader = (props) => {
             style={{ zIndex: 9 }}
           >
             <Link to="/">
-              <img src="/images/logo.png" alt="" />
+              <img src="/images/logo.png" className=" d-none d-lg-flex " />
+              <img
+                src="/images/logo-icon.png"
+                className=" d-flex d-lg-none w-32"
+              />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle
-            aria-controls="responsive-navbar-nav "
+            aria-controls="responsive-navbar-nav cursor-pointer"
             style={{ border: "none" }}
-            className="m-0 p-0"
           />
           <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
             {menus.map((r) => {
@@ -74,18 +77,12 @@ const MainHeader = (props) => {
             className=" d-none d-lg-flex gap-3 position-relative"
             style={{ zIndex: 9 }}
           >
-            <Link
-              to="/login"
-              className="py-1 px-4 border-1 border-neutral-500 rounded"
-            >
-              Login
+            <Link to="/login" className="">
+              <button className="btn-outline px-25 font-xs">Login</button>
             </Link>
 
-            <Link
-              to="/register"
-              className="py-1 bg-primary-500 border-1 text-black hover-text-neutral-500 border-primary-500   px-4  rounded"
-            >
-              Sign up
+            <Link to="/register" className="p-0">
+              <button className="btn-primary px-25 font-xs">Sign up</button>
             </Link>
           </Nav>
           <Navbar.Offcanvas
@@ -120,18 +117,12 @@ const MainHeader = (props) => {
                 </NavDropdown>
               </Nav>
               <div className="d-flex justify-content-center gap-2">
-                <Link
-                  to="/login"
-                  className="py-1 px-4 border-1 border-neutral-500 rounded"
-                >
-                  Login
+                <Link to="/login" className="">
+                  <button className="btn-outline px-25 font-xs">Login</button>
                 </Link>
 
-                <Link
-                  to="/register"
-                  className="py-1 bg-primary-500 border-1 text-black hover-text-neutral-500 border-primary-500   px-4  rounded"
-                >
-                  Sign up
+                <Link to="/register" className="p-0">
+                  <button className="btn-primary px-25 font-xs">Sign up</button>
                 </Link>
               </div>
             </Offcanvas.Body>
