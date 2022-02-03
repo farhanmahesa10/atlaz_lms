@@ -2,11 +2,17 @@
   @for $i from 0 through $total {
     #{$selector}gap-#{$i} {
       gap: #{$i}px;
+      gap: -webkit-box;
+      gap: -ms-flexbox;
     }
     #{$selector}gap-x-#{$i} {
+      column-gap: -webkit-box;
+      column-gap: -ms-flexbox;
       column-gap: #{$i}px;
     }
     #{$selector}gap-y-#{$i} {
+      row-gap: -webkit-box;
+      row-gap: -ms-flexbox;
       row-gap: #{$i}px;
     }
   }
