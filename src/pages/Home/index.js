@@ -167,8 +167,8 @@ const Home = () => {
             ]}
             header={
               <>
-                <div className="d-flex gap-24  align-items-center">
-                  <h3 className="m-0 fs-20 sm-fs-24">Our Book List</h3>
+                <div className="d-flex   align-items-center">
+                  <h3 className="mr-24 fs-20 sm-fs-24">Our Book List</h3>
                   <Link
                     to="/"
                     className="mt-1 text-primary-500 hover-text-primary-300 "
