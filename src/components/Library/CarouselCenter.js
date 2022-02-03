@@ -72,20 +72,34 @@ const CarouselCenter = (props) => {
     className: "center slider variable-width",
     centerMode: true,
     infinite: true,
-    centerPadding: "60px",
+    // centerPadding: "60px",
     slidesToShow: 1,
     speed: 500,
     variableWidth: true,
     adaptiveHeight: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    rows: 1,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 3,
+          variableWidth: true,
+          adaptiveHeight: true,
+          rows: 1,
+          infinite: true,
+        },
+      },
+    ],
   });
   return (
     <div className="w-full">
       <Slider {...settings}>
         {props.content.map((r) => {
           return (
-            <div className=" m-12 sm-m-16 md-m-30 " key={Math.random()}>
+            <div className=" m-8 sm-m-8 md-m-16 " key={Math.random()}>
               {r}
             </div>
           );

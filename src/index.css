@@ -7,8 +7,8 @@
 }
 .center .slick-center .slick-opacity-50 {
   opacity: 1 !important;
-  -ms-transform: scale(1.08);
-  transform: scale(1.08);
+  /* -ms-transform: scale(1.08);
+  transform: scale(1.08); */
 }
 
 .slick-opacity-50 {

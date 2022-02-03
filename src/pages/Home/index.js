@@ -249,14 +249,34 @@ const Home = () => {
               <LineIcon />
             </div>
           </div>
-          <div className="">
+          <div className=" ">
             <CarouselCenter
               content={[
-                <WhatTheySayCard />,
-                <WhatTheySayCard />,
-                <WhatTheySayCard />,
-                <WhatTheySayCard />,
-                <WhatTheySayCard />,
+                <WhatTheySayCard
+                  text="Wow what great service, I love it! It's is the most valuable business resource we have EVER purchased. 
+                We can't understand how we've been living without it."
+                />,
+                <WhatTheySayCard
+                  text="Wow what great service, I love it! It's is the most valuable business resource we have EVER purchased. 
+                We can't understand how we've been living without it."
+                />,
+                <WhatTheySayCard
+                  text="Wow what great service, I love it! It's is the most valuable business resource we have EVER purchased. 
+                We can't understand how we've been living without it."
+                />,
+                <WhatTheySayCard
+                  text="Wow what great service, I love it! It's is the most valuable business resource we have EVER purchased. 
+                We can't understand how we've been living without it."
+                />,
+                <WhatTheySayCard
+                  text="Wow what great service, I love it! It's is the most valuable business resource we have EVER purchased. 
+                We can't understand how we've been living without it."
+                />,
+
+                <WhatTheySayCard
+                  text="Wow what great service, I love it! It's is the most valuable business resource we have EVER purchased. 
+                We can't understand how we've been living without it."
+                />,
               ]}
             />
           </div>

@@ -7,9 +7,9 @@ const WhatTheySayCard = (props) => {
         boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) ",
       }}
       // style={props.style}
-      className={` py-24  w-150 md-w-450 lg-w-660 d-flex px-46 slick-opacity-50  radius-14 flex-column justify-content-between ${props.className}`}
+      className={` py-8 px-16 md-py-24  md-px-46 h-256 w-250 md-w-450 lg-w-520 d-flex slick-opacity-50  radius-14 flex-column justify-content-between ${props.className}`}
     >
-      <div className="">
+      <div>
         <div className=" d-flex   align-items-center gap-2 ">
           <img
             src="/images/english-book.png"
@@ -19,18 +19,15 @@ const WhatTheySayCard = (props) => {
             className="bg-danger rounded-circle"
           />
           <div>
-            <p className="font-sm-bold">Devon Lane</p>
-            <p className="font-sm">Teacher</p>
+            <p className="font-xs-bold md-font-sm-bold">Devon Lane</p>
+            <p className="font-xs md-font-sm">Teacher</p>
           </div>
         </div>
         <div className="pb-42 pt-24">
-          <p className="font-medium">
-            "Wow what great service, I love it! It's is the most valuable
-            business resource we have EVER purchased. We can't understand how
-            we've been living without it."
-          </p>
+          <p className="font-xs md-font-medium ">{props.text}</p>
         </div>
       </div>
+
       <div>
         <div className="d-flex gap-2">
           <StarIcon />
