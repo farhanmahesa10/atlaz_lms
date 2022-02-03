@@ -17,7 +17,7 @@ const DashboardHead = () => {
     <div className="bg-secondary-200">
       <div className=" m-auto px-12" style={{ maxWidth: "1440px" }}>
         <div className="pb-24 d-flex justify-content-center ">
-          <div className="" style={{ width: "432px" }}>
+          <div className="mt-24" style={{ width: "432px" }}>
             <SearchDropdown
               searchRecomend={searchData}
               submitLink="/search-result"
