@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Header = (props) => {
   return (
-    <div className="d-flex w-full  justify-content-center  pt-24">
+    <div className="d-flex w-full  justify-content-center align-items-center  h-88">
       <div className="position-absolute start-0 pl-32 ">
         {!props.hideBackButton ? (
           <div className="d-flex align-items-center h-full pl-4">

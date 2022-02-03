@@ -16,7 +16,7 @@ const RegisterLayout = (props) => {
       {/* <Header /> */}
       <AuthLayout>
         <div className="d-flex justify-content-center px-24 px-0">
-          <div className="auth-wrapper w-full  md-mt-132">
+          <div className="auth-wrapper w-full  md-mt-104">
             <ProgressComponent
               totalProgress={props.totalProgress}
               activeProgress={props.activeProgress}
