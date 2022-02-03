@@ -51,13 +51,13 @@ const ProductDetail = () => {
   ]);
   return (
     <MainLayout>
-      <div className="mt-16 px-24">
+      <div className="mt-16 px-24 mt-24">
         {/* <SearchDropdown
           submitLink="/search-result"
           onChange={handleSearchChange}
           searchRecomend={searchData}
         /> */}
-        <div className="d-flex gap-8 mt-24 align-items-center d-none">
+        <div className="d-flex gap-8 mt-24 align-items-center mb-24">
           <Link to="/" className="text-primary-500">
             Home
           </Link>
@@ -71,35 +71,35 @@ const ProductDetail = () => {
           </Link>
         </div>
         <div className="row gx-0">
-          <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center ">
-            <div className="w-p-80">
+          <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center align-items-md-start ">
+            <div className="w-p-90">
               <img src={imgCore} className="w-full" alt="" />
             </div>
-            <div className="d-flex justify-content-center gap-1">
+            <div className="d-flex justify-content-center justify-content-md-start gap-1">
               <img
                 src="/images/product.png"
-                className="w-p-19 cursor-pointer"
+                className="w-p-22 cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}
               />
               <img
                 src="/images/product-d1.png"
-                className="w-p-19 cursor-pointer"
+                className="w-p-22 cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}
               />
               <img
                 src="/images/product-d2.png"
-                className="w-p-19 cursor-pointer"
+                className="w-p-22 cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}
               />
               <img
                 src="/images/product-d3.png"
-                className="w-p-19 cursor-pointer"
+                className="w-p-22 cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}

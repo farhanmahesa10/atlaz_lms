@@ -4,6 +4,9 @@ const GoogleButton = (props) => {
   return (
     <button
       className={`btn-outline d-flex align-items-center justify-content-center  ${props.className} `}
+      onClick={() => {
+        props.onClick();
+      }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -41,7 +41,7 @@ const SearchResult = (props) => {
   return (
     <>
       <MainLayout>
-        <div className="px-12">
+        <div className="px-12 mt-24">
           <div className="mt-16">
             <SearchDropdown
               submitLink="/search-result"

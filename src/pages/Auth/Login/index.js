@@ -36,7 +36,13 @@ const Login = () => {
         <div className="auth-wrapper w-full mt-66 md-mt-132">
           <div className="w-full">
             <h4 className="text-center">Welcome back, Atlazen!</h4>
-            <GoogleButton label="Log in" className="py-8 w-p-100 mt-32 mb-32" />
+            <GoogleButton
+              label="Log in"
+              className="py-8 w-p-100 mt-32 mb-32"
+              onClick={() => {
+                console.log("oke");
+              }}
+            />
             <form className="" onSubmit={loginSubmit}>
               <div className="d-flex align-items-center mb-24 ">
                 <div className="rectangle"></div>
