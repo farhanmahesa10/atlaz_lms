@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Nav,
@@ -9,6 +9,22 @@ import {
 import { Link } from "react-router-dom";
 import NavToggler from "../../SVG/NavToggler";
 const MainHeader = (props) => {
+  const [navBg, setNavBg] = useState(props.navbarBg);
+
+  useEffect(() => {
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (window.pageYOffset >= 50) {
+          setNavBg("white");
+        } else {
+          setNavBg(props.navbarBg);
+        }
+      },
+      { passive: true }
+    );
+  }, []);
+
   const menus = [
     {
       link: "/",
@@ -31,9 +47,10 @@ const MainHeader = (props) => {
   return (
     <>
       <Navbar
-        bg={`${props.navbarBg ? "secondary-200" : "bg-white"}`}
-        className="border-bottom m-0 p-0 border-secondary-300"
+        bg={`${props.navbarBg ? navBg : "bg-white"}`}
+        className="border-bottom m-0 p-0 border-secondary-300 position-fixed h-82 bg-white w-full"
         expand="lg"
+        style={{ zIndex: 9 }}
       >
         <Container fluid className="m-0 pl-24 lg-pl-72 pt-0 pr-12 lg-pr-48">
           <Navbar.Brand
@@ -60,18 +77,6 @@ const MainHeader = (props) => {
                 </Link>
               );
             })}
-
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
           </Nav>
           <Nav
             className=" d-none d-lg-flex gap-3 position-relative"
