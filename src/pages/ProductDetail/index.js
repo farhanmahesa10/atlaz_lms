@@ -3,11 +3,12 @@ import SliderNoArrow from "../../components/Library/SliderNoArrow.js";
 import { DropdownButton, ProductYCard } from "../../components";
 import MainLayout from "../../components/Layout/Mainlayout";
 import StarIcon from "../../components/SVG/StarIcon";
-import { SearchDropdown } from "../../components/utilities";
 import { Link } from "react-router-dom";
 
 const ProductDetail = () => {
   const [searchData, setSearchData] = useState([]);
+  const [imgCore, setImgCore] = useState("/images/product.png");
+
   const handleSearchChange = (val) => {
     setSearchData([
       { text: " English Play 01", link: "/search-result" },
@@ -50,13 +51,13 @@ const ProductDetail = () => {
   ]);
   return (
     <MainLayout>
-      <div className="mt-16 mx-14">
+      <div className="mt-16 px-24">
         {/* <SearchDropdown
           submitLink="/search-result"
           onChange={handleSearchChange}
           searchRecomend={searchData}
         /> */}
-        <div className="d-flex gap-8 mt-24 align-items-center">
+        <div className="d-flex gap-8 mt-24 align-items-center d-none">
           <Link to="/" className="text-primary-500">
             Home
           </Link>
@@ -69,47 +70,86 @@ const ProductDetail = () => {
             English Escalate - Fourth
           </Link>
         </div>
-        <div className="row">
-          <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center mt-24">
-            <div className="w-180 md-w-p-100 lg-w-p-100">
-              <img src="/images/product.png" className="w-full" alt="" />
+        <div className="row gx-0">
+          <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center ">
+            <div className="w-p-80">
+              <img src={imgCore} className="w-full" alt="" />
+            </div>
+            <div className="d-flex justify-content-center gap-1">
+              <img
+                src="/images/product.png"
+                className="w-p-19 cursor-pointer"
+                onClick={(e) => {
+                  setImgCore(e.target.src);
+                }}
+              />
+              <img
+                src="/images/product-d1.png"
+                className="w-p-19 cursor-pointer"
+                onClick={(e) => {
+                  setImgCore(e.target.src);
+                }}
+              />
+              <img
+                src="/images/product-d2.png"
+                className="w-p-19 cursor-pointer"
+                onClick={(e) => {
+                  setImgCore(e.target.src);
+                }}
+              />
+              <img
+                src="/images/product-d3.png"
+                className="w-p-19 cursor-pointer"
+                onClick={(e) => {
+                  setImgCore(e.target.src);
+                }}
+              />
             </div>
           </div>
-          <div className="col-12 col-md-7 col-lg-8 mt-32">
+          <div className="col-12 col-md-7 col-lg-8 mt-32 ">
             <div className="mb-45">
-              <h3 className="m-0">English Play 01</h3>
-              <p className="mt-0 mb-25 font-size-12 sm-font-size-14">Atlaz</p>
+              <h3 className="h5 md-h4 lg-h3">English Play 01</h3>
+              <p className="font-sm md-font-normal">Atlaz</p>
 
-              <div className="d-flex mb-25 gap-2 align-items-center  ">
-                <StarIcon />
-                <p className="text-neutral-300 m-0 font-size-9 sm-font-size-12">
+              <div className="d-flex mb-32 gap-2 align-items-center  ">
+                <div className="d-flex">
+                  <StarIcon size="10" />
+                  <StarIcon size="10" />
+                  <StarIcon size="10" />
+                  <StarIcon size="10" />
+                  <StarIcon size="10" isHalf />
+                </div>
+                <p className="text-neutral-300 m-0 font-xs md-font-sm-medium">
                   4.8 | Sold 1.1k
                 </p>
               </div>
-              <div className="d-flex gap-2 align-items-center font-size-14 ">
-                <span
-                  className="bg-danger-100 text-danger-500 px-2 font-size-12  sm-font-size-14 radius-50 position-relative"
-                  style={{ top: "-2px" }}
-                >
+              <div className="d-flex gap-2 align-items-center ">
+                <p className="bg-danger-100 text-danger-500 px-8 py-5 font-xs md-font-sm-medium md-font-medium radius-50 ">
                   10% off
-                </span>
-                <h5 className="font-size-12 sm-font-size-16 m-0 p-0">
-                  Rp120.000
-                </h5>
-                <p className="text-neutral-200 m-0 font-size-9 sm-font-size-12">
-                  <s>Rp999.999</s>
                 </p>
+                <h5 className="h5 md-h3 lg-h2">
+                  Rp120.000 <s className="font-sm">Rp170.999</s>
+                </h5>
               </div>
-              <div className="mt-24 row gap-8 lg-gap-0">
-                <div className="col-6">
-                  <button className="btn-primary ">Contact marketing</button>
-                  <span className="mx-16">or</span>
-                  <button className="btn-outline ">Contact marketing</button>
+              <div className="mt-20 row gx-0 gap-8 lg-gap-0">
+                <div className="col-12">
+                  <button
+                    className="btn-primary font-xs md-font-sm lg-font-normal"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalBuy"
+                  >
+                    Buy from e-commerce
+                  </button>
+                  <span className="mx-4 md-mx-16">or</span>
+                  <button className="btn-outline font-xs md-font-sm lg-font-normal">
+                    Contact marketing
+                  </button>
                 </div>
               </div>
             </div>
-            <p className="h6 md-h5 lg-h4">Overview</p>
-            <p className="text-neutral-400 font-size-12 font-size-12 md-font-size-14 lg-font-size-16">
+            <p className="h6 md-h5 lg-h4 mb-16">Overview</p>
+            <p className="text-neutral-400 font-xs md-font-sm lg-font-normal">
               Up is opinion message manners correct hearing husband my.
               Disposing commanded dashwoods cordially depending at at. Its
               strangers who you certainty earnestly resources suffering she. Be
@@ -117,36 +157,36 @@ const ProductDetail = () => {
               extremity. Easy mr pain felt in. Too northward affection additions
               nay. He no an nature ye talent houses wisdom vanity denied.
             </p>
-            <p className="h6 md-h5 lg-h4 mt-48">Subject Focus</p>
-            <div className="text-neutral-400 font-size-12 md-font-size-14 lg-font-size-16 ">
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+            <p className="h6 md-h5 lg-h4 mt-48 mb-16">Subject Focus</p>
+            <div className="">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Possesive adjective
               </button>
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Greetings and leave-takings
               </button>
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Family members
               </button>
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Family members
               </button>
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Family members
               </button>
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Family members
               </button>
-              <button className="bg-white border p-2 mr-8  radius-4 mb-8">
+              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
                 Animal, plants, and their habitats
               </button>
             </div>
             <div className="mt-32">
-              <p className="h6 md-h5 lg-h4">Book Features</p>
-              <div className="  row  ">
+              <p className="h6 md-h5 lg-h4 mb-16">Book Features</p>
+              <div className="  row  gx-0">
                 {data.map((r) => {
                   return (
-                    <div className="col-6 mb-16" key={Math.random()}>
+                    <div className="col-6 col-md-4 mb-16" key={Math.random()}>
                       <div className="m-0 d-flex align-items-center gap-2">
                         <div
                           className="w-8 h-8 radius-p-100 "
@@ -168,22 +208,75 @@ const ProductDetail = () => {
               </div>
             </div>
             <div className="mt-48 xl-pr-12">
-              <p className="h6 md-h5 lg-h4">Other Recommendation</p>
+              <p className="h6 md-h5 lg-h4 mb-16">Other Recommendation</p>
               <SliderNoArrow
                 wDefault={2}
                 w1035={2}
                 w980={2}
                 w768={2}
                 content={[
-                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
+                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
                 ]}
               />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade "
+        id="modalBuy"
+        tabIndex="-1"
+        aria-labelledby="modalBuyLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content radius-16">
+            <div className="modal-header">
+              <h6 className="modal-title md-h5" id="modalBuyLabel">
+                Choose the marketplace
+                <p className="font-xs md-font-sm">
+                  Deliver our book from our marketplace partnership
+                </p>
+              </h6>
+            </div>
+            <div className="modal-body px-24  ">
+              <div>
+                <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
+                  <img src="/icons/tokped.png" alt="" className="pr-17" />
+                  <div className="d-flex justify-content-between w-full">
+                    <p className="font-medium mr-48">
+                      Buy from <span className="font-bold">Tokopedia</span>
+                    </p>
+                    <i className="bi bi-chevron-right "></i>
+                  </div>
+                </button>
+                <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
+                  <img src="/icons/shopee.png" alt="" className="pr-17" />
+                  <div className="d-flex justify-content-between w-full">
+                    <p className="font-medium mr-48">
+                      Buy from <span className="font-bold">Shopee</span>
+                    </p>
+                    <i className="bi bi-chevron-right "></i>
+                  </div>
+                </button>
+                <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
+                  <img src="/icons/bukalapak.png" alt="" className="pr-17" />
+                  <div className="d-flex justify-content-between w-full">
+                    <p className="font-medium mr-48">
+                      Buy from <span className="font-bold">Bukalapak</span>
+                    </p>
+                    <i className="bi bi-chevron-right "></i>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div className="modal-footer"></div>
           </div>
         </div>
       </div>

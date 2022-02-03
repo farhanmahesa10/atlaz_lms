@@ -112,19 +112,58 @@ const Home = () => {
             w980={3}
             w768={2}
             content={[
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
-              <ProductYCard responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer" />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
+              <ProductYCard
+                withCanvas
+                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
+              />,
             ]}
             header={
               <>

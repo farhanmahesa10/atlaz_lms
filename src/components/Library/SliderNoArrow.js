@@ -15,6 +15,7 @@ const SliderNoArrow = (props) => {
     slidesToScroll: wDefault,
     initialSlide: 0,
     variableWidth: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1440,

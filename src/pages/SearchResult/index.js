@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MainLayout from "../../components/Layout/Mainlayout";
 import { SearchDropdown, SelectCheckbox } from "../../components/utilities";
 import { InputComponent, ProductYCard } from "../../components";
-
+import { Link } from "react-router-dom";
 const SearchResult = (props) => {
   const [searchData, setSearchData] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
@@ -119,22 +119,40 @@ const SearchResult = (props) => {
           </div>
           <div className=" row justify-content-center ml-12">
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
+              <ProductYCard
+                linkGoTo="/product-detail"
+                responsiveClass="card-product-y-tab md-card-product-y-desk"
+              />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
+              <ProductYCard
+                linkGoTo="/product-detail"
+                responsiveClass="card-product-y-tab md-card-product-y-desk"
+              />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
+              <ProductYCard
+                linkGoTo="/product-detail"
+                responsiveClass="card-product-y-tab md-card-product-y-desk"
+              />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
+              <ProductYCard
+                linkGoTo="/product-detail"
+                responsiveClass="card-product-y-tab md-card-product-y-desk"
+              />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
+              <ProductYCard
+                linkGoTo="/product-detail"
+                responsiveClass="card-product-y-tab md-card-product-y-desk"
+              />
             </div>
             <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
-              <ProductYCard responsiveClass="card-product-y-tab md-card-product-y-desk" />
+              <ProductYCard
+                linkGoTo="/product-detail"
+                responsiveClass="card-product-y-tab md-card-product-y-desk"
+              />
             </div>
           </div>
 

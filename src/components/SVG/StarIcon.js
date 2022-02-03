@@ -4,8 +4,8 @@ const StarIcon = (props) => {
   if (props.isHalf) {
     return (
       <svg
-        width="12"
-        height="12"
+        width={`${props.size ? props.size : "12"}`}
+        height={`${props.size ? props.size : "12"}`}
         viewBox="0 0 12 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -19,8 +19,8 @@ const StarIcon = (props) => {
   }
   return (
     <svg
-      width="12"
-      height="12"
+      width={`${props.size ? props.size : "12"}`}
+      height={`${props.size ? props.size : "12"}`}
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
