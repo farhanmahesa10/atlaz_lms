@@ -118,37 +118,37 @@ const SearchResult = (props) => {
             </div>
           </div>
           <div className=" row justify-content-center ml-12">
-            <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
               <ProductYCard
                 linkGoTo="/product-detail"
                 responsiveClass="card-product-y-tab md-card-product-y-desk"
               />
             </div>
-            <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
               <ProductYCard
                 linkGoTo="/product-detail"
                 responsiveClass="card-product-y-tab md-card-product-y-desk"
               />
             </div>
-            <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
               <ProductYCard
                 linkGoTo="/product-detail"
                 responsiveClass="card-product-y-tab md-card-product-y-desk"
               />
             </div>
-            <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
               <ProductYCard
                 linkGoTo="/product-detail"
                 responsiveClass="card-product-y-tab md-card-product-y-desk"
               />
             </div>
-            <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
               <ProductYCard
                 linkGoTo="/product-detail"
                 responsiveClass="card-product-y-tab md-card-product-y-desk"
               />
             </div>
-            <div className="col-6 col-sm-3 col-md-3 col-xl-2 d-flex justify-content-center mb-20 ">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
               <ProductYCard
                 linkGoTo="/product-detail"
                 responsiveClass="card-product-y-tab md-card-product-y-desk"
