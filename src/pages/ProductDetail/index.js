@@ -83,35 +83,43 @@ const ProductDetail = () => {
             <div className="w-p-90">
               <img src={imgCore} className="w-full h-auto" alt="" />
             </div>
-            <div className="d-flex justify-content-center justify-content-md-start gap-1">
-              <img
-                src="/images/product.png"
-                className="w-p-22 h-auto  cursor-pointer"
-                onClick={(e) => {
-                  setImgCore(e.target.src);
-                }}
-              />
-              <img
-                src="/images/product-d1.png"
-                className="w-p-22 h-auto cursor-pointer"
-                onClick={(e) => {
-                  setImgCore(e.target.src);
-                }}
-              />
-              <img
-                src="/images/product-d2.png"
-                className="w-p-22 h-auto cursor-pointer"
-                onClick={(e) => {
-                  setImgCore(e.target.src);
-                }}
-              />
-              <img
-                src="/images/product-d3.png"
-                className="w-p-22 h-auto cursor-pointer"
-                onClick={(e) => {
-                  setImgCore(e.target.src);
-                }}
-              />
+            <div className="w-p-90 d-grid grid-cols-4 gap-1">
+              <div className="w-p-100">
+                <img
+                  src="/images/product.png"
+                  className="w-p-100 h-auto  cursor-pointer"
+                  onClick={(e) => {
+                    setImgCore(e.target.src);
+                  }}
+                />
+              </div>
+              <div className="w-p-100">
+                <img
+                  src="/images/product-d1.png"
+                  className="w-p-100 h-auto  cursor-pointer"
+                  onClick={(e) => {
+                    setImgCore(e.target.src);
+                  }}
+                />
+              </div>
+              <div className="w-p-100">
+                <img
+                  src="/images/product-d2.png"
+                  className="w-p-100 h-auto  cursor-pointer"
+                  onClick={(e) => {
+                    setImgCore(e.target.src);
+                  }}
+                />
+              </div>
+              <div className="w-p-100">
+                <img
+                  src="/images/product-d3.png"
+                  className="w-p-100 h-auto  cursor-pointer"
+                  onClick={(e) => {
+                    setImgCore(e.target.src);
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className="col-12 col-md-7 col-lg-8 mt-32 ">
