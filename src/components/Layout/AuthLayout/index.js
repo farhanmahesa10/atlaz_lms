@@ -5,7 +5,7 @@ const AuthLayout = (props) => {
   return (
     <div className=" h-screen">
       <Header hideBackButton={props.hideBackButton} />
-      <div>{props.children}</div>
+      <div className="mb-104">{props.children}</div>
     </div>
   );
 };

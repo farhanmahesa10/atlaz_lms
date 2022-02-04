@@ -25,7 +25,7 @@ const RegisterLayout = (props) => {
             <div className="  mt-66 mb-32  md-mt-80 md-mb-80">
               <h4 className=" text-center">{props.title}</h4>
             </div>
-            <div className="w-full">{props.children}</div>
+            <div className="w-full mb-104">{props.children}</div>
           </div>
         </div>
       </AuthLayout>
