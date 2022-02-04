@@ -112,16 +112,13 @@ const Register4 = () => {
             the <span className="text-primary-400">Terms of Use</span> and
             <span className="text-primary-400"> Privacy Policy.</span>
           </div>
-          <div className="d-flex gap-3 w-p-100 ">
-            <Link
-              to="/register-step-3"
-              className=" text-center btn-outline w-p-100"
-            >
+          <div className="d-grid grid-cols-2 gap-3 ">
+            <Link to="/register-step-3" className=" text-center btn-outline ">
               Back
             </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
-              className={`${allowNext ? "btn-primary" : "btn-disable"} w-p-100`}
+              className={`${allowNext ? "btn-primary" : "btn-disable"} `}
             >
               Next
             </button>
