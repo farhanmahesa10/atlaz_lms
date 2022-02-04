@@ -50,7 +50,7 @@ const ProgressComponent = (props) => {
   );
 
   const checkedLine = (key) => (
-    <div key={key} className={`progress w-full bg-secondary-200 h-5`}>
+    <div key={key} className={`progress w-full bg-secondary-200 h-5 mx-4`}>
       <div
         className="progress-bar w-p-100  bg-secondary-500 "
         role="progressbar"
@@ -78,7 +78,7 @@ const ProgressComponent = (props) => {
   const progressLine = (key, isLast) => (
     <div
       key={key}
-      className={`progress w-full ${
+      className={`progress w-full mx-4 ${
         isLast ? "d-md-none" : ""
       } h-5 bg-secondary-200`}
     >
@@ -107,7 +107,7 @@ const ProgressComponent = (props) => {
   const inactiveLine = (key, isLast) => (
     <div
       key={key}
-      className={`progress w-full ${
+      className={`progress w-full mx-4 ${
         isLast ? "d-md-none" : ""
       } bg-secondary-200 h-5`}
     >
@@ -124,7 +124,7 @@ const ProgressComponent = (props) => {
 
   return (
     <div
-      className={`d-flex d-grid justify-content-center gap-2 align-items-center ${props.className}`}
+      className={`d-flex justify-content-center  align-items-center ${props.className}`}
     >
       {progressBar.map((r) => {
         return r;

@@ -20,7 +20,7 @@ const RegisterLayout = (props) => {
             <ProgressComponent
               totalProgress={props.totalProgress}
               activeProgress={props.activeProgress}
-              className="  "
+              className=" d-none d-md-flex "
             />
             <div className="  mt-66 mb-32  md-mt-80 md-mb-80">
               <h4 className=" text-center">{props.title}</h4>
