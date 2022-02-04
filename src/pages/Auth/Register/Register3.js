@@ -50,8 +50,10 @@ const Register3 = () => {
             />
           </div>
           <div className="d-grid grid-cols-2 gap-3  ">
-            <Link to="/register-step-2" className=" text-center btn-outline ">
-              Back
+            <Link to="/register-step-2" className="  ">
+              <button type="button" className="text-center btn-outline w-full">
+                Back
+              </button>
             </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
