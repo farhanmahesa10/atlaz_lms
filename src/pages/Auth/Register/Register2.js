@@ -49,7 +49,7 @@ const Register2 = () => {
           </div>
           <div className="d-grid grid-cols-2 gap-3  ">
             <Link to="/register" className="  ">
-              <button className="text-center btn-outline"> Back</button>
+              <button className="text-center btn-outline w-full"> Back</button>
             </Link>
             <button
               type={`${allowNext ? "submit" : "button"}`}
