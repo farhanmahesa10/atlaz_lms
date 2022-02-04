@@ -124,7 +124,7 @@ const ProgressComponent = (props) => {
 
   return (
     <div
-      className={`d-flex auth-progress-step justify-content-center gap-2 align-items-center ${props.className}`}
+      className={`d-flex d-grid justify-content-center gap-2 align-items-center ${props.className}`}
     >
       {progressBar.map((r) => {
         return r;
