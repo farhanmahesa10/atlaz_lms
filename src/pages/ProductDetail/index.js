@@ -57,49 +57,57 @@ const ProductDetail = () => {
           onChange={handleSearchChange}
           searchRecomend={searchData}
         /> */}
-        <div className="d-flex gap-8 mt-24 align-items-center mb-24">
-          <Link to="/" className="text-primary-500">
-            Home
-          </Link>
-          <i className="bi bi-caret-right-fill text-neutral-300 font-size-12"></i>
-          <Link to="/" className="text-primary-500">
-            Book List
-          </Link>
-          <i className="bi bi-caret-right-fill text-neutral-300 font-size-12"></i>
-          <Link to="/" className="text-neutral-400">
-            English Escalate - Fourth
-          </Link>
-        </div>
+        <nav aria-label="breadcrumb" style={{ "--bs-breadcrumb-divider": ">" }}>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/" className="text-primary-500">
+                Home&nbsp;&nbsp;
+                <i className="bi bi-caret-right-fill text-neutral-300 font-size-12"></i>
+              </Link>
+            </li>
+            <li className="breadcrumb-item " aria-current="page">
+              <Link to="/" className="text-primary-500">
+                Book List&nbsp;&nbsp;
+                <i className="bi bi-caret-right-fill text-neutral-300 font-size-12"></i>
+              </Link>
+            </li>
+            <li className="breadcrumb-item active">
+              <Link to="/" className="text-neutral-400">
+                English Escalate - Fourth
+              </Link>
+            </li>
+          </ol>
+        </nav>
         <div className="row gx-0">
           <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center align-items-md-start ">
             <div className="w-p-90">
-              <img src={imgCore} className="w-full" alt="" />
+              <img src={imgCore} className="w-full h-auto" alt="" />
             </div>
             <div className="d-flex justify-content-center justify-content-md-start gap-1">
               <img
                 src="/images/product.png"
-                className="w-p-22 cursor-pointer"
+                className="w-p-22 h-auto  cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}
               />
               <img
                 src="/images/product-d1.png"
-                className="w-p-22 cursor-pointer"
+                className="w-p-22 h-auto cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}
               />
               <img
                 src="/images/product-d2.png"
-                className="w-p-22 cursor-pointer"
+                className="w-p-22 h-auto cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}
               />
               <img
                 src="/images/product-d3.png"
-                className="w-p-22 cursor-pointer"
+                className="w-p-22 h-auto cursor-pointer"
                 onClick={(e) => {
                   setImgCore(e.target.src);
                 }}

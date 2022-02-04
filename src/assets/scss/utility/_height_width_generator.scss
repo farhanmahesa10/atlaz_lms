@@ -1,4 +1,11 @@
 @mixin heightWidthGenerator($total, $selector: ".") {
+  .h-auto {
+    height: auto;
+  }
+  .w-auto {
+    width: auto;
+  }
+
   @for $i from 0 through $total {
     #{$selector}h-#{$i} {
       height: #{$i}px;
