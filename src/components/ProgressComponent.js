@@ -31,9 +31,8 @@ const ProgressComponent = (props) => {
     setProgressBar(data);
   }, []);
   const checkedRound = (key) => (
-    <div className="d-none d-md-block">
+    <div className="d-none d-md-block" key={key}>
       <svg
-        key={key}
         width="40"
         height="40"
         viewBox="0 0 40 40"
@@ -70,7 +69,7 @@ const ProgressComponent = (props) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="20" cy="20" r="16.5" stroke="#E1E9F3" stroke-width="7" />
+        <circle cx="20" cy="20" r="16.5" stroke="#E1E9F3" strokeWidth="7" />
       </svg>
     </div>
   );

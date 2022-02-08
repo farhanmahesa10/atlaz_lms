@@ -4,6 +4,7 @@ import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
 import InputPassword from "../../../components/Design/InputPassword";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 const Register4 = () => {
   const [password, setPassword] = useState("");
   const [isLower, setIsLower] = useState("first");
@@ -35,7 +36,24 @@ const Register4 = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (allowNext) navigate("/register-finish");
+    let api = process.env.REACT_APP_BASE_API_URL + "/auth/register";
+    let baseUrl = process.env.REACT_APP_BASE_URL;
+    let request = {
+      name: localStorage.getItem(baseUrl + "/register/fullName"),
+      email: localStorage.getItem(baseUrl + "/register/email"),
+      password: password,
+    };
+    console.log(request);
+    axios
+      .post(api, request)
+      .then((r) => {
+        console.log(r);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+
+    // if (allowNext) navigate("/register-finish");
   };
   return (
     <RegisterLayout

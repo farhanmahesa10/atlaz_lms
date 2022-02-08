@@ -23,7 +23,7 @@ const ForgotPassword = () => {
         style={{ width: "320px" }}
       >
         <i
-          className="bi bi-check-circle fs-5 pe-2"
+          className="bi bi-check-circle fs-16 pe-2"
           style={{ color: "#6FCF97" }}
         ></i>
         <div className="text-left " style={{ textAlign: "left" }}>

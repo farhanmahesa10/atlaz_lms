@@ -1,4 +1,5 @@
 import React from "react";
+
 const InputComponent = (props) => {
   return (
     <div className={`form-input${props.error ? "-error" : ""} text-start `}>
@@ -9,11 +10,12 @@ const InputComponent = (props) => {
           type={props.type}
           className={`w-full input-control ${props.inputClassName}`}
           placeholder={props.placeholder}
-          onChange={(e) => {
+          onInput={(e) => {
             props.onChange(e.target.value);
           }}
           readOnly={props.readOnly}
           autoFocus={props.autoFocus}
+          defaultValue={props.defaultValue}
         />
         {props.icon2}
       </div>

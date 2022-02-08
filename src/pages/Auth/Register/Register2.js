@@ -1,26 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputComponent, GoogleButton } from "../../../components";
 import { useNavigate, Link } from "react-router-dom";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import validator from "validator";
 const Register2 = () => {
-  const [fullName, setFullName] = useState("");
+  const didMount = useRef(false);
+  let tempFullName = localStorage.getItem(
+    process.env.REACT_APP_BASE_URL + "/register/fullName"
+  );
+  const [fullName, setFullName] = useState(tempFullName);
   const [fullNameValidation, setFullNameValidation] = useState("");
 
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
 
-  const validateFullName = (val) => {
-    if (validator.isEmpty(val)) {
-      setFullNameValidation("full name is required.");
+  const validateFullName = () => {
+    if (validator.isEmpty(fullName)) {
+      setFullNameValidation("This field is required, Don't leave it empty!");
+      setAllowNext(false);
     } else {
       setFullNameValidation("");
       setAllowNext(true);
     }
   };
 
+  useEffect(() => {
+    if (tempFullName) {
+      validateFullName();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (didMount.current) {
+      validateFullName();
+    } else {
+      didMount.current = true;
+    }
+  }, [fullName]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem(
+      process.env.REACT_APP_BASE_URL + "/register/fullName",
+      fullName
+    );
     if (allowNext) navigate("/register-step-3");
   };
   return (
@@ -40,11 +63,11 @@ const Register2 = () => {
               icon={<i className="bi bi-person text-neutral-400"></i>}
               onChange={(val) => {
                 setFullName(val);
-                validateFullName(val);
               }}
               error={fullNameValidation ? true : false}
               description={fullNameValidation}
               autoFocus
+              defaultValue={fullName}
             />
           </div>
           <div className="d-grid grid-cols-2 gap-3  ">

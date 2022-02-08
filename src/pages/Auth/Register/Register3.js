@@ -1,26 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputComponent, GoogleButton } from "../../../components";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import { useNavigate, Link } from "react-router-dom";
 import validator from "validator";
 const Register3 = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const didMount = useRef(false);
+  let tempPhoneNumber = localStorage.getItem(
+    process.env.REACT_APP_BASE_URL + "/register/phoneNumber"
+  );
+  const [phoneNumber, setPhoneNumber] = useState(tempPhoneNumber);
   const [phoneNumberValidation, setPhoneNumberValidation] = useState("");
 
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
 
-  const validatePhoneNumber = (val) => {
-    if (validator.isEmpty(val)) {
-      setPhoneNumberValidation("Phone number is required.");
+  const validatePhoneNumber = () => {
+    if (validator.isEmpty(phoneNumber)) {
+      setPhoneNumberValidation("This field is required, Don't leave it empty!");
+      setAllowNext(false);
     } else {
       setPhoneNumberValidation("");
       setAllowNext(true);
     }
   };
+  useEffect(() => {
+    if (tempPhoneNumber) {
+      validatePhoneNumber();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (didMount.current) {
+      validatePhoneNumber();
+    } else {
+      didMount.current = true;
+    }
+  }, [phoneNumber]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem(
+      process.env.REACT_APP_BASE_URL + "/register/phoneNumber",
+      phoneNumber
+    );
     if (allowNext) navigate("/register-step-4");
   };
   return (
@@ -41,12 +63,12 @@ const Register3 = () => {
               icon={<span className=" text-neutral-400">+62</span>}
               onChange={(val) => {
                 setPhoneNumber(val);
-                validatePhoneNumber(val);
               }}
               inputClassName="hide-arrow"
               error={phoneNumberValidation ? true : false}
               description={phoneNumberValidation}
               autoFocus
+              defaultValue={phoneNumber}
             />
           </div>
           <div className="d-grid grid-cols-2 gap-3  ">

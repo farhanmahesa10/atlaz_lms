@@ -14,6 +14,7 @@ import {
   Home,
   SearchResult,
   ProductDetail,
+  Verify,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -31,6 +32,7 @@ const Routing = () => {
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
       <Route path="/product-detail" element={<ProductDetail />} />
+      <Route path="/verify-account" element={<Verify />} />
     </Routes>
   );
 };

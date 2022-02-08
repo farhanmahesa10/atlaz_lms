@@ -1,19 +1,42 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputComponent, GoogleButton } from "../../../components";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 const Register1 = () => {
-  const [email, setEmail] = useState("");
+  const didMount = useRef(false);
+  let tempEmail = localStorage.getItem(
+    process.env.REACT_APP_BASE_URL + "/register/email"
+  );
+
+  const [email, setEmail] = useState(tempEmail);
   const [mailValidation, setMailValidation] = useState("");
 
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (tempEmail) {
+      validateEmail();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (didMount.current) {
+      validateEmail();
+    } else {
+      didMount.current = true;
+    }
+  }, [email]);
+
   const validateEmail = () => {
-    if (!validator.isEmail(email)) {
+    if (validator.isEmpty(email)) {
+      setMailValidation("This field is required, Don't leave it empty!");
+      setAllowNext(false);
+    } else if (!validator.isEmail(email)) {
       setMailValidation("Please input the correct format email address.");
+      setAllowNext(false);
     } else {
       setMailValidation("");
       setAllowNext(true);
@@ -22,8 +45,16 @@ const Register1 = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem(
+      process.env.REACT_APP_BASE_URL + "/register/email",
+      email
+    );
+
     if (allowNext) navigate("/register-step-2");
   };
+
+  const handleRegisterGoogle = () => {};
+
   return (
     <RegisterLayout
       totalProgress={4}
@@ -33,7 +64,11 @@ const Register1 = () => {
       <form onSubmit={handleSubmit} className="w-full">
         <div className=" ">
           <div className="mb-24">
-            <GoogleButton label="Register" className="w-p-100 " />
+            <GoogleButton
+              label="Register"
+              className="w-p-100 "
+              onClick={handleRegisterGoogle}
+            />
           </div>
           <div className="d-flex align-items-center mb-12">
             <div className="rectangle"></div>
@@ -50,10 +85,10 @@ const Register1 = () => {
               icon={<i className="bi bi-envelope text-neutral-400"></i>}
               onChange={(val) => {
                 setEmail(val);
-                validateEmail();
               }}
               error={mailValidation ? true : false}
               description={mailValidation}
+              defaultValue={email}
               autoFocus
             />
           </div>

@@ -11,6 +11,7 @@ import Redirecting from "./Redirecting";
 import Home from "./Home";
 import SearchResult from "./SearchResult";
 import ProductDetail from "./ProductDetail";
+import Verify from "./Auth/Register/Verify";
 export {
   Login,
   Register1,
@@ -24,4 +25,5 @@ export {
   Home,
   SearchResult,
   ProductDetail,
+  Verify,
 };

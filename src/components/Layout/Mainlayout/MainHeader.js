@@ -12,17 +12,23 @@ const MainHeader = (props) => {
   const [navBg, setNavBg] = useState(props.navbarBg);
 
   useEffect(() => {
+    let isMounted = true;
     window.addEventListener(
       "scroll",
       () => {
-        if (window.pageYOffset >= 50) {
-          setNavBg("white");
-        } else {
-          setNavBg(props.navbarBg);
+        if (isMounted) {
+          if (window.pageYOffset >= 50) {
+            setNavBg("white");
+          } else {
+            setNavBg(props.navbarBg);
+          }
         }
       },
       { passive: true }
     );
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const menus = [

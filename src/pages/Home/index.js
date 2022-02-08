@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CarouselCenter,
@@ -15,6 +15,13 @@ import Clock from "../../components/SVG/Clock";
 import LineIcon from "../../components/SVG/LineIcon";
 
 const Home = () => {
+  useEffect(() => {
+    let isMounted = true;
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />} navbarBg="secondary-200">
@@ -208,7 +215,13 @@ const Home = () => {
                   placeholder="Input activation code here "
                   icon2={
                     <div className="p-4">
-                      <button className="btn-secondary">Redeem</button>
+                      <button
+                        className="btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        Redeem
+                      </button>
                     </div>
                   }
                 />
@@ -279,6 +292,55 @@ const Home = () => {
                 />,
               ]}
             />
+          </div>
+        </div>
+
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered ">
+            <div className="modal-content radius-24 w-480">
+              <div className="w-full  d-flex justify-content-end">
+                <p
+                  className="cursor-pointer bg-secondary-200 radius-p-100 d-flex justify-content-center align-items-center h-32 w-32  mt-16 mr-24 "
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  &times;
+                </p>
+              </div>
+              <div className="modal-body px-32 pb-32">
+                <p>Hi, there!</p>
+                <h4>Please Log in first to claim your Atlaz book now!</h4>
+                <p className="mt-16">
+                  One more step so you can enjoy your book. Log in to Atlaz
+                  using your registered email or please log in using your Google
+                  account.
+                </p>
+                <Link to="/login" className="">
+                  <button
+                    className="btn-primary mt-40 w-full"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    Login
+                  </button>
+                </Link>
+                <Link to="/register">
+                  <p
+                    className="text-center w-full mt-24"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    Sign up
+                  </p>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </MainLayout>
