@@ -1,11 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { InputComponent, GoogleButton } from "../../../components";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
+import axios from "axios";
 const Register1 = () => {
   const didMount = useRef(false);
+  const [searchParams] = useSearchParams();
+
   let tempEmail = localStorage.getItem(
     process.env.REACT_APP_BASE_URL + "/register/email"
   );
@@ -15,45 +18,26 @@ const Register1 = () => {
 
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (tempEmail) {
-      validateEmail();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (didMount.current) {
-      validateEmail();
-    } else {
-      didMount.current = true;
-    }
-  }, [email]);
-
-  const validateEmail = () => {
-    if (validator.isEmpty(email)) {
-      setMailValidation("This field is required, Don't leave it empty!");
-      setAllowNext(false);
-    } else if (!validator.isEmail(email)) {
-      setMailValidation("Please input the correct format email address.");
-      setAllowNext(false);
-    } else {
-      setMailValidation("");
-      setAllowNext(true);
-    }
+  const loginGoogle = () => {
+    window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem(
-      process.env.REACT_APP_BASE_URL + "/register/email",
-      email
-    );
 
-    if (allowNext) navigate("/register-step-2");
+    axios
+      .post(process.env.REACT_APP_BASE_API_URL + "/auth/email", { email })
+      .then((r) => {
+        localStorage.setItem(
+          process.env.REACT_APP_BASE_URL + "/register/email",
+          email
+        );
+        navigate("/register-step-2");
+      })
+      .catch((err) => {
+        setMailValidation(err.response.data.message);
+      });
   };
-
-  const handleRegisterGoogle = () => {};
 
   return (
     <RegisterLayout
@@ -67,7 +51,7 @@ const Register1 = () => {
             <GoogleButton
               label="Register"
               className="w-p-100 "
-              onClick={handleRegisterGoogle}
+              onClick={loginGoogle}
             />
           </div>
           <div className="d-flex align-items-center mb-12">
@@ -93,12 +77,7 @@ const Register1 = () => {
             />
           </div>
           <div className="">
-            <button
-              className={` ${
-                allowNext ? "btn-primary" : "btn-disable"
-              } w-p-100`}
-              type={`${allowNext ? "sumbit" : "button"}`}
-            >
+            <button className={` w-p-100 btn-primary`} type={`submit`}>
               Next
             </button>
           </div>

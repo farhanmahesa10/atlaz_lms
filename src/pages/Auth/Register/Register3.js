@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { InputComponent, GoogleButton } from "../../../components";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import validator from "validator";
+import axios from "axios";
 const Register3 = () => {
+  const [searchParams] = useSearchParams();
+
   const didMount = useRef(false);
   let tempPhoneNumber = localStorage.getItem(
     process.env.REACT_APP_BASE_URL + "/register/phoneNumber"
@@ -14,36 +17,49 @@ const Register3 = () => {
   const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
 
-  const validatePhoneNumber = () => {
-    if (validator.isEmpty(phoneNumber)) {
-      setPhoneNumberValidation("This field is required, Don't leave it empty!");
-      setAllowNext(false);
-    } else {
-      setPhoneNumberValidation("");
-      setAllowNext(true);
-    }
-  };
-  useEffect(() => {
-    if (tempPhoneNumber) {
-      validatePhoneNumber();
-    }
-  }, []);
+  // const validatePhoneNumber = () => {
+  //   if (validator.isEmpty(phoneNumber)) {
+  //     setPhoneNumberValidation("This field is required, Don't leave it empty!");
+  //     setAllowNext(false);
+  //   } else {
+  //     setPhoneNumberValidation("");
+  //     setAllowNext(true);
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (searchParams.get("error") == "true") {
+  //     setPhoneNumberValidation("This phone number is already registered.");
+  //   }
+  //   if (tempPhoneNumber && searchParams.get("error") != "true") {
+  //     validatePhoneNumber();
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (didMount.current) {
-      validatePhoneNumber();
-    } else {
-      didMount.current = true;
-    }
-  }, [phoneNumber]);
+  // useEffect(() => {
+  //   if (didMount.current) {
+  //     validatePhoneNumber();
+  //   } else {
+  //     didMount.current = true;
+  //   }
+  // }, [phoneNumber]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem(
-      process.env.REACT_APP_BASE_URL + "/register/phoneNumber",
-      phoneNumber
-    );
-    if (allowNext) navigate("/register-step-4");
+
+    axios
+      .post(process.env.REACT_APP_BASE_API_URL + "/auth/phone", {
+        phone: phoneNumber,
+      })
+      .then((r) => {
+        localStorage.setItem(
+          process.env.REACT_APP_BASE_URL + "/register/phoneNumber",
+          `0${phoneNumber}`
+        );
+        navigate("/register-step-4");
+      })
+      .catch((err) => {
+        setPhoneNumberValidation(err.response.data.message);
+      });
   };
   return (
     <RegisterLayout
@@ -77,10 +93,7 @@ const Register3 = () => {
                 Back
               </button>
             </Link>
-            <button
-              type={`${allowNext ? "submit" : "button"}`}
-              className={`${allowNext ? "btn-primary" : "btn-disable"} `}
-            >
+            <button type={`submit`} className={`btn-primary`}>
               Next
             </button>
           </div>

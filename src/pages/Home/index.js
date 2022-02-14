@@ -15,13 +15,6 @@ import Clock from "../../components/SVG/Clock";
 import LineIcon from "../../components/SVG/LineIcon";
 
 const Home = () => {
-  useEffect(() => {
-    let isMounted = true;
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
   return (
     <>
       <MainLayout beforeChildren={<DashboardHead />} navbarBg="secondary-200">
@@ -119,10 +112,6 @@ const Home = () => {
             w980={3}
             w768={2}
             content={[
-              <ProductYCard
-                withCanvas
-                responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-              />,
               <ProductYCard
                 withCanvas
                 responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"

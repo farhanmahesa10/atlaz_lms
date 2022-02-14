@@ -12,6 +12,7 @@ import Home from "./Home";
 import SearchResult from "./SearchResult";
 import ProductDetail from "./ProductDetail";
 import Verify from "./Auth/Register/Verify";
+import RedirectGoogleAuthenticated from "./Auth/RedirectGoogleAuthenticated";
 export {
   Login,
   Register1,
@@ -26,4 +27,5 @@ export {
   SearchResult,
   ProductDetail,
   Verify,
+  RedirectGoogleAuthenticated,
 };

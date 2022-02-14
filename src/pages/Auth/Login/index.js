@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { InputComponent, GoogleButton } from "../../../components";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { Link } from "react-router-dom";
@@ -17,9 +17,11 @@ const Login = () => {
   const [passwordValidation, setPasswordValidation] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
+  const loginGoogle = () => {
+    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+  };
   const loginSubmit = (e) => {
     e.preventDefault();
 
@@ -41,7 +43,7 @@ const Login = () => {
     }
     setIsLoading(true);
     axios
-      .post("https://atlaz-be-test.herokuapp.com/api/v1/auth/login", {
+      .post(process.env.REACT_APP_BASE_API_URL + "/auth/login", {
         email,
         password,
       })
@@ -56,7 +58,6 @@ const Login = () => {
       })
       .catch((err) => {
         setIsLoading(false);
-
         toast(
           <div
             className="d-flex gap-2 align-items-center"
@@ -95,9 +96,7 @@ const Login = () => {
               <GoogleButton
                 label="Log in"
                 className="py-8 w-p-100 mt-32 mb-32"
-                onClick={() => {
-                  console.log("oke");
-                }}
+                onClick={loginGoogle}
               />
               <form className="" onSubmit={loginSubmit}>
                 <div className="d-flex align-items-center mb-24 ">

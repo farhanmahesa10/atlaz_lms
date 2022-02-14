@@ -37,7 +37,6 @@ const SelectCheckbox = (props) => {
   const [optionSelected, setOptionSelected] = useState(null);
   const handleCategoryChange = (selected) => {
     setOptionSelected(selected);
-    console.log(optionSelected);
   };
   const customStyles = {
     menu: (provided, state) => ({

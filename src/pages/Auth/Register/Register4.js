@@ -41,16 +41,21 @@ const Register4 = () => {
     let request = {
       name: localStorage.getItem(baseUrl + "/register/fullName"),
       email: localStorage.getItem(baseUrl + "/register/email"),
+      phone: localStorage.getItem(baseUrl + "/register/phoneNumber"),
       password: password,
     };
-    console.log(request);
+
     axios
       .post(api, request)
       .then((r) => {
-        console.log(r);
+        localStorage.removeItem(baseUrl + "/register/fullName");
+        localStorage.removeItem(baseUrl + "/register/email");
+        localStorage.removeItem(baseUrl + "/register/phoneNumber");
+        navigate("/register-finish");
       })
       .catch((err) => {
         console.log(err.response);
+        let msg = err.response.data.message;
       });
 
     // if (allowNext) navigate("/register-finish");

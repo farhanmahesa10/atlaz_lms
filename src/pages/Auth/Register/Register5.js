@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../../components/Layout/AuthLayout/Header";
 const Register5 = () => {
+  const [shouldCount, setShouldCount] = useState(true);
+  const [progressValue, setProgressValue] = useState(30);
+  useEffect(() => {
+    if (shouldCount) {
+      const interval = setInterval(() => {
+        if (progressValue > 0) {
+          setProgressValue(progressValue - 1);
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [shouldCount, progressValue]);
+
   return (
     <>
       <div className="h-screen d-flex justify-content-between align-items-center flex-column">
@@ -25,7 +38,7 @@ const Register5 = () => {
         </div>
         <div className="text-center pb-64">
           <Link to="" className=" text-black ">
-            Resend confirmation password (18)
+            Resend confirmation password {`(${progressValue})`}
           </Link>
         </div>
       </div>

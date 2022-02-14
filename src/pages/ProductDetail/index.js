@@ -122,7 +122,7 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-7 col-lg-8 mt-32 ">
+          <div className="col-12 col-md-7 col-lg-8 mt-32 md-mt-0 ">
             <div className="mb-45">
               <h3 className="h5 md-h4 lg-h3">English Play 01</h3>
               <p className="font-sm md-font-normal">Atlaz</p>
