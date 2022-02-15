@@ -29,11 +29,12 @@ const DashboardHead = () => {
         <div className="text-center mb-12 mt-40">
           <h5>Trusted on 10+ Marketplace</h5>
         </div>
-        <div className="row gx-0  text-center pb-32 justify-content-center">
+        <div className="row gx-0  text-center mt-28 pb-32 justify-content-center">
           <div className="col-4 col-md-2">
             <img
               src="/images/blibli-thumb.png"
               alt=""
+              height="56"
               style={{ opacity: "0.5" }}
             />
           </div>
@@ -41,6 +42,7 @@ const DashboardHead = () => {
             <img
               src="/images/tokopedia-thumb.png"
               alt=""
+              height="56"
               style={{ opacity: "0.5" }}
             />
           </div>
@@ -48,6 +50,7 @@ const DashboardHead = () => {
             <img
               src="/images/shopee-thumb.png"
               alt=""
+              height="56"
               style={{ opacity: "0.5" }}
             />
           </div>
@@ -55,6 +58,7 @@ const DashboardHead = () => {
             <img
               src="/images/gramedia-thumb.png"
               alt=""
+              height="56"
               style={{ opacity: "0.5" }}
             />
           </div>
@@ -62,6 +66,7 @@ const DashboardHead = () => {
             <img
               src="/images/bukalapak-thumb.png"
               alt=""
+              height="56"
               style={{ opacity: "0.5" }}
             />
           </div>
@@ -69,6 +74,7 @@ const DashboardHead = () => {
             <img
               src="/images/blibli-thumb.png"
               alt=""
+              height="56"
               style={{ opacity: "0.5" }}
             />
           </div>

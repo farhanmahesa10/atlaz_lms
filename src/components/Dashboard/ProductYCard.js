@@ -53,7 +53,7 @@ const ProductYCard = (props) => {
     <>
       <div
         onClick={handleClick}
-        className=" mr-12 md-mr-24 lg-mr-32 cursor-pointer"
+        className=" mr-12 md-mr-24 lg-mr-24 cursor-pointer"
       >
         <div className={` position-relative ${props.responsiveClass}`}>
           <div className="bg-white radius-bl-8 end-0 text-success-500 radius-rt-8 promo-label">

@@ -51,7 +51,7 @@ const ProductDetail = () => {
   ]);
   return (
     <MainLayout>
-      <div className="mt-16 px-24 mt-24">
+      <div className="mt-16 px-24 mt-24 ">
         {/* <SearchDropdown
           submitLink="/search-result"
           onChange={handleSearchChange}
@@ -78,8 +78,8 @@ const ProductDetail = () => {
             </li>
           </ol>
         </nav>
-        <div className="row gx-0">
-          <div className="col-12 col-md-5 col-lg-4 d-flex flex-column align-items-center align-items-md-start ">
+        <div className="row gx-0 mt-32 xl-mx-186">
+          <div className="col-12 col-md-5 col-lg-6 d-flex flex-column align-items-center align-items-md-start ">
             <div className="w-p-90">
               <img src={imgCore} className="w-full h-auto" alt="" />
             </div>
@@ -122,12 +122,17 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-7 col-lg-8 mt-32 md-mt-0 ">
-            <div className="mb-45">
+          <div className="col-12 col-md-7 col-lg-6 mt-32 md-mt-0 ">
+            <div className="mb-80">
+              <p className="mb-16">
+                <span className="border radius-4 px-8 py-4 border-neutral-300 text-neutral-300">
+                  Book on promo
+                </span>
+              </p>
               <h3 className="h5 md-h4 lg-h3">English Play 01</h3>
-              <p className="font-sm md-font-normal">Atlaz</p>
 
-              <div className="d-flex mb-32 gap-2 align-items-center  ">
+              <div className="d-flex mb-30 gap-2 align-items-center  ">
+                <p className="font-sm md-font-normal">Atlaz Belajar Bahasa</p>
                 <div className="d-flex">
                   <StarIcon size="10" />
                   <StarIcon size="10" />
@@ -135,110 +140,144 @@ const ProductDetail = () => {
                   <StarIcon size="10" />
                   <StarIcon size="10" isHalf />
                 </div>
-                <p className="text-neutral-300 m-0 font-xs md-font-sm-medium">
-                  4.8 | Sold 1.1k
+              </div>
+              <div className="mb-30">
+                <p
+                  className="text-neutral-400 font-xs md-font-sm lg-font-normal "
+                  style={{ textAlign: "justify" }}
+                >
+                  Up is opinion message manners correct hearing husband my.
+                  Disposing commanded dashwoods cordially depending at at. Its
+                  strangers who you certainty earnestly resources suffering she.
+                  Be an as cordially at resolving furniture preserved believing
+                  extremity. Easy mr pain felt in. Too northward affection
+                  additions nay. He no an nature ye talent houses wisdom vanity
+                  denied.
                 </p>
               </div>
-              <div className="d-flex gap-2 align-items-center ">
-                <p className="bg-danger-100 text-danger-500 px-8 py-5 font-xs md-font-sm-medium md-font-medium radius-50 ">
-                  10% off
-                </p>
-                <h5 className="h5 md-h3 lg-h2">
-                  Rp120.000 <s className="font-sm">Rp170.999</s>
-                </h5>
+              <div>
+                <p>Promo Price</p>
+                <div className="d-flex gap-2 align-items-center ">
+                  <h5 className="h5 md-h3 lg-h2 text-success-500">
+                    Rp80.000
+                    <s className="font-sm text-neutral-300">Rp170.999</s>
+                  </h5>
+                  <p className="bg-danger-100 text-danger-500 px-8 py-5 font-xs md-font-sm-medium md-font-medium radius-4 border-danger-500 border ">
+                    50% off
+                  </p>
+                </div>
+              </div>
+              <div className="mt-16">
+                <p>This book include:</p>
+                <div className="mt-6">
+                  <button className="btn-neutral mr-8">
+                    <i className="bi bi-laptop text-white"></i>
+                    <span className="text-sm text-white ml-8">E-learning</span>
+                  </button>
+                  <button className="btn-neutral">
+                    <i className="bi bi-person-video text-white"></i>
+                    <span className="text-sm text-white ml-8">
+                      Video lecturer
+                    </span>
+                  </button>
+                </div>
               </div>
               <div className="mt-20 row gx-0 gap-8 lg-gap-0">
                 <div className="col-12">
                   <button
-                    className="btn-primary font-xs md-font-sm lg-font-normal"
+                    className="btn-primary w-full font-xs md-font-sm lg-font-normal"
                     type="button"
                     data-bs-toggle="modal"
                     data-bs-target="#modalBuy"
                   >
                     Buy from e-commerce
                   </button>
-                  <span className="mx-4 md-mx-16">or</span>
+                </div>
+                <div className="col-12 mt-20">
                   <button className="btn-outline font-xs md-font-sm lg-font-normal">
                     Contact marketing
                   </button>
+                  <br className="d-xl-none" />
+                  <span className="font-sm text-neutral-300 ">
+                    <i className="bi bi-exclamation-circle mx-8 text-neutral-300 "></i>
+                    Suitable for school curriculum and mass purchase
+                  </span>
                 </div>
               </div>
             </div>
-            <p className="h6 md-h5 lg-h4 mb-16">Overview</p>
-            <p className="text-neutral-400 font-xs md-font-sm lg-font-normal">
-              Up is opinion message manners correct hearing husband my.
-              Disposing commanded dashwoods cordially depending at at. Its
-              strangers who you certainty earnestly resources suffering she. Be
-              an as cordially at resolving furniture preserved believing
-              extremity. Easy mr pain felt in. Too northward affection additions
-              nay. He no an nature ye talent houses wisdom vanity denied.
-            </p>
-            <p className="h6 md-h5 lg-h4 mt-48 mb-16">Subject Focus</p>
-            <div className="">
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Possesive adjective
-              </button>
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Greetings and leave-takings
-              </button>
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Family members
-              </button>
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Family members
-              </button>
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Family members
-              </button>
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Family members
-              </button>
-              <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
-                Animal, plants, and their habitats
-              </button>
-            </div>
-            <div className="mt-32">
-              <p className="h6 md-h5 lg-h4 mb-16">Book Features</p>
-              <div className="  row  gx-0">
-                {data.map((r) => {
-                  return (
-                    <div className="col-6 col-md-4 mb-16" key={Math.random()}>
-                      <div className="m-0 d-flex align-items-center gap-2">
-                        <div
-                          className="w-8 h-8 radius-p-100 "
-                          style={{ backgroundColor: r.color }}
-                        ></div>
-                        <p className="text-neutral-200 m-0 font-size-12">
-                          {r.title}
-                        </p>
-                      </div>
-                      <div className="m-0 d-flex align-items-center gap-2">
-                        <div className="w-8 h-8 radius-p-100"></div>
-                        <p className="text-neutral-500 m-0  font-size-16 fw-medium">
-                          {r.subTitle}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+          </div>
+          <div className="col-12  ">
+            <div className="xl-ml-24">
+              <p className="h6 md-h5 lg-h4  mb-16">Subject Focus</p>
+              <div className="">
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Possesive adjective
+                </button>
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Greetings and leave-takings
+                </button>
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Family members
+                </button>
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Family members
+                </button>
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Family members
+                </button>
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Family members
+                </button>
+                <button className="btn-outline font-xs lg-font-sm mb-8 mr-8">
+                  Animal, plants, and their habitats
+                </button>
               </div>
-            </div>
-            <div className="mt-48 xl-pr-12">
-              <p className="h6 md-h5 lg-h4 mb-16">Other Recommendation</p>
-              <SliderNoArrow
-                wDefault={2}
-                w1035={2}
-                w980={2}
-                w768={2}
-                content={[
-                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
-                  <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab lg-card-product-y-desk" />,
-                ]}
-              />
+              <div className="mt-32">
+                <p className="h6 md-h5 lg-h4 mb-16">Book Features</p>
+                <div className="  row  gx-0">
+                  {data.map((r) => {
+                    return (
+                      <div
+                        className="col-6 col-md-4 col-lg-2 mb-16"
+                        key={Math.random()}
+                      >
+                        <div className="m-0 d-flex align-items-center gap-2">
+                          <div
+                            className="w-8 h-8 radius-p-100 "
+                            style={{ backgroundColor: r.color }}
+                          ></div>
+                          <p className="text-neutral-200 m-0 font-size-12">
+                            {r.title}
+                          </p>
+                        </div>
+                        <div className="m-0 d-flex align-items-center gap-2">
+                          <div className="w-8 h-8 radius-p-100"></div>
+                          <p className="text-neutral-500 m-0  font-size-16 fw-medium">
+                            {r.subTitle}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="mt-48">
+                <p className="h6 md-h5 lg-h4 mb-16">Other Recommendation</p>
+                <SliderNoArrow
+                  wDefault={4}
+                  w1035={2}
+                  w980={2}
+                  w768={2}
+                  content={[
+                    <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab " />,
+                    <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab " />,
+                    <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab " />,
+                    <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab " />,
+                    <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab " />,
+                    <ProductYCard responsiveClass="card-product-y-mob sm-card-product-y-tab " />,
+                  ]}
+                />
+              </div>
             </div>
           </div>
         </div>

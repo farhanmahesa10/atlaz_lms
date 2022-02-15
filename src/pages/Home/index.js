@@ -238,7 +238,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="  md-mx-32 mx-12  row gx-0 bg-secondary-200  px-32 py-41 mt-104  align-items-center">
+        <div className="  md-mx-32 mx-12  row gx-0 bg-secondary-200  px-32 py-41 mt-152  align-items-center">
           <div className="col-lg-3 col-12">
             <h4 className="m-0 text-left">Our Partnership</h4>
             <LineIcon />
