@@ -4,8 +4,11 @@ import { InputComponent } from "../../../components";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import validator from "validator";
+import axios from "axios";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const [borderToast, setborderToast] = useState("");
+
   const [mailValidation, setMailValidation] = useState("");
 
   const validateEmail = () => {
@@ -15,20 +18,23 @@ const ForgotPassword = () => {
       setMailValidation("");
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  const callToast = (title, msg, status) => {
     toast(
       <div
         className="d-flex gap-2 align-items-center"
         style={{ width: "320px" }}
       >
         <i
-          className="bi bi-check-circle fs-16 pe-2"
-          style={{ color: "#6FCF97" }}
+          className={`bi ${
+            status
+              ? "bi-check-circle text-info-400"
+              : "bi-x-circle text-danger-400"
+          } fs-16 pe-2`}
         ></i>
         <div className="text-left " style={{ textAlign: "left" }}>
-          <strong className="d-block pb-1 m-0">Request has been sent!</strong>
-          <p className="text-left d-block m-0 ">Please check your email</p>
+          <strong className="d-block pb-1 m-0 font-bold">{title}</strong>
+          <p className="text-left d-block m-0 ">{msg}</p>
         </div>
         <div
           className="cursor-pointer flex-fill position-absolute end-0 top-0"
@@ -40,6 +46,20 @@ const ForgotPassword = () => {
         </div>
       </div>
     );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(process.env.REACT_APP_BASE_API_URL + "/password/reset", { email })
+      .then((r) => {
+        setborderToast("1px solid #6FCF97");
+        callToast("Request has been sent!", "Please check your email.", true);
+      })
+      .catch((err) => {
+        setborderToast("1px solid #d63384");
+        callToast("Something went wrong!", err.response.data.message, false);
+      });
   };
   return (
     <AuthLayout hideBackButton={true}>
@@ -90,7 +110,7 @@ const ForgotPassword = () => {
                 toastOptions={{
                   className: "",
                   style: {
-                    border: "1px solid #6FCF97",
+                    border: borderToast,
                     padding: "10px",
                     color: "#333333",
                   },

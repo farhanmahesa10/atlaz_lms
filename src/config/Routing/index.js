@@ -88,7 +88,7 @@ const Routing = () => {
         }
       />
       <Route
-        path="/reset-password"
+        path="/password/new"
         element={
           <RedirectIfAuthenticated>
             <ResetPassword />
@@ -99,7 +99,7 @@ const Routing = () => {
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
       <Route path="/product-detail" element={<ProductDetail />} />
-      <Route path="/verify-account" element={<Verify />} />
+      <Route path="/auth/verify" element={<Verify />} />
       <Route
         path="/redirect-google"
         element={<RedirectGoogleAuthenticated />}

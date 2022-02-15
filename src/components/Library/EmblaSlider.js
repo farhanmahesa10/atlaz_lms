@@ -80,7 +80,7 @@ const EmblaSlider = (props) => {
   const [settings, setSettings] = useState({
     // dots: true,
     // dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: wDefault,
     slidesToScroll: wDefault,
@@ -132,7 +132,7 @@ const EmblaSlider = (props) => {
       <Slider {...settings}>
         {props.content.map((r) => {
           return (
-            <div className="pb-1" key={Math.random()}>
+            <div className="pb-1 mr-55 " key={Math.random()}>
               {r}
             </div>
           );

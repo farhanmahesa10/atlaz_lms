@@ -8,8 +8,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Pace from "react-pace-progress";
+import { connect } from "react-redux";
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [mailValidation, setMailValidation] = useState("");
 
@@ -22,6 +23,50 @@ const Login = () => {
   const loginGoogle = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
+
+  const callToast = (title, msg, status = false) => {
+    toast.custom(
+      <div
+        className="d-flex gap-2 align-items-center p-16 radius-8 bg-white  position-relative"
+        style={{
+          width: "320px",
+          border: status ? "1px solid #0dcaf0" : "1px solid #DC3545",
+        }}
+      >
+        <i
+          className={`bi ${
+            status
+              ? "bi-check-circle text-success-500"
+              : "bi-x-circle text-danger-500"
+          } fs-16 pe-2 `}
+        ></i>
+        <div className="text-left " style={{ textAlign: "left" }}>
+          <strong className="d-block font-bold pb-1 m-0">{title}</strong>
+          <p className="text-left font-sm d-block m-0 ">{msg}</p>
+        </div>
+        <div
+          className="cursor-pointer flex-fill position-absolute end-0 top-0"
+          onClick={(e) => {
+            toast.remove();
+          }}
+        >
+          <p className="p-8 "> &times;</p>
+        </div>
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    if (props.flashMessage.show) {
+      callToast(
+        props.flashMessage.title,
+        props.flashMessage.msg,
+        props.flashMessage.status
+      );
+      props.setFlashMassage(false, false, false);
+    }
+  }, []);
+
   const loginSubmit = (e) => {
     e.preventDefault();
 
@@ -58,29 +103,10 @@ const Login = () => {
       })
       .catch((err) => {
         setIsLoading(false);
-        toast(
-          <div
-            className="d-flex gap-2 align-items-center"
-            style={{ width: "320px" }}
-          >
-            <i className="bi bi-x-circle fs-16 pe-2 text-danger-500"></i>
-            <div className="text-left " style={{ textAlign: "left" }}>
-              <strong className="d-block font-bold pb-1 m-0">
-                Failed to log in your account
-              </strong>
-              <p className="text-left font-sm d-block m-0 ">
-                Please enter correct email/password.
-              </p>
-            </div>
-            <div
-              className="cursor-pointer flex-fill position-absolute end-0 top-0"
-              onClick={(e) => {
-                toast.remove();
-              }}
-            >
-              <p className="p-8 "> &times;</p>
-            </div>
-          </div>
+        callToast(
+          "Failed to log in your account",
+          "Please enter correct email/password.",
+          false
         );
       });
   };
@@ -171,4 +197,15 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    flashMessage: state.flashMessage,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFlashMassage: (value) => dispatch({ type: "SET_FLASH_MESSAGE", value }),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -50,9 +50,9 @@ const Home = () => {
           />
         </div> */}
         <div
-          className="sm-px-130   px-12  pt-99 pb-104"
+          className="sm-px-130   px-12  pt-211 pb-210"
           style={{
-            backgroundImage: "url('/images/bg-htp.png')",
+            backgroundImage: "url('/images/contour.png')",
           }}
         >
           <div className=" ">
@@ -107,7 +107,7 @@ const Home = () => {
         </div>
         <div className=" md-px-32 px-12 ">
           <EmblaSlider
-            wDefault={5}
+            wDefault={4}
             w1035={3}
             w980={3}
             w768={2}
@@ -164,7 +164,7 @@ const Home = () => {
             header={
               <>
                 <div className="d-flex   align-items-center">
-                  <h3 className="mr-24 fs-20 sm-fs-24">Our Book List</h3>
+                  <h3 className="mr-24 ">Atlaz Book List</h3>
                   <Link
                     to="/"
                     className="mt-1 text-primary-500 hover-text-primary-300 "
@@ -181,31 +181,32 @@ const Home = () => {
         </div>
         <div className=" sm-px-48  px-12 ">
           <div className=" mt-104 ">
-            <h3 className=" fs-20 sm-fs-24">Redeem Activation Code</h3>
-            <div style={{ marginTop: "-12px" }}>
-              <LineIcon />
-            </div>
-            <div className="w-full d-lg-flex align-items-center border radius-8 mt-24 ">
-              <img
-                src="/images/redem.png"
-                alt=""
-                className="d-none d-lg-block radius-8"
-              />
-              <div className=" lg-pb-0    p-24 lg-w-432 flex-grow-0 flex-shrink-0">
-                <h3 className="">Where is the code?</h3>
-                <p className="">
-                  You can be found on the first page after cover of the book you
-                  have purchased.
+            <div
+              className=" h-268 radius-16 row align-items-center px-24 md-px-76"
+              style={{
+                backgroundImage: "url('/images/bg_reedem.png')",
+                backgroundSize: "cover",
+              }}
+            >
+              <div className="  col-12 col-lg-5  ">
+                <h3 className="text-white">Redeem Your E-book Code</h3>
+                <div className="pb-12" style={{ marginTop: "-12px" }}>
+                  <LineIcon />
+                </div>
+                <p className="text-white">
+                  Find the redeem code in first page of book you have purchased.
+                  Enjoy the feature of learn anytime with #YouLearningPal.
                 </p>
               </div>
-              <div className=" lg-w-p-100 p-24">
+              <div className="col-lg-2 d-none d-lg-block"></div>
+              <div className="  col-12 col-lg-5 ">
                 <InputComponent
                   type="text"
                   placeholder="Input activation code here "
                   icon2={
                     <div className="p-4">
                       <button
-                        className="btn-secondary"
+                        className="btn-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                       >
@@ -218,8 +219,26 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <div className="mt-152 row">
+          <div className="col-4  d-flex  justify-content-end">
+            <div className="text-center">
+              <h1 className="fs-60">20+</h1>
+              <p>School Trust</p>
+            </div>
+          </div>
 
-        <div className=" row gx-0 bg-secondary-200  px-32 py-41 mt-104  align-items-center">
+          <div className="col-4  text-center">
+            <h1 className="fs-60">10+</h1>
+            <p>Interactive Book</p>
+          </div>
+          <div className="col-4 d-flex  justify-content-start">
+            <div className="text-center ">
+              <h1 className="fs-60 text-center">300+</h1>
+              <p className="text-center">Book sold</p>
+            </div>
+          </div>
+        </div>
+        <div className="  md-mx-32 mx-12  row gx-0 bg-secondary-200  px-32 py-41 mt-104  align-items-center">
           <div className="col-lg-3 col-12">
             <h4 className="m-0 text-left">Our Partnership</h4>
             <LineIcon />

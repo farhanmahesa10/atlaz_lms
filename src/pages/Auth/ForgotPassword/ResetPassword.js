@@ -3,8 +3,13 @@ import AuthLayout from "../../../components/Layout/AuthLayout";
 import InputPassword from "../../../components/Design/InputPassword";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
-import { useNavigate, Link } from "react-router-dom";
-const ResetPassword = () => {
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { connect } from "react-redux";
+
+const ResetPassword = (props) => {
+  const [searchParams] = useSearchParams();
+
   const [password, setPassword] = useState("");
   const [isLower, setIsLower] = useState("first");
   const [isUpper, setIsUpper] = useState("first");
@@ -35,7 +40,35 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (allowNext) navigate("/register-finish");
+    let email = searchParams.get("e");
+    let token = searchParams.get("t");
+    let verificationType = "RESET_PASSWORD";
+
+    axios
+      .post(process.env.REACT_APP_BASE_API_URL + "/password/new", {
+        email,
+        token,
+        verificationType,
+        new_password: password,
+      })
+      .then((r) => {
+        props.setFlashMassage(
+          true,
+          "Change Password success!",
+          "Password has been changed",
+          true
+        );
+        navigate("/login");
+      })
+      .catch((err) => {
+        props.setFlashMassage(
+          false,
+          "Change Password failed!",
+          err.response.data.message,
+          true
+        );
+        navigate("/login");
+      });
   };
 
   return (
@@ -120,7 +153,7 @@ const ResetPassword = () => {
                       allowNext ? "btn-primary" : "btn-disable"
                     } w-p-100`}
                   >
-                    Next
+                    Submit
                   </button>
                 </div>
               </div>
@@ -131,5 +164,17 @@ const ResetPassword = () => {
     </AuthLayout>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    flashMessage: state.flashMessage,
+  };
+};
 
-export default ResetPassword;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFlashMassage: (status, title, msg, show) =>
+      dispatch({ type: "SET_FLASH_MESSAGE", status, title, msg, show }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);
