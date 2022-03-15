@@ -62,9 +62,9 @@ const Register3 = () => {
                 name="phoneNumber"
                 type="number"
                 icon={<span className=" text-neutral-400">+62</span>}
-                label="Full name"
+                label="Phone number"
                 labelClassName="font-xs-bold"
-                placeholder="Enter your email"
+                placeholder="Enter your phone number"
                 autoFocus
               />
               <span className="text-danger-500">{apiValidation}</span>

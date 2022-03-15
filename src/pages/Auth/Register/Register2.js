@@ -52,7 +52,7 @@ const Register2 = () => {
                 icon={<i className="bi bi-person text-neutral-400"></i>}
                 label="Full name"
                 labelClassName="font-xs-bold"
-                placeholder="Enter your email"
+                placeholder="Enter your full name"
                 autoFocus
               />
             </div>
