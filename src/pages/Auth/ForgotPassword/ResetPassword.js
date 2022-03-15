@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
-import InputPassword from "../../../components/Design/InputPassword";
 import DotIcon from "../../../components/SVG/DotIcon";
 import validator from "validator";
-import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-
+import { FormikControl } from "../../../components/atoms";
+import { Form, Formik } from "formik";
 const ResetPassword = (props) => {
   const [searchParams] = useSearchParams();
 
-  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [isLower, setIsLower] = useState("first");
   const [isUpper, setIsUpper] = useState("first");
   const [isNumeric, setIsNumeric] = useState("first");
@@ -37,9 +37,11 @@ const ResetPassword = (props) => {
       ? setAllowNext(false)
       : setAllowNext(true);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const initialValues = {
+    password: "",
+  };
+  const onSubmit = (values) => {
+    setIsLoading(true);
     let email = searchParams.get("e");
     let token = searchParams.get("t");
     let verificationType = "RESET_PASSWORD";
@@ -49,7 +51,7 @@ const ResetPassword = (props) => {
         email,
         token,
         verificationType,
-        new_password: password,
+        new_password: values.password,
       })
       .then((r) => {
         props.setFlashMassage(
@@ -58,6 +60,7 @@ const ResetPassword = (props) => {
           "Password has been changed",
           true
         );
+        setIsLoading(false);
         navigate("/login");
       })
       .catch((err) => {
@@ -67,97 +70,109 @@ const ResetPassword = (props) => {
           err.response.data.message,
           true
         );
+        setIsLoading(false);
         navigate("/login");
       });
   };
 
   return (
-    <AuthLayout hideBackButton={true}>
+    <AuthLayout>
       <div className="d-flex justify-content-center px-24 px-0">
         <div className="auth-wrapper w-full mt-66 md-mt-132">
           <div className="w-full">
             <h4 className="text-center mb-56">Reset Password</h4>
-            <form onSubmit={handleSubmit}>
-              <div className="auth-content">
-                <div className=" text-start">
-                  <InputPassword
-                    label="Password"
-                    type="password"
-                    placeholder="Create your password"
-                    icon={<i className="bi bi-lock"></i>}
-                    onChange={(val) => {
-                      setPassword(val);
-                      validate(val);
-                    }}
-                  />
-                  <div className="row mt-16 mb-48 text-neutral-400">
-                    <div className="col-sm-6 d-flex align-items-center">
-                      <DotIcon
-                        status={
-                          isLower == true
-                            ? "success"
-                            : isLower == false
-                            ? "danger"
-                            : ""
-                        }
-                      >
-                        <small className="ps-2">One lowercase characters</small>
-                      </DotIcon>
-                    </div>
-                    <div className="col-sm-6  d-flex align-items-center">
-                      <DotIcon
-                        status={
-                          isNumeric == true
-                            ? "success"
-                            : isNumeric == false
-                            ? "danger"
-                            : ""
-                        }
-                      >
-                        <small className="ps-2">One numeric</small>
-                      </DotIcon>
-                    </div>
-                    <div className="col-sm-6 d-flex align-items-center">
-                      <DotIcon
-                        status={
-                          isUpper == true
-                            ? "success"
-                            : isUpper == false
-                            ? "danger"
-                            : ""
-                        }
-                      >
-                        <small className="ps-2">One uppercase characters</small>
-                      </DotIcon>
-                    </div>
-                    <div className="col-sm-6 d-flex align-items-center">
-                      <DotIcon
-                        status={
-                          isSix == true
-                            ? "success"
-                            : isSix == false
-                            ? "danger"
-                            : ""
-                        }
-                      >
-                        <small className="ps-2">6 minimum characters</small>
-                      </DotIcon>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={onSubmit}
+              validateOnBlur={false}
+            >
+              <Form>
+                <div className="auth-content">
+                  <div className=" text-start">
+                    <FormikControl
+                      control="inputPassword"
+                      label="Password"
+                      name="password"
+                      labelClassName="font-xs-bold"
+                      placeholder="Create your password"
+                      onInput={(e) => {
+                        validate(e.target.value);
+                      }}
+                    />
+
+                    <div className="row mt-16 mb-48 text-neutral-400">
+                      <div className="col-sm-6 d-flex align-items-center">
+                        <DotIcon
+                          status={
+                            isLower == true
+                              ? "success"
+                              : isLower == false
+                              ? "danger"
+                              : ""
+                          }
+                        >
+                          <small className="ps-2">
+                            One lowercase characters
+                          </small>
+                        </DotIcon>
+                      </div>
+                      <div className="col-sm-6  d-flex align-items-center">
+                        <DotIcon
+                          status={
+                            isNumeric == true
+                              ? "success"
+                              : isNumeric == false
+                              ? "danger"
+                              : ""
+                          }
+                        >
+                          <small className="ps-2">One numeric</small>
+                        </DotIcon>
+                      </div>
+                      <div className="col-sm-6 d-flex align-items-center">
+                        <DotIcon
+                          status={
+                            isUpper == true
+                              ? "success"
+                              : isUpper == false
+                              ? "danger"
+                              : ""
+                          }
+                        >
+                          <small className="ps-2">
+                            One uppercase characters
+                          </small>
+                        </DotIcon>
+                      </div>
+                      <div className="col-sm-6 d-flex align-items-center">
+                        <DotIcon
+                          status={
+                            isSix == true
+                              ? "success"
+                              : isSix == false
+                              ? "danger"
+                              : ""
+                          }
+                        >
+                          <small className="ps-2">6 minimum characters</small>
+                        </DotIcon>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="d-flex gap-3 w-p-100 ">
-                  <button
-                    type={`${allowNext ? "submit" : "button"}`}
-                    className={`${
-                      allowNext ? "btn-primary" : "btn-disable"
-                    } w-p-100`}
-                  >
-                    Submit
-                  </button>
+                  <div className="d-flex gap-3 w-p-100 ">
+                    <button
+                      type={`${allowNext && !isLoading ? "submit" : "button"}`}
+                      className={`${
+                        allowNext && !isLoading ? "btn-primary" : "btn-disable"
+                      } col`}
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </Form>
+            </Formik>
           </div>
         </div>
       </div>

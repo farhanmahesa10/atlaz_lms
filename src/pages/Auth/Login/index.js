@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { InputComponent, GoogleButton } from "../../../components";
+import { GoogleButton } from "../../../components";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { Link } from "react-router-dom";
-import validator from "validator";
-import InputPassword from "../../../components/Design/InputPassword";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Pace from "react-pace-progress";
 import { connect } from "react-redux";
-
+import { FormikControl } from "../../../components/atoms";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [mailValidation, setMailValidation] = useState("");
-
-  const [password, setPassword] = useState("");
-  const [passwordValidation, setPasswordValidation] = useState("");
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("This field is required, Don't leave it empty!")
+      .email("Please input the correct format email address!"),
+    password: Yup.string().required(
+      "This field is required, Don't leave it empty!"
+    ),
+  });
 
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -67,38 +74,16 @@ const Login = (props) => {
     }
   }, []);
 
-  const loginSubmit = (e) => {
-    e.preventDefault();
-
-    if (validator.isEmpty(email)) {
-      return setMailValidation("This field is required, Don't leave it empty!");
-    } else if (!validator.isEmail(email)) {
-      return setMailValidation(
-        "Please input the correct format email address!"
-      );
-    } else {
-      setMailValidation("");
-    }
-    if (validator.isEmpty(password)) {
-      return setPasswordValidation(
-        "This field is required, Don't leave it empty!"
-      );
-    } else {
-      setPasswordValidation(false);
-    }
+  const onSubmit = (values) => {
     setIsLoading(true);
     axios
-      .post(process.env.REACT_APP_BASE_API_URL + "/auth/login", {
-        email,
-        password,
-      })
+      .post(process.env.REACT_APP_BASE_API_URL + "/auth/login", values)
       .then((res) => {
         localStorage.setItem(
           process.env.REACT_APP_BASE_URL + "/accessToken",
           res.data.accessToken.token
         );
         setIsLoading(false);
-
         navigate("/");
       })
       .catch((err) => {
@@ -124,71 +109,79 @@ const Login = (props) => {
                 className="py-8 w-p-100 mt-32 mb-32"
                 onClick={loginGoogle}
               />
-              <form className="" onSubmit={loginSubmit}>
-                <div className="d-flex align-items-center mb-24 ">
-                  <div className="rectangle"></div>
-                  <span className="px-2 text-neutral-300">or</span>
-                  <div className="rectangle"></div>
-                </div>
-                <div className=" mb-32">
-                  <InputComponent
-                    label="Email Address"
-                    key="email"
-                    labelClassName="font-xs-bold"
-                    placeholder="Enter your email"
-                    icon={<i className="bi bi-envelope text-neutral-400"></i>}
-                    onChange={(val) => {
-                      setEmail(val);
-                    }}
-                    error={mailValidation ? true : false}
-                    description={mailValidation}
-                    autoFocus
-                  />
-                </div>
-                <div className=" mb-32">
-                  <InputPassword
-                    label="Password"
-                    key="email"
-                    labelClassName="font-xs-bold"
-                    placeholder="Enter your password"
-                    icon={<i className="bi bi-envelope text-neutral-400"></i>}
-                    onChange={(val) => {
-                      setPassword(val);
-                    }}
-                    error={passwordValidation ? true : false}
-                    description={passwordValidation}
-                    autoFocus
-                  />
-                </div>
-                <div className="mb-48 d-flex justify-content-between">
-                  <div>
-                    <input type="checkbox" className=" form-check-input" />{" "}
-                    Remember me
+
+              <div className="d-flex align-items-center mb-24 ">
+                <div className="rectangle"></div>
+                <span className="px-2 text-neutral-300">or</span>
+                <div className="rectangle"></div>
+              </div>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+                validateOnBlur={false}
+              >
+                <Form>
+                  <div className=" mb-32">
+                    <FormikControl
+                      control="input"
+                      name="email"
+                      type="text"
+                      icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                      label="Email Address"
+                      labelClassName="font-xs-bold"
+                      placeholder="Enter your email"
+                      autoFocus
+                    />
                   </div>
-                  <div>
-                    <Link to="/forgot-password">Forgot password</Link>
+                  <div className=" mb-32">
+                    <FormikControl
+                      control="inputPassword"
+                      label="Password"
+                      name="password"
+                      labelClassName="font-xs-bold"
+                      placeholder="Enter your password"
+                    />
                   </div>
-                </div>
-                <div className="mb-32">
-                  <button className="btn-primary w-p-100">Log in</button>
-                </div>
-                <div className="text-center">
-                  New in Atlaz?{" "}
-                  <Link to="/register" className="text-primary-400">
-                    Sign up now
-                  </Link>
-                </div>
-                <Toaster
-                  toastOptions={{
-                    className: "",
-                    style: {
-                      border: "1px solid #DC3545",
-                      padding: "10px",
-                      color: "#333333",
-                    },
-                  }}
-                />
-              </form>
+                  <div className="mb-48 d-flex justify-content-between">
+                    <div>
+                      <input type="checkbox" className=" form-check-input" />{" "}
+                      Remember me
+                    </div>
+                    <div>
+                      <Link to="/forgot-password" type="button">
+                        Forgot password
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="mb-32">
+                    <button
+                      type={isLoading ? "button" : "submit"}
+                      className={`${
+                        isLoading ? "btn-disable" : "btn-primary"
+                      } w-p-100`}
+                    >
+                      Log in
+                    </button>
+                  </div>
+                  <div className="text-center">
+                    New in Atlaz?{" "}
+                    <Link to="/register" className="text-primary-400">
+                      Sign up now
+                    </Link>
+                  </div>
+                  <Toaster
+                    toastOptions={{
+                      className: "",
+                      style: {
+                        border: "1px solid #DC3545",
+                        padding: "10px",
+                        color: "#333333",
+                      },
+                    }}
+                  />
+                </Form>
+              </Formik>
             </div>
           </div>
         </div>

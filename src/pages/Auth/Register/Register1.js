@@ -1,41 +1,48 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { InputComponent, GoogleButton } from "../../../components";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { GoogleButton } from "../../../components";
 import { Link } from "react-router-dom";
-import validator from "validator";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
 import axios from "axios";
+import { FormikControl } from "../../../components/atoms";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 const Register1 = () => {
-  const didMount = useRef(false);
-  const [searchParams] = useSearchParams();
-
+  const [apiValidation, setApiValidation] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   let tempEmail = localStorage.getItem(
     process.env.REACT_APP_BASE_URL + "/register/email"
   );
+  const initialValues = {
+    email: tempEmail ? tempEmail : "",
+  };
 
-  const [email, setEmail] = useState(tempEmail);
-  const [mailValidation, setMailValidation] = useState("");
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("This field is required, Don't leave it empty!")
+      .email("Please input the correct format email address!"),
+  });
 
-  const [allowNext, setAllowNext] = useState(false);
   const navigate = useNavigate();
   const loginGoogle = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = (values) => {
+    setIsLoading(true);
     axios
-      .post(process.env.REACT_APP_BASE_API_URL + "/auth/email", { email })
+      .post(process.env.REACT_APP_BASE_API_URL + "/auth/email", values)
       .then((r) => {
         localStorage.setItem(
           process.env.REACT_APP_BASE_URL + "/register/email",
-          email
+          values.email
         );
+        setIsLoading(false);
         navigate("/register-step-2");
       })
       .catch((err) => {
-        setMailValidation(err.response.data.message);
+        setApiValidation(err.response.data.message);
+        setIsLoading(false);
       });
   };
 
@@ -45,44 +52,58 @@ const Register1 = () => {
       activeProgress={1}
       title="Sign up to get started"
     >
-      <form onSubmit={handleSubmit} className="w-full">
-        <div className=" ">
-          <div className="mb-24">
-            <GoogleButton
-              label="Register"
-              className="w-p-100 "
-              onClick={loginGoogle}
-            />
-          </div>
-          <div className="d-flex align-items-center mb-12">
-            <div className="rectangle"></div>
-            <span className="px-2">or</span>
-            <div className="rectangle"></div>
-          </div>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        validateOnBlur={false}
+      >
+        <Form>
+          <div className=" ">
+            <div className="mb-24">
+              <GoogleButton
+                label="Register"
+                className="w-p-100 "
+                onClick={loginGoogle}
+              />
+            </div>
+            <div className="d-flex align-items-center mb-12">
+              <div className="rectangle"></div>
+              <span className="px-2">or</span>
+              <div className="rectangle"></div>
+            </div>
 
-          <div className="mb-40 text-start">
-            <InputComponent
-              label="Email Address"
-              key="email"
-              labelClassName="font-xs-bold"
-              placeholder="Enter your email"
-              icon={<i className="bi bi-envelope text-neutral-400"></i>}
-              onChange={(val) => {
-                setEmail(val);
-              }}
-              error={mailValidation ? true : false}
-              description={mailValidation}
-              defaultValue={email}
-              autoFocus
-            />
+            <div className="mb-40 text-start">
+              <FormikControl
+                control="input"
+                name="email"
+                type="text"
+                icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                label="Email Address"
+                labelClassName="font-xs-bold"
+                placeholder="Enter your email"
+                autoFocus
+                onInput={() => {
+                  if (apiValidation) {
+                    setApiValidation("");
+                  }
+                }}
+              />
+              <span className="text-danger-500">{apiValidation}</span>
+            </div>
+            <div className="">
+              <button
+                type={isLoading ? "button" : "submit"}
+                className={`${
+                  isLoading ? "btn-disable" : "btn-primary"
+                } w-p-100 border col text-neutral-700 btn-rounded`}
+              >
+                Next
+              </button>
+            </div>
           </div>
-          <div className="">
-            <button className={` w-p-100 btn-primary`} type={`submit`}>
-              Next
-            </button>
-          </div>
-        </div>
-      </form>
+        </Form>
+      </Formik>
       <footer className=" bg-white mt-32 sm-mt-64 text-center">
         <div className="">
           <small>

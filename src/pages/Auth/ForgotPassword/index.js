@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import AuthLayout from "../../../components/Layout/AuthLayout";
-import { InputComponent } from "../../../components";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import validator from "validator";
 import axios from "axios";
+import { FormikControl } from "../../../components/atoms";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
   const [borderToast, setborderToast] = useState("");
-
-  const [mailValidation, setMailValidation] = useState("");
-
-  const validateEmail = () => {
-    if (!validator.isEmail(email)) {
-      setMailValidation("Please input the correct format email address.");
-    } else {
-      setMailValidation("");
-    }
+  const [isLoading, setIsLoading] = useState(false);
+  const initialValues = {
+    email: "",
   };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("This field is required, Don't leave it empty!")
+      .email("Please input the correct format email address!"),
+  });
 
   const callToast = (title, msg, status) => {
     toast(
@@ -48,17 +47,19 @@ const ForgotPassword = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (values) => {
+    setIsLoading(true);
     axios
-      .post(process.env.REACT_APP_BASE_API_URL + "/password/reset", { email })
+      .post(process.env.REACT_APP_BASE_API_URL + "/password/reset", values)
       .then((r) => {
         setborderToast("1px solid #6FCF97");
         callToast("Request has been sent!", "Please check your email.", true);
+        setIsLoading(false);
       })
       .catch((err) => {
         setborderToast("1px solid #d63384");
         callToast("Something went wrong!", err.response.data.message, false);
+        setIsLoading(false);
       });
   };
   return (
@@ -71,52 +72,60 @@ const ForgotPassword = () => {
               Submit your email address and we will send recovery password to
               your email
             </p>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-40 text-start">
-                <InputComponent
-                  label="Email Address"
-                  key="email"
-                  labelClassName="font-xs-bold"
-                  placeholder="Enter your email"
-                  icon={<i className="bi bi-envelope text-neutral-400"></i>}
-                  onChange={(val) => {
-                    setEmail(val);
-                    validateEmail();
+            <Formik
+              initialValues={initialValues}
+              onSubmit={onSubmit}
+              validationSchema={validationSchema}
+              validateOnBlur={false}
+            >
+              <Form>
+                <div className="mb-40 text-start">
+                  <FormikControl
+                    control="input"
+                    name="email"
+                    type="text"
+                    icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                    label="Email Address"
+                    labelClassName="font-xs-bold"
+                    placeholder="Enter your email"
+                    autoFocus
+                  />
+                </div>
+                <div className="d-flex gap-3 mb-24">
+                  <button
+                    type={isLoading ? "button" : "submit"}
+                    className={`${
+                      isLoading ? "btn-disable" : "btn-primary"
+                    } w-p-100 border col text-neutral-700 btn-rounded`}
+                  >
+                    Reset Password
+                  </button>
+                </div>
+                <div className="d-flex align-items-center">
+                  <div className="rectangle w-full"></div>
+                  <span className="px-2">or&nbsp;try</span>
+                  <div className="rectangle w-full"></div>
+                </div>
+                <div className="d-flex gap-3 mt-24">
+                  <Link
+                    to="/login"
+                    className="btn-outline text-center border col text-neutral-700 btn-rounded"
+                  >
+                    Log in
+                  </Link>
+                </div>
+                <Toaster
+                  toastOptions={{
+                    className: "",
+                    style: {
+                      border: borderToast,
+                      padding: "10px",
+                      color: "#333333",
+                    },
                   }}
-                  error={mailValidation ? true : false}
-                  description={mailValidation}
-                  autoFocus
                 />
-              </div>
-              <div className="d-flex gap-3 mb-24">
-                <button className="btn-primary border col text-neutral-700 btn-rounded">
-                  Reset Password
-                </button>
-              </div>
-              <div className="d-flex align-items-center">
-                <div className="rectangle w-full"></div>
-                <span className="px-2">or&nbsp;try</span>
-                <div className="rectangle w-full"></div>
-              </div>
-              <div className="d-flex gap-3 mt-24">
-                <Link
-                  to="/login"
-                  className="btn-outline text-center border col text-neutral-700 btn-rounded"
-                >
-                  Log in
-                </Link>
-              </div>
-              <Toaster
-                toastOptions={{
-                  className: "",
-                  style: {
-                    border: borderToast,
-                    padding: "10px",
-                    color: "#333333",
-                  },
-                }}
-              />
-            </form>
+              </Form>
+            </Formik>
           </div>
         </div>
       </div>

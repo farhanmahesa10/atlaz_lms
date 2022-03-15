@@ -1,64 +1,45 @@
-import React, { useEffect, useRef, useState } from "react";
-import { InputComponent, GoogleButton } from "../../../components";
+import React, { useState } from "react";
 import RegisterLayout from "../../../components/Layout/RegisterLayout";
-import { useNavigate, Link, useSearchParams } from "react-router-dom";
-import validator from "validator";
+import { useNavigate, Link } from "react-router-dom";
+import { FormikControl } from "../../../components/atoms";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 import axios from "axios";
 const Register3 = () => {
-  const [searchParams] = useSearchParams();
-
-  const didMount = useRef(false);
   let tempPhoneNumber = localStorage.getItem(
     process.env.REACT_APP_BASE_URL + "/register/phoneNumber"
   );
-  const [phoneNumber, setPhoneNumber] = useState(tempPhoneNumber);
-  const [phoneNumberValidation, setPhoneNumberValidation] = useState("");
+  const [apiValidation, setApiValidation] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const initialValues = {
+    phoneNumber: tempPhoneNumber ? tempPhoneNumber : "",
+  };
 
-  const [allowNext, setAllowNext] = useState(false);
+  const validationSchema = Yup.object().shape({
+    phoneNumber: Yup.string().required(
+      "This field is required, Don't leave it empty!"
+    ),
+  });
+
   const navigate = useNavigate();
 
-  // const validatePhoneNumber = () => {
-  //   if (validator.isEmpty(phoneNumber)) {
-  //     setPhoneNumberValidation("This field is required, Don't leave it empty!");
-  //     setAllowNext(false);
-  //   } else {
-  //     setPhoneNumberValidation("");
-  //     setAllowNext(true);
-  //   }
-  // };
-  // useEffect(() => {
-  //   if (searchParams.get("error") == "true") {
-  //     setPhoneNumberValidation("This phone number is already registered.");
-  //   }
-  //   if (tempPhoneNumber && searchParams.get("error") != "true") {
-  //     validatePhoneNumber();
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (didMount.current) {
-  //     validatePhoneNumber();
-  //   } else {
-  //     didMount.current = true;
-  //   }
-  // }, [phoneNumber]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = (values) => {
+    setIsLoading(true);
     axios
       .post(process.env.REACT_APP_BASE_API_URL + "/auth/phone", {
-        phone: phoneNumber,
+        phone: `0${values.phoneNumber}`,
       })
       .then((r) => {
         localStorage.setItem(
           process.env.REACT_APP_BASE_URL + "/register/phoneNumber",
-          `0${phoneNumber}`
+          `${values.phoneNumber}`
         );
+        setIsLoading(false);
         navigate("/register-step-4");
       })
       .catch((err) => {
-        setPhoneNumberValidation(err.response.data.message);
+        setApiValidation(err.response.data.message);
+        setIsLoading(false);
       });
   };
   return (
@@ -67,38 +48,46 @@ const Register3 = () => {
       activeProgress={3}
       title="Let's set this up for your account"
     >
-      <form onSubmit={handleSubmit}>
-        <div className="auth-content">
-          <div className="mb-48 text-start">
-            <InputComponent
-              label="Phone number"
-              key="phone"
-              type="number"
-              labelClassName="font-xs-bold"
-              placeholder="Enter your number"
-              icon={<span className=" text-neutral-400">+62</span>}
-              onChange={(val) => {
-                setPhoneNumber(val);
-              }}
-              inputClassName="hide-arrow"
-              error={phoneNumberValidation ? true : false}
-              description={phoneNumberValidation}
-              autoFocus
-              defaultValue={phoneNumber}
-            />
-          </div>
-          <div className="d-grid grid-cols-2 gap-3  ">
-            <Link to="/register-step-2" className="  ">
-              <button type="button" className="text-center btn-outline w-full">
-                Back
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        validateOnBlur={false}
+      >
+        <Form>
+          <div className="auth-content">
+            <div className="mb-48 text-start">
+              <FormikControl
+                control="input"
+                name="phoneNumber"
+                type="number"
+                icon={<span className=" text-neutral-400">+62</span>}
+                label="Full name"
+                labelClassName="font-xs-bold"
+                placeholder="Enter your email"
+                autoFocus
+              />
+              <span className="text-danger-500">{apiValidation}</span>
+            </div>
+            <div className="d-grid grid-cols-2 gap-3  ">
+              <Link to="/register-step-2" className="  ">
+                <button
+                  type="button"
+                  className="text-center btn-outline w-full"
+                >
+                  Back
+                </button>
+              </Link>
+              <button
+                type={isLoading ? "button" : "submit"}
+                className={`${isLoading ? "btn-disable" : "btn-primary"} `}
+              >
+                Next
               </button>
-            </Link>
-            <button type={`submit`} className={`btn-primary`}>
-              Next
-            </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </Form>
+      </Formik>
     </RegisterLayout>
   );
 };

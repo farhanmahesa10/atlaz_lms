@@ -1,0 +1,21 @@
+.input-base64 {
+  .close-icon {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .img-preview {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

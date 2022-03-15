@@ -121,7 +121,9 @@ const MainHeader = (props) => {
               {!props.isLogin ? (
                 <>
                   <Link to="/login" className="">
-                    <button className="btn-outline px-25 font-xs">Login</button>
+                    <button className="btn-outline px-25 font-xs mr-12">
+                      Login
+                    </button>
                   </Link>
 
                   <Link to="/register" className="p-0">
