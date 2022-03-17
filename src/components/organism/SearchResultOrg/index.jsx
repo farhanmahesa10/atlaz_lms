@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { SearchDropdown, SelectCheckbox } from "../../atoms";
 import { ProductYCard } from "../../molecules";
 import { FormikControl } from "../../atoms";
 import { Form, Formik } from "formik";
+import { useSearchParams } from "react-router-dom";
+
 const SearchResultOrg = (props) => {
+  const [searchParams] = useSearchParams();
   const [searchData, setSearchData] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+  const keyword = searchParams.get("keyword");
 
   const handleChange = (val) => {
     setSearchData([

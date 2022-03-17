@@ -18,7 +18,6 @@ import {
   ProductDetail,
   Verify,
   RedirectGoogleAuthenticated,
-  HomeV2,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -99,13 +98,13 @@ const Routing = () => {
       <Route path="/redirecting" element={<Redirecting />} />
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
+      <Route path="/shop" element={<SearchResult />} />
       <Route path="/product-detail" element={<ProductDetail />} />
       <Route path="/auth/verify" element={<Verify />} />
       <Route
         path="/redirect-google"
         element={<RedirectGoogleAuthenticated />}
       />
-      <Route path="/home-v2" element={<HomeV2 />} />
     </Routes>
   );
 };

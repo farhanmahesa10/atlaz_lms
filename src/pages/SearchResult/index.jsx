@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { SearchResultOrg } from "../../components/organism";
 
-const SearchResult = (props) => {
+const SearchResult = () => {
   return (
     <>
       <SearchResultOrg />

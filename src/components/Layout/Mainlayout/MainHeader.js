@@ -32,7 +32,7 @@ const MainHeader = (props) => {
       label: "Home",
     },
     {
-      link: "/search-result/example",
+      link: "/shop",
       label: "Shop",
     },
   ];

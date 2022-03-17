@@ -5,7 +5,7 @@ import MainHeader from "./MainHeader";
 const MainLayout = (props) => {
   return (
     <>
-      <div className="d-flex flex-column " style={{ minHeight: "100vh" }}>
+      <div className="d-flex flex-column gx-0" style={{ minHeight: "100vh" }}>
         <MainHeader navbarBg={props.navbarBg} />
         <main className="flex-shrink-0 mb-128  justify-content-center mt-76">
           {props.beforeChildren}
