@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CarouselHero, SearchDropdown } from "../../atoms";
+import { blibli, shopee, buka, tokped, gram } from "../../../assets/images";
 const HomeHead = () => {
   const [searchData, setSearchData] = useState([]);
   const handleChange = (val) => {
@@ -11,10 +12,10 @@ const HomeHead = () => {
     ]);
   };
   return (
-    <div className="bg-secondary-200">
-      <div className=" m-auto px-12" style={{ maxWidth: "1440px" }}>
-        <div className="pb-24 d-flex justify-content-center ">
-          <div className="mt-24" style={{ width: "432px" }}>
+    <div className="bg-secondary-100 px-24 md-px-48 pb-16 md-pb-24">
+      <div className=" m-auto " style={{ maxWidth: "1440px" }}>
+        <div className="mb-16 pt-16 d-flex justify-content-center ">
+          <div style={{ width: "432px" }}>
             <SearchDropdown
               searchRecomend={searchData}
               submitLink="/search-result"
@@ -22,58 +23,31 @@ const HomeHead = () => {
             />
           </div>
         </div>
-        <CarouselHero />
-        <div className="text-center mb-12 mt-40">
-          <h5>Trusted on 10+ Marketplace</h5>
+        <div className="mb-16 md-mb-40 ">
+          <CarouselHero />
         </div>
-        <div className="row gx-0  text-center mt-28 pb-32 justify-content-center">
-          <div className="col-4 col-md-2">
-            <img
-              src="/images/blibli-thumb.png"
-              alt=""
-              height="56"
-              style={{ opacity: "0.5" }}
-            />
+        <div className="text-center  mb-16 md-mb-20">
+          <h6 className="">Trusted on 10+ Marketplace</h6>
+          <span className="mt-2"></span>
+          <div className="d-flex justify-content-center">
+            <div className="rectangle h-2  w-64 bg-primary-500"></div>
           </div>
-          <div className="col-4 col-md-2">
-            <img
-              src="/images/tokopedia-thumb.png"
-              alt=""
-              height="56"
-              style={{ opacity: "0.5" }}
-            />
+        </div>
+        <div className="row gx-0  text-center justify-content-center">
+          <div className="col h-22 md-h-40 xl-h-45">
+            <img src={buka} alt="" className="h-p-100" />
           </div>
-          <div className="col-4 col-md-2">
-            <img
-              src="/images/shopee-thumb.png"
-              alt=""
-              height="56"
-              style={{ opacity: "0.5" }}
-            />
+          <div className="col h-22 md-h-40 xl-h-45">
+            <img src={gram} alt="" className="h-p-100" />
           </div>
-          <div className="col-4 col-md-2">
-            <img
-              src="/images/gramedia-thumb.png"
-              alt=""
-              height="56"
-              style={{ opacity: "0.5" }}
-            />
+          <div className="col h-22 md-h-40 xl-h-45">
+            <img src={shopee} alt="" className="h-p-100" />
           </div>
-          <div className="col-4 col-md-2">
-            <img
-              src="/images/bukalapak-thumb.png"
-              alt=""
-              height="56"
-              style={{ opacity: "0.5" }}
-            />
+          <div className="col h-22 md-h-40 xl-h-45">
+            <img src={blibli} alt="" className="h-p-100" />
           </div>
-          <div className="col-4 col-md-2">
-            <img
-              src="/images/blibli-thumb.png"
-              alt=""
-              height="56"
-              style={{ opacity: "0.5" }}
-            />
+          <div className="col h-22 md-h-40 xl-h-45">
+            <img src={tokped} alt="" className="h-p-100" />
           </div>
         </div>
       </div>

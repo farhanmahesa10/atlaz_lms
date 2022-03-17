@@ -6,7 +6,7 @@ import { ProductYCard } from "../../molecules";
 const HomeBookList = () => {
   return (
     <>
-      <div className=" md-px-32 px-12 ">
+      <div className=" lg-px-48 px-24 md-px-32">
         <ProductSlider
           wDefault={4}
           w1035={3}

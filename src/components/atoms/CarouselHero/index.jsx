@@ -67,12 +67,6 @@ const CarouselHero = () => {
                 key={i}
               >
                 <img src={r} className="d-block " style={{ width: "100%" }} />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>First slide label</h5>
-                  <p>
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
               </div>
             );
           })}

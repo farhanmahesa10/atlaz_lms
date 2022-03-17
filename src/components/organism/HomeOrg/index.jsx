@@ -10,13 +10,14 @@ import MainLayout from "../../Layout/Mainlayout";
 const HomeOrg = () => {
   return (
     <>
-      <MainLayout beforeChildren={<HomeHead />} navbarBg="secondary-200">
+      <MainLayout navbarBg="secondary-200">
+        <HomeHead />
         <HomeHowToPurchase />
-        <HomeBookList />
-        <HomeRedeem />
-        <HomeScore />
-        <HomeOurPartnership />
-        <HomeWhatTheySay />
+        {/* <HomeBookList /> */}
+        {/* <HomeRedeem /> */}
+        {/* <HomeScore /> */}
+        {/* <HomeOurPartnership /> */}
+        {/* <HomeWhatTheySay /> */}
       </MainLayout>
     </>
   );

@@ -12,7 +12,7 @@ const HomeRedeem = () => {
   };
   return (
     <>
-      <div className=" sm-px-48  px-12 ">
+      <div className=" lg-px-48 md-px-24  px-12 ">
         <div className=" mt-104 ">
           <div
             className=" h-268 radius-16 row align-items-center px-24 md-px-76"
