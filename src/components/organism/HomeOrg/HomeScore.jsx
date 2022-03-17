@@ -3,7 +3,7 @@ import React from "react";
 const HomeScore = () => {
   return (
     <>
-      <div className="mt-152 row">
+      <div className="mt-152 row gx-0">
         <div className="col-4  d-flex  justify-content-end">
           <div className="text-center">
             <h1 className="fs-60">20+</h1>
