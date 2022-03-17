@@ -4,10 +4,11 @@ import DotIcon from "../../../SVG/DotIcon";
 import validator from "validator";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { connect } from "react-redux";
 import { FormikControl } from "../../../atoms";
 import { Form, Formik } from "formik";
-const ResetPasswordOrg = (props) => {
+import { connect, useDispatch } from "react-redux";
+const ResetPasswordOrg = () => {
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -54,22 +55,27 @@ const ResetPasswordOrg = (props) => {
         new_password: values.password,
       })
       .then((r) => {
-        props.setFlashMassage(
-          true,
-          "Change Password success!",
-          "Password has been changed",
-          true
-        );
+        dispatch({
+          type: "SET_FLASH_MESSAGE",
+          status: true,
+          title: "Change Password success!",
+          msg: "Password has been changed",
+          show: true,
+          isRedirecterToast: true,
+        });
         setIsLoading(false);
         navigate("/login");
       })
       .catch((err) => {
-        props.setFlashMassage(
-          false,
-          "Change Password failed!",
-          err.response.data.message,
-          true
-        );
+        dispatch({
+          type: "SET_FLASH_MESSAGE",
+          status: false,
+          title: "Change Password failed!",
+          msg: err.response.data.message,
+          show: true,
+          isRedirecterToast: true,
+        });
+
         setIsLoading(false);
         navigate("/login");
       });
@@ -179,17 +185,5 @@ const ResetPasswordOrg = (props) => {
     </AuthLayout>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    flashMessage: state.flashMessage,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setFlashMassage: (status, title, msg, show) =>
-      dispatch({ type: "SET_FLASH_MESSAGE", status, title, msg, show }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordOrg);
+export default connect()(ResetPasswordOrg);

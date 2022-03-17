@@ -7,15 +7,14 @@ const AuthLayout = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (flashSelector.show === true) {
-      if (flashSelector.isRedirecterToast !== true) {
+      if (flashSelector.isRedirecterToast === false) {
         toast.remove();
       }
-
       dispatch({
         type: "SET_FLASH_MESSAGE",
-        status: null,
-        title: "",
-        msg: "",
+        status: flashSelector.status,
+        title: flashSelector.title,
+        msg: flashSelector.msg,
         show: false,
       });
     }

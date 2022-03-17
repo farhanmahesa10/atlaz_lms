@@ -5,14 +5,14 @@ const GlobalToast = () => {
   const selector = useSelector((state) => state.flashMessage);
   useEffect(() => {
     if (selector.show === true) {
-      callToast();
+      callToast(
+        selector.status ? selector.status : false,
+        selector.title,
+        selector.msg
+      );
     }
-  });
-  const callToast = (
-    status = selector.status ? selector.status : false,
-    title = selector.title,
-    msg = selector.msg
-  ) => {
+  }, [selector]);
+  const callToast = (status, title, msg) => {
     toast(
       <div
         className="d-flex gap-2 align-items-center"
