@@ -65,11 +65,11 @@ const SelectCheckbox = (props) => {
       <label className="fw-medium">{props.label}</label>
       <ReactSelect
         options={items}
-        isMulti={props.inputType == "radio" ? false : true}
-        closeMenuOnSelect={props.inputType == "radio" ? true : false}
+        isMulti={props.inputType === "radio" ? false : true}
+        closeMenuOnSelect={props.inputType === "radio" ? true : false}
         hideSelectedOptions={false}
         components={{
-          Option: props.inputType == "radio" ? OptionRadio : OptionCheck,
+          Option: props.inputType === "radio" ? OptionRadio : OptionCheck,
         }}
         styles={customStyles}
         onChange={handleCategoryChange}

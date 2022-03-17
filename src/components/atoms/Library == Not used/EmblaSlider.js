@@ -7,7 +7,7 @@ const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
   const [max, setMax] = useState(false);
   useEffect(() => {
-    if (onClick == null) {
+    if (onClick === null) {
       setMax(true);
     } else {
       setMax(false);
@@ -40,7 +40,7 @@ const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
   const [max, setMax] = useState(false);
   useEffect(() => {
-    if (onClick == null) {
+    if (onClick === null) {
       setMax(true);
     } else {
       setMax(false);

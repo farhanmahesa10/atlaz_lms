@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import AuthLayout from "../../../components/Layout/AuthLayout";
-import DotIcon from "../../../components/SVG/DotIcon";
+import AuthLayout from "../../../Layout/AuthLayout";
+import DotIcon from "../../../SVG/DotIcon";
 import validator from "validator";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-import { FormikControl } from "../../../components/atoms";
+import { FormikControl } from "../../../atoms";
 import { Form, Formik } from "formik";
-const ResetPassword = (props) => {
+const ResetPasswordOrg = (props) => {
   const [searchParams] = useSearchParams();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -104,9 +104,9 @@ const ResetPassword = (props) => {
                       <div className="col-sm-6 d-flex align-items-center">
                         <DotIcon
                           status={
-                            isLower == true
+                            isLower === true
                               ? "success"
-                              : isLower == false
+                              : isLower === false
                               ? "danger"
                               : ""
                           }
@@ -119,9 +119,9 @@ const ResetPassword = (props) => {
                       <div className="col-sm-6  d-flex align-items-center">
                         <DotIcon
                           status={
-                            isNumeric == true
+                            isNumeric === true
                               ? "success"
-                              : isNumeric == false
+                              : isNumeric === false
                               ? "danger"
                               : ""
                           }
@@ -132,9 +132,9 @@ const ResetPassword = (props) => {
                       <div className="col-sm-6 d-flex align-items-center">
                         <DotIcon
                           status={
-                            isUpper == true
+                            isUpper === true
                               ? "success"
-                              : isUpper == false
+                              : isUpper === false
                               ? "danger"
                               : ""
                           }
@@ -147,9 +147,9 @@ const ResetPassword = (props) => {
                       <div className="col-sm-6 d-flex align-items-center">
                         <DotIcon
                           status={
-                            isSix == true
+                            isSix === true
                               ? "success"
-                              : isSix == false
+                              : isSix === false
                               ? "danger"
                               : ""
                           }
@@ -192,4 +192,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordOrg);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { RegisterMail } from "../../components/Mail";
 import Authenticate from "../../midlewares/Authenticate";
 import RedirectIfAuthenticated from "../../midlewares/RedirectIfAuthenticated";

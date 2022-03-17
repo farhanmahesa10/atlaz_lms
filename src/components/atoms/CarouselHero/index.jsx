@@ -62,7 +62,7 @@ const CarouselHero = () => {
           {imgView.map((r, i) => {
             return (
               <div
-                className={`carousel-item ${i == 0 ? "active" : ""}`}
+                className={`carousel-item ${i === 0 ? "active" : ""}`}
                 data-bs-interval="10000"
                 key={i}
               >

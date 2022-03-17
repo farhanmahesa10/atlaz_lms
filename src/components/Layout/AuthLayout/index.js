@@ -1,7 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector, connect } from "react-redux";
 import Header from "./Header";
+import toast from "react-hot-toast";
 const AuthLayout = (props) => {
+  const flashSelector = useSelector((state) => state.flashMessage);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (flashSelector.show === true) {
+      if (flashSelector.isRedirecterToast !== true) {
+        toast.remove();
+      }
+
+      dispatch({
+        type: "SET_FLASH_MESSAGE",
+        status: null,
+        title: "",
+        msg: "",
+        show: false,
+      });
+    }
+  }, []);
+
   return (
     <div className=" h-screen">
       <Header hideBackButton={props.hideBackButton} />
@@ -10,4 +29,4 @@ const AuthLayout = (props) => {
   );
 };
 
-export default AuthLayout;
+export default connect()(AuthLayout);

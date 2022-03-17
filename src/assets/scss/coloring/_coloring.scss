@@ -1,8 +1,8 @@
 @import "../variables";
 
-$neutralColor: $neutral_50, $neutral_100, $neutral_200, $neutral_300,
-  $neutral_400, $neutral_500, $neutral_600, $neutral_700, $neutral_800,
-  $neutral_900, $neutral_1000;
+$neutralColor: $neutral_100, $neutral_200, $neutral_300, $neutral_400,
+  $neutral_500, $neutral_600, $neutral_700, $neutral_800, $neutral_900,
+  $neutral_1000;
 $neutralCode: "neutral";
 
 $primaryColor: $primary_100, $primary_200, $primary_300, $primary_400,
@@ -28,6 +28,39 @@ $secondaryColor: $secondary_100, $secondary_200, $secondary_300, $secondary_400,
 $secondaryCode: "secondary";
 
 @mixin colorGenerator($colors, $code, $selector: ".") {
+  @for $i from 1 through length($colors) {
+    $a: $i * 100;
+    #{$selector}bg-#{$code}-#{$a} {
+      background-color: nth($colors, $i) !important;
+    }
+    #{$selector}border-#{$code}-#{$a} {
+      border-color: nth($colors, $i) !important;
+    }
+    #{$selector}text-#{$code}-#{$a} {
+      color: nth($colors, $i) !important;
+    }
+
+    //hover
+
+    #{$selector}hover-bg-#{$code}-#{$a} {
+      &:hover {
+        background-color: nth($colors, $i) !important;
+      }
+    }
+    #{$selector}hover-border-#{$code}-#{$a} {
+      &:hover {
+        border-color: nth($colors, $i) !important;
+      }
+    }
+    #{$selector}hover-text-#{$code}-#{$a} {
+      &:hover {
+        color: nth($colors, $i) !important;
+      }
+    }
+  }
+}
+
+@mixin blackWhiteGenerator($selector: ".") {
   #{$selector}bg-black {
     background-color: $black !important;
   }
@@ -83,38 +116,36 @@ $secondaryCode: "secondary";
       color: $white !important;
     }
   }
-  @for $i from 1 through length($colors) {
-    $a: $i * 100;
-    #{$selector}bg-#{$code}-#{$a} {
-      background-color: nth($colors, $i) !important;
-    }
-    #{$selector}border-#{$code}-#{$a} {
-      border-color: nth($colors, $i) !important;
-    }
-    #{$selector}text-#{$code}-#{$a} {
-      color: nth($colors, $i) !important;
-    }
 
-    //hover
+  //neutral_50
+  #{$selector}bg-neutral-50 {
+    background-color: $neutral_50 !important;
+  }
+  #{$selector}border-neutral-50 {
+    border-color: $neutral_50 !important;
+  }
+  #{$selector}text-neutral-50 {
+    color: $neutral_50 !important;
+  }
 
-    #{$selector}hover-bg-#{$code}-#{$a} {
-      &:hover {
-        background-color: nth($colors, $i) !important;
-      }
+  //hover
+
+  #{$selector}hover-bg-neutral-50 {
+    &:hover {
+      background-color: $neutral_50 !important;
     }
-    #{$selector}hover-border-#{$code}-#{$a} {
-      &:hover {
-        border-color: nth($colors, $i) !important;
-      }
+  }
+  #{$selector}hover-border-neutral-50 {
+    &:hover {
+      border-color: $neutral_50 !important;
     }
-    #{$selector}hover-text-#{$code}-#{$a} {
-      &:hover {
-        color: nth($colors, $i) !important;
-      }
+  }
+  #{$selector}hover-text-neutral-50 {
+    &:hover {
+      color: $neutral_50 !important;
     }
   }
 }
-
 @mixin callColorGenerator($selector: ".") {
   @include colorGenerator($neutralColor, $neutralCode, $selector);
   @include colorGenerator($primaryColor, $primaryCode, $selector);
@@ -123,4 +154,5 @@ $secondaryCode: "secondary";
   @include colorGenerator($dangerColor, $dangerCode, $selector);
   @include colorGenerator($infoColor, $infoCode, $selector);
   @include colorGenerator($secondaryColor, $secondaryCode, $selector);
+  @include blackWhiteGenerator($selector);
 }

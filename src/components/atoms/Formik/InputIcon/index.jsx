@@ -15,8 +15,8 @@ const InputIcon = (props) => {
             } text-start `}
           >
             <label className="font-sm-bold ">{props.label}</label>
-            <div className="input-area pl-16 bg-white">
-              {props.icon}
+            <div className="input-area  bg-white">
+              {props.icon ? <span className="pl-16"> {props.icon}</span> : ""}
               <input
                 type={props.type}
                 className={`w-full input-control ${props.inputClassName}`}
@@ -29,7 +29,7 @@ const InputIcon = (props) => {
                 onInput={props.onInput}
                 {...field}
               />
-              {props.icon2}
+              {props.icon2 ? <span className="pr-16"> {props.icon2}</span> : ""}
             </div>
             {meta.touched && meta.error && (
               <span className="text-danger-500">{meta.error}</span>

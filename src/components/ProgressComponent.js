@@ -9,20 +9,20 @@ const ProgressComponent = (props) => {
         data.push(checkedRound(Math.random()));
         data.push(checkedLine(Math.random()));
       }
-      if (i == props.activeProgress) {
+      if (i === props.activeProgress) {
         data.push(activeRound(Math.random()));
-        if (i != props.totalProgress) {
+        if (i !== props.totalProgress) {
           data.push(progressLine(Math.random()));
         }
       }
       if (i > props.activeProgress && i > props.activeProgress) {
         data.push(inactiveRound(Math.random()));
-        if (i != props.totalProgress) {
+        if (i !== props.totalProgress) {
           data.push(inactiveLine(Math.random()));
         }
       }
     }
-    if (props.activeProgress == props.totalProgress) {
+    if (props.activeProgress === props.totalProgress) {
       data.push(progressLine(Math.random(), true));
     } else {
       data.push(inactiveLine(Math.random(), true));

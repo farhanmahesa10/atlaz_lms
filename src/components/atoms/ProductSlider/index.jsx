@@ -5,7 +5,7 @@ const NextArrow = (props) => {
   const { className, style, onClick } = props;
   const [max, setMax] = useState(false);
   useEffect(() => {
-    if (onClick == null) {
+    if (onClick === null) {
       setMax(true);
     } else {
       setMax(false);
@@ -38,7 +38,7 @@ const PrevArrow = (props) => {
   const { className, style, onClick } = props;
   const [max, setMax] = useState(false);
   useEffect(() => {
-    if (onClick == null) {
+    if (onClick === null) {
       setMax(true);
     } else {
       setMax(false);

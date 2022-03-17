@@ -7,6 +7,7 @@ import BreadCrumb from "./BreadCrumb";
 import CarouselHero from "./CarouselHero";
 import CarouselCenter from "./CarouselCenter";
 import SliderNoArrow from "./SliderNoArrow";
+import GlobalToast from "./GlobalToast";
 export {
   FormikControl,
   SearchDropdown,
@@ -17,4 +18,5 @@ export {
   CarouselHero,
   CarouselCenter,
   SliderNoArrow,
+  GlobalToast,
 };

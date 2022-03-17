@@ -1,10 +1,11 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Header from "../../../components/Layout/AuthLayout/Header";
-const Verify = (props) => {
+import Header from "../../../Layout/AuthLayout/Header";
+const VerifyOrg = () => {
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -16,24 +17,29 @@ const Verify = (props) => {
         token,
       })
       .then((r) => {
-        props.setFlashMassage(
-          true,
-          "Account verification success!",
-          r.data.message,
-          true
-        );
+        dispatch({
+          type: "SET_FLASH_MESSAGE",
+          status: true,
+          title: "Account verification success!",
+          msg: r.data.message,
+          show: true,
+          isRedirecterToast: true,
+        });
         navigate("/login");
       })
       .catch((err) => {
-        props.setFlashMassage(
-          false,
-          "Account verification failed!",
-          err.response.data.message,
-          true
-        );
+        dispatch({
+          type: "SET_FLASH_MESSAGE",
+          status: false,
+          title: "Account verification failed!",
+          msg: err.response.data.message,
+          show: true,
+          isRedirecterToast: true,
+        });
+
         navigate("/login");
       });
-  });
+  }, []);
 
   return (
     <div className="d-flex h-screen flex-column justify-content-between align-items-center">
@@ -49,17 +55,5 @@ const Verify = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    flashMessage: state.flashMessage,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setFlashMassage: (status, title, msg, show) =>
-      dispatch({ type: "SET_FLASH_MESSAGE", status, title, msg, show }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Verify);
+export default connect()(VerifyOrg);

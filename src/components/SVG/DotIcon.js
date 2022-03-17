@@ -1,7 +1,7 @@
 import React from "react";
 
 const DotIcon = (props) => {
-  if (props.status == "success") {
+  if (props.status === "success") {
     return (
       <div>
         <svg
@@ -25,7 +25,7 @@ const DotIcon = (props) => {
     );
   }
 
-  if (props.status == "danger") {
+  if (props.status === "danger") {
     return (
       <div>
         <svg
