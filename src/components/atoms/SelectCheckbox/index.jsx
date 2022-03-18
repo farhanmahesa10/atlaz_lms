@@ -7,7 +7,7 @@ const OptionCheck = (props) => {
         <input
           type={"checkbox"}
           checked={props.isSelected}
-          className="mr-12 form-check-input"
+          className="mr-8 form-check-input"
           onChange={() => null}
         />
         <label>{props.label}</label>
@@ -22,7 +22,7 @@ const OptionRadio = (props) => {
         <input
           type={"radio"}
           checked={props.isSelected}
-          className="mr-12 form-check-input"
+          className="mr-8 form-check-input"
           onChange={() => null}
         />
         <label>{props.label}</label>
@@ -42,7 +42,7 @@ const SelectCheckbox = (props) => {
     menu: (provided, state) => ({
       ...provided,
       color: "black",
-      padding: 20,
+      padding: 8,
     }),
     control: (provided, state) => ({
       ...provided,
@@ -50,6 +50,7 @@ const SelectCheckbox = (props) => {
         borderColor: "#FDBF47",
         boxShadow: "none",
       },
+
       borderColor: state.isFocused ? "#FDBF47" : "lightgray",
       boxShadow: "none",
     }),
@@ -57,13 +58,16 @@ const SelectCheckbox = (props) => {
       ...provided,
       backgroundColor: state.isFocused ? "#E1E9F3" : "",
       color: "black",
+      borderRadius: "4px",
     }),
   };
 
   return (
     <div>
       <label className="fw-medium">{props.label}</label>
+
       <ReactSelect
+        defaultValue={props.withDefaultValue ? [items[0]] : null}
         options={items}
         isMulti={props.inputType === "radio" ? false : true}
         closeMenuOnSelect={props.inputType === "radio" ? true : false}
@@ -75,7 +79,6 @@ const SelectCheckbox = (props) => {
         onChange={handleCategoryChange}
         allowSelectAll={true}
         placeholder={props.placeholder}
-        value={optionSelected}
       />
     </div>
   );

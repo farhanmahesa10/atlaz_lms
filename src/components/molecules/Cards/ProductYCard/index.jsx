@@ -140,7 +140,7 @@ const ProductYCard = (props) => {
               </div>
             </div>
             <div className="">
-              <p className="h6 md-h5">Overview</p>
+              <p className="h6 md-h5 mb-8">Overview</p>
               <p className="font-xs text-neutral-400 md-font-sm">
                 Cut from geometric cotton lace mimicking decorative fretwork,
                 this blouse reveals hints of skin...

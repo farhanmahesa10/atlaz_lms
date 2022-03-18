@@ -5,8 +5,11 @@ import LineIcon from "../../SVG/LineIcon";
 import { ProductYCard } from "../../molecules";
 const HomeBookList = () => {
   return (
-    <>
-      <div className=" xl-px-48 pl-24 md-px-32 py-40 md-py-64 xl-py-104">
+    <div className="row gx-0 justify-content-center">
+      <div
+        className=" xl-px-48 md-px-32 py-40 md-py-64 xl-py-104 "
+        style={{ maxWidth: "1440px" }}
+      >
         <ProductSlider
           wDefault={4}
           w1440={5}
@@ -81,7 +84,7 @@ const HomeBookList = () => {
           ]}
         />
       </div>
-    </>
+    </div>
   );
 };
 

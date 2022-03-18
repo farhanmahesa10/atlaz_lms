@@ -7,6 +7,20 @@ const ProductDetailOrg = () => {
   const [searchData, setSearchData] = useState([]);
   const [imgCore, setImgCore] = useState("/images/product.png");
 
+  const breadcrumbsData = [
+    {
+      link: "/home",
+      label: "Home",
+    },
+    {
+      link: "/search-result/asdsad",
+      label: "Book List",
+    },
+    {
+      label: "English Escalate - Fourth",
+    },
+  ];
+
   const handleSearchChange = (val) => {
     setSearchData([
       { text: " English Play 01", link: "/search-result" },
@@ -55,7 +69,7 @@ const ProductDetailOrg = () => {
           onChange={handleSearchChange}
           searchRecomend={searchData}
         /> */}
-        <BreadCrumb />
+        <BreadCrumb data={breadcrumbsData} />
         <div className="row gx-0 mt-32 xl-mx-186">
           <div className="col-12 col-md-5 col-lg-6 d-flex flex-column align-items-center align-items-md-start ">
             <div className="w-p-90">
