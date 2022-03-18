@@ -84,12 +84,11 @@ const ProductYCard = (props) => {
           show={showCanvas}
           onHide={handleHideCanvas}
           placement="end"
-          className="d-flex flex-column justify-content-between align-items-center pb-40 sm-radius-tl-16 sm-radius-bl-16"
-          // style={{ background: "none" }}
+          className="d-flex flex-column justify-content-between align-items-center  sm-radius-tl-16 sm-radius-bl-16"
         >
           <div
             className="d-flex h-screen px-24 py-40 flex-column "
-            style={{ maxHeight: "668px" }}
+            style={{ maxHeight: "668px", overflowY: "auto" }}
           >
             <div className=" mb-24">
               <div className="d-flex  justify-content-between align-items-center">
@@ -148,10 +147,12 @@ const ProductYCard = (props) => {
               </p>
             </div>
           </div>
-          <div className="w-280 btn-secondary text-center">
-            <Link to="/product-detail" className="">
-              View Detail
-            </Link>
+          <div className="bg-white py-24 border-top border-secondary-500 w-full d-flex justify-content-center">
+            <div className="w-280 btn-secondary text-center">
+              <Link to="/product-detail" className="">
+                View Detail
+              </Link>
+            </div>
           </div>
         </Offcanvas>
       ) : (
