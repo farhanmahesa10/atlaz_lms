@@ -155,7 +155,7 @@
       @include fontBold();
     }
     img {
-      width: 196px;
+      width: 100%;
       padding: 0;
       margin: 0;
       line-height: 0;
@@ -171,6 +171,7 @@
     }
     .font-card-content {
       @include fontSm();
+      color: $neutral_300;
     }
     .font-card-price {
       @include fontMedium();
@@ -198,7 +199,7 @@
       @include fontSmBold();
     }
     img {
-      width: 160px;
+      width: 100%;
       padding: 0;
       margin: 0;
       line-height: 0;
@@ -214,6 +215,7 @@
     }
     .font-card-content {
       @include fontXs();
+      color: $neutral_300;
     }
     .font-card-price {
       @include fontSmMedium();
@@ -235,7 +237,7 @@
   //======================= y mob ==============================
 
   #{$selector}card-product-y-mob {
-    width: 104px;
+    width: 140px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
     border-radius: 14px;
     padding: 4px;
@@ -245,7 +247,7 @@
       @include fontXsBold();
     }
     img {
-      width: 104px;
+      width: 100%;
       padding: 0;
       margin: 0;
       line-height: 0;
@@ -265,6 +267,7 @@
       font-weight: normal;
       font-size: 9px;
       line-height: 8px;
+      color: $neutral_300;
     }
     .font-card-price {
       @include fontXsMedium();

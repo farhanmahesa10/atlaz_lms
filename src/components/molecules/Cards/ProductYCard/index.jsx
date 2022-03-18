@@ -50,10 +50,7 @@ const ProductYCard = (props) => {
   };
   return (
     <>
-      <div
-        onClick={handleClick}
-        className=" mr-12 md-mr-24 lg-mr-24 cursor-pointer"
-      >
+      <div onClick={handleClick} className=" cursor-pointer">
         <div className={` position-relative ${props.responsiveClass}`}>
           <div className="bg-white radius-bl-8 end-0 text-success-500 radius-rt-8 promo-label">
             Best Seller
@@ -94,21 +91,21 @@ const ProductYCard = (props) => {
             className="d-flex h-screen px-24 py-40 flex-column "
             style={{ maxHeight: "668px" }}
           >
-            <div className=" mb-32">
+            <div className=" mb-24">
               <div className="d-flex  justify-content-between align-items-center">
                 <h4 className="h5 md-h4">English Escalate Fourth</h4>
                 <p className=" fs-35 cursor-pointer" onClick={handleHideCanvas}>
                   &times;
                 </p>
               </div>
-              <p className="">Atlaz</p>
+              <p className="text-neutral-300">Atlaz</p>
             </div>
-            <div className="d-flex mt-2 justify-content-center mb-32">
-              <div className="w-140  ">
+            <div className="d-flex justify-content-center mb-16">
+              <div className="w-140  md-w-200 xl-w-250">
                 <img src="/images/product.png" alt="" className="w-full" />
               </div>
             </div>
-            <div className=" border h-56 mt-2 row align-items-center justify-content-between radius-8 mb-40">
+            <div className=" border h-56  row py-8 align-items-center justify-content-between radius-8 mb-40 bg-secondary-200">
               <div className="text-center lh-1 col-4 border-end">
                 <p className="font-medium">6</p>
                 <p className="  text-neutral-200 font-xs">Lesson</p>
@@ -145,7 +142,7 @@ const ProductYCard = (props) => {
             </div>
             <div className="">
               <p className="h6 md-h5">Overview</p>
-              <p className="font-size-12 m-0">
+              <p className="font-xs text-neutral-400 md-font-sm">
                 Cut from geometric cotton lace mimicking decorative fretwork,
                 this blouse reveals hints of skin...
               </p>

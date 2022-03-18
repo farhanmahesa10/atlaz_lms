@@ -6,68 +6,19 @@ import { ProductYCard } from "../../molecules";
 const HomeBookList = () => {
   return (
     <>
-      <div className=" lg-px-48 px-24 md-px-32">
+      <div className=" xl-px-48 pl-24 md-px-32 py-40 md-py-64 xl-py-104">
         <ProductSlider
           wDefault={4}
+          w1440={5}
           w1035={3}
           w980={3}
           w768={2}
-          content={[
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-            <ProductYCard
-              withCanvas
-              responsiveClass="card-product-y-mob md-card-product-y-tab lg-card-product-y-desk cursor-pointer"
-            />,
-          ]}
           header={
             <>
               <div className="d-flex   align-items-center">
-                <h3 className="mr-24 ">Atlaz Book List</h3>
+                <h5 className="mr-24 md-h4 xl-h3">Atlaz Book List</h5>
                 <Link
-                  to="/"
+                  to="/shop"
                   className="mt-1 text-primary-500 hover-text-primary-300 "
                 >
                   View all
@@ -78,6 +29,56 @@ const HomeBookList = () => {
               </div>
             </>
           }
+          content={[
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+            <ProductYCard
+              withCanvas
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />,
+          ]}
         />
       </div>
     </>

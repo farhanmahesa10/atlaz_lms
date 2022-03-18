@@ -7,17 +7,18 @@ import HomeScore from "./HomeScore";
 import HomeOurPartnership from "./HomeOurPartnership";
 import HomeWhatTheySay from "./HomeWhatTheySay";
 import MainLayout from "../../Layout/Mainlayout";
+import { ProductYCard } from "../../molecules";
 const HomeOrg = () => {
   return (
     <>
       <MainLayout navbarBg="secondary-200">
         <HomeHead />
         <HomeHowToPurchase />
-        {/* <HomeBookList /> */}
-        {/* <HomeRedeem /> */}
-        {/* <HomeScore /> */}
-        {/* <HomeOurPartnership /> */}
-        {/* <HomeWhatTheySay /> */}
+        <HomeBookList />
+        <HomeRedeem />
+        <HomeScore />
+        <HomeOurPartnership />
+        <HomeWhatTheySay />
       </MainLayout>
     </>
   );

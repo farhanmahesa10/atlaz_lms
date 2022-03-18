@@ -12,53 +12,57 @@ const HomeRedeem = () => {
   };
   return (
     <>
-      <div className=" lg-px-48 md-px-24  px-12 ">
-        <div className=" mt-104 ">
-          <div
-            className=" h-268 radius-16 row align-items-center px-24 md-px-76"
-            style={{
-              backgroundImage: "url('/images/bg_reedem.png')",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="  col-12 col-lg-5  ">
-              <h3 className="text-white">Redeem Your E-book Code</h3>
-              <div className="pb-12" style={{ marginTop: "-12px" }}>
-                <LineIcon />
+      <div className=" px-32  ">
+        <div
+          className="  py-52 radius-16 row align-items-center md-px-76"
+          style={{
+            backgroundImage: "url('/images/bg_reedem.png')",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="  col-12 px-24  md-px-0">
+            <div className="d-xl-flex justify-content-between align-items-center">
+              <div className="mb-24 xl-mb-0 xl-w-494">
+                <h5 className="text-white">Redeem Your E-book Code</h5>
+                <div className="pb-8" style={{ marginTop: "-12px" }}>
+                  <LineIcon />
+                </div>
+                <p className="text-neutral-100 font-sm xl-font-normal">
+                  Find the redeem code in first page of book you have purchased.
+                  Enjoy the feature of learn anytime with #YourLearningPal
+                </p>
               </div>
-              <p className="text-white">
-                Find the redeem code in first page of book you have purchased.
-                Enjoy the feature of learn anytime with #YouLearningPal.
-              </p>
-            </div>
-            <div className="col-lg-2 d-none d-lg-block"></div>
-            <div className="  col-12 col-lg-5 ">
-              <Formik
-                initialValues={initialValues}
-                onSubmit={onSubmit}
-                validateOnBlur={false}
-                enableReinitialize={true}
-              >
-                <Form>
-                  <FormikControl
-                    control="input"
-                    type="text"
-                    placeholder="Input activation code here "
-                    name="code"
-                    icon2={
-                      <div className="p-4">
-                        <button
-                          className="btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                        >
-                          Redeem
-                        </button>
-                      </div>
-                    }
-                  />
-                </Form>
-              </Formik>
+              <div className="xl-w-494 ">
+                <Formik
+                  initialValues={initialValues}
+                  onSubmit={onSubmit}
+                  validateOnBlur={false}
+                  enableReinitialize={true}
+                >
+                  <Form>
+                    <FormikControl
+                      control="input"
+                      type="text"
+                      placeholder="Enter 12 digit of code "
+                      name="code"
+                      coverClassName="h-36 md-h-44"
+                      inputClassName="font-xs md-font-normal"
+                      icon2={
+                        <div className="py-4">
+                          <button
+                            className="btn-primary font-xs md-font-normal"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Redeem
+                          </button>
+                        </div>
+                      }
+                      icon2ClassName="pr-4"
+                    />
+                  </Form>
+                </Formik>
+              </div>
             </div>
           </div>
         </div>

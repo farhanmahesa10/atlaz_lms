@@ -15,7 +15,7 @@ const InputIcon = (props) => {
             } text-start `}
           >
             <label className="font-sm-bold ">{props.label}</label>
-            <div className="input-area  bg-white">
+            <div className={`input-area  bg-white ${props.coverClassName}`}>
               {props.icon ? <span className="pl-16"> {props.icon}</span> : ""}
               <input
                 type={props.type}
@@ -29,7 +29,18 @@ const InputIcon = (props) => {
                 onInput={props.onInput}
                 {...field}
               />
-              {props.icon2 ? <span className="pr-16"> {props.icon2}</span> : ""}
+              {props.icon2 ? (
+                <span
+                  className={
+                    props.icon2ClassName ? props.icon2ClassName : "pr-16"
+                  }
+                >
+                  {" "}
+                  {props.icon2}
+                </span>
+              ) : (
+                ""
+              )}
             </div>
             {meta.touched && meta.error && (
               <span className="text-danger-500">{meta.error}</span>

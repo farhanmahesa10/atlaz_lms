@@ -5,7 +5,7 @@ import LineIcon from "../../SVG/LineIcon";
 const HomeHowToPurchase = () => {
   return (
     <div
-      className="d-flex justify-content-center px-24  xl-pb-210  pt-24  md-pt-78 xl-pt-211"
+      className="d-flex justify-content-center px-24  xl-pb-210  pt-24  md-pt-78 xl-pt-211 pb-24 md-pb-78 "
       style={{
         backgroundImage: "url('/images/contour.png')",
         backgroundRepeat: " no-repeat",

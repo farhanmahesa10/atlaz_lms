@@ -13,7 +13,7 @@ const NextArrow = (props) => {
   });
   return (
     <div
-      className="0 d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
+      className="0 d-none d-xl-block text-primary-500 fw-bold px-1 cursor-pointer "
       style={{
         position: "absolute",
         right: "30px",
@@ -47,7 +47,7 @@ const PrevArrow = (props) => {
 
   return (
     <div
-      className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
+      className=" d-none d-xl-block text-primary-500 fw-bold px-1 cursor-pointer "
       style={{
         position: "absolute",
         right: "90px",
@@ -130,7 +130,7 @@ const ProductSlider = (props) => {
       <Slider {...settings}>
         {props.content.map((r) => {
           return (
-            <div className="pb-1 mr-55 " key={Math.random()}>
+            <div className="pb-1 mr-16 md-mr-84 xl-mr-81" key={Math.random()}>
               {r}
             </div>
           );

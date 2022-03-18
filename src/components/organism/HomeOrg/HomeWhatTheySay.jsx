@@ -6,7 +6,7 @@ import LineIcon from "../../SVG/LineIcon";
 const HomeWhatTheySay = () => {
   return (
     <>
-      <div className=" px-25 mt-128 ">
+      <div className=" mt-48 md-mt-64 xl-mt-104">
         <div className="text-center mb-54">
           <h3 className="m-0">What they say</h3>
           <div style={{ marginTop: "-10px" }}>
