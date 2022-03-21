@@ -59,7 +59,7 @@ const SliderNoArrow = (props) => {
       <Slider {...settings}>
         {props.content.map((r) => {
           return (
-            <div className="pb-1" key={Math.random()}>
+            <div className="pb-1  mr-16 md-mr-24" key={Math.random()}>
               {r}
             </div>
           );
