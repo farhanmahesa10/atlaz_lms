@@ -7,7 +7,7 @@ const HomeBookList = () => {
   return (
     <div className="row gx-0 justify-content-center">
       <div
-        className=" xl-px-48 md-px-32 py-40 md-py-64 xl-py-104 "
+        className=" xl-px-48 md-px-32 pt-48 md-pt-64 xl-pt-104  "
         style={{ maxWidth: "1440px" }}
       >
         <ProductSlider

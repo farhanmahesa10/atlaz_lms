@@ -63,19 +63,16 @@ const ProductDetailOrg = () => {
   ]);
   return (
     <MainLayout>
-      <div className="mt-16 px-24 mt-24 ">
-        {/* <SearchDropdown
-          submitLink="/search-result"
-          onChange={handleSearchChange}
-          searchRecomend={searchData}
-        /> */}
-        <BreadCrumb data={breadcrumbsData} />
-        <div className="row gx-0 mt-32 xl-mx-186">
+      <div className=" m-24">
+        <div className="d-none">
+          <BreadCrumb data={breadcrumbsData} />
+        </div>
+        <div className="row gx-0 ">
           <div className="col-12 col-md-5 col-lg-6 d-flex flex-column align-items-center align-items-md-start ">
-            <div className="w-p-90">
+            <div className="w-p-100 mb-5">
               <img src={imgCore} className="w-full h-auto" alt="" />
             </div>
-            <div className="w-p-90 d-grid grid-cols-4 gap-1">
+            <div className="w-p-100 d-grid grid-cols-4  justify-content-between gap-2">
               <div className="w-p-100">
                 <img
                   src="/images/product.png"
