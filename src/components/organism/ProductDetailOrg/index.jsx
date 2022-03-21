@@ -153,9 +153,11 @@ const ProductDetailOrg = () => {
                   <div>
                     <p>Promo Price</p>
                     <div className="d-flex gap-2 align-items-center ">
-                      <h5 className="h5 md-h3 xl-h2 text-success-500">
+                      <h5 className="h5 md-h3 xl-h2 text-success-500 ">
                         Rp80.000
-                        <s className="font-sm text-neutral-300">Rp170.999</s>
+                        <s className="font-sm text-neutral-300 ml-8">
+                          Rp170.999
+                        </s>
                       </h5>
                       <p className="bg-danger-100 text-danger-500 px-8 py-4 font-xs md-font-sm-medium md-font-medium radius-4 border-danger-500 border ">
                         50% off
