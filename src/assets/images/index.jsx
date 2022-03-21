@@ -4,5 +4,16 @@ import buka from "./buka.png";
 import tokped from "./tokped.png";
 import gram from "./gram.png";
 import bgPartnership from "./bg-partnership.png";
+import bgAuthTab from "./bg-auth-tab.png";
+import bgAuthDesk from "./bg-auth-desk.png";
 
-export { blibli, shopee, buka, tokped, gram, bgPartnership };
+export {
+  blibli,
+  shopee,
+  buka,
+  tokped,
+  gram,
+  bgPartnership,
+  bgAuthTab,
+  bgAuthDesk,
+};

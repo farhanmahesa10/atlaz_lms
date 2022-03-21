@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   BreadCrumb,
   FormikControl,
@@ -210,11 +211,11 @@ const SearchResultOrg = (props) => {
                         coverClassName={"h-24 w-24 px-2"}
                       />
                       <div className="border-end mx-8">&nbsp;</div>
-                      <button className="cursor-pointer bg-white radius-4 border w-24 h-24">
-                        <ArrowForwardIcon style={{ fontSize: "12px" }} />
+                      <button className="cursor-pointer hover-bg-primary-100 bg-white radius-4 border w-24 h-24">
+                        <ArrowBackIcon style={{ fontSize: "12px" }} />
                       </button>
-                      <button className="cursor-pointer bg-white radius-4 border  w-24 h-24">
-                        <i className="bi bi-arrow-right-short "></i>
+                      <button className="cursor-pointer hover-bg-primary-100 bg-white radius-4 border  w-24 h-24">
+                        <ArrowForwardIcon style={{ fontSize: "12px" }} />
                       </button>
                     </div>
                   </div>

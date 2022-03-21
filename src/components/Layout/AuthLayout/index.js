@@ -21,9 +21,9 @@ const AuthLayout = (props) => {
   }, []);
 
   return (
-    <div className=" h-screen">
+    <div className=" h-screen bg-auth-img">
       <Header hideBackButton={props.hideBackButton} />
-      <div className="mb-104">{props.children}</div>
+      <div className="mb-104 ">{props.children}</div>
     </div>
   );
 };

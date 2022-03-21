@@ -28,49 +28,6 @@ const LoginOrg = (props) => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
-  // const callToast = (title, msg, status = false) => {
-  //   toast.custom(
-  //     <div
-  //       className="d-flex gap-2 align-items-center p-16 radius-8 bg-white  position-relative"
-  //       style={{
-  //         width: "320px",
-  //         border: status ? "1px solid #0dcaf0" : "1px solid #DC3545",
-  //       }}
-  //     >
-  //       <i
-  //         className={`bi ${
-  //           status
-  //             ? "bi-check-circle text-success-500"
-  //             : "bi-x-circle text-danger-500"
-  //         } fs-16 pe-2 `}
-  //       ></i>
-  //       <div className="text-left " style={{ textAlign: "left" }}>
-  //         <strong className="d-block font-bold pb-1 m-0">{title}</strong>
-  //         <p className="text-left font-sm d-block m-0 ">{msg}</p>
-  //       </div>
-  //       <div
-  //         className="cursor-pointer flex-fill position-absolute end-0 top-0"
-  //         onClick={(e) => {
-  //           toast.remove();
-  //         }}
-  //       >
-  //         <p className="p-8 "> &times;</p>
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   if (props.flashMessage.show) {
-  //     callToast(
-  //       props.flashMessage.title,
-  //       props.flashMessage.msg,
-  //       props.flashMessage.status
-  //     );
-  //     props.setFlashMassage(false, false, false);
-  //   }
-  // }, []);
-
   const onSubmit = (values) => {
     setIsLoading(true);
     axios
@@ -98,7 +55,7 @@ const LoginOrg = (props) => {
       {isLoading ? <Pace color="#FDCC6C" height={4} /> : null}
       <AuthLayout>
         <div className="d-flex justify-content-center px-24 px-0">
-          <div className="auth-wrapper w-full mt-66 md-mt-132">
+          <div className="auth-wrapper  w-full mt-66 md-mt-132">
             <div className="w-full">
               <h4 className="text-center">Welcome back, Atlazen!</h4>
               <GoogleButton

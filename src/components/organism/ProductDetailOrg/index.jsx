@@ -123,7 +123,7 @@ const ProductDetailOrg = () => {
                   </p>
                   <h3 className="h4 md-h3">English Escalate - Fourth</h3>
 
-                  <div className="d-flex mb-30 align-items-center  ">
+                  <div className="d-flex mb-30 xl-mb-38 align-items-center  ">
                     <p className="font-sm md-font-normal text-neutral-300 mr-8">
                       Atlaz Belajar Bahasa
                     </p>
@@ -136,7 +136,7 @@ const ProductDetailOrg = () => {
                       <span className="fs-9">&nbsp; 5.0/5.0</span>
                     </div>
                   </div>
-                  <div className="mb-30">
+                  <div className="mb-30 xl-mb-38">
                     <p
                       className="text-neutral-400 font-xs md-font-sm xl-font-normal "
                       style={{ textAlign: "justify" }}
@@ -145,9 +145,7 @@ const ProductDetailOrg = () => {
                       Disposing commanded dashwoods cordially depending at at.
                       Its strangers who you certainty earnestly resources
                       suffering she. Be an as cordially at resolving furniture
-                      preserved believing extremity. Easy mr pain felt in. Too
-                      northward affection additions nay. He no an nature ye
-                      talent houses wisdom vanity denied.
+                      preserved believing extremity.
                     </p>
                   </div>
                   <div>
@@ -181,7 +179,7 @@ const ProductDetailOrg = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="mt-20 row gx-0 ">
+                  <div className="mt-34 row gx-0 ">
                     <div className="col-12">
                       <button
                         className="btn-primary w-full font-xs md-font-sm xl-font-normal"
@@ -233,7 +231,7 @@ const ProductDetailOrg = () => {
                       Animal, plants, and their habitats
                     </button>
                   </div>
-                  <div className="mt-32">
+                  <div className="mt-68 xlmt-88">
                     <div className="mb-16">
                       <p className="h5 xl-h4 ">Book Features </p>
                       <div className="rectangle w-64 bg-primary-500 h-2 "></div>

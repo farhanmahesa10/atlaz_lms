@@ -6,7 +6,7 @@ import AuthLayout from "../AuthLayout";
 const RegisterLayout = (props) => {
   return (
     <div className=" h-screen w-full">
-      <div className="d-md-none w-full px-28  mt-24 justify-content-center   d-flex ">
+      <div className="d-md-none  px-28  mt-24 justify-content-center   d-flex ">
         <ProgressComponent
           totalProgress={props.totalProgress}
           activeProgress={props.activeProgress}

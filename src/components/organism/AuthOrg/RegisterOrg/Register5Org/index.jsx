@@ -70,18 +70,19 @@ const Register5Org = (props) => {
   return (
     <>
       <GlobalToast />
-      <div className="h-screen d-flex justify-content-between align-items-center flex-column">
+      <div className="h-screen d-flex justify-content-between align-items-center flex-column bg-auth-img ">
         <div className="w-full">
           <Header />
         </div>
-        <div className="w-500 text-center">
+
+        <div className="text-center auth-wrapper   ">
           <div className="text-center mb-52">
             <img src="/images/gmail.png" alt="" />
           </div>
-          <h2 className="mb-8">Please check your email</h2>
-          <div className="d-flex align-items-center  align-items">
+          <h2 className="mb-8 h4 md-h2">Please check your email</h2>
+          <div className="d-flex align-items-center">
             <div>
-              <p className="mb-4">
+              <p className="mb-4 px-24 md-px-0 font-xs md-font-normal">
                 Please check your email to confirm the registration email we
                 sent. Haven’t received an email? Please check your spam folder
                 to make sure it’s not in there.
