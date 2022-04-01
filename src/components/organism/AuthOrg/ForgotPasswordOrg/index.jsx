@@ -48,7 +48,6 @@ const ForgotPasswordOrg = () => {
 
   const onSubmit = (values) => {
     if (progressValue < 1) {
-      console.log("okes");
       axios
         .post(process.env.REACT_APP_BASE_API_URL + "/password/reset", values)
         .then((r) => {
@@ -74,14 +73,14 @@ const ForgotPasswordOrg = () => {
     }
   };
   return (
-    <AuthLayout hideBackButton={true}>
+    <AuthLayout>
       <div className="d-flex justify-content-center px-24 px-0">
         <div className="auth-wrapper w-full mt-66 md-mt-132">
           <div className="w-full">
-            <h4 className=" text-center">Forgot Password</h4>
+            <h2 className=" text-center">Forgot Password</h2>
             <p className="mt-8 mb-32 lg-position-relative text-center">
-              Submit your email address and we will send recovery password to
-              your email
+              Reset your password by enter email address and check the recovery
+              password in your email.
             </p>
             <Formik
               initialValues={initialValues}
@@ -95,7 +94,7 @@ const ForgotPasswordOrg = () => {
                     control="input"
                     name="email"
                     type="text"
-                    icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                    icon={<i className="bi bi-envelope text-neutral-200"></i>}
                     label="Email Address"
                     labelClassName="font-xs-bold"
                     placeholder="Enter your email"
@@ -123,12 +122,18 @@ const ForgotPasswordOrg = () => {
                     to="/login"
                     className="btn-outline text-center border col text-neutral-700 btn-rounded"
                   >
-                    Log in
+                    Back to Login
                   </Link>
                 </div>
                 <GlobalToast />
               </Form>
             </Formik>
+            <div className="text-center mt-56">
+              New in Atlaz?{" "}
+              <Link to="/register" className="text-primary-400">
+                Sign up now
+              </Link>
+            </div>
           </div>
         </div>
       </div>

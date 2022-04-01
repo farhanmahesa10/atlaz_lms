@@ -25,7 +25,7 @@ const LoginOrg = (props) => {
   const navigate = useNavigate();
 
   const loginGoogle = () => {
-    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+    window.open(process.env.REACT_APP_GOOGLE_AUTH_PAGE_URL, "_self");
   };
 
   const onSubmit = (values) => {
@@ -100,7 +100,7 @@ const LoginOrg = (props) => {
                   <div className="mb-48 d-flex justify-content-between">
                     <div>
                       <input type="checkbox" className=" form-check-input" />{" "}
-                      Remember me
+                      <span className="text-neutral-400">Remember me</span>
                     </div>
                     <div>
                       <Link to="/forgot-password" type="button">

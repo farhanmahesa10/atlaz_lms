@@ -25,7 +25,7 @@ const Register1Org = () => {
 
   const navigate = useNavigate();
   const loginGoogle = () => {
-    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+    window.open(process.env.REACT_APP_GOOGLE_AUTH_PAGE_URL, "_self");
   };
 
   const onSubmit = (values) => {
