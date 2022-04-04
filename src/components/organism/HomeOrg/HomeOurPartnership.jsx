@@ -16,7 +16,7 @@ const HomeOurPartnership = () => {
               }}
             >
               <div className=" col-12 mb-48">
-                <h5 className="m-0 text-left">Our Partnership</h5>
+                <p className="m-0 text-left h5 md-h4 xl-h3">Our Partnership</p>
                 <div className="rectangle bg-primary-500 w-64 h-2"></div>
               </div>
 

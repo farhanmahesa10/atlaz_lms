@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
   const [max, setMax] = useState(false);
@@ -22,13 +23,11 @@ const SampleNextArrow = (props) => {
       onClick={onClick}
     >
       <button
-        className={`embla__button ${
+        className={`embla__button  d-flex align-items-center justify-content-center  text-primary-500  ${
           max ? "bg-secondary-200" : "bg-secondary-400"
         }  radius-14 embla__button--next`}
       >
-        <svg className="embla__button__svg" viewBox="0 0 238.003 238.003">
-          <path d="M181.776 107.719L78.705 4.648c-6.198-6.198-16.273-6.198-22.47 0s-6.198 16.273 0 22.47l91.883 91.883-91.883 91.883c-6.198 6.198-6.198 16.273 0 22.47s16.273 6.198 22.47 0l103.071-103.039a15.741 15.741 0 0 0 4.64-11.283c0-4.13-1.526-8.199-4.64-11.313z" />
-        </svg>
+        <ChevronRightIcon style={{ fontSize: "30px" }} />
       </button>
     </div>
   );
@@ -51,18 +50,16 @@ const SamplePrevArrow = (props) => {
       style={{
         position: "absolute",
         right: "53%",
-        bottom: "-18.8px",
+        bottom: "-35px",
       }}
       onClick={onClick}
     >
       <button
-        className={`embla__button ${
+        className={`embla__button   d-flex align-items-center justify-content-center  text-primary-500   ${
           max ? "bg-secondary-200" : "bg-secondary-400"
-        }  radius-14  embla__button--prev`}
+        }  radius-14  embla__button--next`}
       >
-        <svg className="embla__button__svg" viewBox="0 0 238.003 238.003">
-          <path d="M181.776 107.719L78.705 4.648c-6.198-6.198-16.273-6.198-22.47 0s-6.198 16.273 0 22.47l91.883 91.883-91.883 91.883c-6.198 6.198-6.198 16.273 0 22.47s16.273 6.198 22.47 0l103.071-103.039a15.741 15.741 0 0 0 4.64-11.283c0-4.13-1.526-8.199-4.64-11.313z" />
-        </svg>
+        <ChevronLeftIcon style={{ fontSize: "30px" }} />
       </button>
     </div>
   );

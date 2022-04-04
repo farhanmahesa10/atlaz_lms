@@ -6,7 +6,7 @@ const MainLayout = (props) => {
   return (
     <>
       <div className="d-flex flex-column gx-0" style={{ minHeight: "100vh" }}>
-        <MainHeader />
+        <MainHeader navbarBg="bg-secondary-100" />
         <main className="flex-shrink-0 mb-128  justify-content-center mt-76">
           {props.beforeChildren}
           <div className="row gx-0 justify-content-center mt-7">

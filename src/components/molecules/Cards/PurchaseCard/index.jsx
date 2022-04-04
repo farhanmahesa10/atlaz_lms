@@ -8,7 +8,7 @@ const PurchaseCard = (props) => {
       </div>
       <div className=" pt-16">
         <h5 className="">{props.title}</h5>
-        <p className="">{props.body}</p>
+        <p className="text-neutral-400">{props.body}</p>
       </div>
     </div>
   );

@@ -30,10 +30,12 @@ const MainHeader = (props) => {
     {
       link: "/",
       label: "Home",
+      shouldLogin: true,
     },
     {
       link: "/shop",
       label: "Shop",
+      shouldLogin: true,
     },
   ];
 
@@ -46,8 +48,8 @@ const MainHeader = (props) => {
   return (
     <>
       <Navbar
-        bg={`${props.navbarBg ? navBg : "bg-white"}`}
-        className="border-bottom m-0 p-0 border-secondary-300 position-fixed h-82 bg-white w-full"
+        bg={`${props.navbarBg ? navBg : "bg-white "}`}
+        className={`border-bottom m-0 p-0 border-secondary-300 position-fixed h-82  w-full ${props.navbarBg}`}
         expand="lg"
         style={{ zIndex: 9 }}
       >
@@ -70,11 +72,21 @@ const MainHeader = (props) => {
           />
           <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
             {menus.map((r) => {
-              return (
-                <Link key={Math.random()} to={r.link} className="px-12">
-                  {r.label}
-                </Link>
-              );
+              if (r.shouldLogin) {
+                if (props.isLogin) {
+                  return (
+                    <Link key={Math.random()} to={r.link} className="px-12">
+                      {r.label}
+                    </Link>
+                  );
+                }
+              } else {
+                return (
+                  <Link key={Math.random()} to={r.link} className="px-12">
+                    {r.label}
+                  </Link>
+                );
+              }
             })}
           </Nav>
           <Nav
@@ -111,11 +123,21 @@ const MainHeader = (props) => {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 {menus.map((r) => {
-                  return (
-                    <Link key={Math.random()} to={r.link} className="py-12">
-                      {r.label}
-                    </Link>
-                  );
+                  if (r.shouldLogin) {
+                    if (props.isLogin) {
+                      return (
+                        <Link key={Math.random()} to={r.link} className="py-12">
+                          {r.label}
+                        </Link>
+                      );
+                    }
+                  } else {
+                    return (
+                      <Link key={Math.random()} to={r.link} className="py-12">
+                        {r.label}
+                      </Link>
+                    );
+                  }
                 })}
               </Nav>
               {!props.isLogin ? (

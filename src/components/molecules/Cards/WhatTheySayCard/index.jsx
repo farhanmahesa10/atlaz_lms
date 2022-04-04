@@ -7,7 +7,7 @@ const WhatTheySayCard = (props) => {
         boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.16) ",
       }}
       // style={props.style}
-      className={` py-8 px-16 md-py-24  md-px-46 h-256 w-250 md-w-450 lg-w-520 d-flex slick-opacity-50  radius-14 flex-column justify-content-between ${props.className}`}
+      className={` py-8 px-16 md-py-24 bg-secondary-100 md-px-46 h-256 w-250 md-w-450 xl-w-520 d-flex slick-opacity-50  radius-14 flex-column justify-content-between ${props.className}`}
     >
       <div>
         <div className=" d-flex   align-items-center gap-2 ">
@@ -16,7 +16,7 @@ const WhatTheySayCard = (props) => {
             height="32"
             width="32"
             alt=""
-            className="bg-danger rounded-circle"
+            className="rounded-circle"
           />
           <div>
             <p className="font-xs-bold md-font-sm-bold">Devon Lane</p>

@@ -26,7 +26,9 @@ const HomeRedeem = () => {
                 <div className="  col-12 px-24  md-px-0">
                   <div className="d-xl-flex justify-content-between align-items-center">
                     <div className="mb-24 xl-w-494 ">
-                      <h5 className="text-white">Redeem Your E-book Code</h5>
+                      <p className="text-white h5 md-h4 xl-h3">
+                        Redeem Your E-book Code
+                      </p>
                       <div className="pb-8" style={{ marginTop: "-12px" }}>
                         <LineIcon />
                       </div>
