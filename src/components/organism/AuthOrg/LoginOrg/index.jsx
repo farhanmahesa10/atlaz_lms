@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { FormikControl, GlobalToast, GoogleButton } from "../../../atoms";
 import AuthLayout from "../../../Layout/AuthLayout";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 const LoginOrg = (props) => {
   const initialValues = {
     email: "",
@@ -81,7 +82,9 @@ const LoginOrg = (props) => {
                       control="input"
                       name="email"
                       type="text"
-                      icon={<i className="bi bi-envelope text-neutral-400"></i>}
+                      icon={
+                        <MailOutlineIcon className="text-neutral-400 fs-20 pl-16" />
+                      }
                       label="Email Address"
                       labelClassName="font-xs-bold"
                       placeholder="Enter your email"

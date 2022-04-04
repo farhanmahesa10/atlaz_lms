@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 const InputPassword = (props) => {
   const [eye, setEye] = useState(false);
   const [type, setType] = useState("password");
@@ -28,7 +29,7 @@ const InputPassword = (props) => {
             >
               <label className="font-sm-bold">{props.label}</label>
               <div className="input-area pl-16">
-                <i className="bi bi-lock"></i>
+                <LockOutlinedIcon className="text-neutral-400 fs-20" />
                 <input
                   type={type}
                   className={`w-full input-control ${props.inputClassName}`}

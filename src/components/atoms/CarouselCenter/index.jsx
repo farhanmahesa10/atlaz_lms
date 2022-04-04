@@ -17,7 +17,7 @@ const SampleNextArrow = (props) => {
       className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
       style={{
         position: "absolute",
-        left: "53%",
+        right: "44%",
         bottom: "-35px",
       }}
       onClick={onClick}
@@ -25,7 +25,7 @@ const SampleNextArrow = (props) => {
       <button
         className={`embla__button  d-flex align-items-center justify-content-center  text-primary-500  ${
           max ? "bg-secondary-200" : "bg-secondary-400"
-        }  radius-14 embla__button--next`}
+        }  radius-8 embla__button--next`}
       >
         <ChevronRightIcon style={{ fontSize: "30px" }} />
       </button>
@@ -49,7 +49,7 @@ const SamplePrevArrow = (props) => {
       className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
       style={{
         position: "absolute",
-        right: "53%",
+        left: "41%",
         bottom: "-35px",
       }}
       onClick={onClick}
@@ -57,7 +57,7 @@ const SamplePrevArrow = (props) => {
       <button
         className={`embla__button   d-flex align-items-center justify-content-center  text-primary-500   ${
           max ? "bg-secondary-200" : "bg-secondary-400"
-        }  radius-14  embla__button--next`}
+        }  radius-8  embla__button--next`}
       >
         <ChevronLeftIcon style={{ fontSize: "30px" }} />
       </button>
