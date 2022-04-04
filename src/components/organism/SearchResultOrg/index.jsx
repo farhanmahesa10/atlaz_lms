@@ -112,7 +112,7 @@ const SearchResultOrg = (props) => {
                     </div>
                     <div className={`col-12 ${!showFilter ? "d-none" : ""}`}>
                       <div className="row">
-                        <div className={`col-12 col-sm-6 col-lg-3 mb-16`}>
+                        <div className={`col-12 col-sm-6 col-xl-3 mb-16`}>
                           <SelectCheckbox
                             withDefaultValue
                             inputType={"radio"}
@@ -121,7 +121,7 @@ const SearchResultOrg = (props) => {
                             placeholder="Sort by..."
                           />
                         </div>
-                        <div className="col-12 col-sm-6 col-lg-3 mb-16">
+                        <div className="col-12 col-sm-6 col-xl-3 mb-16">
                           <SelectCheckbox
                             isMulti={true}
                             label="Level"
@@ -129,7 +129,7 @@ const SearchResultOrg = (props) => {
                             placeholder="All Level"
                           />
                         </div>
-                        <div className="col-12 col-sm-6 col-lg-3 mb-16">
+                        <div className="col-12 col-sm-6 col-xl-3 mb-16">
                           <label className="fw-medium">Minimum price</label>
                           <FormikControl
                             control="input"
@@ -139,7 +139,7 @@ const SearchResultOrg = (props) => {
                             inputClassName="hide-arrow"
                           />
                         </div>
-                        <div className="col-12 col-sm-6 col-lg-3 mb-16">
+                        <div className="col-12 col-sm-6 col-xl-3 mb-16">
                           <label className="fw-medium">Maximum price</label>
                           <FormikControl
                             control="input"
@@ -158,37 +158,37 @@ const SearchResultOrg = (props) => {
                 </Form>
               </Formik>
               <div className=" row justify-content-center ">
-                <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
+                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"
                   />
                 </div>
-                <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
+                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"
                   />
                 </div>
-                <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
+                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"
                   />
                 </div>
-                <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
+                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"
                   />
                 </div>
-                <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
+                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"
                   />
                 </div>
-                <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 ">
+                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"

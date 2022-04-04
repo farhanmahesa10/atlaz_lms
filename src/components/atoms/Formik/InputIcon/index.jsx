@@ -16,7 +16,13 @@ const InputIcon = (props) => {
           >
             <label className="font-sm-bold ">{props.label}</label>
             <div className={`input-area  bg-white ${props.coverClassName}`}>
-              {props.icon ? props.icon : ""}
+              {props.icon ? (
+                <span className="pl-16 d-flex align-items-center">
+                  {props.icon}
+                </span>
+              ) : (
+                ""
+              )}
               <input
                 type={props.type}
                 className={`w-full input-control ${props.inputClassName}`}

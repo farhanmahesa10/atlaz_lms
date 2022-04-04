@@ -83,7 +83,7 @@ const LoginOrg = (props) => {
                       name="email"
                       type="text"
                       icon={
-                        <MailOutlineIcon className="text-neutral-400 fs-20 pl-16" />
+                        <MailOutlineIcon className="text-neutral-200 fs-20 " />
                       }
                       label="Email Address"
                       labelClassName="font-xs-bold"

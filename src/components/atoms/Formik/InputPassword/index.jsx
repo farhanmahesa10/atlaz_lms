@@ -29,7 +29,7 @@ const InputPassword = (props) => {
             >
               <label className="font-sm-bold">{props.label}</label>
               <div className="input-area pl-16">
-                <LockOutlinedIcon className="text-neutral-400 fs-20" />
+                <LockOutlinedIcon className="text-neutral-200 fs-20" />
                 <input
                   type={type}
                   className={`w-full input-control ${props.inputClassName}`}
@@ -43,7 +43,7 @@ const InputPassword = (props) => {
                 <i
                   className={`bi ${
                     eye ? "bi-eye-fill" : "bi-eye-slash-fill"
-                  } pr-16 text-neutral-400 cursor-pointer`}
+                  } pr-16 text-neutral-200 cursor-pointer`}
                   onClick={eyeIconHalde}
                 ></i>
               </div>
