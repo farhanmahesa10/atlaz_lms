@@ -10,7 +10,7 @@ const BreadCrumb = (props) => {
         <ol className="breadcrumb">
           {data.map((r, i) => {
             return (
-              <li className="breadcrumb-item font-xs">
+              <li className="breadcrumb-item font-xs" key={i}>
                 <Link
                   to={r.link ? r.link : ""}
                   className={r.link ? "text-primary-500" : "text-neutral-400"}

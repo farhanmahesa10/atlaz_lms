@@ -92,6 +92,7 @@ const ForgotPasswordOrg = () => {
                 <div className="mb-40 text-start">
                   <FormikControl
                     control="input"
+                    coverClassName="h-40"
                     name="email"
                     type="text"
                     icon={<i className="bi bi-envelope text-neutral-200"></i>}

@@ -79,6 +79,7 @@ const Register4Org = () => {
             <div className=" text-start">
               <FormikControl
                 control="inputPassword"
+                coverClassName="h-40"
                 label="Password"
                 name="password"
                 labelClassName="font-xs-bold"

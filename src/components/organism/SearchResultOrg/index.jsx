@@ -11,6 +11,7 @@ import {
 } from "../../atoms";
 import MainLayout from "../../Layout/Mainlayout";
 import { ProductYCard } from "../../molecules";
+import { GET } from "../../../config/RestAPI";
 
 const SearchResultOrg = (props) => {
   const [searchParams] = useSearchParams();
@@ -19,13 +20,12 @@ const SearchResultOrg = (props) => {
   const [maxPrice, setMaxPrice] = useState(0);
   const keyword = searchParams.get("keyword");
 
-  const handleChange = (val) => {
-    setSearchData([
-      { text: " English Play 01", link: "/search-result" },
-      { text: " English Play 02", link: "/search-result" },
-      { text: " English Play 03", link: "/search-result" },
-      { text: " English Play 04", link: "/search-result" },
-    ]);
+  const handleChange = (e) => {
+    GET("/client/landing/booklist/search?keyword=" + e.target.value).then(
+      (r) => {
+        setSearchData(r.data);
+      }
+    );
   };
 
   const [sortData, setSortData] = useState([
@@ -158,42 +158,12 @@ const SearchResultOrg = (props) => {
                 </Form>
               </Formik>
               <div className=" row justify-content-center ">
-                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
+                {/* <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
                   <ProductYCard
                     linkGoTo="/product-detail"
                     responsiveClass="card-product-y-mob md-card-product-y-desk"
                   />
-                </div>
-                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
-                  <ProductYCard
-                    linkGoTo="/product-detail"
-                    responsiveClass="card-product-y-mob md-card-product-y-desk"
-                  />
-                </div>
-                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
-                  <ProductYCard
-                    linkGoTo="/product-detail"
-                    responsiveClass="card-product-y-mob md-card-product-y-desk"
-                  />
-                </div>
-                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
-                  <ProductYCard
-                    linkGoTo="/product-detail"
-                    responsiveClass="card-product-y-mob md-card-product-y-desk"
-                  />
-                </div>
-                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
-                  <ProductYCard
-                    linkGoTo="/product-detail"
-                    responsiveClass="card-product-y-mob md-card-product-y-desk"
-                  />
-                </div>
-                <div className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 ">
-                  <ProductYCard
-                    linkGoTo="/product-detail"
-                    responsiveClass="card-product-y-mob md-card-product-y-desk"
-                  />
-                </div>
+                </div> */}
               </div>
               <Formik onSubmit={() => {}} initialValues={{ pageNumber: "1" }}>
                 <Form>

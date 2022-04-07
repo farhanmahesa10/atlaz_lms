@@ -80,6 +80,7 @@ const LoginOrg = (props) => {
                   <div className=" mb-32">
                     <FormikControl
                       control="input"
+                      coverClassName="h-40"
                       name="email"
                       type="text"
                       icon={
@@ -94,6 +95,7 @@ const LoginOrg = (props) => {
                   <div className=" mb-32">
                     <FormikControl
                       control="inputPassword"
+                      coverClassName="h-40"
                       label="Password"
                       name="password"
                       labelClassName="font-xs-bold"

@@ -99,7 +99,7 @@ const Routing = () => {
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
       <Route path="/shop" element={<SearchResult />} />
-      <Route path="/product-detail" element={<ProductDetail />} />
+      <Route path="/product-detail/:id" element={<ProductDetail />} />
       <Route path="/auth/verify" element={<Verify />} />
       <Route
         path="/redirect-google"

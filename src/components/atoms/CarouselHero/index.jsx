@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from "react";
 
-const CarouselHero = () => {
+const CarouselHero = (props) => {
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
-  const [imgPhone, setimgPhone] = useState([
-    "/images/car-y.png",
-    "/images/car-y.png",
-  ]);
-  const [img, setImg] = useState([
-    "/images/example-car.png",
-    "/images/example-car.png",
-  ]);
+  const [imgPhone, setImgPhone] = useState(props.imgPhone);
+  const [img, setImg] = useState(props.img);
 
   const [imgView, setImgView] = useState([]);
 
-  useEffect(() => {
+  const handleImageView = () => {
     if (windowWidth < 576) {
       setImgView(imgPhone);
     } else {
       setImgView(img);
     }
+  };
+
+  useEffect(() => {
+    handleImageView();
   }, [windowWidth]);
 
   window.addEventListener("resize", (e) => {
     setwindowWidth(e.target.innerWidth);
   });
+
+  useEffect(() => {
+    setImg(props.img);
+    setImgPhone(props.imgPhone);
+    handleImageView();
+  }, [props.imgPhone, props.img]);
 
   const [showArrow, setShowArrow] = useState(false);
 

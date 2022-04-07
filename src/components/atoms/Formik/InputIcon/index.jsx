@@ -15,7 +15,7 @@ const InputIcon = (props) => {
             } text-start `}
           >
             <label className="font-sm-bold ">{props.label}</label>
-            <div className={`input-area  bg-white ${props.coverClassName}`}>
+            <div className={`input-area   bg-white ${props.coverClassName}`}>
               {props.icon ? (
                 <span className="pl-16 d-flex align-items-center">
                   {props.icon}
@@ -25,7 +25,10 @@ const InputIcon = (props) => {
               )}
               <input
                 type={props.type}
-                className={`w-full input-control ${props.inputClassName}`}
+                autoComplete={props.autoComplete}
+                className={`w-full input-control ${
+                  props.fontSize ? props.fontSize : "fs-16"
+                } ${props.inputClassName}`}
                 placeholder={props.placeholder}
                 readOnly={props.readOnly}
                 autoFocus={props.autoFocus}

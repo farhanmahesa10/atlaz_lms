@@ -3,7 +3,7 @@ import React from "react";
 const GoogleButton = (props) => {
   return (
     <button
-      className={`btn-outline d-flex align-items-center justify-content-center  ${props.className} `}
+      className={`btn-outline d-flex align-items-center justify-content-center h-40 ${props.className} `}
       onClick={() => {
         props.onClick();
       }}

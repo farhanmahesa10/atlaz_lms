@@ -1,7 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
-import Slider from "react-slick";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
   const [max, setMax] = useState(false);
@@ -125,9 +124,9 @@ const ProductSlider = (props) => {
     <div style={{ maxWidth: "1400px" }}>
       {props.header}
       <Slider {...settings}>
-        {props.content.map((r) => {
+        {props.content.map((r, i) => {
           return (
-            <div className="pb-1 mr-16 md-mr-84 xl-mr-81" key={Math.random()}>
+            <div className="pb-1 mr-16 md-mr-84 xl-mr-80" key={i}>
               {r}
             </div>
           );
