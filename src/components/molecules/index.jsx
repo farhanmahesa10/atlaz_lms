@@ -7,6 +7,7 @@ import HomeHeadSkeleton from "./SkeletonLoading/HomeLoading/HomeHeadSkeleton";
 import BookListSkeleton from "./SkeletonLoading/HomeLoading/BookListSkeleton";
 import SearchResultLoading from "./SkeletonLoading/SearchResultLoading";
 import WhatTheySayLoading from "./SkeletonLoading/WhatTheySayLoading";
+import Pagination from "./Pagination";
 export {
   ProductXCard,
   ProductYCard,
@@ -17,4 +18,5 @@ export {
   BookListSkeleton,
   SearchResultLoading,
   WhatTheySayLoading,
+  Pagination,
 };

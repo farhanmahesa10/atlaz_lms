@@ -1,8 +1,7 @@
 import { Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import React from "react";
+import { searchNoData } from "../../../assets/images";
+import { useSearchResult } from "../../../services";
 import {
   BreadCrumb,
   FormikControl,
@@ -10,101 +9,27 @@ import {
   SelectCheckbox,
 } from "../../atoms";
 import MainLayout from "../../Layout/Mainlayout";
-import { ProductYCard, SearchResultLoading } from "../../molecules";
-import { BaseAPIURL, GET } from "../../../config/RestAPI";
-import axios from "axios";
-import { searchNoData } from "../../../assets/images";
+import { Pagination, ProductYCard, SearchResultLoading } from "../../molecules";
 
-const SearchResultOrg = (props) => {
-  const { keyword } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [searchData, setSearchData] = useState([]);
-  const [bookData, setBookData] = useState([]);
-
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(Infinity);
-
-  const [prevPage, setPrevPage] = useState(false);
-  const [nextPage, setNextPage] = useState(false);
-
-  const [sortData, setSortData] = useState([
-    { value: "Ascending", label: "Ascending" },
-    { value: "Descending", label: "Descending" },
-    { value: "Lowest Price", label: "Lowest Price" },
-    { value: "Highest Price", label: "Highest Price" },
-  ]);
-
-  const [levelChoosen, setLevelChoosen] = useState([]);
-  const [sortChoosen, setSortChoosen] = useState("Ascending");
-
-  const levelData = [
-    { value: "Elementary", label: "Elementary" },
-    { value: "Junior High School", label: "Junior High School" },
-    { value: "Senior High School", label: "Senior High School" },
-  ];
-
-  const handleLevelChange = (selected) => {
-    let result = [];
-    for (const r of selected) {
-      result.push(r.value);
-    }
-
-    setLevelChoosen(result);
-  };
-
-  const [showFilter, setShowFilter] = useState(false);
-  const breadcrumbsData = [
-    {
-      link: "/shop",
-      label: "Shop",
-    },
-    {
-      link: "",
-      label: "Book List",
-    },
-  ];
-
-  const handleChange = (e) => {
-    GET("/client/landing/booklist/search?keyword=" + e.target.value).then(
-      (r) => {
-        setSearchData(r.data);
-      }
-    );
-  };
-
-  const getBookResult = () => {
-    setIsLoading(true);
-    let url = `${BaseAPIURL}/client/landing/booklist/filter`;
-    let req = {
-      keyword: keyword,
-      minPrice: minPrice,
-      maxPrice: maxPrice,
-      sort: sortChoosen,
-      level: levelChoosen,
-    };
-
-    GET(url, { params: req }).then((response) => {
-      setIsLoading(false);
-      setBookData(response.data);
-
-      let { paginate } = response;
-
-      if (paginate.current_page !== 1) {
-        setPrevPage(true);
-      }
-
-      if (paginate.total_item / paginate.per_page > 1) {
-        setNextPage(true);
-      }
-    });
-  };
-
-  // keyword, minPrice, maxPrice, sortChoosen, levelChoosen
-
-  useEffect(() => {
-    getBookResult();
-  }, [keyword, minPrice, maxPrice, sortChoosen, levelChoosen]);
+const SearchResultOrg = () => {
+  const {
+    breadcrumbsData,
+    keyword,
+    isLoading,
+    searchData,
+    bookData,
+    pagination,
+    setMinPrice,
+    setMaxPrice,
+    sortData,
+    setSortChoosen,
+    levelData,
+    handleLevelChange,
+    showFilter,
+    setShowFilter,
+    handleChange,
+    getBookResult,
+  } = useSearchResult();
 
   return (
     <>
@@ -255,7 +180,7 @@ const SearchResultOrg = (props) => {
                   </div>
                 </Form>
               </Formik>
-              {isLoading && bookData.length > 0 ? (
+              {isLoading ? (
                 <SearchResultLoading />
               ) : (
                 <>
@@ -267,7 +192,7 @@ const SearchResultOrg = (props) => {
                           key={i}
                         >
                           <ProductYCard
-                            linkGoTo="/product-detail"
+                            linkGoTo={`/product-detail/${r._id}`}
                             data={r}
                             responsiveClass="card-product-y-mob md-card-product-y-desk"
                           />
@@ -278,49 +203,14 @@ const SearchResultOrg = (props) => {
                   {!isLoading && bookData.length < 1 ? (
                     ""
                   ) : (
-                    <Formik
-                      onSubmit={() => {}}
-                      initialValues={{ pageNumber: "1" }}
-                    >
-                      <Form>
-                        <div className="d-flex justify-content-between align-items-center bg-secondary-100 px-16 py-8 radius-4">
-                          <div className="text-neutral-300 fs-12">
-                            1-5 of 40
-                          </div>
-                          <div className="d-flex gap-10  align-items-center">
-                            <span className="text-neutral-300 fs-12">
-                              You’re in page
-                            </span>
-                            <FormikControl
-                              control="input"
-                              type="text"
-                              name="pageNumber"
-                              inputClassName="font-sm h-6 px-2"
-                              coverClassName={"h-24 w-24 px-2"}
-                            />
-                            <div className="border-end mx-8">&nbsp;</div>
-                            <button
-                              className={`cursor-pointer ${
-                                !prevPage
-                                  ? "border-secondary-100 text-neutral-200 bg-white"
-                                  : "bg-white"
-                              } hover-bg-primary-100 radius-4 border d-flex align-items-center w-24 h-24`}
-                            >
-                              <ArrowBackIcon style={{ fontSize: "12px" }} />
-                            </button>
-                            <button
-                              className={`cursor-pointer ${
-                                !nextPage
-                                  ? "border-secondary-100 text-neutral-200 bg-white"
-                                  : "bg-white"
-                              } hover-bg-primary-100 radius-4 border  d-flex align-items-center  w-24 h-24`}
-                            >
-                              <ArrowForwardIcon style={{ fontSize: "12px" }} />
-                            </button>
-                          </div>
-                        </div>
-                      </Form>
-                    </Formik>
+                    <Pagination
+                      totalItem={pagination.total_item}
+                      perPage={pagination.per_page}
+                      currentPage={pagination.current_page}
+                      onSubmit={(page) => {
+                        getBookResult(page);
+                      }}
+                    />
                   )}
                 </>
               )}

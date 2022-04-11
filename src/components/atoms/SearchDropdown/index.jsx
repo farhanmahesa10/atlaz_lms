@@ -38,6 +38,7 @@ const SearchDropdown = (props) => {
   };
 
   const onSubmit = (values, formik) => {
+    setShowPopup(false);
     navigate(props.submitLink + "/" + values.keyword);
   };
 
