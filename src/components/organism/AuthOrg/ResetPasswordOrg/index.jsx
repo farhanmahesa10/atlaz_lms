@@ -171,7 +171,7 @@ const ResetPasswordOrg = () => {
                       type={`${allowNext && !isLoading ? "submit" : "button"}`}
                       className={`${
                         allowNext && !isLoading ? "btn-primary" : "btn-disable"
-                      } col`}
+                      } col font-normal font-normal`}
                     >
                       Submit
                     </button>

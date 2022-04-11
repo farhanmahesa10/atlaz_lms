@@ -116,7 +116,7 @@ const LoginOrg = (props) => {
                       type={isLoading ? "button" : "submit"}
                       className={`${
                         isLoading ? "btn-disable" : "btn-primary"
-                      } w-p-100`}
+                      } w-p-100 font-normal`}
                     >
                       Log in
                     </button>

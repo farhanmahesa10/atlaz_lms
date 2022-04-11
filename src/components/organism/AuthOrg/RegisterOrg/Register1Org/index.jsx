@@ -95,7 +95,7 @@ const Register1Org = () => {
                 type={isLoading ? "button" : "submit"}
                 className={`${
                   isLoading ? "btn-disable" : "btn-primary"
-                } w-p-100 border col text-neutral-700 btn-rounded`}
+                } w-p-100 border col text-neutral-700 btn-rounded font-normal`}
               >
                 Next
               </button>

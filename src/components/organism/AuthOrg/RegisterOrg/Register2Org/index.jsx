@@ -60,14 +60,16 @@ const Register2Org = () => {
               <Link to="/register">
                 <button
                   type="button"
-                  className="text-center btn-outline w-full"
+                  className="text-center btn-outline w-full font-normal"
                 >
                   Back
                 </button>
               </Link>
               <button
                 type={isLoading ? "button" : "submit"}
-                className={`${isLoading ? "btn-disable" : "btn-primary"} `}
+                className={`${
+                  isLoading ? "btn-disable" : "btn-primary"
+                } font-normal`}
               >
                 Next
               </button>

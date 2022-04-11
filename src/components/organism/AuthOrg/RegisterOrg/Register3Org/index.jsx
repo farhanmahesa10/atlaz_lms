@@ -61,7 +61,9 @@ const Register3Org = () => {
                 control="input"
                 name="phoneNumber"
                 type="number"
-                icon={<span className=" text-neutral-400">+62</span>}
+                icon={<span className=" text-neutral-500">+62</span>}
+                iconClassName="bg-neutral-100"
+                inputClassName="pl-16"
                 label="Phone number"
                 labelClassName="font-xs-bold"
                 placeholder="Enter your phone number"
@@ -73,14 +75,16 @@ const Register3Org = () => {
               <Link to="/register-step-2" className="  ">
                 <button
                   type="button"
-                  className="text-center btn-outline w-full"
+                  className="text-center btn-outline font-normal w-full"
                 >
                   Back
                 </button>
               </Link>
               <button
                 type={isLoading ? "button" : "submit"}
-                className={`${isLoading ? "btn-disable" : "btn-primary"} `}
+                className={`${
+                  isLoading ? "btn-disable" : "btn-primary"
+                } font-normal`}
               >
                 Next
               </button>

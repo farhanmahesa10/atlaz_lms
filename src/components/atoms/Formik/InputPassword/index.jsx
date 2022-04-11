@@ -13,6 +13,28 @@ const InputPassword = (props) => {
       setEye(true);
     }
   };
+
+  const sizing = (size) => {
+    switch (size) {
+      case "xs":
+        return {
+          fontSize: "font-xs",
+          height: "h-30",
+        };
+      case "sm":
+        return {
+          fontSize: "font-sm",
+          height: "h-34",
+        };
+
+      default:
+        return {
+          fontSize: "font-normal",
+          height: "h-38",
+        };
+    }
+  };
+
   return (
     <>
       <Field name={props.name}>
@@ -28,11 +50,19 @@ const InputPassword = (props) => {
               } text-start`}
             >
               <label className="font-sm-bold">{props.label}</label>
-              <div className={`input-area pl-16 ${props.coverClassName}`}>
-                <LockOutlinedIcon className="text-neutral-200 fs-20" />
+              <div
+                className={`input-area  d-flex ${props.coverClassName} ${
+                  sizing(props.size).height
+                } `}
+              >
+                <p className="d-flex align-items-center px-16 h-full  ">
+                  <LockOutlinedIcon className="text-neutral-200  fs-20" />
+                </p>
                 <input
                   type={type}
-                  className={`w-full input-control  ${props.inputClassName}`}
+                  className={`w-full input-control  ${props.inputClassName} ${
+                    sizing(props.size).fontSize
+                  }`}
                   placeholder={props.placeholder}
                   readOnly={props.readOnly}
                   autoFocus={props.autoFocus}
@@ -43,7 +73,7 @@ const InputPassword = (props) => {
                 <i
                   className={`bi ${
                     eye ? "bi-eye-fill" : "bi-eye-slash-fill"
-                  } pr-16 text-neutral-200 cursor-pointer`}
+                  } px-16 text-neutral-200 cursor-pointer`}
                   onClick={eyeIconHalde}
                 ></i>
               </div>

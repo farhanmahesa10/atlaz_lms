@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import NavToggler from "../../SVG/NavToggler";
 const MainHeader = (props) => {
   const [navBg, setNavBg] = useState(props.navbarBg);
+
+  const [activeNavbar, setActiveNavbar] = useState("");
+
   const navigate = useNavigate();
   useEffect(() => {
     let isMounted = true;
@@ -21,6 +23,11 @@ const MainHeader = (props) => {
       },
       { passive: true }
     );
+
+    let fullUrl = window.location.pathname;
+    let activeUrlForMenu = fullUrl.split("/");
+    setActiveNavbar(activeUrlForMenu[1]);
+
     return () => {
       isMounted = false;
     };
@@ -31,11 +38,19 @@ const MainHeader = (props) => {
       link: "/",
       label: "Home",
       shouldLogin: true,
+      activeTo: "",
     },
     {
       link: "/shop",
       label: "Shop",
       shouldLogin: true,
+      activeTo: "shop",
+    },
+    {
+      link: "/classroom",
+      label: "Classroom",
+      shouldLogin: true,
+      activeTo: "classroom",
     },
   ];
 
@@ -71,20 +86,36 @@ const MainHeader = (props) => {
             style={{ border: "none" }}
           />
           <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
-            {menus.map((r) => {
+            {menus.map((r, i) => {
               if (r.shouldLogin) {
                 if (props.isLogin) {
                   return (
-                    <Link key={Math.random()} to={r.link} className="px-12">
-                      {r.label}
-                    </Link>
+                    <React.Fragment key={i}>
+                      <Link
+                        to={r.link}
+                        className="px-12 d-flex align-items-center flex-column justify-content-center"
+                      >
+                        {r.label}
+                        {r.activeTo === activeNavbar && (
+                          <div className="h-2 w-24 bg-primary-500"></div>
+                        )}
+                      </Link>
+                    </React.Fragment>
                   );
                 }
               } else {
                 return (
-                  <Link key={Math.random()} to={r.link} className="px-12">
-                    {r.label}
-                  </Link>
+                  <React.Fragment key={i}>
+                    <Link
+                      to={r.link}
+                      className="px-12 -flex align-items-center flex-column justify-content-center"
+                    >
+                      {r.label}
+                      {r.activeTo === activeNavbar && (
+                        <div className="h-2 w-24 bg-primary-500"></div>
+                      )}
+                    </Link>
+                  </React.Fragment>
                 );
               }
             })}
@@ -122,20 +153,36 @@ const MainHeader = (props) => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                {menus.map((r) => {
+                {menus.map((r, i) => {
                   if (r.shouldLogin) {
                     if (props.isLogin) {
                       return (
-                        <Link key={Math.random()} to={r.link} className="py-12">
-                          {r.label}
-                        </Link>
+                        <React.Fragment key={i}>
+                          <Link
+                            to={r.link}
+                            className="py-12 d-flex flex-column justify-content-center"
+                          >
+                            {r.label}
+                            {r.activeTo === activeNavbar && (
+                              <div className="h-2 w-24 bg-primary-500"></div>
+                            )}
+                          </Link>
+                        </React.Fragment>
                       );
                     }
                   } else {
                     return (
-                      <Link key={Math.random()} to={r.link} className="py-12">
-                        {r.label}
-                      </Link>
+                      <React.Fragment key={i}>
+                        <Link
+                          to={r.link}
+                          className="py-12 d-flex flex-column justify-content-center"
+                        >
+                          {r.label}
+                          {r.activeTo === activeNavbar && (
+                            <div className="h-2 w-24 bg-primary-500"></div>
+                          )}
+                        </Link>
+                      </React.Fragment>
                     );
                   }
                 })}
@@ -163,43 +210,6 @@ const MainHeader = (props) => {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
-      {/* <nav className=" sm-px-48 px-24 border-b-1 border-neutral-100 h-82 d-flex align-items-center justify-content-between">
-        <div>
-          <img src="/images/logo.png" alt="" className="d-none d-sm-block" />
-          <img
-            src="/images/logo-icon.png"
-            alt=""
-            className="d-block d-sm-none"
-          />
-        </div>
-        <div>menu</div>
-        <div className="">
-          <div className="d-flex d-sm-none">
-            <Link to="#">
-              <NavToggler />
-            </Link>
-          </div>
-
-          <ul className="d-none d-sm-flex list-style-none m-0  gap-24">
-            <li>
-              <Link
-                to="/login"
-                className="py-2 px-4 border-1 border-neutral-500 rounded"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/login"
-                className="py-2 bg-primary-500 border-1 border-primary-500   px-4  rounded"
-              >
-                Sign up
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav> */}
     </>
   );
 };

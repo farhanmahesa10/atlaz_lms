@@ -18,6 +18,7 @@ import {
   ProductDetail,
   Verify,
   RedirectGoogleAuthenticated,
+  Classroom,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -105,6 +106,9 @@ const Routing = () => {
         path="/redirect-google"
         element={<RedirectGoogleAuthenticated />}
       />
+
+      {/* classroom route */}
+      <Route path="/classroom" element={<Classroom />} />
     </Routes>
   );
 };

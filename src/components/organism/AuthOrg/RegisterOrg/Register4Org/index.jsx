@@ -152,7 +152,7 @@ const Register4Org = () => {
               <Link to="/register-step-3" className="  ">
                 <button
                   type="button"
-                  className="text-center btn-outline w-full"
+                  className="text-center btn-outline w-full font-normal"
                 >
                   Back
                 </button>
@@ -161,7 +161,7 @@ const Register4Org = () => {
                 type={`${allowNext && !isLoading ? "submit" : "button"}`}
                 className={`${
                   allowNext && !isLoading ? "btn-primary" : "btn-disable"
-                } `}
+                } font-normal`}
               >
                 Next
               </button>

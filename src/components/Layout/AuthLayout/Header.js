@@ -27,9 +27,9 @@ const Header = (props) => {
       <div className="col-5 col-md-6 ">
         <div className=" justify-content-center  ">
           <div className="d-flex justify-content-center ">
-            <div>
+            <Link to="/">
               <img src="/images/logo.png" className="img-fluid" alt="..." />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

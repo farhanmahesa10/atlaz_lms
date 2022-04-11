@@ -13,6 +13,7 @@ import SearchResult from "./SearchResult";
 import ProductDetail from "./ProductDetail";
 import Verify from "./Auth/Verify";
 import RedirectGoogleAuthenticated from "./Auth/RedirectGoogleAuthenticated";
+import Classroom from "./Classroom";
 export {
   Login,
   Register1,
@@ -28,4 +29,5 @@ export {
   ProductDetail,
   Verify,
   RedirectGoogleAuthenticated,
+  Classroom,
 };
