@@ -19,13 +19,13 @@ const ProductYCard = (props) => {
   };
   const [feature, setFeature] = useState([
     {
-      title: "Cerf Level",
+      title: "Cefr Level",
       subTitle: "A1",
       color: "#B3FFFF",
     },
     {
-      title: "Built-in",
-      subTitle: "Assessment",
+      title: "Completion ",
+      subTitle: "Certificate",
       color: "#B3FFFF",
     },
     {
@@ -39,8 +39,8 @@ const ProductYCard = (props) => {
       color: "#D9B2FF",
     },
     {
-      title: "Self",
-      subTitle: "Learning",
+      title: "Self learning",
+      subTitle: "Method",
       color: "#D9FFB2",
     },
     {

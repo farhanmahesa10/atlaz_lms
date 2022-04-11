@@ -20,6 +20,7 @@ const HomeBookList = () => {
           />
         );
       });
+
       setData(result);
       setIsLoading(false);
     });

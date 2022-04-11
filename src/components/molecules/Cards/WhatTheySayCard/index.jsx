@@ -1,6 +1,8 @@
 import React from "react";
 import StarIcon from "../../../SVG/StarIcon";
 const WhatTheySayCard = (props) => {
+  const { data } = props;
+
   return (
     <div
       style={{
@@ -12,19 +14,23 @@ const WhatTheySayCard = (props) => {
       <div>
         <div className=" d-flex   align-items-center gap-2 ">
           <img
-            src="/images/english-book.png"
+            src={data.image}
             height="32"
             width="32"
             alt=""
             className="rounded-circle"
           />
           <div>
-            <p className="font-xs-bold md-font-sm-bold">Devon Lane</p>
-            <p className="font-xs md-font-sm">Teacher</p>
+            <p className="font-xs-bold md-font-sm-bold">{data.name}</p>
+            <p className="font-xs md-font-sm">{data.teacher}</p>
           </div>
         </div>
         <div className="pb-42 pt-24">
-          <p className="font-xs md-font-medium ">{props.text}</p>
+          <p className="font-xs md-font-medium ">
+            {data.message.length > 156
+              ? data.message.substring(0, 156) + "..."
+              : data.message}
+          </p>
         </div>
       </div>
 
@@ -36,7 +42,7 @@ const WhatTheySayCard = (props) => {
           <StarIcon />
           <StarIcon isHalf={true} />
         </div>
-        <p className="text-neutral-200">4.5 / 5.0</p>
+        <p className="text-neutral-200">{data.rating} / 5.0</p>
       </div>
     </div>
   );

@@ -15,8 +15,8 @@ const ProductDetailSkeleton = () => {
             <div className="row gx-0 justify-content-center">
               <div className="col-12 md-w-430 mb-24  md-mb-40 col-xl-4  d-flex justify-content-between flex-column">
                 <div className=" mb-8 boom ">
-                  <div className="h-p-100 w-p-100">
-                    <Skeleton width="100%" height="100%" />
+                  <div className="h-auto w-p-100">
+                    <Skeleton width="100%" height="400px" />
                   </div>
                 </div>
                 <div className="w-p-100 d-grid grid-cols-4  justify-content-between gap-2 align-items-center ">

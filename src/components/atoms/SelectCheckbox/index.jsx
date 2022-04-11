@@ -35,8 +35,8 @@ const SelectCheckbox = (props) => {
   const [items, setItems] = useState(props.data);
 
   const [optionSelected, setOptionSelected] = useState(null);
-  const handleCategoryChange = (selected) => {
-    setOptionSelected(selected);
+  const handleOptionChange = (selected) => {
+    props.onChange(selected);
   };
   const customStyles = {
     menu: (provided, state) => ({
@@ -76,7 +76,7 @@ const SelectCheckbox = (props) => {
           Option: props.inputType === "radio" ? OptionRadio : OptionCheck,
         }}
         styles={customStyles}
-        onChange={handleCategoryChange}
+        onChange={handleOptionChange}
         allowSelectAll={true}
         placeholder={props.placeholder}
       />

@@ -32,9 +32,7 @@ const InputPassword = (props) => {
                 <LockOutlinedIcon className="text-neutral-200 fs-20" />
                 <input
                   type={type}
-                  className={`w-full input-control ${
-                    props.fontSize ? props.fontSize : "fs-16"
-                  } ${props.inputClassName}`}
+                  className={`w-full input-control  ${props.inputClassName}`}
                   placeholder={props.placeholder}
                   readOnly={props.readOnly}
                   autoFocus={props.autoFocus}

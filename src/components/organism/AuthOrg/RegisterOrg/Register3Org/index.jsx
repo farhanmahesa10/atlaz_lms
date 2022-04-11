@@ -59,7 +59,6 @@ const Register3Org = () => {
             <div className="mb-48 text-start">
               <FormikControl
                 control="input"
-                coverClassName="h-40"
                 name="phoneNumber"
                 type="number"
                 icon={<span className=" text-neutral-400">+62</span>}

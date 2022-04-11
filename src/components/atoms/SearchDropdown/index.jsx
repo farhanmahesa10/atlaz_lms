@@ -17,7 +17,7 @@ const SearchDropdown = (props) => {
   }, [props.searchRecomend]);
 
   const initialValues = {
-    keyword: "",
+    keyword: props.defaultValue,
   };
 
   let navigate = useNavigate();
@@ -37,7 +37,7 @@ const SearchDropdown = (props) => {
     formik.setFieldValue("keyword", "");
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = (values, formik) => {
     navigate(props.submitLink + "/" + values.keyword);
   };
 
@@ -79,7 +79,6 @@ const SearchDropdown = (props) => {
                 <div className=" ">
                   <FormikControl
                     control="input"
-                    coverClassName="h-40"
                     name="keyword"
                     type="text"
                     placeholder="Search anything here"

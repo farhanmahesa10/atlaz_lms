@@ -47,7 +47,6 @@ const Register2Org = () => {
             <div className="mb-48 text-start">
               <FormikControl
                 control="input"
-                coverClassName="h-40"
                 name="fullName"
                 type="text"
                 icon={<i className="bi bi-person text-neutral-400"></i>}

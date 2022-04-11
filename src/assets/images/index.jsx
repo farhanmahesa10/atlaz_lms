@@ -6,6 +6,7 @@ import gram from "./gram.png";
 import bgPartnership from "./bg-partnership.png";
 import bgAuthTab from "./bg-auth-tab.png";
 import bgAuthDesk from "./bg-auth-desk.png";
+import searchNoData from "./search-no-data.png";
 
 export {
   blibli,
@@ -16,4 +17,5 @@ export {
   bgPartnership,
   bgAuthTab,
   bgAuthDesk,
+  searchNoData,
 };

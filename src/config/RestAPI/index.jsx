@@ -14,7 +14,8 @@ const defConfig = () => {
   return config;
 };
 
-const GET = (url, config) => API.get(url, config).then((res) => res.data);
+const GET = (url, req, config) =>
+  API.get(url, req, config).then((res) => res.data);
 
 const POST = (url, data, config) =>
   API.post(url, data, config).then((res) => res.data);
@@ -26,4 +27,4 @@ const PATCH = (url, config) => API.patch(url, config).then((res) => res.data);
 const DESTROY = (url, config) =>
   API.delete(url, config).then((res) => res.data);
 
-export { GET, POST, PUT, PATCH, DESTROY, defConfig };
+export { GET, POST, PUT, PATCH, DESTROY, defConfig, BaseAPIURL };

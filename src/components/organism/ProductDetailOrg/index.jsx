@@ -67,13 +67,13 @@ const ProductDetailOrg = () => {
 
   const [feature, setFeature] = useState([
     {
-      title: "Cerf Level",
+      title: "Cefr Level",
       subTitle: "A1",
       color: "#B3FFFF",
     },
     {
-      title: "Built-in",
-      subTitle: "Assessment",
+      title: "Completion",
+      subTitle: "Certificate",
       color: "#B3FFFF",
     },
     {
@@ -87,8 +87,8 @@ const ProductDetailOrg = () => {
       color: "#D9B2FF",
     },
     {
-      title: "Self",
-      subTitle: "Learning",
+      title: "Self Learning",
+      subTitle: "Method",
       color: "#D9FFB2",
     },
     {

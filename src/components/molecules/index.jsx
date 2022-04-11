@@ -5,6 +5,8 @@ import WhatTheySayCard from "./Cards/WhatTheySayCard";
 import ProductDetailSkeleton from "./SkeletonLoading/ProductDetailLoading/ProductDetailSkeleton";
 import HomeHeadSkeleton from "./SkeletonLoading/HomeLoading/HomeHeadSkeleton";
 import BookListSkeleton from "./SkeletonLoading/HomeLoading/BookListSkeleton";
+import SearchResultLoading from "./SkeletonLoading/SearchResultLoading";
+import WhatTheySayLoading from "./SkeletonLoading/WhatTheySayLoading";
 export {
   ProductXCard,
   ProductYCard,
@@ -13,4 +15,6 @@ export {
   ProductDetailSkeleton,
   HomeHeadSkeleton,
   BookListSkeleton,
+  SearchResultLoading,
+  WhatTheySayLoading,
 };
