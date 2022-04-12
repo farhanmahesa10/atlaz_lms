@@ -8,6 +8,8 @@ import BookListSkeleton from "./SkeletonLoading/HomeLoading/BookListSkeleton";
 import SearchResultLoading from "./SkeletonLoading/SearchResultLoading";
 import WhatTheySayLoading from "./SkeletonLoading/WhatTheySayLoading";
 import Pagination from "./Pagination";
+import AcademicCard from "./Cards/AcademicCard";
+import SubjectCard from "./Cards/SubjectCard";
 export {
   ProductXCard,
   ProductYCard,
@@ -19,4 +21,6 @@ export {
   SearchResultLoading,
   WhatTheySayLoading,
   Pagination,
+  AcademicCard,
+  SubjectCard,
 };

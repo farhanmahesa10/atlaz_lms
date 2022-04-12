@@ -1,7 +1,12 @@
 import React from "react";
+import { ClassRoomOrg } from "../../components/organism";
 
 const Classroom = () => {
-  return <div>Classroom</div>;
+  return (
+    <>
+      <ClassRoomOrg />
+    </>
+  );
 };
 
 export default Classroom;

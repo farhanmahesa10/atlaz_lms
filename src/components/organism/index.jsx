@@ -10,6 +10,9 @@ import Register3Org from "./AuthOrg/RegisterOrg/Register3Org";
 import Register4Org from "./AuthOrg/RegisterOrg/Register4Org";
 import Register5Org from "./AuthOrg/RegisterOrg/Register5Org";
 import VerifyOrg from "./AuthOrg/VerifyOrg";
+import ClassRoomOrg from "./ClassRoomOrg";
+import ClassRoomSubjectOrg from "./ClassRoomOrg/Subject";
+
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -23,4 +26,6 @@ export {
   Register4Org,
   Register5Org,
   VerifyOrg,
+  ClassRoomOrg,
+  ClassRoomSubjectOrg,
 };

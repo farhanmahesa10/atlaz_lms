@@ -8,6 +8,7 @@ import CarouselHero from "./CarouselHero";
 import CarouselCenter from "./CarouselCenter";
 import SliderNoArrow from "./SliderNoArrow";
 import GlobalToast from "./GlobalToast";
+import Divider from "./Divider";
 export {
   FormikControl,
   SearchDropdown,
@@ -19,4 +20,5 @@ export {
   CarouselCenter,
   SliderNoArrow,
   GlobalToast,
+  Divider,
 };

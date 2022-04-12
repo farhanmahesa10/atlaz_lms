@@ -13,11 +13,21 @@ const BreadCrumb = (props) => {
               <li className="breadcrumb-item font-xs" key={i}>
                 <Link
                   to={r.link ? r.link : ""}
-                  className={r.link ? "text-primary-500" : "text-neutral-400"}
+                  className={
+                    r.link
+                      ? "text-primary-500"
+                      : `${
+                          props.activeColor
+                            ? props.activeColor
+                            : "text-neutral-400"
+                        }`
+                  }
                 >
                   {r.label}&nbsp;&nbsp;
                   {r.link ? (
-                    <i className="bi bi-caret-right-fill text-neutral-300 font-size-12"></i>
+                    <i
+                      className={`bi bi-caret-right-fill text-neutral-300 font-size-12`}
+                    ></i>
                   ) : (
                     ""
                   )}

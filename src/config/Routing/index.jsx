@@ -19,6 +19,8 @@ import {
   Verify,
   RedirectGoogleAuthenticated,
   Classroom,
+  CobaBikinCarousel,
+  ClassRoomSubject,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -108,7 +110,23 @@ const Routing = () => {
       />
 
       {/* classroom route */}
-      <Route path="/classroom" element={<Classroom />} />
+      <Route
+        path="/classroom"
+        element={
+          <Authenticate>
+            <Classroom />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/classroom/:subjectId"
+        element={
+          <Authenticate>
+            <ClassRoomSubject />
+          </Authenticate>
+        }
+      />
+      <Route path="/carousel" element={<CobaBikinCarousel />} />
     </Routes>
   );
 };
