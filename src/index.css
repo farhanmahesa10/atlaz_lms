@@ -29,12 +29,3 @@ input:-webkit-autofill:active {
 }
 
 /* The element to apply the animation to */
-.animation-width:hover {
-  transition: width 2s;
-}
-.animation-control {
-  display: none;
-}
-.animation-control:hover {
-  display: block;
-}

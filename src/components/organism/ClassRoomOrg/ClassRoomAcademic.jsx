@@ -2,6 +2,7 @@ import React from "react";
 import AcademicCard from "../../molecules/Cards/AcademicCard";
 import useClassRoomAcademic from "../../../services/ClassRoom/useClassRoomAcademic";
 import { Divider } from "../../atoms";
+import { Link } from "react-router-dom";
 
 const ClassRoomAcademic = () => {
   const { data } = useClassRoomAcademic();
@@ -21,7 +22,8 @@ const ClassRoomAcademic = () => {
                   />
                   {r.academicData.map((res, ind) => {
                     return (
-                      <div
+                      <Link
+                        to="/classroom/1"
                         className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
                         key={`${i}-${ind}`}
                       >
@@ -30,7 +32,7 @@ const ClassRoomAcademic = () => {
                           title={res.title}
                           desc={r.title}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
                 </React.Fragment>

@@ -1,13 +1,27 @@
 import React from "react";
 
-const Divider = ({ text, parentClassName, textClassName }) => {
+const Divider = ({
+  text,
+  parentClassName,
+  textClassName,
+  lineColor,
+  height,
+}) => {
   return (
     <div className={`d-flex align-items-center  ${parentClassName}`}>
-      <div className="w-full h-1 bg-secondary-500"></div>
+      <div
+        className={`w-full radius-8  ${
+          lineColor ? lineColor : "bg-secondary-500"
+        } ${height ? height : "h-1"}`}
+      ></div>
       <div className={`${textClassName}`} style={{ whiteSpace: "nowrap" }}>
         {text}
       </div>
-      <div className=" w-full h-1 bg-secondary-500"></div>
+      <div
+        className={` w-full radius-8  ${
+          lineColor ? lineColor : "bg-secondary-500"
+        }  ${height ? height : "h-1"}`}
+      ></div>
     </div>
   );
 };

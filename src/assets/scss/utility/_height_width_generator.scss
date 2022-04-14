@@ -1,8 +1,8 @@
 @mixin heightWidthGenerator($total, $selector: ".") {
-  .h-auto {
+  #{$selector}h-auto {
     height: auto;
   }
-  .w-auto {
+  #{$selector}w-auto {
     width: auto;
   }
 
@@ -27,7 +27,38 @@
   }
 }
 
+@mixin heightWidthVhGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}h-vh-#{$i} {
+      height: #{$i}#{"vh"};
+    }
+    #{$selector}w-vh-#{$i} {
+      width: #{$i}#{"vh"};
+    }
+  }
+}
+
+@mixin minMaxHeightWidthGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}min-h-#{$i} {
+      min-height: #{$i}#{"px"};
+    }
+    #{$selector}max-h-#{$i} {
+      max-height: #{$i}#{"px"};
+    }
+
+    #{$selector}min-w-#{$i} {
+      min-width: #{$i}#{"px"};
+    }
+
+    #{$selector}max-w-#{$i} {
+      max-width: #{$i}#{"px"};
+    }
+  }
+}
+
 @mixin callHeightWidthGenerator($total: 0, $selector: ".") {
   @include heightWidthPesenGenerator($selector);
   @include heightWidthGenerator($total, $selector);
+  @include minMaxHeightWidthGenerator($total, $selector);
 }

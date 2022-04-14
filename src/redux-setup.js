@@ -8,6 +8,9 @@ const states = {
     show: false,
     isRedirecterToast: false,
   },
+  modalData: {
+    data: {},
+  },
 };
 
 const rootReducer = (state = states, action) => {
@@ -37,6 +40,10 @@ const rootReducer = (state = states, action) => {
     localStorage.removeItem(baseUrl + "/register/email");
     localStorage.removeItem(baseUrl + "/register/phoneNumber");
     localStorage.removeItem(baseUrl + "/register/resend-timer");
+  }
+
+  if (action.type === "MODAL_ACTION") {
+    return { ...state, modalData: action.value };
   }
 
   return state;

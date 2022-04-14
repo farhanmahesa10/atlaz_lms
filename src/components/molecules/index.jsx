@@ -10,6 +10,11 @@ import WhatTheySayLoading from "./SkeletonLoading/WhatTheySayLoading";
 import Pagination from "./Pagination";
 import AcademicCard from "./Cards/AcademicCard";
 import SubjectCard from "./Cards/SubjectCard";
+import EditHeroModal from "./Modals/ClassRoom/EditHeroModal";
+import AddSubjectModal from "./Modals/ClassRoom/AddSubjectModal";
+import UpcomingCard from "./Cards/UpcomingCard";
+import PostFeedCard from "./Cards/PostFeedCard";
+import ModalImage from "./Modals/ModalImage";
 export {
   ProductXCard,
   ProductYCard,
@@ -23,4 +28,9 @@ export {
   Pagination,
   AcademicCard,
   SubjectCard,
+  EditHeroModal,
+  AddSubjectModal,
+  UpcomingCard,
+  PostFeedCard,
+  ModalImage,
 };

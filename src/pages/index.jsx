@@ -16,6 +16,7 @@ import RedirectGoogleAuthenticated from "./Auth/RedirectGoogleAuthenticated";
 import Classroom from "./Classroom";
 import CobaBikinCarousel from "./CobaBikinCarousel";
 import ClassRoomSubject from "./Classroom/Subject";
+import SubjectPost from "./Classroom/SubjectPost";
 export {
   Login,
   Register1,
@@ -34,4 +35,5 @@ export {
   Classroom,
   CobaBikinCarousel,
   ClassRoomSubject,
+  SubjectPost,
 };

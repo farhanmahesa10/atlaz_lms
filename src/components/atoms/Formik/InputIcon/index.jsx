@@ -98,7 +98,7 @@ const InputIcon = (props) => {
             } text-start `}
           >
             <label className="font-sm-bold ">{props.label}</label>
-            <div className={` ${getCoverClassName()} `}>
+            <div className={` ${getCoverClassName()} ${props.label && "mt-4"}`}>
               {props.icon && (
                 <span className={`${getIconClassName()} `}>{props.icon}</span>
               )}

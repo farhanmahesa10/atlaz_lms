@@ -135,9 +135,41 @@ const MainHeader = (props) => {
                 </Link>
               </>
             ) : (
-              <button className="btn-primary px-25 font-xs" onClick={logout}>
-                Logout
-              </button>
+              <>
+                <div className="">
+                  <div
+                    type="button"
+                    className="cursor-pointer dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src="/public/produc.png"
+                      className="h-32 w-32 bg-danger radius-p-100"
+                    />
+                  </div>
+                  <ul className="dropdown-menu bg-white p-14 radius-8">
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Action
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Something else here
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <button className="btn-primary px-25 font-xs" onClick={logout}>
+                  Logout
+                </button>
+              </>
             )}
           </Nav>
           <Navbar.Offcanvas

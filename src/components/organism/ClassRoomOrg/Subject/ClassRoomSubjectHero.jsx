@@ -1,14 +1,19 @@
 import React from "react";
 import { useClassRoomHeroSubject } from "../../../../services";
-import { BreadCrumb } from "../../../atoms";
+import { BreadCrumb, ModalTrigger } from "../../../atoms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import "./index.scss";
+import { EditHeroModal } from "../../../molecules";
+import { connect } from "react-redux";
+
 const ClassRoomSubjectHero = () => {
   const { banner, breadcrumbsData } = useClassRoomHeroSubject();
 
   return (
     <>
+      <EditHeroModal id="modalChangeHero" />
       <div
         style={{
           backgroundImage: `url("${banner}")`,
@@ -37,11 +42,12 @@ const ClassRoomSubjectHero = () => {
               <p className="h4 md-h2 text-neutral-50">Kelas 1A IPA</p>
               <p className=" mt-8 text-neutral-50">Academic Year 2021/2022</p>
             </div>
-            <div
-              className="h-36  radius-8 d-flex justify-content-center align-items-center  mb-4"
+            <ModalTrigger
+              target="modalChangeHero"
+              className="h-36 w-36 radius-8 d-flex justify-content-center align-items-center animation-widths mb-4 cursor-pointer "
               style={{ backgroundColor: "rgba(231, 237, 245,0.2)" }}
             >
-              <div className="w-full d-flex align-items-center md-px-16 animation-width">
+              <div className="w-full d-flex align-items-center md-px-16 cursor-pointer ">
                 <span
                   style={{ minWidth: "36px" }}
                   className=" d-flex justify-content-center  align-items-center"
@@ -49,13 +55,13 @@ const ClassRoomSubjectHero = () => {
                   <ModeEditIcon className="text-white" />
                 </span>
                 <span
-                  className="animation-control"
+                  className="animation-controls text-white"
                   style={{ whiteSpace: "nowrap" }}
                 >
                   Change Background
                 </span>
               </div>
-            </div>
+            </ModalTrigger>
           </div>
         </div>
       </div>
@@ -63,4 +69,4 @@ const ClassRoomSubjectHero = () => {
   );
 };
 
-export default ClassRoomSubjectHero;
+export default connect()(ClassRoomSubjectHero);

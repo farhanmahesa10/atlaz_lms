@@ -9,6 +9,9 @@ import CarouselCenter from "./CarouselCenter";
 import SliderNoArrow from "./SliderNoArrow";
 import GlobalToast from "./GlobalToast";
 import Divider from "./Divider";
+import Modal from "./Modal";
+import ModalTrigger from "./Modal/ModalTrigger";
+import Table from "./Table";
 export {
   FormikControl,
   SearchDropdown,
@@ -21,4 +24,7 @@ export {
   SliderNoArrow,
   GlobalToast,
   Divider,
+  Modal,
+  ModalTrigger,
+  Table,
 };
