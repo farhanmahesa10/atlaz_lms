@@ -1,24 +1,25 @@
 .modal {
-  .radio-custom {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  /* IMAGE STYLES */
-  .radio-custom + .custom {
-    cursor: pointer;
-  }
-  /* CHECKED STYLES */
-  .radio-custom:checked + .custom {
-    img {
-      border: 2px solid #fdcc6c;
+  // width: 100% !important;
+  .modal-custom {
+    .radio-custom {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    /* IMAGE STYLES */
+    .radio-custom + .custom {
+      cursor: pointer;
+    }
+    /* CHECKED STYLES */
+    .radio-custom:checked + .custom {
+      img {
+        border: 2px solid #fdcc6c;
+      }
     }
   }
-  .modal-dialog {
-    /* Width */
-    max-width: 100%;
-    width: auto !important;
-    display: inline-block;
+  .modal-content {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
   }
 }

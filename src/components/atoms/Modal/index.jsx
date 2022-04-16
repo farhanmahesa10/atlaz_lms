@@ -4,14 +4,17 @@ const Modal = (props) => {
   return (
     <>
       <div
-        className="modal fade "
+        className="modal fade  "
         id={props.id}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-centered d-flex justify-content-center ">
-          <div className={`modal-content w-auto ${props.className}`}>
+        <div
+          className=" modal-dialog position-relative  d-flex justify-content-center align-items-center h-full"
+          style={{ maxWidth: "100%" }}
+        >
+          <div className={`modal-content  w-auto ${props.className}`}>
             {props.children}
           </div>
         </div>

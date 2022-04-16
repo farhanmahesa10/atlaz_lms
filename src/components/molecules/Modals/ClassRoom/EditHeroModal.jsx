@@ -12,7 +12,10 @@ const EditHeroModal = (props) => {
   const { data } = useSelector((state) => state.modalData);
 
   return (
-    <Modal className="radius-16  max-w-440 max-h-446 modal" id={props.id}>
+    <Modal
+      className="radius-16  max-w-440 max-h-446 modal-custom bg-white"
+      id={props.id}
+    >
       <div className="px-24 pt-24 pb-16">
         <h5>Class Banner</h5>
         <p className="font-sm">Select your favourite banner</p>
