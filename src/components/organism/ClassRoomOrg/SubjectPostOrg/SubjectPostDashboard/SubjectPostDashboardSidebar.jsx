@@ -7,13 +7,16 @@ const SubjectPostDashboardSidebar = (props) => {
   return (
     <>
       <div
-        className="px-16 py-8 d-flex align-items-center  radius-8 border border-secondary-500 justify-content-between flex-md-column flex-xl-row "
+        className="px-16 md-px-32 xl-px-16 py-8 d-flex align-items-center  radius-8 border border-secondary-500 justify-content-between flex-md-column flex-xl-row "
         style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
       >
         <p className="h6 ">Activate Assessment</p>
-        <button className="btn btn-secondary font-sm md-w-p-100 xl-w-auto md-mt-16 xl-mt-0">
+        <Link
+          to="/"
+          className="btn btn-secondary text-center font-sm md-w-p-100 xl-w-auto md-mt-16 xl-mt-0"
+        >
           Set Plan
-        </button>
+        </Link>
       </div>
       <div
         className="mt-24 px-16 pt-8 pb-8 md-pb-16 radius-8 border border-secondary-500 "

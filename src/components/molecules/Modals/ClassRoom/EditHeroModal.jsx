@@ -69,7 +69,7 @@ const EditHeroModal = (props) => {
           </button>
           <button
             className="btn btn-primary font-xs"
-            type="button"
+            type="submit"
             data-bs-dismiss="modal"
           >
             Save Change

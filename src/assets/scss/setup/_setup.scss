@@ -10,6 +10,10 @@ $carousel-indicator-width: 8px;
 $carousel-indicator-height: 8px;
 $carousel-indicator-active-bg: black;
 $carousel-indicator-bg: #aaafb7;
+$dropdown-border-color: white;
+$dropdown-border: none;
+$dropdown-min-width: 2rem;
+
 // Required
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
@@ -24,6 +28,7 @@ $carousel-indicator-bg: #aaafb7;
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/offcanvas";
 @import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/accordion";
 @import "bootstrap/scss/modal";
 @import "bootstrap/scss/carousel";
 @import "bootstrap/scss/close";

@@ -6,6 +6,7 @@ import useClaassRoomContentSubject from "./ClassRoom/Subject/useClaassRoomConten
 import useSubjectPost from "./ClassRoom/SubjectPost/useSubjectPost";
 import useSubjectPostHero from "./ClassRoom/SubjectPost/useSubjectPostHero";
 import useSubjectPostDashboard from "./ClassRoom/SubjectPost/useSubjectPostDashboard";
+import useActivateAssessment from "./ClassRoom/useActivateAssessment";
 export {
   useSearchResult,
   useClassRoomHero,
@@ -15,4 +16,5 @@ export {
   useSubjectPost,
   useSubjectPostHero,
   useSubjectPostDashboard,
+  useActivateAssessment,
 };

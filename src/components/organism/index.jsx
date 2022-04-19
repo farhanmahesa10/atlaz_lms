@@ -13,6 +13,8 @@ import VerifyOrg from "./AuthOrg/VerifyOrg";
 import ClassRoomOrg from "./ClassRoomOrg";
 import ClassRoomSubjectOrg from "./ClassRoomOrg/Subject";
 import SubjectPostOrg from "./ClassRoomOrg/SubjectPostOrg";
+import SubjectPostDetailOrg from "./ClassRoomOrg/SubjectPostDetailOrg";
+import ActivateAssessmentOrg from "./ClassRoomOrg/ActivateAssesmentOrg";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -29,4 +31,6 @@ export {
   ClassRoomOrg,
   ClassRoomSubjectOrg,
   SubjectPostOrg,
+  SubjectPostDetailOrg,
+  ActivateAssessmentOrg,
 };

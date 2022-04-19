@@ -20,7 +20,7 @@ const ClassRoomSubjectContent = () => {
           {data.map((r, i) => {
             return (
               <Link
-                to="/classroom/1/2/dashboard"
+                to="/classroom/assessment/1/2/dashboard"
                 className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
                 key={i}
               >

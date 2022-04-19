@@ -15,6 +15,7 @@ import AddSubjectModal from "./Modals/ClassRoom/AddSubjectModal";
 import UpcomingCard from "./Cards/UpcomingCard";
 import PostFeedCard from "./Cards/PostFeedCard";
 import ModalImage from "./Modals/ModalImage";
+import CreateFeedCard from "./Cards/CreateFeedCard";
 export {
   ProductXCard,
   ProductYCard,
@@ -33,4 +34,5 @@ export {
   UpcomingCard,
   PostFeedCard,
   ModalImage,
+  CreateFeedCard,
 };

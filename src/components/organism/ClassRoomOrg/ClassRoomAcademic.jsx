@@ -23,7 +23,7 @@ const ClassRoomAcademic = () => {
                   {r.academicData.map((res, ind) => {
                     return (
                       <Link
-                        to="/classroom/1"
+                        to="/classroom/class/1"
                         className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
                         key={`${i}-${ind}`}
                       >

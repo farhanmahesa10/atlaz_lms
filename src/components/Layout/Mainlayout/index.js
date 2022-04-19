@@ -1,14 +1,19 @@
 import React from "react";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
+import MainHeaderNoMenu from "./MainHeaderNoMenu";
 
 const MainLayout = (props) => {
   return (
     <>
       <div className="d-flex flex-column gx-0" style={{ minHeight: "100vh" }}>
-        <MainHeader
-          navbarBg={props.navbarBg ? props.navbarBg : "bg-secondary-100"}
-        />
+        {!props.navNoMenu ? (
+          <MainHeader
+            navbarBg={props.navbarBg ? props.navbarBg : "bg-secondary-100"}
+          />
+        ) : (
+          <MainHeaderNoMenu />
+        )}
         <main className="flex-shrink-0 mb-128  justify-content-center mt-76">
           {props.beforeChildren}
           <div className="row gx-0 justify-content-center mt-7">

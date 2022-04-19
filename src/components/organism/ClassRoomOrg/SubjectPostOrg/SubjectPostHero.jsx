@@ -24,7 +24,7 @@ const SubjectPostHero = () => {
               <BreadCrumb data={breadcrumbsData} activeColor="text-white" />
             </div>
             <Link
-              to="/classroom/1/2"
+              to="/classroom/1"
               className="d-flex align-items-center px-24 md-px-48 pt-24 md-pt-32 "
             >
               <ArrowBackIcon className="text-white fs-18" />

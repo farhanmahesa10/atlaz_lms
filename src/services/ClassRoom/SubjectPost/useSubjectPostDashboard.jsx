@@ -45,7 +45,15 @@ const useSubjectPostDashboard = () => {
     ],
   });
 
-  return { sideBarData, feedData };
+  const handleCreatePost = (values) => {
+    console.log("create post submited", values);
+  };
+
+  const handleSubmitComent = (values) => {
+    console.log("comment post submited", values);
+  };
+
+  return { sideBarData, feedData, handleCreatePost, handleSubmitComent };
 };
 
 export default useSubjectPostDashboard;

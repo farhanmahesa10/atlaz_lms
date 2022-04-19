@@ -22,6 +22,8 @@ import {
   CobaBikinCarousel,
   ClassRoomSubject,
   SubjectPost,
+  SubjectPostDetail,
+  ActivateAssessment,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -120,7 +122,7 @@ const Routing = () => {
         }
       />
       <Route
-        path="/classroom/:classId"
+        path="/classroom/class/:classId"
         element={
           <Authenticate>
             <ClassRoomSubject />
@@ -128,13 +130,30 @@ const Routing = () => {
         }
       />
       <Route
-        path="/classroom/:classId/:subjectId/:section"
+        path="/classroom/assessment/:classId/:subjectId/:section"
         element={
           <Authenticate>
             <SubjectPost />
           </Authenticate>
         }
       />
+      <Route
+        path="/classroom/post-detail/:classId/:subjectId/:section/:postId"
+        element={
+          <Authenticate>
+            <SubjectPostDetail />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/classroom/set-plan/:classId/:subjectId/:postId"
+        element={
+          <Authenticate>
+            <ActivateAssessment />
+          </Authenticate>
+        }
+      />
+
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
       {/* Space route fajrul */}

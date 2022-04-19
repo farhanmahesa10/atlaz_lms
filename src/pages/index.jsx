@@ -17,6 +17,8 @@ import Classroom from "./Classroom";
 import CobaBikinCarousel from "./CobaBikinCarousel";
 import ClassRoomSubject from "./Classroom/Subject";
 import SubjectPost from "./Classroom/SubjectPost";
+import SubjectPostDetail from "./Classroom/SubjectPostDetail";
+import ActivateAssessment from "./Classroom/ActivateAssessment";
 export {
   Login,
   Register1,
@@ -36,4 +38,6 @@ export {
   CobaBikinCarousel,
   ClassRoomSubject,
   SubjectPost,
+  SubjectPostDetail,
+  ActivateAssessment,
 };

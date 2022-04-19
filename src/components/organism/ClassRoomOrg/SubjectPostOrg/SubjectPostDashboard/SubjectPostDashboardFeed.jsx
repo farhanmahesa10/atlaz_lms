@@ -1,5 +1,9 @@
 import React from "react";
-import { ModalImage, PostFeedCard } from "../../../../molecules";
+import {
+  CreateFeedCard,
+  ModalImage,
+  PostFeedCard,
+} from "../../../../molecules";
 
 const SubjectPostDashboardFeed = (props) => {
   const { data } = props;
@@ -7,10 +11,11 @@ const SubjectPostDashboardFeed = (props) => {
   return (
     <>
       <ModalImage id="postImage" />
+      <CreateFeedCard onSubmit={props.onSubmitCreatePost} />
       {data.posts.map((r, i) => {
         return (
-          <div className={`mt-24 ${i < 1 && "md-mt-0"}`} key={i}>
-            <PostFeedCard data={r} />
+          <div className={`mt-24 `} key={i}>
+            <PostFeedCard data={r} onSubmitComment={props.onSubmitComment} />
           </div>
         );
       })}

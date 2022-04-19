@@ -1,4 +1,4 @@
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { FormikControl, Modal, Table } from "../../../atoms";
@@ -11,7 +11,12 @@ const AddSubjectModal = (props) => {
       subjectName: "UTS 1 English 2022/2023",
       select: (
         <div className="text-end w-full ">
-          <input type="checkbox" className="mr-16 form-check-input" />
+          <Field
+            name="checkedSubject"
+            type="checkbox"
+            className="mr-16 form-check-input"
+            value={"1"}
+          />
         </div>
       ),
     },
@@ -19,7 +24,12 @@ const AddSubjectModal = (props) => {
       subjectName: "UTS 2 English 2022/2023",
       select: (
         <div className="text-end w-full ">
-          <input type="checkbox" className="mr-16 form-check-input" />
+          <Field
+            name="checkedSubject"
+            type="checkbox"
+            className="mr-16 form-check-input"
+            value={"2"}
+          />
         </div>
       ),
     },
@@ -27,7 +37,12 @@ const AddSubjectModal = (props) => {
       subjectName: "UTS 1 English 2022/2023",
       select: (
         <div className="text-end w-full ">
-          <input type="checkbox" className="mr-16 form-check-input" />
+          <Field
+            name="checkedSubject"
+            type="checkbox"
+            className="mr-16 form-check-input"
+            value={"3"}
+          />
         </div>
       ),
     },
@@ -35,7 +50,12 @@ const AddSubjectModal = (props) => {
       subjectName: "UTS 2 English 2022/2023",
       select: (
         <div className="text-end w-full ">
-          <input type="checkbox" className="mr-16 form-check-input" />
+          <Field
+            name="checkedSubject"
+            type="checkbox"
+            className="mr-16 form-check-input"
+            value={"4"}
+          />
         </div>
       ),
     },
@@ -43,7 +63,12 @@ const AddSubjectModal = (props) => {
       subjectName: "UTS 1 English 2022/2023",
       select: (
         <div className="text-end w-full ">
-          <input type="checkbox" className="mr-16 form-check-input" />
+          <Field
+            name="checkedSubject"
+            type="checkbox"
+            className="mr-16 form-check-input"
+            value={"5"}
+          />
         </div>
       ),
     },
@@ -51,7 +76,12 @@ const AddSubjectModal = (props) => {
       subjectName: "UTS 2 English 2022/2023",
       select: (
         <div className="text-end w-full ">
-          <input type="checkbox" className="mr-16 form-check-input" />
+          <Field
+            name="checkedSubject"
+            type="checkbox"
+            className="mr-16 form-check-input"
+            value={"6"}
+          />
         </div>
       ),
     },
@@ -75,7 +105,11 @@ const AddSubjectModal = (props) => {
 
   return (
     <>
-      <Formik initialValues={{ keyword: "" }} onSubmit={() => {}}>
+      <Formik
+        initialValues={{ keyword: "", checkedSubject: [] }}
+        enableReinitialize={true}
+        onSubmit={() => {}}
+      >
         <Form>
           <Modal
             className="radius-16  max-w-440 max-h-487 modal-custom bg-white"
