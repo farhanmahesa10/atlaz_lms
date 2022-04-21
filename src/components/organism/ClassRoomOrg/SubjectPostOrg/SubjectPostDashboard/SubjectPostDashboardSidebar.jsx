@@ -12,7 +12,7 @@ const SubjectPostDashboardSidebar = (props) => {
       >
         <p className="h6 ">Activate Assessment</p>
         <Link
-          to="/"
+          to="/classroom/set-plan/1/2/1"
           className="btn btn-secondary text-center font-sm md-w-p-100 xl-w-auto md-mt-16 xl-mt-0"
         >
           Set Plan

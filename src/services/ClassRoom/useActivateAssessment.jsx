@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const useActivateAssessment = () => {
+  const [selectAllStatus, setSelectAllStatus] = useState("none");
+  const [showAssessmentList, setShowAssessmentList] = useState(false);
+  const formikRef = useRef(null);
+
   const initialValues = {
     subject: "",
     lesson: "",
     assessment: "",
-    class: "",
+    assessmentClass: "",
+
+    startReading: "",
+    startListening: "",
+    startSpeaking: "",
+    startWriting: "",
+
+    endReading: "",
+    endListening: "",
+    endSpeaking: "",
+    endWriting: "",
+
+    checkReading: false,
+    checkListening: false,
+    checkSpeaking: false,
+    checkWriting: false,
   };
 
   const [subjectData, setSubjectData] = useState([
@@ -56,32 +75,45 @@ const useActivateAssessment = () => {
     {
       title: "Subject",
       name: "subject",
+      placeholder: "Select subject",
       desc: "You can also activate the assessment of other subjects that you create.",
       data: subjectData,
     },
     {
       title: "Lesson",
       name: "lesson",
+      placeholder: "Select lesson",
       desc: "Select available lessons on the selected subjects.",
       data: lessonData,
     },
     {
       title: "Assessment",
       name: "assessment",
+      placeholder: "Select assessment",
       desc: "Select available topics on the selected lessons.",
       data: assessmentData,
     },
     {
       title: "Class",
-      name: "class",
+      name: "assessmentClass",
+      placeholder: "Select class",
       desc: "If you select all classes, the same assessment will be activated in all your classes.",
       data: classData,
     },
   ];
 
+  useEffect(() => {
+    console.log(formikRef);
+  }, [formikRef]);
+
   return {
     initialValues,
     createForm,
+    selectAllStatus,
+    setSelectAllStatus,
+    showAssessmentList,
+    setShowAssessmentList,
+    formikRef,
   };
 };
 

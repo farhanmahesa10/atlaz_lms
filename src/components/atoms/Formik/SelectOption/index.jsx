@@ -49,7 +49,9 @@ const SelectOption = (props) => {
         options={data}
         onChange={(e) => {
           props.formik.setFieldValue(props.name, e.value);
+          props.formik.setFieldTouched((props.name, true));
         }}
+        onInputChange={props.onInputChange}
         styles={customStyles}
       />
     </>

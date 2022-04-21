@@ -3,6 +3,7 @@ import InputCheckbox from "./InputCheckbox";
 import InputIcon from "./InputIcon";
 import InputImage from "./InputImage";
 import InputPassword from "./InputPassword";
+import InputDate from "./InputDate";
 import SelectOption from "./SelectOption";
 const FormikControl = (props) => {
   const { control, ...rest } = props;
@@ -17,6 +18,8 @@ const FormikControl = (props) => {
       return <InputImage {...rest} />;
     case "select":
       return <SelectOption {...rest} />;
+    case "datetime":
+      return <InputDate {...rest} />;
     default:
       return null;
   }
