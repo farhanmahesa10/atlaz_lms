@@ -7,6 +7,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import CheckIcon from "@mui/icons-material/Check";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import moment from "moment";
+import _ from "lodash";
 const ActivateAssessmentOrg = () => {
   const {
     initialValues,
@@ -15,22 +17,18 @@ const ActivateAssessmentOrg = () => {
     setSelectAllStatus,
     showAssessmentList,
     setShowAssessmentList,
-    formikRef,
+    formDateTime,
+    changeCheked,
+    onSubmit,
   } = useActivateAssessment();
 
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white" navNoMenu>
       <div className="mx-48 mt-16">
         <Formik
-          innerRef={formikRef}
           initialValues={initialValues}
           enableReinitialize={true}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-          isChange={(e) => {
-            console.log("oke");
-          }}
+          onSubmit={onSubmit}
         >
           {(formik) => (
             <Form>
@@ -45,9 +43,13 @@ const ActivateAssessmentOrg = () => {
                         title={r.title}
                         desc={r.desc}
                         name={r.name}
+                        isMulti={r.isMulti}
                         placeholder={r.placeholder}
                         onShowAssessmentList={setShowAssessmentList}
                         options={r.data}
+                        inputType={r.inputType}
+                        hideSelectedOptions={r.hideSelectedOptions}
+                        closeMenuOnSelect={r.closeMenuOnSelect}
                       />
                     </React.Fragment>
                   );
@@ -62,6 +64,7 @@ const ActivateAssessmentOrg = () => {
                         className=" cursor-pointer text-neutral-300  h-18 w-18 fs-16 radius-4"
                         onClick={() => {
                           setSelectAllStatus("checked");
+                          changeCheked(formik, true);
                         }}
                       />
                     ) : selectAllStatus === "min" ? (
@@ -69,6 +72,7 @@ const ActivateAssessmentOrg = () => {
                         className="bg-success-500 cursor-pointer text-white h-18 w-18 fs-14 radius-4"
                         onClick={() => {
                           setSelectAllStatus("none");
+                          changeCheked(formik, false);
                         }}
                       />
                     ) : (
@@ -76,6 +80,7 @@ const ActivateAssessmentOrg = () => {
                         className="bg-success-500 cursor-pointer text-white h-18 w-18 fs-14 radius-4"
                         onClick={() => {
                           setSelectAllStatus("none");
+                          changeCheked(formik, false);
                         }}
                       />
                     )}
@@ -86,224 +91,39 @@ const ActivateAssessmentOrg = () => {
                   <Divider parentClassName="my-32" />
 
                   <div className="row">
-                    {/* reading */}
-                    <div className="col-12">
-                      <div className="d-flex align-items-center mb-20">
-                        <FormikControl
-                          control="checkbox"
-                          name={"checkReading"}
-                          placeholder={"placeholder"}
-                          onInput={() => {
-                            setSelectAllStatus("min");
-                          }}
+                    {formDateTime.map((res, ind) => {
+                      return (
+                        <DateTimeForm
+                          checkBoxName={res.checkBoxName}
+                          startDateName={res.startDateName}
+                          endDateName={res.endDateName}
+                          durationName={res.durationName}
+                          title={res.title}
+                          formik={formik}
+                          onChangeSelectChecked={(val) =>
+                            setSelectAllStatus(val)
+                          }
+                          key={`b-${ind}`}
                         />
-                        <div className="h-32 bg-secondary-300 radius-p-100 w-32 d-flex align-items-center justify-content-center ml-16">
-                          <WysiwygIcon className="fs-18" />
-                        </div>
-                        <h6 className="ml-8">Reading Assessment</h6>
-                      </div>
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            control="datetime"
-                            name={"startReading"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                            label="Start Date & Time"
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            label="End Date & Time"
-                            control="datetime"
-                            name={"endReading"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            disabled
-                            label="Total Duration"
-                            control="input"
-                            size="sm"
-                            name={"endReading"}
-                            placeholder={"0d 0hr 10min"}
-                          />
-                        </div>
-                        <div className="col-12">
-                          <Divider
-                            lineColor={"bg-secondary-500 "}
-                            height="h-2"
-                            parentClassName={"mb-24"}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* listerning */}
-                    <div className="col-12">
-                      <div className="d-flex align-items-center mb-20">
-                        <FormikControl
-                          control="checkbox"
-                          name={"checkListening"}
-                          placeholder={"placeholder"}
-                          onInput={() => {
-                            setSelectAllStatus("min");
-                          }}
-                        />
-                        <div className="h-32 bg-secondary-300 radius-p-100 w-32 d-flex align-items-center justify-content-center ml-16">
-                          <WysiwygIcon className="fs-18" />
-                        </div>
-                        <h6 className="ml-8">Listening Assessment</h6>
-                      </div>
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            control="datetime"
-                            name={"startListening"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                            label="Start Date & Time"
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            label="End Date & Time"
-                            control="datetime"
-                            name={"endListening"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            disabled
-                            label="Total Duration"
-                            control="input"
-                            size="sm"
-                            name={"endListening"}
-                            placeholder={"0d 0hr 10min"}
-                          />
-                        </div>
-                        <div className="col-12">
-                          <Divider
-                            lineColor={"bg-secondary-500 "}
-                            height="h-2"
-                            parentClassName={"mb-24"}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Speaking */}
-
-                    <div className="col-12">
-                      <div className="d-flex align-items-center mb-20">
-                        <FormikControl
-                          control="checkbox"
-                          name={"checkSpeaking"}
-                          placeholder={"placeholder"}
-                          onInput={() => {
-                            setSelectAllStatus("min");
-                          }}
-                        />
-                        <div className="h-32 bg-secondary-300 radius-p-100 w-32 d-flex align-items-center justify-content-center ml-16">
-                          <WysiwygIcon className="fs-18" />
-                        </div>
-                        <h6 className="ml-8">Speaking Assessment</h6>
-                      </div>
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            control="datetime"
-                            name={"startSpeaking"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                            label="Start Date & Time"
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            label="End Date & Time"
-                            control="datetime"
-                            name={"endSpeaking"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            disabled
-                            label="Total Duration"
-                            control="input"
-                            size="sm"
-                            name={"endSpeaking"}
-                            placeholder={"0d 0hr 10min"}
-                          />
-                        </div>
-                        <div className="col-12">
-                          <Divider
-                            lineColor={"bg-secondary-500 "}
-                            height="h-2"
-                            parentClassName={"mb-24"}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Writing */}
-
-                    <div className="col-12">
-                      <div className="d-flex align-items-center mb-20">
-                        <FormikControl
-                          control="checkbox"
-                          name={"checkWriting"}
-                          placeholder={"placeholder"}
-                          onInput={() => {
-                            setSelectAllStatus("min");
-                          }}
-                        />
-                        <div className="h-32 bg-secondary-300 radius-p-100 w-32 d-flex align-items-center justify-content-center ml-16">
-                          <WysiwygIcon className="fs-18" />
-                        </div>
-                        <h6 className="ml-8">Writing Assessment</h6>
-                      </div>
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            control="datetime"
-                            name={"startWriting"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                            label="Start Date & Time"
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            label="End Date & Time"
-                            control="datetime"
-                            name={"endWriting"}
-                            placeholder={"placeholder"}
-                            formik={formik}
-                          />
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4 mb-24">
-                          <FormikControl
-                            disabled
-                            label="Total Duration"
-                            control="input"
-                            size="sm"
-                            name={"endWriting"}
-                            placeholder={"0d 0hr 10min"}
-                          />
-                        </div>
-                      </div>
+                      );
+                    })}
+                    <div className="col-12 text-end">
+                      <button
+                        type="submit"
+                        className="btn-outline font-normal mr-24"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="btn-primary font-normal px-37"
+                      >
+                        Confirm
+                      </button>
                     </div>
                   </div>
                 </div>
               )}
-              <button type="submit">ssss</button>
             </Form>
           )}
         </Formik>
@@ -313,7 +133,18 @@ const ActivateAssessmentOrg = () => {
 };
 
 const AssessmentForm = (props) => {
-  const { formik, title, desc, name, options, placeholder } = props;
+  const {
+    formik,
+    title,
+    desc,
+    name,
+    options,
+    placeholder,
+    isMulti,
+    inputType,
+    hideSelectedOptions,
+    closeMenuOnSelect,
+  } = props;
 
   useEffect(() => {
     let { subject, lesson, assessment, assessmentClass } = formik.values;
@@ -322,7 +153,7 @@ const AssessmentForm = (props) => {
       subject !== "" &&
       lesson !== "" &&
       assessment !== "" &&
-      assessmentClass !== ""
+      (assessmentClass !== "" || assessmentClass !== [])
     ) {
       props.onShowAssessmentList(true);
     } else {
@@ -345,6 +176,10 @@ const AssessmentForm = (props) => {
               options={props.options && props.options}
               formik={formik}
               placeholder={placeholder}
+              isMulti={isMulti}
+              inputType={inputType}
+              hideSelectedOptions={hideSelectedOptions}
+              closeMenuOnSelect={closeMenuOnSelect}
             />
           </div>
         </div>
@@ -353,32 +188,105 @@ const AssessmentForm = (props) => {
   );
 };
 
-const dateTimeForm = (props) => {
-  const { formik } = props;
+const DateTimeForm = (props) => {
+  const [startDef, setStartDef] = useState("");
+  const [endDef, setEndDef] = useState("");
+
+  const {
+    formik,
+    checkBoxName,
+    startDateName,
+    endDateName,
+    durationName,
+    title,
+  } = props;
+
+  //checkbox control
+  useEffect(() => {
+    let formikValues = formik.values;
+    if (
+      formikValues.checkReading === true &&
+      formikValues.checkListening === true &&
+      formikValues.checkSpeaking === true &&
+      formikValues.checkWriting === true
+    ) {
+      props.onChangeSelectChecked("checked");
+    } else if (
+      formikValues.checkReading === true ||
+      formikValues.checkListening === true ||
+      formikValues.checkSpeaking === true ||
+      formikValues.checkWriting === true
+    ) {
+      props.onChangeSelectChecked("min");
+    } else if (
+      formikValues.checkReading === false &&
+      formikValues.checkListening === false &&
+      formikValues.checkSpeaking === false &&
+      formikValues.checkWriting === false
+    ) {
+      props.onChangeSelectChecked("none");
+    }
+  }, [formik]);
+
+  const handleDateChange = (val, isStart = true) => {
+    let values = formik.values;
+    let start = "";
+    let end = "";
+    if (isStart) {
+      start = val;
+      end = _.get(values, endDateName);
+    } else {
+      start = _.get(values, startDateName);
+      end = val;
+    }
+
+    if (start && end) {
+      let startMoment = moment(start);
+      let endMoment = moment(end);
+      let duration = moment.duration(endMoment.diff(startMoment));
+      let day = duration._data.days;
+      let hour = duration._data.hours;
+      let minute = duration._data.minutes;
+      if (startMoment < endMoment) {
+        let result = `${day > 0 ? day : "0"}d ${hour > 0 ? hour : "0"}hr ${
+          minute > 0 ? minute : "0"
+        }min`;
+        formik.setFieldValue(durationName, result);
+        // console.log(result);
+      } else {
+        let result = `0d 0hr 0min`;
+        formik.setFieldValue(durationName, result);
+      }
+      // console.log(day + "d ", hour + "hr ", minute + "min");
+    }
+
+    // let diff = start.diff(end);
+  };
 
   return (
     <div className="col-12">
       <div className="d-flex align-items-center mb-20">
         <FormikControl
           control="checkbox"
-          name={"checkWriting"}
-          placeholder={"placeholder"}
-          onInput={() => {
-            // setSelectAllStatus("min");
-          }}
+          name={checkBoxName}
+          placeholder={"Select date & time"}
         />
         <div className="h-32 bg-secondary-300 radius-p-100 w-32 d-flex align-items-center justify-content-center ml-16">
           <WysiwygIcon className="fs-18" />
         </div>
-        <h6 className="ml-8">Writing Assessment</h6>
+        <h6 className="ml-8">{title}</h6>
       </div>
       <div className="row">
         <div className="col-12 col-md-6 col-xl-4 mb-24">
           <FormikControl
             control="datetime"
-            name={"startWriting"}
-            placeholder={"placeholder"}
+            name={startDateName}
+            placeholder={"Select date & time"}
             formik={formik}
+            onInput={(val) => {
+              setStartDef(val);
+              handleDateChange(val);
+            }}
             label="Start Date & Time"
           />
         </div>
@@ -386,9 +294,13 @@ const dateTimeForm = (props) => {
           <FormikControl
             label="End Date & Time"
             control="datetime"
-            name={"endWriting"}
-            placeholder={"placeholder"}
+            name={endDateName}
+            placeholder={"Select date & time"}
             formik={formik}
+            onInput={(val) => {
+              setEndDef(val);
+              handleDateChange(val, false);
+            }}
           />
         </div>
         <div className="col-12 col-md-6 col-xl-4 mb-24">
@@ -397,8 +309,8 @@ const dateTimeForm = (props) => {
             label="Total Duration"
             control="input"
             size="sm"
-            name={"endWriting"}
-            placeholder={"0d 0hr 10min"}
+            name={durationName}
+            placeholder={"0d 0hr 0min"}
           />
         </div>
       </div>

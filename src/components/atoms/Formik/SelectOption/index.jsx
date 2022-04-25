@@ -3,6 +3,37 @@ import { components, default as ReactSelect } from "react-select";
 import { Close } from "@mui/icons-material";
 import { Field } from "formik";
 const SelectOption = (props) => {
+  const OptionCheck = (props) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          <input
+            type={"checkbox"}
+            checked={props.isSelected}
+            className="mr-8 form-check-input"
+            onChange={() => null}
+          />
+          <label>{props.label}</label>
+        </components.Option>
+      </div>
+    );
+  };
+  const OptionRadio = (props) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          <input
+            type={"radio"}
+            checked={props.isSelected}
+            className="mr-8 form-check-input"
+            onChange={() => null}
+          />
+          <label>{props.label}</label>
+        </components.Option>
+      </div>
+    );
+  };
+
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
@@ -40,17 +71,26 @@ const SelectOption = (props) => {
 
   const data = props.options;
 
+  const component = {
+    Option: props.inputType === "radio" ? OptionRadio : OptionCheck,
+  };
+
   return (
     <>
       <ReactSelect
         className="basic-single input-control"
         classNamePrefix="select"
+        isMulti={props.isMulti}
         placeholder={props.placeholder}
         options={data}
+        hideSelectedOptions={props.hideSelectedOptions}
         onChange={(e) => {
-          props.formik.setFieldValue(props.name, e.value);
+          let value = props.isMulti ? e : e.value;
+          props.formik.setFieldValue(props.name, value);
           props.formik.setFieldTouched((props.name, true));
         }}
+        components={props.inputType ? component : false}
+        closeMenuOnSelect={props.closeMenuOnSelect}
         onInputChange={props.onInputChange}
         styles={customStyles}
       />

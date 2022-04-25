@@ -50,7 +50,7 @@ const CssTextField = styled(TextField)({
 const InputDate = (props) => {
   const { name, formik } = props;
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
   return (
     <>
       <div className="form-input input-date">
@@ -71,11 +71,15 @@ const InputDate = (props) => {
             onChange={(date) => {
               setStartDate(date);
               formik.setFieldValue(name, date);
+              if (props.onInput) {
+                props.onInput(date);
+              }
             }}
+            placeholderText={props.placeholder}
             name={name}
           />
 
-          <div className="bg-neutral-100 d-flex align-items-center px-8 py-6">
+          <div className="bg-neutral-100 d-flex align-items-center px-8 py-6 cursor-pointer">
             <CalendarTodayIcon
               onClick={(e) => {
                 document.querySelector(`input[name=${name}]`).click();

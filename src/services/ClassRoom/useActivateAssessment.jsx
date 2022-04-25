@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 const useActivateAssessment = () => {
   const [selectAllStatus, setSelectAllStatus] = useState("none");
   const [showAssessmentList, setShowAssessmentList] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewData, setPreviewData] = useState(null);
+
   const formikRef = useRef(null);
 
   const initialValues = {
@@ -10,6 +13,12 @@ const useActivateAssessment = () => {
     lesson: "",
     assessment: "",
     assessmentClass: "",
+    durationReading: "",
+
+    checkReading: false,
+    checkListening: false,
+    checkSpeaking: false,
+    checkWriting: false,
 
     startReading: "",
     startListening: "",
@@ -21,10 +30,10 @@ const useActivateAssessment = () => {
     endSpeaking: "",
     endWriting: "",
 
-    checkReading: false,
-    checkListening: false,
-    checkSpeaking: false,
-    checkWriting: false,
+    durationReading: "",
+    durationListening: "",
+    durationSpeaking: "",
+    durationWriting: "",
   };
 
   const [subjectData, setSubjectData] = useState([
@@ -99,12 +108,56 @@ const useActivateAssessment = () => {
       placeholder: "Select class",
       desc: "If you select all classes, the same assessment will be activated in all your classes.",
       data: classData,
+      isMulti: true,
+      inputType: "checkbox",
+      hideSelectedOptions: false,
+      closeMenuOnSelect: false,
     },
   ];
 
-  useEffect(() => {
-    console.log(formikRef);
-  }, [formikRef]);
+  const formDateTime = [
+    {
+      title: "Reading Assessment",
+      checkBoxName: "checkReading",
+      startDateName: "startReading",
+      endDateName: "endReading",
+      durationName: "durationReading",
+    },
+    {
+      title: "Listening Assessment",
+      checkBoxName: "checkListening",
+      startDateName: "startListening",
+      endDateName: "endListening",
+      durationName: "durationListening",
+    },
+    {
+      title: "Speaking Assessment",
+      checkBoxName: "checkSpeaking",
+      startDateName: "startSpeaking",
+      endDateName: "endSpeaking",
+      durationName: "durationSpeaking",
+    },
+    {
+      title: "Writing Assessment",
+      checkBoxName: "checkWriting",
+      startDateName: "startWriting",
+      endDateName: "endWriting",
+      durationName: "durationWriting",
+    },
+  ];
+
+  const changeCheked = (formik, value) => {
+    formik.setFieldValue("checkReading", value);
+    formik.setFieldValue("checkListening", value);
+    formik.setFieldValue("checkSpeaking", value);
+    formik.setFieldValue("checkWriting", value);
+  };
+
+  const onSubmit = (values) => {
+    setShowPreview(true);
+    setPreviewData(values);
+    console.log(values);
+  };
 
   return {
     initialValues,
@@ -114,6 +167,9 @@ const useActivateAssessment = () => {
     showAssessmentList,
     setShowAssessmentList,
     formikRef,
+    formDateTime,
+    changeCheked,
+    onSubmit,
   };
 };
 
