@@ -9,7 +9,7 @@ const SubjectPostDashboard = () => {
     useSubjectPostDashboard();
 
   return (
-    <div className="row mx-24 mt-24 gx-0">
+    <div className="row mx-16 md-mx-48 mt-24 gx-0">
       <div className="col-12 col-md-5 col-xl-4 ">
         <SubjectPostDashboardSidebar data={sideBarData} />
       </div>

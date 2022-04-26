@@ -16,6 +16,7 @@ import UpcomingCard from "./Cards/UpcomingCard";
 import PostFeedCard from "./Cards/PostFeedCard";
 import ModalImage from "./Modals/ModalImage";
 import CreateFeedCard from "./Cards/CreateFeedCard";
+import UserCard from "./Cards/UserCard";
 export {
   ProductXCard,
   ProductYCard,
@@ -35,4 +36,5 @@ export {
   PostFeedCard,
   ModalImage,
   CreateFeedCard,
+  UserCard,
 };

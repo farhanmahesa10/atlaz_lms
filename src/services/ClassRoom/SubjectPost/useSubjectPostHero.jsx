@@ -19,17 +19,17 @@ const useSubjectPostHero = () => {
   const navMenu = [
     {
       label: "Dashboard",
-      link: `/classroom/${classId}/${subjectId}/dashboard`,
+      link: `/classroom/assessment/${classId}/${subjectId}/dashboard`,
       activeTo: "dashboard",
     },
     {
       label: "Member",
-      link: `/classroom/${classId}/${subjectId}/member`,
+      link: `/classroom/assessment/${classId}/${subjectId}/member`,
       activeTo: "member",
     },
     {
       label: "Start Learning",
-      link: `/classroom/${classId}/${subjectId}/start_learning`,
+      link: `/classroom/assessment/${classId}/${subjectId}/start_learning`,
       activeTo: "start_learning",
     },
   ];

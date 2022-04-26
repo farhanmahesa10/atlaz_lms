@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const useActivateAssessment = () => {
-  const [selectAllStatus, setSelectAllStatus] = useState("none");
+  const [selectAllStatus, setSelectAllStatus] = useState("checked");
   const [showAssessmentList, setShowAssessmentList] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [previewData, setPreviewData] = useState(null);
@@ -15,10 +15,10 @@ const useActivateAssessment = () => {
     assessmentClass: "",
     durationReading: "",
 
-    checkReading: false,
-    checkListening: false,
-    checkSpeaking: false,
-    checkWriting: false,
+    checkReading: true,
+    checkListening: true,
+    checkSpeaking: true,
+    checkWriting: true,
 
     startReading: "",
     startListening: "",
@@ -170,6 +170,8 @@ const useActivateAssessment = () => {
     formDateTime,
     changeCheked,
     onSubmit,
+    showPreview,
+    previewData,
   };
 };
 

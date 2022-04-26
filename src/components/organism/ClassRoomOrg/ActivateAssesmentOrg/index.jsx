@@ -9,6 +9,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import moment from "moment";
 import _ from "lodash";
+import ActiveAssessmentPreview from "./ActiveAssessmentPreview";
+
 const ActivateAssessmentOrg = () => {
   const {
     initialValues,
@@ -20,114 +22,119 @@ const ActivateAssessmentOrg = () => {
     formDateTime,
     changeCheked,
     onSubmit,
+    showPreview,
+    previewData,
   } = useActivateAssessment();
 
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white" navNoMenu>
-      <div className="mx-48 mt-16">
-        <Formik
-          initialValues={initialValues}
-          enableReinitialize={true}
-          onSubmit={onSubmit}
-        >
-          {(formik) => (
-            <Form>
-              <h4>Activate Assessment</h4>
-              <Divider lineColor={"bg-primary-500 w-32 h-2"} />
-              <div className="row mt-48">
-                {createForm.map((r, i) => {
-                  return (
-                    <React.Fragment key={i}>
-                      <AssessmentForm
-                        formik={formik}
-                        title={r.title}
-                        desc={r.desc}
-                        name={r.name}
-                        isMulti={r.isMulti}
-                        placeholder={r.placeholder}
-                        onShowAssessmentList={setShowAssessmentList}
-                        options={r.data}
-                        inputType={r.inputType}
-                        hideSelectedOptions={r.hideSelectedOptions}
-                        closeMenuOnSelect={r.closeMenuOnSelect}
-                      />
-                    </React.Fragment>
-                  );
-                })}
-              </div>
-
-              {showAssessmentList && (
-                <div>
-                  <div className="d-flex align-items-center">
-                    {selectAllStatus === "none" ? (
-                      <CheckBoxOutlineBlankIcon
-                        className=" cursor-pointer text-neutral-300  h-18 w-18 fs-16 radius-4"
-                        onClick={() => {
-                          setSelectAllStatus("checked");
-                          changeCheked(formik, true);
-                        }}
-                      />
-                    ) : selectAllStatus === "min" ? (
-                      <RemoveIcon
-                        className="bg-success-500 cursor-pointer text-white h-18 w-18 fs-14 radius-4"
-                        onClick={() => {
-                          setSelectAllStatus("none");
-                          changeCheked(formik, false);
-                        }}
-                      />
-                    ) : (
-                      <CheckIcon
-                        className="bg-success-500 cursor-pointer text-white h-18 w-18 fs-14 radius-4"
-                        onClick={() => {
-                          setSelectAllStatus("none");
-                          changeCheked(formik, false);
-                        }}
-                      />
-                    )}
-
-                    {/* <input type="checkbox" className=" form-check-input" />{" "} */}
-                    <span className="ml-2">Select All</span>
-                  </div>
-                  <Divider parentClassName="my-32" />
-
-                  <div className="row">
-                    {formDateTime.map((res, ind) => {
-                      return (
-                        <DateTimeForm
-                          checkBoxName={res.checkBoxName}
-                          startDateName={res.startDateName}
-                          endDateName={res.endDateName}
-                          durationName={res.durationName}
-                          title={res.title}
+      {showPreview && <ActiveAssessmentPreview />}
+      {!showPreview && (
+        <div className="mx-48 mt-16">
+          <Formik
+            initialValues={initialValues}
+            enableReinitialize={true}
+            onSubmit={onSubmit}
+          >
+            {(formik) => (
+              <Form>
+                <h4>Activate Assessment</h4>
+                <Divider lineColor={"bg-primary-500 w-32 h-2"} />
+                <div className="row mt-48">
+                  {createForm.map((r, i) => {
+                    return (
+                      <React.Fragment key={i}>
+                        <AssessmentForm
                           formik={formik}
-                          onChangeSelectChecked={(val) =>
-                            setSelectAllStatus(val)
-                          }
-                          key={`b-${ind}`}
+                          title={r.title}
+                          desc={r.desc}
+                          name={r.name}
+                          isMulti={r.isMulti}
+                          placeholder={r.placeholder}
+                          onShowAssessmentList={setShowAssessmentList}
+                          options={r.data}
+                          inputType={r.inputType}
+                          hideSelectedOptions={r.hideSelectedOptions}
+                          closeMenuOnSelect={r.closeMenuOnSelect}
                         />
-                      );
-                    })}
-                    <div className="col-12 text-end">
-                      <button
-                        type="submit"
-                        className="btn-outline font-normal mr-24"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn-primary font-normal px-37"
-                      >
-                        Confirm
-                      </button>
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+
+                {showAssessmentList && (
+                  <div>
+                    <div className="d-flex align-items-center">
+                      {selectAllStatus === "none" ? (
+                        <CheckBoxOutlineBlankIcon
+                          className=" cursor-pointer text-neutral-300  h-18 w-18 fs-16 radius-4"
+                          onClick={() => {
+                            setSelectAllStatus("checked");
+                            changeCheked(formik, true);
+                          }}
+                        />
+                      ) : selectAllStatus === "min" ? (
+                        <RemoveIcon
+                          className="bg-info-500 cursor-pointer text-white h-18 w-18 fs-14 radius-4"
+                          onClick={() => {
+                            setSelectAllStatus("none");
+                            changeCheked(formik, false);
+                          }}
+                        />
+                      ) : (
+                        <CheckIcon
+                          className="bg-info-500 cursor-pointer text-white h-18 w-18 fs-14 radius-4"
+                          onClick={() => {
+                            setSelectAllStatus("none");
+                            changeCheked(formik, false);
+                          }}
+                        />
+                      )}
+
+                      {/* <input type="checkbox" className=" form-check-input" />{" "} */}
+                      <span className="ml-2">Select All</span>
+                    </div>
+                    <Divider parentClassName="my-32" />
+
+                    <div className="row">
+                      {formDateTime.map((res, ind) => {
+                        return (
+                          <DateTimeForm
+                            checkBoxName={res.checkBoxName}
+                            startDateName={res.startDateName}
+                            endDateName={res.endDateName}
+                            durationName={res.durationName}
+                            title={res.title}
+                            formik={formik}
+                            onChangeSelectChecked={(val) =>
+                              setSelectAllStatus(val)
+                            }
+                            key={`b-${ind}`}
+                          />
+                        );
+                      })}
+                      <div className="col-12 text-end">
+                        <button
+                          type="submit"
+                          className="btn-outline font-normal mr-24"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="btn-primary font-normal px-37"
+                        >
+                          Confirm
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Form>
-          )}
-        </Formik>
-      </div>
+                )}
+              </Form>
+            )}
+          </Formik>
+        </div>
+      )}
     </MainLayout>
   );
 };
