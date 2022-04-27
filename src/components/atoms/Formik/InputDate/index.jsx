@@ -6,6 +6,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { Field } from "formik";
+import moment from "moment";
 const CssTextField = styled(TextField)({
   "& .MuiInputBase-input": {
     padding: "8px 16px",
@@ -48,12 +49,18 @@ const CssTextField = styled(TextField)({
 // };
 
 const InputDate = (props) => {
-  const { name, formik } = props;
+  const { name, formik, minDate } = props;
 
   const [startDate, setStartDate] = useState(null);
+
+  const meta = formik.getFieldMeta(name);
   return (
     <>
-      <div className="form-input input-date">
+      <div
+        className={`form-input${
+          meta.touched && meta.error ? "-error" : ""
+        } input-date`}
+      >
         {props.label && (
           <label htmlFor="" className="font-sm-bold ">
             {props.label}
@@ -66,6 +73,7 @@ const InputDate = (props) => {
             timeFormat="HH:mm"
             timeIntervals={15}
             timeCaption="time"
+            minDate={minDate ? minDate : null}
             dateFormat="MMMM d, yyyy h:mm aa"
             className="input-control  py-8 pl-8 radius-8 font-sm"
             onChange={(date) => {
@@ -88,6 +96,9 @@ const InputDate = (props) => {
           </div>
         </div>
       </div>
+      {meta.touched && meta.error && (
+        <span className="text-danger-500">{meta.error}</span>
+      )}
     </>
   );
 };

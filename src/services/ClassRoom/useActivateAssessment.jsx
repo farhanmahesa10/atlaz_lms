@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import * as Yup from "yup";
 
 const useActivateAssessment = () => {
   const [selectAllStatus, setSelectAllStatus] = useState("checked");
@@ -12,7 +13,7 @@ const useActivateAssessment = () => {
     subject: "",
     lesson: "",
     assessment: "",
-    assessmentClass: "",
+    assessmentClass: [],
     durationReading: "",
 
     checkReading: true,
@@ -35,6 +36,56 @@ const useActivateAssessment = () => {
     durationSpeaking: "",
     durationWriting: "",
   };
+
+  const validationSchema = Yup.object().shape({
+    startReading: Yup.string().when("checkReading", {
+      is: (checkReading) => checkReading === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+    startListening: Yup.string().when("checkListening", {
+      is: (checkListening) => checkListening === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+    startSpeaking: Yup.string().when("checkSpeaking", {
+      is: (checkSpeaking) => checkSpeaking === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+    startWriting: Yup.string().when("checkWriting", {
+      is: (checkWriting) => checkWriting === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+
+    endReading: Yup.string().when("checkReading", {
+      is: (checkReading) => checkReading === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+    endListening: Yup.string().when("checkListening", {
+      is: (checkListening) => checkListening === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+    endSpeaking: Yup.string().when("checkSpeaking", {
+      is: (checkSpeaking) => checkSpeaking === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    }),
+    endWriting: Yup.string().when("checkWriting", {
+      is: (checkWriting) => checkWriting === true,
+      then: Yup.string().required("I am required now the checkbox is checked"),
+    }),
+  });
 
   const [subjectData, setSubjectData] = useState([
     {
@@ -172,6 +223,7 @@ const useActivateAssessment = () => {
     onSubmit,
     showPreview,
     previewData,
+    validationSchema,
   };
 };
 

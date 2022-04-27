@@ -25,6 +25,7 @@ const useSubjectPostDashboard = () => {
     userId: "",
     posts: [
       {
+        isAssessment: true,
         user: {
           name: "Hisyam Halimi",
           photo: "/images/product.png",
@@ -34,6 +35,7 @@ const useSubjectPostDashboard = () => {
         image: "/images/example-img-post/gb.jpeg",
       },
       {
+        isAssessment: false,
         user: {
           name: "Uut Budiarto",
           photo: "/images/book.png",

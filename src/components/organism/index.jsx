@@ -15,6 +15,7 @@ import ClassRoomSubjectOrg from "./ClassRoomOrg/Subject";
 import SubjectPostOrg from "./ClassRoomOrg/SubjectPostOrg";
 import SubjectPostDetailOrg from "./ClassRoomOrg/SubjectPostDetailOrg";
 import ActivateAssessmentOrg from "./ClassRoomOrg/ActivateAssesmentOrg";
+import TimelineOrg from "./ClassRoomOrg/TimelineOrg";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -33,4 +34,5 @@ export {
   SubjectPostOrg,
   SubjectPostDetailOrg,
   ActivateAssessmentOrg,
+  TimelineOrg,
 };

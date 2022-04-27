@@ -75,25 +75,35 @@ const SelectOption = (props) => {
     Option: props.inputType === "radio" ? OptionRadio : OptionCheck,
   };
 
+  const meta = props.formik.getFieldMeta(props.name);
+
   return (
     <>
-      <ReactSelect
-        className="basic-single input-control"
-        classNamePrefix="select"
-        isMulti={props.isMulti}
-        placeholder={props.placeholder}
-        options={data}
-        hideSelectedOptions={props.hideSelectedOptions}
-        onChange={(e) => {
-          let value = props.isMulti ? e : e.value;
-          props.formik.setFieldValue(props.name, value);
-          props.formik.setFieldTouched((props.name, true));
-        }}
-        components={props.inputType ? component : false}
-        closeMenuOnSelect={props.closeMenuOnSelect}
-        onInputChange={props.onInputChange}
-        styles={customStyles}
-      />
+      <div className="form-input-">
+        <div className="input-area">
+          <ReactSelect
+            className="basic-single input-control w-full"
+            classNamePrefix="select"
+            isMulti={props.isMulti}
+            placeholder={props.placeholder}
+            options={data}
+            hideSelectedOptions={props.hideSelectedOptions}
+            onChange={(e) => {
+              let value = props.isMulti ? e : e.value;
+              props.formik.setFieldValue(props.name, value);
+              props.formik.setFieldTouched((props.name, true));
+              console.log(meta);
+            }}
+            components={props.inputType ? component : false}
+            closeMenuOnSelect={props.closeMenuOnSelect}
+            onInputChange={props.onInputChange}
+            styles={customStyles}
+          />
+        </div>
+      </div>
+      {meta.touched && meta.error && (
+        <span className="text-danger-500">{meta.error}</span>
+      )}
     </>
   );
 };

@@ -11,6 +11,7 @@ import ClassRoomHeroMain from "./classroom/hero-bg-main.png";
 import ClassRoomHero1 from "./classroom/hero-bg-1.png";
 import ClassRoomHero2 from "./classroom/hero-bg-2.png";
 import ClassRoomHero3 from "./classroom/hero-bg-3.png";
+import AssessmentBanner from "./classroom/assessmentBanner.png";
 export {
   blibli,
   shopee,
@@ -25,4 +26,5 @@ export {
   ClassRoomHero1,
   ClassRoomHero2,
   ClassRoomHero3,
+  AssessmentBanner,
 };

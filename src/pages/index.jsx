@@ -19,6 +19,7 @@ import ClassRoomSubject from "./Classroom/Subject";
 import SubjectPost from "./Classroom/SubjectPost";
 import SubjectPostDetail from "./Classroom/SubjectPostDetail";
 import ActivateAssessment from "./Classroom/ActivateAssessment";
+import TimelineShow from "./Classroom/TimelineShow";
 export {
   Login,
   Register1,
@@ -40,4 +41,5 @@ export {
   SubjectPost,
   SubjectPostDetail,
   ActivateAssessment,
+  TimelineShow,
 };

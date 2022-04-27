@@ -24,6 +24,7 @@ import {
   SubjectPost,
   SubjectPostDetail,
   ActivateAssessment,
+  TimelineShow,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -150,6 +151,14 @@ const Routing = () => {
         element={
           <Authenticate>
             <ActivateAssessment />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/classroom/timeline/:classId/:subjectId"
+        element={
+          <Authenticate>
+            <TimelineShow />
           </Authenticate>
         }
       />

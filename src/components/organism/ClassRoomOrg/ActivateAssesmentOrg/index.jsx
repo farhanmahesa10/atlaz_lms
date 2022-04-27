@@ -24,6 +24,7 @@ const ActivateAssessmentOrg = () => {
     onSubmit,
     showPreview,
     previewData,
+    validationSchema,
   } = useActivateAssessment();
 
   return (
@@ -35,6 +36,7 @@ const ActivateAssessmentOrg = () => {
             initialValues={initialValues}
             enableReinitialize={true}
             onSubmit={onSubmit}
+            validationSchema={validationSchema}
           >
             {(formik) => (
               <Form>
@@ -153,14 +155,16 @@ const AssessmentForm = (props) => {
     closeMenuOnSelect,
   } = props;
 
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+
   useEffect(() => {
     let { subject, lesson, assessment, assessmentClass } = formik.values;
-
     if (
       subject !== "" &&
       lesson !== "" &&
       assessment !== "" &&
-      (assessmentClass !== "" || assessmentClass !== [])
+      assessmentClass.length !== 0
     ) {
       props.onShowAssessmentList(true);
     } else {
@@ -304,6 +308,11 @@ const DateTimeForm = (props) => {
             name={endDateName}
             placeholder={"Select date & time"}
             formik={formik}
+            minDate={
+              formik.getFieldProps(startDateName).value
+                ? formik.getFieldProps(startDateName).value
+                : null
+            }
             onInput={(val) => {
               setEndDef(val);
               handleDateChange(val, false);
