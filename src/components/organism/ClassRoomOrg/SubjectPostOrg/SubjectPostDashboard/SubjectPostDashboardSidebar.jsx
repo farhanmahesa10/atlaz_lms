@@ -24,7 +24,7 @@ const SubjectPostDashboardSidebar = (props) => {
       >
         <div className="d-flex justify-content-between">
           <p className="h6 ">Upcoming Event</p>
-          <Link to="/" className="font-sm">
+          <Link to="/classroom/timeline/1/1" className="font-sm">
             See all
           </Link>
         </div>

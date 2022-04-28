@@ -7,6 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { Field } from "formik";
 import moment from "moment";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+
 const CssTextField = styled(TextField)({
   "& .MuiInputBase-input": {
     padding: "8px 16px",
@@ -49,11 +52,19 @@ const CssTextField = styled(TextField)({
 // };
 
 const InputDate = (props) => {
-  const { name, formik, minDate } = props;
+  const { name, formik, minDate, maxDate, minTime, maxTime } = props;
 
   const [startDate, setStartDate] = useState(null);
 
   const meta = formik.getFieldMeta(name);
+
+  // console.log("example1", setHours(setMinutes(new Date(), 30), 20));
+  // console.log("example2", moment().toDate());
+
+  if (maxDate) {
+    console.log("tesss");
+  }
+
   return (
     <>
       <div
@@ -74,6 +85,19 @@ const InputDate = (props) => {
             timeIntervals={15}
             timeCaption="time"
             minDate={minDate ? minDate : null}
+            maxDate={maxDate ? maxDate : null}
+            minTime={
+              minDate
+                ? moment(minDate).add("15", "minutes").toDate()
+                : setHours(setMinutes(moment().toDate(), 0), 0)
+            }
+            maxTime={
+              maxDate
+                ? maxDate
+                : setHours(setMinutes(moment().toDate(), 59), 23)
+            }
+            // minTime={setHours(setMinutes(new Date(), 0), 17)}
+            // maxTime={setHours(setMinutes(new Date(), 30), 20)}
             dateFormat="MMMM d, yyyy h:mm aa"
             className="input-control  py-8 pl-8 radius-8 font-sm"
             onChange={(date) => {

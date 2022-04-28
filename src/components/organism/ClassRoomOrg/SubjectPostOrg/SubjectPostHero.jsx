@@ -16,32 +16,39 @@ const SubjectPostHero = () => {
           backgroundSize: "cover",
           backgroundBlendMode: "darken",
         }}
-        className="h-188 md-h-312  hero-classroom"
+        className="min-h-188 md-min-h-312  hero-classroom"
       >
         <div className=" d-flex flex-column justify-content-between   h-full  ">
           <div className="">
-            <div className="d-none d-xl-block mt-16 mx-48">
+            <div className="d-none d-xl-block mt-16 mx-48 ">
               <BreadCrumb data={breadcrumbsData} activeColor="text-white" />
             </div>
             <Link
-              to="/classroom/1"
-              className="d-flex align-items-center px-24 md-px-48 pt-24 md-pt-32 "
+              to="/classroom/class/1"
+              className="d-flex align-items-center px-16 md-px-48 pt-24 md-pt-32 "
             >
               <ArrowBackIcon className="text-white fs-18" />
               <span className="ml-19 font-sm text-white">Back</span>
             </Link>
           </div>
-          <div className="p-16 md-p-48 d-flex align-items-center">
+          <div className="px-16 pt-16 md-px-48 md-pt-48 pb-16 md-pb-24 xl-pb-32 d-md-flex align-items-center mt-32">
             <img
               src="/images/product.png"
-              className="h-52 md-h-96 w-52 md-w-96 mr-16 "
+              className="h-88 md-h-160 w-88 md-w-160 mr-16 xl-h-176 xl-w-176 "
               alt=""
             />
             <div>
-              <p className="h5 md-h2  text-white">English Play 01</p>
-              <p className="text-neutral-400 mt-8 text-white font-sm md-font-medium">
-                Uut Budiarto
+              <p className="font-sm-bold text-white font-sm md-h3 xl-h2">
+                English Play 01
               </p>
+              <p className="text-neutral-400 mt-4 text-white font-xs md-font-medium mb-8 md-mb-20">
+                Kelas 1A IPA - 2020/2021
+              </p>
+              <Link to="/">
+                <button className="btn btn-primary font-xs md-font-sm xl-font-normal">
+                  Start Learning
+                </button>
+              </Link>
             </div>
           </div>
         </div>

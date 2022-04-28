@@ -12,7 +12,10 @@ const MainLayout = (props) => {
             navbarBg={props.navbarBg ? props.navbarBg : "bg-secondary-100"}
           />
         ) : (
-          <MainHeaderNoMenu />
+          <MainHeaderNoMenu
+            redirectOnClose={props.redirectOnNavClose}
+            isNeedConfirm={props.isNeedConfirm}
+          />
         )}
         <main className="flex-shrink-0 mb-128  justify-content-center mt-76">
           {props.beforeChildren}

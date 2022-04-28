@@ -14,7 +14,10 @@ const Modal = (props) => {
           className=" modal-dialog position-relative  d-flex justify-content-center align-items-center h-full"
           style={{ maxWidth: "100%" }}
         >
-          <div className={`modal-content  w-auto ${props.className}`}>
+          <div
+            className={`modal-content   ${props.className}`}
+            style={props.style}
+          >
             {props.children}
           </div>
         </div>

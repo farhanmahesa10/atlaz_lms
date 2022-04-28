@@ -5,7 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 const ModalImage = (props) => {
   const { data } = useSelector((state) => state.modalData);
   return (
-    <Modal className="radius-16  modal-custom " id={props.id}>
+    <Modal className="radius-16  modal-custom  w-auto" id={props.id}>
       <div style={{ maxHeight: "100%", maxWidth: "100%" }} className="">
         <div className=" text-end p-4 p mr-5">
           <p

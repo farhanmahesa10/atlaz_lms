@@ -27,11 +27,6 @@ const useSubjectPostHero = () => {
       link: `/classroom/assessment/${classId}/${subjectId}/member`,
       activeTo: "member",
     },
-    {
-      label: "Start Learning",
-      link: `/classroom/assessment/${classId}/${subjectId}/start_learning`,
-      activeTo: "start_learning",
-    },
   ];
 
   return { banner, breadcrumbsData, navMenu, section };

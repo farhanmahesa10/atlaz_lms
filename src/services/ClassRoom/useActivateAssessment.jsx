@@ -138,6 +138,8 @@ const useActivateAssessment = () => {
       placeholder: "Select subject",
       desc: "You can also activate the assessment of other subjects that you create.",
       data: subjectData,
+      isDisabled: true,
+      defaultValue: subjectData[0],
     },
     {
       title: "Lesson",
@@ -163,6 +165,7 @@ const useActivateAssessment = () => {
       inputType: "checkbox",
       hideSelectedOptions: false,
       closeMenuOnSelect: false,
+      defaultValue: classData[0],
     },
   ];
 
@@ -205,8 +208,8 @@ const useActivateAssessment = () => {
   };
 
   const onSubmit = (values) => {
-    setShowPreview(true);
-    setPreviewData(values);
+    // setShowPreview(true);
+    // setPreviewData(values);
     console.log(values);
   };
 

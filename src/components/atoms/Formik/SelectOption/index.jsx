@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { components, default as ReactSelect } from "react-select";
 import { Close } from "@mui/icons-material";
 import { Field } from "formik";
@@ -77,6 +77,16 @@ const SelectOption = (props) => {
 
   const meta = props.formik.getFieldMeta(props.name);
 
+  useEffect(() => {
+    if (props.defaultValue) {
+      if (props.isMulti) {
+        props.formik.setFieldValue(props.name, [props.defaultValue]);
+      } else {
+        props.formik.setFieldValue(props.name, props.defaultValue.value);
+      }
+    }
+  }, []);
+
   return (
     <>
       <div className="form-input-">
@@ -87,6 +97,8 @@ const SelectOption = (props) => {
             isMulti={props.isMulti}
             placeholder={props.placeholder}
             options={data}
+            isDisabled={props.isDisabled}
+            defaultValue={props.defaultValue}
             hideSelectedOptions={props.hideSelectedOptions}
             onChange={(e) => {
               let value = props.isMulti ? e : e.value;

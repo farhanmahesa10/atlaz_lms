@@ -12,6 +12,7 @@ import Divider from "./Divider";
 import Modal from "./Modal";
 import ModalTrigger from "./Modal/ModalTrigger";
 import Table from "./Table";
+import ModalLink from "../molecules/Modals/ModalLink";
 export {
   FormikControl,
   SearchDropdown,
@@ -27,4 +28,5 @@ export {
   Modal,
   ModalTrigger,
   Table,
+  ModalLink,
 };

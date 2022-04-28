@@ -70,7 +70,7 @@ const TimelineMol = () => {
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator className="d-none d-md-block">
-          <RadioButtonCheckedIcon className="text-info-500" />
+          <RadioButtonUncheckedIcon className="text-neutral-300" />
         </TimelineSeparator>
         <TimelineContent>
           <div className="d-flex align-items-start">

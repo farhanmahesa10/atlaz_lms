@@ -18,6 +18,7 @@ import ModalImage from "./Modals/ModalImage";
 import CreateFeedCard from "./Cards/CreateFeedCard";
 import UserCard from "./Cards/UserCard";
 import TimelineMol from "./TimelineMol";
+import PostCommentCard from "./Cards/PostCommentCard";
 export {
   ProductXCard,
   ProductYCard,
@@ -39,4 +40,5 @@ export {
   CreateFeedCard,
   UserCard,
   TimelineMol,
+  PostCommentCard,
 };

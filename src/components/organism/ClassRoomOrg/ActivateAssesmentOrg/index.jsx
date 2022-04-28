@@ -28,7 +28,13 @@ const ActivateAssessmentOrg = () => {
   } = useActivateAssessment();
 
   return (
-    <MainLayout maxWidth="1440px" navbarBg="bg-white" navNoMenu>
+    <MainLayout
+      maxWidth="1440px"
+      navbarBg="bg-white"
+      navNoMenu
+      redirectOnNavClose="/classroom/assessment/1/2/dashboard"
+      isNeedConfirm={true}
+    >
       {showPreview && <ActiveAssessmentPreview />}
       {!showPreview && (
         <div className="mx-48 mt-16">
@@ -36,7 +42,7 @@ const ActivateAssessmentOrg = () => {
             initialValues={initialValues}
             enableReinitialize={true}
             onSubmit={onSubmit}
-            validationSchema={validationSchema}
+            // validationSchema={validationSchema}
           >
             {(formik) => (
               <Form>
@@ -55,9 +61,11 @@ const ActivateAssessmentOrg = () => {
                           placeholder={r.placeholder}
                           onShowAssessmentList={setShowAssessmentList}
                           options={r.data}
+                          defaultValue={r.defaultValue}
                           inputType={r.inputType}
                           hideSelectedOptions={r.hideSelectedOptions}
                           closeMenuOnSelect={r.closeMenuOnSelect}
+                          isDisabled={r.isDisabled}
                         />
                       </React.Fragment>
                     );
@@ -132,6 +140,7 @@ const ActivateAssessmentOrg = () => {
                     </div>
                   </div>
                 )}
+                <button type="submit">sadasd</button>
               </Form>
             )}
           </Formik>
@@ -153,6 +162,8 @@ const AssessmentForm = (props) => {
     inputType,
     hideSelectedOptions,
     closeMenuOnSelect,
+    defaultValue,
+    isDisabled,
   } = props;
 
   const [hours, setHours] = useState("");
@@ -188,7 +199,9 @@ const AssessmentForm = (props) => {
               formik={formik}
               placeholder={placeholder}
               isMulti={isMulti}
+              defaultValue={defaultValue}
               inputType={inputType}
+              isDisabled={isDisabled}
               hideSelectedOptions={hideSelectedOptions}
               closeMenuOnSelect={closeMenuOnSelect}
             />
@@ -298,6 +311,11 @@ const DateTimeForm = (props) => {
               setStartDef(val);
               handleDateChange(val);
             }}
+            maxDate={
+              formik.getFieldProps(endDateName).value
+                ? formik.getFieldProps(endDateName).value
+                : null
+            }
             label="Start Date & Time"
           />
         </div>
