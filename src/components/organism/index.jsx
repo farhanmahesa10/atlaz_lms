@@ -11,11 +11,14 @@ import Register4Org from "./AuthOrg/RegisterOrg/Register4Org";
 import Register5Org from "./AuthOrg/RegisterOrg/Register5Org";
 import VerifyOrg from "./AuthOrg/VerifyOrg";
 import ClassRoomOrg from "./ClassRoomOrg";
-import ClassRoomSubjectOrg from "./ClassRoomOrg/Subject";
+import ClassRoomSubjectOrg from "./ClassRoomOrg/ClassRoomSubjectOrg";
 import SubjectPostOrg from "./ClassRoomOrg/SubjectPostOrg";
 import SubjectPostDetailOrg from "./ClassRoomOrg/SubjectPostDetailOrg";
 import ActivateAssessmentOrg from "./ClassRoomOrg/ActivateAssesmentOrg";
 import TimelineOrg from "./ClassRoomOrg/TimelineOrg";
+import LearningSubjectViewOrg from "./ClassRoomOrg/LearningSubjectViewOrg";
+import LearningBookContent from "./ClassRoomOrg/LearningSubjectViewOrg/LearningBookContent";
+import LearningBookDetail from "./ClassRoomOrg/LearningSubjectViewOrg/LearningBookDetail";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -35,4 +38,7 @@ export {
   SubjectPostDetailOrg,
   ActivateAssessmentOrg,
   TimelineOrg,
+  LearningSubjectViewOrg,
+  LearningBookContent,
+  LearningBookDetail,
 };

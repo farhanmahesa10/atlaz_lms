@@ -8,6 +8,8 @@ import useSubjectPostHero from "./ClassRoom/SubjectPost/useSubjectPostHero";
 import useSubjectPostDashboard from "./ClassRoom/SubjectPost/useSubjectPostDashboard";
 import useActivateAssessment from "./ClassRoom/useActivateAssessment";
 import useTimeline from "./ClassRoom/useTimeline";
+import useLearningSubjectView from "./ClassRoom/useLearningSubjectView";
+
 export {
   useSearchResult,
   useClassRoomHero,
@@ -19,4 +21,5 @@ export {
   useSubjectPostDashboard,
   useActivateAssessment,
   useTimeline,
+  useLearningSubjectView,
 };

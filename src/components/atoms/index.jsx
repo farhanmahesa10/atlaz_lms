@@ -13,6 +13,7 @@ import Modal from "./Modal";
 import ModalTrigger from "./Modal/ModalTrigger";
 import Table from "./Table";
 import ModalLink from "../molecules/Modals/ModalLink";
+import ProgressBar from "./ProgressBar";
 export {
   FormikControl,
   SearchDropdown,
@@ -29,4 +30,5 @@ export {
   ModalTrigger,
   Table,
   ModalLink,
+  ProgressBar,
 };

@@ -6,9 +6,13 @@ const Divider = ({
   textClassName,
   lineColor,
   height,
+  parentStyle,
 }) => {
   return (
-    <div className={`d-flex align-items-center  ${parentClassName}`}>
+    <div
+      className={`d-flex align-items-center  ${parentClassName}`}
+      style={parentStyle}
+    >
       <div
         className={`w-full radius-8  ${
           lineColor ? lineColor : "bg-secondary-500"

@@ -25,6 +25,7 @@ import {
   SubjectPostDetail,
   ActivateAssessment,
   TimelineShow,
+  LearningSubjectView,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -159,6 +160,14 @@ const Routing = () => {
         element={
           <Authenticate>
             <TimelineShow />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/classrrom/start-learning-view/:subjectId"
+        element={
+          <Authenticate>
+            <LearningSubjectView />
           </Authenticate>
         }
       />

@@ -38,3 +38,7 @@ input:-webkit-autofill:active {
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
+.transform-180-deg {
+  transform: rotate(180deg);
+}

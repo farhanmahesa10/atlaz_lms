@@ -19,6 +19,7 @@ import CreateFeedCard from "./Cards/CreateFeedCard";
 import UserCard from "./Cards/UserCard";
 import TimelineMol from "./TimelineMol";
 import PostCommentCard from "./Cards/PostCommentCard";
+import TabBar from "./TabBar";
 export {
   ProductXCard,
   ProductYCard,
@@ -41,4 +42,5 @@ export {
   UserCard,
   TimelineMol,
   PostCommentCard,
+  TabBar,
 };
