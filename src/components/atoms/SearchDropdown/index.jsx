@@ -4,11 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import FormikControl from "../Formik/FormikControl";
 import { Form, Formik } from "formik";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-
+import AsyncCreatableSelect from "react-select/async-creatable";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
+import { components, ControlProps, default as ReactSelect } from "react-select";
+import SearchIcon from "@mui/icons-material/Search";
+import { GET } from "../../../config/RestAPI";
 
+import AsyncSelect from "react-select/async";
 const SearchDropdown = (props) => {
   const [showPopup, setShowPopup] = useState(false);
   const [searchRecomend, setSearchRecomend] = useState(props.searchRecomend);
@@ -30,7 +34,8 @@ const SearchDropdown = (props) => {
 
   const handleChange = (val) => {
     props.onChange(val);
-    setShowPopup(true);
+    console.log(searchRecomend);
+    // setShowPopup(true);
   };
 
   const handleClear = (formik) => {
@@ -40,6 +45,68 @@ const SearchDropdown = (props) => {
   const onSubmit = (values, formik) => {
     setShowPopup(false);
     navigate(props.submitLink + "/" + values.keyword);
+  };
+
+  const customStyles = {
+    menu: (provided, state) => ({
+      ...provided,
+      color: "black",
+      padding: 8,
+      borderColor: "red",
+      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.075)",
+    }),
+
+    control: (provided, state) => ({
+      ...provided,
+      ":hover": {
+        borderColor: "#FDBF47",
+        boxShadow: "none",
+      },
+      height: "48px",
+
+      // borderColor: state.isFocused ? "#FDBF47" : "lightgray",
+      border: "none",
+      boxShadow: "none",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#F3F6FA" : "",
+      color: "black",
+      borderRadius: "4px",
+      cursor: "pointer",
+      ":active": {
+        backgroundColor: "#F3F6FA",
+      },
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      backgroundColor: "rgba(0,0,0,0)",
+    }),
+  };
+
+  const Control = ({ children, ...props }) => {
+    // @ts-ignore
+    const { emoji, onEmojiClick } = props.selectProps;
+    const style = { cursor: "pointer" };
+
+    return (
+      <components.Control {...props}>
+        <SearchIcon className="text-neutral-300 pl-16" />
+        {children}
+      </components.Control>
+    );
+  };
+
+  const NoOptionsMessage = (props) => {
+    return (
+      <components.NoOptionsMessage {...props}>
+        <span>
+          You can search by book name or any keyword here. Try "Simple past
+          tense"
+          <hr className="border-secondary-300 mt-16" />
+        </span>
+      </components.NoOptionsMessage>
+    );
   };
 
   const items = [
@@ -65,9 +132,38 @@ const SearchDropdown = (props) => {
     },
   ];
 
+  const [dataOpt, setDataOpt] = useState([
+    { value: "orange", label: "Orange" },
+    { value: "yellow", label: "Yellow" },
+  ]);
+
+  const tesFunc = () => {
+    return searchRecomend;
+  };
+
+  const promiseOptions = (inputValue) => {};
+
   return (
     <>
-      <div>
+      <div className="form-input bg-white">
+        <div className="input-area bg-white ">
+          <AsyncSelect
+            className="basic-single w-p-100 "
+            classNamePrefix="select"
+            placeholder="Search anything here"
+            loadOptions={props.handleSearchChange}
+            formatCreateLabel={() => undefined}
+            styles={customStyles}
+            components={{
+              DropdownIndicator: () => null,
+              IndicatorSeparator: () => null,
+              Control,
+              NoOptionsMessage,
+            }}
+          />
+        </div>
+      </div>
+      {/* <div>
         <ClickAwayListener onClickAway={handleClickAway}>
           <Formik
             initialValues={initialValues}
@@ -137,7 +233,7 @@ const SearchDropdown = (props) => {
             )}
           </Formik>
         </ClickAwayListener>
-      </div>
+      </div> */}
     </>
   );
 };

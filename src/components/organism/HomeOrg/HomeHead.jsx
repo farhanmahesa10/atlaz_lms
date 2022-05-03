@@ -3,6 +3,7 @@ import { CarouselHero, SearchDropdown } from "../../atoms";
 import { blibli, shopee, buka, tokped, gram } from "../../../assets/images";
 import { GET } from "../../../config/RestAPI";
 import { HomeHeadSkeleton } from "../../molecules";
+
 const HomeHead = () => {
   const [searchData, setSearchData] = useState([]);
   const [img, setImg] = useState([]);
@@ -24,12 +25,16 @@ const HomeHead = () => {
     });
   }, []);
 
-  const handleChange = (e) => {
-    GET("/client/landing/booklist/search?keyword=" + e.target.value).then(
-      (r) => {
-        setSearchData(r.data);
-      }
-    );
+  const handleSearchChange = (val) => {
+    return new Promise((resolve) => {
+      GET("/client/landing/booklist/search?keyword=" + val).then((r) => {
+        let result = r.data.map((r) => {
+          return { value: r.name, label: r.name };
+        });
+
+        resolve(result);
+      });
+    });
   };
   return (
     <>
@@ -41,9 +46,8 @@ const HomeHead = () => {
             <div className="mb-16 pt-16 d-flex justify-content-center ">
               <div style={{ width: "432px" }}>
                 <SearchDropdown
-                  searchRecomend={searchData}
+                  handleSearchChange={handleSearchChange}
                   submitLink="/search-result"
-                  onChange={handleChange}
                 />
               </div>
             </div>
