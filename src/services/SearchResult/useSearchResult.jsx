@@ -91,7 +91,6 @@ const useSearchResult = () => {
   };
 
   const handleOnSelected = (val) => {
-    console.log(val);
     navigate("/search-result/" + val.value);
   };
 

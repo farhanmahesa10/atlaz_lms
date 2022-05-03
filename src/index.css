@@ -42,3 +42,7 @@ input:-webkit-autofill:active {
 .transform-180-deg {
   transform: rotate(180deg);
 }
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}

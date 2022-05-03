@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import React from "react";
 import { searchNoData } from "../../../assets/images";
 import { useSearchResult } from "../../../services";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import {
   BreadCrumb,
   FormikControl,
@@ -34,14 +35,14 @@ const SearchResultOrg = () => {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout navbarBg="bg-white">
         <div className="row gx-0 justify-content-center">
           <div style={{ maxWidth: "1440px" }}>
             <div className="mx-24 mt-16">
               <div className="mb-24">
                 <BreadCrumb data={breadcrumbsData} />
               </div>
-              <div className="mb-24">
+              <div className="mb-24 position-relative" style={{ zIndex: "2" }}>
                 <SearchDropdown
                   handleSearchChange={handleChange}
                   onSelected={handleOnSelected}
@@ -81,38 +82,33 @@ const SearchResultOrg = () => {
                         <div className="col-12 mb-16 ">
                           <div className="row align-items-center ">
                             <div className="col-12 col-sm-8 mb-16 md-mb-0">
-                              Showing 6 items for{" "}
-                              <span className="font-bold">
-                                “Simple past tense”
-                              </span>
+                              Showing {bookData.length} items for
+                              <span className="font-bold">"{keyword}"</span>
                             </div>
                             <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
-                              <span
-                                className="btn-outline  w-141 d-flex justify-content-between"
-                                onClick={() =>
-                                  showFilter
-                                    ? setShowFilter(false)
-                                    : setShowFilter(true)
-                                }
+                              <button
+                                className={`btn-outline font-normal w-141 d-flex justify-content-between `}
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseFilter"
+                                aria-expanded="false"
+                                aria-controls="collapseFilter"
+                                onClick={(e) => {
+                                  setShowFilter(showFilter ? false : true);
+                                }}
                               >
-                                <span>Filter</span>
-                                <span>
-                                  <i
-                                    className={`bi ${
-                                      !showFilter
-                                        ? "bi-caret-down-fill"
-                                        : "bi-caret-up-fill"
-                                    } text-neutral-300`}
-                                  ></i>
-                                </span>
-                              </span>
+                                Filter
+                                <ArrowDropDownIcon
+                                  className={`${
+                                    showFilter && "transform-180-deg"
+                                  }`}
+                                />
+                              </button>
                             </div>
                           </div>
                         </div>
 
-                        <div
-                          className={`col-12 ${!showFilter ? "d-none" : ""}`}
-                        >
+                        <div className={`col-12 collapse`} id="collapseFilter">
                           <div className="row">
                             <div className={`col-12 col-sm-6 col-xl-3 mb-16`}>
                               <SelectCheckbox

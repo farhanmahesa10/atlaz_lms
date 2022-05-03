@@ -50,7 +50,8 @@ const SelectCheckbox = (props) => {
         borderColor: "#FDBF47",
         boxShadow: "none",
       },
-
+      height: "40px",
+      border: "none",
       borderColor: state.isFocused ? "#FDBF47" : "lightgray",
       boxShadow: "none",
     }),
@@ -63,23 +64,25 @@ const SelectCheckbox = (props) => {
   };
 
   return (
-    <div>
+    <div className="form-input bg-white">
       <label className="fw-medium">{props.label}</label>
-
-      <ReactSelect
-        defaultValue={props.withDefaultValue ? [items[0]] : null}
-        options={items}
-        isMulti={props.inputType === "radio" ? false : true}
-        closeMenuOnSelect={props.inputType === "radio" ? true : false}
-        hideSelectedOptions={false}
-        components={{
-          Option: props.inputType === "radio" ? OptionRadio : OptionCheck,
-        }}
-        styles={customStyles}
-        onChange={handleOptionChange}
-        allowSelectAll={true}
-        placeholder={props.placeholder}
-      />
+      <div className="input-area bg-white ">
+        <ReactSelect
+          className="basic-single input-control w-p-100 "
+          defaultValue={props.withDefaultValue ? [items[0]] : null}
+          options={items}
+          isMulti={props.inputType === "radio" ? false : true}
+          closeMenuOnSelect={props.inputType === "radio" ? true : false}
+          hideSelectedOptions={false}
+          components={{
+            Option: props.inputType === "radio" ? OptionRadio : OptionCheck,
+          }}
+          styles={customStyles}
+          onChange={handleOptionChange}
+          allowSelectAll={true}
+          placeholder={props.placeholder}
+        />
+      </div>
     </div>
   );
 };
