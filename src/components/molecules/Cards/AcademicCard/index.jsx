@@ -2,7 +2,7 @@ import React from "react";
 const AcademicCard = ({ bgImage, title, desc }) => {
   return (
     <div
-      className="h-162 w-312 radius-8 cursor-pointer"
+      className="h-162 w-full radius-8 cursor-pointer"
       style={{
         backgroundImage: `url("${bgImage}")`,
         backgroundSize: "cover",

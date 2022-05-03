@@ -51,9 +51,9 @@ const InputPassword = (props) => {
             >
               <label className="font-sm-bold">{props.label}</label>
               <div
-                className={`input-area  d-flex ${props.coverClassName} ${
-                  sizing(props.size).height
-                }  ${props.label && "mt-4"}`}
+                className={`input-area  d-flex bg-white ${
+                  props.coverClassName
+                } ${sizing(props.size).height}  ${props.label && "mt-4"}`}
               >
                 <p className="d-flex align-items-center px-16 h-full  ">
                   <LockOutlinedIcon className="text-neutral-200  fs-20" />

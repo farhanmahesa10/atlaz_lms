@@ -193,13 +193,13 @@ const ProductDetailOrg = () => {
                         <div className="mt-16">
                           <p>This book include:</p>
                           <div className="mt-6">
-                            <label className="bg-neutral-400 radius-4 px-8 py-4 mr-8 ">
+                            <label className="bg-neutral-400 d-inline-block mb-4 radius-4 px-8 py-4 mr-8 ">
                               <i className="bi bi-laptop text-white"></i>
                               <span className="text-sm text-white ml-8">
                                 E-learning
                               </span>
                             </label>
-                            <label className="bg-neutral-400 radius-4 px-8 py-4">
+                            <label className="bg-neutral-400 d-inline-block mb-4 radius-4 px-8 py-4">
                               <i className="bi bi-person-video text-white"></i>
                               <span className="text-sm text-white ml-8">
                                 Video lecturer

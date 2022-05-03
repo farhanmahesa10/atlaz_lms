@@ -18,7 +18,7 @@ const HomeHowToPurchase = () => {
           </div>
           <div className="xl-w-p-50 w-p-100  ">
             <div className="row  md-w-573 justify-content-center">
-              <h6 className="h6 md-h4">How to Purchase</h6>
+              <h6 className="h5 md-h4 xl-h3">How to Purchase</h6>
               <div className="text-left  mb-48" style={{ marginTop: "-12px" }}>
                 <LineIcon />
               </div>
@@ -37,7 +37,7 @@ const HomeHowToPurchase = () => {
                   body="Please select an available marketplace to continue the purchase process."
                 />
               </div>
-              <div className=" col-md-6 ">
+              <div className=" col-md-6 mb-32">
                 <PurchaseCard
                   number={3}
                   title="Book is on its way"
