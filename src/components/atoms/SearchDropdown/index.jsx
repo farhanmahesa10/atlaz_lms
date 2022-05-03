@@ -116,6 +116,11 @@ const SearchDropdown = (props) => {
               Option: OptionSearch,
             }}
             onChange={props.onSelected ? props.onSelected : false}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                props.onSelected({ values: e.target.value });
+              }
+            }}
           />
         </div>
       </div>
