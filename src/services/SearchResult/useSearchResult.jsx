@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BaseAPIURL, GET } from "../../config/RestAPI";
 const useSearchResult = () => {
   const breadcrumbsData = [
@@ -12,6 +12,8 @@ const useSearchResult = () => {
       label: "Book List",
     },
   ];
+
+  const navigate = useNavigate();
 
   const { keyword } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -51,12 +53,21 @@ const useSearchResult = () => {
 
   const [showFilter, setShowFilter] = useState(false);
 
-  const handleChange = (e) => {
-    GET("/client/landing/booklist/search?keyword=" + e.target.value).then(
-      (r) => {
-        setSearchData(r.data);
-      }
-    );
+  const handleChange = (val) => {
+    return new Promise((resolve) => {
+      GET("/client/landing/booklist/search?keyword=" + val).then((r) => {
+        let result = [{ value: val, label: `"Search ${val}"` }];
+        r.data.map((r) => {
+          result.push({ value: r.name, label: r.name });
+        });
+        resolve(result);
+      });
+    });
+    // GET("/client/landing/booklist/search?keyword=" + e.target.value).then(
+    //   (r) => {
+    //     setSearchData(r.data);
+    //   }
+    // );
   };
 
   const getBookResult = (page = 1, perPage = 2) => {
@@ -77,6 +88,11 @@ const useSearchResult = () => {
       setPagination(response.paginate);
       setIsLoading(false);
     });
+  };
+
+  const handleOnSelected = (val) => {
+    console.log(val);
+    navigate("/search-result/" + val.value);
   };
 
   useEffect(() => {
@@ -110,6 +126,7 @@ const useSearchResult = () => {
     setShowFilter,
     handleChange,
     getBookResult,
+    handleOnSelected,
   };
 };
 

@@ -29,6 +29,7 @@ const SearchResultOrg = () => {
     setShowFilter,
     handleChange,
     getBookResult,
+    handleOnSelected,
   } = useSearchResult();
 
   return (
@@ -42,10 +43,8 @@ const SearchResultOrg = () => {
               </div>
               <div className="mb-24">
                 <SearchDropdown
-                  submitLink="/search-result"
-                  onChange={handleChange}
-                  defaultValue={keyword}
-                  searchRecomend={searchData}
+                  handleSearchChange={handleChange}
+                  onSelected={handleOnSelected}
                 />
               </div>
 

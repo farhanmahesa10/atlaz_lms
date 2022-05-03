@@ -14,39 +14,6 @@ import { GET } from "../../../config/RestAPI";
 
 import AsyncSelect from "react-select/async";
 const SearchDropdown = (props) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [searchRecomend, setSearchRecomend] = useState(props.searchRecomend);
-  useEffect(() => {
-    setSearchRecomend(props.searchRecomend);
-  }, [props.searchRecomend]);
-
-  const initialValues = {
-    keyword: props.defaultValue,
-  };
-
-  let navigate = useNavigate();
-  const handleSearch = () => {
-    setShowPopup(true);
-  };
-  const handleClickAway = () => {
-    setShowPopup(false);
-  };
-
-  const handleChange = (val) => {
-    props.onChange(val);
-    console.log(searchRecomend);
-    // setShowPopup(true);
-  };
-
-  const handleClear = (formik) => {
-    formik.setFieldValue("keyword", "");
-  };
-
-  const onSubmit = (values, formik) => {
-    setShowPopup(false);
-    navigate(props.submitLink + "/" + values.keyword);
-  };
-
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
@@ -68,16 +35,20 @@ const SearchDropdown = (props) => {
       border: "none",
       boxShadow: "none",
     }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? "#F3F6FA" : "",
-      color: "black",
-      borderRadius: "4px",
-      cursor: "pointer",
-      ":active": {
-        backgroundColor: "#F3F6FA",
-      },
-    }),
+    option: (provided, state) => {
+      let bg = "#F3F6FA";
+      if (state.value === state.options[0].value) bg = "white";
+      return {
+        ...provided,
+        backgroundColor: state.isFocused ? bg : "",
+        color: "black",
+        borderRadius: "4px",
+        cursor: "pointer",
+        ":active": {
+          backgroundColor: "#F3F6FA",
+        },
+      };
+    },
     indicatorSeparator: (provided, state) => ({
       ...provided,
       backgroundColor: "rgba(0,0,0,0)",
@@ -85,10 +56,6 @@ const SearchDropdown = (props) => {
   };
 
   const Control = ({ children, ...props }) => {
-    // @ts-ignore
-    const { emoji, onEmojiClick } = props.selectProps;
-    const style = { cursor: "pointer" };
-
     return (
       <components.Control {...props}>
         <SearchIcon className="text-neutral-300 pl-16" />
@@ -109,39 +76,26 @@ const SearchDropdown = (props) => {
     );
   };
 
-  const items = [
-    {
-      id: 0,
-      name: "Cobol",
-    },
-    {
-      id: 1,
-      name: "JavaScript",
-    },
-    {
-      id: 2,
-      name: "Basic",
-    },
-    {
-      id: 3,
-      name: "PHP",
-    },
-    {
-      id: 4,
-      name: "Java",
-    },
-  ];
-
-  const [dataOpt, setDataOpt] = useState([
-    { value: "orange", label: "Orange" },
-    { value: "yellow", label: "Yellow" },
-  ]);
-
-  const tesFunc = () => {
-    return searchRecomend;
+  const OptionSearch = (props) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          {props.value === props.options[0].value ? (
+            <>
+              {props.options.length === 1 && (
+                <>{`Seach for  "${props.label}"`}</>
+              )}
+            </>
+          ) : (
+            <div className="d-flex align-items-center">
+              <SearchIcon className="text-neutral-300 px-8 d-inline" />
+              <label>{props.label}</label>
+            </div>
+          )}
+        </components.Option>
+      </div>
+    );
   };
-
-  const promiseOptions = (inputValue) => {};
 
   return (
     <>
@@ -159,7 +113,9 @@ const SearchDropdown = (props) => {
               IndicatorSeparator: () => null,
               Control,
               NoOptionsMessage,
+              Option: OptionSearch,
             }}
+            onChange={props.onSelected ? props.onSelected : false}
           />
         </div>
       </div>

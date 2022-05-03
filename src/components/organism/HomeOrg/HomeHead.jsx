@@ -3,12 +3,15 @@ import { CarouselHero, SearchDropdown } from "../../atoms";
 import { blibli, shopee, buka, tokped, gram } from "../../../assets/images";
 import { GET } from "../../../config/RestAPI";
 import { HomeHeadSkeleton } from "../../molecules";
+import { useNavigate } from "react-router-dom";
 
 const HomeHead = () => {
   const [searchData, setSearchData] = useState([]);
   const [img, setImg] = useState([]);
   const [imgPhone, setImgPhone] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,13 +31,17 @@ const HomeHead = () => {
   const handleSearchChange = (val) => {
     return new Promise((resolve) => {
       GET("/client/landing/booklist/search?keyword=" + val).then((r) => {
-        let result = r.data.map((r) => {
-          return { value: r.name, label: r.name };
+        let result = [{ value: val, label: `"Search ${val}"` }];
+        r.data.map((r) => {
+          result.push({ value: r.name, label: r.name });
         });
-
         resolve(result);
       });
     });
+  };
+
+  const handleOnSelected = (val) => {
+    navigate("/search-result/" + val.value);
   };
   return (
     <>
@@ -47,7 +54,7 @@ const HomeHead = () => {
               <div style={{ width: "432px" }}>
                 <SearchDropdown
                   handleSearchChange={handleSearchChange}
-                  submitLink="/search-result"
+                  onSelected={handleOnSelected}
                 />
               </div>
             </div>
