@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import { FormikControl } from "../../atoms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -46,13 +46,24 @@ const Pagination = (props) => {
             <div className="text-neutral-300 fs-12">1-5 of 40</div>
             <div className="d-flex gap-10  align-items-center">
               <span className="text-neutral-300 fs-12">You’re in page</span>
-              <FormikControl
-                control="input"
-                type="number"
-                name="currentPage"
-                inputClassName="font-sm h-6 px-2"
-                coverClassName={"h-24 w-24 px-2"}
-              />
+              <Field name="currentPage">
+                {({
+                  field, // { name, value, onChange, onBlur }
+                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                  meta,
+                }) => (
+                  <div className="form-input">
+                    <div className="input-area">
+                      <input
+                        type="number"
+                        className="w-24 text-center input-control radius-4 h-22 font-xs input-control"
+                        {...field}
+                      />
+                    </div>
+                  </div>
+                )}
+              </Field>
+
               <div className="border-end mx-8">&nbsp;</div>
               <button
                 type="button"
