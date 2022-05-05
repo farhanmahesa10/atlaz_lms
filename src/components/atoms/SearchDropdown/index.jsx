@@ -82,9 +82,7 @@ const SearchDropdown = (props) => {
         <components.Option {...props}>
           {props.value === props.options[0].value ? (
             <>
-              {props.options.length === 1 && (
-                <>{`Seach for  "${props.label}"`}</>
-              )}
+              {props.options.length === 1 && <>{`Seach for  ${props.label}`}</>}
             </>
           ) : (
             <div className="d-flex align-items-center">
@@ -118,7 +116,7 @@ const SearchDropdown = (props) => {
             onChange={props.onSelected ? props.onSelected : false}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                props.onSelected({ values: e.target.value });
+                props.onSelected({ value: e.target.value });
               }
             }}
           />
