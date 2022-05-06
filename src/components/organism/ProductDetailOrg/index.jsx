@@ -103,7 +103,7 @@ const ProductDetailOrg = () => {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout navbarBg="white">
         {!isLoading && data !== null ? (
           <>
             <div className="row gx-0 justify-content-center">
@@ -208,7 +208,7 @@ const ProductDetailOrg = () => {
                           </div>
                         </div>
                         <div className="mt-34 row gx-0 ">
-                          <div className="col-12">
+                          <div className="col-12 ">
                             <button
                               className="btn-primary w-full font-xs md-font-sm xl-font-normal"
                               type="button"
@@ -306,7 +306,7 @@ const ProductDetailOrg = () => {
                   aria-hidden="true"
                 >
                   <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content radius-16">
+                    <div className="modal-content radius-16 bg-white">
                       <div className="modal-header">
                         <h6 className="modal-title md-h5" id="modalBuyLabel">
                           Choose the marketplace
@@ -316,7 +316,7 @@ const ProductDetailOrg = () => {
                         </h6>
                       </div>
                       <div className="modal-body px-24  ">
-                        <div>
+                        <div className="">
                           <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
                             <img
                               src="/icons/tokped.png"

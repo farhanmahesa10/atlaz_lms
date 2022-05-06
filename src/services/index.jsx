@@ -9,7 +9,7 @@ import useSubjectPostDashboard from "./ClassRoom/SubjectPost/useSubjectPostDashb
 import useActivateAssessment from "./ClassRoom/useActivateAssessment";
 import useTimeline from "./ClassRoom/useTimeline";
 import useLearningSubjectView from "./ClassRoom/useLearningSubjectView";
-
+import useGlobalFunction from "./GlobalFuntions/useGlobalFunction";
 export {
   useSearchResult,
   useClassRoomHero,
@@ -22,4 +22,5 @@ export {
   useActivateAssessment,
   useTimeline,
   useLearningSubjectView,
+  useGlobalFunction,
 };

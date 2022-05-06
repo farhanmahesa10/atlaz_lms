@@ -1,6 +1,11 @@
 import { createStore } from "redux";
 
 const states = {
+  auth: {
+    isLogin: false,
+    userInfo: {},
+  },
+
   loginStatus: false,
   flashMessage: {
     status: false,
@@ -40,6 +45,9 @@ const rootReducer = (state = states, action) => {
     localStorage.removeItem(baseUrl + "/register/email");
     localStorage.removeItem(baseUrl + "/register/phoneNumber");
     localStorage.removeItem(baseUrl + "/register/resend-timer");
+  }
+  if (action.type === "SET_AUTH") {
+    return { ...state, auth: action.value };
   }
 
   if (action.type === "MODAL_ACTION") {

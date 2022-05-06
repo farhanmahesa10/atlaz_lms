@@ -43,11 +43,6 @@ const LoginOrg = (props) => {
       })
       .catch((err) => {
         setIsLoading(false);
-        // callToast(
-        //   "Failed to log in your account",
-        //   "Please enter correct email/password.",
-        //   false
-        // );
       });
   };
 

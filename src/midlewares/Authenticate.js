@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 const Authenticate = (props) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     let token = localStorage.getItem(
       process.env.REACT_APP_BASE_URL + "/accessToken"
@@ -11,20 +12,14 @@ const Authenticate = (props) => {
     if (token) {
       let decode = jwt_decode(token);
       if (new Date().getTime() > decode.exp) {
-        props.setLoginStatus(true);
+        dispatch({
+          type: "SET_AUTH",
+          value: { isLogin: true, userInfo: decode },
+        });
       }
     }
   }, []);
   return props.children;
 };
-const mapStateToProps = (state) => {
-  return {
-    loginStatus: state.loginStatus,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setLoginStatus: (value) => dispatch({ type: "SET_LOGIN_STATUS", value }),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Authenticate);
+
+export default connect()(Authenticate);

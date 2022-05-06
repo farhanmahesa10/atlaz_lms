@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { RegisterMail } from "../../components/Mail";
 import Authenticate from "../../midlewares/Authenticate";
+import CheckRole from "../../midlewares/CheckRole";
 import RedirectIfAuthenticated from "../../midlewares/RedirectIfAuthenticated";
 import {
   Login,
@@ -107,7 +108,16 @@ const Routing = () => {
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
       <Route path="/shop" element={<Home />} />
-      <Route path="/product-detail/:id" element={<ProductDetail />} />
+      <Route
+        path="/product-detail/:id"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="superuse,administrator">
+              <ProductDetail />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
       <Route path="/auth/verify" element={<Verify />} />
       <Route
         path="/redirect-google"
