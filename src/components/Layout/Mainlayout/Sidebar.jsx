@@ -5,12 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Divider } from "../../atoms";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Settings } from "@mui/icons-material";
-import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
-import Can from "../../../Permission/Can";
-const Sidebar = (props) => {
-  const { menus, settings, activeMenu, onLogout } = props;
 
-  const auth = useSelector((state) => state.auth);
+import Can from "../../../Permission/Can";
+
+const Sidebar = (props) => {
+  const { menus, settings, activeMenu, onLogout, pages, auth } = props;
 
   return (
     <Navbar.Offcanvas
@@ -27,165 +26,129 @@ const Sidebar = (props) => {
       <Offcanvas.Body className="px-0">
         <Divider lineColor="bg-secondary-300" />
 
-        <Nav className="justify-content-end flex-grow-1 px-24">
-          <p className="text-neutral-300 my-16">Menu</p>
-          {menus.map((r, i) => {
+        <Nav className="justify-content-end flex-grow-1 px-24 pt-24">
+          {pages.map((r, i) => {
             if (r.shouldLogin) {
-              if (auth.isLogin) {
-                return (
-                  <React.Fragment key={i}>
-                    {!r.childs ? (
-                      <Can allowAccess={r.allowAccess}>
-                        <Link
-                          to={r.link}
-                          className={`pt-8 mb-16 hover-bg-secondary-200 pl-24 radius-8 d-flex align-items-center text-neutral-300 
-                  ${
-                    r.activeTo === activeMenu &&
-                    "bg-secondary-400 text-neutral-500 font-bold"
-                  }
-                  `}
-                        >
-                          <div className="d-flex">
-                            <span className="mr-24">{r.icon}</span>
-                            <span>{r.label}</span>
-                          </div>
-                        </Link>
-                      </Can>
-                    ) : (
-                      <>
-                        <div
-                          className={`py-8 mb-16 hover-bg-secondary-200 pl-24 radius-8 d-flex align-items-center text-neutral-300 
-                      ${
-                        r.activeTo === activeMenu &&
-                        "bg-secondary-400 text-neutral-500 font-bold"
-                      }
-                      `}
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapseExample"
-                          aria-expanded="false"
-                          aria-controls="collapseExample"
-                        >
-                          <p className="mr-24  d-flex ">{r.icon}</p>
-                          <p className="nowrap  d-flex ">{r.label}</p>{" "}
-                          <p className="text-end w-full pr-16  d-flex justify-content-end">
-                            <ArrowDropDownIcon />
-                          </p>
-                        </div>
-                      </>
-                    )}
-                  </React.Fragment>
-                );
+              if (!auth.isLogin) {
+                return "";
               }
             } else {
-              return (
-                <React.Fragment key={i}>
-                  <Link
-                    to={r.link}
-                    className="py-12 d-flex flex-column justify-content-center"
-                  >
-                    {r.label}
-                    {r.activeTo === activeMenu && (
-                      <div className="h-2 w-24 bg-primary-500"></div>
-                    )}
-                  </Link>
-                </React.Fragment>
-              );
-            }
-          })}
-          <Divider height={`h-2`} parentClassName="mb-16" />
-          <p className="text-neutral-300 mb-16">Setting</p>
-          {settings.map((res, ind) => {
-            if (res.shouldLogin) {
               if (auth.isLogin) {
-                return (
-                  <React.Fragment key={`settings-${ind}`}>
-                    {!res.childs ? (
-                      <Link
-                        to={res.link}
-                        className={`pt-8 mb-16 hover-bg-secondary-200 pl-24 radius-8 d-flex align-items-center text-neutral-300 
-                    ${
-                      res.activeTo === activeMenu &&
-                      "bg-secondary-400 text-neutral-500 font-bold"
-                    }
-                    `}
-                      >
-                        <div className="d-flex">
-                          <span className="mr-24">{res.icon}</span>
-                          <span>{res.label}</span>
-                        </div>
-                      </Link>
-                    ) : (
-                      <>
-                        <div
-                          className={`py-8 mb-16 hover-bg-secondary-200 pl-24 radius-8 d-flex align-items-center text-neutral-300 
-                        ${
-                          res.activeTo === activeMenu &&
-                          "bg-secondary-400 text-neutral-500 font-bold"
-                        }
-                        `}
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapseExample"
-                          aria-expanded="false"
-                          aria-controls="collapseExample"
-                        >
-                          <p className="mr-24  d-flex ">{res.icon}</p>
-                          <p className="nowrap  d-flex ">{res.label}</p>{" "}
-                          <p className="text-end w-full pr-16  d-flex justify-content-end">
-                            <ArrowDropDownIcon />
-                          </p>
-                        </div>
-                      </>
-                    )}
-                  </React.Fragment>
-                );
+                return "";
               }
-            } else {
-              return (
-                <React.Fragment key={"settings-" + ind}>
-                  <Link
-                    to={res.link}
-                    className="py-12 d-flex flex-column justify-content-center"
-                  >
-                    {res.label}
-                    {res.activeTo === activeMenu && (
-                      <div className="h-2 w-24 bg-primary-500"></div>
-                    )}
-                  </Link>
-                </React.Fragment>
-              );
             }
+            return (
+              <React.Fragment key={i}>
+                {r.label && (
+                  <p className="text-neutral-300 mb-16 ">{r.label}</p>
+                )}
+                {r.menus.map((res, ind) => {
+                  return (
+                    <React.Fragment key={`menus-${ind}`}>
+                      {res.childs ? (
+                        <AccordionMenu
+                          res={res}
+                          auth={auth}
+                          activeMenu={activeMenu}
+                          childs={res.childs}
+                          id={`menus-${ind}`}
+                        />
+                      ) : (
+                        <NormalMenu
+                          res={res}
+                          auth={auth}
+                          activeMenu={activeMenu}
+                        />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </React.Fragment>
+            );
           })}
         </Nav>
-        {!auth.isLogin ? (
-          <>
-            <Link to="/login" className="">
-              <button className="btn-outline px-25 font-xs mr-12">Login</button>
-            </Link>
-
-            <Link to="/register" className="p-0">
-              <button className="btn-primary px-25 font-xs">Sign up</button>
-            </Link>
-          </>
-        ) : (
-          <div
-            className={`pt-8 mb-16 hover-bg-secondary-200 mx-24 pl-24 radius-8 d-flex align-items-center text-neutral-300 cursor-pointer
-        `}
-            onClick={onLogout}
-          >
-            <div className="d-flex">
-              <span className="mr-24 ">
-                <ExitToAppRoundedIcon />
-              </span>
-              <span>Logout</span>
-              <br />
-            </div>
-          </div>
-        )}
       </Offcanvas.Body>
     </Navbar.Offcanvas>
   );
 };
 
+const NormalMenu = (props) => {
+  const { res, auth } = props;
+
+  if (res.shouldLogin) {
+    if (!auth.isLogin) {
+      return "";
+    }
+  }
+
+  return (
+    <Can allowAccess={res.allowAccess}>
+      <Link
+        to={res.link}
+        className={`pt-8 mb-16 hover-bg-secondary-200 pl-24 radius-8 d-flex align-items-center text-neutral-300 
+                    ${
+                      res.activeTo === props.activeMenu &&
+                      "bg-secondary-400 text-neutral-500 font-bold"
+                    }`}
+      >
+        <div className="d-flex">
+          <span className="mr-24">{res.icon}</span>
+          <span>{res.label}</span>
+        </div>
+      </Link>
+    </Can>
+  );
+};
+
+const AccordionMenu = (props) => {
+  const { res, id, childs, auth } = props;
+  if (res.shouldLogin) {
+    if (!auth.isLogin) {
+      return "";
+    }
+  }
+  return (
+    <Can allowAccess={res.allowAccess}>
+      <div
+        className={`py-8 mb-16 hover-bg-secondary-200 cursor-pointer pl-24 radius-8 d-flex align-items-center text-neutral-300 
+                      ${
+                        res.activeTo === props.activeMenu &&
+                        "bg-secondary-400 text-neutral-500 font-bold"
+                      }
+                      `}
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target={`#${id}`}
+        aria-expanded="false"
+        aria-controls={id}
+      >
+        <p className="mr-24  d-flex ">{res.icon}</p>
+        <p className="nowrap  d-flex ">{res.label}</p>{" "}
+        <p className="text-end w-full pr-16  d-flex justify-content-end">
+          <ArrowDropDownIcon />
+        </p>
+      </div>
+      <div class="collapse" id={id}>
+        <div class="card card-body">
+          {childs.map((r, i) => {
+            return (
+              <React.Fragment key={`acc-${i}`}>
+                <Link
+                  to={r.link}
+                  className={`pt-8 pb-8 ml-24 mb-16 hover-bg-secondary-200 pl-24 radius-8 d-flex align-items-center text-neutral-300 
+                    ${
+                      r.activeTo === props.activeMenu &&
+                      "bg-secondary-400 text-neutral-500 font-bold"
+                    }`}
+                >
+                  <span>{r.label}</span>
+                </Link>
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+    </Can>
+  );
+};
 export default connect()(Sidebar);

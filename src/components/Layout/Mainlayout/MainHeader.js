@@ -12,7 +12,8 @@ import BookIcon from "@mui/icons-material/Book";
 import Sidebar from "./Sidebar";
 import NavbarContainer from "./NavbarContainer";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-
+import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
+import LoginIcon from "@mui/icons-material/Login";
 const MainHeader = (props) => {
   const [navBg, setNavBg] = useState(props.navbarBg);
 
@@ -52,41 +53,42 @@ const MainHeader = (props) => {
       icon: <DashboardIcon />,
       link: "/",
       label: "Dashboard",
-      shouldLogin: true,
+      shouldLogin: false,
       activeTo: "",
-      allowAccess: "superuser,administrator",
+      // allowAccess: "superuser,administrator",
     },
     {
       icon: <StorefrontIcon />,
       link: "/shop",
       label: "Shop",
-      shouldLogin: true,
+      shouldLogin: false,
       activeTo: "shop",
     },
     {
       icon: <SchoolIcon />,
       link: "/classroom",
       label: "Classroom",
-      shouldLogin: true,
+      shouldLogin: false,
       activeTo: "classroom",
     },
     {
       icon: <BookIcon />,
       link: "/mybooks",
       label: "My Books",
-      shouldLogin: true,
+      shouldLogin: false,
       activeTo: "mybooks",
+      // allowAccess: "superuser,administrator",
       childs: [
         {
           link: "/mybooks/1",
-          label: "menu 1",
-          shouldLogin: true,
+          label: "mybook 1",
+          // shouldLogin: false,
           activeTo: "mybooks",
         },
         {
           link: "/mybooks/2",
-          label: "menu 2",
-          shouldLogin: true,
+          label: "mybook 2",
+          // shouldLogin: false,
           activeTo: "mybooks",
         },
       ],
@@ -95,19 +97,19 @@ const MainHeader = (props) => {
       icon: <GroupsIcon />,
       link: "/master",
       label: "Master Menu",
-      shouldLogin: true,
+      shouldLogin: false,
       activeTo: "master",
       childs: [
         {
           link: "/master/1",
-          label: "menu 1",
-          shouldLogin: true,
-          activeTo: "mybooks",
+          label: "master 1",
+          // shouldLogin: false,
+          activeTo: "master",
         },
         {
           link: "/master/2",
-          label: "menu 2",
-          shouldLogin: true,
+          label: "master 2",
+          // shouldLogin: false,
           activeTo: "master",
         },
       ],
@@ -119,8 +121,50 @@ const MainHeader = (props) => {
       icon: <AccountCircleRoundedIcon />,
       link: "/account-settings",
       label: "Account Settings",
-      shouldLogin: true,
+      shouldLogin: false,
       activeTo: "account-settings",
+    },
+    {
+      icon: <ExitToAppRoundedIcon />,
+      link: "/logout",
+      label: "Logout",
+      shouldLogin: false,
+      activeTo: "logout",
+    },
+  ];
+
+  const apps = [
+    {
+      icon: <LoginIcon />,
+      link: "/login",
+      label: "Login",
+      shouldLogin: false,
+      activeTo: "login",
+    },
+    {
+      icon: <AccountCircleRoundedIcon />,
+      link: "/register",
+      label: "Register",
+      shouldLogin: false,
+      activeTo: "register",
+    },
+  ];
+
+  const sideBarControl = [
+    {
+      label: "Menu",
+      shouldLogin: true,
+      menus: menus,
+    },
+    {
+      label: "Settings",
+      shouldLogin: true,
+      menus: settings,
+    },
+    {
+      label: "App",
+      shouldLogin: false,
+      menus: apps,
     },
   ];
 
@@ -139,14 +183,17 @@ const MainHeader = (props) => {
         style={{ zIndex: 9 }}
       >
         <NavbarContainer
+          auth={auth}
           menus={menus}
+          apps={apps}
           settings={settings}
           activeMenu={activeMenu}
           onLogout={logout}
         />
         <Sidebar
+          pages={sideBarControl}
+          auth={auth}
           menus={menus}
-          settings={settings}
           activeMenu={activeMenu}
           onLogout={logout}
         />

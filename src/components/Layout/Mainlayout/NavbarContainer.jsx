@@ -4,6 +4,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { Can } from "../../../Permission";
 
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, onLogout } = props;
@@ -31,62 +32,19 @@ const NavbarContainer = (props) => {
       <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
         {menus.map((r, i) => {
           if (r.shouldLogin) {
-            if (auth.isLogin) {
-              return (
-                <React.Fragment key={i}>
-                  {r.childs ? (
-                    <div className="btn-group dropdown px-12">
-                      <div
-                        type="button"
-                        className="cursor-pointer dropdown-toggle d-flex align-items-center"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        {r.label}
-                        <ArrowDropDownIcon className="text-neutral-400" />
-                      </div>
-                      <ul className="dropdown-menu bg-white p-14 radius-8">
-                        {r.childs.map((child, index) => {
-                          return (
-                            <li
-                              className="pb-8 hover-text-primary-400 cursor-pointer"
-                              key={`${i}-${index}`}
-                            >
-                              <Link to={child.link}>{child.label}</Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  ) : (
-                    <Link
-                      to={r.link}
-                      className="px-12 d-flex align-items-center flex-column justify-content-center"
-                    >
-                      {r.label}
-                      {r.activeTo === activeMenu && (
-                        <div className="h-2 w-24 bg-primary-500"></div>
-                      )}
-                    </Link>
-                  )}
-                </React.Fragment>
-              );
+            if (!auth.isLogin) {
+              return "";
             }
-          } else {
-            return (
-              <React.Fragment key={i}>
-                <Link
-                  to={r.link}
-                  className="px-12 -flex align-items-center flex-column justify-content-center"
-                >
-                  {r.label}
-                  {r.activeTo === activeMenu && (
-                    <div className="h-2 w-24 bg-primary-500"></div>
-                  )}
-                </Link>
-              </React.Fragment>
-            );
           }
+          return (
+            <React.Fragment key={i}>
+              {r.childs ? (
+                <DropDownMenu res={r} auth={auth} activeMenu={activeMenu} />
+              ) : (
+                <NormalMenu res={r} auth={auth} activeMenu={activeMenu} />
+              )}
+            </React.Fragment>
+          );
         })}
       </Nav>
       <Nav
@@ -128,12 +86,21 @@ const NavbarContainer = (props) => {
                 />
               </div>
               <ul className="dropdown-menu bg-white p-14 radius-8">
-                <li
-                  className="hover-text-primary-500 cursor-pointer"
-                  onClick={onLogout}
-                >
-                  Logout
-                </li>
+                {settings.map((res, ind) => {
+                  return (
+                    <li className="hover-text-primary-500 cursor-pointer">
+                      <Link
+                        to={res.link}
+                        className="px-12 nowrap d-flex align-items-start my-4 flex-column justify-content-start"
+                      >
+                        {res.label}
+                        {res.activeTo === props.activeMenu && (
+                          <div className="h-2 w-24 bg-primary-500"></div>
+                        )}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </>
@@ -143,4 +110,51 @@ const NavbarContainer = (props) => {
   );
 };
 
+const NormalMenu = (props) => {
+  const { res } = props;
+  return (
+    <Can allowAccess={res.allowAccess}>
+      <Link
+        to={res.link}
+        className="px-12 d-flex align-items-center flex-column justify-content-center"
+      >
+        {res.label}
+        {res.activeTo === props.activeMenu && (
+          <div className="h-2 w-24 bg-primary-500"></div>
+        )}
+      </Link>
+    </Can>
+  );
+};
+
+const DropDownMenu = (props) => {
+  const { res, id } = props;
+  return (
+    <Can allowAccess={res.allowAccess}>
+      <div className="btn-group dropdown px-12">
+        <div
+          type="button"
+          className="cursor-pointer dropdown-toggle d-flex align-items-center"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {res.label}
+          <ArrowDropDownIcon className="text-neutral-400" />
+        </div>
+        <ul className="dropdown-menu bg-white p-14 radius-8">
+          {res.childs.map((child, index) => {
+            return (
+              <li
+                className="pb-8 hover-text-primary-400 cursor-pointer"
+                key={`${id}-${index}`}
+              >
+                <Link to={child.link}>{child.label}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </Can>
+  );
+};
 export default connect()(NavbarContainer);

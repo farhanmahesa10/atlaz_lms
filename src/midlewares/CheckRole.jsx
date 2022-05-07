@@ -26,7 +26,7 @@ const CheckRole = (props) => {
       );
 
       if (!isUserHaveAccess) {
-        navigate("/no-permission");
+        navigate("/");
       }
     }
   }, []);

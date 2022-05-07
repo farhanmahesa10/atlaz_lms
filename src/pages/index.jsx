@@ -21,6 +21,7 @@ import SubjectPostDetail from "./Classroom/SubjectPostDetail";
 import ActivateAssessment from "./Classroom/ActivateAssessment";
 import TimelineShow from "./Classroom/TimelineShow";
 import LearningSubjectView from "./Classroom/LearningSubjectView";
+import Logout from "./Auth/Logout";
 export {
   Login,
   Register1,
@@ -44,4 +45,5 @@ export {
   ActivateAssessment,
   TimelineShow,
   LearningSubjectView,
+  Logout,
 };

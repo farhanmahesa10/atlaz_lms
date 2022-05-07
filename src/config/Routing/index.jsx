@@ -27,19 +27,12 @@ import {
   ActivateAssessment,
   TimelineShow,
   LearningSubjectView,
+  Logout,
 } from "../../pages";
 const Routing = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        exac
-        element={
-          <Authenticate>
-            <Home />
-          </Authenticate>
-        }
-      />
+      <Route path="/" exac element={<Home />} />
       <Route
         path="/login"
         element={
@@ -108,16 +101,7 @@ const Routing = () => {
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
       <Route path="/shop" element={<Home />} />
-      <Route
-        path="/product-detail/:id"
-        element={
-          <Authenticate>
-            <CheckRole allowAccess="superuse,administrator">
-              <ProductDetail />
-            </CheckRole>
-          </Authenticate>
-        }
-      />
+      <Route path="/product-detail/:id" element={<ProductDetail />} />
       <Route path="/auth/verify" element={<Verify />} />
       <Route
         path="/redirect-google"
@@ -125,62 +109,29 @@ const Routing = () => {
       />
 
       {/* classroom route */}
-      <Route
-        path="/classroom"
-        element={
-          <Authenticate>
-            <Classroom />
-          </Authenticate>
-        }
-      />
-      <Route
-        path="/classroom/class/:classId"
-        element={
-          <Authenticate>
-            <ClassRoomSubject />
-          </Authenticate>
-        }
-      />
+      <Route path="/classroom" element={<Classroom />} />
+      <Route path="/classroom/class/:classId" element={<ClassRoomSubject />} />
       <Route
         path="/classroom/assessment/:classId/:subjectId/:section"
-        element={
-          <Authenticate>
-            <SubjectPost />
-          </Authenticate>
-        }
+        element={<SubjectPost />}
       />
       <Route
         path="/classroom/post-detail/:classId/:subjectId/:section/:postId"
-        element={
-          <Authenticate>
-            <SubjectPostDetail />
-          </Authenticate>
-        }
+        element={<SubjectPostDetail />}
       />
       <Route
         path="/classroom/set-plan/:classId/:subjectId/:postId"
-        element={
-          <Authenticate>
-            <ActivateAssessment />
-          </Authenticate>
-        }
+        element={<ActivateAssessment />}
       />
       <Route
         path="/classroom/timeline/:classId/:subjectId"
-        element={
-          <Authenticate>
-            <TimelineShow />
-          </Authenticate>
-        }
+        element={<TimelineShow />}
       />
       <Route
         path="/classrrom/start-learning-view/:subjectId"
-        element={
-          <Authenticate>
-            <LearningSubjectView />
-          </Authenticate>
-        }
+        element={<LearningSubjectView />}
       />
+      <Route path="/logout" element={<Logout />} />
 
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
