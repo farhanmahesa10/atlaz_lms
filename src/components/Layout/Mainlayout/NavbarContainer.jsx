@@ -7,11 +7,9 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Can } from "../../../Permission";
 
 const NavbarContainer = (props) => {
-  const { menus, settings, activeMenu, onLogout } = props;
+  const { menus, settings, activeMenu, onLogout, auth } = props;
   const navigate = useNavigate();
   const disPatch = useDispatch();
-
-  const auth = useSelector((state) => state.auth);
 
   return (
     <Container fluid className="m-0 pl-24 lg-pl-48 pt-0 pr-12 lg-pr-48">
@@ -32,10 +30,11 @@ const NavbarContainer = (props) => {
       <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
         {menus.map((r, i) => {
           if (r.shouldLogin) {
-            if (!auth.isLogin) {
+            if (!auth) {
               return "";
             }
           }
+
           return (
             <React.Fragment key={i}>
               {r.childs ? (
@@ -51,7 +50,7 @@ const NavbarContainer = (props) => {
         className=" d-none d-lg-flex gap-3 position-relative"
         style={{ zIndex: 9 }}
       >
-        {!auth.isLogin ? (
+        {!auth ? (
           <>
             <Link to="/login" className="">
               <button className="btn-outline px-25 font-xs">Login</button>
@@ -88,7 +87,10 @@ const NavbarContainer = (props) => {
               <ul className="dropdown-menu bg-white p-14 radius-8">
                 {settings.map((res, ind) => {
                   return (
-                    <li className="hover-text-primary-500 cursor-pointer">
+                    <li
+                      className="hover-text-primary-500 cursor-pointer"
+                      key={"menus-" + ind}
+                    >
                       <Link
                         to={res.link}
                         className="px-12 nowrap d-flex align-items-start my-4 flex-column justify-content-start"

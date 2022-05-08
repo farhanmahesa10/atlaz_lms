@@ -14,14 +14,17 @@ import NavbarContainer from "./NavbarContainer";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 import LoginIcon from "@mui/icons-material/Login";
+import { useGlobalFunction } from "../../../services";
 const MainHeader = (props) => {
   const [navBg, setNavBg] = useState(props.navbarBg);
 
   const [activeMenu, setActiveMenu] = useState("");
 
+  const { getUserInfo } = useGlobalFunction();
+
   const navigate = useNavigate();
   const disPatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const auth = getUserInfo();
 
   useEffect(() => {
     let isMounted = true;
@@ -68,7 +71,7 @@ const MainHeader = (props) => {
       icon: <SchoolIcon />,
       link: "/classroom",
       label: "Classroom",
-      shouldLogin: false,
+      shouldLogin: true,
       activeTo: "classroom",
     },
     {
@@ -153,7 +156,7 @@ const MainHeader = (props) => {
   const sideBarControl = [
     {
       label: "Menu",
-      shouldLogin: true,
+      shouldLogin: false,
       menus: menus,
     },
     {

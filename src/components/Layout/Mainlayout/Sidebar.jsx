@@ -29,11 +29,11 @@ const Sidebar = (props) => {
         <Nav className="justify-content-end flex-grow-1 px-24 pt-24">
           {pages.map((r, i) => {
             if (r.shouldLogin) {
-              if (!auth.isLogin) {
+              if (!auth) {
                 return "";
               }
             } else {
-              if (auth.isLogin) {
+              if (auth) {
                 return "";
               }
             }
@@ -76,7 +76,7 @@ const NormalMenu = (props) => {
   const { res, auth } = props;
 
   if (res.shouldLogin) {
-    if (!auth.isLogin) {
+    if (!auth) {
       return "";
     }
   }
@@ -103,7 +103,7 @@ const NormalMenu = (props) => {
 const AccordionMenu = (props) => {
   const { res, id, childs, auth } = props;
   if (res.shouldLogin) {
-    if (!auth.isLogin) {
+    if (!auth) {
       return "";
     }
   }
