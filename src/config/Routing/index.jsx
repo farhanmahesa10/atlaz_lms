@@ -32,7 +32,15 @@ import {
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/" exac element={<Home />} />
+      <Route
+        path="/"
+        exac
+        element={
+          // <Authenticate> contoh penggunaan middleware harus login
+          <Home />
+          // </Authenticate>
+        }
+      />
       <Route
         path="/login"
         element={

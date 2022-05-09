@@ -1,3 +1,3 @@
 import Can from "./Can";
-
-export { Can };
+import Auth from "./Auth";
+export { Can, Auth };

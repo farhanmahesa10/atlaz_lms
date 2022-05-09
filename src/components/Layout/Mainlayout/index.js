@@ -2,10 +2,13 @@ import React from "react";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
 import MainHeaderNoMenu from "./MainHeaderNoMenu";
-
+import { Helmet } from "react-helmet";
 const MainLayout = (props) => {
   return (
     <>
+      <Helmet>
+        <title>Atlaz LMS {props.title ? " | " + props.title : ""}</title>
+      </Helmet>
       <div className="d-flex flex-column gx-0" style={{ minHeight: "100vh" }}>
         {!props.navNoMenu ? (
           <MainHeader

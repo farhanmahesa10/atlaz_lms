@@ -2,21 +2,17 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import { useGlobalFunction } from "../services";
 const Authenticate = (props) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    let token = localStorage.getItem(
-      process.env.REACT_APP_BASE_URL + "/accessToken"
-    );
+  const navigate = useNavigate();
 
-    if (token) {
-      let decode = jwt_decode(token);
-      if (new Date().getTime() > decode.exp) {
-        dispatch({
-          type: "SET_AUTH",
-          value: { isLogin: true, userInfo: decode },
-        });
-      }
+  const { getUserInfo } = useGlobalFunction();
+  const user = getUserInfo();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
     }
   }, []);
   return props.children;
