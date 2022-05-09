@@ -20,6 +20,7 @@ import UserCard from "./Cards/UserCard";
 import TimelineMol from "./TimelineMol";
 import PostCommentCard from "./Cards/PostCommentCard";
 import TabBar from "./TabBar";
+import OutlineList from "./OutlineList";
 export {
   ProductXCard,
   ProductYCard,
@@ -43,4 +44,5 @@ export {
   TimelineMol,
   PostCommentCard,
   TabBar,
+  OutlineList,
 };

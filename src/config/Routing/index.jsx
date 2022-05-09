@@ -28,6 +28,8 @@ import {
   TimelineShow,
   LearningSubjectView,
   Logout,
+  LessonPreview,
+  WelcomeAssessment,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -136,8 +138,13 @@ const Routing = () => {
         element={<TimelineShow />}
       />
       <Route
-        path="/classrrom/start-learning-view/:subjectId"
+        path="/classroom/start-learning-view/:subjectId"
         element={<LearningSubjectView />}
+      />
+      <Route path="/classroom/lesson-preview/:id" element={<LessonPreview />} />
+      <Route
+        path="/classroom/welcome-assessment/:id"
+        element={<WelcomeAssessment />}
       />
       <Route path="/logout" element={<Logout />} />
 

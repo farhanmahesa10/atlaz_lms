@@ -82,7 +82,7 @@ const LearningBookContent = () => {
       {data.map((r, i) => {
         return (
           <div key={i} className="mb-8">
-            <Frames data={r} id={i} />
+            <Frames data={r} id={i} key={i} />
           </div>
         );
       })}
@@ -102,7 +102,7 @@ const Frames = (props) => {
         title={data.name}
         badgeText={data.complete}
         withExpand
-        redirectTo="/"
+        redirectTo="/classroom/lesson-preview/1"
       >
         <div className="ml-20">
           <div className="border-start">
@@ -125,7 +125,10 @@ const Frames = (props) => {
                               {r.subTopics.length > 0 &&
                                 r.subTopics.map((res, ind) => {
                                   return (
-                                    <div className="pt-8">
+                                    <div
+                                      className="pt-8"
+                                      key={`subTopics-${id}-${i}-${ind}`}
+                                    >
                                       <Accordion
                                         id={`subTopics-${id}-${i}-${ind}`}
                                         icon={<WysiwygIcon />}
