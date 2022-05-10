@@ -19,6 +19,7 @@ import TimelineOrg from "./ClassRoomOrg/TimelineOrg";
 import LearningSubjectViewOrg from "./ClassRoomOrg/LearningSubjectViewOrg";
 import LearningBookContent from "./ClassRoomOrg/LearningSubjectViewOrg/LearningBookContent";
 import LearningBookDetail from "./ClassRoomOrg/LearningSubjectViewOrg/LearningBookDetail";
+import PreviewContentOrg from "./ClassRoomOrg/PreviewContentOrg";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -41,4 +42,5 @@ export {
   LearningSubjectViewOrg,
   LearningBookContent,
   LearningBookDetail,
+  PreviewContentOrg,
 };

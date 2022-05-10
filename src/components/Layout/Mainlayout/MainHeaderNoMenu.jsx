@@ -10,9 +10,10 @@ const MainHeaderNoMenu = (props) => {
         className="h-64 bg-white d-flex justify-content-between  align-items-center position-fixed w-full"
         style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)", zIndex: "9" }}
       >
-        <div className="w-full pl-24 md-pl-48 d-flex justify-content-between">
-          <img src="/images/logo.png" className="d-none d-md-block" />
+        <div className="w-full pl-24 md-pl-48 d-flex align-items-center">
+          <img src="/images/logo.png" className="d-none d-md-block h-32" />
           <img src="/images/logo-icon.png" className="d-md-none h-32 w-32" />
+          <h5 className="ml-16 pl-16" style={{ borderLeft: "2px solid #F3F6FA"}}>{props.withSubject}</h5>
         </div>
 
         {props.isNeedConfirm ? (

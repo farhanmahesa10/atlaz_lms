@@ -20,6 +20,20 @@ import UserCard from "./Cards/UserCard";
 import TimelineMol from "./TimelineMol";
 import PostCommentCard from "./Cards/PostCommentCard";
 import TabBar from "./TabBar";
+
+import CodeEditor from "./ContentPreview/CodeEditor"
+import CompleteParagraph from "./ContentPreview/CompleteParagraph"
+import EmbedHtml5 from "./ContentPreview/EmbedHtml5"
+import EmptySpace from "./ContentPreview/EmptySpace"
+import Essay from "./ContentPreview/Essay"
+import FillinTheBlank from "./ContentPreview/FillinTheBlank"
+import MatchPairs from "./ContentPreview/MatchPairs"
+import MultipleChoice from "./ContentPreview/MultipleChoice"
+import ShortAnswer from "./ContentPreview/ShortAnswer"
+import SingleChoice from "./ContentPreview/SingleChoice"
+import TextEditor from "./ContentPreview/TextEditor"
+import FooterContent from "./ContentPreview/FooterContent"
+
 export {
   ProductXCard,
   ProductYCard,
@@ -43,4 +57,16 @@ export {
   TimelineMol,
   PostCommentCard,
   TabBar,
+  CodeEditor,
+  CompleteParagraph,
+  EmbedHtml5,
+  EmptySpace,
+  Essay,
+  FillinTheBlank,
+  MatchPairs,
+  MultipleChoice,
+  ShortAnswer,
+  SingleChoice,
+  TextEditor,
+  FooterContent,
 };
