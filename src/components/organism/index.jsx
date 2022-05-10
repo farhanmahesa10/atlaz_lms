@@ -21,6 +21,12 @@ import LearningBookContent from "./ClassRoomOrg/LearningSubjectViewOrg/LearningB
 import LearningBookDetail from "./ClassRoomOrg/LearningSubjectViewOrg/LearningBookDetail";
 import LessonPreviewOrg from "./ClassRoomOrg/LessonPreviewOrg";
 import WelcomeAssessmentOrg from "./ClassRoomOrg/WelcomeAssessmentOrg";
+import BeginAssessmentOrg from "./ClassRoomOrg/BeginAssessmentOrg";
+import BeginAssessmentSingleChoice from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentSingleChoice";
+import BeginAssessmentDivider from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentDivider";
+import BeginAssessmentTextEditor from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentTextEditor";
+import BeginAssessmentRecording from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentRecording";
+import BeginAssessmentFIleUploader from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentFIleUploader";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -45,4 +51,10 @@ export {
   LearningBookDetail,
   LessonPreviewOrg,
   WelcomeAssessmentOrg,
+  BeginAssessmentOrg,
+  BeginAssessmentSingleChoice,
+  BeginAssessmentDivider,
+  BeginAssessmentTextEditor,
+  BeginAssessmentRecording,
+  BeginAssessmentFIleUploader,
 };

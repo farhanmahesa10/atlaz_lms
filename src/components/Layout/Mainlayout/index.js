@@ -18,6 +18,7 @@ const MainLayout = (props) => {
           <MainHeaderNoMenu
             redirectOnClose={props.redirectOnNavClose}
             isNeedConfirm={props.isNeedConfirm}
+            title={props.title}
           />
         )}
         <main className="flex-shrink-0 mb-128  justify-content-center mt-76">

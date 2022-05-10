@@ -14,10 +14,14 @@ const ModalLink = (props) => {
     >
       <div className=" w-full   ">
         <div className="bg-danger-400 radius-t-16 py-16 px-24">
-          <h5 className="text-white">Cancel input</h5>
+          <h5 className="text-white">
+            {data.title ? data.title : "Cancel input"}
+          </h5>
         </div>
         <div className="bg-white p-24">
-          Continue to cancel input? Once canceled, any changes will be lost.
+          {data.message
+            ? data.message
+            : " Continue to cancel input? Once canceled, any changes will be lost."}
         </div>
         <Divider height="h-1" />
 

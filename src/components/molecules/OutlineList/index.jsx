@@ -78,7 +78,11 @@ const OutlineList = (props) => {
                                           <Accordion
                                             id={`subTopic-${i}-${ind}-${index}`}
                                             titleClassName={"font-sm"}
-                                            redirectTo="/"
+                                            redirectTo={`/classroom${
+                                              result.isAssessment
+                                                ? `/welcome-assessment`
+                                                : `/preview-content`
+                                            }/${result.id}`}
                                             title={result.name}
                                           />
                                         </div>

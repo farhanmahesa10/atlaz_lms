@@ -1,0 +1,33 @@
+.assessment-single-choice {
+  .single-choice-option:hover {
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  }
+  .radio-custom {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  /* IMAGE STYLES */
+  .radio-custom + .custom {
+    cursor: pointer;
+    .isChecked {
+      display: none;
+    }
+    .noChecked {
+      display: block;
+    }
+  }
+  /* CHECKED STYLES */
+  .radio-custom:checked + .custom {
+    background-color: #f4fefb !important;
+    border: none !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    .isChecked {
+      display: block;
+    }
+    .noChecked {
+      display: none;
+    }
+  }
+}

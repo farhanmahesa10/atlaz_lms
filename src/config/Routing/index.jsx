@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { RegisterMail } from "../../components/Mail";
+import { BeginAssessmentOrg } from "../../components/organism";
 import Authenticate from "../../midlewares/Authenticate";
 import CheckRole from "../../midlewares/CheckRole";
 import RedirectIfAuthenticated from "../../midlewares/RedirectIfAuthenticated";
@@ -145,6 +146,10 @@ const Routing = () => {
       <Route
         path="/classroom/welcome-assessment/:id"
         element={<WelcomeAssessment />}
+      />
+      <Route
+        path="/classroom/begin-assessment/:id"
+        element={<BeginAssessmentOrg />}
       />
       <Route path="/logout" element={<Logout />} />
 

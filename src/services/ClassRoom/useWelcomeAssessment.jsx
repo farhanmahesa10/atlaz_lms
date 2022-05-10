@@ -1,6 +1,9 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const useWelcomeAssessment = () => {
+  const params = useParams();
+
   const breadcrumbsData = [
     {
       link: "/",
@@ -25,16 +28,20 @@ const useWelcomeAssessment = () => {
       complete: "10/64 Completed",
       topics: [
         {
-          name: "Reading ",
+          name: "Assessment ",
           complete: "64/64 Completed",
           subTopics: [
             {
+              id: "6279cc5376ac22dabb17dcf7",
               name: "Reading 1",
               complete: "64/64 Completed",
+              isAssessment: true,
             },
             {
+              id: "6279cc5376ac22dabb17dcf7",
               name: "Reading 2",
               complete: "64/64 Completed",
+              isAssessment: true,
             },
           ],
         },
@@ -43,10 +50,12 @@ const useWelcomeAssessment = () => {
           complete: "64/64 Completed",
           subTopics: [
             {
+              id: "6279cc5376ac22dabb17dcf7",
               name: "Listening 1",
               complete: "64/64 Completed",
             },
             {
+              id: "6279cc5376ac22dabb17dcf7",
               name: "Listening 2",
               complete: "64/64 Completed",
             },

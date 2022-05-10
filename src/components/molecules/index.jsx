@@ -21,6 +21,8 @@ import TimelineMol from "./TimelineMol";
 import PostCommentCard from "./Cards/PostCommentCard";
 import TabBar from "./TabBar";
 import OutlineList from "./OutlineList";
+import ProgressNavbar from "./ProgressNavbar";
+import ModalLink from "./Modals/ModalLink";
 export {
   ProductXCard,
   ProductYCard,
@@ -45,4 +47,6 @@ export {
   PostCommentCard,
   TabBar,
   OutlineList,
+  ProgressNavbar,
+  ModalLink,
 };

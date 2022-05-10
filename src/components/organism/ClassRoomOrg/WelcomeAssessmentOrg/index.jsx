@@ -4,13 +4,13 @@ import MainLayout from "../../../Layout/Mainlayout";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { OutlineList } from "../../../molecules";
-import useWelcomeAssessment from "../../../../services/ClassRoom/useWelcomeAssessment";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { Link } from "react-router-dom";
+import { useWelcomeAssessment } from "../../../../services";
 const WelcomeAssessmentOrg = () => {
   const { dataOutline, breadcrumbsData, rulesCondition } =
     useWelcomeAssessment();
@@ -52,7 +52,9 @@ const WelcomeAssessmentOrg = () => {
                     <span className="ml-16">45 Minutes</span>
                   </div>
                   <div className="mt-40">
-                    <Link to="/">
+                    <Link
+                      to={`/classroom/begin-assessment/6279cc5376ac22dabb17dcf7`}
+                    >
                       <button
                         className="font-sm btn-primary d-flex align-items-center"
                         type="button"

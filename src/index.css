@@ -52,3 +52,23 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+.recording-animation {
+  height: 50px;
+  width: 50px;
+  animation: recording-ann 0.7s;
+  position: absolute;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-direction: alternate;
+}
+
+@keyframes recording-ann {
+  from {
+    height: 50px;
+    width: 50px;
+  }
+  to {
+    height: 64px;
+    width: 64px;
+  }
+}

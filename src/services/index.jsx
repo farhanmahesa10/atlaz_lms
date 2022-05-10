@@ -12,6 +12,7 @@ import useLearningSubjectView from "./ClassRoom/useLearningSubjectView";
 import useLessonPreview from "./ClassRoom/useLessonPreview";
 import useGlobalFunction from "./GlobalFuntions/useGlobalFunction";
 import useWelcomeAssessment from "./ClassRoom/useWelcomeAssessment";
+import useBeginAssessment from "./ClassRoom/useBeginAssessment";
 export {
   useSearchResult,
   useClassRoomHero,
@@ -26,4 +27,6 @@ export {
   useLearningSubjectView,
   useGlobalFunction,
   useLessonPreview,
+  useWelcomeAssessment,
+  useBeginAssessment,
 };
