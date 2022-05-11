@@ -18,7 +18,7 @@ function PreviewContentOrg() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const dataSubtopic = useSelector((state) => state.APIEditSubTopic);
+  const [dataSubtopic, setDataSubtopic] = useState();
   const [dataContent, setDataContent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,14 +60,16 @@ function PreviewContentOrg() {
 
   const initData = () => {
     setIsLoading(true);
-    GET(`content/preview?subTopicId=${id}`,defConfig).then((res) => {
-      setDataContent(res);
+    GET(`/content/preview?subTopicId=${id}`,defConfig()).then((res) => {
+      setDataContent(res.data);
       setIsLoading(false);
+      console.log('1 success', res.data)
     }).catch((err) => {
       console.log('1', err.response)
     });
-    GET(`subtopic/${id}`,defConfig).then((res) => {
-      dispatch({ type: "API_EDIT_SUBTOPIC", newValue: res });
+    GET(`/subtopic/${id}`,defConfig()).then((res) => {
+      setDataSubtopic(res.data);
+      console.log('2 success', res)
     }).catch((err) => {
       console.log('2', err.response)
     });
@@ -84,7 +86,7 @@ function PreviewContentOrg() {
         navbarBg="bg-white"
         navNoMenu
         redirectOnNavClose="/classrrom/start-learning-view/1"
-        withSubject="English Play 01"
+        withSubject={dataSubtopic?.subject.name}
       >
         <section className="sub-topic-detail-preview">
           <img src={imgHeader1} className="image-header1 w-100" alt="" />
@@ -94,9 +96,9 @@ function PreviewContentOrg() {
               <div className="col-md-8 col-12">
                 <div className="header-preview radius-14 bg-white py-16 px-24 mb-24">
                   <div className="neutral300 mb-8">
-                    Topik Name
+                    {dataSubtopic?.topic.name}
                   </div>
-                  <h3>Subtopic Name</h3>
+                  <h3>{dataSubtopic?.name}</h3>
                 </div>
 
                 <div className="preview-content  radius-8 ">
@@ -105,6 +107,7 @@ function PreviewContentOrg() {
                     ""
                   ) : (
                     <div className="content">
+                      { console.log('dataContent', dataContent) }
                       {dataContent.map((data, index) => {
                         return (
                           <div key={index} className="">
@@ -112,7 +115,7 @@ function PreviewContentOrg() {
                           </div>
                         );
                       })}
-                      {dataContent.length < 1 ? (
+                      {dataContent.length < 0 ? (
                         <p className="text-center">No data available</p>
                       ) : (
                         ""

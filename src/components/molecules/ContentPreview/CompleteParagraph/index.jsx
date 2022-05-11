@@ -81,12 +81,13 @@ const CompleteParahraph = (props) => {
             >
               {(formik) => (
                 <Form>
-                  <div className="mb-4" style={{ whiteSpace: "pre-wrap" }}>
+                  <div className="mb-16" style={{ whiteSpace: "pre-wrap" }}>
                     {qaReplace(data.questions)}
                   </div>
 
                   <FooterContent
                     formik={formik}
+                    isSubmitting={formik.isSubmitting}
                     data={data}
                     buttonToggle={buttonToggleFooter}
                     explanation={data.correctionText}

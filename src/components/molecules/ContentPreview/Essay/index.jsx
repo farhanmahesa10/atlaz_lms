@@ -49,7 +49,7 @@ const Essay = (props) => {
                     meta,
                   }) => {
                     return (
-                      <div className="px-24 bg-info100">
+                      <div className="px-24 bg-info-100">
                         <Textarea
                           className="textarea"
                           {...field}
@@ -67,6 +67,7 @@ const Essay = (props) => {
               </div>
               <FooterContent
                 formik={formik}
+                isSubmitting={formik.isSubmitting}
                 data={data}
                 btnSubmitText={"Submit"}
                 buttonToggle={buttonToggleFooter}

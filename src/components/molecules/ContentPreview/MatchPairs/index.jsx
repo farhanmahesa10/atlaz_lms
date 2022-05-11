@@ -149,7 +149,7 @@ const MatchPairs = (props) => {
           {(formik) => {
             return (
               <Form className="formFormik ">
-                <div className="row">
+                <div className="row mb-16">
                   <div className="col-12">
                     {data.options.map((r, i) => {
                       return (
@@ -549,6 +549,7 @@ const MatchPairs = (props) => {
 
                 <FooterContent
                   formik={formik}
+                  isSubmitting={formik.isSubmitting}
                   data={data}
                   buttonToggle={buttonToggleFooter}
                   explanation={data.correctionText}

@@ -5,10 +5,9 @@ const FooterContent = (props) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const data = props.data;
   return (
-    <div className="row">
-        Footer
-      {/* {showExplanation ? (
-        <div className="bg-primary100 p-16 radius-14 col-12">
+    <div className="row footer-content">
+      {showExplanation ? (
+        <div className="bg-primary-100 p-16 radius-14 col-12">
           <p className="tx-body-po mb-8">Explanation</p>
           <p style={{ whiteSpace: "pre-wrap" }}>
             {props.explanation ? props.explanation : "-"}
@@ -19,22 +18,15 @@ const FooterContent = (props) => {
       )}
       <div className="col-12 ">
         {!props.buttonToggle ? (
-          <Buttons
-            type={`submit`}
-            className={` ${
-              props.formik.isSubmitting ? " btnDisable" : "btnPrimary"
-            } py-8 mr-8 mt-16 btnSmall xs-w-full `}
-            control="button"
-            btnPrimary
-            btnRegular
-            btnMoExSmall
-            btnDisable={props.formik.isSubmitting}
-            disabled={props.formik.isSubmitting}
-            name={
+          <button
+            type="submit"
+            className={` ${props.isSubmitting ? " btn-disable" : "btn-primary"
+              } py-8 mr-8 xs-w-full font-small`} >
+            {
               <>
                 <Spellcheck />
                 <span className="pl-8">
-                  {!props.formik.isSubmitting
+                  {!props.isSubmitting
                     ? props.btnSubmitText
                       ? props.btnSubmitText
                       : " Submit & Check"
@@ -42,42 +34,40 @@ const FooterContent = (props) => {
                 </span>
               </>
             }
-          />
+          </button>
         ) : (
           <>
             <span>
             </span>
-            <Buttons
+            <button
               type="button"
-              className="btnOutline py-8 mr-8 mt-16 btnSmall xs-w-full"
-              control="button"
+              className="btn-outline py-8 mr-8 mt-16 btn-small xs-w-full"
               onClick={() => {
                 props.onRetry();
                 setShowExplanation(false);
-              }}
-              name={
+              }} >
+              {
                 <>
                   <Replay />
                   <span className="pl-8"> Retry</span>
                 </>
               }
-            />
+            </button>
 
-            <Buttons
+            <button
               type="button"
-              className={`btnOutline py-8 mr-8 mt-16 btnSmall xs-w-full`}
-              control="button"
-              onClick={() => setShowExplanation(true)}
-              name={
+              className="btn-outline py-8 mr-8 mt-16 btn-small xs-w-full"
+              onClick={() => setShowExplanation(true)} >
+              {
                 <>
                   <EmojiObjectsOutlined />
                   <span className="pl-8">Explanation</span>
                 </>
               }
-            />
+            </button>
           </>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };

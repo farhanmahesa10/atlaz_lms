@@ -122,7 +122,7 @@ const MultipleChoice = (props) => {
             >
               {(formik) => (
                 <Form>
-                  <div>
+                  <div className="mb-16">
                     {data.questions.map((res, ind) => {
                       return (
                         <React.Fragment key={ind}>
@@ -170,6 +170,7 @@ const MultipleChoice = (props) => {
 
                   <FooterContent
                     formik={formik}
+                    isSubmitting={formik.isSubmitting}
                     data={data}
                     buttonToggle={buttonToggleFooter}
                     explanation={data.correctionText}

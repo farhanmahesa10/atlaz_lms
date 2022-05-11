@@ -82,6 +82,7 @@ const ShortAnswer = (props) => {
                 </div>
                 <FooterContent
                   formik={formik}
+                  isSubmitting={formik.isSubmitting}
                   data={data}
                   buttonToggle={buttonToggleFooter}
                   explanation={data.correctionText}

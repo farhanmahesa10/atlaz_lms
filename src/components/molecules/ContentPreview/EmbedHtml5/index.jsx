@@ -35,7 +35,7 @@ const EmbedHtml5 = (props) => {
     <>
       <div className="col-12 card-container ">
         <div className="card-content">
-          <h5 className="mb-2">{data.contents.title}</h5>
+          <h5>{data.contents.title}</h5>
           <Formik onSubmit={onSubmit} initialValues={{ tes: "" }}>
             {(formik) => (
               <Form>

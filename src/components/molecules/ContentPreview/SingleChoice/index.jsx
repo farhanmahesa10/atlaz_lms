@@ -16,13 +16,13 @@ const SingleChoice = (props) => {
   const optionPattern = (options) => {
     let opts = [
       {
-        key: "Choose",
+        label: "Choose",
         value: "",
       },
     ];
     options.map((r, i) => {
       opts.push({
-        key: r.text,
+        label: r.text,
         value: i,
       });
     });
@@ -100,8 +100,9 @@ const SingleChoice = (props) => {
           >
             {(formik) => (
               <Form className="formFormik">
+                <div className="mb-16">
                 {data.instruction ? (
-                  <p className="tx-header5 mb-16">{data.instruction}</p>
+                  <h5>{data.instruction}</h5>
                 ) : (
                   ""
                 )}
@@ -144,12 +145,13 @@ const SingleChoice = (props) => {
                           </td>
 
                           <td>
+                          { console.log('option', optionPattern(r.options))}
                             <FormikControl
                               control="select"
                               name={`answers[${i}]`}
-                              addClass={`select-${data._id}-${r._id}`}
-                              isExSmall
                               options={optionPattern(r.options)}
+                              formik={formik}
+                              defaultValue={2}
                             />
                             <span
                               className={`d-none tx-ex-small mr-4 correction-${data._id}-${r._id}`}
@@ -163,8 +165,10 @@ const SingleChoice = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <FooterContent
                   formik={formik}
+                  isSubmitting={formik.isSubmitting}
                   data={data}
                   buttonToggle={buttonToggleFooter}
                   explanation={data.correctionText}

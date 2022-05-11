@@ -16,7 +16,7 @@ const TextEditor = (props) => {
   });
   return (
     <>
-      <div className="col-12 card-container  ">
+      <div className="col-12 card-container">
         <div
           className="card-content"
           ref={contentRef}

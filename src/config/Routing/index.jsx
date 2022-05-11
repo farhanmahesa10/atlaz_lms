@@ -145,9 +145,14 @@ const Routing = () => {
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
       {/* Space route fajrul */}
-      <Route 
+      <Route
         path="/classroom/preview-content/:id" 
-        element={<PreviewContent />} />
+        element={
+          <Authenticate>
+            <PreviewContent />
+          </Authenticate>
+        }
+      />
 
 
     </Routes>
