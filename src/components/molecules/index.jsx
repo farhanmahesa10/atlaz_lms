@@ -23,6 +23,7 @@ import TabBar from "./TabBar";
 import OutlineList from "./OutlineList";
 import ProgressNavbar from "./ProgressNavbar";
 import ModalLink from "./Modals/ModalLink";
+import ClassroomAcademicLoading from "./SkeletonLoading/ClassroomLoading/ClassroomAcademicLoading";
 export {
   ProductXCard,
   ProductYCard,
@@ -49,4 +50,5 @@ export {
   OutlineList,
   ProgressNavbar,
   ModalLink,
+  ClassroomAcademicLoading,
 };

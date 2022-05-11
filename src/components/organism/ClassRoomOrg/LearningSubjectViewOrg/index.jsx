@@ -8,8 +8,12 @@ const LearningSubjectViewOrg = () => {
   const { tesData, breadcrumbsData, TabBarData } = useLearningSubjectView();
 
   return (
-    <MainLayout maxWidth="1440px" navbarBg="bg-white">
-      <div className="mt-16 d-none d-xl-block mx-48">
+    <MainLayout
+      maxWidth="1440px"
+      navbarBg="bg-white"
+      mainClassName="bg-neutral-50"
+    >
+      <div className="pt-16 d-none d-xl-block">
         <BreadCrumb data={breadcrumbsData} />
       </div>
 

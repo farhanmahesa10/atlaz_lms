@@ -9,15 +9,27 @@ import { Settings } from "@mui/icons-material";
 import Can from "../../../Permission/Can";
 
 const Sidebar = (props) => {
-  const { menus, settings, activeMenu, onLogout, pages, auth } = props;
+  const {
+    menus,
+    settings,
+    activeMenu,
+    showCanvas,
+    setShowCanvas,
+    pages,
+    auth,
+  } = props;
 
+  const handleClose = () => setShowCanvas(false);
+  const handleShow = () => setShowCanvas(true);
   return (
-    <Navbar.Offcanvas
+    <Offcanvas
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
       className="radius-tl-8 radius-bl-8 w-306 "
       style={{ padding: "0" }}
       placement="end"
+      show={showCanvas}
+      onHide={handleClose}
     >
       {/* off canvas */}
       <Offcanvas.Header closeButton>
@@ -28,12 +40,12 @@ const Sidebar = (props) => {
 
         <Nav className="justify-content-end flex-grow-1 px-24 pt-24">
           {pages.map((r, i) => {
-            if (r.shouldLogin) {
-              if (!auth) {
+            if (r.shouldLogin === 0) {
+              if (auth) {
                 return "";
               }
-            } else {
-              if (auth) {
+            } else if (r.shouldLogin === 1) {
+              if (!auth) {
                 return "";
               }
             }
@@ -68,14 +80,18 @@ const Sidebar = (props) => {
           })}
         </Nav>
       </Offcanvas.Body>
-    </Navbar.Offcanvas>
+    </Offcanvas>
   );
 };
 
 const NormalMenu = (props) => {
   const { res, auth } = props;
 
-  if (res.shouldLogin) {
+  if (res.shouldLogin === 0) {
+    if (auth) {
+      return "";
+    }
+  } else if (res.shouldLogin === 1) {
     if (!auth) {
       return "";
     }
@@ -102,7 +118,11 @@ const NormalMenu = (props) => {
 
 const AccordionMenu = (props) => {
   const { res, id, childs, auth } = props;
-  if (res.shouldLogin) {
+  if (res.shouldLogin === 0) {
+    if (auth) {
+      return "";
+    }
+  } else if (res.shouldLogin === 1) {
     if (!auth) {
       return "";
     }

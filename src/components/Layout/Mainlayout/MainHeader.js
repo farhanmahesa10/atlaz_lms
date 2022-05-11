@@ -17,7 +17,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import { useGlobalFunction } from "../../../services";
 const MainHeader = (props) => {
   const [navBg, setNavBg] = useState(props.navbarBg);
-
+  const [showCanvas, setShowCanvas] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
 
   const { getUserInfo } = useGlobalFunction();
@@ -56,7 +56,7 @@ const MainHeader = (props) => {
       icon: <DashboardIcon />,
       link: "/",
       label: "Dashboard",
-      shouldLogin: false,
+      shouldLogin: 2,
       activeTo: "",
       // allowAccess: "superuser,administrator",
     },
@@ -64,21 +64,21 @@ const MainHeader = (props) => {
       icon: <StorefrontIcon />,
       link: "/shop",
       label: "Shop",
-      shouldLogin: false,
+      shouldLogin: 2,
       activeTo: "shop",
     },
     {
       icon: <SchoolIcon />,
       link: "/classroom",
       label: "Classroom",
-      shouldLogin: true,
+      shouldLogin: 1,
       activeTo: "classroom",
     },
     {
       icon: <BookIcon />,
       link: "/mybooks",
       label: "My Books",
-      shouldLogin: false,
+      shouldLogin: 1,
       activeTo: "mybooks",
       // allowAccess: "superuser,administrator",
       childs: [
@@ -100,7 +100,7 @@ const MainHeader = (props) => {
       icon: <GroupsIcon />,
       link: "/master",
       label: "Master Menu",
-      shouldLogin: false,
+      shouldLogin: 1,
       activeTo: "master",
       childs: [
         {
@@ -124,14 +124,14 @@ const MainHeader = (props) => {
       icon: <AccountCircleRoundedIcon />,
       link: "/account-settings",
       label: "Account Settings",
-      shouldLogin: false,
+      shouldLogin: true,
       activeTo: "account-settings",
     },
     {
       icon: <ExitToAppRoundedIcon />,
       link: "/logout",
       label: "Logout",
-      shouldLogin: false,
+      shouldLogin: true,
       activeTo: "logout",
     },
   ];
@@ -141,32 +141,33 @@ const MainHeader = (props) => {
       icon: <LoginIcon />,
       link: "/login",
       label: "Login",
-      shouldLogin: false,
+      shouldLogin: 0,
       activeTo: "login",
     },
     {
       icon: <AccountCircleRoundedIcon />,
       link: "/register",
       label: "Register",
-      shouldLogin: false,
+      shouldLogin: 0,
       activeTo: "register",
     },
   ];
 
   const sideBarControl = [
+    //shouldLogin :  0 = false, 1 = true , 2 = true false
     {
       label: "Menu",
-      shouldLogin: false,
+      shouldLogin: 2,
       menus: menus,
     },
     {
       label: "Settings",
-      shouldLogin: true,
+      shouldLogin: 1,
       menus: settings,
     },
     {
       label: "App",
-      shouldLogin: false,
+      shouldLogin: 0,
       menus: apps,
     },
   ];
@@ -189,6 +190,7 @@ const MainHeader = (props) => {
           auth={auth}
           menus={menus}
           apps={apps}
+          setShowCanvas={setShowCanvas}
           settings={settings}
           activeMenu={activeMenu}
           onLogout={logout}
@@ -198,6 +200,8 @@ const MainHeader = (props) => {
           auth={auth}
           menus={menus}
           activeMenu={activeMenu}
+          setShowCanvas={setShowCanvas}
+          showCanvas={showCanvas}
           onLogout={logout}
         />
       </Navbar>

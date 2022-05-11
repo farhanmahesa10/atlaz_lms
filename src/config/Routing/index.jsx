@@ -31,6 +31,7 @@ import {
   Logout,
   LessonPreview,
   WelcomeAssessment,
+  ChangeFirstPassword,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -108,6 +109,14 @@ const Routing = () => {
           </RedirectIfAuthenticated>
         }
       />
+      <Route
+        path="/change-first-password/:username"
+        element={
+          <RedirectIfAuthenticated>
+            <ChangeFirstPassword />
+          </RedirectIfAuthenticated>
+        }
+      />
       <Route path="/redirecting" element={<Redirecting />} />
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
@@ -120,7 +129,14 @@ const Routing = () => {
       />
 
       {/* classroom route */}
-      <Route path="/classroom" element={<Classroom />} />
+      <Route
+        path="/classroom"
+        element={
+          <CheckRole allowAccess="teacher,student">
+            <Classroom />
+          </CheckRole>
+        }
+      />
       <Route path="/classroom/class/:classId" element={<ClassRoomSubject />} />
       <Route
         path="/classroom/assessment/:classId/:subjectId/:section"

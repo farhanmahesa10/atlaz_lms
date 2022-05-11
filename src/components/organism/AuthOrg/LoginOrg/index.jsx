@@ -2,21 +2,25 @@ import axios from "axios";
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import Pace from "react-pace-progress";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { FormikControl, GlobalToast, GoogleButton } from "../../../atoms";
 import AuthLayout from "../../../Layout/AuthLayout";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { POST } from "../../../../config/RestAPI";
 const LoginOrg = (props) => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     email: "",
     password: "",
   };
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("This field is required, Don't leave it empty!")
-      .email("Please input the correct format email address!"),
+    email: Yup.string().required(
+      "This field is required, Don't leave it empty!"
+    ),
+
     password: Yup.string().required(
       "This field is required, Don't leave it empty!"
     ),
@@ -31,19 +35,57 @@ const LoginOrg = (props) => {
 
   const onSubmit = (values) => {
     setIsLoading(true);
-    axios
-      .post(process.env.REACT_APP_BASE_API_URL + "/auth/login", values)
-      .then((res) => {
-        localStorage.setItem(
-          process.env.REACT_APP_BASE_URL + "/accessToken",
-          res.data.accessToken.token
-        );
+
+    POST("/auth/login", values)
+      .then((r) => {
+        if (r.status === "default") {
+          navigate("/change-first-password/" + r.data.email);
+        } else {
+          localStorage.setItem(
+            process.env.REACT_APP_BASE_URL + "/accessToken",
+            r.accessToken.token
+          );
+          navigate("/");
+        }
         setIsLoading(false);
-        navigate("/");
       })
       .catch((err) => {
+        if (err.response) {
+          dispatch({
+            type: "SET_FLASH_MESSAGE",
+            status: false,
+            title: "Login Failed!",
+            msg: "Wrong username / password!",
+            show: true,
+            isRedirecterToast: false,
+          });
+        } else {
+          dispatch({
+            type: "SET_FLASH_MESSAGE",
+            status: false,
+            title: "Something went wrong!",
+            msg: "Your connection is unstable!",
+            show: true,
+            isRedirecterToast: false,
+          });
+        }
+
         setIsLoading(false);
       });
+    // axios
+    //   .post(process.env.REACT_APP_BASE_API_URL + "/auth/login", values)
+    //   .then((res) => {
+    //     console.log(res);
+    //     // localStorage.setItem(
+    //     //   process.env.REACT_APP_BASE_URL + "/accessToken",
+    //     //   res.data.accessToken.token
+    //     // );
+    //     // setIsLoading(false);
+    //     // navigate("/");
+    //   })
+    //   .catch((err) => {
+    //     setIsLoading(false);
+    //   });
   };
 
   return (
@@ -80,9 +122,9 @@ const LoginOrg = (props) => {
                       icon={
                         <MailOutlineIcon className="text-neutral-200 fs-20 " />
                       }
-                      label="Email Address"
+                      label="Username / Email"
                       labelClassName="font-xs-bold"
-                      placeholder="Enter your email"
+                      placeholder="Enter your username / email"
                       autoFocus
                     />
                   </div>
@@ -133,15 +175,4 @@ const LoginOrg = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    flashMessage: state.flashMessage,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setFlashMassage: (value) => dispatch({ type: "SET_FLASH_MESSAGE", value }),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(LoginOrg);
+export default connect()(LoginOrg);

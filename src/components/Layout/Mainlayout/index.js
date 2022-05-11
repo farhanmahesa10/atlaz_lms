@@ -21,7 +21,9 @@ const MainLayout = (props) => {
             title={props.title}
           />
         )}
-        <main className="flex-shrink-0 mb-128  justify-content-center mt-76">
+        <main
+          className={`flex-shrink-0 mb-128  justify-content-center mt-76 ${props.mainClassName}`}
+        >
           {props.beforeChildren}
           <div className="row gx-0 justify-content-center mt-7">
             <div className="">

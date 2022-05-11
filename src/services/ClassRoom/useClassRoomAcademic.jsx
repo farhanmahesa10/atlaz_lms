@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ClassRoomHero1,
   ClassRoomHero2,
   ClassRoomHero3,
 } from "../../assets/images";
+import { GET, defConfig } from "../../config/RestAPI";
+
 const useClassRoomAcademic = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    GET("/client/classrooms", defConfig())
+      .then((r) => {
+        console.log(r);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        setIsLoading(false);
+      });
+  });
+
   const [data, setData] = useState([
     {
       title: "Academic Year 2021/2022",
@@ -38,7 +53,7 @@ const useClassRoomAcademic = () => {
     },
   ]);
 
-  return { data };
+  return { data, isLoading };
 };
 
 export default useClassRoomAcademic;

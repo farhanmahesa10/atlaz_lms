@@ -7,7 +7,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Can } from "../../../Permission";
 
 const NavbarContainer = (props) => {
-  const { menus, settings, activeMenu, onLogout, auth } = props;
+  const { menus, settings, activeMenu, setShowCanvas, auth } = props;
   const navigate = useNavigate();
   const disPatch = useDispatch();
 
@@ -23,13 +23,21 @@ const NavbarContainer = (props) => {
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle
-        aria-controls="responsive-navbar-nav cursor-pointer"
+        aria-controls="responsive-navbar-nav"
+        className=" cursor-pointer"
         style={{ border: "none" }}
+        onClick={() => {
+          setShowCanvas(true);
+        }}
       />
 
       <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
         {menus.map((r, i) => {
-          if (r.shouldLogin) {
+          if (r.shouldLogin === 0) {
+            if (auth) {
+              return "";
+            }
+          } else if (r.shouldLogin === 1) {
             if (!auth) {
               return "";
             }
@@ -113,7 +121,16 @@ const NavbarContainer = (props) => {
 };
 
 const NormalMenu = (props) => {
-  const { res } = props;
+  const { res, auth } = props;
+  if (res.shouldLogin === 0) {
+    if (auth) {
+      return "";
+    }
+  } else if (res.shouldLogin === 1) {
+    if (!auth) {
+      return "";
+    }
+  }
   return (
     <Can allowAccess={res.allowAccess}>
       <Link
@@ -130,7 +147,16 @@ const NormalMenu = (props) => {
 };
 
 const DropDownMenu = (props) => {
-  const { res, id } = props;
+  const { res, id, auth } = props;
+  if (res.shouldLogin === 0) {
+    if (auth) {
+      return "";
+    }
+  } else if (res.shouldLogin === 1) {
+    if (!auth) {
+      return "";
+    }
+  }
   return (
     <Can allowAccess={res.allowAccess}>
       <div className="btn-group dropdown px-12">

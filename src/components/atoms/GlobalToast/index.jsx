@@ -54,7 +54,7 @@ const GlobalToast = () => {
             padding: "10px",
             color: "#333333",
           },
-          duration: 4000,
+          duration: 3000,
         }}
       />
     </>

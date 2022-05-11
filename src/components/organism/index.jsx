@@ -27,6 +27,7 @@ import BeginAssessmentDivider from "./ClassRoomOrg/BeginAssessmentOrg/BeginAsses
 import BeginAssessmentTextEditor from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentTextEditor";
 import BeginAssessmentRecording from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentRecording";
 import BeginAssessmentFIleUploader from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentFIleUploader";
+import ChangeFirstPasswordOrg from "./AuthOrg/ChangeFirstPasswordOrg";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -57,4 +58,5 @@ export {
   BeginAssessmentTextEditor,
   BeginAssessmentRecording,
   BeginAssessmentFIleUploader,
+  ChangeFirstPasswordOrg,
 };
