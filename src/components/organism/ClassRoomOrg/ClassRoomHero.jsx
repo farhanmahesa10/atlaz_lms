@@ -3,7 +3,7 @@ import { useClassRoomHero } from "../../../services";
 import { BreadCrumb } from "../../atoms";
 
 const ClassRoomHero = () => {
-  const { banner, breadcrumbsData } = useClassRoomHero();
+  const { isLoading, data, banner, breadcrumbsData } = useClassRoomHero();
 
   return (
     <>
@@ -21,10 +21,8 @@ const ClassRoomHero = () => {
             </div>
 
             <div className="p-12 md-p-28 ">
-              <p className="h4 md-h2">Atlaz Academy School</p>
-              <p className="text-neutral-400 mt-8">
-                JL Radio Dalam Raya No. 99 B-C
-              </p>
+              <p className="h4 md-h2">{data.name}</p>
+              <p className="text-neutral-400 mt-8">{data.address}</p>
             </div>
           </div>
         </div>

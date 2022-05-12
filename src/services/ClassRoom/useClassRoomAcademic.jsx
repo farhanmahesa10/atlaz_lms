@@ -5,55 +5,33 @@ import {
   ClassRoomHero3,
 } from "../../assets/images";
 import { GET, defConfig } from "../../config/RestAPI";
-
+import _, { values } from "lodash";
 const useClassRoomAcademic = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
   useEffect(() => {
-    GET("/client/classrooms", defConfig())
+    GET("/client/classrooms/my_classlist", defConfig())
       .then((r) => {
-        console.log(r);
+        let result = _.chain(r.data)
+          // Group the elements of Array based on `color` property
+          .groupBy("academicYear")
+          // `key` is group's name (color), `value` is the array of objects
+          .map((value, key) => {
+            return {
+              academicYear: key,
+              classLists: value,
+            };
+          })
+          .value();
+        setData(result);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err.response);
         setIsLoading(false);
       });
-  });
+  }, []);
 
-  const [data, setData] = useState([
-    {
-      title: "Academic Year 2021/2022",
-      academicData: [
-        {
-          title: "Kelas 1A IPA",
-          image: ClassRoomHero1,
-        },
-        {
-          title: "Kelas 1B IPA",
-          image: ClassRoomHero2,
-        },
-        {
-          title: "Kelas 1A IPS",
-          image: ClassRoomHero3,
-        },
-        {
-          title: "Kelas 1C IPS",
-          image: ClassRoomHero2,
-        },
-      ],
-    },
-    {
-      title: "Academic Year 2020/2021",
-      academicData: [
-        {
-          title: "Kelas 1A IPA",
-          image: ClassRoomHero3,
-        },
-      ],
-    },
-  ]);
-
-  return { data, isLoading };
+  return { data, isLoading, ClassRoomHero1 };
 };
 
 export default useClassRoomAcademic;

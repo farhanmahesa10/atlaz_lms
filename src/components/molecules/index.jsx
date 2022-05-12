@@ -24,6 +24,7 @@ import OutlineList from "./OutlineList";
 import ProgressNavbar from "./ProgressNavbar";
 import ModalLink from "./Modals/ModalLink";
 import ClassroomAcademicLoading from "./SkeletonLoading/ClassroomLoading/ClassroomAcademicLoading";
+import NavbarNotification from "./NavbarNotication";
 export {
   ProductXCard,
   ProductYCard,
@@ -51,4 +52,5 @@ export {
   ProgressNavbar,
   ModalLink,
   ClassroomAcademicLoading,
+  NavbarNotification,
 };

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Can } from "../../../Permission";
+import { NavbarNotification } from "../../molecules";
 
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
@@ -22,14 +23,6 @@ const NavbarContainer = (props) => {
           <img src="/images/logo-icon.png" className=" d-flex d-lg-none w-32" />
         </Link>
       </Navbar.Brand>
-      <Navbar.Toggle
-        aria-controls="responsive-navbar-nav"
-        className=" cursor-pointer"
-        style={{ border: "none" }}
-        onClick={() => {
-          setShowCanvas(true);
-        }}
-      />
 
       <Nav className=" d-none d-lg-flex justify-content-center align-items-center position-absolute start-0 w-full ">
         {menus.map((r, i) => {
@@ -54,10 +47,18 @@ const NavbarContainer = (props) => {
           );
         })}
       </Nav>
-      <Nav
-        className=" d-none d-lg-flex gap-3 position-relative"
-        style={{ zIndex: 9 }}
-      >
+      <Nav className=" d-flex gap-3 position-relative" style={{ zIndex: 9 }}>
+        <div className="d-flex align-items-center">
+          <NavbarNotification />
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            className=" cursor-pointer"
+            style={{ border: "none" }}
+            onClick={() => {
+              setShowCanvas(true);
+            }}
+          />
+        </div>
         {!auth ? (
           <>
             <Link to="/login" className="">
@@ -70,17 +71,7 @@ const NavbarContainer = (props) => {
           </>
         ) : (
           <>
-            <div className="d-flex align-items-center cursor-pointer">
-              <NotificationsNoneIcon className="text-neutral-400" />
-              <p
-                className="bg-danger fs-12 h-16 w-16 d-flex justify-content-center radius-p-100 align-items-center text-white  position-relative "
-                style={{ top: "-8px", right: "12px" }}
-              >
-                1
-              </p>
-              <span className="text-secondary-400 ">|</span>
-            </div>
-            <div className="btn-group dropstart">
+            <div className="btn-group dropstart d-none d-lg-block">
               <div
                 type="button"
                 className="cursor-pointer dropdown-toggle "

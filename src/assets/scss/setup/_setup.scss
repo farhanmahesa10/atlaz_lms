@@ -61,6 +61,7 @@ $dropdown-min-width: 2rem;
 @import "../utility/font";
 @import "../utility/border_radius";
 @import "../utility/grid";
+@import "../utility/position_generator";
 
 body {
   font-family: Nunito;
@@ -93,6 +94,7 @@ body {
   //utility
   @include callHeightWidthGenerator(1000, $selector);
   @include marginPaddingGenerator(500, $selector);
+  @include positionGenerator(500, $selector);
   @include gapGenerator(100, $selector);
   @include callFontGenerator(100, $selector);
   @include borderRadiusGenerator($selector);

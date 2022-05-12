@@ -1,0 +1,29 @@
+@mixin positionGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}top-#{$i} {
+      top: #{$i}px !important;
+    }
+    #{$selector}left-#{$i} {
+      left: #{$i}px !important;
+    }
+    #{$selector}bottom-#{$i} {
+      bottom: #{$i}px !important;
+    }
+    #{$selector}right-#{$i} {
+      right: #{$i}px !important;
+    }
+
+    #{$selector}min-top-#{$i} {
+      top: -#{$i}px !important;
+    }
+    #{$selector}min-left-#{$i} {
+      left: -#{$i}px !important;
+    }
+    #{$selector}min-bottom-#{$i} {
+      bottom: -#{$i}px !important;
+    }
+    #{$selector}min-right-#{$i} {
+      right: -#{$i}px !important;
+    }
+  }
+}

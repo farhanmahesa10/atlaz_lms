@@ -13,7 +13,7 @@ const LearningSubjectViewOrg = () => {
       navbarBg="bg-white"
       mainClassName="bg-neutral-50"
     >
-      <div className="pt-16 d-none d-xl-block">
+      <div className="pt-16 d-none d-xl-block px-24">
         <BreadCrumb data={breadcrumbsData} />
       </div>
 

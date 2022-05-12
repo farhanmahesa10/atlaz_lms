@@ -132,7 +132,7 @@ const Routing = () => {
       <Route
         path="/classroom"
         element={
-          <CheckRole allowAccess="teacher,student">
+          <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
             <Classroom />
           </CheckRole>
         }

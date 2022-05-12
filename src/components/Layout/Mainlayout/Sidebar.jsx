@@ -148,8 +148,8 @@ const AccordionMenu = (props) => {
           <ArrowDropDownIcon />
         </p>
       </div>
-      <div class="collapse" id={id}>
-        <div class="card card-body">
+      <div className="collapse" id={id}>
+        <div className="card card-body">
           {childs.map((r, i) => {
             return (
               <React.Fragment key={`acc-${i}`}>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ClassroomAcademicLoading } from "../../molecules";
 
 const ClassRoomAcademic = () => {
-  const { data, isLoading } = useClassRoomAcademic();
+  const { data, isLoading, ClassRoomHero1 } = useClassRoomAcademic();
 
   return (
     <>
@@ -20,21 +20,21 @@ const ClassRoomAcademic = () => {
                 return (
                   <React.Fragment key={i}>
                     <Divider
-                      text={r.title}
+                      text={"Academic Year" + r.academicYear}
                       parentClassName={"mb-23"}
                       textClassName={"px-4 text-neutral-300 font-xs "}
                     />
-                    {r.academicData.map((res, ind) => {
+                    {r.classLists.map((res, ind) => {
                       return (
                         <Link
-                          to="/classroom/class/1"
+                          to={`/classroom/class/${res._id}`}
                           className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
                           key={`${i}-${ind}`}
                         >
                           <AcademicCard
-                            bgImage={res.image}
-                            title={res.title}
-                            desc={r.title}
+                            bgImage={res.image ? res.image : ClassRoomHero1}
+                            title={res.name}
+                            desc={"Academic Year" + r.academicYear}
                           />
                         </Link>
                       );

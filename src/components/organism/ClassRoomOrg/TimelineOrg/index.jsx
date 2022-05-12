@@ -9,7 +9,13 @@ const TimelineOrg = () => {
 
   return (
     <>
-      <MainLayout maxWidth="1440px" navbarBg="bg-white" navNoMenu>
+      <MainLayout
+        maxWidth="1440px"
+        navbarBg="bg-white"
+        navNoMenu
+        redirectOnNavClose="/classroom/assessment/1/2/dashboard"
+        isNeedConfirm={false}
+      >
         <div className="mx-24 md-mx-48">
           <h4>Upcoming Event</h4>
           <div className="w-64">
