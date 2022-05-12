@@ -137,7 +137,7 @@ const MatchPairs = (props) => {
     <div className="col-12 card-container ">
       <div className="card-content">
         {data.instruction ? (
-          <p className="tx-header5 mb-16">{data.instruction}</p>
+            <h5 className="mb-16">{data.instruction}</h5>
         ) : (
           ""
         )}
@@ -262,7 +262,7 @@ const MatchPairs = (props) => {
                                    }`}
                                   style={{
                                     height: "36px",
-                                    border: "1px solid var(--neutral100)",
+                                    border: "1px solid #d4d7db",
                                   }}
                                 >
                                   <span>{r.question}</span>
@@ -531,7 +531,7 @@ const MatchPairs = (props) => {
                                    }`}
                                   style={{
                                     height: "36px",
-                                    border: "1px solid var(--neutral100)",
+                                    border: "1px solid #d4d7db",
                                   }}
                                 >
                                   <span>{data.options_dup[i].answer}</span>

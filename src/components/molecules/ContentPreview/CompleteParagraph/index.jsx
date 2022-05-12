@@ -120,7 +120,7 @@ const AutoGrowInput = ({ name, isDbAnswers, showAnswer }) => {
       }) => {
         if (isDbAnswers) {
           return (
-            <span className="badge bg-success600 mr-8">{field.value}</span>
+            <span class="px-8 py-2  text-neutral-50 bg-success-600 radius-4 font-xs-medium md-font-sm-medium mr-8 nowrap">{field.value}</span>
           );
         }
 

@@ -128,7 +128,7 @@ function PreviewContentOrg() {
               <div className="col-md-7 col-12">
                 <div className="preview-footer  d-flex justify-content-center">
                   <div className="pt-98 text-center">
-                    <h5  className=" tx-header5 text-strong cursor-pointer"
+                    <h5  className="text-strong cursor-pointer"
                       onClick={backToTop}>
                       <DoubleArrowRounded className="rotate" />
                       <span className="d-block">Back To Top</span>

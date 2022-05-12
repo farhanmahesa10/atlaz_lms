@@ -63,10 +63,10 @@ const ShortAnswer = (props) => {
                               />
                               {buttonToggleFooter ? (
                                 <>
-                                  <span className="neutral200 tx-small">
-                                    Answer :{" "}
+                                  <span className="text-neutral-200 font-sm">
+                                    Answer:{" "}
                                   </span>{" "}
-                                  <span className="tx-small-po success600">
+                                  <span className="font-sm-bold text-success-600">
                                     {r.answer}
                                   </span>
                                 </>

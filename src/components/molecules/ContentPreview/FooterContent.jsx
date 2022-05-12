@@ -7,12 +7,14 @@ const FooterContent = (props) => {
   return (
     <div className="row footer-content">
       {showExplanation ? (
-        <div className="bg-primary-100 p-16 radius-14 col-12">
-          <p className="tx-body-po mb-8">Explanation</p>
+       <div className="col-12">
+          <div className="bg-primary-100 p-16 radius-14 mb-16">
+          <p className="font-bold mb-8">Explanation</p>
           <p style={{ whiteSpace: "pre-wrap" }}>
             {props.explanation ? props.explanation : "-"}
           </p>
         </div>
+       </div>
       ) : (
         ""
       )}
@@ -36,12 +38,10 @@ const FooterContent = (props) => {
             }
           </button>
         ) : (
-          <>
-            <span>
-            </span>
+          <div className="d-flex">
             <button
               type="button"
-              className="btn-outline py-8 mr-8 mt-16 btn-small xs-w-full"
+              className="btn-outline py-8 mr-8 xs-w-full font-small"
               onClick={() => {
                 props.onRetry();
                 setShowExplanation(false);
@@ -56,7 +56,7 @@ const FooterContent = (props) => {
 
             <button
               type="button"
-              className="btn-outline py-8 mr-8 mt-16 btn-small xs-w-full"
+              className="btn-outline py-8 mr-8 xs-w-full font-small"
               onClick={() => setShowExplanation(true)} >
               {
                 <>
@@ -65,7 +65,7 @@ const FooterContent = (props) => {
                 </>
               }
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>

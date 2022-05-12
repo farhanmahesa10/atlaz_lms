@@ -1,3 +1,5 @@
+@import '../../../../assets/scss/variables';
+
 .Layout-preview-content {
   main {
     margin-top: 0 !important;
@@ -76,21 +78,21 @@
   }
 
   .outline-success {
-    border: 1px solid var(--success600);
+    border: 1px solid $success_600;
     border-radius: 4px;
   }
 
   .outline-danger {
-    border: 1px solid var(--danger500);
+    border: 1px solid $danger_500;
     border-radius: 4px;
   }
 
   .outline-dashed-success {
-    border: 1px dashed var(--success600);
+    border: 1px dashed $success_600;
   }
 
   .outline-dashed-danger {
-    border: 1px dashed var(--danger500);
+    border: 1px dashed $danger_500;
   }
 
   .preview-content {
@@ -127,7 +129,7 @@
     background-color: white;
 
     &:hover {
-      background-color: var(--neutral100);
+      background-color: $neutral_100;
     }
   }
 
@@ -135,13 +137,13 @@
     box-shadow: 0 0 1px rgb(194, 193, 193);
 
     &:hover {
-      background-color: var(--secondary200) !important;
+      background-color: $secondary_200 !important;
     }
   }
 
   .fill-in-the-blank {
     &-input {
-      color: var(--neutral500);
+      color: $neutral_500;
       width: 100%;
 
       &:focus {
@@ -163,14 +165,14 @@
   }
 
   .table-content {
-    border-bottom: 1px solid var(--secondary500);
+    border-bottom: 1px solid $secondary_500;
   }
 
   .more-option {
-    border: 1px dashed var(--neutral200);
+    border: 1px dashed $neutral_200;
 
     span:hover {
-      color: var(--neutral500);
+      color: $neutral_500;
     }
   }
 
@@ -188,7 +190,7 @@
 
   /* CHECKED STYLES */
   .radio-custom:checked+.custom {
-    outline: 3.5px solid var(--primary500);
+    outline: 3.5px solid $primary_500;
   }
 
   .list-none {
@@ -200,7 +202,7 @@
   }
 
   .textarea {
-    background-color: var(--info100);
+    background-color: $info_100;
     border: none;
     width: 100%;
     outline: none;
@@ -239,7 +241,7 @@
     align-items: center;
     background-color: white;
     position: relative;
-    border: solid 1px var(--neutral200);
+    border: solid 1px $neutral_200;
     border-radius: 4px;
     padding-right: 2px;
     padding-left: 2px;
@@ -282,7 +284,7 @@
     }
 
     &:focus-within {
-      border: solid 1px var(--primary500);
+      border: solid 1px $primary_500;
 
       textarea:focus,
       input:focus {

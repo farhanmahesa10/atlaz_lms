@@ -109,7 +109,7 @@ const MultipleChoice = (props) => {
       <div className="col-12 card-container ">
         <div className="card-content">
           {data.instruction ? (
-            <p className="tx-header5 mb-16">{data.instruction}</p>
+            <h5 className="mb-16">{data.instruction}</h5>
           ) : (
             ""
           )}
@@ -141,12 +141,12 @@ const MultipleChoice = (props) => {
                             {res.options.map((r, i) => {
                               return (
                                 <div
-                                  className={`my-8  ml-12 clear-color-${data._id}`}
+                                  className={`d-flex my-8 ml-12 clear-color-${data._id}`}
                                   id={`question-${data._id}-${ind}-option-${i}`}
                                   key={i}
                                 >
                                   <label
-                                    className={` rounded mr-8 clear-color-${data._id}`}
+                                    className={`w-30 rounded mr-8 clear-color-${data._id}`}
                                   >
                                     <Field
                                       type="checkbox"

@@ -51,10 +51,8 @@ const FillinTheBlank = (props) => {
       if (i >= countAnswerColumnt) {
         return "";
       }
-      result.push(
-        <span className="badge bg-success600 mr-8" key={i}>
-          {col1Res}
-        </span>
+      result.push(        
+        <span key={i} class="px-8 py-2  text-neutral-50 bg-success-600 radius-4 font-xs-medium md-font-sm-medium mr-8 nowrap">{col1Res}</span>
       );
     });
     return result;

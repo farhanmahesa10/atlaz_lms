@@ -7,7 +7,7 @@ import { Check, Clear } from "@mui/icons-material";
 const SingleChoice = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
   const [explanation, setExplanation] = useState(
-    "isini tempat correction text yang diisi pada saat pembuatan soal.  Second Explanation"
+    "ini tempat correction text yang diisi pada saat pembuatan soal.  Second Explanation"
   );
   const [explanationProcess, setexplanationProcess] = useState(false);
 
@@ -52,10 +52,10 @@ const SingleChoice = (props) => {
         .classList.add("d-none");
       document
         .querySelector(`.select-${data._id}-${question._id}`)
-        .classList.remove("outline-success");
+        .classList.remove("border border-success-500");
       document
         .querySelector(`.select-${data._id}-${question._id}`)
-        .classList.remove("outline-danger");
+        .classList.remove("border border-danger-500");
       questionIndex++;
     }
   };
@@ -66,12 +66,14 @@ const SingleChoice = (props) => {
 
     let questionIndex = 0;
     for (let question of data.questions) {
-      if (values.answers[questionIndex] === String(question.answer)) {
+      console.log('values.answers[questionIndex]', values.answers[questionIndex])
+      console.log('String(question.answer)', String(question.answer))
+      if (values.answers[questionIndex] === question.answer) {
         let doc = document.querySelector(`.true-${data._id}-${question._id}`);
         doc.classList.remove("d-none");
         document
           .querySelector(`.select-${data._id}-${question._id}`)
-          .classList.add("outline-success");
+          .classList.add("border border-success-500");
       } else {
         document
           .querySelector(`.false-${data._id}-${question._id}`)
@@ -81,7 +83,7 @@ const SingleChoice = (props) => {
           .classList.remove("d-none");
         document
           .querySelector(`.select-${data._id}-${question._id}`)
-          .classList.add("outline-danger");
+          .classList.add("border border-danger-500");
       }
 
       questionIndex++;
@@ -106,18 +108,16 @@ const SingleChoice = (props) => {
                 ) : (
                   ""
                 )}
-                <table className="table  table-borderless">
-                  <thead className=" ">
+                <table className="table table-borderless w-100">
+                  <thead className="text-start">
                     <tr>
-                      <th
-                        scope="col "
-                        className="tx-small-po bg-secondary200 radius-tl-8"
+                      <th width="50%"
+                        className="font-sm-bold bg-secondary-200 p-8 radius-tl-8"
                       >
                         Question
                       </th>
                       <th
-                        scope="col "
-                        className="tx-small-po bg-secondary200 radius-tr-8"
+                        className="font-sm-bold bg-secondary-200 p-8 radius-tr-8"
                       >
                         Answer
                       </th>
@@ -130,33 +130,31 @@ const SingleChoice = (props) => {
                           className="table-content align-items-center "
                           key={i}
                         >
-                          <td className="tx-small pt-3 d-flex text-align-center">
+                          <td className="font-sm p-8 d-flex text-align-center">
                             <span
                               className={`d-none mr-4 true-${data._id}-${r._id}`}
                             >
-                              <Check style={{ color: "var(--success600)" }} />
+                              <Check style={{ color: "#1bb184" }} />
                             </span>
                             <span
                               className={`d-none mr-4 false-${data._id}-${r._id}`}
                             >
-                              <Clear style={{ color: "var(--danger500)" }} />
+                              <Clear style={{ color: "#dc3545" }} />
                             </span>
                             {r.question}
                           </td>
 
-                          <td>
-                          { console.log('option', optionPattern(r.options))}
+                          <td className="p-8">
                             <FormikControl
                               control="select"
                               name={`answers[${i}]`}
                               options={optionPattern(r.options)}
                               formik={formik}
-                              defaultValue={2}
                             />
                             <span
-                              className={`d-none tx-ex-small mr-4 correction-${data._id}-${r._id}`}
+                              className={`d-none font-sm mr-4 correction-${data._id}-${r._id}`}
                             >
-                              <span className="neutral200">Correction : </span>{" "}
+                              <span className="text-neutral-200 font-xs">Correction : </span>{" "}
                               {r.options[r.answer].text}
                             </span>
                           </td>
