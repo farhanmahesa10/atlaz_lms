@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useClassRoomHeroSubject } from "../../../../services";
 import { BreadCrumb, ModalTrigger } from "../../../atoms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -8,15 +8,15 @@ import "./index.scss";
 import { EditHeroModal } from "../../../molecules";
 import { connect } from "react-redux";
 
-const ClassRoomSubjectHero = () => {
-  const { banner, breadcrumbsData } = useClassRoomHeroSubject();
+const ClassRoomSubjectHero = (props) => {
+  const { breadcrumbsData, data } = useClassRoomHeroSubject();
 
   return (
     <>
       <EditHeroModal id="modalChangeHero" />
       <div
         style={{
-          backgroundImage: `url("${banner}")`,
+          backgroundImage: `url("${data.banner.image}")`,
           backgroundColor: "rgba(0,0,0,0.7)",
           backgroundPosition: "50% 50%",
           backgroundSize: "cover",
@@ -39,8 +39,10 @@ const ClassRoomSubjectHero = () => {
           </div>
           <div className="d-flex justify-content-between align-items-end px-24 md-px-48 pb-16 md-pb-24 ">
             <div className="">
-              <p className="h4 md-h2 text-neutral-50">Kelas 1A IPA</p>
-              <p className=" mt-8 text-neutral-50">Academic Year 2021/2022</p>
+              <p className="h4 md-h2 text-neutral-50">{data.name}</p>
+              <p className=" mt-8 text-neutral-50">
+                Academic Year {data.academicYear}
+              </p>
             </div>
             <ModalTrigger
               target="modalChangeHero"

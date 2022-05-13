@@ -1,15 +1,15 @@
 import React from "react";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-const SubjectCard = ({ image, title, desc }) => {
+const SubjectCard = ({ image, title, creator }) => {
   return (
     <div className="h-96 w-full radius-8 position-relative cursor-pointer bg-secondary-100 ">
       <div className=" d-flex align-items-center ">
         <div className="mr-16">
-          <img src={image} className="w-96  h-p-100" />
+          <img src={image} className="w-96  h-p-100 radius-8" />
         </div>
 
         <div className="w-165 border-start border-secondary-500 pl-8">
-          <p className=" font-xs ">creator name</p>
+          <p className=" font-xs ">{creator}</p>
           <h5 className="">{title}</h5>
         </div>
       </div>

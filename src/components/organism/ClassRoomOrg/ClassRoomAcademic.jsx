@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ClassroomAcademicLoading } from "../../molecules";
 
 const ClassRoomAcademic = () => {
-  const { data, isLoading, ClassRoomHero1 } = useClassRoomAcademic();
+  const { data, isLoading } = useClassRoomAcademic();
 
   return (
     <>
@@ -32,7 +32,7 @@ const ClassRoomAcademic = () => {
                           key={`${i}-${ind}`}
                         >
                           <AcademicCard
-                            bgImage={res.image ? res.image : ClassRoomHero1}
+                            bgImage={res.banner.image}
                             title={res.name}
                             desc={"Academic Year" + r.academicYear}
                           />

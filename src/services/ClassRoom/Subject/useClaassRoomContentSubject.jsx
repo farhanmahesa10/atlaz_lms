@@ -1,30 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { defConfig, GET, POST } from "../../../config/RestAPI";
 
-const useClaassRoomContentSubject = () => {
-  const [data, setData] = useState([
-    {
-      title: "Kelas 1A Bahasa inggris",
-      desc: "uut Budiarto",
-      image: "/images/product.png",
-    },
-    {
-      title: "Kelas 1B IPA",
-      desc: "uut Budiarto",
-      image: "/images/product.png",
-    },
-    {
-      title: "Kelas 1A IPS",
-      desc: "uut Budiarto",
-      image: "/images/product.png",
-    },
-    {
-      title: "Kelas 1C IPS",
-      desc: "uut Budiarto",
-      image: "/images/product.png",
-    },
-  ]);
+const useClaassRoomContentSubject = (props) => {
+  const params = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [subjectListModal, setSubjectListModal] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  useEffect(() => {
+    //untuk di modal
+    getClassListModal();
+    getSubjects();
+  }, []);
 
-  return { data };
+  const getClassListModal = () => {
+    GET("/client/classrooms/subject", defConfig()).then((r) => {
+      setSubjectListModal(r.data);
+    });
+  };
+
+  const getSubjects = () => {
+    setIsLoading(true);
+    GET("/client/classrooms/" + params.classId, defConfig()).then((r) => {
+      setSubjects(r.data.subjects);
+      setIsLoading(false);
+    });
+  };
+
+  const handleAddSubject = (values) => {
+    let req = { ...values, classlistId: params.classId };
+    POST("/client/classrooms/subject", req, defConfig()).then((r) => {
+      getSubjects();
+    });
+  };
+  return { isLoading, subjects, subjectListModal, handleAddSubject };
 };
 
 export default useClaassRoomContentSubject;

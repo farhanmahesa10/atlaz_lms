@@ -1,91 +1,40 @@
 import { Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { FormikControl, Modal, Table } from "../../../atoms";
 import SearchIcon from "@mui/icons-material/Search";
 const AddSubjectModal = (props) => {
   const { data } = useSelector((state) => state.modalData);
   const [filter, setFilter] = useState("");
-  const dataTable = [
-    {
-      subjectName: "UTS 1 English 2022/2023",
-      select: (
-        <div className="text-end w-full ">
-          <Field
-            name="checkedSubject"
-            type="checkbox"
-            className="mr-16 form-check-input"
-            value={"1"}
-          />
-        </div>
-      ),
-    },
-    {
-      subjectName: "UTS 2 English 2022/2023",
-      select: (
-        <div className="text-end w-full ">
-          <Field
-            name="checkedSubject"
-            type="checkbox"
-            className="mr-16 form-check-input"
-            value={"2"}
-          />
-        </div>
-      ),
-    },
-    {
-      subjectName: "UTS 1 English 2022/2023",
-      select: (
-        <div className="text-end w-full ">
-          <Field
-            name="checkedSubject"
-            type="checkbox"
-            className="mr-16 form-check-input"
-            value={"3"}
-          />
-        </div>
-      ),
-    },
-    {
-      subjectName: "UTS 2 English 2022/2023",
-      select: (
-        <div className="text-end w-full ">
-          <Field
-            name="checkedSubject"
-            type="checkbox"
-            className="mr-16 form-check-input"
-            value={"4"}
-          />
-        </div>
-      ),
-    },
-    {
-      subjectName: "UTS 1 English 2022/2023",
-      select: (
-        <div className="text-end w-full ">
-          <Field
-            name="checkedSubject"
-            type="checkbox"
-            className="mr-16 form-check-input"
-            value={"5"}
-          />
-        </div>
-      ),
-    },
-    {
-      subjectName: "UTS 2 English 2022/2023",
-      select: (
-        <div className="text-end w-full ">
-          <Field
-            name="checkedSubject"
-            type="checkbox"
-            className="mr-16 form-check-input"
-            value={"6"}
-          />
-        </div>
-      ),
-    },
-  ];
+  const [dataTable, setDataTable] = useState([]);
+  const [initialSubject, setInitialSubject] = useState([]);
+  useEffect(() => {
+    if (data.subjectList) {
+      let subjectChecked = [];
+      let result = data.subjectList.map((r) => {
+        let isChecked = data.checkedSubject.find(
+          (res) => res.subject._id === r._id
+        );
+        if (isChecked) subjectChecked.push(r._id);
+
+        return {
+          subjectName: r.name,
+          select: (
+            <div className="text-end w-full ">
+              <Field
+                name="subjectId"
+                type="checkbox"
+                className="mr-16 form-check-input"
+                value={r._id}
+              />
+            </div>
+          ),
+        };
+      });
+      setInitialSubject(subjectChecked);
+      setDataTable(result);
+    }
+  }, [data]);
 
   const columns = React.useMemo(
     () => [
@@ -102,13 +51,15 @@ const AddSubjectModal = (props) => {
     ],
     []
   );
-
+  const onSubmit = (values) => {
+    props.onSubmit({ subjectId: values.subjectId });
+  };
   return (
     <>
       <Formik
-        initialValues={{ keyword: "", checkedSubject: [] }}
+        initialValues={{ keyword: "", subjectId: initialSubject }}
         enableReinitialize={true}
-        onSubmit={() => {}}
+        onSubmit={onSubmit}
       >
         <Form>
           <Modal
@@ -150,7 +101,7 @@ const AddSubjectModal = (props) => {
                 </button>
                 <button
                   className="btn btn-primary font-xs"
-                  type="button"
+                  type="submit"
                   data-bs-dismiss="modal"
                 >
                   Save Change
