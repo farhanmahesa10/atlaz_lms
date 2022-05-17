@@ -4,7 +4,8 @@ import { useSubjectPostHero } from "../../../../services";
 import { BreadCrumb, Divider } from "../../../atoms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const SubjectPostHero = () => {
-  const { banner, breadcrumbsData, navMenu, section } = useSubjectPostHero();
+  const { banner, breadcrumbsData, navMenu, classId, subjectId, section } =
+    useSubjectPostHero();
 
   return (
     <>
@@ -24,7 +25,7 @@ const SubjectPostHero = () => {
               <BreadCrumb data={breadcrumbsData} activeColor="text-white" />
             </div>
             <Link
-              to="/classroom/class/1"
+              to={`/classroom/class/${classId}`}
               className="d-flex align-items-center px-16 md-px-48 pt-24 md-pt-32 "
             >
               <ArrowBackIcon className="text-white fs-18" />

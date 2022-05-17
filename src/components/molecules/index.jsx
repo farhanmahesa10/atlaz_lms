@@ -25,6 +25,8 @@ import ProgressNavbar from "./ProgressNavbar";
 import ModalLink from "./Modals/ModalLink";
 import ClassroomAcademicLoading from "./SkeletonLoading/ClassroomLoading/ClassroomAcademicLoading";
 import NavbarNotification from "./NavbarNotication";
+import ClassroomSubjectHeroLoading from "./SkeletonLoading/ClassroomLoading/ClassroomSubject/ClassroomSubjectHeroLoading";
+import ClassroomSubjectContentLoading from "./SkeletonLoading/ClassroomLoading/ClassroomSubject/ClassroomSubjectContentLoading";
 export {
   ProductXCard,
   ProductYCard,
@@ -53,4 +55,6 @@ export {
   ModalLink,
   ClassroomAcademicLoading,
   NavbarNotification,
+  ClassroomSubjectHeroLoading,
+  ClassroomSubjectContentLoading,
 };

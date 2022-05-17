@@ -29,7 +29,14 @@ const useSubjectPostHero = () => {
     },
   ];
 
-  return { banner, breadcrumbsData, navMenu, section };
+  return {
+    banner,
+    breadcrumbsData,
+    navMenu,
+    section,
+    classId,
+    subjectId,
+  };
 };
 
 export default useSubjectPostHero;

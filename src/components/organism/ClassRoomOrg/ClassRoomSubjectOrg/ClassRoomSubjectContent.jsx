@@ -1,34 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Can } from "../../../../Permission";
 import { useClaassRoomContentSubject } from "../../../../services";
 import { ModalTrigger } from "../../../atoms";
-import { SubjectCard } from "../../../molecules";
+import {
+  SubjectCard,
+  ClassroomSubjectContentLoading,
+} from "../../../molecules";
 import { AddSubjectModal } from "../../../molecules";
-const ClassRoomSubjectContent = (props) => {
-  const { isLoading, subjects, subjectListModal, handleAddSubject } =
+const ClassRoomSubjectContent = () => {
+  const { isLoading, subjects, subjectListModal, handleAddSubject, params } =
     useClaassRoomContentSubject();
 
   return (
     <>
       {isLoading ? (
-        "...loading"
+        <ClassroomSubjectContentLoading />
       ) : (
         <>
           <AddSubjectModal id="addSubjectModal" onSubmit={handleAddSubject} />
           <div className="px-24 md-px-48 py-24">
-            <ModalTrigger
-              target="addSubjectModal"
-              data={{ subjectList: subjectListModal, checkedSubject: subjects }}
-            >
-              <button className="btn btn-primary font-normal">
-                Add New Subject
-              </button>
-            </ModalTrigger>
+            <Can allowAccess="TEACHER">
+              <ModalTrigger
+                target="addSubjectModal"
+                data={{
+                  subjectList: subjectListModal,
+                  checkedSubject: subjects,
+                }}
+              >
+                <button className="btn btn-primary font-normal">
+                  Add New Subject
+                </button>
+              </ModalTrigger>
+            </Can>
             <div className="row mt-24">
               {subjects.map((r, i) => {
                 return (
                   <Link
-                    to="/classroom/assessment/1/2/dashboard"
+                    to={`/classroom/assessment/${params.classId}/${r.subject._id}/dashboard`}
                     className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
                     key={i}
                   >

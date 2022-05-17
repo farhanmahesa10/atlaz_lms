@@ -20,7 +20,7 @@ const useClassRoomHero = () => {
     GET("/client/classrooms/my_school", defConfig())
       .then((r) => {
         if (r.data) setData(r.data);
-        console.log(r);
+        // console.log(r);
         setIsLoading(false);
       })
       .catch((err) => {

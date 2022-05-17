@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ClassRoomHero1 } from "../../../assets/images";
 import { useParams } from "react-router-dom";
-import { defConfig, GET } from "../../../config/RestAPI";
+import { defConfig, GET, PUT } from "../../../config/RestAPI";
 const useClassRoomHeroSubject = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isBgLoading, setIsBgLoading] = useState(true);
   const [data, setData] = useState({});
+  const [bgData, setBgData] = useState([]);
+
   const params = useParams();
 
   const banner = ClassRoomHero1;
@@ -24,8 +27,19 @@ const useClassRoomHeroSubject = () => {
   ];
   useEffect(() => {
     getClass();
+    getBackground();
   }, []);
+
+  const getBackground = () => {
+    setIsBgLoading(true);
+    GET("/client/classrooms/banner", defConfig()).then((r) => {
+      setBgData(r.data);
+      setIsBgLoading(false);
+    });
+  };
+
   const getClass = () => {
+    setIsLoading(true);
     GET("/client/classrooms/" + params.classId, defConfig())
       .then((r) => {
         setData(r.data.classlist);
@@ -35,7 +49,26 @@ const useClassRoomHeroSubject = () => {
         setIsLoading(false);
       });
   };
-  return { data, banner, breadcrumbsData };
+
+  const handleSubmitChangeBg = (values) => {
+    PUT("/client/classrooms/banner/" + params.classId, values, defConfig())
+      .then((r) => {
+        getClass();
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  return {
+    data,
+    banner,
+    breadcrumbsData,
+    isLoading,
+    bgData,
+    isBgLoading,
+    handleSubmitChangeBg,
+  };
 };
 
 export default useClassRoomHeroSubject;

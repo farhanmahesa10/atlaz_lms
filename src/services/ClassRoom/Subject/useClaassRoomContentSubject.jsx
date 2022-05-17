@@ -33,7 +33,7 @@ const useClaassRoomContentSubject = (props) => {
       getSubjects();
     });
   };
-  return { isLoading, subjects, subjectListModal, handleAddSubject };
+  return { isLoading, subjects, subjectListModal, handleAddSubject, params };
 };
 
 export default useClaassRoomContentSubject;

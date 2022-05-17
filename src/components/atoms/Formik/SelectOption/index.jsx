@@ -104,7 +104,7 @@ const SelectOption = (props) => {
               let value = props.isMulti ? e : e.value;
               props.formik.setFieldValue(props.name, value);
               props.formik.setFieldTouched((props.name, true));
-              console.log(meta);
+              // console.log(meta);
             }}
             components={props.inputType ? component : false}
             closeMenuOnSelect={props.closeMenuOnSelect}

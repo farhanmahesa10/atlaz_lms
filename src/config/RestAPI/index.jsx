@@ -20,11 +20,13 @@ const GET = (url, req, config) =>
 const POST = (url, data, config) =>
   API.post(url, data, config).then((res) => res.data);
 
-const PUT = (url, config) => API.put(url, config).then((res) => res.data);
+const PUT = (url, data, config) =>
+  API.put(url, data, config).then((res) => res.data);
 
-const PATCH = (url, config) => API.patch(url, config).then((res) => res.data);
+const PATCH = (url, data, config) =>
+  API.patch(url, data, config).then((res) => res.data);
 
-const DESTROY = (url, config) =>
-  API.delete(url, config).then((res) => res.data);
+const DESTROY = (url, data, config) =>
+  API.delete(url, data, config).then((res) => res.data);
 
 export { GET, POST, PUT, PATCH, DESTROY, defConfig, BaseAPIURL };
