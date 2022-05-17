@@ -1,0 +1,11 @@
+@import "mixin";
+
+@media (min-width: 1200px) {
+  @include firstSetup(".xl-");
+  .xl- {
+    //create only xl here
+    &example {
+      //declare css here
+    }
+  }
+}

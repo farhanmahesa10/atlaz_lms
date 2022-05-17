@@ -1,0 +1,298 @@
+@import "../variables";
+@import "../typography/body";
+@import "../typography/heading";
+@mixin cardGeneratorX($selector: ".") {
+  #{$selector}card-product-x-desk {
+    // mx-16 my-24
+    //font-bold p-6 promo label
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 4px;
+
+    width: 432px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    .promo-label {
+      position: absolute;
+      padding: 6px;
+      @include fontBold();
+    }
+    img {
+      width: 196px;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .card-content {
+      margin: 24px 16px 24px 16px;
+    }
+    .card-product-img {
+      line-height: 0;
+    }
+
+    .font-card-head {
+      @include fontMedium();
+    }
+    .font-card-head-content {
+      @include fontSmMedium();
+    }
+    .font-card-content {
+      @include fontXs();
+    }
+    .font-card-price {
+      @include headingH5();
+    }
+    .font-card-price-scribble {
+      @include fontSm();
+    }
+  }
+  // ======================tab x ==========
+  //ml-16 mr-36 my-16
+  // p-6 font-sm-bold :  promo label
+  #{$selector}card-product-x-tab {
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 4px;
+    width: 420px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    .promo-label {
+      position: absolute;
+      padding: 6px;
+      @include fontSmBold();
+    }
+    img {
+      width: 160px;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .card-product-img {
+      line-height: 0;
+    }
+    .card-content {
+      margin: 16px 36px 16px 16px;
+    }
+    .font-card-head {
+      @include fontSmMedium();
+    }
+    .font-card-head-content {
+      @include fontSmMedium();
+    }
+    .font-card-content {
+      @include fontXs();
+    }
+    .font-card-price {
+      @include headingH6();
+    }
+    .font-card-price-scribble {
+      @include fontXs();
+    }
+  }
+  // =========mob x
+  //  content ml-16 mr-19 my-8
+  // badge py-4 px-8  font-xs-medium
+  #{$selector}card-product-x-mob {
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 4px;
+    width: 313px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    .promo-label {
+      position: absolute;
+      padding: 4px 8px;
+      @include fontXsMedium();
+    }
+    img {
+      width: 104px;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .card-product-img {
+      line-height: 0;
+    }
+    .card-content {
+      margin: 8px 19px 8px 16px;
+    }
+
+    .font-card-head {
+      @include fontXsMedium();
+    }
+    .font-card-head-content {
+      @include fontXsBold();
+    }
+    .font-card-content {
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 9px;
+      line-height: 8px;
+    }
+    .font-card-price {
+      @include fontSmMedium();
+    }
+    .font-card-price-scribble {
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 9px;
+      line-height: 16px;
+    }
+  }
+}
+// ===========================================================
+@mixin cardGeneratorY($selector: ".") {
+  #{$selector}card-product-y-desk {
+    width: 204px;
+    height: 344px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    padding: 4px;
+    .promo-label {
+      position: absolute;
+      padding: 6px;
+      @include fontBold();
+    }
+    img {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .card-product-img {
+      line-height: 0;
+    }
+    .font-card-head {
+      @include fontMedium();
+    }
+    .font-card-head-content {
+      @include fontSmBold();
+    }
+    .font-card-content {
+      @include fontSm();
+      color: $neutral_300;
+    }
+    .font-card-price {
+      @include fontMedium();
+    }
+    .font-card-price-scribble {
+      @include fontSm();
+    }
+    .card-content {
+      margin: 8px;
+    }
+    .price-section {
+      display: flex;
+    }
+  }
+  //======================= y tab ==============================
+
+  #{$selector}card-product-y-tab {
+    width: 168px;
+    height: 288px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    padding: 4px;
+    .promo-label {
+      position: absolute;
+      padding: 6px;
+      @include fontSmBold();
+    }
+    img {
+      width: 140px;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .card-product-img {
+      line-height: 0;
+    }
+    .font-card-head {
+      @include fontSmMedium();
+    }
+    .font-card-head-content {
+      @include fontSmBold();
+    }
+    .font-card-content {
+      @include fontXs();
+      color: $neutral_300;
+    }
+    .font-card-price {
+      @include fontSmMedium();
+    }
+    .font-card-price-scribble {
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 9px;
+      line-height: 16px;
+    }
+    .card-content {
+      margin: 8px;
+    }
+    .price-section {
+      display: flex;
+    }
+  }
+  //======================= y mob ==============================
+
+  #{$selector}card-product-y-mob {
+    width: 140px;
+    height: 268px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    padding: 4px;
+    .promo-label {
+      position: absolute;
+      padding: 5px;
+      @include fontXsBold();
+    }
+    img {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+    }
+    .card-product-img {
+      line-height: 0;
+    }
+    .font-card-head {
+      @include fontXsMedium();
+    }
+    .font-card-head-content {
+      @include fontXsBold();
+    }
+    .font-card-content {
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 9px;
+      line-height: 8px;
+      color: $neutral_300;
+    }
+    .font-card-price {
+      @include fontXsMedium();
+    }
+    .font-card-price-scribble {
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 9px;
+      line-height: 16px;
+    }
+    .card-content {
+      margin: 4px;
+    }
+    .price-section {
+      display: block;
+      line-height: 0%;
+    }
+  }
+}
+
+@mixin callCardGenerator($selector: ".") {
+  @include cardGeneratorX($selector);
+  @include cardGeneratorY($selector);
+}

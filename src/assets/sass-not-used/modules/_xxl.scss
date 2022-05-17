@@ -1,0 +1,11 @@
+@import "mixin";
+
+@media (max-width: 1400px) {
+  @include firstSetup(".xxl-");
+  .xxl- {
+    //create only xxl here
+    &example {
+      //declare css here
+    }
+  }
+}

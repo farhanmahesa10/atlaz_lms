@@ -1,0 +1,122 @@
+@import "../variables";
+@mixin btnGenerator(
+  $selector,
+  $colorCode,
+  $default,
+  $hover,
+  $active,
+  $focus,
+  $textColor: $neutral_500
+) {
+  #{$selector}btn-#{$colorCode} {
+    background-color: $default;
+    padding: 8px 16px;
+    outline: none;
+    border-radius: 8px;
+    border: none;
+    color: $textColor;
+    cursor: pointer;
+    &:hover {
+      background-color: $hover;
+      color: $textColor;
+    }
+    &:focus {
+      border: 1px solid #2a384c;
+    }
+    &:active {
+      background: $active;
+    }
+  }
+}
+
+@mixin btnOutline {
+  .btn-outline {
+    background-color: transparent;
+    padding: 8px 16px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid $neutral_200;
+    color: $black;
+    cursor: pointer;
+    &:hover {
+      background-color: $primary_100;
+    }
+    &:focus {
+      border: 1px solid $neutral_200;
+    }
+    &:active {
+      background: $white;
+    }
+  }
+}
+
+@mixin callBtnGenerator($selector: ".") {
+  .btn-disable {
+    background-color: $neutral_100;
+    padding: 8px 16px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #aaafb7;
+    cursor: pointer;
+    color: $neutral_300;
+  }
+  @include btnOutline();
+  @include btnGenerator(
+    $selector,
+    "primary",
+    $primary_400,
+    $primary_300,
+    $primary_400,
+    $primary_300
+  );
+  @include btnGenerator(
+    $selector,
+    "success",
+    $success_400,
+    $success_300,
+    $success_500,
+    $success_300
+  );
+  @include btnGenerator(
+    $selector,
+    "info",
+    $info_400,
+    $info_300,
+    $info_500,
+    $info_300
+  );
+  @include btnGenerator(
+    $selector,
+    "warning",
+    $warning_400,
+    $warning_300,
+    $warning_500,
+    $warning_300
+  );
+  @include btnGenerator(
+    $selector,
+    "neutral",
+    $neutral_400,
+    $neutral_300,
+    $neutral_500,
+    $neutral_300,
+    $white
+  );
+  @include btnGenerator(
+    $selector,
+    "danger",
+    $danger_400,
+    $danger_300,
+    $danger_500,
+    $danger_300,
+    $white
+  );
+  @include btnGenerator(
+    $selector,
+    "secondary",
+    $secondary_400,
+    $secondary_300,
+    $secondary_500,
+    $secondary_300
+  );
+}

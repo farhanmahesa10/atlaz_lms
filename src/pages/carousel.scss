@@ -1,0 +1,10 @@
+.carou {
+  display: flex;
+  width: 500px;
+  background-color: lightgray;
+  overflow-y: scroll;
+  box-sizing: content-box;
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+}

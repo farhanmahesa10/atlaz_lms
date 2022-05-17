@@ -1,0 +1,163 @@
+@import '../../../../assets/scss/variables';
+
+.formFormik {
+    .form-label {
+        margin-bottom: 4px;
+    }
+    .form-select {
+        border: 1px solid $neutral_100;
+        background-color: $neutral_50;
+        padding: 8px 16px;
+        color: $neutral_500;
+        -webkit-text-fill-color: $neutral_500;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        &:disabled {
+            -webkit-text-fill-color: $neutral_500;
+        }
+        &::placeholder {
+            font-family: 'Nunito', sans-serif;
+            color: $neutral_200;
+            -webkit-text-fill-color: $neutral_200;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        &:focus {
+            box-shadow: none;
+            border: 1px solid $primary_500;
+        }
+        &.error {
+            border: 1px solid $danger_500;
+        }
+    }
+    &.isShadow { 
+        .form-select {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+        }
+    }
+    &.isSmall {
+        .form-label {
+           font-size: 12px;
+        }
+        .form-select {
+            font-size: 14px;
+            line-height: 20px;
+            &::placeholder {
+                font-family: 'Nunito', sans-serif;
+                color: $neutral_200;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+    &.isExSmall {
+        .form-label {
+           font-size: 12px;
+        }
+        .form-select {
+            font-size: 12px;
+            line-height: 16px;
+            &::placeholder {
+                font-family: 'Nunito', sans-serif;
+                color: $neutral_200;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+    }
+    @media (max-width: 768px) {
+        &.isTaSmall {
+            .form-label {
+               font-size: 12px;
+            }
+            .form-select {
+                font-size: 14px;
+                line-height: 20px;
+                &::placeholder {
+                    font-family: 'Nunito', sans-serif;
+                    color: $neutral_200;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+        &.isTaExSmall {
+            .form-label {
+               font-size: 12px;
+            }
+            .form-select {
+                font-size: 12px;
+                line-height: 16px;
+                &::placeholder {
+                    font-family: 'Nunito', sans-serif;
+                    color: $neutral_200;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+            }
+        }
+    }
+    @media (max-width: 480px) {
+        &.isMoSmall {
+            .form-label {
+               font-size: 12px;
+            }
+            .form-select {
+                font-size: 14px;
+                line-height: 20px;
+                &::placeholder {
+                    font-family: 'Nunito', sans-serif;
+                    color: $neutral_200;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+        &.isMoExSmall {
+            .form-label {
+               font-size: 12px;
+            }
+            .form-select {
+                font-size: 12px;
+                line-height: 16px;
+                &::placeholder {
+                    font-family: 'Nunito', sans-serif;
+                    color: $neutral_200;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+            }
+        }
+    }
+}
+
+/* Chrome, Safari, Edge, Opera */
+.hideArrow::-webkit-outer-spin-button,
+.hideArrow::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+font-weight: 600;
+color: $neutral_200
+}
+
+/* Firefox */
+.hideArrow[type=number] {
+-moz-appearance: textfield;
+font-weight: 600;
+color: $neutral_200
+}
+@media (max-width: 480px) {
+    .hideArrow[type=number] {
+        padding: 4px !important;
+        width: 30px !important;
+        }
+}

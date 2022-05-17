@@ -1,0 +1,64 @@
+@mixin heightWidthGenerator($total, $selector: ".") {
+  #{$selector}h-auto {
+    height: auto;
+  }
+  #{$selector}w-auto {
+    width: auto;
+  }
+
+  @for $i from 0 through $total {
+    #{$selector}h-#{$i} {
+      height: #{$i}px;
+    }
+    #{$selector}w-#{$i} {
+      width: #{$i}px;
+    }
+  }
+}
+
+@mixin heightWidthPesenGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}h-p-#{$i} {
+      height: #{$i}#{"%"};
+    }
+    #{$selector}w-p-#{$i} {
+      width: #{$i}#{"%"};
+    }
+  }
+}
+
+@mixin heightWidthVhGenerator($selector: ".") {
+  @for $i from 0 through 100 {
+    #{$selector}h-vh-#{$i} {
+      height: #{$i}#{"vh"};
+    }
+    #{$selector}w-vh-#{$i} {
+      width: #{$i}#{"vh"};
+    }
+  }
+}
+
+@mixin minMaxHeightWidthGenerator($total, $selector: ".") {
+  @for $i from 0 through $total {
+    #{$selector}min-h-#{$i} {
+      min-height: #{$i}#{"px"};
+    }
+    #{$selector}max-h-#{$i} {
+      max-height: #{$i}#{"px"};
+    }
+
+    #{$selector}min-w-#{$i} {
+      min-width: #{$i}#{"px"};
+    }
+
+    #{$selector}max-w-#{$i} {
+      max-width: #{$i}#{"px"};
+    }
+  }
+}
+
+@mixin callHeightWidthGenerator($total: 0, $selector: ".") {
+  @include heightWidthPesenGenerator($selector);
+  @include heightWidthGenerator($total, $selector);
+  @include minMaxHeightWidthGenerator($total, $selector);
+}

@@ -1,0 +1,11 @@
+@import "mixin";
+
+@media (min-width: 768px) {
+  @include firstSetup(".md-");
+  .md- {
+    //create only md here
+    &example {
+      //declare css here
+    }
+  }
+}

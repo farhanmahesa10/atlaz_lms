@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+  @include firstSetup(".lg-");
+  .lg- {
+    //create only lg here
+    &example {
+      //declare css here
+    }
+  }
+}
