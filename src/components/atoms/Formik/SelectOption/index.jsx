@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { components, default as ReactSelect } from "react-select";
 import { Close } from "@mui/icons-material";
 import { Field } from "formik";
@@ -18,6 +18,7 @@ const SelectOption = (props) => {
       </div>
     );
   };
+
   const OptionRadio = (props) => {
     return (
       <div>
@@ -39,8 +40,8 @@ const SelectOption = (props) => {
       ...provided,
       color: "black",
       padding: 8,
-      borderColor: "red",
-      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.075)",
+      // borderColor: "red",
+      boxShadow: "none",
     }),
 
     control: (provided, state) => ({
@@ -90,13 +91,14 @@ const SelectOption = (props) => {
   return (
     <>
       <div className="form-input-">
-        <div className="input-area">
+        <div className={`input-area  `}>
           <ReactSelect
-            className="basic-single input-control w-full"
+            className={`basic-single input-control w-full ${props.className}`}
             classNamePrefix="select"
             isMulti={props.isMulti}
             placeholder={props.placeholder}
             options={data}
+            ref={props.selectRef}
             isDisabled={props.isDisabled}
             defaultValue={props.defaultValue}
             hideSelectedOptions={props.hideSelectedOptions}
@@ -104,7 +106,6 @@ const SelectOption = (props) => {
               let value = props.isMulti ? e : e.value;
               props.formik.setFieldValue(props.name, value);
               props.formik.setFieldTouched((props.name, true));
-              // console.log(meta);
             }}
             components={props.inputType ? component : false}
             closeMenuOnSelect={props.closeMenuOnSelect}

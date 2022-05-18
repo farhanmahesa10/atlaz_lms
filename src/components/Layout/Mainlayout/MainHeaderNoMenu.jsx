@@ -24,7 +24,11 @@ const MainHeaderNoMenu = (props) => {
           <ModalTrigger
             target="navBack"
             className="pr-24 md-pr-48"
-            data={{ redirect: props.redirectOnClose }}
+            data={{
+              redirect: props.redirectOnClose,
+              message: props.modalMessage,
+              title: props.modalTitle,
+            }}
           >
             <CloseIcon />
           </ModalTrigger>

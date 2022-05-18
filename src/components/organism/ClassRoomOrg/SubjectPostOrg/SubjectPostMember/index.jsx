@@ -1,7 +1,10 @@
 import React from "react";
+import { useSubjectPostMember } from "../../../../../services";
 import { UserCard } from "../../../../molecules";
 
 const SubjectPostMember = () => {
+  const { data } = useSubjectPostMember();
+
   return (
     <div className="row mx-16 md-mx-48 mt-24 gx-0">
       <div className="col-12  ">

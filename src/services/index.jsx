@@ -13,6 +13,7 @@ import useLessonPreview from "./ClassRoom/useLessonPreview";
 import useGlobalFunction from "./GlobalFuntions/useGlobalFunction";
 import useWelcomeAssessment from "./ClassRoom/useWelcomeAssessment";
 import useBeginAssessment from "./ClassRoom/useBeginAssessment";
+import useSubjectPostMember from "./ClassRoom/SubjectPost/useSubjectPostMember";
 export {
   useSearchResult,
   useClassRoomHero,
@@ -29,4 +30,5 @@ export {
   useLessonPreview,
   useWelcomeAssessment,
   useBeginAssessment,
+  useSubjectPostMember,
 };

@@ -32,6 +32,7 @@ import {
   LessonPreview,
   WelcomeAssessment,
   ChangeFirstPassword,
+  PreviewContent,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -172,6 +173,14 @@ const Routing = () => {
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
       {/* Space route fajrul */}
+      <Route
+        path="/classroom/preview-content/:id"
+        element={
+          <Authenticate>
+            <PreviewContent />
+          </Authenticate>
+        }
+      />
     </Routes>
   );
 };

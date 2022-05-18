@@ -19,6 +19,8 @@ const MainLayout = (props) => {
             redirectOnClose={props.redirectOnNavClose}
             isNeedConfirm={props.isNeedConfirm}
             title={props.title}
+            modalMessage= {props.modalMessage}
+            modalTitle= {props.modalTitle}
           />
         )}
         <main
