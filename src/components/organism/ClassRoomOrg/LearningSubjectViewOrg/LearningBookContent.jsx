@@ -4,7 +4,8 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 const LearningBookContent = () => {
   const data = [
     {
@@ -98,6 +99,9 @@ const Frames = (props) => {
       <Accordion
         id={`lesson-${id}`}
         icon={<LocalLibraryIcon />}
+        redirectIcon={
+          <OpenInNewIcon className="cursor-pointer mr-16 fs-22 text-neutral-500 mt-2" />
+        }
         badgeColor="info-500"
         title={data.name}
         badgeText={data.complete}
@@ -135,7 +139,8 @@ const Frames = (props) => {
                                         badgeColor="success-600"
                                         badgeText={res.complete}
                                         title={res.name}
-                                        redirectTo="/"
+                                        parentRedirect
+                                        redirectTo="/classroom/preview-content/1"
                                       />
                                     </div>
                                   );
@@ -158,12 +163,21 @@ const Frames = (props) => {
 const Accordion = (props) => {
   // const tesRef = useRef();
 
-  const { icon, title, badgeText, badgeColor, withExpand, redirectTo } = props;
+  const {
+    icon,
+    title,
+    badgeText,
+    badgeColor,
+    withExpand,
+    redirectTo,
+    redirectIcon,
+    parentRedirect,
+  } = props;
   const [expand, setExpand] = useState(false);
   const navigate = useNavigate();
 
   const handleParentClick = (e) => {
-    if (redirectTo) {
+    if (redirectTo && parentRedirect) {
       navigate(redirectTo);
     }
 
@@ -177,9 +191,13 @@ const Accordion = (props) => {
   return (
     <>
       <div
-        className={`h-80 w-full border radius-4 d-flex  align-items-center ${
-          redirectTo && "cursor-pointer"
-        } ${expand && "bg-secondary-200"}`}
+        className={`h-80 w-full border radius-4 d-flex  align-items-center cursor-pointer ${
+          expand && "bg-secondary-200"
+        }`}
+        data-bs-toggle="collapse"
+        data-bs-target={`#collapseTarget-${props.id}`}
+        aria-expanded="false"
+        aria-controls={`collapseTarget-${props.id}`}
         onClick={handleParentClick}
       >
         <div className="md-px-32 py-16 w-full">
@@ -201,6 +219,12 @@ const Accordion = (props) => {
             </div>
             <div className="d-flex align-items-center">
               <LockOpenIcon className="cursor-pointer mr-16" />
+
+              {redirectTo && (
+                <Link to={redirectTo} className="d-flex align-items-center">
+                  {redirectIcon}
+                </Link>
+              )}
               <div
                 id={`expand-target-${props.id}`}
                 className={` mr-16 cursor-pointer ${

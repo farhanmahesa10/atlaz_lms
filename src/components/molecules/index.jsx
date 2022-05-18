@@ -27,6 +27,7 @@ import ClassroomAcademicLoading from "./SkeletonLoading/ClassroomLoading/Classro
 import NavbarNotification from "./NavbarNotication";
 import ClassroomSubjectHeroLoading from "./SkeletonLoading/ClassroomLoading/ClassroomSubject/ClassroomSubjectHeroLoading";
 import ClassroomSubjectContentLoading from "./SkeletonLoading/ClassroomLoading/ClassroomSubject/ClassroomSubjectContentLoading";
+import PreviewContentLoading from "./SkeletonLoading/ClassroomLoading/PreviewContentLoading";
 
 import CodeEditor from "./ContentPreview/CodeEditor";
 import CompleteParagraph from "./ContentPreview/CompleteParagraph";
@@ -83,4 +84,5 @@ export {
   SingleChoice,
   TextEditor,
   FooterContent,
+  PreviewContentLoading,
 };

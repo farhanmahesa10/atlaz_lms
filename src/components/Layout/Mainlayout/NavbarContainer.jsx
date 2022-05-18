@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { Can } from "../../../Permission";
+import { Can } from "../../../permission";
 import { NavbarNotification } from "../../molecules";
 
 const NavbarContainer = (props) => {

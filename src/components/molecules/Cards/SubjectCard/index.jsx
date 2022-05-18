@@ -1,6 +1,8 @@
 import React from "react";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-const SubjectCard = ({ image, title, creator }) => {
+const SubjectCard = ({ image, creator }) => {
+  const title =
+    "Lorem ipsum dol0, sit amet consectetur adipisicing elit. Dolorrrrrr aut eligendi dolorum voluptatibus, repudiandae atque. Numquam fugit atque ipsa vero!";
   return (
     <div className="h-96 w-full radius-8 position-relative cursor-pointer bg-secondary-100 ">
       <div className=" d-flex align-items-center ">
@@ -8,9 +10,11 @@ const SubjectCard = ({ image, title, creator }) => {
           <img src={image} className="w-96  h-p-100 radius-8" />
         </div>
 
-        <div className="w-165 border-start border-secondary-500 pl-8">
+        <div className="w-143  border-start border-secondary-500 pl-8">
           <p className=" font-xs ">{creator}</p>
-          <h5 className="">{title}</h5>
+          <h6 className="">
+            {title.length > 30 ? title.substring(0, 30) + "..." : title}{" "}
+          </h6>
         </div>
       </div>
       <div

@@ -4,6 +4,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { useNavigate } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
+import { Divider } from "../../atoms";
+import LockIcon from "@mui/icons-material/Lock";
 const OutlineList = (props) => {
   const [showCanvas, setShowCanvas] = useState(false);
   const { data } = props;
@@ -39,6 +41,7 @@ const OutlineList = (props) => {
             >
               English Play 01
             </p>
+            <Divider height="h-2" parentClassName={"ml-8 w-64"} />
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className="pr-24 pl-24">
@@ -49,7 +52,11 @@ const OutlineList = (props) => {
                   <Accordion
                     id={`lesson-${i}`}
                     icon={<LocalLibraryIcon />}
-                    title={r.name}
+                    title={
+                      r.name.length > 20
+                        ? r.name.substring(0, 20) + "..."
+                        : r.name
+                    }
                     withExpand={true}
                     defaultShow={i === 0 && true}
                   >
@@ -63,8 +70,12 @@ const OutlineList = (props) => {
                             <div className="ml-28 ">
                               <Accordion
                                 id={`subject-${i}-${ind}`}
-                                titleClassName={"font-sm"}
-                                title={res.name}
+                                titleClassName={"font-sm-bold"}
+                                title={
+                                  res.name.length > 22
+                                    ? res.name.substring(0, 22) + "..."
+                                    : res.name
+                                }
                                 withExpand={true}
                               >
                                 {res.subTopics &&
@@ -77,13 +88,18 @@ const OutlineList = (props) => {
                                         <div className="ml-28 ">
                                           <Accordion
                                             id={`subTopic-${i}-${ind}-${index}`}
-                                            titleClassName={"font-sm"}
+                                            titleClassName={"font-xs-bold"}
                                             redirectTo={`/classroom${
                                               result.isAssessment
                                                 ? `/welcome-assessment`
                                                 : `/preview-content`
                                             }/${result.id}`}
-                                            title={result.name}
+                                            title={
+                                              result.name.length > 24
+                                                ? result.name.substring(0, 24) +
+                                                  "..."
+                                                : result.name
+                                            }
                                           />
                                         </div>
                                       </div>
@@ -145,13 +161,14 @@ const Accordion = (props) => {
               )}
               <p
                 className={`${titleClassName} ${
-                  expand && "font-bold text-white"
+                  expand ? "font-bold text-white" : "text-neutral-300"
                 }`}
               >
-                {title.length > 25 ? title.substring(0, 25) + "..." : title}
+                {title}
               </p>
             </div>
             <div className="d-flex align-items-center  ">
+              <LockIcon className="fs-20 text-danger-200" />
               <div
                 className={` cursor-pointer ${expand && "transform-180-deg"} ${
                   !withExpand ? "d-none" : " d-flex align-items-center "

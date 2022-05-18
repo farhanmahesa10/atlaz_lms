@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Can } from "../../../../Permission";
+import { Can } from "../../../../permission";
 import { useClaassRoomContentSubject } from "../../../../services";
 import { ModalTrigger } from "../../../atoms";
 import {

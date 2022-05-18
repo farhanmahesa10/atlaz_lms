@@ -6,7 +6,7 @@ import { Divider } from "../../atoms";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Settings } from "@mui/icons-material";
 
-import Can from "../../../Permission/Can";
+import Can from "../../../permission/Can";
 
 const Sidebar = (props) => {
   const {

@@ -25,6 +25,7 @@ import {
   TextEditor,
 } from "../../../molecules";
 import { GET, defConfig } from "../../../../config/RestAPI";
+import { PreviewContentLoading } from "../../../molecules";
 
 function PreviewContentOrg() {
   const { id } = useParams();
@@ -79,6 +80,7 @@ function PreviewContentOrg() {
         console.log("1 success", res.data);
       })
       .catch((err) => {
+        setIsLoading(false);
         console.log("1", err.response);
       });
     GET(`/subtopic/${id}`, defConfig())
@@ -98,33 +100,33 @@ function PreviewContentOrg() {
   return (
     <div className="Layout-preview-content">
       <MainLayout
-        maxWidth="1440px"
         navbarBg="bg-white"
         navNoMenu
-        redirectOnNavClose="/classrrom/start-learning-view/1"
+        redirectOnNavClose="/classroom/start-learning-view/1"
         modalTitle="Leave unsubmited exercise"
         modalMessage="Exercises that have not been submitted will be lost. Please submit the exercise before leaving the page"
         isNeedConfirm
         title={dataSubtopic?.subject.name}
+        footerBg="bg-secondary-200"
       >
-        <section className="sub-topic-detail-preview">
+        <section className="sub-topic-detail-preview ">
           <img src={imgHeader1} className="image-header1 w-100" alt="" />
           <img src={imgHeader2} className="image-header2 w-100" alt="" />
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-md-8 col-12">
-                <div className="header-preview radius-14 bg-white py-16 px-24 mb-24">
-                  <div className="neutral300 mb-8">
-                    {dataSubtopic?.topic.name}
+          <div className="container ">
+            {isLoading ? (
+              <PreviewContentLoading />
+            ) : (
+              <div className="row justify-content-center mx-12 md-mx-24">
+                <div className="col-md-8 col-12">
+                  <div className="header-preview radius-14 bg-white py-16 px-24 mb-24">
+                    <div className="neutral300 mb-8">
+                      {dataSubtopic?.topic.name}
+                    </div>
+                    <h3>{dataSubtopic?.name}</h3>
                   </div>
-                  <h3>{dataSubtopic?.name}</h3>
-                </div>
 
-                <div className="preview-content  radius-8 ">
-                  <div className="content ">
-                    {isLoading ? (
-                      ""
-                    ) : (
+                  <div className="preview-content  radius-8 ">
+                    <div className="content ">
                       <div className="content">
                         {console.log("dataContent", dataContent)}
                         {dataContent.map((data, index) => {
@@ -140,50 +142,50 @@ function PreviewContentOrg() {
                           ""
                         )}
                       </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-8 col-12 mt-96">
-                <div className="row justify-content-center">
-                  <div className="col-4 d-flex align-items-center">
-                    <button className="btn-disable cursor-pointer p-7 mr-8">
-                      <ArrowBack className="fs-20" />
-                    </button>
-                    <div className="one-row">
-                      <div className="font-xs text-neutral-200">Back</div>
-                      <div className="font-xs-medium text-neutral-400">
-                        Reading 1
-                      </div>
                     </div>
                   </div>
-                  <div className="col-4 d-flex align-items-center justify-content-end text-end">
-                    <div className="one-row">
-                      <div className="font-xs text-neutral-200">Next</div>
-                      <div className="font-xs-medium text-neutral-400">
-                        Reading 3
+                </div>
+                <div className="col-md-8 col-12 mt-96">
+                  <div className="row justify-content-center">
+                    <div className="col-4 d-flex align-items-center">
+                      <button className="btn-disable cursor-pointer p-7 mr-8">
+                        <ArrowBack className="fs-20" />
+                      </button>
+                      <div className="one-row">
+                        <div className="font-xs text-neutral-200">Back</div>
+                        <div className="font-xs-medium text-neutral-400">
+                          Reading 1
+                        </div>
                       </div>
                     </div>
-                    <button className="btn-secondary cursor-pointer p-7 ml-8">
-                      <ArrowForward className="fs-20" />
-                    </button>
+                    <div className="col-4 d-flex align-items-center justify-content-end text-end">
+                      <div className="one-row">
+                        <div className="font-xs text-neutral-200">Next</div>
+                        <div className="font-xs-medium text-neutral-400">
+                          Reading 3
+                        </div>
+                      </div>
+                      <button className="btn-secondary cursor-pointer p-7 ml-8">
+                        <ArrowForward className="fs-20" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-7 col-12">
+                  <div className="preview-footer  d-flex justify-content-center">
+                    <div className="pt-98 text-center">
+                      <h5
+                        className="text-strong cursor-pointer"
+                        onClick={backToTop}
+                      >
+                        <DoubleArrowRounded className="rotate" />
+                        <span className="d-block">Back To Top</span>
+                      </h5>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-7 col-12">
-                <div className="preview-footer  d-flex justify-content-center">
-                  <div className="pt-98 text-center">
-                    <h5
-                      className="text-strong cursor-pointer"
-                      onClick={backToTop}
-                    >
-                      <DoubleArrowRounded className="rotate" />
-                      <span className="d-block">Back To Top</span>
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </section>
       </MainLayout>

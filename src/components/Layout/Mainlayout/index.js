@@ -42,7 +42,7 @@ const MainLayout = (props) => {
           </div>
         </main>
 
-        <MainFooter />
+        <MainFooter bg={props.footerBg}/>
       </div>
     </>
   );
