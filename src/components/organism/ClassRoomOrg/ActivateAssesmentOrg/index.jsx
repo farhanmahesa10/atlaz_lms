@@ -7,10 +7,11 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import CheckIcon from "@mui/icons-material/Check";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import moment from "moment";
 import _ from "lodash";
 import ActiveAssessmentPreview from "./ActiveAssessmentPreview";
-
+import moment from "moment";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
 const ActivateAssessmentOrg = () => {
   const {
     initialValues,
@@ -108,20 +109,38 @@ const ActivateAssessmentOrg = () => {
 
                     <div className="row">
                       {formDateTime.map((res, ind) => {
-                        return (
-                          <DateTimeForm
-                            checkBoxName={res.checkBoxName}
-                            startDateName={res.startDateName}
-                            endDateName={res.endDateName}
-                            durationName={res.durationName}
-                            title={res.title}
-                            formik={formik}
-                            onChangeSelectChecked={(val) =>
-                              setSelectAllStatus(val)
-                            }
-                            key={`b-${ind}`}
-                          />
-                        );
+                        if (!res.isNoEndDate) {
+                          return (
+                            <DateTimeForm
+                              checkBoxName={res.checkBoxName}
+                              startDateName={res.startDateName}
+                              endDateName={res.endDateName}
+                              durationName={res.durationName}
+                              title={res.title}
+                              formik={formik}
+                              onChangeSelectChecked={(val) =>
+                                setSelectAllStatus(val)
+                              }
+                              key={`b-${ind}`}
+                            />
+                          );
+                        } else {
+                          return (
+                            <TimeForm
+                              checkBoxName={res.checkBoxName}
+                              dateName={res.dateName}
+                              startTimeName={res.startTimeName}
+                              endTimeName={res.endTimeName}
+                              durationName={res.durationName}
+                              title={res.title}
+                              formik={formik}
+                              onChangeSelectChecked={(val) =>
+                                setSelectAllStatus(val)
+                              }
+                              key={`b-${ind}`}
+                            />
+                          );
+                        }
                       })}
                       <div className="col-12 text-end">
                         <button
@@ -215,6 +234,8 @@ const AssessmentForm = (props) => {
 const DateTimeForm = (props) => {
   const [startDef, setStartDef] = useState("");
   const [endDef, setEndDef] = useState("");
+  const [minTime, setMinTime] = useState(null);
+  const [maxTime, setMaxTime] = useState(null);
 
   const {
     formik,
@@ -250,6 +271,8 @@ const DateTimeForm = (props) => {
     ) {
       props.onChangeSelectChecked("none");
     }
+    handleMinTime();
+    handleMaxTime();
   }, [formik]);
 
   const handleDateChange = (val, isStart = true) => {
@@ -287,6 +310,33 @@ const DateTimeForm = (props) => {
     // let diff = start.diff(end);
   };
 
+  const handleMinTime = () => {
+    let minDateTime = formik.getFieldProps(startDateName).value;
+    let maxDateTime = formik.getFieldProps(endDateName).value;
+    if (
+      moment(minDateTime).format("Y-M-D") ===
+      moment(maxDateTime).format("Y-M-D")
+    ) {
+      let minResult = moment(minDateTime).add(1, "minutes").toDate();
+      setMinTime(minResult);
+    } else {
+      setMinTime(null);
+    }
+  };
+  const handleMaxTime = () => {
+    let minDateTime = formik.getFieldProps(startDateName).value;
+    let maxDateTime = formik.getFieldProps(endDateName).value;
+
+    if (
+      moment(minDateTime).format("Y-M-D") ===
+      moment(maxDateTime).format("Y-M-D")
+    ) {
+      setMaxTime(moment(maxDateTime).add(1, "minutes").toDate());
+    } else {
+      setMaxTime(null);
+    }
+  };
+
   return (
     <div className="col-12">
       <div className="d-flex align-items-center mb-20">
@@ -316,6 +366,7 @@ const DateTimeForm = (props) => {
                 ? formik.getFieldProps(endDateName).value
                 : null
             }
+            maxTime={maxTime}
             label="Start Date & Time"
           />
         </div>
@@ -331,6 +382,7 @@ const DateTimeForm = (props) => {
                 ? formik.getFieldProps(startDateName).value
                 : null
             }
+            minTime={minTime}
             onInput={(val) => {
               setEndDef(val);
               handleDateChange(val, false);
@@ -338,6 +390,161 @@ const DateTimeForm = (props) => {
           />
         </div>
         <div className="col-12 col-md-6 col-xl-4 mb-24">
+          <FormikControl
+            disabled
+            label="Total Duration"
+            control="input"
+            size="sm"
+            name={durationName}
+            placeholder={"0d 0hr 0min"}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TimeForm = (props) => {
+  const [startDef, setStartDef] = useState("");
+  const [endDef, setEndDef] = useState("");
+
+  const {
+    formik,
+    checkBoxName,
+    dateName,
+    startTimeName,
+    endTimeName,
+    durationName,
+    title,
+  } = props;
+
+  //checkbox control
+  useEffect(() => {
+    let formikValues = formik.values;
+    if (
+      formikValues.checkReading === true &&
+      formikValues.checkListening === true &&
+      formikValues.checkSpeaking === true &&
+      formikValues.checkWriting === true
+    ) {
+      props.onChangeSelectChecked("checked");
+    } else if (
+      formikValues.checkReading === true ||
+      formikValues.checkListening === true ||
+      formikValues.checkSpeaking === true ||
+      formikValues.checkWriting === true
+    ) {
+      props.onChangeSelectChecked("min");
+    } else if (
+      formikValues.checkReading === false &&
+      formikValues.checkListening === false &&
+      formikValues.checkSpeaking === false &&
+      formikValues.checkWriting === false
+    ) {
+      props.onChangeSelectChecked("none");
+    }
+  }, [formik]);
+
+  const handleDateChange = (val, isStart = true) => {
+    console.log(val.toISOString());
+    let values = formik.values;
+    let start = "";
+    let end = "";
+    if (isStart) {
+      start = val;
+      end = _.get(values, endTimeName);
+    } else {
+      start = _.get(values, startTimeName);
+      end = val;
+    }
+
+    if (start && end) {
+      let startMoment = moment(start);
+      let endMoment = moment(end);
+      let duration = moment.duration(endMoment.diff(startMoment));
+      let day = duration._data.days;
+      let hour = duration._data.hours;
+      let minute = duration._data.minutes;
+      if (startMoment < endMoment) {
+        let result = `${day > 0 ? day : "0"}d ${hour > 0 ? hour : "0"}hr ${
+          minute > 0 ? minute : "0"
+        }min`;
+        formik.setFieldValue(durationName, result);
+        // console.log(result);
+      } else {
+        let result = `0d 0hr 0min`;
+        formik.setFieldValue(durationName, result);
+      }
+      // console.log(day + "d ", hour + "hr ", minute + "min");
+    }
+    // let diff = start.diff(end);
+  };
+
+  return (
+    <div className="col-12">
+      <div className="d-flex align-items-center mb-20">
+        <FormikControl
+          control="checkbox"
+          name={checkBoxName}
+          placeholder={"Select date & time"}
+        />
+        <div className="h-32 bg-secondary-300 radius-p-100 w-32 d-flex align-items-center justify-content-center ml-16">
+          <WysiwygIcon className="fs-18" />
+        </div>
+        <h6 className="ml-8">{title}</h6>
+      </div>
+      <div className="row">
+        <div className="col-12 col-md-6 col-xl-3 mb-24">
+          <FormikControl
+            control="date"
+            name={dateName}
+            placeholder={"Select date "}
+            formik={formik}
+            onInput={(val) => {
+              setStartDef(val);
+              handleDateChange(val);
+            }}
+            minDate={moment().toDate()}
+            label="Assessment date"
+          />
+        </div>
+        <div className="col-12 col-md-6 col-xl-3 mb-24">
+          <FormikControl
+            label="Start Time"
+            control="time"
+            name={startTimeName}
+            placeholder={"Select  time"}
+            formik={formik}
+            maxDate={
+              formik.getFieldProps(endTimeName).value
+                ? formik.getFieldProps(endTimeName).value
+                : null
+            }
+            onInput={(val) => {
+              setEndDef(val);
+              handleDateChange(val, true);
+            }}
+          />
+        </div>
+        <div className="col-12 col-md-6 col-xl-3 mb-24">
+          <FormikControl
+            label="End Time"
+            control="time"
+            name={endTimeName}
+            placeholder={"Select  time"}
+            formik={formik}
+            minDate={
+              formik.getFieldProps(startTimeName).value
+                ? formik.getFieldProps(startTimeName).value
+                : null
+            }
+            onInput={(val) => {
+              setEndDef(val);
+              handleDateChange(val, false);
+            }}
+          />
+        </div>
+        <div className="col-12 col-md-6 col-xl-3 mb-24">
           <FormikControl
             disabled
             label="Total Duration"

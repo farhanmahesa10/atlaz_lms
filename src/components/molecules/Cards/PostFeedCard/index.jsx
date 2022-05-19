@@ -10,6 +10,8 @@ import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import PostCommentCard from "../PostCommentCard";
+import moment from "moment";
+import PersonIcon from "@mui/icons-material/Person";
 const PostFeedCard = (props) => {
   const { data } = props;
 
@@ -22,16 +24,23 @@ const PostFeedCard = (props) => {
     >
       <div className="d-flex justify-content-between">
         <div className="d-flex align-items-center">
-          <div className="h-40 w-40 xl-h-48 xl-w-48 radius-p-100">
-            <img
-              src={data.user.photo}
-              alt=""
-              className="w-full h-full radius-p-100"
-            />
+          <div className="h-40 w-40 xl-h-48 xl-w-48 radius-p-100 ">
+            {data.user.avatar ? (
+              <img
+                src={data.user.avatar}
+                alt=""
+                className="w-full h-full radius-p-100"
+              />
+            ) : (
+              <PersonIcon className="w-full h-full radius-p-100 bg-secondary-200 p-8" />
+            )}
           </div>
           <div className="ml-11">
             <p className="font-sm-bold xl-font-bold">{data.user.name}</p>
-            <p className="text-neutral-300 font-xs">{data.time}</p>
+            <p className="text-neutral-300 font-xs">
+              {moment(data.createdAt).format("D MMMM YYYY ")} at
+              {moment(data.createdAt).format(" H:m A")}
+            </p>
           </div>
         </div>
         <div className="btn-group dropstart">
@@ -104,22 +113,28 @@ const Posted = (props) => {
   const { data } = props;
   return (
     <div className="mt-16 ">
-      {data.image && (
+      {data.content.image && (
         <div
           className="max-h-158 md-max-h-216 xl-max-h-472 radius-14 mb-16"
           style={{ overflow: "hidden" }}
         >
-          <ModalTrigger target="postImage" data={{ image: data.image }}>
-            <img src={data.image} alt="" className="w-full " />
+          <ModalTrigger target="postImage" data={{ image: data.content.image }}>
+            <img src={data.content.image} alt="" className="w-full " />
           </ModalTrigger>
         </div>
       )}
       <p className="font-sm xl-font-normal ">
-        {data.text.length > 170
-          ? data.text.substring(0, 170) + "... "
-          : data.text}
-        {data.text.length > 170 && (
-          <span className="font-sm-bold cursor-pointer">Show more</span>
+        {data.content.data ? (
+          <>
+            {data.content.data.length > 170
+              ? data.content.data.substring(0, 170) + "... "
+              : data.content.data}
+            {data.content.data.length > 170 && (
+              <span className="font-sm-bold cursor-pointer">Show more</span>
+            )}
+          </>
+        ) : (
+          ""
         )}
       </p>
     </div>

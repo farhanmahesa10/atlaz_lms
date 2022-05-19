@@ -1,0 +1,19 @@
+@import "../../../../assets/scss/variables";
+
+.input-date {
+  .react-datepicker__day--selected {
+    background-color: $primary_500;
+  }
+  .react-datepicker__day--selected:hover {
+    background-color: $primary_500;
+  }
+  .react-datepicker__second-list-item--selected {
+    background-color: $primary_500 !important;
+  }
+  .react-datepicker-time__input--selected {
+    background-color: $primary_500 !important;
+  }
+  .react-datepicker__time-list-item--selected {
+    background-color: $primary_500 !important;
+  }
+}

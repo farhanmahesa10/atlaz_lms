@@ -13,7 +13,7 @@ const useClassRoomHero = () => {
     },
     {
       link: "",
-      label: "Classroom",
+      label: <span className="text-white">Classroom</span>,
     },
   ];
   useEffect(() => {

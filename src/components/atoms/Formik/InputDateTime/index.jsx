@@ -10,7 +10,7 @@ import moment from "moment";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 
-const InputDate = (props) => {
+const InputDateTime = (props) => {
   const { name, formik, minDate, maxDate, minTime, maxTime } = props;
 
   const [startDate, setStartDate] = useState(null);
@@ -32,24 +32,23 @@ const InputDate = (props) => {
         <div className={`input-area ${props.label && "mt-4"}`}>
           <ReactDatePicker
             selected={startDate}
+            showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
             timeCaption="time"
             minDate={minDate ? minDate : null}
             maxDate={maxDate ? maxDate : null}
             minTime={
-              minDate
-                ? moment(minDate).add("15", "minutes").toDate()
-                : setHours(setMinutes(moment().toDate(), 0), 0)
+              minTime ? minTime : setHours(setMinutes(moment().toDate(), 0), 0)
             }
             maxTime={
-              maxDate
-                ? maxDate
+              maxTime
+                ? maxTime
                 : setHours(setMinutes(moment().toDate(), 59), 23)
             }
             // minTime={setHours(setMinutes(new Date(), 0), 17)}
             // maxTime={setHours(setMinutes(new Date(), 30), 20)}
-            dateFormat="MMMM d, yyyy "
+            dateFormat="MMMM d, yyyy h:mm aa"
             className="input-control  py-8 pl-8 radius-8 font-sm"
             onChange={(date) => {
               setStartDate(date);
@@ -77,4 +76,4 @@ const InputDate = (props) => {
     </>
   );
 };
-export default InputDate;
+export default InputDateTime;

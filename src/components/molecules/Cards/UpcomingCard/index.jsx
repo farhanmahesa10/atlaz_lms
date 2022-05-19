@@ -6,15 +6,21 @@ const UpcomingCard = (props) => {
   const { data } = props;
 
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
-  window.addEventListener("resize", (e) => {
-    setwindowWidth(e.target.innerWidth);
-  });
+  useEffect(() => {
+    let isMounted = true;
+    window.addEventListener("resize", (e) => {
+      if (isMounted) setwindowWidth(e.target.innerWidth);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className=" bg-secondary-100 p-16 radius-8 border border-secondary-500 d-xl-flex">
       <div
         className={`text-center xl-pr-16 d-flex flex-xl-column ${
-          windowWidth >= 1140 && "border-end "
+          windowWidth >= 1200 && "border-end "
         } align-items-center justify-content-center`}
       >
         <p className="font-sm-bold">{data.date}</p>{" "}

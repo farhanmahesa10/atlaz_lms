@@ -17,15 +17,19 @@ const HomeHead = () => {
     setIsLoading(true);
     let tempImg = [];
     let tempImgPhone = [];
-    GET("/client/landing/hero").then((r) => {
-      r.data.map((res) => {
-        tempImg.push(res.imageLarge);
-        tempImgPhone.push(res.imageSmall);
+    GET("/client/landing/hero")
+      .then((r) => {
+        r.data.map((res) => {
+          tempImg.push(res.imageLarge);
+          tempImgPhone.push(res.imageSmall);
+        });
+        setImg(tempImg);
+        setImgPhone(tempImgPhone);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
       });
-      setImg(tempImg);
-      setImgPhone(tempImgPhone);
-      setIsLoading(false);
-    });
   }, []);
 
   const handleSearchChange = (val) => {

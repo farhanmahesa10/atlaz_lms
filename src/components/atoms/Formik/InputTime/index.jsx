@@ -1,21 +1,22 @@
 import React, { useRef, useState } from "react";
-import TextField from "@mui/material/TextField";
-import "./inputDate.scss";
-import { styled } from "@mui/material/styles";
+import "./inputTime.scss";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import { Field } from "formik";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import moment from "moment";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 
-const InputDate = (props) => {
+const InputTime = (props) => {
   const { name, formik, minDate, maxDate, minTime, maxTime } = props;
 
   const [startDate, setStartDate] = useState(null);
 
   const meta = formik.getFieldMeta(name);
+
+  if (maxDate) {
+    // console.log("tesss");
+  }
 
   return (
     <>
@@ -32,11 +33,11 @@ const InputDate = (props) => {
         <div className={`input-area ${props.label && "mt-4"}`}>
           <ReactDatePicker
             selected={startDate}
-            timeFormat="HH:mm"
+            showTimeSelect
+            showTimeSelectOnly
             timeIntervals={15}
-            timeCaption="time"
-            minDate={minDate ? minDate : null}
-            maxDate={maxDate ? maxDate : null}
+            timeCaption="Time"
+            dateFormat="h:mm aa"
             minTime={
               minDate
                 ? moment(minDate).add("15", "minutes").toDate()
@@ -47,13 +48,10 @@ const InputDate = (props) => {
                 ? maxDate
                 : setHours(setMinutes(moment().toDate(), 59), 23)
             }
-            // minTime={setHours(setMinutes(new Date(), 0), 17)}
-            // maxTime={setHours(setMinutes(new Date(), 30), 20)}
-            dateFormat="MMMM d, yyyy "
             className="input-control  py-8 pl-8 radius-8 font-sm"
             onChange={(date) => {
-              setStartDate(date);
               formik.setFieldValue(name, date);
+              setStartDate(date);
               if (props.onInput) {
                 props.onInput(date);
               }
@@ -63,7 +61,7 @@ const InputDate = (props) => {
           />
 
           <div className="bg-neutral-100 d-flex align-items-center px-8 py-6 cursor-pointer">
-            <CalendarTodayIcon
+            <AccessTimeIcon
               onClick={(e) => {
                 document.querySelector(`input[name=${name}]`).click();
               }}
@@ -77,4 +75,5 @@ const InputDate = (props) => {
     </>
   );
 };
-export default InputDate;
+
+export default InputTime;

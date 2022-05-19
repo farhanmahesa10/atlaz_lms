@@ -41,7 +41,8 @@ import ShortAnswer from "./ContentPreview/ShortAnswer";
 import SingleChoice from "./ContentPreview/SingleChoice";
 import TextEditor from "./ContentPreview/TextEditor";
 import FooterContent from "./ContentPreview/FooterContent";
-
+import SubjectPostMemberLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostMemberLoading";
+import DashboardFeedLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/DashboardFeedLoading";
 export {
   ProductXCard,
   ProductYCard,
@@ -85,4 +86,6 @@ export {
   TextEditor,
   FooterContent,
   PreviewContentLoading,
+  SubjectPostMemberLoading,
+  DashboardFeedLoading,
 };

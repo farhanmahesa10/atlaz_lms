@@ -21,10 +21,14 @@ const useClaassRoomContentSubject = (props) => {
 
   const getSubjects = () => {
     setIsLoading(true);
-    GET("/client/classrooms/" + params.classId, defConfig()).then((r) => {
-      setSubjects(r.data.subjects);
-      setIsLoading(false);
-    });
+    GET("/client/classrooms/" + params.classId, defConfig())
+      .then((r) => {
+        setSubjects(r.data.subjects);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
   };
 
   const handleAddSubject = (values) => {

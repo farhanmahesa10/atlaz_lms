@@ -11,13 +11,13 @@ const SubjectPostHero = () => {
     <>
       <div
         style={{
-          // backgroundImage: `url("${banner}")`,
+          backgroundImage: `url("${banner}")`,
           backgroundColor: "#7194CC",
           backgroundPosition: "50% 50%",
           backgroundSize: "cover",
           backgroundBlendMode: "darken",
         }}
-        className="min-h-188 md-min-h-312  hero-classroom"
+        className="min-h-188 md-min-h-312  "
       >
         <div className=" d-flex flex-column justify-content-between   h-full  ">
           <div className="">
@@ -32,7 +32,7 @@ const SubjectPostHero = () => {
               <span className="ml-19 font-sm text-white">Back</span>
             </Link>
           </div>
-          <div className="px-16 pt-16 md-px-48 md-pt-48 pb-16 md-pb-24 xl-pb-32 d-md-flex align-items-center mt-32">
+          <div className="px-16  md-px-48  pb-16 md-pb-24 xl-pb-32 d-md-flex align-items-center mt-48">
             <img
               src="/images/product.png"
               className="h-88 md-h-160 w-88 md-w-160 mr-16 xl-h-176 xl-w-176 "

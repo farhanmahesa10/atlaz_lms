@@ -54,18 +54,18 @@ const MainHeader = (props) => {
   const menus = [
     {
       icon: <DashboardIcon />,
-      link: "/",
+      link: "/dashboard",
       label: "Dashboard",
-      shouldLogin: 2,
-      activeTo: "",
+      shouldLogin: 1,
+      activeTo: "dashboard",
       // allowAccess: "superuser,administrator",
     },
     {
       icon: <StorefrontIcon />,
-      link: "/shop",
+      link: "/",
       label: "Shop",
-      shouldLogin: 2,
-      activeTo: "shop",
+      shouldLogin: 1,
+      activeTo: "",
     },
     {
       icon: <SchoolIcon />,

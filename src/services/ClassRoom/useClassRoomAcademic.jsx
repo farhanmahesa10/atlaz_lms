@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ClassRoomHero1,
-  ClassRoomHero2,
-  ClassRoomHero3,
-} from "../../assets/images";
+import { ClassRoomHero1 } from "../../assets/images";
 import { GET, defConfig } from "../../config/RestAPI";
 import _, { values } from "lodash";
 const useClassRoomAcademic = () => {

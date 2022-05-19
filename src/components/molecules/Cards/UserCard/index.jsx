@@ -1,7 +1,7 @@
 import React from "react";
 import PersonIcon from "@mui/icons-material/Person";
 const UserCard = (props) => {
-  const { variant, name, nip } = props;
+  const { variant, name, nip, avatar } = props;
 
   return (
     <div
@@ -11,7 +11,11 @@ const UserCard = (props) => {
         <div
           className={`h-48 w-48 bg-${variant}-200 d-flex justify-content-center align-items-center radius-p-100 mr-18`}
         >
-          <PersonIcon className={`text-${variant}-500`} />
+          {avatar ? (
+            <img src={avatar} />
+          ) : (
+            <PersonIcon className={`text-${variant}-500`} />
+          )}
         </div>
         <div>
           <p className="font-medium">{name}</p>

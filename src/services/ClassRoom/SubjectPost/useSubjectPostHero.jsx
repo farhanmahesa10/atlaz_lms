@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ClassRoomHeroMain } from "../../../assets/images";
+import { StartLearningBg } from "../../../assets/images";
 const useSubjectPostHero = () => {
   const { classId, subjectId, section } = useParams();
 
-  const banner = ClassRoomHeroMain;
+  const banner = StartLearningBg;
   const breadcrumbsData = [
     {
       link: "/",

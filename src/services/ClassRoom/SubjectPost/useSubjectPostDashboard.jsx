@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { defConfig, GET, POST } from "../../../config/RestAPI";
 
 const useSubjectPostDashboard = () => {
+  const params = useParams();
   const [sideBarData, setSideBarData] = useState({
     assessmentId: "",
     upcomingData: [
@@ -20,42 +23,70 @@ const useSubjectPostDashboard = () => {
       },
     ],
   });
+  const [isLoadingFeed, setIsLoadingFeed] = useState(true);
+  const [isLoadingCreateFeed, setIsLoadingCreateFeed] = useState(false);
 
-  const [feedData, setFeedData] = useState({
-    userId: "",
-    posts: [
-      {
-        isAssessment: true,
-        user: {
-          name: "Hisyam Halimi",
-          photo: "/images/product.png",
-        },
-        time: "6 April 2022 at 2:37 PM",
-        text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet",
-        image: "/images/example-img-post/gb.jpeg",
-      },
-      {
-        isAssessment: false,
-        user: {
-          name: "Uut Budiarto",
-          photo: "/images/book.png",
-        },
-        time: "6 April 2022 at 2:37 PM",
-        text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet sunt nostrud amet sunt nostrud amet ",
-        image: "/images/example-img-post/gb2.jpeg",
-      },
-    ],
-  });
+  const [feedData, setFeedData] = useState([]);
 
-  const handleCreatePost = (values) => {
-    console.log("create post submited", values);
+  useEffect(() => {
+    addFeed(1, 5);
+  }, []);
+
+  const addFeed = (page, perPage) => {
+    setIsLoadingFeed(true);
+    GET(
+      `/client/feed?classlistId=${params.classId}&subjectId=${params.subjectId}&page=${page}&perPage=${perPage}`,
+      defConfig()
+    )
+      .then((r) => {
+        let result = [];
+        feedData.map((f) => result.push(f));
+        r.data.map((c) => result.push(c));
+
+        setFeedData(r.data);
+        setIsLoadingFeed(false);
+      })
+      .catch((err) => {
+        setIsLoadingFeed(false);
+      });
+  };
+
+  const handleCreatePost = (values, resetForm) => {
+    setIsLoadingCreateFeed(true);
+    values = {
+      ...values,
+      classlist: params.classId,
+      subject: params.subjectId,
+    };
+    POST("/client/feed", values, defConfig())
+      .then((r) => {
+        let result = [];
+        feedData.map((f) => result.push(f));
+        result.unshift(r.data);
+        setFeedData(result);
+        setIsLoadingCreateFeed(false);
+        resetForm();
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoadingCreateFeed(false);
+        resetForm();
+      });
+    // console.log("create post submited", values);
   };
 
   const handleSubmitComent = (values) => {
     console.log("comment post submited", values);
   };
 
-  return { sideBarData, feedData, handleCreatePost, handleSubmitComent };
+  return {
+    sideBarData,
+    feedData,
+    handleCreatePost,
+    handleSubmitComent,
+    isLoadingFeed,
+    isLoadingCreateFeed,
+  };
 };
 
 export default useSubjectPostDashboard;

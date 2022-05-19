@@ -33,6 +33,7 @@ import {
   WelcomeAssessment,
   ChangeFirstPassword,
   PreviewContent,
+  Dashboard,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -43,6 +44,15 @@ const Routing = () => {
         element={
           // <Authenticate> contoh penggunaan middleware harus login
           <Home />
+          // </Authenticate>
+        }
+      />
+      <Route
+        path="/dashboard"
+        exac
+        element={
+          // <Authenticate> contoh penggunaan middleware harus login
+          <Dashboard />
           // </Authenticate>
         }
       />

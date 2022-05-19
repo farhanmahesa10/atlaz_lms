@@ -83,11 +83,15 @@ const useSearchResult = () => {
       perPage,
     };
 
-    GET(url, { params: req }).then((response) => {
-      setBookData(response.data);
-      setPagination(response.paginate);
-      setIsLoading(false);
-    });
+    GET(url, { params: req })
+      .then((response) => {
+        setBookData(response.data);
+        setPagination(response.paginate);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
   };
 
   const handleOnSelected = (val) => {

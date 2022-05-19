@@ -11,7 +11,7 @@ const SampleNextArrow = (props) => {
     } else {
       setMax(false);
     }
-  });
+  }, [onClick]);
   return (
     <div
       className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
@@ -42,7 +42,7 @@ const SamplePrevArrow = (props) => {
     } else {
       setMax(false);
     }
-  });
+  }, [onClick]);
 
   return (
     <div

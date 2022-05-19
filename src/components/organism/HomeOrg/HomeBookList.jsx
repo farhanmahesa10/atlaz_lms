@@ -8,22 +8,33 @@ const HomeBookList = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    GET("/client/landing/booklist?page=1&perPage=10").then((r) => {
-      let result = [];
-      r.data.map((r, i) => {
-        result.push(
-          <ProductYCard
-            withCanvas
-            key={i}
-            data={r}
-            responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
-          />
-        );
+    let isMounted = true;
+    GET("/client/landing/booklist?page=1&perPage=10")
+      .then((r) => {
+        let result = [];
+        r.data.map((r, i) => {
+          result.push(
+            <ProductYCard
+              withCanvas
+              key={i}
+              data={r}
+              responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+            />
+          );
+        });
+        if (isMounted) {
+          setData(result);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       });
-
-      setData(result);
-      setIsLoading(false);
-    });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

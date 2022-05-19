@@ -26,6 +26,7 @@ import WelcomeAssessment from "./Classroom/WelcomeAssessment";
 import Logout from "./Auth/Logout";
 import ChangeFirstPassword from "./Auth/ChangeFirstPassword";
 import PreviewContent from "./PreviewContent";
+import Dashboard from "./Dashboard";
 export {
   Login,
   Register1,
@@ -54,4 +55,5 @@ export {
   WelcomeAssessment,
   ChangeFirstPassword,
   PreviewContent,
+  Dashboard,
 };

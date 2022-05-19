@@ -6,7 +6,7 @@ const AcademicCard = ({ bgImage, title, desc }) => {
       style={{
         backgroundImage: `url("${bgImage}")`,
         backgroundSize: "cover",
-        backgroundPosition: "50%",
+        backgroundPosition: "right",
       }}
     >
       <div className="h-full w-full d-flex align-items-end">

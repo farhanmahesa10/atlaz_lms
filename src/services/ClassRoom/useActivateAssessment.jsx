@@ -21,13 +21,14 @@ const useActivateAssessment = () => {
     checkSpeaking: true,
     checkWriting: true,
 
-    startReading: "",
-    startListening: "",
-    startSpeaking: "",
-    startWriting: "",
+    readingDate: "",
+    startReadingTime: "",
+    endReadingTime: "",
 
-    endReading: "",
-    endListening: "",
+    listeningDate: "",
+    startListeningTime: "",
+    endListeningTime: "",
+
     endSpeaking: "",
     endWriting: "",
 
@@ -173,16 +174,20 @@ const useActivateAssessment = () => {
     {
       title: "Reading Assessment",
       checkBoxName: "checkReading",
-      startDateName: "startReading",
-      endDateName: "endReading",
+      dateName: "readingDate",
+      startTimeName: "startReadingTime",
+      endTimeName: "endReadingTime",
       durationName: "durationReading",
+      isNoEndDate: true,
     },
     {
       title: "Listening Assessment",
       checkBoxName: "checkListening",
-      startDateName: "startListening",
-      endDateName: "endListening",
+      dateName: "listeningDate",
+      startTimeName: "startListeningTime",
+      endTimeName: "endListeningTime",
       durationName: "durationListening",
+      isNoEndDate: true,
     },
     {
       title: "Speaking Assessment",
@@ -210,7 +215,7 @@ const useActivateAssessment = () => {
   const onSubmit = (values) => {
     // setShowPreview(true);
     // setPreviewData(values);
-    console.log(values);
+    console.log(JSON.stringify(values));
   };
 
   return {

@@ -5,8 +5,14 @@ import SubjectPostDashboardFeed from "./SubjectPostDashboardFeed";
 import SubjectPostDashboardSidebar from "./SubjectPostDashboardSidebar";
 
 const SubjectPostDashboard = () => {
-  const { sideBarData, feedData, handleCreatePost, handleSubmitComent } =
-    useSubjectPostDashboard();
+  const {
+    sideBarData,
+    feedData,
+    handleCreatePost,
+    handleSubmitComent,
+    isLoadingFeed,
+    isLoadingCreateFeed,
+  } = useSubjectPostDashboard();
 
   return (
     <div className="row mx-16 md-mx-48 mt-24 gx-0">
@@ -17,6 +23,8 @@ const SubjectPostDashboard = () => {
         <div className="md-pl-16  md-mt-0">
           <SubjectPostDashboardFeed
             data={feedData}
+            isLoadingCreateFeed={isLoadingCreateFeed}
+            isLoading={isLoadingFeed}
             onSubmitCreatePost={handleCreatePost}
             onSubmitComment={handleSubmitComent}
           />
