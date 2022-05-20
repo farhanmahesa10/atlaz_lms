@@ -43,6 +43,7 @@ import TextEditor from "./ContentPreview/TextEditor";
 import FooterContent from "./ContentPreview/FooterContent";
 import SubjectPostMemberLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostMemberLoading";
 import DashboardFeedLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/DashboardFeedLoading";
+import ModalAction from "./Modals/ModalAction";
 export {
   ProductXCard,
   ProductYCard,
@@ -88,4 +89,5 @@ export {
   PreviewContentLoading,
   SubjectPostMemberLoading,
   DashboardFeedLoading,
+  ModalAction,
 };

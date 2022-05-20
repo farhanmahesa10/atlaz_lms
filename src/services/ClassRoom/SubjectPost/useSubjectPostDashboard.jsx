@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { defConfig, GET, POST } from "../../../config/RestAPI";
-
 const useSubjectPostDashboard = () => {
   const params = useParams();
   const [sideBarData, setSideBarData] = useState({
@@ -25,25 +24,42 @@ const useSubjectPostDashboard = () => {
   });
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [isLoadingCreateFeed, setIsLoadingCreateFeed] = useState(false);
+  const [feeds, setFeeds] = useState([]);
 
-  const [feedData, setFeedData] = useState([]);
-
+  const feedData = useMemo(() => {
+    return feeds;
+  }, [feeds]);
   useEffect(() => {
-    addFeed(1, 5);
+    let isMounted = true;
+    if (isMounted) {
+      setIsLoadingFeed(true);
+      addFeed(1, 5, true);
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const addFeed = (page, perPage) => {
-    setIsLoadingFeed(true);
+  const addFeed = (page, perPage, firstGet = true, toFirst = false) => {
     GET(
       `/client/feed?classlistId=${params.classId}&subjectId=${params.subjectId}&page=${page}&perPage=${perPage}`,
       defConfig()
     )
       .then((r) => {
-        let result = [];
-        feedData.map((f) => result.push(f));
-        r.data.map((c) => result.push(c));
+        if (firstGet) {
+          setFeeds(r.data);
+        } else {
+          const tempFeeds = [...feeds];
+          const resultReversed = [...r.data].reverse();
+          if (toFirst) {
+            resultReversed.map((r) => {
+              tempFeeds.unshift(r);
+            });
+            setFeeds(tempFeeds);
+          }
+        }
 
-        setFeedData(r.data);
+        // setFeedData(result);
         setIsLoadingFeed(false);
       })
       .catch((err) => {
@@ -60,32 +76,31 @@ const useSubjectPostDashboard = () => {
     };
     POST("/client/feed", values, defConfig())
       .then((r) => {
-        let result = [];
-        feedData.map((f) => result.push(f));
-        result.unshift(r.data);
-        setFeedData(result);
+        addFeed(1, 1, false, true);
         setIsLoadingCreateFeed(false);
         resetForm();
       })
       .catch((err) => {
-        console.log(err);
         setIsLoadingCreateFeed(false);
         resetForm();
       });
     // console.log("create post submited", values);
   };
 
-  const handleSubmitComent = (values) => {
-    console.log("comment post submited", values);
+  const handleDeletedFeed = (data) => {
+    console.log(data);
+    const tempFeeds = [...feeds];
+    const result = tempFeeds.filter((r) => r._id !== data.id);
+    setFeeds(result);
   };
 
   return {
     sideBarData,
     feedData,
     handleCreatePost,
-    handleSubmitComent,
     isLoadingFeed,
     isLoadingCreateFeed,
+    handleDeletedFeed,
   };
 };
 

@@ -7,7 +7,7 @@ import {
 } from "../../../../molecules";
 
 const SubjectPostDashboardFeed = (props) => {
-  const { data, isLoading, isLoadingCreateFeed } = props;
+  const { data, isLoading, isLoadingCreateFeed, handleDeletedFeed } = props;
 
   return (
     <>
@@ -22,11 +22,8 @@ const SubjectPostDashboardFeed = (props) => {
         <>
           {data.map((res, i) => {
             return (
-              <div className={`mt-24 `} key={i}>
-                <PostFeedCard
-                  data={res}
-                  onSubmitComment={props.onSubmitComment}
-                />
+              <div className={`mt-24 `} key={"feedsCards-" + i}>
+                <PostFeedCard data={res} onDeleted={handleDeletedFeed} />
               </div>
             );
           })}

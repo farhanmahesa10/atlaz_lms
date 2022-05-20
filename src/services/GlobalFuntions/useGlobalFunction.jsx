@@ -1,6 +1,8 @@
 import React from "react";
 import jwt_decode from "jwt-decode";
+import { useDispatch } from "react-redux";
 const useGlobalFunction = () => {
+  const dispatch = useDispatch();
   const getUserInfo = () => {
     let token = localStorage.getItem(
       process.env.REACT_APP_BASE_URL + "/accessToken"
@@ -54,7 +56,19 @@ const useGlobalFunction = () => {
     ];
   };
 
-  return { getUserInfo, getRoleData };
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+
+    dispatch({
+      type: "SET_FLASH_MESSAGE",
+      status: true,
+      title: "Link copied",
+      msg: "This link copied to your clipboard",
+      show: true,
+      isRedirecterToast: false,
+    });
+  };
+  return { getUserInfo, getRoleData, copyToClipboard };
 };
 
 export default useGlobalFunction;

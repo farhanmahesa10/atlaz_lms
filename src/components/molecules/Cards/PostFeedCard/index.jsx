@@ -1,5 +1,5 @@
-import { Form, Formik } from "formik";
-import React from "react";
+import { Field, Form, Formik } from "formik";
+import React, { useEffect, useMemo, useState } from "react";
 import { Divider, FormikControl, ModalTrigger } from "../../../atoms";
 import SendIcon from "@mui/icons-material/Send";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -12,105 +12,236 @@ import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import PostCommentCard from "../PostCommentCard";
 import moment from "moment";
 import PersonIcon from "@mui/icons-material/Person";
+import { useGlobalFunction } from "../../../../services/";
+import ModalAction from "../../Modals/ModalAction";
+import CircularProgress from "@mui/material/CircularProgress";
+import { defConfig, DESTROY, POST } from "../../../../config/RestAPI";
+import { TextareaAutosize } from "@mui/material";
 const PostFeedCard = (props) => {
-  const { data } = props;
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [isLoadingSubmitComment, setIsLoadingSubmitComment] = useState(false);
+  const { getUserInfo, copyToClipboard } = useGlobalFunction();
 
-  const showMoreComment = () => {};
+  const [commentProps, setCommentProps] = useState(props.data.comments);
+
+  const data = useMemo(() => props.data, [props.data]);
+
+  const comments = useMemo(() => commentProps, [commentProps]);
+
+  const showMoreComment = (data) => {};
+
+  const handleDeleteFeed = (data) => {
+    props.onDeleted(data);
+    DESTROY(`/client/feed/${data.id}`, defConfig());
+  };
+
+  const handleCreateComment = (values, { resetForm }) => {
+    setIsLoadingSubmitComment(true);
+    POST("/client/feed/comment", values, defConfig())
+      .then((r) => {
+        let tempComment = [...comments];
+        let newComment = { ...r.data, user: getUserInfo() };
+        tempComment.push(newComment);
+        setCommentProps(tempComment);
+        resetForm();
+        setIsLoadingSubmitComment(false);
+      })
+      .catch((err) => {
+        setIsLoadingSubmitComment(false);
+      });
+  };
+
+  const handleDeletedComment = (id) => {
+    let newComment = [...comments];
+    let indexCommentForDelete = newComment.findIndex((r) => r._id === id);
+    if (indexCommentForDelete >= 0) {
+      newComment.splice(indexCommentForDelete, 1);
+      setCommentProps(newComment);
+    }
+  };
 
   return (
-    <div
-      className={` bg-white p-24 radius-8 border border-secondary-500`}
-      style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
-    >
-      <div className="d-flex justify-content-between">
-        <div className="d-flex align-items-center">
-          <div className="h-40 w-40 xl-h-48 xl-w-48 radius-p-100 ">
-            {data.user.avatar ? (
-              <img
-                src={data.user.avatar}
-                alt=""
-                className="w-full h-full radius-p-100"
-              />
-            ) : (
-              <PersonIcon className="w-full h-full radius-p-100 bg-secondary-200 p-8" />
-            )}
-          </div>
-          <div className="ml-11">
-            <p className="font-sm-bold xl-font-bold">{data.user.name}</p>
-            <p className="text-neutral-300 font-xs">
-              {moment(data.createdAt).format("D MMMM YYYY ")} at
-              {moment(data.createdAt).format(" H:m A")}
-            </p>
-          </div>
+    <div className="position-relative">
+      <ModalAction
+        id={`deletePostedFeed${data._id}`}
+        onSubmit={handleDeleteFeed}
+      />
+      {isLoadingDelete ? (
+        <div
+          className="position-absolute w-full top-0 bottom-0 radius-8 d-flex align-items-center justify-content-center "
+          style={{ background: "rgba(4,6,8,0.2)" }}
+        >
+          <CircularProgress color="inherit" />
         </div>
-        <div className="btn-group dropstart">
-          <div
-            type="button"
-            className="cursor-pointer dropdown-toggle "
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            data-bs-auto-close="true"
-          >
-            <MoreVertIcon />
-          </div>
-          <ul className="dropdown-menu bg-white p-8 radius-4">
-            <li
-              className="pb-8 cursor-pointer hover-text-primary-500 "
-              style={{ whiteSpace: "nowrap" }}
-            >
-              Copy Link
-            </li>
-            <li>
-              <Divider />
-            </li>
-            <li className="py-8 cursor-pointer hover-text-primary-500">
-              Delete
-            </li>
-          </ul>
-        </div>
-      </div>
-      {data.isAssessment && <PostedAssessment data={data} />}
-      {!data.isAssessment && <Posted data={data} />}
-      <Divider lineColor="bg-secondary-500" parentClassName="my-24" />
-      <p
-        className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
-        onClick={() => {
-          showMoreComment("idPost");
-        }}
+      ) : (
+        ""
+      )}
+
+      <div
+        className={` bg-white p-24 radius-8 border border-secondary-500`}
+        style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
       >
-        View previous comments
-      </p>
-      <PostCommentCard />
-      <PostCommentCard />
-      <div>
-        <Formik initialValues={{ text: "" }} onSubmit={props.onSubmitComment}>
-          {(formik) => (
-            <Form>
-              <FormikControl
-                control="input"
-                name="text"
-                type="text"
-                placeholder="Type your comment"
-                autoComplete="off"
-                icon2={
-                  <SendIcon
-                    className="fs-20 text-neutral-200 cursor-pointer hover-text-primary-500"
-                    onClick={() => {
-                      formik.submitForm();
+        <div className="d-flex justify-content-between">
+          <div className="d-flex align-items-center">
+            <div className="h-40 w-40 xl-h-48 xl-w-48 radius-p-100 ">
+              {data.user.avatar ? (
+                <img
+                  src={data.user.avatar}
+                  alt=""
+                  className="w-full h-full radius-p-100"
+                />
+              ) : (
+                <PersonIcon className="w-full h-full radius-p-100 bg-secondary-200 p-8" />
+              )}
+            </div>
+            <div className="ml-11">
+              <p className="font-sm-bold xl-font-bold">{data.user.name}</p>
+              <p className="text-neutral-300 font-xs">
+                {moment(data.createdAt).format("D MMMM YYYY ")} at
+                {moment(data.createdAt).format(" H:m A")}
+              </p>
+            </div>
+          </div>
+          <div className="btn-group dropstart">
+            <div
+              type="button"
+              className="cursor-pointer dropdown-toggle "
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              data-bs-auto-close="true"
+            >
+              <MoreVertIcon />
+            </div>
+            <ul className="dropdown-menu bg-white p-8 radius-4">
+              <li
+                className="pb-8 cursor-pointer hover-text-primary-500 "
+                style={{ whiteSpace: "nowrap" }}
+                onClick={() => {
+                  copyToClipboard(data._id);
+                }}
+              >
+                Copy Link
+              </li>
+              <li>
+                <Divider />
+              </li>
+              {getUserInfo().id === data.user._id && (
+                <li className="py-8 cursor-pointer hover-text-primary-500">
+                  <ModalTrigger
+                    target={`deletePostedFeed${data._id}`}
+                    data={{
+                      id: data._id,
+                      title: "Delete post",
+                      message:
+                        "Are you sure you want to delete this post? Once deleted, it will be permanently lost.",
+                      cancelText: "Cancel",
+                      agreeText: "Delete",
                     }}
-                  />
-                }
-              />
-            </Form>
-          )}
-        </Formik>
+                  >
+                    Delete
+                  </ModalTrigger>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+        {data.isAssessment && <PostedAssessment data={data} />}
+        {!data.isAssessment && <Posted data={data} />}
+        <Divider lineColor="bg-secondary-500" parentClassName="my-24" />
+        <p
+          className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
+          onClick={() => {
+            showMoreComment("idPost");
+          }}
+        >
+          View previous comments
+        </p>
+        {comments.map((r, i) => {
+          return (
+            <PostCommentCard
+              key={`comment-${data._id}-${i}`}
+              comment={r}
+              onDeleteComment={handleDeletedComment}
+            />
+          );
+        })}
+        <div>
+          <Formik
+            initialValues={{ comment: "", feedId: data._id }}
+            onSubmit={handleCreateComment}
+          >
+            {(formik) => (
+              <Form>
+                <div className="form-input">
+                  <div className="input-area">
+                    <Field name="comment">
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                      }) => (
+                        <TextareaAutosize
+                          type="text"
+                          maxRows={6}
+                          className="w-p-100 input-control  max-h-160 font-normal  radius-8 px-8 pt-7"
+                          placeholder="Type your comment"
+                          style={{ resize: "none" }}
+                          {...field}
+                        />
+                      )}
+                    </Field>
+
+                    {isLoadingSubmitComment ? (
+                      <span className="mr-16 pt-8">
+                        <CircularProgress size="1rem" color="warning" />
+                      </span>
+                    ) : (
+                      <SendIcon
+                        className={`fs-20 mr-16 ${
+                          formik.getFieldProps("comment").value
+                            ? "text-primary-400"
+                            : "text-neutral-200"
+                        } cursor-pointer hover-text-primary-500`}
+                        onClick={() => {
+                          if (formik.getFieldProps("comment").value)
+                            formik.submitForm();
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
     </div>
   );
 };
 
 const Posted = (props) => {
+  const [textContent, setTextContent] = useState("");
+  const [isShowMore, setIsShowMore] = useState(false);
   const { data } = props;
+
+  const showText = (showMore = false) => {
+    if (data.content.data.length > 170) {
+      if (showMore) {
+        setIsShowMore(true);
+        setTextContent(data.content.data);
+      } else {
+        setTextContent(data.content.data.substring(0, 170) + "... ");
+        setIsShowMore(false);
+      }
+    } else {
+      setTextContent(data.content.data);
+    }
+  };
+
+  useEffect(() => {
+    showText();
+  }, [data]);
+
   return (
     <div className="mt-16 ">
       {data.content.image && (
@@ -126,11 +257,26 @@ const Posted = (props) => {
       <p className="font-sm xl-font-normal ">
         {data.content.data ? (
           <>
-            {data.content.data.length > 170
-              ? data.content.data.substring(0, 170) + "... "
-              : data.content.data}
-            {data.content.data.length > 170 && (
-              <span className="font-sm-bold cursor-pointer">Show more</span>
+            <span style={{ whiteSpace: "pre-line" }}>{textContent}</span>
+            {data.content.data.length > 170 && !isShowMore ? (
+              <span
+                className="font-sm-bold cursor-pointer"
+                onClick={() => showText(true)}
+              >
+                Show more
+              </span>
+            ) : (
+              ""
+            )}
+            {data.content.data.length > 170 && isShowMore ? (
+              <span
+                className="font-sm-bold cursor-pointer"
+                onClick={() => showText(false)}
+              >
+                &nbsp;Show less
+              </span>
+            ) : (
+              ""
             )}
           </>
         ) : (
