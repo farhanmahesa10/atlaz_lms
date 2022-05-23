@@ -6,9 +6,10 @@ import ModalAction from "../../Modals/ModalAction";
 import { ModalTrigger } from "../../../atoms";
 import { defConfig, DESTROY } from "../../../../config/RestAPI";
 import moment from "moment";
+import { useGlobalFunction } from "../../../../services";
 const PostCommentCard = (props) => {
   const { comment } = props;
-
+  const { getUserInfo } = useGlobalFunction();
   const handleDeleteComment = () => {
     props.onDeleteComment(comment._id);
     DESTROY(`/client/feed/comment/${comment._id}`, defConfig());
@@ -46,22 +47,23 @@ const PostCommentCard = (props) => {
               {moment(comment.createdAt).format(" H:m A")}
             </p>
             <FiberManualRecordIcon className="fs-5 text-neutral-100 mx-8" />
-
-            <ModalTrigger
-              target={`deleteCommentFeed-${comment._id}`}
-              data={{
-                id: comment._id,
-                title: "Delete post",
-                message:
-                  "Are you sure you want to delete this post? Once deleted, it will be permanently lost.",
-                cancelText: "Cancel",
-                agreeText: "Delete",
-              }}
-            >
-              <p className="font-xs-bold cursor-pointer hover-text-primary-500 ">
-                Delete
-              </p>
-            </ModalTrigger>
+            {getUserInfo().id === comment.user._id && (
+              <ModalTrigger
+                target={`deleteCommentFeed-${comment._id}`}
+                data={{
+                  id: comment._id,
+                  title: "Delete post",
+                  message:
+                    "Are you sure you want to delete this post? Once deleted, it will be permanently lost.",
+                  cancelText: "Cancel",
+                  agreeText: "Delete",
+                }}
+              >
+                <p className="font-xs-bold cursor-pointer hover-text-primary-500 ">
+                  Delete
+                </p>
+              </ModalTrigger>
+            )}
           </div>
         </div>
       </div>

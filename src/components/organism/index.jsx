@@ -29,6 +29,7 @@ import BeginAssessmentRecording from "./ClassRoomOrg/BeginAssessmentOrg/BeginAss
 import BeginAssessmentFIleUploader from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentFIleUploader";
 import ChangeFirstPasswordOrg from "./AuthOrg/ChangeFirstPasswordOrg";
 import PreviewContentOrg from "./ClassRoomOrg/PreviewContentOrg";
+import DashboardOrg from "./DashboardOrg";
 export {
   HomeOrg,
   ProductDetailOrg,
@@ -61,4 +62,5 @@ export {
   BeginAssessmentFIleUploader,
   ChangeFirstPasswordOrg,
   PreviewContentOrg,
+  DashboardOrg,
 };

@@ -44,6 +44,14 @@ import FooterContent from "./ContentPreview/FooterContent";
 import SubjectPostMemberLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostMemberLoading";
 import DashboardFeedLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/DashboardFeedLoading";
 import ModalAction from "./Modals/ModalAction";
+
+import ContinueClassStudentDashboard from "./DashboardMol/StudentDashboardMol/ContinueClassStudentDashboard";
+import GradeStudentDashboard from "./DashboardMol/StudentDashboardMol/GradeStudentDashboard";
+import MyBookListStudentDashboard from "./DashboardMol/StudentDashboardMol/MyBookListStudentDashboard";
+import OverviewStudentDashboard from "./DashboardMol/StudentDashboardMol/OverviewStudentDashboard";
+import UpcomingClassStudentDashboard from "./DashboardMol/StudentDashboardMol/UpcomingClassStudentDashboard";
+import WelcomeStudentDashboard from "./DashboardMol/StudentDashboardMol/WelcomeStudentDashboard";
+
 export {
   ProductXCard,
   ProductYCard,
@@ -90,4 +98,10 @@ export {
   SubjectPostMemberLoading,
   DashboardFeedLoading,
   ModalAction,
+  ContinueClassStudentDashboard,
+  GradeStudentDashboard,
+  MyBookListStudentDashboard,
+  OverviewStudentDashboard,
+  UpcomingClassStudentDashboard,
+  WelcomeStudentDashboard,
 };

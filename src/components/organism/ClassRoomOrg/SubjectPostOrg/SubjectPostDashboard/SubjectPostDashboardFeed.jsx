@@ -22,7 +22,7 @@ const SubjectPostDashboardFeed = (props) => {
         <>
           {data.map((res, i) => {
             return (
-              <div className={`mt-24 `} key={"feedsCards-" + i}>
+              <div className={`mt-24 `} key={"feedsCards-" + res._id}>
                 <PostFeedCard data={res} onDeleted={handleDeletedFeed} />
               </div>
             );

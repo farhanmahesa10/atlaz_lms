@@ -76,6 +76,37 @@ const MainHeader = (props) => {
     },
     {
       icon: <BookIcon />,
+      link: "/report",
+      label: "Report",
+      shouldLogin: 1,
+      activeTo: "report",
+      allowAccess: "teacher",
+      childs: [
+        {
+          link: "/report/type1",
+          label: "type 1",
+          // shouldLogin: false,
+          activeTo: "report",
+        },
+        {
+          link: "/report/type2",
+          label: "tupe 2",
+          // shouldLogin: false,
+          activeTo: "report",
+        },
+      ],
+    },
+    {
+      icon: <BookIcon />,
+      link: "/report/type1",
+      label: "Report",
+      shouldLogin: 1,
+      activeTo: "report",
+      allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,PUBLIC",
+     
+    },
+    {
+      icon: <BookIcon />,
       link: "/mybooks",
       label: "My Books",
       shouldLogin: 1,

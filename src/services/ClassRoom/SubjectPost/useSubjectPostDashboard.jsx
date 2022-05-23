@@ -88,7 +88,6 @@ const useSubjectPostDashboard = () => {
   };
 
   const handleDeletedFeed = (data) => {
-    console.log(data);
     const tempFeeds = [...feeds];
     const result = tempFeeds.filter((r) => r._id !== data.id);
     setFeeds(result);
