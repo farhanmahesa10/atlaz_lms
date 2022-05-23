@@ -13,6 +13,9 @@ const SubjectPostDashboard = () => {
     isLoadingFeed,
     isLoadingCreateFeed,
     handleDeletedFeed,
+    feedShowsCount,
+    addFeed,
+    totalFeedData,
   } = useSubjectPostDashboard();
 
   return (
@@ -30,6 +33,11 @@ const SubjectPostDashboard = () => {
               isLoading={isLoadingFeed}
               handleDeletedFeed={handleDeletedFeed}
               onSubmitCreatePost={handleCreatePost}
+              totalFeedData={totalFeedData}
+              feedShowsCount={feedShowsCount}
+              onLoadMore={() => {
+                addFeed(feedShowsCount + 1, feedShowsCount + 5, false, false);
+              }}
             />
           </div>
         </div>

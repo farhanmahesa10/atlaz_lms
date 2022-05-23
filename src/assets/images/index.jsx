@@ -13,6 +13,8 @@ import ClassRoomHero2 from "./classroom/hero-bg-2.png";
 import ClassRoomHero3 from "./classroom/hero-bg-3.png";
 import AssessmentBanner from "./classroom/assessmentBanner.png";
 import StartLearningBg from "./classroom/hero-bg-start-learning.png";
+import GradeBg from "./dashboard/grade.png";
+import Sports from "./dashboard/sports.png";
 export {
   blibli,
   shopee,
@@ -29,4 +31,6 @@ export {
   ClassRoomHero3,
   AssessmentBanner,
   StartLearningBg,
+  GradeBg,
+  Sports,
 };

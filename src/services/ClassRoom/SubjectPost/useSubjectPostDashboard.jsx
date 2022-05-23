@@ -24,7 +24,10 @@ const useSubjectPostDashboard = () => {
   });
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [isLoadingCreateFeed, setIsLoadingCreateFeed] = useState(false);
+
   const [feeds, setFeeds] = useState([]);
+  const [feedShowsCount, setFeedShowsCount] = useState(0);
+  const [totalFeedData, settotalFeedData] = useState(0);
 
   const feedData = useMemo(() => {
     return feeds;
@@ -40,9 +43,9 @@ const useSubjectPostDashboard = () => {
     };
   }, []);
 
-  const addFeed = (page, perPage, firstGet = true, toFirst = false) => {
+  const addFeed = (from, to, firstGet = true, toFirst = false) => {
     GET(
-      `/client/feed?classlistId=${params.classId}&subjectId=${params.subjectId}&page=${page}&perPage=${perPage}`,
+      `/client/feed?classlistId=${params.classId}&subjectId=${params.subjectId}&from=${from}&to=${to}`,
       defConfig()
     )
       .then((r) => {
@@ -56,10 +59,15 @@ const useSubjectPostDashboard = () => {
               tempFeeds.unshift(r);
             });
             setFeeds(tempFeeds);
+          } else {
+            r.data.map((r) => {
+              tempFeeds.push(r);
+            });
+            setFeeds(tempFeeds);
           }
         }
-
-        // setFeedData(result);
+        setFeedShowsCount(feedShowsCount + r.data.length);
+        settotalFeedData(r.total);
         setIsLoadingFeed(false);
       })
       .catch((err) => {
@@ -100,6 +108,9 @@ const useSubjectPostDashboard = () => {
     isLoadingFeed,
     isLoadingCreateFeed,
     handleDeletedFeed,
+    addFeed,
+    feedShowsCount,
+    totalFeedData,
   };
 };
 

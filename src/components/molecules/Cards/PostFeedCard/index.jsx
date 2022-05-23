@@ -15,7 +15,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useGlobalFunction } from "../../../../services/";
 import ModalAction from "../../Modals/ModalAction";
 import CircularProgress from "@mui/material/CircularProgress";
-import { defConfig, DESTROY, POST } from "../../../../config/RestAPI";
+import { defConfig, DESTROY, GET, POST } from "../../../../config/RestAPI";
 import { TextareaAutosize } from "@mui/material";
 const PostFeedCard = (props) => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
@@ -23,12 +23,22 @@ const PostFeedCard = (props) => {
   const { getUserInfo, copyToClipboard } = useGlobalFunction();
 
   const [commentProps, setCommentProps] = useState(props.data.comments);
-
   const data = useMemo(() => props.data, [props.data]);
 
   const comments = useMemo(() => commentProps, [commentProps]);
+  const [commentShowsCount, setCommentShowsCount] = useState(
+    props.data.comments.length
+  );
 
-  const showMoreComment = (data) => {};
+  const showMoreComment = (feedId) => {
+    console.log("ss", feedId);
+    GET(`/client/feed/comment?feedId=${feedId}&from=6&to=7`, defConfig()).then(
+      (r) => {
+        console.log(r);
+        // setCommentShowsCount(r.data.length);
+      }
+    );
+  };
 
   const handleDeleteFeed = (data) => {
     props.onDeleted(data);
@@ -40,8 +50,8 @@ const PostFeedCard = (props) => {
     POST("/client/feed/comment", values, defConfig())
       .then((r) => {
         let tempComment = [...comments];
-        let newComment = { ...r.data, user: getUserInfo() };
-        tempComment.push(newComment);
+
+        tempComment.push(r.data);
         setCommentProps(tempComment);
         resetForm();
         setIsLoadingSubmitComment(false);
@@ -151,7 +161,7 @@ const PostFeedCard = (props) => {
         <p
           className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
           onClick={() => {
-            showMoreComment("idPost");
+            showMoreComment(data._id);
           }}
         >
           View previous comments
@@ -225,16 +235,18 @@ const Posted = (props) => {
   const { data } = props;
 
   const showText = (showMore = false) => {
-    if (data.content.data.length > 170) {
-      if (showMore) {
-        setIsShowMore(true);
-        setTextContent(data.content.data);
+    if (data.content.data) {
+      if (data.content.data.length > 170) {
+        if (showMore) {
+          setIsShowMore(true);
+          setTextContent(data.content.data);
+        } else {
+          setTextContent(data.content.data.substring(0, 170) + "... ");
+          setIsShowMore(false);
+        }
       } else {
-        setTextContent(data.content.data.substring(0, 170) + "... ");
-        setIsShowMore(false);
+        setTextContent(data.content.data);
       }
-    } else {
-      setTextContent(data.content.data);
     }
   };
 

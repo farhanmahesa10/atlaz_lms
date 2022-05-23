@@ -4,7 +4,7 @@ import moment from "moment";
 const WelcomeStudentDashboard = () => {
   return (
     <div
-      className="w-full  border border-secondary-500 radius-14  h-164 md-h-148  d-flex flex-column  justify-content-between"
+      className="w-full  border border-secondary-500 radius-14  h-148  d-flex flex-column  justify-content-between"
       style={{ backgroundColor: "#FFF8E6" }}
     >
       <div className="py-16 xl-py-12 px-24 md-px-32">

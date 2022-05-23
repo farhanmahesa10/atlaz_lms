@@ -7,8 +7,14 @@ import {
 } from "../../../../molecules";
 
 const SubjectPostDashboardFeed = (props) => {
-  const { data, isLoading, isLoadingCreateFeed, handleDeletedFeed } = props;
-
+  const {
+    data,
+    isLoading,
+    isLoadingCreateFeed,
+    handleDeletedFeed,
+    feedShowsCount,
+    totalFeedData,
+  } = props;
   return (
     <>
       <ModalImage id="postImage" />
@@ -27,6 +33,16 @@ const SubjectPostDashboardFeed = (props) => {
               </div>
             );
           })}
+          {feedShowsCount < totalFeedData && (
+            <div className="mt-24 d-flex justify-content-center ">
+              <button
+                className="btn btn-secondary w-176"
+                onClick={() => props.onLoadMore()}
+              >
+                Load more
+              </button>
+            </div>
+          )}
         </>
       )}
     </>
