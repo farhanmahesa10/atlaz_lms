@@ -17,6 +17,7 @@ import ModalAction from "../../Modals/ModalAction";
 import CircularProgress from "@mui/material/CircularProgress";
 import { defConfig, DESTROY, GET, POST } from "../../../../config/RestAPI";
 import { TextareaAutosize } from "@mui/material";
+import { useParams } from "react-router-dom";
 const PostFeedCard = (props) => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [isLoadingSubmitComment, setIsLoadingSubmitComment] = useState(false);
@@ -24,25 +25,32 @@ const PostFeedCard = (props) => {
 
   const [commentProps, setCommentProps] = useState(props.data.comments);
   const data = useMemo(() => props.data, [props.data]);
-
-  const comments = useMemo(() => commentProps, [commentProps]);
+  const [totalCommentCount, setTotalCommentCount] = useState(
+    props.data.total_comment
+  );
   const [commentShowsCount, setCommentShowsCount] = useState(
     props.data.comments.length
   );
+  const params = useParams();
+  const comments = useMemo(() => commentProps, [commentProps]);
 
-  const showMoreComment = (feedId) => {
-    console.log("ss", feedId);
-    GET(`/client/feed/comment?feedId=${feedId}&from=6&to=7`, defConfig()).then(
-      (r) => {
-        console.log(r);
-        // setCommentShowsCount(r.data.length);
-      }
-    );
+  const showMoreComment = (feedId, from, to) => {
+    GET(
+      `/client/feed/comment?feedId=${feedId}&from=${from}&to=${to}`,
+      defConfig()
+    ).then((r) => {
+      const tempComment = [...commentProps];
+      const result = r.data.concat(tempComment);
+      setCommentProps(result);
+
+      setTotalCommentCount(r.total);
+      setCommentShowsCount(commentShowsCount + r.data.length);
+    });
   };
 
   const handleDeleteFeed = (data) => {
-    props.onDeleted(data);
     DESTROY(`/client/feed/${data.id}`, defConfig());
+    props.onDeleted(data);
   };
 
   const handleCreateComment = (values, { resetForm }) => {
@@ -127,7 +135,10 @@ const PostFeedCard = (props) => {
                 className="pb-8 cursor-pointer hover-text-primary-500 "
                 style={{ whiteSpace: "nowrap" }}
                 onClick={() => {
-                  copyToClipboard(data._id);
+                  copyToClipboard(
+                    process.env.REACT_APP_BASE_URL +
+                      `/classroom/post-detail/${params.classId}/${params.subjectId}/${data._id}`
+                  );
                 }}
               >
                 Copy Link
@@ -158,14 +169,19 @@ const PostFeedCard = (props) => {
         {data.isAssessment && <PostedAssessment data={data} />}
         {!data.isAssessment && <Posted data={data} />}
         <Divider lineColor="bg-secondary-500" parentClassName="my-24" />
-        <p
-          className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
-          onClick={() => {
-            showMoreComment(data._id);
-          }}
-        >
-          View previous comments
-        </p>
+        {totalCommentCount > comments.length && (
+          <p
+            className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
+            onClick={() => {
+              let from = commentShowsCount + 1;
+              let to = from + 4;
+              showMoreComment(data._id, from, to);
+            }}
+          >
+            View previous comments
+          </p>
+        )}
+
         {comments.map((r, i) => {
           return (
             <PostCommentCard

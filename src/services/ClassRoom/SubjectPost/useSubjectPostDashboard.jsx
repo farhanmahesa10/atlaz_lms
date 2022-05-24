@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { defConfig, GET, POST } from "../../../config/RestAPI";
 const useSubjectPostDashboard = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [sideBarData, setSideBarData] = useState({
     assessmentId: "",
     upcomingData: [
@@ -24,6 +25,7 @@ const useSubjectPostDashboard = () => {
   });
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [isLoadingCreateFeed, setIsLoadingCreateFeed] = useState(false);
+  const [isLoadingLoadMore, setIsLoadingLoadMore] = useState(false);
 
   const [feeds, setFeeds] = useState([]);
   const [feedShowsCount, setFeedShowsCount] = useState(0);
@@ -44,6 +46,7 @@ const useSubjectPostDashboard = () => {
   }, []);
 
   const addFeed = (from, to, firstGet = true, toFirst = false) => {
+    setIsLoadingLoadMore(true);
     GET(
       `/client/feed?classlistId=${params.classId}&subjectId=${params.subjectId}&from=${from}&to=${to}`,
       defConfig()
@@ -69,9 +72,11 @@ const useSubjectPostDashboard = () => {
         setFeedShowsCount(feedShowsCount + r.data.length);
         settotalFeedData(r.total);
         setIsLoadingFeed(false);
+        setIsLoadingLoadMore(false);
       })
       .catch((err) => {
         setIsLoadingFeed(false);
+        setIsLoadingLoadMore(false);
       });
   };
 
@@ -107,6 +112,7 @@ const useSubjectPostDashboard = () => {
     handleCreatePost,
     isLoadingFeed,
     isLoadingCreateFeed,
+    isLoadingLoadMore,
     handleDeletedFeed,
     addFeed,
     feedShowsCount,

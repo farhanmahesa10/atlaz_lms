@@ -36,14 +36,14 @@ const ActivateAssessmentOrg = () => {
       redirectOnNavClose="/classroom/assessment/1/2/dashboard"
       isNeedConfirm={true}
     >
-      {showPreview && <ActiveAssessmentPreview />}
+      {showPreview && <ActiveAssessmentPreview data={previewData} />}
       {!showPreview && (
         <div className="mx-48 mt-16">
           <Formik
             initialValues={initialValues}
             enableReinitialize={true}
             onSubmit={onSubmit}
-            // validationSchema={validationSchema}
+            validationSchema={validationSchema}
           >
             {(formik) => (
               <Form>
@@ -159,7 +159,6 @@ const ActivateAssessmentOrg = () => {
                     </div>
                   </div>
                 )}
-                <button type="submit">sadasd</button>
               </Form>
             )}
           </Formik>
@@ -446,7 +445,6 @@ const TimeForm = (props) => {
   }, [formik]);
 
   const handleDateChange = (val, isStart = true) => {
-    console.log(val.toISOString());
     let values = formik.values;
     let start = "";
     let end = "";

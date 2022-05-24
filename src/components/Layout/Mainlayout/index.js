@@ -4,6 +4,7 @@ import MainHeader from "./MainHeader";
 import MainHeaderNoMenu from "./MainHeaderNoMenu";
 import { Helmet } from "react-helmet";
 const MainLayout = (props) => {
+  const {navbarBg,...rest} = props;
   return (
     <>
       <Helmet>
@@ -12,7 +13,7 @@ const MainLayout = (props) => {
       <div className="d-flex flex-column gx-0" style={{ minHeight: "100vh" }}>
         {!props.navNoMenu ? (
           <MainHeader
-            navbarBg={props.navbarBg ? props.navbarBg : "bg-secondary-100"}
+            navbarBg={props.navbarBg}
           />
         ) : (
           <MainHeaderNoMenu
@@ -47,5 +48,7 @@ const MainLayout = (props) => {
     </>
   );
 };
-
+MainLayout.defaultProps = {
+  navbarBg : 'bg-white'
+}
 export default MainLayout;

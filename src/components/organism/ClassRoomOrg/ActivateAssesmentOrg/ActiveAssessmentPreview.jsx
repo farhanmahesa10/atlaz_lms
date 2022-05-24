@@ -6,6 +6,7 @@ import { Divider } from "../../../atoms";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 const ActiveAssessmentPreview = (props) => {
   const { data } = props;
+  console.log(data);
   return (
     <>
       <div
@@ -66,17 +67,28 @@ const ActiveAssessmentPreview = (props) => {
 
       <div className="mx-24 md-mx-48">
         <Divider height="h-1" parentClassName="mb-48 d-block d-md-none" />
-        <DateTimePreview />
+        <ManualPreview />
         <Divider height="h-1" parentClassName="mb-48 d-block d-md-none" />
-        <DateTimePreview />
+        <ManualPreview />
         <Divider height="h-1" parentClassName="mb-48 d-block d-md-none" />
-        <DateTimePreview />
+        <AutoPreview />
+        <Divider height="h-1" parentClassName="mb-48 d-block d-md-none" />
+        <AutoPreview />
+      </div>
+
+      <div className="text-end mx-24 md-mx-48">
+        <button className="btn btn-outline font-normal mr-24 w-full md-w-auto">
+          Back
+        </button>
+        <button className="btn btn-primary font-normal w-full md-w-auto mt-8 md-mt-0 px-32">
+          Activate & Publish
+        </button>
       </div>
     </>
   );
 };
 
-const DateTimePreview = () => {
+const ManualPreview = () => {
   return (
     <>
       <div className=" d-flex mb-48">
@@ -90,7 +102,55 @@ const DateTimePreview = () => {
               Reading Assessment
             </p>
           </div>
+          <div className="col-6 col-xl-2 mb-16">
+            <p className="font-xs xl-font-sm text-neutral-300">
+              Date Assessment
+            </p>
+            <p className="font-xs-bold md-font-sm-bold xl-font-bold mt-8">
+              11 Apr 2022
+            </p>
+          </div>
+          <div className="col-6 col-xl-2 mb-16">
+            <p className="font-xs xl-font-sm text-neutral-300">Start time</p>
+            <p className="font-xs-bold md-font-sm-bold xl-font-bold mt-8">
+              9:10 AM
+            </p>
+          </div>
+          <div className="col-6 col-xl-2 mb-16">
+            <p className="font-xs xl-font-sm text-neutral-300">End time</p>
+            <p className="font-xs-bold md-font-sm-bold xl-font-bold mt-8">
+              10:10 AM
+            </p>
+          </div>
           <div className="col-6 col-xl-3 mb-16">
+            <p className="font-xs xl-font-sm text-neutral-300">
+              Total duration
+            </p>
+            <p className="font-xs-bold md-font-sm-bold xl-font-bold mt-8">
+              0d 0hr 10min
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const AutoPreview = () => {
+  return (
+    <>
+      <div className=" d-flex mb-48">
+        <div className="h-44 d-none d-md-flex mr-24 bg-secondary-300 radius-p-100 w-44  align-items-center justify-content-center ml-16">
+          <WysiwygIcon className="fs-20" />
+        </div>
+        <div className="row w-full">
+          <div className="col-6 col-xl-3 mb-16">
+            <p className="font-xs xl-font-sm text-neutral-300">Subtopic</p>
+            <p className="font-xs-bold md-font-sm-bold xl-font-bold mt-8">
+              Reading Assessment
+            </p>
+          </div>
+          <div className="col-6 col-xl-2 mb-16">
             <p className="font-xs xl-font-sm text-neutral-300">
               Start date & time
             </p>
@@ -98,7 +158,7 @@ const DateTimePreview = () => {
               11 Apr 2022, 10:00 AM
             </p>
           </div>
-          <div className="col-6 col-xl-3 mb-16">
+          <div className="col-6 col-xl-2 mb-16">
             <p className="font-xs xl-font-sm text-neutral-300">
               End date & time
             </p>
@@ -106,6 +166,7 @@ const DateTimePreview = () => {
               11 Apr 2022, 10:10 AM
             </p>
           </div>
+          <div className="col-2 d-none d-xl-block"></div>
           <div className="col-6 col-xl-3 mb-16">
             <p className="font-xs xl-font-sm text-neutral-300">
               Total duration

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ClassRoomHero1 } from "../../../assets/images";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { defConfig, GET, PUT } from "../../../config/RestAPI";
 const useClassRoomHeroSubject = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,6 +9,7 @@ const useClassRoomHeroSubject = () => {
   const [bgData, setBgData] = useState([]);
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const banner = ClassRoomHero1;
   const breadcrumbsData = [
@@ -46,6 +47,7 @@ const useClassRoomHeroSubject = () => {
         setIsLoading(false);
       })
       .catch((err) => {
+        navigate("/page-not-found");
         setIsLoading(false);
       });
   };

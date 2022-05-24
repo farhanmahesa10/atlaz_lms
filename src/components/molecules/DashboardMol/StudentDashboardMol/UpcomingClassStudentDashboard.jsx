@@ -43,7 +43,7 @@ const UpcomingClassStudentDashboard = () => {
   return (
     <div className="w-full h-full border border-secondary-500 radius-14 d-flex flex-column justify-content-between">
       <div className="pt-16 px-24 ">
-        <h6 className="md-h5"> Upcoming Event</h6>
+        <h6 className="xl-h5"> Upcoming Event</h6>
       </div>
       <div className="h-full py-16 px-24 ">{callData()}</div>
     </div>

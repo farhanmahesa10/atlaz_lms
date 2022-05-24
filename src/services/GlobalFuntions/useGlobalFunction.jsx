@@ -67,6 +67,16 @@ const useGlobalFunction = () => {
       show: true,
       isRedirecterToast: false,
     });
+    setTimeout(() => {
+      dispatch({
+        type: "SET_FLASH_MESSAGE",
+        status: true,
+        title: "",
+        msg: "",
+        show: false,
+        isRedirecterToast: false,
+      });
+    }, 500);
   };
   return { getUserInfo, getRoleData, copyToClipboard };
 };

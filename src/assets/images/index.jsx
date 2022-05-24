@@ -15,6 +15,9 @@ import AssessmentBanner from "./classroom/assessmentBanner.png";
 import StartLearningBg from "./classroom/hero-bg-start-learning.png";
 import GradeBg from "./dashboard/grade.png";
 import Sports from "./dashboard/sports.png";
+import ContinueClass from "./dashboard/continue-class.png";
+import EditProfileBg from "./dashboard/edit-profile.png";
+import AtlazMediaBg from "./dashboard/atlaz-media.png";
 export {
   blibli,
   shopee,
@@ -33,4 +36,7 @@ export {
   StartLearningBg,
   GradeBg,
   Sports,
+  ContinueClass,
+  EditProfileBg,
+  AtlazMediaBg,
 };

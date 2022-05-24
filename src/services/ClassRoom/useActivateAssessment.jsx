@@ -29,7 +29,10 @@ const useActivateAssessment = () => {
     startListeningTime: "",
     endListeningTime: "",
 
+    startSpeaking: "",
     endSpeaking: "",
+
+    startWriting: "",
     endWriting: "",
 
     durationReading: "",
@@ -38,54 +41,30 @@ const useActivateAssessment = () => {
     durationWriting: "",
   };
 
+  const requireRulesForm = (checkName) => {
+    return Yup.string().when(checkName, {
+      is: (check) => check === true,
+      then: Yup.string().required(
+        "Field is required now the checkbox is checked"
+      ),
+    });
+  };
   const validationSchema = Yup.object().shape({
-    startReading: Yup.string().when("checkReading", {
-      is: (checkReading) => checkReading === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
-    startListening: Yup.string().when("checkListening", {
-      is: (checkListening) => checkListening === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
-    startSpeaking: Yup.string().when("checkSpeaking", {
-      is: (checkSpeaking) => checkSpeaking === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
-    startWriting: Yup.string().when("checkWriting", {
-      is: (checkWriting) => checkWriting === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
+    readingDate: requireRulesForm("checkReading"),
+    startReadingTime: requireRulesForm("checkReading"),
+    endReadingTime: requireRulesForm("checkReading"),
 
-    endReading: Yup.string().when("checkReading", {
-      is: (checkReading) => checkReading === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
-    endListening: Yup.string().when("checkListening", {
-      is: (checkListening) => checkListening === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
-    endSpeaking: Yup.string().when("checkSpeaking", {
-      is: (checkSpeaking) => checkSpeaking === true,
-      then: Yup.string().required(
-        "Field is required now the checkbox is checked"
-      ),
-    }),
-    endWriting: Yup.string().when("checkWriting", {
-      is: (checkWriting) => checkWriting === true,
-      then: Yup.string().required("I am required now the checkbox is checked"),
-    }),
+    listeningDate: requireRulesForm("checkListening"),
+    startListeningTime: requireRulesForm("checkListening"),
+    endListeningTime: requireRulesForm("checkListening"),
+
+    startSpeaking: Yup.string().required(
+      "Field is required now the checkbox is checked"
+    ),
+    endSpeaking: requireRulesForm("checkSpeaking"),
+
+    startWriting: requireRulesForm("checkWriting"),
+    endWriting: requireRulesForm("checkWriting"),
   });
 
   const [subjectData, setSubjectData] = useState([
@@ -215,6 +194,7 @@ const useActivateAssessment = () => {
   const onSubmit = (values) => {
     // setShowPreview(true);
     // setPreviewData(values);
+    console.log(values);
     console.log(JSON.stringify(values));
   };
 

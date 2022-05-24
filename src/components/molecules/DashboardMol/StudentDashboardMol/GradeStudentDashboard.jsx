@@ -6,7 +6,10 @@ const GradeStudentDashboard = () => {
       className="border border-secondary-500  radius-14 w-full"
       style={{
         backgroundImage: `url(${GradeBg})`,
-        backgroundSize: "100% 100%",
+        // backgroundSize: "100% 100%",
+        backgroundColor: "#EAF7FA",
+        backgroundPositionY: "bottom",
+        backgroundPositionX: "right",
         backgroundRepeat: "no-repeat",
       }}
     >

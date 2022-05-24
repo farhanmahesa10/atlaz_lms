@@ -53,6 +53,7 @@ import UpcomingClassStudentDashboard from "./DashboardMol/StudentDashboardMol/Up
 import WelcomeStudentDashboard from "./DashboardMol/StudentDashboardMol/WelcomeStudentDashboard";
 
 import BookListDashboardCard from "./Cards/BookListDashboardCard";
+import BoxDashboardCard from "./Cards/BoxDashboardCard";
 export {
   ProductXCard,
   ProductYCard,
@@ -106,4 +107,5 @@ export {
   UpcomingClassStudentDashboard,
   WelcomeStudentDashboard,
   BookListDashboardCard,
+  BoxDashboardCard,
 };

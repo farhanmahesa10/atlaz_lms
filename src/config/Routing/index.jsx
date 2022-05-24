@@ -39,6 +39,15 @@ const Routing = () => {
   return (
     <Routes>
       <Route
+        path="/*"
+        exac
+        element={
+          // <Authenticate> contoh penggunaan middleware harus login
+          <div>Not Found</div>
+          // </Authenticate>
+        }
+      />
+      <Route
         path="/"
         exac
         element={
@@ -154,7 +163,7 @@ const Routing = () => {
         element={<SubjectPost />}
       />
       <Route
-        path="/classroom/post-detail/:classId/:subjectId/:section/:postId"
+        path="/classroom/post-detail/:classId/:subjectId/:postId"
         element={<SubjectPostDetail />}
       />
       <Route
@@ -182,7 +191,6 @@ const Routing = () => {
 
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
-      {/* Space route fajrul */}
       <Route
         path="/classroom/preview-content/:id"
         element={
@@ -191,6 +199,12 @@ const Routing = () => {
           </Authenticate>
         }
       />
+
+      {/* nextSpace route fajrul */}
+
+      {/* codding disini */}
+
+      {/* </nextSpace route fajrul */}
     </Routes>
   );
 };

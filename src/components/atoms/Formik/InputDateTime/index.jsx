@@ -71,7 +71,7 @@ const InputDateTime = (props) => {
         </div>
       </div>
       {meta.touched && meta.error && (
-        <span className="text-danger-500">{meta.error}</span>
+        <span className="text-danger-500 font-sm">{meta.error}</span>
       )}
     </>
   );

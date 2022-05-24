@@ -14,6 +14,7 @@ const SubjectPostDashboardFeed = (props) => {
     handleDeletedFeed,
     feedShowsCount,
     totalFeedData,
+    isLoadingLoadMore,
   } = props;
   return (
     <>
@@ -37,9 +38,13 @@ const SubjectPostDashboardFeed = (props) => {
             <div className="mt-24 d-flex justify-content-center ">
               <button
                 className="btn btn-secondary w-176"
-                onClick={() => props.onLoadMore()}
+                onClick={() => {
+                  if (!isLoadingLoadMore) {
+                    props.onLoadMore();
+                  }
+                }}
               >
-                Load more
+                {isLoadingLoadMore ? "Loading...." : "Load More"}
               </button>
             </div>
           )}
