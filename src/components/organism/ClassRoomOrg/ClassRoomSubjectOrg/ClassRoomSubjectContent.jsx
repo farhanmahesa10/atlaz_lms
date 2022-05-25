@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Can } from "../../../../permission";
+// import { Can } from "../../../../permission";
 import { useClaassRoomContentSubject } from "../../../../services";
 import { ModalTrigger } from "../../../atoms";
 import {
@@ -20,19 +20,19 @@ const ClassRoomSubjectContent = () => {
         <>
           <AddSubjectModal id="addSubjectModal" onSubmit={handleAddSubject} />
           <div className="px-24 md-px-48 py-24">
-            <Can allowAccess="TEACHER">
-              <ModalTrigger
-                target="addSubjectModal"
-                data={{
-                  subjectList: subjectListModal,
-                  checkedSubject: subjects,
-                }}
-              >
-                <button className="btn btn-primary font-normal">
-                  Add New Subject
-                </button>
-              </ModalTrigger>
-            </Can>
+            {/* <Can allowAccess="TEACHER"> */}
+            <ModalTrigger
+              target="addSubjectModal"
+              data={{
+                subjectList: subjectListModal,
+                checkedSubject: subjects,
+              }}
+            >
+              <button className="btn btn-primary font-normal">
+                Add New Subject
+              </button>
+            </ModalTrigger>
+            {/* </Can> */}
             <div className="row mt-24">
               {subjects.map((r, i) => {
                 return (
