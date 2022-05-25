@@ -32,6 +32,7 @@ const InputDate = (props) => {
         <div className={`input-area ${props.label && "mt-4"}`}>
           <ReactDatePicker
             selected={startDate}
+            autoComplete="off"
             timeFormat="HH:mm"
             timeIntervals={15}
             timeCaption="time"

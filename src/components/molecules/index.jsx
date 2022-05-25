@@ -52,8 +52,16 @@ import OverviewStudentDashboard from "./DashboardMol/StudentDashboardMol/Overvie
 import UpcomingClassStudentDashboard from "./DashboardMol/StudentDashboardMol/UpcomingClassStudentDashboard";
 import WelcomeStudentDashboard from "./DashboardMol/StudentDashboardMol/WelcomeStudentDashboard";
 
+import ReedemPublicDashboard from "./DashboardMol/PublicDashboardMol/ReedemPublicDashboard";
+import BookListStudentDashboard from "./DashboardMol/PublicDashboardMol/BookListStudentDashboard";
+import EditProfileStudentDashboard from "./DashboardMol/PublicDashboardMol/EditProfileStudentDashboard";
+
 import BookListDashboardCard from "./Cards/BookListDashboardCard";
 import BoxDashboardCard from "./Cards/BoxDashboardCard";
+
+import ActiveAssessmentFormLoading from "./SkeletonLoading/ClassroomLoading/ActiveAssessmentLoading.jsx/ActiveAssessmentFormLoading";
+
+import ActiveAssessmentForm from "./ActiveAssessmentMol/ActiveAssessmentForm";
 export {
   ProductXCard,
   ProductYCard,
@@ -108,4 +116,9 @@ export {
   WelcomeStudentDashboard,
   BookListDashboardCard,
   BoxDashboardCard,
+  ActiveAssessmentFormLoading,
+  ReedemPublicDashboard,
+  BookListStudentDashboard,
+  EditProfileStudentDashboard,
+  ActiveAssessmentForm,
 };

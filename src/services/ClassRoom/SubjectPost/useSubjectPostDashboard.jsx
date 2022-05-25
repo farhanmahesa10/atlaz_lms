@@ -117,6 +117,7 @@ const useSubjectPostDashboard = () => {
     addFeed,
     feedShowsCount,
     totalFeedData,
+    params,
   };
 };
 

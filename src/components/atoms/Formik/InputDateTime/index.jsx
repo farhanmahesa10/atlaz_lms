@@ -33,6 +33,7 @@ const InputDateTime = (props) => {
           <ReactDatePicker
             selected={startDate}
             showTimeSelect
+            autoComplete="off"
             timeFormat="HH:mm"
             timeIntervals={15}
             timeCaption="time"

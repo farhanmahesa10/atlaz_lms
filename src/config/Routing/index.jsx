@@ -167,7 +167,7 @@ const Routing = () => {
         element={<SubjectPostDetail />}
       />
       <Route
-        path="/classroom/set-plan/:classId/:subjectId/:postId"
+        path="/classroom/set-plan/:classId/:subjectId"
         element={<ActivateAssessment />}
       />
       <Route

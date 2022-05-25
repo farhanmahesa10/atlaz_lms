@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { UpcomingCard } from "../../../../molecules";
 const SubjectPostDashboardSidebar = (props) => {
-  const { data } = props;
+  const { data, params } = props;
 
   return (
     <>
@@ -12,7 +12,7 @@ const SubjectPostDashboardSidebar = (props) => {
       >
         <p className="h6 ">Activate Assessment</p>
         <Link
-          to="/classroom/set-plan/1/2/1"
+          to={`/classroom/set-plan/${params.classId}/${params.subjectId}`}
           className="btn btn-secondary text-center font-sm md-w-p-100 xl-w-auto md-mt-16 xl-mt-0"
         >
           Set Plan

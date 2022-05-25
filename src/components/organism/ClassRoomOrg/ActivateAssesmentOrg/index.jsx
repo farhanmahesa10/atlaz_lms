@@ -12,6 +12,11 @@ import ActiveAssessmentPreview from "./ActiveAssessmentPreview";
 import moment from "moment";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import {
+  ActiveAssessmentForm,
+  ActiveAssessmentFormLoading,
+} from "../../../molecules";
+import Skeleton from "react-loading-skeleton";
 const ActivateAssessmentOrg = () => {
   const {
     initialValues,
@@ -20,12 +25,15 @@ const ActivateAssessmentOrg = () => {
     setSelectAllStatus,
     showAssessmentList,
     setShowAssessmentList,
-    formDateTime,
     changeCheked,
     onSubmit,
     showPreview,
     previewData,
     validationSchema,
+    firstLoading,
+    subtopicData,
+    isSubtopicLoading,
+    setShowPreview,
   } = useActivateAssessment();
 
   return (
@@ -36,7 +44,12 @@ const ActivateAssessmentOrg = () => {
       redirectOnNavClose="/classroom/assessment/1/2/dashboard"
       isNeedConfirm={true}
     >
-      {showPreview && <ActiveAssessmentPreview data={previewData} />}
+      {showPreview && (
+        <ActiveAssessmentPreview
+          data={previewData}
+          setShowPreview={setShowPreview}
+        />
+      )}
       {!showPreview && (
         <div className="mx-48 mt-16">
           <Formik
@@ -50,29 +63,34 @@ const ActivateAssessmentOrg = () => {
                 <h4>Activate Assessment</h4>
                 <Divider lineColor={"bg-primary-500 w-32 h-2"} />
                 <div className="row mt-48">
-                  {createForm.map((r, i) => {
-                    return (
-                      <React.Fragment key={i}>
-                        <AssessmentForm
-                          formik={formik}
-                          title={r.title}
-                          desc={r.desc}
-                          name={r.name}
-                          isMulti={r.isMulti}
-                          placeholder={r.placeholder}
-                          onShowAssessmentList={setShowAssessmentList}
-                          options={r.data}
-                          defaultValue={r.defaultValue}
-                          inputType={r.inputType}
-                          hideSelectedOptions={r.hideSelectedOptions}
-                          closeMenuOnSelect={r.closeMenuOnSelect}
-                          isDisabled={r.isDisabled}
-                        />
-                      </React.Fragment>
-                    );
-                  })}
+                  {firstLoading ? (
+                    <ActiveAssessmentFormLoading />
+                  ) : (
+                    createForm.map((r, i) => {
+                      return (
+                        <React.Fragment key={i}>
+                          <ActiveAssessmentForm
+                            formik={formik}
+                            title={r.title}
+                            desc={r.desc}
+                            name={r.name}
+                            isMulti={r.isMulti}
+                            placeholder={r.placeholder}
+                            onShowAssessmentList={setShowAssessmentList}
+                            options={r.data}
+                            defaultValue={r.defaultValue}
+                            inputType={r.inputType}
+                            hideSelectedOptions={r.hideSelectedOptions}
+                            closeMenuOnSelect={r.closeMenuOnSelect}
+                            isDisabled={r.isDisabled}
+                            onInputChange={r.onInputChange}
+                            loadingState={r.loadingState}
+                          />
+                        </React.Fragment>
+                      );
+                    })
+                  )}
                 </div>
-
                 {showAssessmentList && (
                   <div>
                     <div className="d-flex align-items-center">
@@ -108,36 +126,38 @@ const ActivateAssessmentOrg = () => {
                     <Divider parentClassName="my-32" />
 
                     <div className="row">
-                      {formDateTime.map((res, ind) => {
-                        if (!res.isNoEndDate) {
+                      {subtopicData.map((res, ind) => {
+                        if (res.type.toLowerCase() === "manual grading") {
                           return (
                             <DateTimeForm
-                              checkBoxName={res.checkBoxName}
-                              startDateName={res.startDateName}
-                              endDateName={res.endDateName}
-                              durationName={res.durationName}
-                              title={res.title}
+                              checkBoxName={`subtopic[${ind}].checkbox`}
+                              startDateName={`subtopic[${ind}].startDateTime`}
+                              endDateName={`subtopic[${ind}].endDateTime`}
+                              durationName={`subtopic[${ind}].duration`}
+                              title={res.name}
                               formik={formik}
+                              subtopicData={subtopicData}
                               onChangeSelectChecked={(val) =>
                                 setSelectAllStatus(val)
                               }
-                              key={`b-${ind}`}
+                              key={`b-${res._id}`}
                             />
                           );
                         } else {
                           return (
                             <TimeForm
-                              checkBoxName={res.checkBoxName}
-                              dateName={res.dateName}
-                              startTimeName={res.startTimeName}
-                              endTimeName={res.endTimeName}
-                              durationName={res.durationName}
-                              title={res.title}
+                              checkBoxName={`subtopic[${ind}].checkbox`}
+                              dateName={`subtopic[${ind}].assessmentDate`}
+                              startTimeName={`subtopic[${ind}].startTime`}
+                              endTimeName={`subtopic[${ind}].endTime`}
+                              durationName={`subtopic[${ind}].duration`}
+                              title={res.name}
                               formik={formik}
+                              subtopicData={subtopicData}
                               onChangeSelectChecked={(val) =>
                                 setSelectAllStatus(val)
                               }
-                              key={`b-${ind}`}
+                              key={`b-${res._id}`}
                             />
                           );
                         }
@@ -168,68 +188,6 @@ const ActivateAssessmentOrg = () => {
   );
 };
 
-const AssessmentForm = (props) => {
-  const {
-    formik,
-    title,
-    desc,
-    name,
-    options,
-    placeholder,
-    isMulti,
-    inputType,
-    hideSelectedOptions,
-    closeMenuOnSelect,
-    defaultValue,
-    isDisabled,
-  } = props;
-
-  const [hours, setHours] = useState("");
-  const [minutes, setMinutes] = useState("");
-
-  useEffect(() => {
-    let { subject, lesson, assessment, assessmentClass } = formik.values;
-    if (
-      subject !== "" &&
-      lesson !== "" &&
-      assessment !== "" &&
-      assessmentClass.length !== 0
-    ) {
-      props.onShowAssessmentList(true);
-    } else {
-      props.onShowAssessmentList(false);
-    }
-  }, [formik]);
-
-  return (
-    <div className="col-12  mb-24 md-mb-40">
-      <div className="row">
-        <div className="col-12 col-md-4 mb-8 md-mb-0">
-          <p className="font-sm-bold">{title}</p>
-          <p className="font-xs">{desc}</p>
-        </div>
-        <div className="col-12 col-md-8 ">
-          <div>
-            <FormikControl
-              control="select"
-              name={name}
-              options={props.options && props.options}
-              formik={formik}
-              placeholder={placeholder}
-              isMulti={isMulti}
-              defaultValue={defaultValue}
-              inputType={inputType}
-              isDisabled={isDisabled}
-              hideSelectedOptions={hideSelectedOptions}
-              closeMenuOnSelect={closeMenuOnSelect}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const DateTimeForm = (props) => {
   const [startDef, setStartDef] = useState("");
   const [endDef, setEndDef] = useState("");
@@ -243,31 +201,22 @@ const DateTimeForm = (props) => {
     endDateName,
     durationName,
     title,
+    subtopicData,
   } = props;
 
   //checkbox control
   useEffect(() => {
     let formikValues = formik.values;
-    if (
-      formikValues.checkReading === true &&
-      formikValues.checkListening === true &&
-      formikValues.checkSpeaking === true &&
-      formikValues.checkWriting === true
-    ) {
+    let tempCheckStatus = true;
+
+    let trueCase = formikValues.subtopic.filter((r) => r.checkbox === true);
+    let falseCase = formikValues.subtopic.filter((r) => r.checkbox === false);
+
+    if (trueCase.length === subtopicData.length) {
       props.onChangeSelectChecked("checked");
-    } else if (
-      formikValues.checkReading === true ||
-      formikValues.checkListening === true ||
-      formikValues.checkSpeaking === true ||
-      formikValues.checkWriting === true
-    ) {
+    } else if (trueCase.length > 0 || falseCase > 0) {
       props.onChangeSelectChecked("min");
-    } else if (
-      formikValues.checkReading === false &&
-      formikValues.checkListening === false &&
-      formikValues.checkSpeaking === false &&
-      formikValues.checkWriting === false
-    ) {
+    } else {
       props.onChangeSelectChecked("none");
     }
     handleMinTime();

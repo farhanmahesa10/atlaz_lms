@@ -18,6 +18,8 @@ import Sports from "./dashboard/sports.png";
 import ContinueClass from "./dashboard/continue-class.png";
 import EditProfileBg from "./dashboard/edit-profile.png";
 import AtlazMediaBg from "./dashboard/atlaz-media.png";
+import AbcStartLearning from "./dashboard/abc-start-learning.png";
+import RedeemNewBook from "./dashboard/redeem-new-book.png";
 export {
   blibli,
   shopee,
@@ -39,4 +41,6 @@ export {
   ContinueClass,
   EditProfileBg,
   AtlazMediaBg,
+  AbcStartLearning,
+  RedeemNewBook,
 };
