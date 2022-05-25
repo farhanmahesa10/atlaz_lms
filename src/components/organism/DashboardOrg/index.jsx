@@ -1,5 +1,5 @@
 import React from "react";
-import { Can } from "../../../permission";
+// import { Can } from "../../../permission";
 import PublicDashboard from "./PublicDashboard";
 import SchoolAdminDashboard from "./SchoolAdminDashboard";
 import StudentDashboard from "./StudentDashboard";
@@ -7,7 +7,7 @@ import TeacherDashboard from "./TeacherDashboard";
 const DashboardOrg = () => {
   return (
     <>
-      <Can allowAccess="public">
+      {/* <Can allowAccess="public">
         <PublicDashboard />
       </Can>
       <Can allowAccess="schoolAdmin">
@@ -18,7 +18,7 @@ const DashboardOrg = () => {
       </Can>
       <Can allowAccess="teacher">
         <TeacherDashboard />
-      </Can>
+      </Can> */}
     </>
   );
 };
