@@ -1,25 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Can } from "../../../../../permission";
 import { UpcomingCard } from "../../../../molecules";
 const SubjectPostDashboardSidebar = (props) => {
   const { data, params } = props;
 
   return (
     <>
-      <div
-        className="px-16 md-px-32 xl-px-16 py-8 d-flex align-items-center  radius-8 border border-secondary-500 justify-content-between flex-md-column flex-xl-row "
-        style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
-      >
-        <p className="h6 ">Activate Assessment</p>
-        <Link
-          to={`/classroom/set-plan/${params.classId}/${params.subjectId}`}
-          className="btn btn-secondary text-center font-sm md-w-p-100 xl-w-auto md-mt-16 xl-mt-0"
+      <Can allowAccess="SCHOOLADMIN,teacher">
+        <div
+          className="px-16 mb-24 md-px-32 xl-px-16 py-8 d-flex align-items-center  radius-8 border border-secondary-500 justify-content-between flex-md-column flex-xl-row "
+          style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
         >
-          Set Plan
-        </Link>
-      </div>
+          <p className="h6 ">Activate Assessment</p>
+          <Link
+            to={`/classroom/set-plan/${params.classId}/${params.subjectId}`}
+            className="btn btn-secondary text-center font-sm md-w-p-100 xl-w-auto md-mt-16 xl-mt-0"
+          >
+            Set Plan
+          </Link>
+        </div>
+      </Can>
       <div
-        className="mt-24 px-16 pt-8 pb-8 md-pb-16 radius-8 border border-secondary-500 "
+        className=" px-16 pt-8 pb-8 md-pb-16 radius-8 border border-secondary-500 "
         style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
       >
         <div className="d-flex justify-content-between">

@@ -8,7 +8,7 @@ import { OutlineList } from "../../../molecules";
 import { useLessonPreview } from "../../../../services";
 
 const LessonPreviewOrg = () => {
-  const { dataOutline, breadcrumbsData } = useLessonPreview();
+  const { breadcrumbsData, params } = useLessonPreview();
   return (
     <MainLayout navbarBg="bg-white">
       <div className="mt-16 d-none d-xl-block mx-48">
@@ -57,7 +57,11 @@ const LessonPreviewOrg = () => {
           </div>
         </div>
       </div>
-      <OutlineList data={dataOutline} />
+      <OutlineList
+        classId={params.classId}
+        subjectId={params.subjectId}
+        lessonId={params.lessonId}
+      />
     </MainLayout>
   );
 };

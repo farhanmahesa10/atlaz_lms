@@ -67,18 +67,19 @@ const useGlobalFunction = () => {
       show: true,
       isRedirecterToast: false,
     });
-    setTimeout(() => {
-      dispatch({
-        type: "SET_FLASH_MESSAGE",
-        status: true,
-        title: "",
-        msg: "",
-        show: false,
-        isRedirecterToast: false,
-      });
-    }, 500);
   };
-  return { getUserInfo, getRoleData, copyToClipboard };
+
+  const setFlashMessage = (title, message) => {
+    dispatch({
+      type: "SET_FLASH_MESSAGE",
+      status: true,
+      title: title,
+      msg: message,
+      show: true,
+      isRedirecterToast: true,
+    });
+  };
+  return { getUserInfo, getRoleData, copyToClipboard, setFlashMessage };
 };
 
 export default useGlobalFunction;

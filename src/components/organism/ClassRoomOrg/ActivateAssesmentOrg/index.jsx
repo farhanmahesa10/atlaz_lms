@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { Divider, FormikControl } from "../../../atoms";
+import { Divider, FormikControl, GlobalToast } from "../../../atoms";
 import MainLayout from "../../../Layout/Mainlayout";
 import { useActivateAssessment } from "../../../../services";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -10,13 +10,12 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import _ from "lodash";
 import ActiveAssessmentPreview from "./ActiveAssessmentPreview";
 import moment from "moment";
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
+import { ActiveAssessmentSubtopicLoading } from "../../../molecules";
 import {
   ActiveAssessmentForm,
   ActiveAssessmentFormLoading,
 } from "../../../molecules";
-import Skeleton from "react-loading-skeleton";
+import { connect } from "react-redux";
 const ActivateAssessmentOrg = () => {
   const {
     initialValues,
@@ -34,6 +33,8 @@ const ActivateAssessmentOrg = () => {
     subtopicData,
     isSubtopicLoading,
     setShowPreview,
+    publishData,
+    params,
   } = useActivateAssessment();
 
   return (
@@ -41,17 +42,22 @@ const ActivateAssessmentOrg = () => {
       maxWidth="1440px"
       navbarBg="bg-white"
       navNoMenu
-      redirectOnNavClose="/classroom/assessment/1/2/dashboard"
+      redirectOnNavClose={`/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`}
       isNeedConfirm={true}
     >
-      {showPreview && (
-        <ActiveAssessmentPreview
-          data={previewData}
-          setShowPreview={setShowPreview}
-        />
-      )}
-      {!showPreview && (
-        <div className="mx-48 mt-16">
+      <>
+        <div className={`${!showPreview ? "d-none" : ""}`}>
+          <ActiveAssessmentPreview
+            data={previewData.data}
+            subjectName={previewData.subjectName}
+            lessonName={previewData.lessonName}
+            topicName={previewData.topicName}
+            setShowPreview={setShowPreview}
+            onSubmit={publishData}
+          />
+        </div>
+
+        <div className={`mx-48 mt-16 ${showPreview ? "d-none" : ""}`}>
           <Formik
             initialValues={initialValues}
             enableReinitialize={true}
@@ -126,43 +132,48 @@ const ActivateAssessmentOrg = () => {
                     <Divider parentClassName="my-32" />
 
                     <div className="row">
-                      {subtopicData.map((res, ind) => {
-                        if (res.type.toLowerCase() === "manual grading") {
-                          return (
-                            <DateTimeForm
-                              checkBoxName={`subtopic[${ind}].checkbox`}
-                              startDateName={`subtopic[${ind}].startDateTime`}
-                              endDateName={`subtopic[${ind}].endDateTime`}
-                              durationName={`subtopic[${ind}].duration`}
-                              title={res.name}
-                              formik={formik}
-                              subtopicData={subtopicData}
-                              onChangeSelectChecked={(val) =>
-                                setSelectAllStatus(val)
-                              }
-                              key={`b-${res._id}`}
-                            />
-                          );
-                        } else {
-                          return (
-                            <TimeForm
-                              checkBoxName={`subtopic[${ind}].checkbox`}
-                              dateName={`subtopic[${ind}].assessmentDate`}
-                              startTimeName={`subtopic[${ind}].startTime`}
-                              endTimeName={`subtopic[${ind}].endTime`}
-                              durationName={`subtopic[${ind}].duration`}
-                              title={res.name}
-                              formik={formik}
-                              subtopicData={subtopicData}
-                              onChangeSelectChecked={(val) =>
-                                setSelectAllStatus(val)
-                              }
-                              key={`b-${res._id}`}
-                            />
-                          );
-                        }
-                      })}
-                      <div className="col-12 text-end">
+                      {isSubtopicLoading ? (
+                        <ActiveAssessmentSubtopicLoading />
+                      ) : (
+                        subtopicData.map((res, ind) => {
+                          if (res.type.toLowerCase() === "manual grading") {
+                            return (
+                              <DateTimeForm
+                                checkBoxName={`subtopic[${ind}].checkbox`}
+                                startDateName={`subtopic[${ind}].startDateTime`}
+                                endDateName={`subtopic[${ind}].endDateTime`}
+                                durationName={`subtopic[${ind}].duration`}
+                                title={res.name}
+                                formik={formik}
+                                subtopicData={subtopicData}
+                                onChangeSelectChecked={(val) =>
+                                  setSelectAllStatus(val)
+                                }
+                                key={`b-${res._id}`}
+                              />
+                            );
+                          } else {
+                            return (
+                              <TimeForm
+                                checkBoxName={`subtopic[${ind}].checkbox`}
+                                dateName={`subtopic[${ind}].assessmentDate`}
+                                startTimeName={`subtopic[${ind}].startTime`}
+                                endTimeName={`subtopic[${ind}].endTime`}
+                                durationName={`subtopic[${ind}].duration`}
+                                title={res.name}
+                                formik={formik}
+                                subtopicData={subtopicData}
+                                onChangeSelectChecked={(val) =>
+                                  setSelectAllStatus(val)
+                                }
+                                key={`b-${res._id}`}
+                              />
+                            );
+                          }
+                        })
+                      )}
+
+                      <div className="col-12 text-end mt-16">
                         <button
                           type="submit"
                           className="btn-outline font-normal mr-24"
@@ -183,7 +194,7 @@ const ActivateAssessmentOrg = () => {
             )}
           </Formik>
         </div>
-      )}
+      </>
     </MainLayout>
   );
 };
@@ -505,4 +516,4 @@ const TimeForm = (props) => {
     </div>
   );
 };
-export default ActivateAssessmentOrg;
+export default connect()(ActivateAssessmentOrg);

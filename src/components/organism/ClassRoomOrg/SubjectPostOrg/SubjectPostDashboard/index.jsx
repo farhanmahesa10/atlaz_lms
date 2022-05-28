@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSubjectPostDashboard } from "../../../../../services";
 
 import SubjectPostDashboardFeed from "./SubjectPostDashboardFeed";
 import SubjectPostDashboardSidebar from "./SubjectPostDashboardSidebar";
 import { GlobalToast } from "../../../../atoms";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 const SubjectPostDashboard = () => {
   const {
     sideBarData,

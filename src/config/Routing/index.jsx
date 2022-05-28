@@ -168,17 +168,24 @@ const Routing = () => {
       />
       <Route
         path="/classroom/set-plan/:classId/:subjectId"
-        element={<ActivateAssessment />}
+        element={
+          <CheckRole allowAccess="SCHOOLADMIN,teacher">
+            <ActivateAssessment />
+          </CheckRole>
+        }
       />
       <Route
         path="/classroom/timeline/:classId/:subjectId"
         element={<TimelineShow />}
       />
       <Route
-        path="/classroom/start-learning-view/:subjectId"
+        path="/classroom/start-learning-view/:classId/:subjectId"
         element={<LearningSubjectView />}
       />
-      <Route path="/classroom/lesson-preview/:id" element={<LessonPreview />} />
+      <Route
+        path="/classroom/lesson-preview/:classId/:subjectId/:lessonId"
+        element={<LessonPreview />}
+      />
       <Route
         path="/classroom/welcome-assessment/:id"
         element={<WelcomeAssessment />}

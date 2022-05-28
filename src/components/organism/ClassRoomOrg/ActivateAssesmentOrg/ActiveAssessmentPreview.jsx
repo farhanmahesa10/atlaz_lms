@@ -6,7 +6,7 @@ import { Divider } from "../../../atoms";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import moment from "moment";
 const ActiveAssessmentPreview = (props) => {
-  const { data, setShowPreview } = props;
+  const { data, subjectName, lessonName, topicName, setShowPreview } = props;
   if (data) {
     return (
       <>
@@ -18,7 +18,7 @@ const ActiveAssessmentPreview = (props) => {
         >
           <h5>Confirmation Assessment</h5>
           <p className="mt-8">
-            Please confirm this section to activate & publush the assessment to
+            Please confirm this section to activate & publish the assessment to
             your student, The submited data will appears in feed list.
           </p>
         </div>
@@ -31,17 +31,17 @@ const ActiveAssessmentPreview = (props) => {
             <div className="row w-full ">
               <div className="col-12 col-xl-4 font-xs md-font-sm xl-font-normal pl-32 border-end border-secondary-500 d-flex align-items-center my-12">
                 <MenuBookIcon className="fs-16 md-fs-18 xl-fs-20" />{" "}
-                <span className="ml-16">{data.subject}</span>
+                <span className="ml-16">{subjectName}</span>
               </div>
               <Divider height="h-1" parentClassName="d-xl-none" />
               <div className="col-12 col-xl-4 font-xs md-font-sm xl-font-normal pl-32 border-end border-secondary-500  d-flex align-items-center my-12">
                 <LocalLibraryIcon className="fs-16 md-fs-18 xl-fs-20" />{" "}
-                <span className="ml-16">{data.lesson}</span>
+                <span className="ml-16">{lessonName}</span>
               </div>
               <Divider height="h-1" parentClassName="d-xl-none" />
               <div className="col-12 col-xl-4 font-xs md-font-sm xl-font-normal pl-32  d-flex align-items-center my-12">
                 <LabelImportantIcon className="fs-16 md-fs-18 xl-fs-20" />{" "}
-                <span className="ml-16">{data.topic}</span>
+                <span className="ml-16">{topicName}</span>
               </div>
             </div>
           </div>
@@ -93,7 +93,12 @@ const ActiveAssessmentPreview = (props) => {
           >
             Back
           </button>
-          <button className="btn btn-primary font-normal w-full md-w-auto mt-8 md-mt-0 px-32">
+          <button
+            className="btn btn-primary font-normal w-full md-w-auto mt-8 md-mt-0 px-32"
+            onClick={() => {
+              props.onSubmit(data);
+            }}
+          >
             Activate & Publish
           </button>
         </div>

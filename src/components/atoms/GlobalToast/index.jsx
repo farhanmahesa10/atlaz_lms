@@ -3,8 +3,17 @@ import toast, { Toaster } from "react-hot-toast";
 import { connect, useSelector, useDispatch } from "react-redux";
 const GlobalToast = () => {
   const selector = useSelector((state) => state.flashMessage);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (selector.show === true) {
+      dispatch({
+        type: "SET_FLASH_MESSAGE",
+        status: selector.status,
+        title: "",
+        msg: "",
+        show: false,
+        isRedirecterToast: true,
+      });
       callToast(
         selector.status ? selector.status : false,
         selector.title,

@@ -43,6 +43,7 @@ import TextEditor from "./ContentPreview/TextEditor";
 import FooterContent from "./ContentPreview/FooterContent";
 import SubjectPostMemberLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostMemberLoading";
 import DashboardFeedLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/DashboardFeedLoading";
+
 import ModalAction from "./Modals/ModalAction";
 
 import ContinueClassStudentDashboard from "./DashboardMol/StudentDashboardMol/ContinueClassStudentDashboard";
@@ -59,9 +60,14 @@ import EditProfileStudentDashboard from "./DashboardMol/PublicDashboardMol/EditP
 import BookListDashboardCard from "./Cards/BookListDashboardCard";
 import BoxDashboardCard from "./Cards/BoxDashboardCard";
 
-import ActiveAssessmentFormLoading from "./SkeletonLoading/ClassroomLoading/ActiveAssessmentLoading.jsx/ActiveAssessmentFormLoading";
+import ActiveAssessmentFormLoading from "./SkeletonLoading/ClassroomLoading/ActiveAssessmentLoading/ActiveAssessmentFormLoading";
+import ActiveAssessmentSubtopicLoading from "./SkeletonLoading/ClassroomLoading/ActiveAssessmentLoading/ActiveAssessmentSubtopicLoading";
 
 import ActiveAssessmentForm from "./ActiveAssessmentMol/ActiveAssessmentForm";
+import LearningSubjectViewLoading from "./SkeletonLoading/ClassroomLoading/LearningSubjectViewLoading/LearningSubjectViewLoading";
+import LearningSubjectBookDetailLoading from "./SkeletonLoading/ClassroomLoading/LearningSubjectViewLoading/LearningSubjectBookDetailLoading";
+
+import BookContentLessonControl from "./LearningSubjectViewMol/LearningSubjectViewBookContentMol/BookContentLessonControl";
 export {
   ProductXCard,
   ProductYCard,
@@ -121,4 +127,8 @@ export {
   BookListStudentDashboard,
   EditProfileStudentDashboard,
   ActiveAssessmentForm,
+  ActiveAssessmentSubtopicLoading,
+  LearningSubjectViewLoading,
+  BookContentLessonControl,
+  LearningSubjectBookDetailLoading,
 };

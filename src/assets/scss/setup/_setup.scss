@@ -95,6 +95,7 @@ body {
   @include callHeightWidthGenerator(1000, $selector);
   @include marginPaddingGenerator(500, $selector);
   @include positionGenerator(500, $selector);
+  @include gridGenerator($selector);
   @include gapGenerator(100, $selector);
   @include callFontGenerator(100, $selector);
   @include borderRadiusGenerator($selector);

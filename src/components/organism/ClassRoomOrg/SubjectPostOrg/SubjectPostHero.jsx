@@ -45,7 +45,9 @@ const SubjectPostHero = () => {
               <p className="text-neutral-400 mt-4 text-white font-xs md-font-medium mb-8 md-mb-20">
                 Kelas 1A IPA - 2020/2021
               </p>
-              <Link to="/classroom/start-learning-view/1">
+              <Link
+                to={`/classroom/start-learning-view/${classId}/${subjectId}`}
+              >
                 <button className="btn btn-primary font-xs md-font-sm xl-font-normal">
                   Start Learning
                 </button>

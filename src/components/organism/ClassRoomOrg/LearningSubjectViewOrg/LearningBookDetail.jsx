@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import StarIcon from "../../../SVG/StarIcon";
-
-const LearningBookDetail = () => {
+import { LearningSubjectBookDetailLoading } from "../../../molecules";
+const LearningBookDetail = (props) => {
+  const { data, isLoading } = props;
   const [subjectFocus, setSubjectFocus] = useState([]);
   const [feature, setFeature] = useState([
     {
@@ -35,34 +36,31 @@ const LearningBookDetail = () => {
       color: "#FFB2D9",
     },
   ]);
-
-  useEffect(() => {
-    let str =
-      "Lorem,;ipsum;dolor;sit;amet;consectetur;adipisicing;elit.;Asperiores;tempora;rerum;deleniti;alias;animi;consequuntur;impedit;aspernatur;quae;dolorum;repudiandae?";
-    setSubjectFocus(str.split(";"));
-  }, []);
-
+  function createMarkup(data) {
+    return { __html: data };
+  }
+  if (isLoading) {
+    return <LearningSubjectBookDetailLoading />;
+  }
   return (
     <div>
-      <h3 className="h4 md-h3"> English Play 01</h3>
+      <h3 className="h4 md-h3"> {data.name}</h3>
 
       <div className="d-flex align-items-center  ">
-        <p className="font-sm md-font-normal  mr-8">Atlaz Belajar Bahasa</p>
+        <p className="font-sm md-font-normal  mr-8">{data.author}</p>
         <div className="d-flex align-items-center">
           <StarIcon size="10" />
           <StarIcon size="10" />
           <StarIcon size="10" />
           <StarIcon size="10" />
           <StarIcon size="10" isHalf />
-          <span className="fs-9">&nbsp; 5.0/5.0</span>
+          <span className="fs-9">&nbsp; 4.5/5.0</span>
         </div>
       </div>
-      <p className="mt-8">
-        Up is opinion message manners correct hearing husband my. Disposing
-        commanded dashwoods cordially depending at at. Its strangers who you
-        certainty earnestly resources suffering she. Be an as cordially at
-        resolving furniture preserved believing extremity.
-      </p>
+      <p
+        className="mt-8"
+        dangerouslySetInnerHTML={createMarkup(data.overview)}
+      ></p>
 
       <div className="mt-32">
         <div className="mb-16">
@@ -70,16 +68,17 @@ const LearningBookDetail = () => {
           <div className="rectangle w-64 bg-primary-500 h-2 "></div>
         </div>
         <div className="text-danger">
-          {subjectFocus.map((r, i) => {
-            return (
-              <button
-                className="btn-outline text-neutral-500 font-xs xl-font-sm mb-8 mr-8"
-                key={i}
-              >
-                {r}
-              </button>
-            );
-          })}
+          {data.subjectFocus &&
+            data.subjectFocus.split(";").map((r, i) => {
+              return (
+                <button
+                  className="btn-outline text-neutral-500 font-xs xl-font-sm mb-8 mr-8"
+                  key={i}
+                >
+                  {r}
+                </button>
+              );
+            })}
         </div>
       </div>
       <div className="mt-56">
