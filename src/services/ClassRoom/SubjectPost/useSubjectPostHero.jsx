@@ -1,20 +1,39 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { StartLearningBg } from "../../../assets/images";
+import { defConfig, GET } from "../../../config/RestAPI";
 const useSubjectPostHero = () => {
   const { classId, subjectId, section } = useParams();
-
+  const navigate = useNavigate();
   const banner = StartLearningBg;
-  const breadcrumbsData = [
+  const [breadcrumbsData, setBreadcrumbsData] = useState([
     {
       link: "/",
       label: "Home",
     },
     {
-      link: "",
+      link: "/classroom",
       label: "Classroom",
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    getClass();
+  }, []);
+  const getClass = () => {
+    GET("/client/classrooms/" + classId, defConfig())
+      .then((r) => {
+        let newBread = [...breadcrumbsData];
+        newBread.push({
+          link: `/classroom/class/${classId}`,
+          label: r.data.classlist.name,
+        });
+        setBreadcrumbsData(newBread);
+      })
+      .catch((err) => {
+        navigate("/page-not-found");
+      });
+  };
 
   const navMenu = [
     {

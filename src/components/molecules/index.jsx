@@ -43,7 +43,7 @@ import TextEditor from "./ContentPreview/TextEditor";
 import FooterContent from "./ContentPreview/FooterContent";
 import SubjectPostMemberLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostMemberLoading";
 import DashboardFeedLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/DashboardFeedLoading";
-
+import BookListDashboardPublicCard from "./Cards/BookListDashboardPublicCard";
 import ModalAction from "./Modals/ModalAction";
 
 import ContinueClassStudentDashboard from "./DashboardMol/StudentDashboardMol/ContinueClassStudentDashboard";
@@ -54,8 +54,8 @@ import UpcomingClassStudentDashboard from "./DashboardMol/StudentDashboardMol/Up
 import WelcomeStudentDashboard from "./DashboardMol/StudentDashboardMol/WelcomeStudentDashboard";
 
 import ReedemPublicDashboard from "./DashboardMol/PublicDashboardMol/ReedemPublicDashboard";
-import BookListStudentDashboard from "./DashboardMol/PublicDashboardMol/BookListStudentDashboard";
-import EditProfileStudentDashboard from "./DashboardMol/PublicDashboardMol/EditProfileStudentDashboard";
+import BookListPublicDashboard from "./DashboardMol/PublicDashboardMol/BookListPublicDashboard";
+import EditProfilePublicDashboard from "./DashboardMol/PublicDashboardMol/EditProfilePublicDashboard";
 
 import BookListDashboardCard from "./Cards/BookListDashboardCard";
 import BoxDashboardCard from "./Cards/BoxDashboardCard";
@@ -68,7 +68,9 @@ import LearningSubjectViewLoading from "./SkeletonLoading/ClassroomLoading/Learn
 import LearningSubjectBookDetailLoading from "./SkeletonLoading/ClassroomLoading/LearningSubjectViewLoading/LearningSubjectBookDetailLoading";
 
 import BookContentLessonControl from "./LearningSubjectViewMol/LearningSubjectViewBookContentMol/BookContentLessonControl";
+import ModalRedeemDashboard from "./Modals/Dashboard/ModalRedeemDashboard";
 export {
+  ModalRedeemDashboard,
   ProductXCard,
   ProductYCard,
   PurchaseCard,
@@ -124,11 +126,12 @@ export {
   BoxDashboardCard,
   ActiveAssessmentFormLoading,
   ReedemPublicDashboard,
-  BookListStudentDashboard,
-  EditProfileStudentDashboard,
+  BookListPublicDashboard,
+  EditProfilePublicDashboard,
   ActiveAssessmentForm,
   ActiveAssessmentSubtopicLoading,
   LearningSubjectViewLoading,
   BookContentLessonControl,
   LearningSubjectBookDetailLoading,
+  BookListDashboardPublicCard,
 };

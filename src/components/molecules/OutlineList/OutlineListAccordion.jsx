@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Collapse } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LockIcon from "@mui/icons-material/Lock";
 const OutlineListAccordion = (props) => {
   const {
@@ -12,16 +13,41 @@ const OutlineListAccordion = (props) => {
     titleClassName,
     defaultShow,
     requestId,
+    type,
+    isLocked,
   } = props;
   const [expand, setExpand] = useState(defaultShow);
   const navigate = useNavigate();
-  const handleParentClick = (e) => {
-    if (redirectTo) {
-      navigate(redirectTo);
-    }
-    if (withExpand) props.onOpened(requestId);
 
-    setExpand(!expand);
+  useEffect(() => {
+    setExpand(defaultShow);
+  }, [defaultShow]);
+
+  const handleParentClick = (e) => {
+    if (!isLocked) {
+      if (redirectTo) {
+        navigate(redirectTo);
+      }
+      if (withExpand) props.onOpened(requestId);
+
+      setExpand(!expand);
+    }
+  };
+
+  const cutTitle = (text) => {
+    let maxText = 999999;
+    if (type === "LESSON") {
+      maxText = 20;
+    } else if (type === "TOPIC") {
+      maxText = 22;
+    } else if (type === "SUBTOPIC") {
+      maxText = 24;
+    }
+
+    if (text.length >= maxText) {
+      return text.substring(0, maxText) + "...";
+    }
+    return text;
   };
 
   return (
@@ -48,11 +74,16 @@ const OutlineListAccordion = (props) => {
                   expand ? "font-bold text-white" : "text-neutral-300"
                 }`}
               >
-                {title}
+                {cutTitle(title)}
               </p>
             </div>
             <div className="d-flex align-items-center  ">
-              <LockIcon className="fs-20 text-danger-200" />
+              <LockIcon
+                className={`cursor-pointer text-danger-300 mr-8 position-relative  ${
+                  !isLocked && "d-none"
+                } `}
+              />
+
               <div
                 className={` cursor-pointer ${expand && "transform-180-deg"} ${
                   !withExpand ? "d-none" : " d-flex align-items-center "
@@ -66,9 +97,11 @@ const OutlineListAccordion = (props) => {
           </div>
         </div>
       </div>
-      <Collapse in={expand}>
-        <div className="card card-body ">{props.children}</div>
-      </Collapse>
+      {!isLocked && (
+        <Collapse in={expand}>
+          <div className="card card-body ">{props.children}</div>
+        </Collapse>
+      )}
     </>
   );
 };

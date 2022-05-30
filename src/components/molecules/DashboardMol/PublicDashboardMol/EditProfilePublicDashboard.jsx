@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalFunction } from "../../../../services";
-const EditProfileStudentDashboard = () => {
+const EditProfilePublicDashboard = () => {
   const { getUserInfo } = useGlobalFunction();
 
   return (
@@ -37,4 +37,4 @@ const EditProfileStudentDashboard = () => {
   );
 };
 
-export default EditProfileStudentDashboard;
+export default EditProfilePublicDashboard;

@@ -12,7 +12,7 @@ const useClassRoomHeroSubject = () => {
   const navigate = useNavigate();
 
   const banner = ClassRoomHero1;
-  const breadcrumbsData = [
+  const [breadcrumbsData, setBreadcrumbsData] = useState([
     {
       link: "/",
       label: "Home",
@@ -21,11 +21,8 @@ const useClassRoomHeroSubject = () => {
       link: "/classroom",
       label: "Classroom",
     },
-    {
-      link: "",
-      label: "Kelas IPA 1",
-    },
-  ];
+  ]);
+
   useEffect(() => {
     getClass();
     getBackground();
@@ -43,6 +40,12 @@ const useClassRoomHeroSubject = () => {
     setIsLoading(true);
     GET("/client/classrooms/" + params.classId, defConfig())
       .then((r) => {
+        let newBread = [...breadcrumbsData];
+        newBread.push({
+          link: "",
+          label: r.data.classlist.name,
+        });
+        setBreadcrumbsData(newBread);
         setData(r.data.classlist);
         setIsLoading(false);
       })

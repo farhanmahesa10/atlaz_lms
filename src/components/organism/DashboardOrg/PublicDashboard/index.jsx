@@ -2,8 +2,9 @@ import React from "react";
 import { AtlazMediaBg, RedeemNewBook } from "../../../../assets/images";
 import MainLayout from "../../../Layout/Mainlayout";
 import {
+  BookListPublicDashboard,
   BoxDashboardCard,
-  EditProfileStudentDashboard,
+  EditProfilePublicDashboard,
   ReedemPublicDashboard,
 } from "../../../molecules";
 const PublicDashboard = () => {
@@ -13,11 +14,14 @@ const PublicDashboard = () => {
         <div className="row">
           <div className="col-12 col-xl-8">
             <ReedemPublicDashboard />
+            <div className="mt-24 ">
+              <BookListPublicDashboard />
+            </div>
           </div>
           <div className="col-12 col-xl-4 h-175">
             <div className="row mt-24 xl-mt-0 h-auto ">
               <div className="col-6 col-xl-12 d-none d-md-block">
-                <EditProfileStudentDashboard />
+                <EditProfilePublicDashboard />
               </div>
               <div className="col-6 col-md-3 h-148 md-h-auto xl-h-173 col-xl-6 xl-mt-22 xl-mt-24 xl-mt-0">
                 <BoxDashboardCard

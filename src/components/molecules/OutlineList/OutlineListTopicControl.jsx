@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { GET, defConfig } from "../../../config/RestAPI";
+import OutlineListAccordion from "./OutlineListAccordion";
+import OutlineListSubtopicControl from "./OutlineListSubtopicControl";
+import OutlineListLoadingAccordion from "./OutlineListLoadingAccordion";
+
 const OutlineListTopicControl = (props) => {
-  const { classId } = props;
+  const { classId, subjectId } = props;
   const [data, setData] = useState(props.data);
   const [hasRequestSubtopic, setHasRequestSubtopic] = useState(false);
   const [isLoadingSubtopic, setIsLoadingSubtopic] = useState(true);
@@ -33,13 +37,41 @@ const OutlineListTopicControl = (props) => {
         });
     }
   };
+
   return (
-    <div
-      className="ml-28 pt-8 border-start border-secondary-500 "
-      key={`subject-`}
+    <OutlineListAccordion
+      title={data.name}
+      withExpand
+      onOpened={requestChild}
+      type="TOPIC"
+      requestId={data._id}
+      isLocked={data.isLocked}
     >
-      <div className="ml-28 ">oke</div>
-    </div>
+      <div
+        className="ml-16 pt-8 border-start border-secondary-500 "
+        key={`subject-`}
+      >
+        <div className="ml-24 ">
+          {data.subtopics &&
+            data.subtopics.map((r, i) => {
+              return (
+                <div className="pt-8" key={`topic-${r._id}`}>
+                  <OutlineListSubtopicControl
+                    data={r}
+                    classId={classId}
+                    subjectId={subjectId}
+                  />
+                </div>
+              );
+            })}
+          <OutlineListLoadingAccordion
+            isLoading={isLoadingSubtopic}
+            status={data.subtopicRequestStatus}
+            data={data.subtopics}
+          />
+        </div>
+      </div>
+    </OutlineListAccordion>
   );
 };
 

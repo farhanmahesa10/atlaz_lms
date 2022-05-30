@@ -13,7 +13,7 @@ const ProgressBar = (props) => {
   return (
     <div className={`w-full ${bgColor} radius-${radius}`}>
       <div
-        className={`w-p-${value ? value : "5"} bg-${
+        className={`w-p-${value ? value : "0"} bg-${
           activeColor ? activeColor : "primary-500"
         } h-${height ? height : "10"}   radius-${radius}`}
       ></div>

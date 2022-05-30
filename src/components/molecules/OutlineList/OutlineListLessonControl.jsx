@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import OutlineListAccordion from "./OutlineListAccordion";
 import OutlineListTopicControl from "./OutlineListTopicControl";
 import OutlineListLoadingAccordion from "./OutlineListLoadingAccordion";
 import { GET, defConfig } from "../../../config/RestAPI";
+import { useParams } from "react-router-dom";
 const OutlineListLessonControl = (props) => {
-  const { classId, subjectId, lessonId } = props;
+  const { classId, subjectId } = props;
   const [data, setData] = useState(props.data);
 
   const [hasRequestTopic, setHasRequestTopic] = useState(false);
   const [isLoadingTopic, setIsLoadingTopic] = useState(true);
+  const [expand, setExpand] = useState(false);
 
+  const params = useParams();
   const requestChild = (id) => {
     if (!hasRequestTopic || data.topicRequestStatus === "error") {
       //get topic
@@ -37,6 +40,13 @@ const OutlineListLessonControl = (props) => {
         });
     }
   };
+
+  useEffect(() => {
+    if (data._id === params.lessonId) {
+      requestChild(params.lessonId);
+      setExpand(true);
+    }
+  }, []);
   return (
     <div className="pb-16">
       <OutlineListAccordion
@@ -47,6 +57,7 @@ const OutlineListLessonControl = (props) => {
         type="LESSON"
         requestId={data._id}
         isLocked={data.isLocked}
+        defaultShow={expand}
       >
         <div
           className="ml-28 pt-8 border-start border-secondary-500 "
