@@ -5,23 +5,7 @@ const useSubjectPostDashboard = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [sideBarData, setSideBarData] = useState({
-    assessmentId: "",
-    upcomingData: [
-      {
-        name: "Unit 1 Unit name",
-        category: "assessment",
-        date: "11",
-        month: "Apr",
-        clock: "10:00 AM",
-      },
-      {
-        name: "Unit 2 Unit name",
-        category: "assessment",
-        date: "12",
-        month: "Mar",
-        clock: "12:00 PM",
-      },
-    ],
+    upcomingData: [],
   });
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [isLoadingCreateFeed, setIsLoadingCreateFeed] = useState(false);
@@ -31,6 +15,8 @@ const useSubjectPostDashboard = () => {
   const [feedShowsCount, setFeedShowsCount] = useState(0);
   const [totalFeedData, settotalFeedData] = useState(0);
 
+  const [isUpcomingLoading, setIsUpcomingLoading] = useState(true);
+
   const feedData = useMemo(() => {
     return feeds;
   }, [feeds]);
@@ -39,11 +25,24 @@ const useSubjectPostDashboard = () => {
     if (isMounted) {
       setIsLoadingFeed(true);
       addFeed(1, 5, true);
+      addUpcomingData();
     }
     return () => {
       isMounted = false;
     };
   }, []);
+
+  const addUpcomingData = () => {
+    GET(
+      `/client/classrooms/my_school_assessment/find?subject=${params.subjectId}&classlist=${params.classId}&show=2`,
+      defConfig()
+    ).then((r) => {
+      let tempSidebarData = { ...sideBarData };
+      let newSidebarData = { ...tempSidebarData, upcomingData: r.data };
+      setSideBarData(newSidebarData);
+      setIsUpcomingLoading(false);
+    });
+  };
 
   const addFeed = (from, to, firstGet = true, toFirst = false) => {
     setIsLoadingLoadMore(true);
@@ -118,6 +117,7 @@ const useSubjectPostDashboard = () => {
     feedShowsCount,
     totalFeedData,
     params,
+    isUpcomingLoading,
   };
 };
 

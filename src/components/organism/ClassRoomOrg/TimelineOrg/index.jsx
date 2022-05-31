@@ -28,7 +28,7 @@ const TimelineOrg = () => {
         </div>
         <div className="mt-24 md-mx-32 ">
           <h5></h5>
-          <TimelineMol />
+          <TimelineMol data={data} />
         </div>
       </MainLayout>
     </>

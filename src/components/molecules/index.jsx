@@ -69,7 +69,17 @@ import LearningSubjectBookDetailLoading from "./SkeletonLoading/ClassroomLoading
 
 import BookContentLessonControl from "./LearningSubjectViewMol/LearningSubjectViewBookContentMol/BookContentLessonControl";
 import ModalRedeemDashboard from "./Modals/Dashboard/ModalRedeemDashboard";
+import ClassListTeacherDashboard from "./DashboardMol/TeacherDashboardMol/ClassListTeacherDashboard";
+import UpcomingTeacherDashboard from "./DashboardMol/TeacherDashboardMol/UpcomingTeacherDashboard";
+import GradeTeacherDashboard from "./DashboardMol/TeacherDashboardMol/GradeTeacherDashboard";
+import OverviewTeacherDashboard from "./DashboardMol/TeacherDashboardMol/OverviewTeacherDashboard";
+import WelcomeTeacherDashboard from "./DashboardMol/TeacherDashboardMol/WelcomeTeacherDashboard";
 export {
+  ClassListTeacherDashboard,
+  UpcomingTeacherDashboard,
+  GradeTeacherDashboard,
+  OverviewTeacherDashboard,
+  WelcomeTeacherDashboard,
   ModalRedeemDashboard,
   ProductXCard,
   ProductYCard,

@@ -20,7 +20,11 @@ import EditProfileBg from "./dashboard/edit-profile.png";
 import AtlazMediaBg from "./dashboard/atlaz-media.png";
 import AbcStartLearning from "./dashboard/abc-start-learning.png";
 import RedeemNewBook from "./dashboard/redeem-new-book.png";
+import CreateSubjectBg from "./dashboard/create-subject.png";
+import GradeTeacherBg from "./dashboard/grade-teacher-bg.png";
 export {
+  GradeTeacherBg,
+  CreateSubjectBg,
   blibli,
   shopee,
   buka,

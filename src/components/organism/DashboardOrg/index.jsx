@@ -7,7 +7,8 @@ import TeacherDashboard from "./TeacherDashboard";
 const DashboardOrg = () => {
   return (
     <>
-      <PublicDashboard />
+      {/* <PublicDashboard /> */}
+      <TeacherDashboard />
       {/* <Can allowAccess="public">
         <PublicDashboard />
       </Can>

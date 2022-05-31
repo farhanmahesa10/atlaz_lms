@@ -65,10 +65,10 @@ const ActiveAssessmentPreview = (props) => {
         </div>
 
         <div className="mx-24 md-mx-48">
-          {data.subtopic.map((r, i) => {
+          {data.timeline.map((r, i) => {
             return (
               <React.Fragment key={`subtopic-${i}`}>
-                {i < data.subtopic.length && (
+                {i < data.timeline.length && (
                   <Divider
                     height="h-1"
                     parentClassName="mb-48 d-block d-md-none"

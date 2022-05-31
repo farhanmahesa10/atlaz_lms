@@ -113,8 +113,8 @@ const InputIcon = (props) => {
                 disabled={props.disabled}
                 onChange={props.onChange}
                 onInput={props.onInput}
-                maxlength={props.maxlength}
-                minlength={props.minlength}
+                maxLength={props.maxlength}
+                minLength={props.minlength}
                 {...field}
               />
               {props.icon2 && (

@@ -1,9 +1,11 @@
+import moment from "moment";
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import { Can } from "../../../../../permission";
 import { UpcomingCard } from "../../../../molecules";
 const SubjectPostDashboardSidebar = (props) => {
-  const { data, params } = props;
+  const { data, params, isUpcomingLoading } = props;
 
   return (
     <>
@@ -25,20 +27,54 @@ const SubjectPostDashboardSidebar = (props) => {
         className=" px-16 pt-8 pb-8 md-pb-16 radius-8 border border-secondary-500 "
         style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
       >
-        <div className="d-flex justify-content-between">
-          <p className="h6 ">Upcoming Event</p>
-          <Link to="/classroom/timeline/1/1" className="font-sm">
-            See all
-          </Link>
-        </div>
-
-        {data.upcomingData.map((r, i) => {
-          return (
-            <div className="mt-16" key={i}>
-              <UpcomingCard data={r} />
+        {isUpcomingLoading ? (
+          <>
+            <div className="d-flex justify-content-between">
+              <Skeleton width={"120px"} height="24px" />
+              <Skeleton width={"42px"} height="24px" />
             </div>
-          );
-        })}
+            <div className="mt-16">
+              <Skeleton width={"100%"} height="78px" />
+            </div>
+            <div className="mt-16">
+              <Skeleton width={"100%"} height="78px" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="d-flex justify-content-between">
+              <p className="h6 ">Upcoming Event</p>
+              <Link
+                to={`/classroom/timeline/${params.classId}/${params.subjectId}`}
+                className="font-sm"
+              >
+                See all
+              </Link>
+            </div>
+
+            {data.upcomingData.length > 0 ? (
+              data.upcomingData.map((r, i) => {
+                return (
+                  <div className="mt-16" key={i}>
+                    <UpcomingCard
+                      name={r.lesson.name}
+                      date={moment(r.timelineSubtopic[0].dateEvent).format(
+                        "D MMM"
+                      )}
+                      clock={moment(r.timelineSubtopic[0].dateEvent).format(
+                        "LT"
+                      )}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <div className="d-flex justify-content-center align-items-center h-88 font-bold text-neutral-200">
+                No Event Available
+              </div>
+            )}
+          </>
+        )}
       </div>
     </>
   );

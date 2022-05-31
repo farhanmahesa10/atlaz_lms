@@ -1,8 +1,8 @@
 import React from "react";
-const AcademicCard = ({ bgImage, title, desc }) => {
+const AcademicCard = ({ bgImage, title, desc, className }) => {
   return (
     <div
-      className="h-162 w-full radius-8 cursor-pointer"
+      className={`h-162 w-full radius-8 cursor-pointer ${className}`}
       style={{
         backgroundImage: `url("${bgImage}")`,
         backgroundSize: "cover",

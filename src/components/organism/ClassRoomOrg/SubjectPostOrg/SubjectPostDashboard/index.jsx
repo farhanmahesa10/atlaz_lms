@@ -18,6 +18,7 @@ const SubjectPostDashboard = () => {
     totalFeedData,
     isLoadingLoadMore,
     params,
+    isUpcomingLoading,
   } = useSubjectPostDashboard();
 
   return (
@@ -25,7 +26,11 @@ const SubjectPostDashboard = () => {
       <GlobalToast />
       <div className="row mx-16 md-mx-48 mt-24 gx-0">
         <div className="col-12 col-md-5 col-xl-4 ">
-          <SubjectPostDashboardSidebar data={sideBarData} params={params} />
+          <SubjectPostDashboardSidebar
+            data={sideBarData}
+            params={params}
+            isUpcomingLoading={isUpcomingLoading}
+          />
         </div>
         <div className="col ">
           <div className="md-pl-16  md-mt-0">

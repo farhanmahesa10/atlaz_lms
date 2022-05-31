@@ -32,7 +32,7 @@ const useActivateAssessment = () => {
     lesson: "",
     topic: "",
     classlist: [],
-    subtopic: [],
+    timeline: [],
   });
 
   const requireRulesForm = (assessmentType) => {
@@ -53,7 +53,7 @@ const useActivateAssessment = () => {
     });
   };
   const validationSchema = Yup.object().shape({
-    subtopic: Yup.array().of(
+    timeline: Yup.array().of(
       Yup.object().shape({
         startTime: requireRulesForm("automatic grading"),
         endTime: requireRulesForm("automatic grading"),
@@ -101,7 +101,7 @@ const useActivateAssessment = () => {
           if (res.assessmentType.toLowerCase() === "manual grading") {
             return {
               type: res.assessmentType,
-              _id: res._id,
+              subtopic: res._id,
               name: res.name,
               checkbox: true,
               startDateTime: "",
@@ -111,7 +111,7 @@ const useActivateAssessment = () => {
           } else {
             return {
               type: res.assessmentType,
-              _id: res._id,
+              subtopic: res._id,
               name: res.name,
               checkbox: true,
               startTime: "",
@@ -121,7 +121,7 @@ const useActivateAssessment = () => {
             };
           }
         });
-        let newInitialValues = { ...formik.values, subtopic: newSubTopicData };
+        let newInitialValues = { ...formik.values, timeline: newSubTopicData };
 
         setInitialValues(newInitialValues);
         setSubtopicData(newSubTopicData);
@@ -212,18 +212,19 @@ const useActivateAssessment = () => {
 
   const changeCheked = (formik, value) => {
     subtopicData.map((r, i) => {
-      formik.setFieldValue(`subtopic[${i}].checkbox`, value);
+      formik.setFieldValue(`timeline[${i}].checkbox`, value);
     });
   };
 
   const onSubmit = (values) => {
     values = {
       ...values,
-      subtopic: values.subtopic.filter((r) => r.checkbox === true),
+      timeline: values.timeline.filter((r) => r.checkbox === true),
       classlist: values.classlist.map((r) => {
         return { _id: r.value, name: r.label };
       }),
     };
+    // console.log(values);
     setShowPreview(true);
     setPreviewData({
       data: values,

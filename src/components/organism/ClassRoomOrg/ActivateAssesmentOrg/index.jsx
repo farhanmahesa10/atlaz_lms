@@ -139,34 +139,34 @@ const ActivateAssessmentOrg = () => {
                           if (res.type.toLowerCase() === "manual grading") {
                             return (
                               <DateTimeForm
-                                checkBoxName={`subtopic[${ind}].checkbox`}
-                                startDateName={`subtopic[${ind}].startDateTime`}
-                                endDateName={`subtopic[${ind}].endDateTime`}
-                                durationName={`subtopic[${ind}].duration`}
+                                checkBoxName={`timeline[${ind}].checkbox`}
+                                startDateName={`timeline[${ind}].startDateTime`}
+                                endDateName={`timeline[${ind}].endDateTime`}
+                                durationName={`timeline[${ind}].duration`}
                                 title={res.name}
                                 formik={formik}
                                 subtopicData={subtopicData}
                                 onChangeSelectChecked={(val) =>
                                   setSelectAllStatus(val)
                                 }
-                                key={`b-${res._id}`}
+                                key={`b-${res.subtopic}`}
                               />
                             );
                           } else {
                             return (
                               <TimeForm
-                                checkBoxName={`subtopic[${ind}].checkbox`}
-                                dateName={`subtopic[${ind}].assessmentDate`}
-                                startTimeName={`subtopic[${ind}].startTime`}
-                                endTimeName={`subtopic[${ind}].endTime`}
-                                durationName={`subtopic[${ind}].duration`}
+                                checkBoxName={`timeline[${ind}].checkbox`}
+                                dateName={`timeline[${ind}].assessmentDate`}
+                                startTimeName={`timeline[${ind}].startTime`}
+                                endTimeName={`timeline[${ind}].endTime`}
+                                durationName={`timeline[${ind}].duration`}
                                 title={res.name}
                                 formik={formik}
                                 subtopicData={subtopicData}
                                 onChangeSelectChecked={(val) =>
                                   setSelectAllStatus(val)
                                 }
-                                key={`b-${res._id}`}
+                                key={`b-${res.subtopic}`}
                               />
                             );
                           }
@@ -220,8 +220,8 @@ const DateTimeForm = (props) => {
     let formikValues = formik.values;
     let tempCheckStatus = true;
 
-    let trueCase = formikValues.subtopic.filter((r) => r.checkbox === true);
-    let falseCase = formikValues.subtopic.filter((r) => r.checkbox === false);
+    let trueCase = formikValues.timeline.filter((r) => r.checkbox === true);
+    let falseCase = formikValues.timeline.filter((r) => r.checkbox === false);
 
     if (trueCase.length === subtopicData.length) {
       props.onChangeSelectChecked("checked");
