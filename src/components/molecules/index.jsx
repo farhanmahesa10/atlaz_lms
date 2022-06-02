@@ -74,7 +74,12 @@ import UpcomingTeacherDashboard from "./DashboardMol/TeacherDashboardMol/Upcomin
 import GradeTeacherDashboard from "./DashboardMol/TeacherDashboardMol/GradeTeacherDashboard";
 import OverviewTeacherDashboard from "./DashboardMol/TeacherDashboardMol/OverviewTeacherDashboard";
 import WelcomeTeacherDashboard from "./DashboardMol/TeacherDashboardMol/WelcomeTeacherDashboard";
+
+import TableSchoolAdminDashboard from "./DashboardMol/SchoolAdminDashboardMol/TableSchoolAdminDashboard";
+import HeadSchoolAdminDashboard from "./DashboardMol/SchoolAdminDashboardMol/HeadSchoolAdminDashboard";
 export {
+  TableSchoolAdminDashboard,
+  HeadSchoolAdminDashboard,
   ClassListTeacherDashboard,
   UpcomingTeacherDashboard,
   GradeTeacherDashboard,

@@ -40,6 +40,7 @@ const TimelineBlock = ({ data }) => {
       <Timeline align="left" className="mt-24">
         <h5 className="mb-24">{data.lesson.name}</h5>
         {data.timelineSubtopic.map((r, i) => {
+          console.log(r);
           return (
             <React.Fragment key={r._id}>
               <TimelineItem>
@@ -54,8 +55,8 @@ const TimelineBlock = ({ data }) => {
                 <TimelineContent>
                   <div className="d-flex align-items-start">
                     <div className="mr-16 w-70 font-sm-medium text-neutral-300">
-                      {moment(r.startTime).format("LT")} <br />
-                      {moment(r.assessmentDate).format("D MMM")}
+                      {moment(r.dateEvent).format("LT")} <br />
+                      {moment(r.dateEvent).format("D MMM")}
                     </div>
                     <BoxTimeline data={r} />
                   </div>

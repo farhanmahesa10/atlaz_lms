@@ -39,7 +39,7 @@ const TeacherDashboard = () => {
             </div>
             <div className="col-12 col-xl-5 mt-16 md-mt-24 xl-mt-0 d-flex flex-column justify-content-between">
               <div className="row   xl-h-p-48 ">
-                <div className="col-6 h-173">
+                <div className="col-12 col-md-6 h-120 xl-h-173">
                   <BoxDashboardCard
                     bgImage={GradeBg}
                     bgColor="#EAF7FA"
@@ -51,7 +51,7 @@ const TeacherDashboard = () => {
                     link="/user/edit-profile"
                   />
                 </div>
-                <div className="col-6 h-173">
+                <div className="col-12 col-md-6 h-120 xl-h-173 d-none d-md-block">
                   <BoxDashboardCard
                     bgImage={EditProfileBg}
                     bgColor="#FAEBF2"
@@ -64,7 +64,7 @@ const TeacherDashboard = () => {
                   />
                 </div>
 
-                <div className="col-6 h-173 mt-24">
+                <div className="col-12 col-md-6 h-120 xl-h-173 mt-24">
                   <BoxDashboardCard
                     bgImage={CreateSubjectBg}
                     bgColor="#F9F2EC"
@@ -76,7 +76,7 @@ const TeacherDashboard = () => {
                     link="/user/edit-profile"
                   />
                 </div>
-                <div className="col-6 h-173 mt-24">
+                <div className="col-12 col-md-6 h-120 xl-h-173 mt-24 d-none d-md-block">
                   <BoxDashboardCard
                     bgImage={AtlazMediaBg}
                     bgColor="#EAEDFB"

@@ -17,17 +17,17 @@ const ClassListTeacherDashboard = () => {
         </div>
         <div className="mt-24">
           <div className="row">
-            <div className="col-6 ">
+            <div className="col-12 col-md-6 ">
               <AcademicCard
-                className={"h-219"}
+                className={"h-152 xl-h-219"}
                 bgImage={ClassRoomHero2}
                 title={"KELAS 1A IPA"}
                 desc={"Academic Year 2021/2022"}
               />
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6 mt-24 md-mt-0">
               <AcademicCard
-                className={"h-219"}
+                className={"h-152 xl-h-219"}
                 bgImage={ClassRoomHero3}
                 title={"KELAS 1A IPA"}
                 desc={"Academic Year 2021/2022"}
