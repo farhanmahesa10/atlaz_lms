@@ -118,3 +118,13 @@ a:hover {
 .nowrap {
   white-space: nowrap;
 }
+
+.select-react-lib{
+  
+  &:hover{
+    border-color: #fdbf47 !important;
+  }
+  &:active{
+    border-color: #fdbf47 !important;
+  }
+}

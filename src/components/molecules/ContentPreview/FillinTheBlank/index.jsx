@@ -7,7 +7,7 @@ const FillinTheBlank = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
 
   const data = props.data;
-
+  console.log(data);
   const patternAnswer = () => {
     let answers = [];
     let dbAnswers = [];
@@ -130,7 +130,6 @@ const FillinTheBlank = (props) => {
                                 <td
                                   className="pr-20 fw-bold"
                                   style={{
-                                    width: "200px",
                                     verticalAlign: "top",
                                   }}
                                 >

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik } from "formik";
+import { defConfig, POST } from "../../../../config/RestAPI";
 
 const MultipleChoice = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
@@ -37,7 +38,7 @@ const MultipleChoice = (props) => {
   const patternAnswer = () => {
     let answers = [];
     data.questions.map((r) => {
-      answers.push("");
+      answers.push([]);
     });
     return { answers };
   };
@@ -47,13 +48,13 @@ const MultipleChoice = (props) => {
     let doc = document.querySelector(idName);
     let color = "";
     if (status === 1) {
-      color = "#1BB184"; 
+      color = "#1BB184";
       doc.style.fontWeight = "600";
     } else if (status === 2) {
-      color = "#DC3545"; 
+      color = "#DC3545";
       doc.style.fontWeight = "600";
     } else {
-      color = "#556070"; 
+      color = "#556070";
       doc.style.fontWeight = "400";
     }
     doc.style.color = color;
@@ -74,9 +75,32 @@ const MultipleChoice = (props) => {
     }
   };
 
+  const handleSubmitPost = (values, setSubmitting) => {
+    values = data.questions.map((r, i) => {
+      return { ...r, userAnswer: values.answers[i] };
+    });
+    values = {
+      userAnswers: values,
+      contentId: data._id,
+      contentType: data.contentType.name,
+    };
+
+    POST(`/client/activity/set_practice_student`, values, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+        console.log(err.response);
+      });
+  };
+
   const onSubmit = (values, { setSubmitting }) => {
-    setButtonToggleFooter(true);
-    setSubmitting(false);
+    // setButtonToggleFooter(true);
+    setSubmitting(true);
+    handleSubmitPost(values, setSubmitting);
 
     let questionIndex = 0;
     for (let question of data.questions) {

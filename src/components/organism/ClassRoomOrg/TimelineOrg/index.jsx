@@ -1,19 +1,20 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useTimeline } from "../../../../services";
 import { Divider } from "../../../atoms";
 import MainLayout from "../../../Layout/Mainlayout";
 import TimelineMol from "../../../molecules/TimelineMol";
 
 const TimelineOrg = () => {
-  const { data } = useTimeline();
-
+  const { data, isLoading, handleDetedTimeline } = useTimeline();
+  const params = useParams();
   return (
     <>
       <MainLayout
         maxWidth="1440px"
         navbarBg="bg-white"
         navNoMenu
-        redirectOnNavClose="/classroom/assessment/1/2/dashboard"
+        redirectOnNavClose={`/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`}
         isNeedConfirm={false}
       >
         <div className="mx-24 md-mx-48">
@@ -28,7 +29,11 @@ const TimelineOrg = () => {
         </div>
         <div className="mt-24 md-mx-32 ">
           <h5></h5>
-          <TimelineMol data={data} />
+          <TimelineMol
+            data={data}
+            isLoading={isLoading}
+            onDelete={handleDetedTimeline}
+          />
         </div>
       </MainLayout>
     </>

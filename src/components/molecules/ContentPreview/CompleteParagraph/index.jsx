@@ -54,6 +54,8 @@ const CompleteParahraph = (props) => {
   const onSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
     setButtonToggleFooter(true);
+
+    console.log(data);
     console.log(values);
   };
 
@@ -120,7 +122,9 @@ const AutoGrowInput = ({ name, isDbAnswers, showAnswer }) => {
       }) => {
         if (isDbAnswers) {
           return (
-            <span class="px-8 py-2  text-neutral-50 bg-success-600 radius-4 font-xs-medium md-font-sm-medium mr-8 nowrap">{field.value}</span>
+            <span className="px-8 py-2  text-neutral-50 bg-success-600 radius-4 font-xs-medium md-font-sm-medium mr-8 nowrap">
+              {field.value}
+            </span>
           );
         }
 

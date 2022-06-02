@@ -77,19 +77,19 @@ function PreviewContentOrg() {
       .then((res) => {
         setDataContent(res.data);
         setIsLoading(false);
-        console.log("1 success", res.data);
+        // console.log("1 success", res.data);
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log("1", err.response);
+        // console.log("1", err.response);
       });
     GET(`/subtopic/${id}`, defConfig())
       .then((res) => {
         setDataSubtopic(res.data);
-        console.log("2 success", res);
+        // console.log("2 success", res);
       })
       .catch((err) => {
-        console.log("2", err.response);
+        // console.log("2", err.response);
       });
   };
 
@@ -128,7 +128,7 @@ function PreviewContentOrg() {
                   <div className="preview-content  radius-8 ">
                     <div className="content ">
                       <div className="content">
-                        {console.log("dataContent", dataContent)}
+                        {/* {console.log("dataContent", dataContent)} */}
                         {dataContent.map((data, index) => {
                           return (
                             <div key={index} className="">

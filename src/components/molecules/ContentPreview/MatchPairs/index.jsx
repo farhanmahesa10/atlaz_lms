@@ -262,7 +262,7 @@ const MatchPairs = (props) => {
                                        : "border border-danger"
                                    }`}
                                   style={{
-                                    height: "36px",
+                                    minHeight: "36px",
                                     border: "1px solid #d4d7db",
                                   }}
                                 >
@@ -534,7 +534,7 @@ const MatchPairs = (props) => {
                                        : "border border-danger"
                                    }`}
                                   style={{
-                                    height: "36px",
+                                    minHeight: "36px",
                                     border: "1px solid #d4d7db",
                                   }}
                                 >

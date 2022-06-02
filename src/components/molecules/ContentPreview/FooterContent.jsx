@@ -7,23 +7,25 @@ const FooterContent = (props) => {
   return (
     <div className="row footer-content">
       {showExplanation ? (
-       <div className="col-12">
+        <div className="col-12">
           <div className="bg-primary-100 p-16 radius-14 mb-16">
-          <p className="font-bold mb-8">Explanation</p>
-          <p style={{ whiteSpace: "pre-wrap" }}>
-            {props.explanation ? props.explanation : "-"}
-          </p>
+            <p className="font-bold mb-8">Explanation</p>
+            <p style={{ whiteSpace: "pre-wrap" }}>
+              {props.explanation ? props.explanation : "-"}
+            </p>
+          </div>
         </div>
-       </div>
       ) : (
         ""
       )}
       <div className="col-12 ">
         {!props.buttonToggle ? (
           <button
-            type="submit"
-            className={` ${props.isSubmitting ? " btn-disable" : "btn-primary"
-              } py-8 mr-8 xs-w-full font-small`} >
+            type={!props.isSubmitting ? "submit" : "button"}
+            className={` ${
+              props.isSubmitting ? " btn-disable" : "btn-primary"
+            } py-8 mr-8 xs-w-full font-small`}
+          >
             {
               <>
                 <Spellcheck />
@@ -45,7 +47,8 @@ const FooterContent = (props) => {
               onClick={() => {
                 props.onRetry();
                 setShowExplanation(false);
-              }} >
+              }}
+            >
               {
                 <>
                   <Replay />
@@ -57,7 +60,8 @@ const FooterContent = (props) => {
             <button
               type="button"
               className="btn-outline py-8 mr-8 xs-w-full font-small"
-              onClick={() => setShowExplanation(true)} >
+              onClick={() => setShowExplanation(true)}
+            >
               {
                 <>
                   <EmojiObjectsOutlined />

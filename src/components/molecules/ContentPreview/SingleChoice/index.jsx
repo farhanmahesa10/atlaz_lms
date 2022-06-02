@@ -3,13 +3,13 @@ import FormikControl from "../../../atoms/Formik/FormikControl";
 import FooterContent from "../FooterContent";
 import { Form, Formik } from "formik";
 import { Check, Clear } from "@mui/icons-material";
+import { defConfig, POST } from "../../../../config/RestAPI";
 
 const SingleChoice = (props) => {
   const selectRef = useRef([]);
 
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
-  const [explanation, setExplanation] = useState("");
-  const [explanationProcess, setexplanationProcess] = useState(false);
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
   const data = props.data;
 
@@ -31,12 +31,13 @@ const SingleChoice = (props) => {
   }, []);
 
   const patternAnswer = () => {
-    let answers = [];
+    let userAnswers = [];
     data.questions.map((r) => {
-      answers.push("");
+      userAnswers.push("");
     });
-    return { answers };
+    return { userAnswers };
   };
+
   const initAnswer = patternAnswer();
   const clearIcon = () => {
     let questionIndex = 0;
@@ -71,19 +72,40 @@ const SingleChoice = (props) => {
     });
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
-    setSubmitting(false);
-    setButtonToggleFooter(true);
+  const handleSubmitPost = (values, setSubmitting) => {
+    values = data.questions.map((r, i) => {
+      return { ...r, userAnswer: values.userAnswers[i] };
+    });
+    values = {
+      userAnswers: values,
+      contentId: data._id,
+      contentType: data.contentType.name,
+    };
+
+    POST(`/client/activity/set_practice_student`, values, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
+
     // console.log(values);
+  };
+
+  const onSubmit = (values, { setSubmitting }) => {
+    handleSubmitPost(values, setSubmitting);
 
     let questionIndex = 0;
     for (let question of data.questions) {
       // console.log(
-      //   "values.answers[questionIndex]",
-      //   values.answers[questionIndex]
+      //   "values.userAnswers[questionIndex]",
+      //   values.userAnswers[questionIndex]
       // );
       // console.log("String(question.answer)", String(question.answer));
-      if (values.answers[questionIndex] === question.answer) {
+      if (values.userAnswers[questionIndex] === question.answer) {
         let doc = document.querySelector(`.true-${data._id}-${question._id}`);
         doc.classList.remove("d-none");
         document
@@ -157,7 +179,7 @@ const SingleChoice = (props) => {
                             <td className="p-8">
                               <FormikControl
                                 control="select"
-                                name={`answers[${i}]`}
+                                name={`userAnswers[${i}]`}
                                 selectRef={selectRef.current[i]}
                                 className={`border radius-4 select-${data._id}-${r._id}`}
                                 options={optionPattern(r.options)}

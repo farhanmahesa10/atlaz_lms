@@ -40,7 +40,7 @@ const SelectOption = (props) => {
       ...provided,
       color: "black",
       padding: 8,
-      // borderColor: "red",
+      // backgroundColor: "red",
       boxShadow: "none",
     }),
 
@@ -50,8 +50,9 @@ const SelectOption = (props) => {
         borderColor: "#FDBF47",
         boxShadow: "none",
       },
-
-      borderColor: state.isFocused ? "#FDBF47" : "lightgray",
+      height: "40px",
+      border: "none",
+      // borderColor: state.isFocused ? "#FDBF47" : "lightgray",
       boxShadow: "none",
     }),
     option: (provided, state) => ({
@@ -90,8 +91,8 @@ const SelectOption = (props) => {
 
   return (
     <>
-      <div className="form-input-">
-        <div className={`input-area  `}>
+      <div className="form-input- bg-white cursor-pointer">
+        <div className={`input-area  bg-white`}>
           <ReactSelect
             className={`basic-single input-control w-full ${props.className}`}
             classNamePrefix="select"

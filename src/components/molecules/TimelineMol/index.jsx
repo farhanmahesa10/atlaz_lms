@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -8,39 +8,53 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "./timelineMol.scss";
-import { Divider } from "../../atoms";
+import { Divider, ModalTrigger } from "../../atoms";
 import moment from "moment";
 import { Collapse } from "react-bootstrap";
+import ModalAction from "../Modals/ModalAction";
+import Skeleton from "react-loading-skeleton";
 const TimelineMol = (props) => {
-  const { data } = props;
-
+  const { data, onDelete, isLoading } = props;
+  console.log(isLoading);
   return (
     <>
-      {data.map((r, i) => {
-        return (
-          <React.Fragment key={r._id}>
-            <TimelineBlock data={r} />
-            {i < data.length && (
-              <Divider
-                height="h-1"
-                lineColor="bg-secondary-200"
-                parentClassName="mx-24"
+      {isLoading ? (
+        <div className="mx-24">
+          <Skeleton width={"100px"} height="24px" />
+          <Skeleton width={"100%"} height="50px" />
+          <Skeleton width={"100%"} height="50px" />
+        </div>
+      ) : (
+        data.map((r, i) => {
+          return (
+            <React.Fragment key={r._id}>
+              <TimelineBlock
+                data={r}
+                onDelete={(data) => {
+                  onDelete(data);
+                }}
               />
-            )}
-          </React.Fragment>
-        );
-      })}
+              {i < data.length && (
+                <Divider
+                  height="h-1"
+                  lineColor="bg-secondary-200"
+                  parentClassName="mx-24"
+                />
+              )}
+            </React.Fragment>
+          );
+        })
+      )}
     </>
   );
 };
 
-const TimelineBlock = ({ data }) => {
+const TimelineBlock = ({ data, onDelete }) => {
   return (
     <>
       <Timeline align="left" className="mt-24">
         <h5 className="mb-24">{data.lesson.name}</h5>
         {data.timelineSubtopic.map((r, i) => {
-          console.log(r);
           return (
             <React.Fragment key={r._id}>
               <TimelineItem>
@@ -55,10 +69,20 @@ const TimelineBlock = ({ data }) => {
                 <TimelineContent>
                   <div className="d-flex align-items-start">
                     <div className="mr-16 w-70 font-sm-medium text-neutral-300">
-                      {moment(r.dateEvent).format("LT")} <br />
-                      {moment(r.dateEvent).format("D MMM")}
+                      <span className="nowrap">
+                        {moment(r.dateEvent).format("LT")}
+                      </span>{" "}
+                      <br />
+                      <span className="nowrap">
+                        {moment(r.dateEvent).format("D MMM")}
+                      </span>
                     </div>
-                    <BoxTimeline data={r} />
+                    <BoxTimeline
+                      data={r}
+                      onDelete={(data) => {
+                        onDelete(data);
+                      }}
+                    />
                   </div>
                 </TimelineContent>
               </TimelineItem>
@@ -75,9 +99,8 @@ const TimelineBlock = ({ data }) => {
   );
 };
 
-const BoxTimeline = ({ data }) => {
+const BoxTimeline = ({ data, onDelete }) => {
   const [extend, setExtend] = useState(false);
-
   const getDuration = (start, end) => {
     let startMoment = moment(start);
     let endMoment = moment(end);
@@ -100,6 +123,13 @@ const BoxTimeline = ({ data }) => {
 
   return (
     <>
+      <ModalAction
+        id="delete-timeline"
+        onSubmit={(data) => {
+          onDelete(data);
+        }}
+      />
+
       <div
         style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
         className="text-neutral-300 p-12 cursor-pointer radius-4 border border-secondary-500 bg-secondary-100 w-full"
@@ -157,6 +187,14 @@ const BoxTimeline = ({ data }) => {
                   : getDuration(data.startDateTime, data.endDateTime)}
               </p>
             </div>
+            <ModalTrigger
+              target="delete-timeline"
+              data={{ assessmentId: data._id, timelineId: data.subtopic._id }}
+            >
+              <button className="w-full btn-secondary font-xs mt-8 h-32">
+                Cancel Activate
+              </button>
+            </ModalTrigger>
           </div>
         </Collapse>
       </div>

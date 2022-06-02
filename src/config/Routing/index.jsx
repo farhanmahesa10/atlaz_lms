@@ -152,49 +152,95 @@ const Routing = () => {
       <Route
         path="/classroom"
         element={
-          <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
-            <Classroom />
-          </CheckRole>
+          <Authenticate>
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <Classroom />
+            </CheckRole>
+          </Authenticate>
         }
       />
-      <Route path="/classroom/class/:classId" element={<ClassRoomSubject />} />
+      <Route
+        path="/classroom/class/:classId"
+        element={
+          <Authenticate>
+            <ClassRoomSubject />
+          </Authenticate>
+        }
+      />
       <Route
         path="/classroom/assessment/:classId/:subjectId/:section"
-        element={<SubjectPost />}
+        element={
+          <Authenticate>
+            <SubjectPost />
+          </Authenticate>
+        }
       />
       <Route
         path="/classroom/post-detail/:classId/:subjectId/:postId"
-        element={<SubjectPostDetail />}
+        element={
+          <Authenticate>
+            <SubjectPostDetail />
+          </Authenticate>
+        }
       />
       <Route
         path="/classroom/set-plan/:classId/:subjectId"
         element={
-          <CheckRole allowAccess="SCHOOLADMIN,teacher">
-            <ActivateAssessment />
-          </CheckRole>
+          <Authenticate>
+            <CheckRole allowAccess="SCHOOLADMIN,teacher">
+              <ActivateAssessment />
+            </CheckRole>
+          </Authenticate>
         }
       />
       <Route
         path="/classroom/timeline/:classId/:subjectId"
-        element={<TimelineShow />}
+        element={
+          <Authenticate>
+            <TimelineShow />
+          </Authenticate>
+        }
       />
       <Route
         path="/classroom/start-learning-view/:classId/:subjectId"
-        element={<LearningSubjectView />}
+        element={
+          <Authenticate>
+            <LearningSubjectView />
+          </Authenticate>
+        }
       />
       <Route
         path="/classroom/lesson-preview/:classId/:subjectId/:lessonId"
-        element={<LessonPreview />}
+        element={
+          <Authenticate>
+            <LessonPreview />
+          </Authenticate>
+        }
       />
       <Route
         path="/classroom/welcome-assessment/:id"
-        element={<WelcomeAssessment />}
+        element={
+          <Authenticate>
+            <WelcomeAssessment />
+          </Authenticate>
+        }
       />
       <Route
         path="/classroom/begin-assessment/:id"
-        element={<BeginAssessmentOrg />}
+        element={
+          <Authenticate>
+            <BeginAssessmentOrg />
+          </Authenticate>
+        }
       />
-      <Route path="/logout" element={<Logout />} />
+      <Route
+        path="/logout"
+        element={
+          <Authenticate>
+            <Logout />
+          </Authenticate>
+        }
+      />
 
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
