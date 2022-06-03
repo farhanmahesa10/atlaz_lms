@@ -4,15 +4,17 @@ import FooterContent from "../FooterContent";
 import { Form, Formik } from "formik";
 import { Check, Clear } from "@mui/icons-material";
 import { defConfig, POST } from "../../../../config/RestAPI";
+import Skeleton from "react-loading-skeleton";
 
 const SingleChoice = (props) => {
   const selectRef = useRef([]);
 
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
-  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const submitRef = useRef();
 
-  const data = props.data;
-
+  const { data } = props;
   const optionPattern = (options) => {
     let opts = [];
     options.map((r, i) => {
@@ -28,17 +30,49 @@ const SingleChoice = (props) => {
     data.questions.map((r, i) => {
       selectRef.current[i] = React.createRef();
     });
+    patternAnswer();
   }, []);
+
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
+
+  const stylingAnswered = (values) => {
+    let questionIndex = 0;
+    for (let question of data.questions) {
+      if (values.userAnswers[questionIndex] === question.answer) {
+        let doc = document.querySelector(`.true-${data._id}-${question._id}`);
+        doc.classList.remove("d-none");
+        document
+          .querySelector(`.select-${data._id}-${question._id}`)
+          .classList.add("border-success-500");
+      } else {
+        document
+          .querySelector(`.false-${data._id}-${question._id}`)
+          .classList.remove("d-none");
+        document
+          .querySelector(`.correction-${data._id}-${question._id}`)
+          .classList.remove("d-none");
+        document
+          .querySelector(`.select-${data._id}-${question._id}`)
+          .classList.add("border-danger-500");
+      }
+
+      questionIndex++;
+    }
+  };
 
   const patternAnswer = () => {
     let userAnswers = [];
     data.questions.map((r) => {
       userAnswers.push("");
     });
-    return { userAnswers };
+    setInitAnswer({ userAnswers });
   };
 
-  const initAnswer = patternAnswer();
   const clearIcon = () => {
     let questionIndex = 0;
     for (let question of data.questions) {
@@ -67,15 +101,15 @@ const SingleChoice = (props) => {
     formik.resetForm();
 
     selectRef.current.map((r) => {
-      // console.log(r.current);
       r.current.setValue("");
     });
   };
 
-  const handleSubmitPost = (values, setSubmitting) => {
+  const handleSubmitPost = (values, setSubmitting, isFakeSubmit) => {
     values = data.questions.map((r, i) => {
       return { ...r, userAnswer: values.userAnswers[i] };
     });
+
     values = {
       userAnswers: values,
       contentId: data._id,
@@ -91,42 +125,20 @@ const SingleChoice = (props) => {
         setSubmitting(false);
         setButtonToggleFooter(true);
       });
-
-    // console.log(values);
   };
 
   const onSubmit = (values, { setSubmitting }) => {
     handleSubmitPost(values, setSubmitting);
-
-    let questionIndex = 0;
-    for (let question of data.questions) {
-      // console.log(
-      //   "values.userAnswers[questionIndex]",
-      //   values.userAnswers[questionIndex]
-      // );
-      // console.log("String(question.answer)", String(question.answer));
-      if (values.userAnswers[questionIndex] === question.answer) {
-        let doc = document.querySelector(`.true-${data._id}-${question._id}`);
-        doc.classList.remove("d-none");
-        document
-          .querySelector(`.select-${data._id}-${question._id}`)
-          .classList.add("border-success-500");
-      } else {
-        document
-          .querySelector(`.false-${data._id}-${question._id}`)
-          .classList.remove("d-none");
-        document
-          .querySelector(`.correction-${data._id}-${question._id}`)
-          .classList.remove("d-none");
-        document
-          .querySelector(`.select-${data._id}-${question._id}`)
-          .classList.add("border-danger-500");
-      }
-
-      questionIndex++;
-    }
+    stylingAnswered(values);
   };
-
+  if (!initAnswer) {
+    // handle deleyed formik
+    return (
+      <div className="p-16">
+        <Skeleton width={"100%"} height="200px" />
+      </div>
+    );
+  }
   return (
     <>
       <div className="col-12 card-container ">
@@ -157,6 +169,20 @@ const SingleChoice = (props) => {
                     </thead>
                     <tbody>
                       {data.questions.map((r, i) => {
+                        let defaultValue = false;
+                        if (data.userAnswers) {
+                          let findAnswer = data.userAnswers.find(
+                            (res) => res._id === r._id
+                          );
+                          if (findAnswer.options[findAnswer.userAnswer]) {
+                            defaultValue = {
+                              label:
+                                findAnswer.options[findAnswer.userAnswer].text,
+                              value: findAnswer.userAnswer,
+                            };
+                          }
+                        }
+
                         return (
                           <tr
                             className="table-content align-items-center "
@@ -185,6 +211,7 @@ const SingleChoice = (props) => {
                                 options={optionPattern(r.options)}
                                 formik={formik}
                                 placeholder="choose"
+                                defaultValue={defaultValue}
                               />
                               <span
                                 className={`d-none font-sm mr-4 correction-${data._id}-${r._id}`}
@@ -210,6 +237,7 @@ const SingleChoice = (props) => {
                   onRetry={() => {
                     handleRetry(formik);
                   }}
+                  submitRef={submitRef}
                 />
               </Form>
             )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik } from "formik";
+import { defConfig, POST } from "../../../../config/RestAPI";
 
 const CompleteParahraph = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
@@ -52,11 +53,25 @@ const CompleteParahraph = (props) => {
   };
 
   const onSubmit = (values, { setSubmitting }) => {
-    setSubmitting(false);
-    setButtonToggleFooter(true);
+    setSubmitting(true);
+    // setButtonToggleFooter(true);
+    values = { ...data, userAnswer: values.answers };
+    // console.log(data);
 
-    console.log(data);
-    console.log(values);
+    let req = {
+      contentId: data._id,
+      contentType: data.contentType.name,
+      userAnswers: values,
+    };
+    POST(`/client/activity/set_practice_student`, req, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
   };
 
   return (

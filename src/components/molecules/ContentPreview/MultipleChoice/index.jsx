@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import FooterContent from "../FooterContent";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, useFormik } from "formik";
 import { defConfig, POST } from "../../../../config/RestAPI";
 
 const MultipleChoice = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
 
   const abjads = [
     "A",
@@ -33,17 +35,36 @@ const MultipleChoice = (props) => {
     "Y",
     "Z",
   ];
-  const data = props.data;
+  const { data } = props;
 
+  const submitRef = useRef();
+  useEffect(() => {
+    patternAnswer();
+  }, []);
+
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      clearColor();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
   const patternAnswer = () => {
     let answers = [];
-    data.questions.map((r) => {
-      answers.push([]);
-    });
-    return { answers };
+
+    if (!data.userAnswers) {
+      data.questions.map((r) => {
+        answers.push([]);
+      });
+    } else {
+      data.userAnswers.map((r) => {
+        answers.push(r.userAnswer);
+      });
+    }
+
+    setInitAnswer({ answers });
   };
 
-  const initAnswer = patternAnswer();
   const changeStyleAfterSubmit = (idName, status) => {
     let doc = document.querySelector(idName);
     let color = "";
@@ -60,7 +81,7 @@ const MultipleChoice = (props) => {
     doc.style.color = color;
   };
 
-  const clearColor = () => {
+  const clearColor = (formik) => {
     let questionIndex = 0;
     for (let question of data.questions) {
       let optionIndex = 0;
@@ -75,33 +96,7 @@ const MultipleChoice = (props) => {
     }
   };
 
-  const handleSubmitPost = (values, setSubmitting) => {
-    values = data.questions.map((r, i) => {
-      return { ...r, userAnswer: values.answers[i] };
-    });
-    values = {
-      userAnswers: values,
-      contentId: data._id,
-      contentType: data.contentType.name,
-    };
-
-    POST(`/client/activity/set_practice_student`, values, defConfig())
-      .then((r, i) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-        console.log(err.response);
-      });
-  };
-
-  const onSubmit = (values, { setSubmitting }) => {
-    // setButtonToggleFooter(true);
-    setSubmitting(true);
-    handleSubmitPost(values, setSubmitting);
-
+  const stylingAnswered = (values) => {
     let questionIndex = 0;
     for (let question of data.questions) {
       let optionIndex = 0;
@@ -126,6 +121,34 @@ const MultipleChoice = (props) => {
       }
       questionIndex++;
     }
+  };
+
+  const handleSubmitPost = (values, setSubmitting) => {
+    values = data.questions.map((r, i) => {
+      return { ...r, userAnswer: values.answers[i] };
+    });
+    values = {
+      userAnswers: values,
+      contentId: data._id,
+      contentType: data.contentType.name,
+    };
+
+    POST(`/client/activity/set_practice_student`, values, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
+  };
+
+  const onSubmit = (values, { setSubmitting }) => {
+    setButtonToggleFooter(true);
+    setSubmitting(true);
+    handleSubmitPost(values, setSubmitting);
+    stylingAnswered(values);
   };
 
   return (
@@ -200,9 +223,10 @@ const MultipleChoice = (props) => {
                     explanation={data.correctionText}
                     onRetry={() => {
                       setButtonToggleFooter(false);
-                      clearColor();
+                      clearColor(formik);
                       formik.resetForm();
                     }}
+                    submitRef={submitRef}
                   />
                 </Form>
               )}

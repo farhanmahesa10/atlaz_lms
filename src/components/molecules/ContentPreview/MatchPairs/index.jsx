@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik } from "formik";
 import {
@@ -6,6 +6,8 @@ import {
   HighlightOff,
   CircleOutlined,
 } from "@mui/icons-material";
+import { defConfig, POST } from "../../../../config/RestAPI";
+import Skeleton from "react-loading-skeleton";
 
 const MatchPairs = (props) => {
   const data = props.data;
@@ -21,11 +23,20 @@ const MatchPairs = (props) => {
   const [rightClickedData, setRightClickedData] = useState([]);
 
   const [nextIndex, setNextIndex] = useState(null);
-
-  const [isAlreadySubmit, setIsAlreadySubmit] = useState(false);
-
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const submitRef = useRef();
   const maxData = data.options.length * 2;
 
+  useEffect(() => {
+    patternAnswer();
+  }, []);
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
   const handleLeftClicked = (e, r, i) => {
     let isDataClicked = checkIsbuttonClicked(r.abjad);
 
@@ -70,10 +81,15 @@ const MatchPairs = (props) => {
     return rightClickedData.find((res) => res === value);
   };
 
-  const initAnswer = () => {
-    return data.options.map((r) => {
-      return { ...r, userAnswer: "" };
-    });
+  const patternAnswer = () => {
+    if (data.userAnswers) {
+      setInitAnswer(data.userAnswers);
+    } else {
+      let init = data.options.map((r) => {
+        return { ...r, userAnswer: "" };
+      });
+      setInitAnswer(init);
+    }
   };
 
   const getClassAnswered = (formik, name) => {
@@ -110,13 +126,6 @@ const MatchPairs = (props) => {
   };
 
   const resetForm = () => {
-    let circleIcon = (
-      <CircleOutlined
-        style={{
-          fontSize: "18px",
-        }}
-      />
-    );
     let buttonFill = document.querySelectorAll(`.button-fill-${data._id} `);
     buttonFill.forEach((el) => {
       el.style.backgroundColor = "#D4D7DB";
@@ -133,16 +142,40 @@ const MatchPairs = (props) => {
   };
 
   const onSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setSubmitting(false);
-    setButtonToggleFooter(true);
+    setSubmitting(true);
+    // setButtonToggleFooter(true);
+    let req = {
+      contentId: data._id,
+      contentType: data.contentType.name,
+      userAnswers: values,
+    };
+
+    POST(`/client/activity/set_practice_student`, req, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
   };
+
+  if (!initAnswer) {
+    // handle deleyed formik
+    return (
+      <div className="p-16">
+        <Skeleton width={"100%"} height="200px" />
+      </div>
+    );
+  }
+
   return (
     <div className="col-12 card-container ">
       <div className="card-content">
         {data.instruction ? <h5 className="mb-16">{data.instruction}</h5> : ""}
         <Formik
-          initialValues={initAnswer()}
+          initialValues={initAnswer}
           onSubmit={onSubmit}
           enableReinitialize={true}
         >
@@ -159,8 +192,8 @@ const MatchPairs = (props) => {
                             {r.question.includes("data:image/") ? (
                               <div className="d-flex align-items-center mb-16">
                                 <div
-                                  style={{ width: "252px", height: "252px" }}
-                                  className={` d-flex align-items-center  position-relative radius-14  ${
+                                  style={{ maxWidth: "252px" }}
+                                  className={` d-flex align-items-center   position-relative radius-14  ${
                                     getClassAnswered(formik, `[${i}]`) ===
                                     "none"
                                       ? ""
@@ -194,7 +227,7 @@ const MatchPairs = (props) => {
                                   <img
                                     src={r.question}
                                     width="100%"
-                                    height="100%"
+                                    // height="100%"
                                     style={{ objectFit: "cover" }}
                                     className="radius-14"
                                   />
@@ -394,7 +427,7 @@ const MatchPairs = (props) => {
                                 </div>
 
                                 <div
-                                  style={{ width: "252px", height: "252px" }}
+                                  style={{ maxWidth: "252px" }}
                                   className={`ml-16 d-flex align-items-center  position-relative radius-14  ${
                                     getClassAnsweredRight(
                                       data.options_dup[i],
@@ -437,9 +470,9 @@ const MatchPairs = (props) => {
                                   <img
                                     src={data.options_dup[i].answer}
                                     width="100%"
-                                    height="100%"
+                                    // height="100%"
                                     style={{
-                                      objectFit: "cover",
+                                      // objectFit: "cover",
                                       borderRadius: "14px",
                                     }}
                                   />
@@ -561,6 +594,7 @@ const MatchPairs = (props) => {
                     formik.resetForm();
                     resetForm();
                   }}
+                  submitRef={submitRef}
                 />
               </Form>
             );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FormikControl from "../../../atoms/Formik/FormikControl";
 import FooterContent from "../FooterContent";
 import { Form, Formik } from "formik";
+import { defConfig, POST } from "../../../../config/RestAPI";
 
 const ShortAnswer = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
@@ -17,6 +18,25 @@ const ShortAnswer = (props) => {
 
   const initAnswer = patternAnswer();
   const onSubmit = (values, { setSubmitting }) => {
+    setSubmitting(true);
+    values = data.questions.map((r, i) => {
+      return { ...r, userAnswer: values.answers[i] };
+    });
+
+    let req = {
+      contentId: data._id,
+      contentType: data.contentType.name,
+      userAnswers: values,
+    };
+    POST(`/client/activity/set_practice_student`, req, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
     setSubmitting(false);
     setButtonToggleFooter(true);
   };

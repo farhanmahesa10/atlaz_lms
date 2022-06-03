@@ -34,7 +34,6 @@ function PreviewContentOrg() {
   const [dataSubtopic, setDataSubtopic] = useState();
   const [dataContent, setDataContent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const backToTop = () => {
     window.scrollTo({
       top: 0,
@@ -42,7 +41,7 @@ function PreviewContentOrg() {
     });
   };
 
-  const showContent = (data, index) => {
+  const showContent = (data) => {
     switch (data.contentType.name.toLowerCase()) {
       case "complete a paragraph":
         return <CompleteParagraph data={data} />;
@@ -71,26 +70,20 @@ function PreviewContentOrg() {
     }
   };
 
-  const initData = () => {
+  const initData = async () => {
     setIsLoading(true);
-    GET(`/content/preview?subTopicId=${id}`, defConfig())
-      .then((res) => {
-        setDataContent(res.data);
-        setIsLoading(false);
-        // console.log("1 success", res.data);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        // console.log("1", err.response);
-      });
-    GET(`/subtopic/${id}`, defConfig())
-      .then((res) => {
-        setDataSubtopic(res.data);
-        // console.log("2 success", res);
-      })
-      .catch((err) => {
-        // console.log("2", err.response);
-      });
+
+    try {
+      let content = await GET(
+        `/client/activity/get_content_book?subTopicId=${id}`,
+        defConfig()
+      );
+      setDataContent(content.data);
+      let subTopic = await GET(`/subtopic/${id}`, defConfig());
+      setDataSubtopic(subTopic.data);
+    } catch (err) {}
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -117,7 +110,7 @@ function PreviewContentOrg() {
               <PreviewContentLoading />
             ) : (
               <div className="row justify-content-center mx-12 md-mx-24">
-                <div className="col-md-8 col-12">
+                <div className="col-lg-8 col-12">
                   <div className="header-preview radius-14 bg-white py-16 px-24 mb-24">
                     <div className="neutral300 mb-8">
                       {dataSubtopic?.topic.name}
@@ -128,11 +121,10 @@ function PreviewContentOrg() {
                   <div className="preview-content  radius-8 ">
                     <div className="content ">
                       <div className="content">
-                        {/* {console.log("dataContent", dataContent)} */}
                         {dataContent.map((data, index) => {
                           return (
                             <div key={index} className="">
-                              {showContent(data, index)}
+                              {showContent(data)}
                             </div>
                           );
                         })}

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik } from "formik";
+import { defConfig, POST } from "../../../../config/RestAPI";
 
 const FillinTheBlank = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
 
   const data = props.data;
-  console.log(data);
   const patternAnswer = () => {
     let answers = [];
     let dbAnswers = [];
@@ -16,27 +16,24 @@ const FillinTheBlank = (props) => {
         col1: [],
         col2: [],
       });
-      answers.map((r2, i2) => {
-        r.col1.answer.map((r3) => {
-          r2.col1.push("");
-        });
-        r.col2.answer.map((r3) => {
-          r2.col2.push("");
-        });
+      r.col1.answer.map((r3) => {
+        answers[i].col1.push("");
+      });
+      r.col2.answer.map((r3) => {
+        answers[i].col2.push("");
       });
     });
+
     data.questions.map((r, i) => {
       dbAnswers.push({
         col1: [],
         col2: [],
       });
-      dbAnswers.map((r2, i2) => {
-        r.col1.answer.map((r3) => {
-          r2.col1.push(r3);
-        });
-        r.col2.answer.map((r3) => {
-          r2.col2.push(r3);
-        });
+      r.col1.answer.map((r3) => {
+        dbAnswers[i].col1.push(r3);
+      });
+      r.col2.answer.map((r3) => {
+        dbAnswers[i].col2.push(r3);
       });
     });
     return { answers, dbAnswers };
@@ -91,9 +88,25 @@ const FillinTheBlank = (props) => {
   };
 
   const onSubmit = (values, { setSubmitting }) => {
-    setSubmitting(false);
-    setButtonToggleFooter(true);
-    console.log(values);
+    setSubmitting(true);
+    // setButtonToggleFooter(true);
+    values = { ...data, userAnswer: values.answers };
+    // console.log(data);
+
+    let req = {
+      contentId: data._id,
+      contentType: data.contentType.name,
+      userAnswers: values,
+    };
+    POST(`/client/activity/set_practice_student`, req, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
   };
 
   return (

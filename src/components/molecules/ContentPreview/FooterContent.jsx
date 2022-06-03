@@ -3,7 +3,7 @@ import { Spellcheck, EmojiObjectsOutlined, Replay } from "@mui/icons-material";
 
 const FooterContent = (props) => {
   const [showExplanation, setShowExplanation] = useState(false);
-  const data = props.data;
+  const { data, submitRef } = props;
   return (
     <div className="row footer-content">
       {showExplanation ? (
@@ -21,6 +21,7 @@ const FooterContent = (props) => {
       <div className="col-12 ">
         {!props.buttonToggle ? (
           <button
+            ref={submitRef}
             type={!props.isSubmitting ? "submit" : "button"}
             className={` ${
               props.isSubmitting ? " btn-disable" : "btn-primary"

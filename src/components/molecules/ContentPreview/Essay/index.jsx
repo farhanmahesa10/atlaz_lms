@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import FooterContent from "../FooterContent";
 import Textarea from "react-expanding-textarea";
+import { defConfig, POST } from "../../../../config/RestAPI";
 
 const Essay = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
@@ -10,11 +11,25 @@ const Essay = (props) => {
   const initAnswer = {
     answer: "",
   };
-
   const onSubmit = (values, { setSubmitting }) => {
+    setSubmitting(true);
+
+    let req = {
+      contentId: data._id,
+      contentType: data.contentType.name,
+      userAnswers: values,
+    };
+    POST(`/client/activity/set_practice_student`, req, defConfig())
+      .then((r, i) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        setButtonToggleFooter(true);
+      });
     setSubmitting(false);
     setButtonToggleFooter(true);
-    setSubmitting(false);
   };
 
   return (
