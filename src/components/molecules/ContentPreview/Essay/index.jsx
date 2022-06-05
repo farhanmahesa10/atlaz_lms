@@ -3,14 +3,30 @@ import { Field, Form, Formik } from "formik";
 import FooterContent from "../FooterContent";
 import Textarea from "react-expanding-textarea";
 import { defConfig, POST } from "../../../../config/RestAPI";
+import Skeleton from "react-loading-skeleton";
 
 const Essay = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
   const textareaRef = useRef(null);
   const data = props.data;
-  const initAnswer = {
-    answer: "",
-  };
+
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const submitRef = useRef();
+
+  useEffect(() => {
+    if (data.userAnswers) {
+      setInitAnswer({ answer: data.userAnswers.answer });
+    } else {
+      setInitAnswer({ answer: "" });
+    }
+  }, []);
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
   const onSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
 
@@ -31,6 +47,15 @@ const Essay = (props) => {
     setSubmitting(false);
     setButtonToggleFooter(true);
   };
+
+  if (!initAnswer) {
+    // handle deleyed formik
+    return (
+      <div className="p-16">
+        <Skeleton width={"100%"} height="200px" />
+      </div>
+    );
+  }
 
   return (
     <div className="card-container">
@@ -90,7 +115,9 @@ const Essay = (props) => {
                 onRetry={() => {
                   setButtonToggleFooter(false);
                   formik.resetForm();
+                  setInitAnswer({ answer: "" });
                 }}
+                submitRef={submitRef}
               />
             </Form>
           )}

@@ -1,26 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik } from "formik";
 import { defConfig, POST } from "../../../../config/RestAPI";
+import Skeleton from "react-loading-skeleton";
 
 const FillinTheBlank = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
 
+  const [clearForm, setClearForm] = useState(null);
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const submitRef = useRef();
+
   const data = props.data;
+
+  useEffect(() => {
+    patternAnswer();
+  }, []);
+
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
   const patternAnswer = () => {
     let answers = [];
     let dbAnswers = [];
+    let clearedForm = [];
+
+    if (!data.userAnswers) {
+      data.questions.map((r, i) => {
+        answers.push({
+          col1: [],
+          col2: [],
+        });
+        r.col1.answer.map((r3) => {
+          answers[i].col1.push("");
+        });
+        r.col2.answer.map((r3) => {
+          answers[i].col2.push("");
+        });
+      });
+    } else {
+      answers = data.userAnswers.userAnswer;
+    }
+
+    //for clear form
     data.questions.map((r, i) => {
-      answers.push({
+      clearedForm.push({
         col1: [],
         col2: [],
       });
       r.col1.answer.map((r3) => {
-        answers[i].col1.push("");
+        clearedForm[i].col1.push("");
       });
       r.col2.answer.map((r3) => {
-        answers[i].col2.push("");
+        clearedForm[i].col2.push("");
       });
     });
 
@@ -36,10 +73,9 @@ const FillinTheBlank = (props) => {
         dbAnswers[i].col2.push(r3);
       });
     });
-    return { answers, dbAnswers };
+    setClearForm({ answers: clearedForm, dbAnswers });
+    setInitAnswer({ answers, dbAnswers });
   };
-
-  var initAnswer = patternAnswer();
 
   const displayAnswer = (question, answers) => {
     let result = [];
@@ -51,7 +87,7 @@ const FillinTheBlank = (props) => {
       result.push(
         <span
           key={i}
-          class="px-8 py-2  text-neutral-50 bg-success-600 radius-4 font-xs-medium md-font-sm-medium mr-8 nowrap"
+          className="px-8 py-2  text-neutral-50 bg-success-600 radius-4 font-xs-medium md-font-sm-medium mr-8 nowrap"
         >
           {col1Res}
         </span>
@@ -83,10 +119,6 @@ const FillinTheBlank = (props) => {
     return result;
   };
 
-  const handleRetry = (formik) => {
-    initAnswer = patternAnswer();
-  };
-
   const onSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
     // setButtonToggleFooter(true);
@@ -108,7 +140,14 @@ const FillinTheBlank = (props) => {
         setButtonToggleFooter(true);
       });
   };
-
+  if (!initAnswer) {
+    // handle deleyed formik
+    return (
+      <div className="p-16">
+        <Skeleton width={"100%"} height="200px" />
+      </div>
+    );
+  }
   return (
     <>
       <div className="col-12 card-container ">
@@ -188,8 +227,10 @@ const FillinTheBlank = (props) => {
                     explanation={data.correctionText}
                     onRetry={() => {
                       setButtonToggleFooter(false);
-                      formik.resetForm();
+                      // formik.resetForm();
+                      setInitAnswer(clearForm);
                     }}
+                    submitRef={submitRef}
                   />
                 </Form>
               )}
@@ -223,6 +264,7 @@ const AutoGrowInput = ({ name, isDbAnswers, showAnswer }) => {
               <input
                 type="text"
                 size="1"
+                autoComplete="off"
                 {...field}
                 onInput={(e) => {
                   e.target.parentNode.dataset.value = e.target.value;

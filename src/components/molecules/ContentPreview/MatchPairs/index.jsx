@@ -23,6 +23,7 @@ const MatchPairs = (props) => {
   const [rightClickedData, setRightClickedData] = useState([]);
 
   const [nextIndex, setNextIndex] = useState(null);
+  const [clearForm, setClearForm] = useState(null);
   const [firstInitAnswer, setFirstInitAnswer] = useState(false);
   const [initAnswer, setInitAnswer] = useState(null);
   const submitRef = useRef();
@@ -90,6 +91,10 @@ const MatchPairs = (props) => {
       });
       setInitAnswer(init);
     }
+    let clearedForm = data.options.map((r) => {
+      return { ...r, userAnswer: "" };
+    });
+    setClearForm(clearedForm);
   };
 
   const getClassAnswered = (formik, name) => {
@@ -591,7 +596,8 @@ const MatchPairs = (props) => {
                   explanation={data.correctionText}
                   onRetry={() => {
                     setButtonToggleFooter(false);
-                    formik.resetForm();
+                    // formik.resetForm();
+                    setInitAnswer(clearForm);
                     resetForm();
                   }}
                   submitRef={submitRef}

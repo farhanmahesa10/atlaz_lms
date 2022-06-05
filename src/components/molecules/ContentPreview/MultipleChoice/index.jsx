@@ -2,9 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik, useFormik } from "formik";
 import { defConfig, POST } from "../../../../config/RestAPI";
+import Skeleton from "react-loading-skeleton";
 
 const MultipleChoice = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
+
+  const [clearForm, setClearForm] = useState(null);
   const [initAnswer, setInitAnswer] = useState(null);
   const [firstInitAnswer, setFirstInitAnswer] = useState(false);
 
@@ -51,6 +54,7 @@ const MultipleChoice = (props) => {
   }, [initAnswer]);
   const patternAnswer = () => {
     let answers = [];
+    let clearedForm = [];
 
     if (!data.userAnswers) {
       data.questions.map((r) => {
@@ -61,7 +65,10 @@ const MultipleChoice = (props) => {
         answers.push(r.userAnswer);
       });
     }
-
+    data.userAnswers.map((r) => {
+      clearedForm.push([]);
+    });
+    setClearForm({ answers: clearedForm });
     setInitAnswer({ answers });
   };
 
@@ -150,7 +157,14 @@ const MultipleChoice = (props) => {
     handleSubmitPost(values, setSubmitting);
     stylingAnswered(values);
   };
-
+  if (!initAnswer) {
+    // handle deleyed formik
+    return (
+      <div className="p-16">
+        <Skeleton width={"100%"} height="200px" />
+      </div>
+    );
+  }
   return (
     <>
       <div className="col-12 card-container ">
@@ -224,7 +238,8 @@ const MultipleChoice = (props) => {
                     onRetry={() => {
                       setButtonToggleFooter(false);
                       clearColor(formik);
-                      formik.resetForm();
+                      // formik.resetForm();
+                      setInitAnswer(clearForm);
                     }}
                     submitRef={submitRef}
                   />

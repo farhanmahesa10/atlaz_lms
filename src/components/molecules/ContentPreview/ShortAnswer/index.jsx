@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FormikControl from "../../../atoms/Formik/FormikControl";
 import FooterContent from "../FooterContent";
 import { Form, Formik } from "formik";
@@ -8,15 +8,37 @@ const ShortAnswer = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
   const data = props.data;
 
+  const [clearForm, setClearForm] = useState(null);
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const submitRef = useRef();
+
+  useEffect(() => {
+    patternAnswer();
+  }, []);
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
   const patternAnswer = () => {
     let answers = [];
+    let clearForm = [];
+
     data.questions.map((r) => {
-      answers.push("");
+      if (data.userAnswers) {
+        let result = data.userAnswers.find((res) => r._id === res._id);
+        answers.push(result.userAnswer);
+      } else {
+        answers.push("");
+      }
+      clearForm.push("");
     });
-    return { answers };
+    setClearForm({ answers: clearForm });
+    setInitAnswer({ answers });
   };
 
-  const initAnswer = patternAnswer();
   const onSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
     values = data.questions.map((r, i) => {
@@ -78,6 +100,7 @@ const ShortAnswer = (props) => {
                               <FormikControl
                                 control="input"
                                 type="text"
+                                autoComplete="off"
                                 name={`answers[${i}]`}
                                 placeholder="Enter the answer here"
                               />
@@ -108,8 +131,10 @@ const ShortAnswer = (props) => {
                   explanation={data.correctionText}
                   onRetry={() => {
                     setButtonToggleFooter(false);
-                    formik.resetForm();
+                    // formik.resetForm();
+                    setInitAnswer(clearForm);
                   }}
+                  submitRef={submitRef}
                 />
               </Form>
             )}

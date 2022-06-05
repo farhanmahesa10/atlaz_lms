@@ -1,24 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FooterContent from "../FooterContent";
 import { Field, Form, Formik } from "formik";
 import { defConfig, POST } from "../../../../config/RestAPI";
+import Skeleton from "react-loading-skeleton";
 
 const CompleteParahraph = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
 
-  const [explanationProcess, setexplanationProcess] = useState(false);
+  const [clearForm, setClearForm] = useState(null);
+  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
+  const [initAnswer, setInitAnswer] = useState(null);
+  const submitRef = useRef();
 
   const data = props.data;
 
+  useEffect(() => {
+    patternAnswer();
+  }, []);
+
+  useEffect(() => {
+    if (initAnswer && !firstInitAnswer && data.userAnswers) {
+      submitRef.current.click();
+      setFirstInitAnswer(true);
+    }
+  }, [initAnswer]);
+
   const patternAnswer = () => {
     let answers = [];
+    let clearedForm = [];
+
+    if (!data.userAnswers) {
+      data.answer.map((r) => {
+        answers.push("");
+      });
+    } else {
+      answers = data.userAnswers.userAnswer;
+    }
     data.answer.map((r) => {
-      answers.push("");
+      clearedForm.push("");
     });
-    return { answers, dbAnswers: data.answer };
+    setClearForm({ answers: clearedForm, dbAnswers: data.answer });
+    setInitAnswer({ answers, dbAnswers: data.answer });
   };
 
-  const initAnswer = patternAnswer();
   const flatMap = (array, fn) => {
     var result = [];
     for (var i = 0; i < array.length; i++) {
@@ -73,7 +97,14 @@ const CompleteParahraph = (props) => {
         setButtonToggleFooter(true);
       });
   };
-
+  if (!initAnswer) {
+    // handle deleyed formik
+    return (
+      <div className="p-16">
+        <Skeleton width={"100%"} height="200px" />
+      </div>
+    );
+  }
   return (
     <>
       <div className="col-12 card-container ">
@@ -110,8 +141,10 @@ const CompleteParahraph = (props) => {
                     explanation={data.correctionText}
                     onRetry={() => {
                       setButtonToggleFooter(false);
-                      formik.resetForm();
+                      // formik.resetForm();
+                      setInitAnswer(clearForm);
                     }}
+                    submitRef={submitRef}
                   />
                 </Form>
               )}
