@@ -218,7 +218,7 @@ const Routing = () => {
         }
       />
       <Route
-        path="/classroom/welcome-assessment/:id"
+        path="/classroom/welcome-assessment/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
             <WelcomeAssessment />
@@ -226,7 +226,7 @@ const Routing = () => {
         }
       />
       <Route
-        path="/classroom/begin-assessment/:id"
+        path="/classroom/begin-assessment/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
             <BeginAssessmentOrg />
@@ -245,7 +245,7 @@ const Routing = () => {
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
       <Route
-        path="/classroom/preview-content/:id"
+        path="/classroom/content-practice/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
             <PreviewContent />

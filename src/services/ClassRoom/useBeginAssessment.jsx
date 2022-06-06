@@ -20,7 +20,10 @@ const useBeginAssessment = () => {
   const [subTopicData, setSubTopicData] = useState({});
 
   useEffect(() => {
-    GET(`/assessment/view/${idsubtopic}`, defConfig()).then((response) => {
+    GET(
+      `/client/activity/get_content_book?subTopicId=${idsubtopic}`,
+      defConfig()
+    ).then((response) => {
       console.log(response);
       setSubTopicData(response.data.subTopic);
       let r = response.data;

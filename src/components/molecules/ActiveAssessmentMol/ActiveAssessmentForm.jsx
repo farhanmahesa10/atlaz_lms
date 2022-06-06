@@ -48,6 +48,7 @@ const ActiveAssessmentForm = (props) => {
             <div>
               <FormikControl
                 control="select"
+                className="border border-secondary-500 radius-8"
                 name={name}
                 options={props.options && props.options}
                 formik={formik}

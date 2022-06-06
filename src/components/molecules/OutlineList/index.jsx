@@ -21,6 +21,7 @@ const OutlineList = (props) => {
     ).then((r) => {
       setData(r.data);
       setLessonData(r.data.find((res) => res._id === lessonId));
+
       setIsLoading(false);
     });
   }, []);
@@ -78,7 +79,6 @@ const OutlineList = (props) => {
                   <div key={`lesson-${r._id}`}>
                     <OutlineListLessonControl
                       data={r}
-                      lessonId={r._id}
                       classId={classId}
                       subjectId={subjectId}
                     />

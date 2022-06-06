@@ -67,7 +67,12 @@ const BookContentLessonControl = (props) => {
                 data.topics.map((r, i) => {
                   return (
                     <div className="pt-8" key={`topic-${r._id}`}>
-                      <BookContentTopicControl data={r} classId={classId} />
+                      <BookContentTopicControl
+                        data={r}
+                        classId={classId}
+                        subjectId={subjectId}
+                        lessonId={data._id}
+                      />
                     </div>
                   );
                 })}

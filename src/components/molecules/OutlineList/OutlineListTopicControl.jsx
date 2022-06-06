@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GET, defConfig } from "../../../config/RestAPI";
 import OutlineListAccordion from "./OutlineListAccordion";
 import OutlineListSubtopicControl from "./OutlineListSubtopicControl";
 import OutlineListLoadingAccordion from "./OutlineListLoadingAccordion";
+import { useParams } from "react-router-dom";
 
 const OutlineListTopicControl = (props) => {
-  const { classId, subjectId } = props;
+  const { classId, subjectId, lessonId } = props;
   const [data, setData] = useState(props.data);
   const [hasRequestSubtopic, setHasRequestSubtopic] = useState(false);
   const [isLoadingSubtopic, setIsLoadingSubtopic] = useState(true);
+  const [expand, setExpand] = useState(false);
+  const params = useParams();
 
   const requestChild = (id) => {
     if (!hasRequestSubtopic || data.subtopicRequestStatus === "error") {
@@ -37,7 +40,12 @@ const OutlineListTopicControl = (props) => {
         });
     }
   };
-
+  useEffect(() => {
+    if (data._id === params.topicId) {
+      requestChild(params.topicId);
+      setExpand(true);
+    }
+  }, []);
   return (
     <OutlineListAccordion
       title={data.name}
@@ -46,6 +54,7 @@ const OutlineListTopicControl = (props) => {
       type="TOPIC"
       requestId={data._id}
       isLocked={data.isLocked}
+      defaultShow={expand}
     >
       <div
         className="ml-16 pt-8 border-start border-secondary-500 "
@@ -60,6 +69,8 @@ const OutlineListTopicControl = (props) => {
                     data={r}
                     classId={classId}
                     subjectId={subjectId}
+                    lessonId={lessonId}
+                    topicId={data._id}
                   />
                 </div>
               );

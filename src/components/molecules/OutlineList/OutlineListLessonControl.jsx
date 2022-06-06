@@ -72,6 +72,7 @@ const OutlineListLessonControl = (props) => {
                       data={r}
                       classId={classId}
                       subjectId={subjectId}
+                      lessonId={data._id}
                     />
                   </div>
                 );

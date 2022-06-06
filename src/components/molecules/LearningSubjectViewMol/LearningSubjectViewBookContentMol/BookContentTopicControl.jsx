@@ -5,7 +5,7 @@ import BookContentLoadingAccordion from "./BookContentLoadingAccordion";
 import { defConfig, GET } from "../../../../config/RestAPI";
 import BookContentSubtopicControl from "./BookContentSubtopicControl";
 const BookContentTopicControl = (props) => {
-  const { classId } = props;
+  const { classId, subjectId, lessonId } = props;
   const [data, setData] = useState(props.data);
   const [hasRequestSubtopic, setHasRequestSubtopic] = useState(false);
   const [isLoadingSubtopic, setIsLoadingSubtopic] = useState(true);
@@ -62,6 +62,10 @@ const BookContentTopicControl = (props) => {
                       <BookContentSubtopicControl
                         data={res}
                         subtopicId={res._id}
+                        classId={classId}
+                        subjectId={subjectId}
+                        lessonId={lessonId}
+                        topicId={data._id}
                       />
                     </div>
                   );

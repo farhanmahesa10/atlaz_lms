@@ -4,7 +4,7 @@ import MainLayout from "../../../Layout/Mainlayout";
 import imgHeader1 from "../../../../assets/images/detail-preview-bg-1.png";
 import imgHeader2 from "../../../../assets/images/detail-preview-bg-2.png";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   DoubleArrowRounded,
@@ -20,6 +20,7 @@ import {
   FillinTheBlank,
   MatchPairs,
   MultipleChoice,
+  OutlineList,
   ShortAnswer,
   SingleChoice,
   TextEditor,
@@ -28,12 +29,14 @@ import { GET, defConfig } from "../../../../config/RestAPI";
 import { PreviewContentLoading } from "../../../molecules";
 
 function PreviewContentOrg() {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { id, classId, subjectId, lessonId, topicId } = useParams();
+
   const [dataSubtopic, setDataSubtopic] = useState();
   const [dataContent, setDataContent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [pagination, setPagination] = useState({});
+
   const backToTop = () => {
     window.scrollTo({
       top: 0,
@@ -78,13 +81,19 @@ function PreviewContentOrg() {
         `/client/activity/get_content_book?subTopicId=${id}`,
         defConfig()
       );
+
       setDataContent(content.data);
       let subTopic = await GET(`/subtopic/${id}`, defConfig());
       setDataSubtopic(subTopic.data);
+      setPagination({ next: content.next, prev: content.prev });
     } catch (err) {}
 
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    initData();
+  }, [id, classId, subjectId, lessonId, topicId]);
 
   useEffect(() => {
     initData();
@@ -95,7 +104,7 @@ function PreviewContentOrg() {
       <MainLayout
         navbarBg="bg-white"
         navNoMenu
-        redirectOnNavClose="/classroom/start-learning-view/1"
+        redirectOnNavClose={`/classroom/start-learning-view/${classId}/${subjectId}`}
         modalTitle="Leave unsubmited exercise"
         modalMessage="Exercises that have not been submitted will be lost. Please submit the exercise before leaving the page"
         isNeedConfirm
@@ -140,26 +149,72 @@ function PreviewContentOrg() {
                 <div className="col-md-8 col-12 mt-96">
                   <div className="row justify-content-center">
                     <div className="col-4 d-flex align-items-center">
-                      <button className="btn-disable cursor-pointer p-7 mr-8">
-                        <ArrowBack className="fs-20" />
-                      </button>
-                      <div className="one-row">
-                        <div className="font-xs text-neutral-200">Back</div>
-                        <div className="font-xs-medium text-neutral-400">
-                          Reading 1
-                        </div>
-                      </div>
+                      {!pagination.prev ? (
+                        <>
+                          <button className="btn btn-disable d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
+                            <ArrowBack className="fs-20" />
+                          </button>
+                          <div className="ml-8 d-flex justify-content-between flex-column ">
+                            <span className="font-xs text-neutral-300">
+                              Back
+                            </span>
+                            <span className="font-xs text-neutral-300">-</span>
+                          </div>
+                        </>
+                      ) : (
+                        <Link
+                          to={`/classroom/content-practice/${classId}/${subjectId}/${lessonId}/${topicId}/${pagination.prev._id}`}
+                          className="d-flex"
+                        >
+                          <button className="btn btn-outline d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
+                            <ArrowBack className="fs-20" />
+                          </button>
+                          <div className="ml-8 d-flex justify-content-between flex-column ">
+                            <span className="font-xs text-neutral-300">
+                              Back
+                            </span>
+                            <span className="font-xs text-neutral-400 text-end">
+                              {pagination.prev.name.length > 12
+                                ? pagination.prev.name.substring(0, 12) + "..."
+                                : pagination.prev.name}
+                            </span>
+                          </div>
+                        </Link>
+                      )}
                     </div>
                     <div className="col-4 d-flex align-items-center justify-content-end text-end">
-                      <div className="one-row">
-                        <div className="font-xs text-neutral-200">Next</div>
-                        <div className="font-xs-medium text-neutral-400">
-                          Reading 3
-                        </div>
-                      </div>
-                      <button className="btn-secondary cursor-pointer p-7 ml-8">
-                        <ArrowForward className="fs-20" />
-                      </button>
+                      {!pagination.next ? (
+                        <>
+                          <div className="mr-8 d-flex justify-content-between flex-column ">
+                            <span className="font-xs text-neutral-300">
+                              Next
+                            </span>
+                            <span className="font-xs text-neutral-400">-</span>
+                          </div>
+                          <button className="btn btn-disable d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
+                            <ArrowForward className="fs-20" />
+                          </button>
+                        </>
+                      ) : (
+                        <Link
+                          to={`/classroom/content-practice/${classId}/${subjectId}/${lessonId}/${topicId}/${pagination.next._id}/`}
+                          className="d-flex"
+                        >
+                          <div className="mr-8 d-flex justify-content-between flex-column ">
+                            <span className="font-xs text-neutral-300 text-end">
+                              Next
+                            </span>
+                            <span className="font-xs text-neutral-400">
+                              {pagination.next.name.length > 12
+                                ? pagination.next.name.substring(0, 12) + "..."
+                                : pagination.next.name}
+                            </span>
+                          </div>
+                          <button className="btn btn-outline d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
+                            <ArrowForward className="fs-20" />
+                          </button>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -181,6 +236,13 @@ function PreviewContentOrg() {
           </div>
         </section>
       </MainLayout>
+      <OutlineList
+        classId={classId}
+        subjectId={subjectId}
+        lessonId={lessonId}
+        topicId={topicId}
+        subtopicId={id}
+      />
     </div>
   );
 }
