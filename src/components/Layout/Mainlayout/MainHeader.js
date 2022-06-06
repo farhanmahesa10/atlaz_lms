@@ -83,14 +83,14 @@ const MainHeader = (props) => {
       allowAccess: "teacher",
       childs: [
         {
-          link: "/report/type1",
-          label: "type 1",
+          link: "/report/grade-overview",
+          label: "Grade Overview",
           // shouldLogin: false,
           activeTo: "report",
         },
         {
-          link: "/report/type2",
-          label: "tupe 2",
+          link: "/report/manage-grade",
+          label: "Manage Grade",
           // shouldLogin: false,
           activeTo: "report",
         },
@@ -98,12 +98,12 @@ const MainHeader = (props) => {
     },
     {
       icon: <BookIcon />,
-      link: "/report/type1",
+      link: "/report/grade-overview",
       label: "Report",
       shouldLogin: 1,
       activeTo: "report",
-      allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,PUBLIC",
-     
+      allowAccess:
+        "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,PUBLIC",
     },
     {
       icon: <BookIcon />,

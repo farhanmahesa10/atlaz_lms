@@ -164,7 +164,7 @@ const DropDownMenu = (props) => {
           {res.childs.map((child, index) => {
             return (
               <li
-                className="pb-8 hover-text-primary-400 cursor-pointer"
+                className="pb-8 nowrap hover-text-primary-400 cursor-pointer"
                 key={`${id}-${index}`}
               >
                 <Link to={child.link}>{child.label}</Link>
