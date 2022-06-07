@@ -19,52 +19,57 @@ const useBeginAssessment = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [subTopicData, setSubTopicData] = useState({});
 
+  const redirectLink = `/classroom/welcome-assessment/${params.classId}/${params.subjectId}/${params.classId}/${params.lessonId}${params.topicId}/${params.id}`;
+
   useEffect(() => {
     GET(
-      `/client/activity/get_content_book?subTopicId=${idsubtopic}`,
+      `/client/classrooms/student_assessment/content/${idsubtopic}`,
       defConfig()
     ).then((response) => {
-      console.log(response);
-      setSubTopicData(response.data.subTopic);
-      let r = response.data;
-      let newQuestionName = [];
-      let formValue = r.assessment.map((r, i) => {
-        switch (r.assessmentType.name) {
-          case "Single Choice":
-            let buildScInit = r.questions.map((res, ind) => {
-              newQuestionName.push({
-                name: `${i}.questions[${ind}].userAnswer`,
-                isFilled: false,
-              });
-              res = {
-                ...res,
-                userAnswer: undefined,
-              };
-              return res;
-            });
+      if (response.data) {
+        console.log(response.data);
 
-            return { ...r, questions: buildScInit };
-          case "File Uploader":
-            newQuestionName.push({
-              name: `[${i}].userAnswer.base64File`,
-              isFilled: false,
-            });
-            r = { ...r, userAnswer: { fakeFile: "", base64File: "" } };
-            return r;
-          case "Audio Recorder":
-            newQuestionName.push({
-              name: `[${i}].userAnswer`,
-              isFilled: false,
-            });
-            r = { ...r, userAnswer: "" };
-            return r;
-          default:
-            return r;
-        }
-      });
+        setSubTopicData(response.data.subtopic);
+        let r = response.data;
+        let newQuestionName = [];
+        // let formValue = r.assessment.map((r, i) => {
+        //   switch (r.assessmentType.name) {
+        //     case "Single Choice":
+        //       let buildScInit = r.questions.map((res, ind) => {
+        //         newQuestionName.push({
+        //           name: `${i}.questions[${ind}].userAnswer`,
+        //           isFilled: false,
+        //         });
+        //         res = {
+        //           ...res,
+        //           userAnswer: undefined,
+        //         };
+        //         return res;
+        //       });
 
-      setFilledQuestions(newQuestionName);
-      setInitialValues(formValue);
+        //       return { ...r, questions: buildScInit };
+        //     case "File Uploader":
+        //       newQuestionName.push({
+        //         name: `[${i}].userAnswer.base64File`,
+        //         isFilled: false,
+        //       });
+        //       r = { ...r, userAnswer: { fakeFile: "", base64File: "" } };
+        //       return r;
+        //     case "Audio Recorder":
+        //       newQuestionName.push({
+        //         name: `[${i}].userAnswer`,
+        //         isFilled: false,
+        //       });
+        //       r = { ...r, userAnswer: "" };
+        //       return r;
+        //     default:
+        //       return r;
+        //   }
+        // });
+
+        // setFilledQuestions(newQuestionName);
+        // setInitialValues(formValue);
+      }
     });
   }, []);
 
@@ -145,6 +150,7 @@ const useBeginAssessment = () => {
     onSubmit,
     isLoading,
     subTopicData,
+    redirectLink,
   };
 };
 

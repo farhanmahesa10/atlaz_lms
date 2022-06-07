@@ -69,36 +69,36 @@ const WelcomeAssessmentOrg = () => {
                       <div className="mt-18 d-flex align-items-center ">
                         <CalendarTodayIcon />{" "}
                         <span className="ml-16">
-                          {moment(data.assessment.assessmentDate).format(
-                            "D MMMM Y"
-                          )}
+                          {data.assessment
+                            ? moment(data.assessment.dateEvent).format(
+                                "D MMMM Y"
+                              )
+                            : "-"}
                         </span>
                       </div>
                       <div className="mt-18 d-flex align-items-center mt-16">
                         <AccessTimeIcon />{" "}
                         <span className="ml-16">
-                          {moment(data.assessment.assessmentDate).format("LT")}
+                          {data.assessment
+                            ? moment(data.assessment.dateEvent).format("LT")
+                            : "-"}
                         </span>
                       </div>
                       <div className="mt-18 d-flex align-items-center mt-16">
                         <TimerOutlinedIcon />{" "}
                         <span className="ml-16">
-                          {data.subtopic.assessmentType.toLowerCase() ===
-                          "automatic grading"
+                          {data.assessment
                             ? handleDuration(
-                                data.assessment.startTime,
-                                data.assessment.endTime
+                                data.assessment.dateEvent,
+                                data.assessment.dateEventEnd
                               )
-                            : handleDuration(
-                                data.assessment.startDateTime,
-                                data.assessment.endDateTime
-                              )}
+                            : "-"}
                         </span>
                       </div>
                       <div className="mt-40">
                         {data.status.toLowerCase() === "on going" ? (
                           <Link
-                            to={`/classroom/begin-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${data.prev._id}`}
+                            to={`/classroom/begin-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${params.id}`}
                           >
                             <button
                               className="font-sm btn-primary d-flex align-items-center"

@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { defConfig, GET } from "../../config/RestAPI";
 
 const useWelcomeAssessment = () => {
@@ -29,13 +29,13 @@ const useWelcomeAssessment = () => {
   const handleBadgeColor = (status) => {
     switch (status.toLowerCase()) {
       case "on going":
-        return "border-info-500 text-info-500 border-info-500";
-      case "not started":
-        return "text-neutral-300 bg-neutral-100 border-neutral-300";
+        return "border-success-600 bg-success-100 border-success-600";
+      case "started soon":
+        return "text-info-500 bg-info-100 border-info-500";
       case "submited":
-        return "text-success-600 border-success-600 border-success-600";
-      case "absent":
-        return "text-red-500 border-red-500 border-danger-500";
+        return "bg-neutral-100 border-neutral-300 text-neutral-300";
+      case "not available":
+        return "bg-danger-100 border-danger-500 text-danger-500";
       default:
         break;
     }
@@ -47,7 +47,7 @@ const useWelcomeAssessment = () => {
 
   const handleModalText = (status) => {
     switch (status.toLowerCase()) {
-      case "not started":
+      case "started soon":
         setModalText({
           title: "This Assessment is Not Started Yet",
           message:
@@ -57,15 +57,16 @@ const useWelcomeAssessment = () => {
       case "submited":
         setModalText({
           title: "Assessment have submitted",
-          message:
-            "You have submitted this assessment and cannot re-enter because its only done once. To check the this assessment grade, please go to the grading page.",
+          message: `You have submitted this assessment and cannot re-enter because its only done once. To check the this assessment grade, please go to the ${(
+            <Link to="/">Grade Overview</Link>
+          )}.`,
         });
         break;
-      case "absent":
+      case "not available":
         setModalText({
-          title: "Assessment has missed",
+          title: "Assessment not available",
           message:
-            "Sorry, you have missed this assessment and cannot repeat the process. Contact your teacher for re-enter.",
+            "Sorry, this assessment is not available right now. Your teacher will announce it soon.",
         });
         break;
       default:
@@ -101,6 +102,9 @@ const useWelcomeAssessment = () => {
       defConfig()
     )
       .then((r) => {
+        let end = r.data.assessment.endDateTime;
+        let start = moment();
+        console.log(handleDuration(start, end));
         setData(r.data);
         setIsLoading(false);
         let newBread = [

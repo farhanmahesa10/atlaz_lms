@@ -104,6 +104,8 @@ const InputIcon = (props) => {
               )}
               <input
                 type={props.type}
+                onKeyDown={props.onKeyDown}
+                onKeyUp={props.onKeyUp}
                 autoComplete={props.autoComplete}
                 className={getInputClassName()}
                 placeholder={props.placeholder}

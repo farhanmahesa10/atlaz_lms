@@ -12,6 +12,7 @@ const BeginAssessmentOrg = () => {
     onSubmit,
     isLoading,
     subTopicData,
+    redirectLink,
   } = useBeginAssessment();
 
   return (
@@ -21,6 +22,7 @@ const BeginAssessmentOrg = () => {
         subTopicData={subTopicData}
         filledQuestions={filledQuestions}
         scrollToSection={scrollToSection}
+        redirectLink={redirectLink}
       />
       <div className="d-flex justify-content-center w-full bg-secondary-100 ">
         <Formik

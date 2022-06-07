@@ -5,8 +5,13 @@ import { ModalLink } from "../../molecules";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 const ProgressNavbar = (props) => {
-  const { progressSetup, filledQuestions, scrollToSection, subTopicData } =
-    props;
+  const {
+    progressSetup,
+    filledQuestions,
+    scrollToSection,
+    subTopicData,
+    redirectLink,
+  } = props;
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     let totalQuestion = progressSetup.length;
@@ -37,11 +42,11 @@ const ProgressNavbar = (props) => {
             ></div>
           </div>
           <div className="d-flex align-items-center ml-32 text-neutral-300 cursor-pointer hover-text-neutral-200">
-            {subTopicData.assessmentType === "Automatic Grading" ? (
+            {subTopicData.assessmentType === "Manual Grading" ? (
               <ModalTrigger
                 target="close-assessment"
                 data={{
-                  redirect: "/",
+                  redirect: { redirectLink },
                   title: "Cancel proccess",
                   message:
                     "Continue to cancel process? Once canceled, any changes will be lost.",

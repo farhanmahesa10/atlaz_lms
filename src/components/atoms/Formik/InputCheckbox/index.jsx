@@ -3,7 +3,7 @@ import React from "react";
 
 const InputCheckbox = (props) => {
   return (
-    <div className="d-flex align-items-center">
+    <div className={`d-flex align-items-center `}>
       <Field name={props.name}>
         {({
           field, // { name, value, onChange, onBlur }
@@ -17,10 +17,11 @@ const InputCheckbox = (props) => {
               className=" form-check-input"
               onChange={props.onChange}
               onInput={props.onInput}
+              id={props.name}
               {...field}
             />
             {props.label && (
-              <label htmlFor="" className="ml-11">
+              <label htmlFor={props.name} className="ml-11 cursor-pointer">
                 {props.label}
               </label>
             )}

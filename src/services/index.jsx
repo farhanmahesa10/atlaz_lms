@@ -14,7 +14,9 @@ import useGlobalFunction from "./GlobalFuntions/useGlobalFunction";
 import useWelcomeAssessment from "./ClassRoom/useWelcomeAssessment";
 import useBeginAssessment from "./ClassRoom/useBeginAssessment";
 import useSubjectPostMember from "./ClassRoom/SubjectPost/useSubjectPostMember";
+import useSchoolAdminDashboard from "./Dashboard/useSchoolAdminDashboard";
 export {
+  useSchoolAdminDashboard,
   useSearchResult,
   useClassRoomHero,
   useClassRoomAcademic,
