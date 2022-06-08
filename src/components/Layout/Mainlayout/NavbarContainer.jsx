@@ -1,16 +1,14 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Can } from "../../../permission";
 import { NavbarNotification } from "../../molecules";
-
+import { Divider } from "../../atoms";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
-  const navigate = useNavigate();
-  const disPatch = useDispatch();
 
   return (
     <Container fluid className="m-0 pl-24 lg-pl-48 pt-0 pr-12 lg-pr-48">
@@ -83,25 +81,37 @@ const NavbarContainer = (props) => {
                   className="h-32 w-32  radius-p-100"
                 />
               </div>
-              <ul className="dropdown-menu bg-white p-14 radius-8">
-                {settings.map((res, ind) => {
-                  return (
-                    <li
-                      className="hover-text-primary-500 cursor-pointer"
-                      key={"menus-" + ind}
-                    >
+              <ul className="dropdown-menu bg-white p-16 radius-8 w-318  top-35 right-8">
+                <div className="w-full  ">
+                  <div className="p-12 radius-8 bg-secondary-500 d-flex align-items-center">
+                    <div className="w-40 h-40">
+                      <img
+                        src="/images/profile.png"
+                        className="h-40 w-40  radius-p-100"
+                      />
+                    </div>
+                    <h6 className="ml-8"> {auth.name}</h6>
+                  </div>
+                  <div className="my-16">
+                    <Divider />
+                  </div>
+                  {settings.map((r, i) => {
+                    return (
                       <Link
-                        to={res.link}
-                        className="px-12 nowrap d-flex align-items-start my-4 flex-column justify-content-start"
+                        to={r.link}
+                        key={`setting-` + i}
+                        className="d-flex  mb-4 align-items-center p-8 hover-bg-secondary-200 cursor-pointer radius-4"
                       >
-                        {res.label}
-                        {res.activeTo === props.activeMenu && (
-                          <div className="h-2 w-24 bg-primary-500"></div>
-                        )}
+                        {r.icon}
+                        <p className="font-sm ml-17">{r.label}</p>
                       </Link>
-                    </li>
-                  );
-                })}
+                    );
+                  })}
+                  <div className="mt-104">
+                    <Divider />
+                  </div>
+                  <div className="mt-16 p-8"></div>
+                </div>
               </ul>
             </div>
           </>

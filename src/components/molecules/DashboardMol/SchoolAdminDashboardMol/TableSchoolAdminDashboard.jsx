@@ -28,10 +28,10 @@ const TableSchoolAdminDashboard = (props) => {
             >
               <table className="table w-full" style={{ width: "1595px" }}>
                 <thead className=" bg-secondary-200 ">
-                  <tr className="font-sm-bold text-start ">
+                  <tr className="font-sm-bold text-start">
                     {tableHeader.map((r, i) => {
                       return (
-                        <th key={"header-" + i} className=" pr-16 pl-32 pt-16 ">
+                        <th key={"header-" + i} className="pl-16  pt-16 ">
                           <span> {r.label}</span>
                         </th>
                       );
@@ -41,7 +41,7 @@ const TableSchoolAdminDashboard = (props) => {
                     {tableHeader.map((r, i) => {
                       return (
                         <th key={"search-" + i}>
-                          <div className="d-flex pb-16 pr-16 pl-32 pt-16 ">
+                          <div className="d-flex pb-16 pr-16 pl-16 pt-8 ">
                             <FormikControl
                               control="input"
                               name={r.name}
@@ -66,14 +66,14 @@ const TableSchoolAdminDashboard = (props) => {
                           i < tableBody.length - 1 && " border-bottom  "
                         }`}
                       >
-                        <td className="py-16 pr-16 pl-32">{r.nisn}</td>
-                        <td>{r.name}</td>
-                        <td>{r.role}</td>
-                        <td>{r.class}</td>
-                        <td>{r.academicYear}</td>
-                        <td>{r.subject}</td>
-                        <td>{r.subjectExpDate}</td>
-                        <td>{r.lastUpdate}</td>
+                        <td className="py-16 pr-16 pl-16">{r.nisn}</td>
+                        <td className="pl-16">{r.name}</td>
+                        <td className="pl-16">{r.role}</td>
+                        <td className="pl-16">{r.class}</td>
+                        <td className="pl-16">{r.academicYear}</td>
+                        <td className="pl-16">{r.subject}</td>
+                        <td className="pl-16">{r.subjectExpDate}</td>
+                        <td className="pl-16">{r.lastUpdate}</td>
                       </tr>
                     );
                   })}
@@ -100,13 +100,13 @@ const TableSchoolAdminDashboard = (props) => {
             </div>
             <div className="pl-32 d-flex border-start border-secondary-500">
               <button
-                className="border radius-8  mr-24 h-28 w-28 text-neutral-200 d-flex justify-content-center align-items-center bg-white"
+                className="border radius-8 cursor-pointer hover-bg-primary-100 mr-24 h-28 w-28 text-neutral-200 d-flex justify-content-center align-items-center bg-white"
                 style={{ boxShadow: " 0px 4px 8px rgba(0, 0, 0, 0.05" }}
               >
                 <ArrowBackIcon className="fs-16" />
               </button>
               <button
-                className="border radius-8  h-28 w-28 d-flex justify-content-center align-items-center bg-white"
+                className="border radius-8 cursor-pointer hover-bg-primary-100 h-28 w-28 d-flex justify-content-center align-items-center bg-white"
                 style={{ boxShadow: " 0px 4px 8px rgba(0, 0, 0, 0.05" }}
               >
                 <ArrowForwardIcon className="fs-16" />

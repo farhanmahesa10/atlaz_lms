@@ -252,6 +252,10 @@ const Routing = () => {
           </Authenticate>
         }
       />
+      <Route
+        path="/manage-account"
+        element={<Authenticate>{/* <PreviewContent /> */}</Authenticate>}
+      />
 
       {/* nextSpace route fajrul */}
 

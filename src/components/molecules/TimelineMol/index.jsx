@@ -70,11 +70,11 @@ const TimelineBlock = ({ data, onDelete }) => {
                   <div className="d-flex align-items-start">
                     <div className="mr-16 w-70 font-sm-medium text-neutral-300">
                       <span className="nowrap">
-                        {moment(r.dateEvent).format("LT")}
+                        {moment(r.startDateTime).format("LT")}
                       </span>{" "}
                       <br />
                       <span className="nowrap">
-                        {moment(r.dateEvent).format("D MMM")}
+                        {moment(r.startDateTime).format("D MMM")}
                       </span>
                     </div>
                     <BoxTimeline

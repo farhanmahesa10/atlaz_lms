@@ -1,11 +1,8 @@
 import React, { useRef, useState } from "react";
-import TextField from "@mui/material/TextField";
 import "./inputDate.scss";
-import { styled } from "@mui/material/styles";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import { Field } from "formik";
 import moment from "moment";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -65,7 +62,7 @@ const InputDateTime = (props) => {
           <div className="bg-neutral-100 d-flex align-items-center px-8 py-6 cursor-pointer">
             <CalendarTodayIcon
               onClick={(e) => {
-                document.querySelector(`input[name=${name}]`).click();
+                document.querySelector(`input[name="${name}"]`).click();
               }}
             />
           </div>

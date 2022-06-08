@@ -70,7 +70,7 @@ const WelcomeAssessmentOrg = () => {
                         <CalendarTodayIcon />{" "}
                         <span className="ml-16">
                           {data.assessment
-                            ? moment(data.assessment.dateEvent).format(
+                            ? moment(data.assessment.startDateTime).format(
                                 "D MMMM Y"
                               )
                             : "-"}
@@ -80,7 +80,7 @@ const WelcomeAssessmentOrg = () => {
                         <AccessTimeIcon />{" "}
                         <span className="ml-16">
                           {data.assessment
-                            ? moment(data.assessment.dateEvent).format("LT")
+                            ? moment(data.assessment.startDateTime).format("LT")
                             : "-"}
                         </span>
                       </div>
@@ -89,8 +89,8 @@ const WelcomeAssessmentOrg = () => {
                         <span className="ml-16">
                           {data.assessment
                             ? handleDuration(
-                                data.assessment.dateEvent,
-                                data.assessment.dateEventEnd
+                                data.assessment.startDateTime,
+                                data.assessment.endDateTime
                               )
                             : "-"}
                         </span>

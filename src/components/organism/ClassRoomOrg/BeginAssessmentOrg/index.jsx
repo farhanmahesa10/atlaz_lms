@@ -13,18 +13,20 @@ const BeginAssessmentOrg = () => {
     isLoading,
     subTopicData,
     redirectLink,
+    assessmentData,
   } = useBeginAssessment();
 
   return (
-    <div className=" ">
+    <div className="d-flex flex-column " style={{ minHeight: "100vh" }}>
       <ProgressNavbar
+        assessmentData={assessmentData}
         progressSetup={filledQuestions}
         subTopicData={subTopicData}
         filledQuestions={filledQuestions}
         scrollToSection={scrollToSection}
         redirectLink={redirectLink}
       />
-      <div className="d-flex justify-content-center w-full bg-secondary-100 ">
+      <div className=" justify-content-center w-full bg-secondary-100 ">
         <Formik
           initialValues={initialValues}
           // validationSchema={validationSchema}
@@ -33,12 +35,17 @@ const BeginAssessmentOrg = () => {
         >
           {(formik) => (
             <Form>
-              <div className="max-w-888 mt-200 px-24 md-px-48">
+              <div
+                className="max-w-888 mt-200  px-24 md-px-48"
+                style={{ margin: "auto" }}
+              >
                 <div
-                  className=" w-full radius-8 bg-white"
-                  style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)" }}
+                  className=" w-full max-w-888 radius-8 bg-white"
+                  style={{
+                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)",
+                  }}
                 >
-                  <div className="col-12  preview-block ">
+                  <div className="   preview-block ">
                     {isLoading
                       ? "Loading..."
                       : initialValues.map((r, i) => {

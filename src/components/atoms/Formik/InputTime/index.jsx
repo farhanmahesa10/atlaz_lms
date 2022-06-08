@@ -46,7 +46,7 @@ const InputTime = (props) => {
             }
             maxTime={
               maxDate
-                ? maxDate
+                ? moment(maxDate).subtract("15", "minutes").toDate()
                 : setHours(setMinutes(moment().toDate(), 59), 23)
             }
             className="input-control  py-8 pl-8 radius-8 font-sm"
@@ -64,7 +64,7 @@ const InputTime = (props) => {
           <div className="bg-neutral-100 d-flex align-items-center px-8 py-6 cursor-pointer">
             <AccessTimeIcon
               onClick={(e) => {
-                document.querySelector(`input[name=${name}]`).click();
+                document.querySelector(`input[name="${name}"]`).click();
               }}
             />
           </div>

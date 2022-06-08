@@ -66,7 +66,7 @@ const InputDate = (props) => {
           <div className="bg-neutral-100 d-flex align-items-center px-8 py-6 cursor-pointer">
             <CalendarTodayIcon
               onClick={(e) => {
-                document.querySelector(`input[name=${name}]`).click();
+                document.querySelector(`input[name="${name}"]`).click();
               }}
             />
           </div>

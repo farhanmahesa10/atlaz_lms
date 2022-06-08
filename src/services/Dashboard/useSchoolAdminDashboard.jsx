@@ -58,8 +58,8 @@ const useSchoolAdminDashboard = () => {
 
   const tableBody = [
     {
-      nisn: "xxxxxxxxxxxxxxxx1",
-      name: "User 01",
+      nisn: "xxxxxxxxxxxxxxxx1 ",
+      name: "User 01 ",
       role: "Student",
       class: "Class 01",
       academicYear: "2022/2023",

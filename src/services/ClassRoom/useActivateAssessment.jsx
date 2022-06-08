@@ -1,4 +1,5 @@
 import { red } from "@mui/material/colors";
+import moment from "moment";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
@@ -235,8 +236,42 @@ const useActivateAssessment = () => {
   };
 
   const publishData = (req) => {
-    POST("/client/classrooms/my_school_assessment/add", req, defConfig()).then(
-      (r) => {
+    let timeline = req.timeline;
+    let requestTimeline = timeline.map((r) => {
+      if (r.type.toLowerCase() === "automatic grading") {
+        let assDate = r.assessmentDate;
+        let year = moment(assDate).format("Y");
+        let month = moment(assDate).format("M");
+        let date = moment(assDate).format("D");
+
+        let startDateTime = moment(r.startTime)
+          .set({
+            year,
+            month: month - 1,
+            date: date,
+          })
+          .format();
+
+        let endDateTime = moment(r.endTime)
+          .set({
+            year,
+            month: month - 1,
+            date: date,
+          })
+          .format();
+
+        return { ...r, startDateTime, endDateTime };
+      } else {
+        let startDateTime = moment(r.startDateTime).format();
+        let endDateTime = moment(r.endDateTime).format();
+        return { ...r, startDateTime, endDateTime };
+      }
+    });
+
+    const request = { ...req, timeline: requestTimeline };
+
+    POST("/client/classrooms/my_school_assessment/add", request, defConfig())
+      .then((r) => {
         setFlashMessage(
           "Assessment Active",
           "Your setted assessment was active."
@@ -244,8 +279,10 @@ const useActivateAssessment = () => {
         navigate(
           `/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`
         );
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
   return {
     initialValues,

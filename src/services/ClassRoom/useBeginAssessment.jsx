@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { defConfig, GET } from "../../config/RestAPI";
+import { defConfig, GET, POST } from "../../config/RestAPI";
 import { scroller } from "react-scroll";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -18,6 +18,7 @@ const useBeginAssessment = () => {
   const [initialValues, setInitialValues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [subTopicData, setSubTopicData] = useState({});
+  const [assessmentData, setAssessmentData] = useState({});
 
   const redirectLink = `/classroom/welcome-assessment/${params.classId}/${params.subjectId}/${params.classId}/${params.lessonId}${params.topicId}/${params.id}`;
 
@@ -27,48 +28,46 @@ const useBeginAssessment = () => {
       defConfig()
     ).then((response) => {
       if (response.data) {
-        console.log(response.data);
-
         setSubTopicData(response.data.subtopic);
-        let r = response.data;
+        let res = response.data;
         let newQuestionName = [];
-        // let formValue = r.assessment.map((r, i) => {
-        //   switch (r.assessmentType.name) {
-        //     case "Single Choice":
-        //       let buildScInit = r.questions.map((res, ind) => {
-        //         newQuestionName.push({
-        //           name: `${i}.questions[${ind}].userAnswer`,
-        //           isFilled: false,
-        //         });
-        //         res = {
-        //           ...res,
-        //           userAnswer: undefined,
-        //         };
-        //         return res;
-        //       });
+        let formValue = res.content.map((r, i) => {
+          switch (r.assessmentType.name) {
+            case "Single Choice":
+              let buildScInit = r.questions.map((res, ind) => {
+                newQuestionName.push({
+                  name: `${i}.questions[${ind}].userAnswer`,
+                  isFilled: false,
+                });
+                res = {
+                  ...res,
+                  userAnswer: undefined,
+                };
+                return res;
+              });
 
-        //       return { ...r, questions: buildScInit };
-        //     case "File Uploader":
-        //       newQuestionName.push({
-        //         name: `[${i}].userAnswer.base64File`,
-        //         isFilled: false,
-        //       });
-        //       r = { ...r, userAnswer: { fakeFile: "", base64File: "" } };
-        //       return r;
-        //     case "Audio Recorder":
-        //       newQuestionName.push({
-        //         name: `[${i}].userAnswer`,
-        //         isFilled: false,
-        //       });
-        //       r = { ...r, userAnswer: "" };
-        //       return r;
-        //     default:
-        //       return r;
-        //   }
-        // });
-
-        // setFilledQuestions(newQuestionName);
-        // setInitialValues(formValue);
+              return { ...r, questions: buildScInit };
+            case "File Uploader":
+              newQuestionName.push({
+                name: `[${i}].userAnswer.base64File`,
+                isFilled: false,
+              });
+              r = { ...r, userAnswer: { fakeFile: "", base64File: "" } };
+              return r;
+            case "Audio Recorder":
+              newQuestionName.push({
+                name: `[${i}].userAnswer`,
+                isFilled: false,
+              });
+              r = { ...r, userAnswer: "" };
+              return r;
+            default:
+              return r;
+          }
+        });
+        setFilledQuestions(newQuestionName);
+        setInitialValues(formValue);
+        setAssessmentData(response.data.assessment);
       }
     });
   }, []);
@@ -137,7 +136,23 @@ const useBeginAssessment = () => {
   };
 
   const onSubmit = (values) => {
-    console.log(values);
+    let request = {
+      classlist: params.classId,
+      subject: params.subjectId,
+      lesson: params.lessonId,
+      topic: params.topicId,
+      subtopic: params.id,
+      userAnswers: values,
+    };
+    console.log(JSON.stringify(request));
+    // POST(`/client/classrooms/student_assessment/add`, request, defConfig())
+    //   .then((r) => {
+    //     console.log(r);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
     window.scrollTo({ top: 0, behavior: "smooth" });
     // navigate(`/subtopic/editsubtopic/${idsubtopic}`);
   };
@@ -151,6 +166,7 @@ const useBeginAssessment = () => {
     isLoading,
     subTopicData,
     redirectLink,
+    assessmentData,
   };
 };
 

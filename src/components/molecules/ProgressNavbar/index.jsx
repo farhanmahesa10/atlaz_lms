@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Divider, ModalTrigger } from "../../atoms";
 import { ModalLink } from "../../molecules";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
+import moment from "moment";
 const ProgressNavbar = (props) => {
   const {
     progressSetup,
@@ -11,8 +12,14 @@ const ProgressNavbar = (props) => {
     scrollToSection,
     subTopicData,
     redirectLink,
+    assessmentData,
   } = props;
+  const [timertStr, setTimertStr] = useState("00:00");
   const [progress, setProgress] = useState(0);
+  const timer = useMemo(() => {
+    return timertStr;
+  }, [timertStr]);
+
   useEffect(() => {
     let totalQuestion = progressSetup.length;
     let pointPerQuestion = 100 / totalQuestion;
@@ -24,6 +31,37 @@ const ProgressNavbar = (props) => {
       }
     });
   }, [progressSetup]);
+
+  useEffect(() => {
+    if (assessmentData) {
+      const interval = setInterval(() => {
+        handleDuration();
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [assessmentData]);
+  const millisToMinutesAndSeconds = (millis) => {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    let result = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    setTimertStr(result);
+  };
+  const handleDuration = () => {
+    let start = moment().format();
+    let end = moment(assessmentData.endDateTime).format();
+
+    if (start && end) {
+      let startMoment = moment(start);
+      let endMoment = moment(end);
+      let duration = moment.duration(endMoment.diff(startMoment));
+      if (duration._milliseconds > 0) {
+        millisToMinutesAndSeconds(duration._milliseconds);
+      } else {
+        setTimertStr("00:00");
+      }
+    }
+  };
+
   return (
     <>
       <ModalLink id="close-assessment" />
@@ -56,7 +94,7 @@ const ProgressNavbar = (props) => {
               </ModalTrigger>
             ) : (
               <>
-                <span className="text-neutral-300 nowrap mr-8">10:00</span>{" "}
+                <span className="text-neutral-300 nowrap mr-8">{timer}</span>
                 <TimerOutlinedIcon className="fs-20" />
               </>
             )}

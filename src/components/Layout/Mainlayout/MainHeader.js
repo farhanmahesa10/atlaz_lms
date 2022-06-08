@@ -12,9 +12,12 @@ import BookIcon from "@mui/icons-material/Book";
 import Sidebar from "./Sidebar";
 import NavbarContainer from "./NavbarContainer";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 import LoginIcon from "@mui/icons-material/Login";
 import { useGlobalFunction } from "../../../services";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import HistoryToggleOffOutlinedIcon from "@mui/icons-material/HistoryToggleOffOutlined";
 const MainHeader = (props) => {
   const [navBg, setNavBg] = useState(props.navbarBg);
   const [showCanvas, setShowCanvas] = useState(false);
@@ -152,19 +155,33 @@ const MainHeader = (props) => {
 
   const settings = [
     {
-      icon: <AccountCircleRoundedIcon />,
-      link: "/account-settings",
-      label: "Account Settings",
+      icon: <AccountCircleOutlinedIcon className="text-info-500" />,
+      link: "/manage-account",
+      label: "Manage Account",
       shouldLogin: true,
-      activeTo: "account-settings",
+      activeTo: "manage-account",
     },
     {
-      icon: <ExitToAppRoundedIcon />,
-      link: "/logout",
-      label: "Logout",
+      icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
+      link: "/security",
+      label: "Security",
       shouldLogin: true,
-      activeTo: "logout",
+      activeTo: "security",
     },
+    {
+      icon: <HistoryToggleOffOutlinedIcon style={{ color: "#C48EEE" }} />,
+      link: "/purchased-history",
+      label: "Purchased history",
+      shouldLogin: true,
+      activeTo: "purchased-history",
+    },
+    // {
+    //   icon: <ExitToAppRoundedIcon />,
+    //   link: "/logout",
+    //   label: "Logout",
+    //   shouldLogin: true,
+    //   activeTo: "logout",
+    // },
   ];
 
   const apps = [
