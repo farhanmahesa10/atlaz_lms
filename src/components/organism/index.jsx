@@ -30,8 +30,9 @@ import BeginAssessmentFIleUploader from "./ClassRoomOrg/BeginAssessmentOrg/Begin
 import ChangeFirstPasswordOrg from "./AuthOrg/ChangeFirstPasswordOrg";
 import PreviewContentOrg from "./ClassRoomOrg/PreviewContentOrg";
 import DashboardOrg from "./DashboardOrg";
-
+import ManageAccountOrg from "./ProfileOrg/ManageAccountOrg";
 export {
+  ManageAccountOrg,
   HomeOrg,
   ProductDetailOrg,
   SearchResultOrg,

@@ -27,7 +27,9 @@ import Logout from "./Auth/Logout";
 import ChangeFirstPassword from "./Auth/ChangeFirstPassword";
 import PreviewContent from "./PreviewContent";
 import Dashboard from "./Dashboard";
+import ManageAccount from "./Profile/ManageAccount";
 export {
+  ManageAccount,
   Login,
   Register1,
   Register2,

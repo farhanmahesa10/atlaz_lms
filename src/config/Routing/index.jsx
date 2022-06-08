@@ -34,6 +34,7 @@ import {
   ChangeFirstPassword,
   PreviewContent,
   Dashboard,
+  ManageAccount,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -254,7 +255,12 @@ const Routing = () => {
       />
       <Route
         path="/manage-account"
-        element={<Authenticate>{/* <PreviewContent /> */}</Authenticate>}
+        element={
+          <Authenticate>
+            {" "}
+            <ManageAccount />{" "}
+          </Authenticate>
+        }
       />
 
       {/* nextSpace route fajrul */}

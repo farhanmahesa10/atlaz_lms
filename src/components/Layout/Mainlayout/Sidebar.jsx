@@ -39,6 +39,17 @@ const Sidebar = (props) => {
         <Divider lineColor="bg-secondary-300" />
 
         <Nav className="justify-content-end flex-grow-1 px-24 pt-24">
+          {auth && (
+            <div className="p-12 mb-16 radius-8 bg-secondary-500 d-flex align-items-center">
+              <div className="w-40 h-40">
+                <img
+                  src="/images/profile.png"
+                  className="h-40 w-40  radius-p-100"
+                />
+              </div>
+              <h6 className="ml-8"> {auth.name}</h6>
+            </div>
+          )}
           {pages.map((r, i) => {
             if (r.shouldLogin === 0) {
               if (auth) {
