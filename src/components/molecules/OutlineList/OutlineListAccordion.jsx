@@ -41,7 +41,7 @@ const OutlineListAccordion = (props) => {
     } else if (type === "TOPIC") {
       maxText = 22;
     } else if (type === "SUBTOPIC") {
-      maxText = 24;
+      maxText = 21;
     }
 
     if (text.length >= maxText) {

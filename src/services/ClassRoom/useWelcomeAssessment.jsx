@@ -102,9 +102,6 @@ const useWelcomeAssessment = () => {
       defConfig()
     )
       .then((r) => {
-        let end = r.data.assessment.endDateTime;
-        let start = moment();
-        console.log(handleDuration(start, end));
         setData(r.data);
         setIsLoading(false);
         let newBread = [
