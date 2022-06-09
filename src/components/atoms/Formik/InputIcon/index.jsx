@@ -18,29 +18,76 @@ const InputIcon = (props) => {
   //disabled
   //icon 2 = second icon
 
-  const sizing = (size) => {
-    switch (size) {
-      case "xs":
-        return {
-          fontSize: "font-xs",
-          height: "h-32",
-        };
-      case "sm":
-        return {
-          fontSize: "font-sm",
-          height: "h-36",
-        };
+  const sizing = () => {
+    let size = props.size;
+    let mdSize = props.mdSize;
+    let lgSize = props.lgSize;
+    let xlSize = props.xlSize;
+    let fontSize = " ";
+    let height = " ";
 
-      default:
-        return {
-          fontSize: "font-normal",
-          height: "h-40",
-        };
+    if (!size && !mdSize && !lgSize && !xlSize) {
+      fontSize += " font-normal ";
+      height += " h-40 ";
     }
+
+    if (size) {
+      if (size === "xs") {
+        fontSize += " font-xs ";
+        height += " h-32 ";
+      } else if (size === "sm") {
+        fontSize += " font-sm ";
+        height += " h-36 ";
+      } else if (size === "normal") {
+        fontSize += " font-normal ";
+        height += " h-40 ";
+      }
+    }
+
+    if (mdSize) {
+      if (mdSize === "xs") {
+        fontSize += " md-font-xs ";
+        height += " md-h-32 ";
+      } else if (mdSize === "sm") {
+        fontSize += " md-font-sm ";
+        height += " md-h-36 ";
+      } else if (mdSize === "normal") {
+        fontSize += " md-font-normal ";
+        height += " md-h-40 ";
+      }
+    }
+
+    if (lgSize) {
+      if (lgSize === "xs") {
+        fontSize += " lg-font-xs ";
+        height += " lg-h-32 ";
+      } else if (lgSize === "sm") {
+        fontSize += " lg-font-sm ";
+        height += " lg-h-36 ";
+      } else if (lgSize === "normal") {
+        fontSize += " lg-font-normal ";
+        height += " lg-h-40 ";
+      }
+    }
+
+    if (xlSize) {
+      if (xlSize === "xs") {
+        fontSize += " xl-font-xs ";
+        height += " xl-h-32 ";
+      } else if (xlSize === "sm") {
+        fontSize += " xl-font-sm ";
+        height += " xl-h-36 ";
+      } else if (xlSize === "normal") {
+        fontSize += " xl-font-normal ";
+        height += " xl-h-40 ";
+      }
+    }
+
+    return { height, fontSize };
   };
 
   const getCoverClassName = () => {
-    let size = sizing(props.size);
+    let size = sizing();
     let str = " input-area  " + props.coverClassName;
     str += ` ${size.height} ${size.fontSize}`;
 

@@ -7,7 +7,7 @@ const BeginAssessmentSingleChoice = (props) => {
   const { data } = props;
 
   return (
-    <div className="assessment-single-choice p-24">
+    <div className="assessment-single-choice ">
       {data.questions.map((r, i) => {
         return (
           <React.Fragment key={i}>
@@ -20,7 +20,7 @@ const BeginAssessmentSingleChoice = (props) => {
             )}
             <div className="row gx-0">
               <div className="col-12  mb-16 tx-body-hl">
-                {i + 1}. {r.question}
+                {props.nomor}. {r.question}
               </div>
               {r.options.map((res, ind) => {
                 return (

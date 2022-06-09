@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 
 const Essay = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
-  const textareaRef = useRef(null);
+  const [isSubmitting, setSubmitting] = useState(false);
   const data = props.data;
 
   const [firstInitAnswer, setFirstInitAnswer] = useState(false);
@@ -23,11 +23,11 @@ const Essay = (props) => {
   }, []);
   useEffect(() => {
     if (initAnswer && !firstInitAnswer && data.userAnswers) {
-      submitRef.current.click();
+      onSubmit(initAnswer, true);
       setFirstInitAnswer(true);
     }
   }, [initAnswer]);
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = (values, isFake = false) => {
     setSubmitting(true);
 
     let req = {
@@ -35,17 +35,20 @@ const Essay = (props) => {
       contentType: data.contentType.name,
       userAnswers: values,
     };
-    POST(`/client/activity/set_practice_student`, req, defConfig())
-      .then((r, i) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      });
-    setSubmitting(false);
-    setButtonToggleFooter(true);
+    if (!isFake) {
+      POST(`/client/activity/set_practice_student`, req, defConfig())
+        .then((r, i) => {
+          setSubmitting(false);
+          setButtonToggleFooter(true);
+        })
+        .catch((err) => {
+          setSubmitting(false);
+          setButtonToggleFooter(true);
+        });
+    } else {
+      setSubmitting(false);
+      setButtonToggleFooter(true);
+    }
   };
 
   if (!initAnswer) {
@@ -62,7 +65,7 @@ const Essay = (props) => {
       <div className="card-content">
         <Formik
           initialValues={initAnswer}
-          onSubmit={onSubmit}
+          onSubmit={(values) => onSubmit(values)}
           enableReinitialize={true}
         >
           {(formik) => (
@@ -107,7 +110,7 @@ const Essay = (props) => {
               </div>
               <FooterContent
                 formik={formik}
-                isSubmitting={formik.isSubmitting}
+                isSubmitting={isSubmitting}
                 data={data}
                 btnSubmitText={"Submit"}
                 buttonToggle={buttonToggleFooter}

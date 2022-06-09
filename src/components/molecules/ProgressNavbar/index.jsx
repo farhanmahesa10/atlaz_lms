@@ -30,6 +30,9 @@ const ProgressNavbar = (props) => {
         setProgress(tempProggress);
       }
     });
+    if (tempProggress < 1) {
+      setProgress(0);
+    }
   }, [progressSetup]);
 
   useEffect(() => {

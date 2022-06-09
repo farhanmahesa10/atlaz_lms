@@ -12,7 +12,7 @@ import Skeleton from "react-loading-skeleton";
 const MatchPairs = (props) => {
   const data = props.data;
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
-
+  const [isSubmitting, setSubmitting] = useState(false);
   const [leftSide, setLeftSide] = useState(true);
   const [rightSide, setRightSide] = useState(false);
   const [nextColor, setNextColor] = useState("");
@@ -34,7 +34,7 @@ const MatchPairs = (props) => {
   }, []);
   useEffect(() => {
     if (initAnswer && !firstInitAnswer && data.userAnswers) {
-      submitRef.current.click();
+      onSubmit(initAnswer, true);
       setFirstInitAnswer(true);
     }
   }, [initAnswer]);
@@ -146,7 +146,7 @@ const MatchPairs = (props) => {
     setNextIndex(null);
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = (values, isFake = false) => {
     setSubmitting(true);
     // setButtonToggleFooter(true);
     let req = {
@@ -155,15 +155,20 @@ const MatchPairs = (props) => {
       userAnswers: values,
     };
 
-    POST(`/client/activity/set_practice_student`, req, defConfig())
-      .then((r, i) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      });
+    if (!isFake) {
+      POST(`/client/activity/set_practice_student`, req, defConfig())
+        .then((r, i) => {
+          setSubmitting(false);
+          setButtonToggleFooter(true);
+        })
+        .catch((err) => {
+          setSubmitting(false);
+          setButtonToggleFooter(true);
+        });
+    } else {
+      setSubmitting(false);
+      setButtonToggleFooter(true);
+    }
   };
 
   if (!initAnswer) {
@@ -181,7 +186,7 @@ const MatchPairs = (props) => {
         {data.instruction ? <h5 className="mb-16">{data.instruction}</h5> : ""}
         <Formik
           initialValues={initAnswer}
-          onSubmit={onSubmit}
+          onSubmit={(values) => onSubmit(values)}
           enableReinitialize={true}
         >
           {(formik) => {
@@ -590,7 +595,7 @@ const MatchPairs = (props) => {
 
                 <FooterContent
                   formik={formik}
-                  isSubmitting={formik.isSubmitting}
+                  isSubmitting={isSubmitting}
                   data={data}
                   buttonToggle={buttonToggleFooter}
                   explanation={data.correctionText}

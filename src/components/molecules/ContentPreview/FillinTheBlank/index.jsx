@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 
 const FillinTheBlank = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
 
   const [clearForm, setClearForm] = useState(null);
   const [firstInitAnswer, setFirstInitAnswer] = useState(false);
@@ -21,7 +22,7 @@ const FillinTheBlank = (props) => {
 
   useEffect(() => {
     if (initAnswer && !firstInitAnswer && data.userAnswers) {
-      submitRef.current.click();
+      onSubmit(initAnswer, true);
       setFirstInitAnswer(true);
     }
   }, [initAnswer]);
@@ -119,7 +120,7 @@ const FillinTheBlank = (props) => {
     return result;
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = (values, isFake = false) => {
     setSubmitting(true);
     // setButtonToggleFooter(true);
     values = { ...data, userAnswer: values.answers };
@@ -130,15 +131,20 @@ const FillinTheBlank = (props) => {
       contentType: data.contentType.name,
       userAnswers: values,
     };
-    POST(`/client/activity/set_practice_student`, req, defConfig())
-      .then((r, i) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        setButtonToggleFooter(true);
-      });
+    if (isFake === false) {
+      POST(`/client/activity/set_practice_student`, req, defConfig())
+        .then((r, i) => {
+          setSubmitting(false);
+          setButtonToggleFooter(true);
+        })
+        .catch((err) => {
+          setSubmitting(false);
+          setButtonToggleFooter(true);
+        });
+    } else {
+      setSubmitting(false);
+      setButtonToggleFooter(true);
+    }
   };
   if (!initAnswer) {
     // handle deleyed formik
@@ -167,7 +173,7 @@ const FillinTheBlank = (props) => {
           <div className="align-items-end fill-in-the-blank-question">
             <Formik
               initialValues={initAnswer}
-              onSubmit={onSubmit}
+              onSubmit={(values) => onSubmit(values)}
               enableReinitialize={true}
             >
               {(formik) => (
@@ -221,7 +227,7 @@ const FillinTheBlank = (props) => {
                   </div>
                   <FooterContent
                     formik={formik}
-                    isSubmitting={formik.isSubmitting}
+                    isSubmitting={isSubmitting}
                     data={data}
                     buttonToggle={buttonToggleFooter}
                     explanation={data.correctionText}

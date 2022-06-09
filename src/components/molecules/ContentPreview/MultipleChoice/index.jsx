@@ -6,7 +6,7 @@ import Skeleton from "react-loading-skeleton";
 
 const MultipleChoice = (props) => {
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
-
+  const [isSubmitting, setSubmitting] = useState(false);
   const [clearForm, setClearForm] = useState(null);
   const [initAnswer, setInitAnswer] = useState(null);
   const [firstInitAnswer, setFirstInitAnswer] = useState(false);
@@ -47,8 +47,8 @@ const MultipleChoice = (props) => {
 
   useEffect(() => {
     if (initAnswer && !firstInitAnswer && data.userAnswers) {
-      submitRef.current.click();
-      clearColor();
+      onSubmit(initAnswer, true);
+      // clearColor();
       setFirstInitAnswer(true);
     }
   }, [initAnswer]);
@@ -65,7 +65,7 @@ const MultipleChoice = (props) => {
         answers.push(r.userAnswer);
       });
     }
-    data.userAnswers.map((r) => {
+    data.questions.map((r) => {
       clearedForm.push([]);
     });
     setClearForm({ answers: clearedForm });
@@ -151,11 +151,15 @@ const MultipleChoice = (props) => {
       });
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
-    setButtonToggleFooter(true);
+  const onSubmit = (values, isFake = false) => {
     setSubmitting(true);
-    handleSubmitPost(values, setSubmitting);
     stylingAnswered(values);
+    if (!isFake) {
+      handleSubmitPost(values, setSubmitting);
+    } else {
+      setSubmitting(false);
+      setButtonToggleFooter(true);
+    }
   };
   if (!initAnswer) {
     // handle deleyed formik
@@ -178,7 +182,7 @@ const MultipleChoice = (props) => {
           <div className="question ">
             <Formik
               initialValues={initAnswer}
-              onSubmit={onSubmit}
+              onSubmit={(values) => onSubmit(values)}
               enableReinitialize={true}
             >
               {(formik) => (
@@ -231,7 +235,7 @@ const MultipleChoice = (props) => {
 
                   <FooterContent
                     formik={formik}
-                    isSubmitting={formik.isSubmitting}
+                    isSubmitting={isSubmitting}
                     data={data}
                     buttonToggle={buttonToggleFooter}
                     explanation={data.correctionText}

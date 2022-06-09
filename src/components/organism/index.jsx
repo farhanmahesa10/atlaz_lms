@@ -31,7 +31,15 @@ import ChangeFirstPasswordOrg from "./AuthOrg/ChangeFirstPasswordOrg";
 import PreviewContentOrg from "./ClassRoomOrg/PreviewContentOrg";
 import DashboardOrg from "./DashboardOrg";
 import ManageAccountOrg from "./ProfileOrg/ManageAccountOrg";
+import BeginAssessmentEssay from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentEssay";
+import BeginAssessmentMultipleChoice from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentMultipleChoice";
+import BeginAssessmentMatchPairs from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentMatchPairs";
+import BeginAssessmentShortAnswer from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentShortAnswer";
 export {
+  BeginAssessmentEssay,
+  BeginAssessmentMultipleChoice,
+  BeginAssessmentMatchPairs,
+  BeginAssessmentShortAnswer,
   ManageAccountOrg,
   HomeOrg,
   ProductDetailOrg,

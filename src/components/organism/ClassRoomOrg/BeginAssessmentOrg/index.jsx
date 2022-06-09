@@ -3,6 +3,7 @@ import { ProgressNavbar } from "../../../molecules";
 import { useBeginAssessment } from "../../../../services";
 import { Form, Formik } from "formik";
 import MainFooter from "../../../Layout/Mainlayout/MainFooter";
+import "./Assessments-preview.scss";
 const BeginAssessmentOrg = () => {
   const {
     filledQuestions,
@@ -15,7 +16,7 @@ const BeginAssessmentOrg = () => {
     redirectLink,
     assessmentData,
   } = useBeginAssessment();
-
+  let nomor = 0;
   return (
     <div className="d-flex flex-column " style={{ minHeight: "100vh" }}>
       <ProgressNavbar
@@ -45,11 +46,21 @@ const BeginAssessmentOrg = () => {
                     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)",
                   }}
                 >
-                  <div className="   preview-block ">
+                  <div className="   begin-assessments">
                     {isLoading
                       ? "Loading..."
                       : initialValues.map((r, i) => {
-                          return callBlock(r, i, formik);
+                          if (i === 0) {
+                            nomor = 0;
+                          }
+                          if (
+                            r.assessmentType.name.toLowerCase() !==
+                              "text editor" &&
+                            r.assessmentType.name.toLowerCase() !== "divider"
+                          ) {
+                            nomor += 1;
+                          }
+                          return callBlock(r, i, formik, nomor);
                         })}
                   </div>
                 </div>

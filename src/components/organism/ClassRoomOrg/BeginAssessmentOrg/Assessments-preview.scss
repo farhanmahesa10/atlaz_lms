@@ -1,0 +1,251 @@
+
+@import "../../../../assets/scss/variables";
+
+.begin-assessments {
+  padding: 24px;
+  img {
+    border-radius: 4px;
+  }
+  .height24 {
+    height: 24px;
+  }
+  .w-full {
+    width: 100% !important;
+  }
+  .soundwave {
+    width: 100%;
+    height: "20px";
+  }
+
+  .single-option {
+    border: 1px solid $secondary_500;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+    }
+  }
+  .select-order {
+    border: none;
+    box-shadow: 0 0 10px rgb(194, 193, 193);
+    border-radius: 2px;
+    padding: 3px;
+  }
+  .action-icon {
+    border: none;
+    box-shadow: 0 0 5px rgb(194, 193, 193);
+    border-radius: 2px;
+    padding: 4px;
+    cursor: pointer;
+    background-color: white;
+    &:hover {
+      background-color: $neutral_100;
+    }
+  }
+  .btn-preview {
+    box-shadow: 0 0 1px rgb(194, 193, 193);
+    &:hover {
+      background-color: $secondary_200 !important;
+    }
+  }
+
+  .table-content {
+    border-bottom: 1px solid $secondary_500;
+  }
+  .more-option {
+    border-radius: 8px;
+    padding: 32px;
+    border: 1px dashed $neutral_300;
+    background-color: $neutral_50;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      background-color: $primary_100;
+      span {
+        color: $neutral_400;
+      }
+    }
+  }
+  .radio-custom {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  /* IMAGE STYLES */
+  .radio-custom + .custom {
+    cursor: pointer;
+    .isChecked {
+      display: none;
+    }
+    .noChecked {
+      display: block;
+    }
+  }
+  /* CHECKED STYLES */
+  .radio-custom:checked + .custom {
+    background-color: #f4fefb;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    .isChecked {
+      display: block;
+    }
+    .noChecked {
+      display: none;
+    }
+  }
+
+  .radio-custom {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  /* IMAGE STYLES */
+  .radio-custom + .custom {
+    cursor: pointer;
+    .isChecked {
+      display: none;
+    }
+    .noChecked {
+      display: block;
+    }
+  }
+  /* CHECKED STYLES */
+  .radio-custom:checked + .custom {
+    background-color: #f4fefb;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    .isChecked {
+      display: block;
+    }
+    .noChecked {
+      display: none;
+    }
+  }
+
+  .radio-custom-multiple {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  /* IMAGE STYLES */
+  .radio-custom-multiple + .custom {
+    cursor: pointer;
+    .isChecked {
+      display: none;
+    }
+    .noChecked {
+      display: block;
+    }
+  }
+  /* CHECKED STYLES */
+  .radio-custom-multiple:checked + .custom {
+    // background-color: #f4fefb;
+    border: 2px solid $primary_500;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    .isChecked {
+      display: block;
+    }
+    .noChecked {
+      display: none;
+    }
+  }
+
+
+  .form-control {
+    &:active {
+      border: 1px solid $primary_500;
+      outline: none;
+      box-shadow: none;
+    }
+    &:focus {
+      border: 1px solid $primary_500;
+      outline: none;
+      box-shadow: none;
+    }
+    &::placeholder {
+      color: $neutral_200;
+    }
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .recording-animation {
+    height: 50px;
+    width: 50px;
+    animation: recording-ann 0.7s;
+    position: absolute;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-direction: alternate;
+  }
+  .textarea {
+    background-color: $info_100;
+    border: none;
+    width: 100%;
+    outline: none;
+    resize: none;
+    background-image: -webkit-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: -moz-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: -ms-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: -o-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-size: 100% 40px;
+    line-height: 40px;
+  }
+  @keyframes recording-ann {
+    from {
+      height: 50px;
+      width: 50px;
+    }
+    to {
+      height: 64px;
+      width: 64px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .assessments-content-preview {
+    .icon {
+      font-size: 20px;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .assessments-content-preview {
+    .icon {
+      font-size: 16px;
+    }
+  }
+}

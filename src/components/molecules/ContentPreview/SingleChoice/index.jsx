@@ -10,6 +10,7 @@ const SingleChoice = (props) => {
   const selectRef = useRef([]);
 
   const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
   const [firstInitAnswer, setFirstInitAnswer] = useState(false);
   const [initAnswer, setInitAnswer] = useState(null);
   const submitRef = useRef();
@@ -35,7 +36,7 @@ const SingleChoice = (props) => {
 
   useEffect(() => {
     if (initAnswer && !firstInitAnswer && data.userAnswers) {
-      submitRef.current.click();
+      onSubmit(initAnswer, true);
       setFirstInitAnswer(true);
     }
   }, [initAnswer]);
@@ -67,9 +68,15 @@ const SingleChoice = (props) => {
 
   const patternAnswer = () => {
     let userAnswers = [];
-    data.questions.map((r) => {
-      userAnswers.push("");
-    });
+    if (!data.userAnswers) {
+      data.questions.map((r) => {
+        userAnswers.push();
+      });
+    } else {
+      data.userAnswers.map((r) => {
+        userAnswers.push(r.userAnswer);
+      });
+    }
     setInitAnswer({ userAnswers });
   };
 
@@ -127,8 +134,14 @@ const SingleChoice = (props) => {
       });
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
-    handleSubmitPost(values, setSubmitting);
+  const onSubmit = (values, isFake = false) => {
+    setSubmitting(true);
+    if (!isFake) {
+      handleSubmitPost(values, setSubmitting);
+    } else {
+      setSubmitting(false);
+      setButtonToggleFooter(true);
+    }
     stylingAnswered(values);
   };
   if (!initAnswer) {
@@ -146,7 +159,7 @@ const SingleChoice = (props) => {
           <Formik
             initialValues={initAnswer}
             // validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={(values) => onSubmit(values)}
             enableReinitialize={true}
           >
             {(formik) => (
@@ -230,7 +243,7 @@ const SingleChoice = (props) => {
                 </div>
                 <FooterContent
                   formik={formik}
-                  isSubmitting={formik.isSubmitting}
+                  isSubmitting={isSubmitting}
                   data={data}
                   buttonToggle={buttonToggleFooter}
                   explanation={data.correctionText}
