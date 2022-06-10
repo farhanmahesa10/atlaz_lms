@@ -27,12 +27,12 @@ const ProgressNavbar = (props) => {
     progressSetup.map((r) => {
       if (r.isFilled === true) {
         tempProggress += pointPerQuestion;
-        setProgress(tempProggress);
       }
     });
     if (tempProggress < 1) {
       setProgress(0);
     }
+    setProgress(Math.round(tempProggress));
   }, [progressSetup]);
 
   useEffect(() => {

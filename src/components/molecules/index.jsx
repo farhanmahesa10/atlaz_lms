@@ -79,7 +79,9 @@ import TableSchoolAdminDashboard from "./DashboardMol/SchoolAdminDashboardMol/Ta
 import HeadSchoolAdminDashboard from "./DashboardMol/SchoolAdminDashboardMol/HeadSchoolAdminDashboard";
 import WelcomeAssessmentLoading from "./SkeletonLoading/ClassroomLoading/WelcomeAssessmentLoading";
 import ModalBeginAssessment from "./Modals/ClassRoom/ModalBeginAssessment";
+import BeginAssessmentLoading from "./SkeletonLoading/ClassroomLoading/BeginAssessmentLoading";
 export {
+  BeginAssessmentLoading,
   ModalBeginAssessment,
   WelcomeAssessmentLoading,
   TableSchoolAdminDashboard,

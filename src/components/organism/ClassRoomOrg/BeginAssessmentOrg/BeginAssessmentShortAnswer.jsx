@@ -31,6 +31,7 @@ const BeginAssessmentShortAnswer = (props) => {
                         <FormikControl
                           control="input"
                           type="text"
+                          autoComplete="off"
                           name={`${props.index}.questions[${i}].userAnswer`}
                           onInput={(e) => {
                             // proces disini tinggal kirim set is field dan name nya mau diisi tru atau false

@@ -38,8 +38,13 @@ const BeginAssessmentSingleChoice = (props) => {
                             value={`${ind}`}
                             className={`radio-custom `}
                             onInput={(e) => {
+                              let setIsfilled = false;
+                              if (e.target.value.length > 0) {
+                                setIsfilled = true;
+                              }
                               props.onSendProgress(
-                                `${props.index}.questions[${i}].userAnswer`
+                                `${props.index}.questions[${i}].userAnswer`,
+                                setIsfilled
                               );
                             }}
                           />
