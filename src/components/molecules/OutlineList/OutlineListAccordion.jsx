@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LockIcon from "@mui/icons-material/Lock";
+import { useGlobalFunction } from "../../../services";
 const OutlineListAccordion = (props) => {
   const {
     icon,
@@ -22,16 +23,33 @@ const OutlineListAccordion = (props) => {
   useEffect(() => {
     setExpand(defaultShow);
   }, [defaultShow]);
+  const { getUserInfo } = useGlobalFunction();
+  const user = getUserInfo();
 
-  const handleParentClick = (e) => {
-    if (!isLocked) {
-      if (redirectTo) {
-        navigate(redirectTo);
-      }
-      if (withExpand) props.onOpened(requestId);
-
-      setExpand(!expand);
+  const isTeacher = () => {
+    if (user.roleData.name.toLowerCase() === "teacher") {
+      return true;
     }
+    return false;
+  };
+  const handleParentClick = (e) => {
+    // if (!isLocked) {
+    if (redirectTo) {
+      navigate(redirectTo);
+    }
+    if (withExpand) {
+      // props.onOpened(requestId);
+      if (isTeacher()) {
+        props.onOpened(requestId);
+        setExpand(!expand);
+      } else {
+        if (!isLocked) {
+          props.onOpened(requestId);
+          setExpand(!expand);
+        }
+      }
+    }
+    // }
   };
 
   const cutTitle = (text) => {
@@ -53,8 +71,10 @@ const OutlineListAccordion = (props) => {
   return (
     <>
       <div
-        className={`h-40 w-full border radius-4 d-flex  align-items-center cursor-pointer
-      ${expand && "bg-neutral-600"}`}
+        className={`h-40 w-full border radius-4 d-flex  align-items-center 
+      ${expand && "bg-neutral-600"} ${
+          isLocked ? "cursor-disabled" : "cursor-pointer"
+        }`}
         onClick={handleParentClick}
       >
         <div className="px-16 py-16 w-full">
@@ -97,11 +117,10 @@ const OutlineListAccordion = (props) => {
           </div>
         </div>
       </div>
-      {!isLocked && (
-        <Collapse in={expand}>
-          <div className="card card-body ">{props.children}</div>
-        </Collapse>
-      )}
+
+      <Collapse in={expand}>
+        <div className="card card-body ">{props.children}</div>
+      </Collapse>
     </>
   );
 };

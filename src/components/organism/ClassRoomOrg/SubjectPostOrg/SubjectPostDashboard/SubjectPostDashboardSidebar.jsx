@@ -54,10 +54,13 @@ const SubjectPostDashboardSidebar = (props) => {
 
             {data.upcomingData.length > 0 ? (
               data.upcomingData.map((r, i) => {
+                // console.log("rr", r);
                 return (
                   <div className="mt-16" key={i}>
                     <UpcomingCard
                       name={r.lesson.name}
+                      topic={r.topic.name}
+                      event={r.timelineSubtopic[0].event}
                       date={moment(r.timelineSubtopic[0].startDateTime).format(
                         "D MMM"
                       )}

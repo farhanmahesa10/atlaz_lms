@@ -12,11 +12,11 @@ const OutlineListLoadingAccordion = (props) => {
       ) : status === "success" ? (
         data && (
           <>
-            {data.length < 1 && (
+            {/* {data.length < 1 && (
               <div className="w-full h-40 mt-8 border radius-4 d-flex align-items-center justify-content-center">
                 <p className="font-bold">No data found</p>
               </div>
-            )}
+            )} */}
           </>
         )
       ) : (

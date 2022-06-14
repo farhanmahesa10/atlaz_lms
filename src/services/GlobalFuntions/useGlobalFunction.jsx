@@ -10,6 +10,9 @@ const useGlobalFunction = () => {
     if (token) {
       let decode = jwt_decode(token);
       if (new Date().getTime() > decode.exp) {
+        let roleData = getRoleData().find((r) => r.level === decode.role);
+        decode = { ...decode, roleData };
+
         return decode;
       }
     }

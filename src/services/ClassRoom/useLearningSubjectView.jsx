@@ -7,22 +7,21 @@ import {
 import { defConfig, GET } from "../../config/RestAPI";
 
 const useLearningSubjectView = () => {
-  const breadcrumbsData = [
-    {
-      link: "/",
-      label: "Home",
-    },
+  const params = useParams();
+  const [breadcrumbsData, setBreadcrumbsData] = useState([
     {
       link: "/classroom",
       label: "Classroom",
     },
     {
-      link: "",
-      label: "Book",
+      link: `/classroom/class/${params.classId}`,
+      label: "Class",
     },
-  ];
-  const params = useParams();
-
+    {
+      link: `/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`,
+      label: "Subject",
+    },
+  ]);
   const [subjectData, setSubjectData] = useState({});
   const [isSubjectLoading, setIsSubjectLoading] = useState(true);
 
@@ -42,6 +41,25 @@ const useLearningSubjectView = () => {
     setIsSubjectLoading(true);
     GET(`/client/classrooms/book/subject/${params.subjectId}`, defConfig())
       .then((r) => {
+        let newBread = [
+          {
+            link: "/classroom",
+            label: "Classroom",
+          },
+          {
+            link: `/classroom/class/${params.classId}`,
+            label: "Class",
+          },
+          {
+            link: `/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`,
+            label: "Subject",
+          },
+        ];
+        newBread.push({
+          link: "",
+          label: r.data.name,
+        });
+        setBreadcrumbsData(newBread);
         setIsSubjectLoading(false);
         setSubjectData(r.data);
       })
@@ -71,8 +89,8 @@ const useLearningSubjectView = () => {
     // let subjectId = params.subjectId
     GET(`/client/classrooms/subject/detail/${subjectId}`, defConfig())
       .then((r) => {
-        setIsBookDetailLoading(false);
         setbookDetailData(r.data);
+        setIsBookDetailLoading(false);
       })
       .catch((err) => {
         setIsBookDetailLoading(false);

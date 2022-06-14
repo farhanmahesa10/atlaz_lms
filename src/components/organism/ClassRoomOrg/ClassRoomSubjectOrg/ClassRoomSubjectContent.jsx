@@ -18,9 +18,11 @@ const ClassRoomSubjectContent = () => {
         <ClassroomSubjectContentLoading />
       ) : (
         <>
-          <AddSubjectModal id="addSubjectModal" onSubmit={handleAddSubject} />
+          {/* sementara belom ada yg bisa dd subject */}
+          {/* <AddSubjectModal id="addSubjectModal" onSubmit={handleAddSubject} /> */}
           <div className="px-24 md-px-48 py-24">
-            <Can allowAccess="TEACHER">
+            {/* sementara belom ada yg bisa dd subject */}
+            {/* <Can allowAccess="TEACHER">
               <ModalTrigger
                 target="addSubjectModal"
                 data={{
@@ -32,7 +34,7 @@ const ClassRoomSubjectContent = () => {
                   Add New Subject
                 </button>
               </ModalTrigger>
-            </Can>
+            </Can> */}
             <div className="row mt-24">
               {subjects.map((r, i) => {
                 return (

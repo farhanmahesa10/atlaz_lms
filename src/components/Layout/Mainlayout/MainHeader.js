@@ -160,6 +160,7 @@ const MainHeader = (props) => {
       label: "Manage Account",
       shouldLogin: true,
       activeTo: "manage-account",
+      allowAccess: "student,teacher,public",
     },
     {
       icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
@@ -167,6 +168,7 @@ const MainHeader = (props) => {
       label: "Security",
       shouldLogin: true,
       activeTo: "security",
+      allowAccess: "student,teacher,public",
     },
     {
       icon: <HistoryToggleOffOutlinedIcon style={{ color: "#C48EEE" }} />,
@@ -174,6 +176,7 @@ const MainHeader = (props) => {
       label: "Purchased history",
       shouldLogin: true,
       activeTo: "purchased-history",
+      allowAccess: "student,teacher,public",
     },
     // {
     //   icon: <ExitToAppRoundedIcon />,

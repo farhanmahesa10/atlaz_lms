@@ -166,8 +166,10 @@ const PostFeedCard = (props) => {
             </ul>
           </div>
         </div>
-        {data.isAssessment && <PostedAssessment data={data} />}
-        {!data.isAssessment && <Posted data={data} />}
+        {data.contentType.toLowerCase() !== "feed" && (
+          <PostedAssessment data={data} />
+        )}
+        {data.contentType.toLowerCase() === "feed" && <Posted data={data} />}
         <Divider lineColor="bg-secondary-500" parentClassName="my-24" />
         {totalCommentCount > comments.length && (
           <p
@@ -181,65 +183,68 @@ const PostFeedCard = (props) => {
             View previous comments
           </p>
         )}
+        {data.contentType.toLowerCase() === "feed" && (
+          <>
+            {comments.map((r, i) => {
+              return (
+                <PostCommentCard
+                  key={`comment-${data._id}-${i}`}
+                  comment={r}
+                  onDeleteComment={handleDeletedComment}
+                />
+              );
+            })}
+            <div>
+              <Formik
+                initialValues={{ comment: "", feedId: data._id }}
+                onSubmit={handleCreateComment}
+              >
+                {(formik) => (
+                  <Form>
+                    <div className="form-input">
+                      <div className="input-area">
+                        <Field name="comment">
+                          {({
+                            field, // { name, value, onChange, onBlur }
+                            form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                            meta,
+                          }) => (
+                            <TextareaAutosize
+                              type="text"
+                              maxRows={6}
+                              className="w-p-100 input-control  max-h-160 font-normal  radius-8 px-8 pt-7"
+                              placeholder="Type your comment"
+                              style={{ resize: "none" }}
+                              {...field}
+                            />
+                          )}
+                        </Field>
 
-        {comments.map((r, i) => {
-          return (
-            <PostCommentCard
-              key={`comment-${data._id}-${i}`}
-              comment={r}
-              onDeleteComment={handleDeletedComment}
-            />
-          );
-        })}
-        <div>
-          <Formik
-            initialValues={{ comment: "", feedId: data._id }}
-            onSubmit={handleCreateComment}
-          >
-            {(formik) => (
-              <Form>
-                <div className="form-input">
-                  <div className="input-area">
-                    <Field name="comment">
-                      {({
-                        field, // { name, value, onChange, onBlur }
-                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                        meta,
-                      }) => (
-                        <TextareaAutosize
-                          type="text"
-                          maxRows={6}
-                          className="w-p-100 input-control  max-h-160 font-normal  radius-8 px-8 pt-7"
-                          placeholder="Type your comment"
-                          style={{ resize: "none" }}
-                          {...field}
-                        />
-                      )}
-                    </Field>
-
-                    {isLoadingSubmitComment ? (
-                      <span className="mr-16 pt-8">
-                        <CircularProgress size="1rem" color="warning" />
-                      </span>
-                    ) : (
-                      <SendIcon
-                        className={`fs-20 mr-16 ${
-                          formik.getFieldProps("comment").value
-                            ? "text-primary-400"
-                            : "text-neutral-200"
-                        } cursor-pointer hover-text-primary-500`}
-                        onClick={() => {
-                          if (formik.getFieldProps("comment").value)
-                            formik.submitForm();
-                        }}
-                      />
-                    )}
-                  </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+                        {isLoadingSubmitComment ? (
+                          <span className="mr-16 pt-8">
+                            <CircularProgress size="1rem" color="warning" />
+                          </span>
+                        ) : (
+                          <SendIcon
+                            className={`fs-20 mr-16 ${
+                              formik.getFieldProps("comment").value
+                                ? "text-primary-400"
+                                : "text-neutral-200"
+                            } cursor-pointer hover-text-primary-500`}
+                            onClick={() => {
+                              if (formik.getFieldProps("comment").value)
+                                formik.submitForm();
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -316,53 +321,53 @@ const Posted = (props) => {
 };
 
 const PostedAssessment = (props) => {
+  const { data } = props;
   return (
     <div className="mt-16 ">
-      <img src={AssessmentBanner} alt="" className="w-full radius-t-8" />
+      <img
+        src={data.assessment.bannerImage}
+        alt=""
+        className="w-full radius-t-8"
+      />
       <p className="font-sm xl-font-normal ">Hello students!</p>
       <p> New assessment incoming, here a summary:</p>
       <div className="d-flex p-8 mb-4 fs-17 d-flex align-items-center font-sm-medium xl-font-medium">
         <AccessTimeIcon className="fs-20 font-xs mr-16 text-neutral-200" />
         <span className="font-xs-medium xl-font-sm-medium">
-          11 Apr 2022, 10:00 AM
+          {moment(data.assessment.content.time).format("DD MMM Y, LT")}
         </span>
       </div>
       <div className="d-flex p-8 mb-4 fs-17 d-flex align-items-center  ">
         <MenuBookIcon className="fs-20 font-xs mr-16 text-neutral-200" />
         <span className="font-xs-medium xl-font-sm-medium">
-          English Play 01
+          {data.assessment.content.subject}
         </span>
       </div>
       <div className="d-flex p-8 mb-4 fs-17 d-flex align-items-center  ">
         <LocalLibraryIcon className="fs-20 font-xs mr-16 text-neutral-200" />
         <span className="font-xs-medium xl-font-sm-medium">
-          Unit 1 - Meet My New Friends!
+          {data.assessment.content.lesson}
         </span>
       </div>
       <div className="d-flex p-8 fs-17 d-flex align-items-center  ">
         <LabelImportantIcon className="fs-20 font-xs mr-16 text-neutral-200" />
-        <span className="font-xs-medium xl-font-sm-medium">Assessment</span>
+        <span className="font-xs-medium xl-font-sm-medium">
+          {data.assessment.content.topic}
+        </span>
       </div>
       <div className="mt-16">
         <p className="mb-16">Assessment will splited by:</p>
-        <div className="d-flex p-8 mb-4 fs-17 d-flex align-items-center  ">
-          <WysiwygIcon className="fs-20 font-xs mr-16 text-neutral-200" />
-          <span className="font-xs-medium xl-font-sm-medium">
-            11 Apr 2022, 10:00 AM
-          </span>
-        </div>
-        <div className="d-flex p-8 mb-4 fs-17 d-flex align-items-center  ">
-          <WysiwygIcon className="fs-20 font-xs mr-16 text-neutral-200" />
-          <span className="font-xs-medium xl-font-sm-medium">
-            English Play 01
-          </span>
-        </div>
-        <div className="d-flex p-8 mb-4 fs-17 d-flex align-items-center  ">
-          <WysiwygIcon className="fs-20 font-xs mr-16 text-neutral-200" />
-          <span className="font-xs-medium xl-font-sm-medium">
-            Unit 1 - Meet My New Friends!
-          </span>
-        </div>
+        {data.assessment.content.subtopic.map((r, i) => {
+          return (
+            <div
+              className="d-flex p-8 mb-4 fs-17 d-flex align-items-center  "
+              key={"subtopic-" + i}
+            >
+              <WysiwygIcon className="fs-20 font-xs mr-16 text-neutral-200" />
+              <span className="font-xs-medium xl-font-sm-medium">{r}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

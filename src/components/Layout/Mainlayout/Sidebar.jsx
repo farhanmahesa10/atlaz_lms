@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Divider } from "../../atoms";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Settings } from "@mui/icons-material";
-
+import CloseIcon from "@mui/icons-material/Close";
 import Can from "../../../permission/Can";
 
 const Sidebar = (props) => {
@@ -32,8 +32,10 @@ const Sidebar = (props) => {
       onHide={handleClose}
     >
       {/* off canvas */}
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title id="offcanvasNavbarLabel"></Offcanvas.Title>
+      <Offcanvas.Header>
+        <Offcanvas.Title id="offcanvasNavbarLabel" className="text-end w-full">
+          <CloseIcon className="cursor-pointer" onClick={handleClose} />
+        </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body className="px-0">
         <Divider lineColor="bg-secondary-300" />

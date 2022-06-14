@@ -35,6 +35,8 @@ import {
   PreviewContent,
   Dashboard,
   ManageAccount,
+  Security,
+  PurchasedHistory,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -257,11 +259,29 @@ const Routing = () => {
         path="/manage-account"
         element={
           <Authenticate>
-            {" "}
-            <ManageAccount />{" "}
+            <ManageAccount />
           </Authenticate>
         }
       />
+      <Route
+        path="/security"
+        element={
+          // <Authenticate>
+
+          <Security />
+          // </Authenticate>
+        }
+      />
+      <Route
+        path="/purchased-history"
+        element={
+          // <Authenticate>
+
+          <PurchasedHistory />
+          // </Authenticate>
+        }
+      />
+      <Route path="/carousel" element={<CobaBikinCarousel />} />
 
       {/* nextSpace route fajrul */}
 

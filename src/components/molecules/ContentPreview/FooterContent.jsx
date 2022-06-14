@@ -4,6 +4,7 @@ import { Spellcheck, EmojiObjectsOutlined, Replay } from "@mui/icons-material";
 const FooterContent = (props) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const { data, submitRef } = props;
+  console.log("ex", props.explanation);
   return (
     <div className="row footer-content">
       {showExplanation ? (
@@ -57,19 +58,20 @@ const FooterContent = (props) => {
                 </>
               }
             </button>
-
-            <button
-              type="button"
-              className="btn-outline py-8 mr-8 xs-w-full font-small"
-              onClick={() => setShowExplanation(true)}
-            >
-              {
-                <>
-                  <EmojiObjectsOutlined />
-                  <span className="pl-8">Explanation</span>
-                </>
-              }
-            </button>
+            {props.explanation && (
+              <button
+                type="button"
+                className="btn-outline py-8 mr-8 xs-w-full font-small"
+                onClick={() => setShowExplanation(true)}
+              >
+                {
+                  <>
+                    <EmojiObjectsOutlined />
+                    <span className="pl-8">Explanation</span>
+                  </>
+                }
+              </button>
+            )}
           </div>
         )}
       </div>

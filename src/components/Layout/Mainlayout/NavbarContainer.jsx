@@ -7,6 +7,7 @@ import { Can } from "../../../permission";
 import { NavbarNotification } from "../../molecules";
 import { Divider } from "../../atoms";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import MenuIcon from "@mui/icons-material/Menu";
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
 
@@ -48,14 +49,14 @@ const NavbarContainer = (props) => {
       <Nav className=" d-flex gap-3 position-relative" style={{ zIndex: 9 }}>
         <div className="d-flex align-items-center">
           <NavbarNotification />
-          <Navbar.Toggle
-            aria-controls="responsive-navbar-nav"
-            className=" cursor-pointer"
-            style={{ border: "none" }}
+          <div
+            className="cursor-pointer d-lg-none text-neutral-400  d-flex align-items-center"
             onClick={() => {
               setShowCanvas(true);
             }}
-          />
+          >
+            <MenuIcon className="ml-16" />
+          </div>
         </div>
         {!auth ? (
           <>
@@ -97,20 +98,32 @@ const NavbarContainer = (props) => {
                   </div>
                   {settings.map((r, i) => {
                     return (
-                      <Link
-                        to={r.link}
-                        key={`setting-` + i}
-                        className="d-flex  mb-4 align-items-center p-8 hover-bg-secondary-200 cursor-pointer radius-4"
-                      >
-                        {r.icon}
-                        <p className="font-sm ml-17">{r.label}</p>
-                      </Link>
+                      <React.Fragment key={"settings-" + i}>
+                        <Can allowAccess={r.allowAccess}>
+                          <Link
+                            to={r.link}
+                            key={`setting-` + i}
+                            className={`d-flex  mb-4 align-items-center p-8 hover-bg-secondary-200 cursor-pointer radius-4 ${
+                              r.activeTo === props.activeMenu &&
+                              "bg-secondary-200"
+                            }`}
+                          >
+                            {r.icon}
+                            <p className="font-sm ml-17">{r.label}</p>
+                          </Link>
+                        </Can>
+                      </React.Fragment>
                     );
                   })}
                   <div className="mt-104">
                     <Divider />
                   </div>
-                  <div className="mt-16 p-8"></div>
+                  <Link
+                    to="/logout"
+                    className="mt-16 p-8 d-flex align-items-center hover-bg-secondary-200 radius-4 hover-text-neutral-400"
+                  >
+                    <ExitToAppIcon className="text-neutral-400 pr-18" /> Logout
+                  </Link>
                 </div>
               </ul>
             </div>

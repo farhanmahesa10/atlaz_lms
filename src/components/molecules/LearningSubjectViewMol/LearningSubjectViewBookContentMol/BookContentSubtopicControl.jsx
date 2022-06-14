@@ -13,7 +13,7 @@ const BookContentSubtopicControl = (props) => {
         icon={<WysiwygIcon />}
         type="SUBTOPIC"
         badgeColor="success-600"
-        badgeText={data.progress}
+        // badgeText={data.progress}
         title={data.name}
         isLocked={data.isLocked}
         requestId={data._id}

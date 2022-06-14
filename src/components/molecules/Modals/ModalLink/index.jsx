@@ -33,6 +33,7 @@ const ModalLink = (props) => {
             className="btn btn-danger"
             data-bs-dismiss="modal"
             onClick={() => {
+              console.log(data.redirect);
               navigate(data.redirect);
             }}
           >

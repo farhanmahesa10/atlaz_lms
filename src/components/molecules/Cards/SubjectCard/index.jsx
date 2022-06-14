@@ -5,7 +5,11 @@ const SubjectCard = ({ image, title, creator }) => {
     <div className="h-96 w-full radius-8 position-relative cursor-pointer bg-secondary-100 ">
       <div className=" d-flex align-items-center ">
         <div className="mr-16">
-          <img src={image} className="w-96  h-p-100 radius-8" />
+          <img
+            src={image}
+            className="   w-96 h-96 radius-8"
+            style={{ objectFit: "cover" }}
+          />
         </div>
 
         <div className="w-143  border-start border-secondary-500 pl-8">

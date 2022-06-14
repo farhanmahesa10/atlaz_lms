@@ -30,11 +30,11 @@ const LearningSubjectViewLoading = () => {
 
       {/* progress */}
 
-      <div className="mt-40">
+      {/* <div className="mt-40">
         <div className=" md-h-64  px-24 py-16 md-py-0 radius-8">
           <Skeleton height="64px" width="100%" />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

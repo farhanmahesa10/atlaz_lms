@@ -43,7 +43,7 @@ const BookContentTopicControl = (props) => {
       <BookContentAccordion
         icon={<LabelImportantIcon />}
         badgeColor="success-600"
-        badgeText={data.progress}
+        // badgeText={data.progress}
         title={data.name}
         type="TOPIC"
         isLocked={data.isLocked}

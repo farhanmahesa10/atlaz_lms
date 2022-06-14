@@ -80,7 +80,11 @@ import HeadSchoolAdminDashboard from "./DashboardMol/SchoolAdminDashboardMol/Hea
 import WelcomeAssessmentLoading from "./SkeletonLoading/ClassroomLoading/WelcomeAssessmentLoading";
 import ModalBeginAssessment from "./Modals/ClassRoom/ModalBeginAssessment";
 import BeginAssessmentLoading from "./SkeletonLoading/ClassroomLoading/BeginAssessmentLoading";
+import PublicFormManageAccount from "./ProfileMol/ManageAccountMol/PublicFormManageAccount";
+import StudentFormManageAccount from "./ProfileMol/ManageAccountMol/StudentFormManageAccount";
 export {
+  PublicFormManageAccount,
+  StudentFormManageAccount,
   BeginAssessmentLoading,
   ModalBeginAssessment,
   WelcomeAssessmentLoading,

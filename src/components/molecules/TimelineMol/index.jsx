@@ -13,9 +13,11 @@ import moment from "moment";
 import { Collapse } from "react-bootstrap";
 import ModalAction from "../Modals/ModalAction";
 import Skeleton from "react-loading-skeleton";
+import { Link, useParams } from "react-router-dom";
+import { Can } from "../../../permission";
 const TimelineMol = (props) => {
   const { data, onDelete, isLoading } = props;
-  console.log(isLoading);
+
   return (
     <>
       {isLoading ? (
@@ -79,6 +81,7 @@ const TimelineBlock = ({ data, onDelete }) => {
                     </div>
                     <BoxTimeline
                       data={r}
+                      parentData={data}
                       onDelete={(data) => {
                         onDelete(data);
                       }}
@@ -99,7 +102,8 @@ const TimelineBlock = ({ data, onDelete }) => {
   );
 };
 
-const BoxTimeline = ({ data, onDelete }) => {
+const BoxTimeline = ({ data, parentData, onDelete }) => {
+  const params = useParams();
   const [extend, setExtend] = useState(false);
   const getDuration = (start, end) => {
     let startMoment = moment(start);
@@ -155,7 +159,7 @@ const BoxTimeline = ({ data, onDelete }) => {
               "automatic grading" ? (
                 <p className="font-xs-bold ">
                   {moment(data.assessmentDate).format("DD MMM Y")}, &nbsp;
-                  {moment(data.startTime).format("LT")}
+                  {moment(data.startDateTime).format("LT")}
                 </p>
               ) : (
                 <p className="font-xs-bold ">
@@ -170,7 +174,7 @@ const BoxTimeline = ({ data, onDelete }) => {
               "automatic grading" ? (
                 <p className="font-xs-bold ">
                   {moment(data.assessmentDate).format("DD MMM Y")}, &nbsp;
-                  {moment(data.endTime).format("LT")}
+                  {moment(data.endDateTime).format("LT")}
                 </p>
               ) : (
                 <p className="font-xs-bold ">
@@ -187,14 +191,30 @@ const BoxTimeline = ({ data, onDelete }) => {
                   : getDuration(data.startDateTime, data.endDateTime)}
               </p>
             </div>
-            <ModalTrigger
-              target="delete-timeline"
-              data={{ assessmentId: data._id, timelineId: data.subtopic._id }}
-            >
-              <button className="w-full btn-secondary font-xs mt-8 h-32">
-                Cancel Activate
-              </button>
-            </ModalTrigger>
+            <div className="d-flex">
+              <Can allowAccess="teacher">
+                {data.event.toLowerCase() !== "on going" && (
+                  <ModalTrigger
+                    target="delete-timeline"
+                    data={{
+                      assessmentId: data._id,
+                      timelineId: data.subtopic._id,
+                    }}
+                  >
+                    <button className="text-neutral-500 btn-secondary font-xs mt-8 h-32 mr-8">
+                      Cancel
+                    </button>
+                  </ModalTrigger>
+                )}
+              </Can>
+              <Link
+                to={`/classroom/welcome-assessment/${params.classId}/${params.subjectId}/${parentData.lesson._id}/${parentData.topic._id}/${data.subtopic._id}`}
+              >
+                <button className="text-neutral-500 btn-primary font-xs mt-8 h-32">
+                  Go to Assessment
+                </button>
+              </Link>
+            </div>
           </div>
         </Collapse>
       </div>

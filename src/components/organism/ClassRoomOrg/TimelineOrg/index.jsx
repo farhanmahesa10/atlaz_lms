@@ -7,6 +7,7 @@ import TimelineMol from "../../../molecules/TimelineMol";
 
 const TimelineOrg = () => {
   const { data, isLoading, handleDetedTimeline } = useTimeline();
+
   const params = useParams();
   return (
     <>
@@ -28,7 +29,6 @@ const TimelineOrg = () => {
           </div>
         </div>
         <div className="mt-24 md-mx-32 ">
-          <h5></h5>
           <TimelineMol
             data={data}
             isLoading={isLoading}

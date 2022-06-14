@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { BeginAssessmentLoading, ProgressNavbar } from "../../../molecules";
 import { useBeginAssessment } from "../../../../services";
 import { Form, Formik } from "formik";
 import MainFooter from "../../../Layout/Mainlayout/MainFooter";
 import "./Assessments-preview.scss";
+import moment from "moment";
 const BeginAssessmentOrg = () => {
   const {
     filledQuestions,
@@ -17,6 +18,10 @@ const BeginAssessmentOrg = () => {
     assessmentData,
   } = useBeginAssessment();
   let nomor = 0;
+  const submitRef = useRef();
+  console.log(
+    moment("Wed Jun 14 2022 17:46:20 GMT+0700 (Indochina Time)").format()
+  );
   return (
     <>
       {isLoading ? (
@@ -30,6 +35,9 @@ const BeginAssessmentOrg = () => {
             filledQuestions={filledQuestions}
             scrollToSection={scrollToSection}
             redirectLink={redirectLink}
+            onAutoSubmit={() => {
+              submitRef.current.click();
+            }}
           />
           <div className=" justify-content-center w-full bg-secondary-100 ">
             <Formik
@@ -70,6 +78,7 @@ const BeginAssessmentOrg = () => {
                       <button
                         className="btn-primary font-normal w-160 text-center"
                         type="submit"
+                        ref={submitRef}
                       >
                         Submit
                       </button>

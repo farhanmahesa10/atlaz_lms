@@ -7,7 +7,6 @@ import { LearningSubjectViewLoading, TabBar } from "../../../molecules";
 const LearningSubjectViewOrg = () => {
   const { breadcrumbsData, TabBarData, subjectData, isSubjectLoading } =
     useLearningSubjectView();
-
   return (
     <MainLayout
       maxWidth="1440px"
@@ -68,21 +67,15 @@ const LearningSubjectViewOrg = () => {
                         className="fs-12"
                         style={{ color: "#DB8EEE" }}
                       />
-                      <p className="font-sm ml-20">
-                        Certificate Available (Dev BE)
-                      </p>
+                      <p className="font-sm ml-20">Certificate Available</p>
                     </div>
                   </div>
-
-                  <button className="btn btn-primary font-normal">
-                    View all course
-                  </button>
                 </div>
               </div>
 
               {/* progress */}
 
-              <div className="mt-40">
+              {/* <div className="mt-40">
                 <div className="bg-neutral-600 d-md-flex align-items-center md-h-64  px-24 py-16 md-py-0 radius-8">
                   <h6 className="text-white nowrap mr-64">Progress Overall</h6>
                   <div className="d-flex w-full align-items-center">
@@ -103,7 +96,7 @@ const LearningSubjectViewOrg = () => {
                     Get Certificate
                   </button>
                 </div>
-              </div>
+              </div> */}
             </>
           )}
 

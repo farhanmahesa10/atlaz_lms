@@ -8,7 +8,9 @@
   /* -ms-transform: scale(1.08);
   transform: scale(1.08); */
 }
-
+.cursor-disabled{
+  cursor: not-allowed;
+}
 .slick-opacity-50 {
   opacity: 0.5;
 }

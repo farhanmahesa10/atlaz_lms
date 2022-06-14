@@ -28,7 +28,11 @@ import ChangeFirstPassword from "./Auth/ChangeFirstPassword";
 import PreviewContent from "./PreviewContent";
 import Dashboard from "./Dashboard";
 import ManageAccount from "./Profile/ManageAccount";
+import Security from "./Profile/Security";
+import PurchasedHistory from "./Profile/PurcashedHistory";
 export {
+  PurchasedHistory,
+  Security,
   ManageAccount,
   Login,
   Register1,

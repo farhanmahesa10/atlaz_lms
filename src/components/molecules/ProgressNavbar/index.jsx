@@ -43,20 +43,26 @@ const ProgressNavbar = (props) => {
       return () => clearInterval(interval);
     }
   }, [assessmentData]);
+
   const millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     let result = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     setTimertStr(result);
   };
+
   const handleDuration = () => {
     let start = moment().format();
     let end = moment(assessmentData.endDateTime).format();
+    // let end = moment(assessmentData.endDateTime).format();
 
     if (start && end) {
       let startMoment = moment(start);
       let endMoment = moment(end);
       let duration = moment.duration(endMoment.diff(startMoment));
+      if (duration._milliseconds < 1) {
+        props.onAutoSubmit();
+      }
       if (duration._milliseconds > 0) {
         millisToMinutesAndSeconds(duration._milliseconds);
       } else {
@@ -87,7 +93,7 @@ const ProgressNavbar = (props) => {
               <ModalTrigger
                 target="close-assessment"
                 data={{
-                  redirect: { redirectLink },
+                  redirect: redirectLink,
                   title: "Cancel proccess",
                   message:
                     "Continue to cancel process? Once canceled, any changes will be lost.",

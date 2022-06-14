@@ -15,7 +15,11 @@ import useWelcomeAssessment from "./ClassRoom/useWelcomeAssessment";
 import useBeginAssessment from "./ClassRoom/useBeginAssessment";
 import useSubjectPostMember from "./ClassRoom/SubjectPost/useSubjectPostMember";
 import useSchoolAdminDashboard from "./Dashboard/useSchoolAdminDashboard";
+import useSecurityOrg from "./Profile/useSecurityOrg";
+import usePurchasedHistory from "./Profile/usePurchasedHistory";
 export {
+  usePurchasedHistory,
+  useSecurityOrg,
   useSchoolAdminDashboard,
   useSearchResult,
   useClassRoomHero,
