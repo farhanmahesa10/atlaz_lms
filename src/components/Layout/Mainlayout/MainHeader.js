@@ -64,6 +64,14 @@ const MainHeader = (props) => {
       // allowAccess: "superuser,administrator",
     },
     {
+      icon: <BookIcon />,
+      link: "/my-book-list",
+      label: "My Books List",
+      shouldLogin: 1,
+      activeTo: "my-book-list",
+      // allowAccess: "superuser,administrator",
+    },
+    {
       icon: <StorefrontIcon />,
       link: "/",
       label: "Shop",
@@ -108,28 +116,7 @@ const MainHeader = (props) => {
       allowAccess:
         "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,PUBLIC",
     },
-    {
-      icon: <BookIcon />,
-      link: "/mybooks",
-      label: "My Books",
-      shouldLogin: 1,
-      activeTo: "mybooks",
-      // allowAccess: "superuser,administrator",
-      childs: [
-        {
-          link: "/mybooks/1",
-          label: "mybook 1",
-          // shouldLogin: false,
-          activeTo: "mybooks",
-        },
-        {
-          link: "/mybooks/2",
-          label: "mybook 2",
-          // shouldLogin: false,
-          activeTo: "mybooks",
-        },
-      ],
-    },
+
     {
       icon: <GroupsIcon />,
       link: "/master",

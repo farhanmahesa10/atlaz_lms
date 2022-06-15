@@ -28,13 +28,15 @@ const SubjectPostDashboardFeed = (props) => {
       ) : (
         <>
           {data.map((res, i) => {
-            return (
-              <div className={`mt-24 `} key={"feedsCards-" + res._id}>
-                <PostFeedCard data={res} onDeleted={handleDeletedFeed} />
-              </div>
-            );
+            if (res) {
+              return (
+                <div className={`mt-24 `} key={"feedsCards-" + res._id}>
+                  <PostFeedCard data={res} onDeleted={handleDeletedFeed} />
+                </div>
+              );
+            }
           })}
-          {feedShowsCount < totalFeedData && (
+          {feedShowsCount <= totalFeedData && (
             <div className="mt-24 d-flex justify-content-center ">
               <button
                 className="btn btn-secondary w-176"

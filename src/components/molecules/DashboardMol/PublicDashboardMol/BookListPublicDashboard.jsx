@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BookListDashboardCard from "../../Cards/BookListDashboardCard";
 
 import BookListDashboardPublicCard from "../../Cards/BookListDashboardPublicCard";
 
@@ -22,22 +23,22 @@ const BookListPublicDashboard = () => {
         </div>
         <div className="mt-24 row ">
           <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3">
-            <BookListDashboardPublicCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl" />
           </div>
           <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3">
-            <BookListDashboardPublicCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl" />
           </div>
           <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3">
-            <BookListDashboardPublicCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl" />
           </div>
           <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3">
-            <BookListDashboardPublicCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl" />
           </div>
           <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3">
-            <BookListDashboardPublicCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl" />
           </div>
           <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3">
-            <BookListDashboardPublicCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl" />
           </div>
         </div>
       </div>

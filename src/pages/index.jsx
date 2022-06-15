@@ -30,7 +30,9 @@ import Dashboard from "./Dashboard";
 import ManageAccount from "./Profile/ManageAccount";
 import Security from "./Profile/Security";
 import PurchasedHistory from "./Profile/PurcashedHistory";
+import MyBookList from "./MyBookList";
 export {
+  MyBookList,
   PurchasedHistory,
   Security,
   ManageAccount,

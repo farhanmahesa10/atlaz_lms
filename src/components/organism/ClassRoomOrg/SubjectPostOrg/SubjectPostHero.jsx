@@ -3,9 +3,19 @@ import { Link } from "react-router-dom";
 import { useSubjectPostHero } from "../../../../services";
 import { BreadCrumb, Divider } from "../../../atoms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Skeleton from "react-loading-skeleton";
+import { SubjectPostHeroLoading } from "../../../molecules";
 const SubjectPostHero = () => {
-  const { banner, breadcrumbsData, navMenu, classId, subjectId, section } =
-    useSubjectPostHero();
+  const {
+    banner,
+    breadcrumbsData,
+    navMenu,
+    classId,
+    subjectId,
+    section,
+    data,
+    isLoading,
+  } = useSubjectPostHero();
 
   return (
     <>
@@ -32,28 +42,33 @@ const SubjectPostHero = () => {
               <span className="ml-19 font-sm text-white">Back</span>
             </Link>
           </div>
-          <div className="px-16  md-px-48  pb-16 md-pb-24 xl-pb-32 d-md-flex align-items-center mt-48">
-            <img
-              src="/images/product.png"
-              className="h-88 md-h-160 w-88 md-w-160 mr-16 xl-h-176 xl-w-176 "
-              alt=""
-            />
-            <div>
-              <p className="font-sm-bold text-white font-sm md-h3 xl-h2">
-                English Play 01
-              </p>
-              <p className="text-neutral-400 mt-4 text-white font-xs md-font-medium mb-8 md-mb-20">
-                Kelas 1A IPA - 2020/2021
-              </p>
-              <Link
-                to={`/classroom/start-learning-view/${classId}/${subjectId}`}
-              >
-                <button className="btn btn-primary font-xs md-font-sm xl-font-normal">
-                  Start Learning
-                </button>
-              </Link>
+          {isLoading ? (
+            <SubjectPostHeroLoading />
+          ) : (
+            <div className="px-16  md-px-48  pb-16 md-pb-24 xl-pb-32 d-md-flex align-items-center mt-48">
+              <img
+                src={data.imageCover}
+                className="h-88 md-h-160 w-88 md-w-160 mr-16 xl-h-176 xl-w-176 radius-8"
+                style={{ objectFit: "cover" }}
+                alt=""
+              />
+              <div>
+                <p className="font-sm-bold text-white font-sm md-h3 xl-h2">
+                  {data.name}
+                </p>
+                <p className="text-neutral-400 mt-4 text-white font-xs md-font-medium mb-8 md-mb-20">
+                  {data.author}
+                </p>
+                <Link
+                  to={`/classroom/start-learning-view/${classId}/${subjectId}`}
+                >
+                  <button className="btn btn-primary font-xs md-font-sm xl-font-normal">
+                    Start Learning
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 

@@ -12,7 +12,7 @@ const useSubjectPostDashboard = () => {
   const [isLoadingLoadMore, setIsLoadingLoadMore] = useState(false);
 
   const [feeds, setFeeds] = useState([]);
-  const [feedShowsCount, setFeedShowsCount] = useState(0);
+  const [feedShowsCount, setFeedShowsCount] = useState(1);
   const [totalFeedData, settotalFeedData] = useState(0);
 
   const [isUpcomingLoading, setIsUpcomingLoading] = useState(true);
@@ -68,7 +68,7 @@ const useSubjectPostDashboard = () => {
             setFeeds(tempFeeds);
           }
         }
-        setFeedShowsCount(feedShowsCount + r.data.length);
+        setFeedShowsCount(feedShowsCount + r.data.length - 1);
         settotalFeedData(r.total);
         setIsLoadingFeed(false);
         setIsLoadingLoadMore(false);

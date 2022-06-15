@@ -82,7 +82,9 @@ import ModalBeginAssessment from "./Modals/ClassRoom/ModalBeginAssessment";
 import BeginAssessmentLoading from "./SkeletonLoading/ClassroomLoading/BeginAssessmentLoading";
 import PublicFormManageAccount from "./ProfileMol/ManageAccountMol/PublicFormManageAccount";
 import StudentFormManageAccount from "./ProfileMol/ManageAccountMol/StudentFormManageAccount";
+import SubjectPostHeroLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostHeroLoading";
 export {
+  SubjectPostHeroLoading,
   PublicFormManageAccount,
   StudentFormManageAccount,
   BeginAssessmentLoading,

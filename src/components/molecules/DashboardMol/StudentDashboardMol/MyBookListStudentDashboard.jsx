@@ -7,13 +7,13 @@ const MyBookListStudentDashboard = () => {
         <h6 className="md-h5">My Book List</h6>
         <div className="row mt-24 justify-content-center">
           <div className="col-6 col-sm-4 ">
-            <BookListDashboardCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl xl-card-book-sm" />
           </div>
           <div className="col-6 col-sm-4">
-            <BookListDashboardCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl xl-card-book-sm" />
           </div>
           <div className="col-4 d-none d-sm-block">
-            <BookListDashboardCard />
+            <BookListDashboardCard className="card-book-sm md-card-book-xl xl-card-book-sm" />
           </div>
         </div>
       </div>

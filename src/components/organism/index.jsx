@@ -37,7 +37,9 @@ import BeginAssessmentMatchPairs from "./ClassRoomOrg/BeginAssessmentOrg/BeginAs
 import BeginAssessmentShortAnswer from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentShortAnswer";
 import SecurityOrg from "./ProfileOrg/SecurityOrg";
 import PurchasedHistoryOrg from "./ProfileOrg/PurchasedHistoryOrg";
+import MyBookListOrg from "./MyBookListOrg";
 export {
+  MyBookListOrg,
   PurchasedHistoryOrg,
   SecurityOrg,
   BeginAssessmentEssay,

@@ -9,7 +9,8 @@ const DashboardOrg = () => {
     <>
       {/* <PublicDashboard /> */}
       {/* <TeacherDashboard /> */}
-      <SchoolAdminDashboard />
+      {/* <SchoolAdminDashboard /> */}
+      <StudentDashboard />
       {/* <Can allowAccess="public">
         <PublicDashboard />
       </Can>

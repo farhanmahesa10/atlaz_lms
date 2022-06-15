@@ -292,7 +292,104 @@
   }
 }
 
+@mixin cardBookGenerator($selector: "."){
+  #{$selector}card-book-sm {
+    border: 1px solid $secondary_500;
+    max-width: 127px;
+    border-radius: 8px;
+  .card-book-content{
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-right: 8px;
+    .card-book-image{
+      border-radius: 8px;
+      width: 100%
+    }
+    .card-book-author{
+      @include fontXs();
+      color: $neutral_300;
+    }
+    .card-book-title{
+      @include fontSmBold();
+      color: $neutral_500;
+      height: 40px;
+    }
+    .card-book-footer{
+      @include fontXs();
+      color: $neutral_300 ;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      .card-book-progress{
+        width: 100%;
+        background-color: $secondary_200;
+        height: 2px;
+        margin-left: 8px;
+        margin-right: 8px;
+        border-radius: 3px;
+      }
+      .card-book-progress-value{
+        width: 50%;
+        background-color: $info_500;
+        height: 2px;
+        border-radius: 3px;
+      }
+    }
+  }
+    
+  }
+
+  #{$selector}card-book-xl {
+     border: 1px solid $secondary_500;
+     max-width: 188px;
+     border-radius: 8px;
+    .card-book-content{
+      padding-left: 16px;
+     padding-top: 16px;
+     padding-right: 16px;
+      .card-book-image{
+        border-radius: 8px;
+        width: 100%
+      }
+      .card-book-author{
+        @include fontSm();
+        color: $neutral_300;
+      }
+      .card-book-title{
+        @include headingH6();
+        color: $neutral_500;
+        height: 48px;
+      }
+      .card-book-footer{
+        @include fontXs();
+        color: $neutral_300 ;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        display: flex;
+        align-items: center;
+        .card-book-progress{
+          width: 100%;
+          background-color: $secondary_200;
+          height: 2px;
+          margin-left: 8px;
+          margin-right: 8px;
+          border-radius: 3px;
+        }
+        .card-book-progress-value{
+          width: 50%;
+          background-color: $info_500;
+          height: 2px;
+          border-radius: 3px;
+        }
+      }
+    }
+     
+   }
+}
+
 @mixin callCardGenerator($selector: ".") {
   @include cardGeneratorX($selector);
   @include cardGeneratorY($selector);
+  @include cardBookGenerator($selector);
 }

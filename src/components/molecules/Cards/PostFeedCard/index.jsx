@@ -29,7 +29,7 @@ const PostFeedCard = (props) => {
     props.data.total_comment
   );
   const [commentShowsCount, setCommentShowsCount] = useState(
-    props.data.comments.length
+    props.data.comments?.length
   );
   const params = useParams();
   const comments = useMemo(() => commentProps, [commentProps]);
@@ -77,7 +77,6 @@ const PostFeedCard = (props) => {
       setCommentProps(newComment);
     }
   };
-
   return (
     <div className="position-relative">
       <ModalAction
@@ -166,25 +165,33 @@ const PostFeedCard = (props) => {
             </ul>
           </div>
         </div>
-        {data.contentType.toLowerCase() !== "feed" && (
+        {data.contentType.toLowerCase() === "assessment" && (
           <PostedAssessment data={data} />
-        )}
-        {data.contentType.toLowerCase() === "feed" && <Posted data={data} />}
-        <Divider lineColor="bg-secondary-500" parentClassName="my-24" />
-        {totalCommentCount > comments.length && (
-          <p
-            className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
-            onClick={() => {
-              let from = commentShowsCount + 1;
-              let to = from + 4;
-              showMoreComment(data._id, from, to);
-            }}
-          >
-            View previous comments
-          </p>
         )}
         {data.contentType.toLowerCase() === "feed" && (
           <>
+            <Posted data={data} />
+            <Divider lineColor="bg-secondary-500" parentClassName="my-24" />
+          </>
+        )}
+        {data.contentType.toLowerCase() === "system" && (
+          <PostedSystem data={data} />
+        )}
+
+        {data.contentType.toLowerCase() === "feed" && (
+          <>
+            {totalCommentCount > comments.length && (
+              <p
+                className="font-xs text-neutral-200 mb-40 cursor-pointer hover-text-primary-500 "
+                onClick={() => {
+                  let from = commentShowsCount + 1;
+                  let to = from + 4;
+                  showMoreComment(data._id, from, to);
+                }}
+              >
+                View previous comments
+              </p>
+            )}
             {comments.map((r, i) => {
               return (
                 <PostCommentCard
@@ -373,4 +380,27 @@ const PostedAssessment = (props) => {
   );
 };
 
+const PostedSystem = (props) => {
+  const { data } = props;
+  const createMarkup = () => {
+    return { __html: data.content.data };
+  };
+
+  return (
+    <div className="mt-16 ">
+      {data.content.image && (
+        <div
+          className="max-h-158 md-max-h-216 xl-max-h-472 radius-14 mb-16"
+          style={{ overflow: "hidden" }}
+        >
+          <ModalTrigger target="postImage" data={{ image: data.content.image }}>
+            <img src={data.content.image} alt="" className="w-full " />
+          </ModalTrigger>
+        </div>
+      )}
+
+      <div dangerouslySetInnerHTML={createMarkup()}></div>
+    </div>
+  );
+};
 export default PostFeedCard;

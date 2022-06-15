@@ -60,7 +60,7 @@ const LearningSubjectViewOrg = () => {
                         className="fs-12"
                         style={{ color: "#AD8EEE" }}
                       />
-                      <p className="font-sm ml-20"> 90 Exercise (Dev BE)</p>
+                      <p className="font-sm ml-20"> 90 Exercise </p>
                     </div>
                     <div className="d-flex align-items-center  ">
                       <FiberManualRecordIcon

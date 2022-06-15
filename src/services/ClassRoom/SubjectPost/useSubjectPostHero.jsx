@@ -6,29 +6,34 @@ const useSubjectPostHero = () => {
   const { classId, subjectId, section } = useParams();
   const navigate = useNavigate();
   const banner = StartLearningBg;
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const [breadcrumbsData, setBreadcrumbsData] = useState([
-    {
-      link: "/",
-      label: "Home",
-    },
     {
       link: "/classroom",
       label: "Classroom",
     },
+    {
+      link: `/classroom/class/${subjectId}`,
+      label: "Class",
+    },
   ]);
 
   useEffect(() => {
-    getClass();
+    getSubjectDetail();
   }, []);
-  const getClass = () => {
-    GET("/client/classrooms/" + classId, defConfig())
+  const getSubjectDetail = () => {
+    setIsLoading(true);
+    GET("/client/classrooms/subject/detail/" + subjectId, defConfig())
       .then((r) => {
+        setIsLoading(false);
         let newBread = [...breadcrumbsData];
         newBread.push({
-          link: `/classroom/class/${classId}`,
-          label: r.data.classlist.name,
+          link: ``,
+          label: r.data.name,
         });
         setBreadcrumbsData(newBread);
+        setData(r.data);
       })
       .catch((err) => {
         navigate("/page-not-found");
@@ -55,6 +60,8 @@ const useSubjectPostHero = () => {
     section,
     classId,
     subjectId,
+    data,
+    isLoading,
   };
 };
 

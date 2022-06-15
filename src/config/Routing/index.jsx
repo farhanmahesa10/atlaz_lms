@@ -37,6 +37,7 @@ import {
   ManageAccount,
   Security,
   PurchasedHistory,
+  MyBookList,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -245,8 +246,6 @@ const Routing = () => {
         }
       />
 
-      <Route path="/carousel" element={<CobaBikinCarousel />} />
-
       <Route
         path="/classroom/content-practice/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
@@ -266,19 +265,25 @@ const Routing = () => {
       <Route
         path="/security"
         element={
-          // <Authenticate>
-
-          <Security />
-          // </Authenticate>
+          <Authenticate>
+            <Security />
+          </Authenticate>
         }
       />
       <Route
         path="/purchased-history"
         element={
-          // <Authenticate>
-
-          <PurchasedHistory />
-          // </Authenticate>
+          <Authenticate>
+            <PurchasedHistory />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/my-book-list"
+        element={
+          <Authenticate>
+            <MyBookList />
+          </Authenticate>
         }
       />
       <Route path="/carousel" element={<CobaBikinCarousel />} />

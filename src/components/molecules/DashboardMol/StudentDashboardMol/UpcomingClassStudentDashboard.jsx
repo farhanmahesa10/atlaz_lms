@@ -24,7 +24,8 @@ const UpcomingClassStudentDashboard = () => {
       return data.map((r, i) => {
         return (
           <div key={i} className={`${i > 0 && "mt-16"}`}>
-            <UpcomingCard data={r} key={i} />
+            {/* <UpcomingCard data={r} key={i} /> */}
+            nyalakan komentar
           </div>
         );
       });
