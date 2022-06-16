@@ -26,7 +26,7 @@ const useBeginAssessment = () => {
   const [subTopicData, setSubTopicData] = useState({});
   const [assessmentData, setAssessmentData] = useState({});
   const [timeLineId, setTimeLineId] = useState(null);
-  const [manualValidation, setManualValidation] = useState(false);
+  const [manualValidation, setManualValidation] = useState(true);
 
   const redirectLink = `/classroom/welcome-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${params.id}`;
 
@@ -160,7 +160,15 @@ const useBeginAssessment = () => {
 
     setFilledQuestions(result);
   };
-
+  const backToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    backToTop();
+  }, [params]);
   const callBlock = (assessment, index, formik, nomor) => {
     assessment = { ...assessment, idsubtopic };
     let assessmentType = assessment.assessmentType.name.toLowerCase();
@@ -288,7 +296,7 @@ const useBeginAssessment = () => {
         console.log(err.response);
       });
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
     // navigate(`/subtopic/editsubtopic/${idsubtopic}`);
   };
 

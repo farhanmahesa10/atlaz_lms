@@ -219,7 +219,7 @@ const DateTimeForm = (props) => {
   useEffect(() => {
     let formikValues = formik.values;
     let tempCheckStatus = true;
-
+    console.log(moment());
     let trueCase = formikValues.timeline.filter((r) => r.checkbox === true);
     let falseCase = formikValues.timeline.filter((r) => r.checkbox === false);
 
@@ -320,6 +320,7 @@ const DateTimeForm = (props) => {
               setStartDef(val);
               handleDateChange(val);
             }}
+            minDate={moment()._d}
             maxDate={
               formik.getFieldProps(endDateName).value
                 ? formik.getFieldProps(endDateName).value

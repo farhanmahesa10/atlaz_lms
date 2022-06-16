@@ -30,7 +30,7 @@ const GlobalToast = () => {
         <i
           className={`bi ${
             status
-              ? "bi-check-circle text-info-400"
+              ? "bi-check-circle text-success-400"
               : "bi-x-circle text-danger-400"
           } fs-16 pe-2`}
         ></i>
@@ -59,7 +59,7 @@ const GlobalToast = () => {
         toastOptions={{
           className: "",
           style: {
-            border: selector.status ? "1px solid #0dcaf0" : "1px solid #DC3545",
+            border: selector.status ? "1px solid #8EEED1" : "1px solid #DC3545",
             padding: "10px",
             color: "#333333",
           },

@@ -83,7 +83,9 @@ import BeginAssessmentLoading from "./SkeletonLoading/ClassroomLoading/BeginAsse
 import PublicFormManageAccount from "./ProfileMol/ManageAccountMol/PublicFormManageAccount";
 import StudentFormManageAccount from "./ProfileMol/ManageAccountMol/StudentFormManageAccount";
 import SubjectPostHeroLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostHeroLoading";
+import LessonPreviewLoading from "./SkeletonLoading/ClassroomLoading/LessonPreviewLoading";
 export {
+  LessonPreviewLoading,
   SubjectPostHeroLoading,
   PublicFormManageAccount,
   StudentFormManageAccount,

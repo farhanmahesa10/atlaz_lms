@@ -43,6 +43,9 @@ function PreviewContentOrg() {
       behavior: "smooth",
     });
   };
+  useEffect(() => {
+    backToTop();
+  }, [id, classId, subjectId, lessonId, topicId]);
 
   const showContent = (data) => {
     switch (data.contentType.name.toLowerCase()) {
