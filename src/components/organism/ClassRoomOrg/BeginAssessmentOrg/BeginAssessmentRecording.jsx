@@ -20,7 +20,7 @@ const BeginAssessmentRecording = (props) => {
         convertBlob.then((res) => {
           setBase64Result(res);
           setFieldValue(`[${index}].userAnswer`, res);
-          props.onSendProgress(`[${index}].userAnswer`);
+          props.onSendProgress(`[${index}].userAnswer`, true);
         });
       });
     });

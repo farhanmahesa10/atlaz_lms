@@ -23,7 +23,9 @@ const ModalBeginAssessment = (props) => {
       <div className="px-32">
         Hi, atlazen!
         <h4> {data.title}</h4>
-        <p className="text-neutral-300 mt-16 font-sm">{data.message}</p>
+        <p className="text-neutral-300 mt-16 font-sm">
+          {data.message} {data.link}
+        </p>
       </div>
     </Modal>
   );

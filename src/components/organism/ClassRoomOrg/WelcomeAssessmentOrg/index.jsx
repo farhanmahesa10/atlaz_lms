@@ -1,5 +1,5 @@
 import React from "react";
-import { BreadCrumb, Divider, ModalTrigger } from "../../../atoms";
+import { BreadCrumb, Divider, GlobalToast, ModalTrigger } from "../../../atoms";
 import MainLayout from "../../../Layout/Mainlayout";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -35,6 +35,7 @@ const WelcomeAssessmentOrg = () => {
         <WelcomeAssessmentLoading />
       ) : (
         <>
+          <GlobalToast />
           <ModalBeginAssessment id="modal-begin-assessment" />
           <div className="mt-16 d-none d-xl-block mx-48">
             <BreadCrumb data={breadcrumbsData} />
@@ -117,7 +118,7 @@ const WelcomeAssessmentOrg = () => {
                               className="font-sm btn-primary d-flex align-items-center"
                               type="button"
                             >
-                              <span className="mr-16">Begin Assessment</span>{" "}
+                              <span className="mr-16">Begin Assessment</span>
                               <ArrowRightAltOutlinedIcon />
                             </button>
                           </ModalTrigger>

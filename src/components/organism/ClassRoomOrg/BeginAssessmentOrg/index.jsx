@@ -5,6 +5,7 @@ import { Form, Formik } from "formik";
 import MainFooter from "../../../Layout/Mainlayout/MainFooter";
 import "./Assessments-preview.scss";
 import moment from "moment";
+import { GlobalToast } from "../../../atoms";
 const BeginAssessmentOrg = () => {
   const {
     filledQuestions,
@@ -19,15 +20,16 @@ const BeginAssessmentOrg = () => {
   } = useBeginAssessment();
   let nomor = 0;
   const submitRef = useRef();
-  console.log(
-    moment("Wed Jun 14 2022 17:46:20 GMT+0700 (Indochina Time)").format()
-  );
+  // console.log(
+  //   moment("Wed Jun 14 2022 17:46:20 GMT+0700 (Indochina Time)").format()
+  // );
   return (
     <>
       {isLoading ? (
         <BeginAssessmentLoading />
       ) : (
         <div className="d-flex flex-column " style={{ minHeight: "100vh" }}>
+          <GlobalToast />
           <ProgressNavbar
             assessmentData={assessmentData}
             progressSetup={filledQuestions}

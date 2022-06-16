@@ -6,16 +6,7 @@ const useClassRoomHero = () => {
   const banner = ClassRoomHeroMain;
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
-  const breadcrumbsData = [
-    {
-      link: "/",
-      label: "Home",
-    },
-    {
-      link: "",
-      label: <span className="text-white">Classroom</span>,
-    },
-  ];
+
   useEffect(() => {
     GET("/client/classrooms/my_school", defConfig())
       .then((r) => {
@@ -27,7 +18,7 @@ const useClassRoomHero = () => {
         setIsLoading(false);
       });
   }, []);
-  return { isLoading, data, banner, breadcrumbsData };
+  return { isLoading, data, banner };
 };
 
 export default useClassRoomHero;

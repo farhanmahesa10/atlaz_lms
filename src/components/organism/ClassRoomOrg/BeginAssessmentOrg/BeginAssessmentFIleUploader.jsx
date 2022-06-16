@@ -1,9 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const BeginAssessmentFIleUploader = (props) => {
-  const { data, index, formik, setFieldValue } = props;
+  const { data, index, formik, setFieldValue, setManualValidation } = props;
   const inpRef = useRef();
   const [fileName, setFileName] = useState("");
+  const [validationFormat, setValidationFormat] = useState(false);
+  const [validationSize, setValidationSize] = useState(false);
+  const [firstRender, setFirstRender] = useState(true);
+
+  useEffect(() => {
+    if (!validationFormat || !validationSize) {
+      setManualValidation(false);
+    } else {
+      setManualValidation(true);
+    }
+    console.log(formik);
+  }, [validationSize, validationFormat]);
 
   return (
     <>
@@ -30,21 +42,52 @@ const BeginAssessmentFIleUploader = (props) => {
             ref={inpRef}
             name={`[${index}].userAnswer.fakeFile`}
             onInput={(e) => {
-              props.onSendProgress(`[${index}].userAnswer.base64File`);
+              props.onSendProgress(`[${index}].userAnswer.base64File`, true);
               let file = e.target.files[0];
-              setFileName(file && file.name);
-              let reader = new FileReader();
-              reader.onloadend = () => {
-                var result = reader.result;
-                setFieldValue(`[${index}].userAnswer.base64File`, result);
-              };
-              reader.readAsDataURL(file);
+              if (file) {
+                let extension = file.name.split(".").pop();
+                if (file.size > 5000000) {
+                  setValidationSize(false);
+                } else {
+                  setValidationSize(true);
+                }
+
+                if (
+                  extension.toLowerCase() !== "docx" &&
+                  extension.toLowerCase() !== "doc" &&
+                  extension.toLowerCase() !== "doc"
+                ) {
+                  setValidationFormat(false);
+                } else {
+                  setValidationFormat(true);
+                }
+                setFirstRender(false);
+                setFileName(file && file.name);
+                let reader = new FileReader();
+                reader.onloadend = () => {
+                  var result = reader.result;
+                  setFieldValue(`[${index}].userAnswer.base64File`, result);
+                };
+                reader.readAsDataURL(file);
+              }
             }}
           />
           <div className="tx-small neutral200">
-            Format file : pdf, doc, docx
-            <br />
-            File size : &lt; 5mb
+            <p
+              className={` ${
+                !validationFormat && !firstRender && "text-danger-400"
+              }`}
+            >
+              Format file : pdf, doc, docx
+            </p>
+
+            <p
+              className={` ${
+                !validationSize && !firstRender && "text-danger-400"
+              }`}
+            >
+              File size : &lt; 5mb
+            </p>
           </div>
         </div>
       </div>

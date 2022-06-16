@@ -53,7 +53,7 @@ const BookContentLessonControl = (props) => {
         requestId={data._id}
         badgeColor="info-500"
         title={data.name}
-        badgeText={data.progress}
+        // badgeText={data.progress}
         withExpand
         redirectTo={`/classroom/lesson-preview/${classId}/${subjectId}/${data._id}`}
         onOpened={requestChild}

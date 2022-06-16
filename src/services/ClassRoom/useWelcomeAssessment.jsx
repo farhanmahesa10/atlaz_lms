@@ -29,7 +29,7 @@ const useWelcomeAssessment = () => {
   const handleBadgeColor = (status) => {
     switch (status.toLowerCase()) {
       case "on going":
-        return "border-success-600 bg-success-100 border-success-600";
+        return "border-success-600 bg-success-100 border-success-600 text-success-600";
       case "started soon":
         return "text-info-500 bg-info-100 border-info-500";
       case "submited":
@@ -57,9 +57,12 @@ const useWelcomeAssessment = () => {
       case "submited":
         setModalText({
           title: "Assessment have submitted",
-          message: `You have submitted this assessment and cannot re-enter because its only done once. To check the this assessment grade, please go to the ${(
-            <Link to="/">Grade Overview</Link>
-          )}.`,
+          message: `You have submitted this assessment and cannot re-enter because its only done once. To check the this assessment grade, please go to the `,
+          link: (
+            <Link to="/grade/grade-overview" className="text-primary-500">
+              Grade Overview.
+            </Link>
+          ),
         });
         break;
       case "not available":

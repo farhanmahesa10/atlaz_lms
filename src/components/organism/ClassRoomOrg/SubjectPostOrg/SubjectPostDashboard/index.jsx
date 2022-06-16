@@ -44,7 +44,7 @@ const SubjectPostDashboard = () => {
               totalFeedData={totalFeedData}
               feedShowsCount={feedShowsCount}
               onLoadMore={() => {
-                addFeed(feedShowsCount + 1, feedShowsCount + 5, false, false);
+                addFeed(feedShowsCount, feedShowsCount + 5, false, false);
               }}
             />
           </div>

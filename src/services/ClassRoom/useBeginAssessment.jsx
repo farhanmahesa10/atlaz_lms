@@ -13,10 +13,12 @@ import {
   BeginAssessmentMultipleChoice,
   BeginAssessmentShortAnswer,
 } from "../../components/organism";
+import useGlobalFunction from "../GlobalFuntions/useGlobalFunction";
 const useBeginAssessment = () => {
   const navigate = useNavigate();
   const params = useParams();
   const idsubtopic = params.id;
+  const { setFlashMessage } = useGlobalFunction();
 
   const [filledQuestions, setFilledQuestions] = useState([]);
   const [initialValues, setInitialValues] = useState([]);
@@ -24,6 +26,7 @@ const useBeginAssessment = () => {
   const [subTopicData, setSubTopicData] = useState({});
   const [assessmentData, setAssessmentData] = useState({});
   const [timeLineId, setTimeLineId] = useState(null);
+  const [manualValidation, setManualValidation] = useState(false);
 
   const redirectLink = `/classroom/welcome-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${params.id}`;
 
@@ -246,6 +249,7 @@ const useBeginAssessment = () => {
           setFieldValue={formik.setFieldValue}
           onSendProgress={handleProggress}
           nomor={nomor}
+          setManualValidation={setManualValidation}
         />
       );
     } else {
@@ -254,6 +258,14 @@ const useBeginAssessment = () => {
   };
 
   const onSubmit = (values) => {
+    if (!manualValidation) {
+      setFlashMessage(
+        "Submit Error",
+        "Please check requirement to submit.",
+        false
+      );
+      return;
+    }
     let request = {
       classlist: params.classId,
       subject: params.subjectId,
@@ -266,6 +278,10 @@ const useBeginAssessment = () => {
 
     POST(`/client/classrooms/student_assessment/add`, request, defConfig())
       .then((r) => {
+        setFlashMessage(
+          "Assessment Submitted",
+          "Success to submit assessment."
+        );
         navigate(redirectLink);
       })
       .catch((err) => {

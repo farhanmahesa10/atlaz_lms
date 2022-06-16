@@ -72,10 +72,10 @@ const useGlobalFunction = () => {
     });
   };
 
-  const setFlashMessage = (title, message) => {
+  const setFlashMessage = (title, message, status = true) => {
     dispatch({
       type: "SET_FLASH_MESSAGE",
-      status: true,
+      status: status,
       title: title,
       msg: message,
       show: true,
