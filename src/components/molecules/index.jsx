@@ -84,7 +84,9 @@ import PublicFormManageAccount from "./ProfileMol/ManageAccountMol/PublicFormMan
 import StudentFormManageAccount from "./ProfileMol/ManageAccountMol/StudentFormManageAccount";
 import SubjectPostHeroLoading from "./SkeletonLoading/ClassroomLoading/SubjectPostLoading/SubjectPostHeroLoading";
 import LessonPreviewLoading from "./SkeletonLoading/ClassroomLoading/LessonPreviewLoading";
+import ModalRedeemStudent from "./Modals/ModalRedeemStudent";
 export {
+  ModalRedeemStudent,
   LessonPreviewLoading,
   SubjectPostHeroLoading,
   PublicFormManageAccount,

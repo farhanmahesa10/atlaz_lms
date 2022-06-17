@@ -2,9 +2,18 @@ import React from "react";
 import { FormikControl, Modal } from "../../../atoms";
 import { useSelector, connect } from "react-redux";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormik } from "formik";
 const ModalRedeemDashboard = (props) => {
   const { data } = useSelector((state) => state.modalData);
+  const formik = useFormik({
+    initialValues: {
+      code: "",
+    },
+    onSubmit: (values) => {
+      values = values.code.split(" - ").join("");
+      console.log(values);
+    },
+  });
   return (
     <>
       <Modal
@@ -27,52 +36,52 @@ const ModalRedeemDashboard = (props) => {
               </p>
             </div>
             <div className="mt-48">
-              <Formik
-                initialValues={{ code: "" }}
-                onSubmit={(values) => {
-                  values = values.code.replaceAll(" - ", "");
-                  console.log(values);
-                }}
-              >
-                <Form>
-                  <div className="d-flex px-16">
-                    <div className="mr-8 w-full">
-                      <FormikControl
-                        control="input"
-                        name="code"
-                        autoComplete="off"
-                        inputClassName="font-medium"
-                        maxlength="18"
-                        onInput={(e) => {
-                          let result = "";
-                          let spliting = e.target.value.split("");
-                          let removeMin = spliting.filter(
-                            (r) => r !== "-" && r !== " "
-                          );
-                          removeMin.map((r, i) => {
-                            result += r;
-                            var a = i + 1;
-                            if (a > 0 && a % 4 === 0 && a !== 12) {
-                              result += " - ";
+              <form onSubmit={formik.handleSubmit}>
+                <div className="d-flex px-16">
+                  <div className="mr-8 w-full">
+                    <div className="form-input">
+                      <div className="input-area  bg-white  ">
+                        <input
+                          type="text"
+                          className="w-full input-control radius-8 py-8 pl-16 font-medium "
+                          placeholder="Enter 12 digit of code "
+                          name="code"
+                          maxLength="18"
+                          onKeyUp={(e) => {
+                            if (e.key.toLowerCase() !== "backspace") {
+                              let result = "";
+                              let spliting = e.target.value.split("");
+                              let removeMin = spliting.filter(
+                                (r) => r !== "-" && r !== " "
+                              );
+                              removeMin.map((r, i) => {
+                                result += r;
+                                var a = i + 1;
+                                if (a > 0 && a % 4 === 0 && a !== 12) {
+                                  result += " - ";
+                                }
+                              });
+                              e.target.value = result.toUpperCase();
                             }
-                          });
-                          e.target.value = result.toUpperCase();
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <button
-                        className="btn-secondary font-normal"
-                        type="submit"
-                        data-bs-dismiss="modal"
-                      >
-                        Redeem
-                      </button>
+                            formik.setFieldValue("code", e.target.value);
+                          }}
+                          // value={formik.values.code}
+                        />
+                      </div>
                     </div>
                   </div>
-                </Form>
-              </Formik>
+
+                  <div>
+                    <button
+                      className="btn-secondary font-normal"
+                      type="submit"
+                      data-bs-dismiss="modal"
+                    >
+                      Redeem
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

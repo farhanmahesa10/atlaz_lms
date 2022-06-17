@@ -82,9 +82,10 @@ function PreviewContentOrg() {
 
     try {
       let content = await GET(
-        `/client/activity/get_content_book?subTopicId=${id}`,
+        `/client/activity/get_content_book?subTopicId=${id}&classlistId=${classId}`,
         defConfig()
       );
+      console.log(content);
       setDataContent(content.data);
       let subTopic = await GET(`/subtopic/${id}`, defConfig());
       setDataSubtopic(subTopic.data);

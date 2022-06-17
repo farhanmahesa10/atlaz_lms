@@ -26,7 +26,7 @@ const LearningSubjectViewOrg = () => {
               <div className="w-full row gx-0  align-items-center ">
                 <div className=" col-12 col-md-6 text-center ">
                   <img
-                    src="/images/product.png"
+                    src={subjectData.imageCover}
                     alt=""
                     className="w-p-100 md-w-328  radius-8"
                   />
