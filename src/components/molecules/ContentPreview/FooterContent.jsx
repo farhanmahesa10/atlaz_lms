@@ -4,7 +4,6 @@ import { Spellcheck, EmojiObjectsOutlined, Replay } from "@mui/icons-material";
 const FooterContent = (props) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const { data, submitRef } = props;
-  console.log("ex", props.explanation);
   return (
     <div className="row footer-content">
       {showExplanation ? (

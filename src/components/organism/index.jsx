@@ -38,7 +38,9 @@ import BeginAssessmentShortAnswer from "./ClassRoomOrg/BeginAssessmentOrg/BeginA
 import SecurityOrg from "./ProfileOrg/SecurityOrg";
 import PurchasedHistoryOrg from "./ProfileOrg/PurchasedHistoryOrg";
 import MyBookListOrg from "./MyBookListOrg";
+import ErrorViewOrg from "./ErrorViewOrg";
 export {
+  ErrorViewOrg,
   MyBookListOrg,
   PurchasedHistoryOrg,
   SecurityOrg,

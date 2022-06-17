@@ -14,23 +14,26 @@ const HomeHead = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
-    let tempImg = [];
-    let tempImgPhone = [];
-    GET("/client/landing/hero")
-      .then((r) => {
-        r.data.map((res) => {
-          tempImg.push(res.imageLarge);
-          tempImgPhone.push(res.imageSmall);
-        });
-        setImg(tempImg);
-        setImgPhone(tempImgPhone);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-      });
+    initData();
   }, []);
+
+  const initData = async () => {
+    setIsLoading(true);
+    try {
+      let tempImg = [];
+      let tempImgPhone = [];
+      const r = await GET("/client/landing/hero");
+      r.data.map((res) => {
+        tempImg.push(res.imageLarge);
+        tempImgPhone.push(res.imageSmall);
+      });
+      setImg(tempImg);
+      setImgPhone(tempImgPhone);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
+  };
 
   const handleSearchChange = (val) => {
     return new Promise((resolve) => {

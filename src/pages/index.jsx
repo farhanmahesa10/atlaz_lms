@@ -31,7 +31,9 @@ import ManageAccount from "./Profile/ManageAccount";
 import Security from "./Profile/Security";
 import PurchasedHistory from "./Profile/PurcashedHistory";
 import MyBookList from "./MyBookList";
+import ErrorView from "./ErrorView";
 export {
+  ErrorView,
   MyBookList,
   PurchasedHistory,
   Security,

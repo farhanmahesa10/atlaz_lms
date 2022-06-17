@@ -20,6 +20,7 @@ const BookContentAccordion = (props) => {
     parentRedirect,
     requestId,
     type,
+    classId,
   } = props;
   const [expand, setExpand] = useState(false);
 
@@ -64,7 +65,7 @@ const BookContentAccordion = (props) => {
       let req = {
         type: type,
         targetId: requestId,
-        classlistId: "628dd13f344347707ad7fff4",
+        classlistId: classId,
       };
       POST("/client/classrooms/book/change_access", req, defConfig())
         .then((r) => {

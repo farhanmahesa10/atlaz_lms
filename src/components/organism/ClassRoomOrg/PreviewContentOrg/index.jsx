@@ -28,6 +28,7 @@ import {
 import { GET, defConfig } from "../../../../config/RestAPI";
 import { PreviewContentLoading } from "../../../molecules";
 import { searchNoData } from "../../../../assets/images";
+import { Divider } from "../../../atoms";
 function PreviewContentOrg() {
   const { id, classId, subjectId, lessonId, topicId } = useParams();
 
@@ -84,11 +85,14 @@ function PreviewContentOrg() {
         `/client/activity/get_content_book?subTopicId=${id}`,
         defConfig()
       );
-
       setDataContent(content.data);
       let subTopic = await GET(`/subtopic/${id}`, defConfig());
       setDataSubtopic(subTopic.data);
-      setPagination({ next: content.next, prev: content.prev });
+      setPagination({
+        next: content.next,
+        prev: content.prev,
+        nextLesson: content.nextLesson,
+      });
     } catch (err) {}
 
     setIsLoading(false);
@@ -97,10 +101,6 @@ function PreviewContentOrg() {
   useEffect(() => {
     initData();
   }, [id, classId, subjectId, lessonId, topicId]);
-
-  useEffect(() => {
-    initData();
-  }, []);
 
   return (
     <div className="Layout-preview-content">
@@ -166,7 +166,7 @@ function PreviewContentOrg() {
                 </div>
                 <div className="col-md-8 col-12 mt-96">
                   <div className="row justify-content-center">
-                    <div className="col-4 d-flex align-items-center">
+                    <div className="col-4 ">
                       {!pagination.prev ? (
                         <>
                           <button className="btn btn-disable d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
@@ -184,14 +184,14 @@ function PreviewContentOrg() {
                           to={`/classroom/content-practice/${classId}/${subjectId}/${lessonId}/${topicId}/${pagination.prev._id}`}
                           className="d-flex"
                         >
-                          <button className="btn btn-outline d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
+                          <button className="btn btn-outline bg-white d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
                             <ArrowBack className="fs-20" />
                           </button>
                           <div className="ml-8 d-flex justify-content-between flex-column ">
                             <span className="font-xs text-neutral-300">
                               Back
                             </span>
-                            <span className="font-xs text-neutral-400 text-end">
+                            <span className="font-xs text-neutral-400 text-start">
                               {pagination.prev.name.length > 12
                                 ? pagination.prev.name.substring(0, 12) + "..."
                                 : pagination.prev.name}
@@ -228,12 +228,46 @@ function PreviewContentOrg() {
                                 : pagination.next.name}
                             </span>
                           </div>
-                          <button className="btn btn-outline d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
+                          <button className="btn btn-outline bg-white d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
                             <ArrowForward className="fs-20" />
                           </button>
                         </Link>
                       )}
                     </div>
+                    {pagination.nextLesson && (
+                      <div className="col-8">
+                        <div className="my-16  w-full">
+                          <Divider
+                            height="h-2"
+                            lineColor={"bg-secondary-200"}
+                          />
+                        </div>
+                        <Link
+                          to={`/classroom/lesson-preview/${classId}/${subjectId}/${pagination.nextLesson._id}`}
+                        >
+                          <button className="btn-outline w-full bg-white">
+                            Go to Next Lesson
+                          </button>
+                        </Link>
+                      </div>
+                    )}
+                    {!pagination.nextLesson && !pagination.next && (
+                      <div className="col-8">
+                        <div className="my-16  w-full">
+                          <Divider
+                            height="h-2"
+                            lineColor={"bg-secondary-200"}
+                          />
+                        </div>
+                        <Link
+                          to={`/classroom/start-learning-view/${classId}/${subjectId}`}
+                        >
+                          <button className="btn-outline w-full bg-white">
+                            Back to Content List
+                          </button>
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="col-md-7 col-12">

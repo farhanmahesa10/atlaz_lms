@@ -18,7 +18,6 @@ const useLessonPreview = () => {
     setIsLoading(true);
     GET(`/client/classrooms/book/lesson/${params.lessonId}`, defConfig()).then(
       (r) => {
-        console.log(r);
         setPagination({ next: r.next, prev: r.prev });
         setData(r.data);
         setBreadcrumbsData([

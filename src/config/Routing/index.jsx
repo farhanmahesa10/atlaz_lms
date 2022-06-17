@@ -38,6 +38,7 @@ import {
   Security,
   PurchasedHistory,
   MyBookList,
+  ErrorView,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -47,7 +48,7 @@ const Routing = () => {
         exac
         element={
           // <Authenticate> contoh penggunaan middleware harus login
-          <div>Not Found</div>
+          <ErrorView />
           // </Authenticate>
         }
       />
