@@ -3,6 +3,7 @@ import "./PreviewContentOrg.scss";
 import MainLayout from "../../../Layout/Mainlayout";
 import imgHeader1 from "../../../../assets/images/detail-preview-bg-1.png";
 import imgHeader2 from "../../../../assets/images/detail-preview-bg-2.png";
+import LockedContentImage from "../../../../assets/images/locked-content.png";
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -37,6 +38,7 @@ function PreviewContentOrg() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [pagination, setPagination] = useState({});
+  const [isLocked, setIsLocked] = useState(false);
 
   const backToTop = () => {
     window.scrollTo({
@@ -85,7 +87,8 @@ function PreviewContentOrg() {
         `/client/activity/get_content_book?subTopicId=${id}&classlistId=${classId}`,
         defConfig()
       );
-      console.log(content);
+
+      setIsLocked(content.isLocked);
       setDataContent(content.data);
       let subTopic = await GET(`/subtopic/${id}`, defConfig());
       setDataSubtopic(subTopic.data);
@@ -102,6 +105,49 @@ function PreviewContentOrg() {
   useEffect(() => {
     initData();
   }, [id, classId, subjectId, lessonId, topicId]);
+
+  const displayContent = () => {
+    if (isLocked) {
+      return (
+        <div className="h-295">
+          <div className="d-flex h-full justify-content-center align-items-center">
+            <div className="text-center">
+              <img src={LockedContentImage} alt="" className="max-w-143" />
+              <h6 className="mt-24">This content under locked. </h6>
+              <p className="max-w-297 font-sm">
+                Ask your teacher or be patient until the content unlocked!
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (dataContent.length < 1) {
+      return (
+        <div className="h-295">
+          <div className="d-flex h-full justify-content-center align-items-center">
+            <div className="text-center">
+              <img src={searchNoData} alt="" className="max-w-143" />
+              <h6 className="mt-24">No Book Cotent Yet</h6>
+              <p className="max-w-297 font-sm">
+                The author hasn't put content on this page yet. Please wait to
+                enjoy this page!
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return dataContent.map((data, index) => {
+        return (
+          <div key={index} className="">
+            {showContent(data)}
+          </div>
+        );
+      });
+    }
+  };
 
   return (
     <div className="Layout-preview-content">
@@ -133,35 +179,7 @@ function PreviewContentOrg() {
 
                   <div className="preview-content  radius-8 ">
                     <div className="content ">
-                      <div className="content">
-                        {dataContent.map((data, index) => {
-                          return (
-                            <div key={index} className="">
-                              {showContent(data)}
-                            </div>
-                          );
-                        })}
-                        {dataContent.length < 1 ? (
-                          <div className="h-295">
-                            <div className="d-flex h-full justify-content-center align-items-center">
-                              <div className="text-center">
-                                <img
-                                  src={searchNoData}
-                                  alt=""
-                                  className="max-w-143"
-                                />
-                                <h6 className="mt-24">No Book Cotent Yet</h6>
-                                <p className="max-w-297 font-sm">
-                                  The author hasn't put content on this page
-                                  yet. Please wait to enjoy this page!
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </div>
+                      <div className="content">{displayContent()}</div>
                     </div>
                   </div>
                 </div>

@@ -5,12 +5,26 @@ import MyBookListHero from "./MyBookListHero";
 import MyBookListContent from "./MyBookListContent";
 import { GlobalToast } from "../../atoms";
 const MyBookListOrg = () => {
-  const { breadCrumbData } = useMyBookList();
+  const {
+    data,
+    isLoading,
+    category,
+    keyword,
+    handleCategoryChange,
+    handleKeywordChange,
+  } = useMyBookList();
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
       <GlobalToast />
-      <MyBookListHero breadCrumbData={breadCrumbData} />
-      <MyBookListContent />
+      <MyBookListHero />
+      <MyBookListContent
+        data={data}
+        isLoading={isLoading}
+        category={category}
+        keyword={keyword}
+        handleCategoryChange={handleCategoryChange}
+        handleKeywordChange={handleKeywordChange}
+      />
     </MainLayout>
   );
 };
