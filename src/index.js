@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import "./mysass.scss";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import moment from 'moment-timezone';
+import moment from "moment-timezone";
 import "./assets/scss/main.scss";
 import "./index.css";
 import "./assets/css/embla.css";
@@ -11,7 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux-setup";
-moment.tz.setDefault("Asia/Jakarta");
+// moment.tz.setDefault("Asia/Jakarta");
 
 ReactDOM.render(
   <Provider store={store}>

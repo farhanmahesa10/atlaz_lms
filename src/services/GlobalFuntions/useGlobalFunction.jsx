@@ -1,6 +1,7 @@
 import React from "react";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 const useGlobalFunction = () => {
   const dispatch = useDispatch();
   const getUserInfo = () => {
@@ -9,11 +10,17 @@ const useGlobalFunction = () => {
     );
     if (token) {
       let decode = jwt_decode(token);
-      if (new Date().getTime() > decode.exp) {
+      let dateExp = moment(decode.exp);
+      let dateNow = moment();
+      if (dateNow.diff(dateExp) >= 0) {
         let roleData = getRoleData().find((r) => r.level === decode.role);
         decode = { ...decode, roleData };
 
         return decode;
+      } else {
+        localStorage.removeItem(
+          process.env.REACT_APP_BASE_URL + "/accessToken"
+        );
       }
     }
     return false;

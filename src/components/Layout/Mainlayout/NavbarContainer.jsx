@@ -59,15 +59,15 @@ const NavbarContainer = (props) => {
           </div>
         </div>
         {!auth ? (
-          <>
-            <Link to="/login" className="">
+          <div className="d-none d-lg-block">
+            <Link to="/login" className="mr-16">
               <button className="btn-outline px-25 font-xs">Login</button>
             </Link>
 
             <Link to="/register" className="p-0">
               <button className="btn-primary px-25 font-xs">Sign up</button>
             </Link>
-          </>
+          </div>
         ) : (
           <>
             <div className="btn-group dropstart d-none d-lg-block">

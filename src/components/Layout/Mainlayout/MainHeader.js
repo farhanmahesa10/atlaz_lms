@@ -195,7 +195,7 @@ const MainHeader = (props) => {
     //shouldLogin :  0 = false, 1 = true , 2 = true false
     {
       label: "Menu",
-      shouldLogin: 2,
+      shouldLogin: 1,
       menus: menus,
     },
     {
