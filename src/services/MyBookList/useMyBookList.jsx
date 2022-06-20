@@ -28,25 +28,40 @@ const useMyBookList = () => {
     if (category === "") {
       setData(originalData);
     } else {
-      let newData = originalData.filter((r) => r.level === category);
+      let newData = originalData.filter((r) => {
+        let newCategory = category;
+        if (newCategory === "") {
+          newCategory = true;
+        } else {
+          newCategory = newCategory === r.level;
+        }
+        return (
+          (_.includes(r.name.toLowerCase(), keyword.toLowerCase()) ||
+            _.includes(r.author.toLowerCase(), keyword.toLowerCase())) &&
+          newCategory
+        );
+      });
       setData(newData);
     }
   };
 
   const handleKeywordChange = (keyword) => {
     setKeyword(keyword);
-    // console.log(category);
-    // let a = "Belajar Bahasa India 123472".toLowerCase().search(/bahasa/g);
-    // console.log(a);
-    var test = originalData.filter((r) => {
-      let tes =
-        r.name
-          .toLowerCase()
-          .search(new RegExp("/" + keyword.toLowerCase() + "/", "g")) >= 0;
-      console.log(tes);
-      return tes;
+
+    let newData = originalData.filter((r) => {
+      let newCategory = category;
+      if (newCategory === "") {
+        newCategory = true;
+      } else {
+        newCategory = newCategory === r.level;
+      }
+      return (
+        (_.includes(r.name.toLowerCase(), keyword.toLowerCase()) ||
+          _.includes(r.author.toLowerCase(), keyword.toLowerCase())) &&
+        newCategory
+      );
     });
-    console.log(test);
+    setData(newData);
   };
 
   return {
