@@ -28,7 +28,7 @@ const EditProfilePublicDashboard = () => {
         </div>
 
         <div className="mt-40">
-          <Link to="/user/edit-profile">
+          <Link to="/manage-account">
             <button className="btn btn-secondary">Edit Profile</button>
           </Link>
         </div>

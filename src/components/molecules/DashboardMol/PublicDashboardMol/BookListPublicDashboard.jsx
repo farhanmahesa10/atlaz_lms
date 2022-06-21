@@ -30,7 +30,7 @@ const BookListPublicDashboard = () => {
             </p>
           </div>
           <div>
-            <Link to="/">
+            <Link to="/my-book-list">
               <button className="btn-outline font-normal">View All</button>
             </Link>
           </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import { ProgressBar } from "../../../atoms";
-import Dashbook1 from "../../../../assets/images/dashboard/dash-book1.png";
+
 const BookListDashboardCard = (props) => {
   const { data } = props;
   return (
@@ -8,7 +7,7 @@ const BookListDashboardCard = (props) => {
       <div className="card-book-content">
         <img src={data.imageCover} alt="" className="card-book-image" />
         <p className="card-book-author">{data.author}</p>
-        <div className="card-book-title">
+        <div className="card-book-title" style={{ overflow: "hidden" }}>
           <p>{data.name}</p>
         </div>
         <div className="card-book-footer">

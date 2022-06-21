@@ -50,14 +50,15 @@ const StudentDashboard = () => {
                               Edit <br /> Profile
                             </span>
                           }
-                          link="/user/edit-profile"
+                          link="/manage-account"
                         />
                       </div>
                       <div className="col-12 h-p-47">
                         <BoxDashboardCard
                           bgImage={AtlazMediaBg}
                           bgColor="#EAEDFB"
-                          link="/user/edit-profile"
+                          link="https://media.hiatlaz.com/"
+                          isToExternal
                           title={
                             <span>
                               Atlaz <br /> Media

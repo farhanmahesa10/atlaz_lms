@@ -27,7 +27,8 @@ const PublicDashboard = () => {
                 <BoxDashboardCard
                   bgImage={RedeemNewBook}
                   bgColor="#FCF7ED"
-                  link="/user/edit-profile"
+                  link="https://media.hiatlaz.com/media.hiatlaz.com"
+                  isToExternal={true}
                   title={
                     <span>
                       Atlaz <br /> Media

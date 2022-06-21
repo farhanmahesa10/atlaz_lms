@@ -8,6 +8,7 @@ import {
   StudentFormManageAccount,
 } from "../../../molecules";
 import { Can } from "../../../../permission";
+import { Link } from "react-router-dom";
 const ManageAccountOrg = () => {
   //note : liat di design perbedaan public dan student pada bagian  personal information email
 
@@ -67,9 +68,9 @@ const ManageAccountOrg = () => {
                           Go to security and password.
                         </p>
                       </div>
-                      <span className="cursor-pointer">
+                      <Link to="/security" className="cursor-pointer">
                         <KeyboardArrowRightIcon />
-                      </span>
+                      </Link>
                     </div>
                   </div>
 

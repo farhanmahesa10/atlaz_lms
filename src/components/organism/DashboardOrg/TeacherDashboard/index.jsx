@@ -55,7 +55,7 @@ const TeacherDashboard = () => {
                   <BoxDashboardCard
                     bgImage={EditProfileBg}
                     bgColor="#FAEBF2"
-                    link="/user/edit-profile"
+                    link="/manage-account"
                     title={
                       <span>
                         Edit <br /> Profile
@@ -80,7 +80,8 @@ const TeacherDashboard = () => {
                   <BoxDashboardCard
                     bgImage={AtlazMediaBg}
                     bgColor="#EAEDFB"
-                    link="/user/edit-profile"
+                    link="https://media.hiatlaz.com/"
+                    isToExternal
                     title={
                       <span>
                         Atlaz <br /> Media
