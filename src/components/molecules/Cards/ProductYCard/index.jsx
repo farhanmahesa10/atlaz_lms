@@ -58,7 +58,7 @@ const ProductYCard = (props) => {
         <div
           className={` position-relative d-flex justify-content-between flex-column ${props.responsiveClass}`}
         >
-          <div>
+          <div className="p-4">
             <div className="bg-white radius-bl-14 end-0 text-success-500 radius-rt-14 promo-label">
               Best Seller
             </div>

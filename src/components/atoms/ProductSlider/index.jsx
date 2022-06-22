@@ -80,7 +80,7 @@ const ProductSlider = (props) => {
         {props.content.map((r, i) => {
           return (
             <div key={i}>
-              <div className="pb-1 mr-16 md-mr-84 xl-mr-80">{r}</div>
+              <div className="pb-1 mr-16 md-mr-84 xl-mr-70">{r}</div>
               {/* <div className="pb-1 mr-16 md-mr-84 xl-mr-80">{r}</div> */}
             </div>
           );
