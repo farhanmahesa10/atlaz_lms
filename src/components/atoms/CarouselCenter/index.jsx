@@ -37,7 +37,7 @@ const CarouselCenter = (props) => {
           );
         })}
       </Slider>
-      <div className="mt-24 d-flex justify-content-center ">
+      <div className="mt-24 d-md-flex justify-content-center d-none ">
         <div className="mr-32">
           <span
             className="d-flex cursor-pointer hover-bg-secondary-500 justify-content-center no-border align-items-center w-40 h-40 radius-14 bg-secondary-400"
