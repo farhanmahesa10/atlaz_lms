@@ -70,7 +70,7 @@ const useSearchResult = () => {
     // );
   };
 
-  const getBookResult = (page = 1, perPage = 2) => {
+  const getBookResult = (page = 1, perPage = 6) => {
     setIsLoading(true);
     let url = `${BaseAPIURL}/client/landing/booklist/filter`;
     let req = {

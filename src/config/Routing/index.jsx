@@ -148,6 +148,7 @@ const Routing = () => {
       <Route path="/redirecting" element={<Redirecting />} />
       <Route path="/mail-design" element={<RegisterMail />} />
       <Route path="/search-result/:keyword" element={<SearchResult />} />
+      <Route path="/search-result" element={<SearchResult />} />
       <Route path="/shop" element={<Home />} />
       <Route path="/product-detail/:id" element={<ProductDetail />} />
       <Route path="/auth/verify" element={<Verify />} />

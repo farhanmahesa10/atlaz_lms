@@ -1,72 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-const SampleNextArrow = (props) => {
-  const { className, style, onClick } = props;
-  const [max, setMax] = useState(false);
-  useEffect(() => {
-    if (onClick === null) {
-      setMax(true);
-    } else {
-      setMax(false);
-    }
-  }, [onClick]);
-  return (
-    <div
-      className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
-      style={{
-        position: "absolute",
-        right: "44%",
-        bottom: "-35px",
-      }}
-      onClick={onClick}
-    >
-      <button
-        className={`embla__button  d-flex align-items-center justify-content-center  text-primary-500  ${
-          max ? "bg-secondary-200" : "bg-secondary-400"
-        }  radius-8 embla__button--next`}
-      >
-        <ChevronRightIcon style={{ fontSize: "30px" }} />
-      </button>
-    </div>
-  );
-};
 
-const SamplePrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  const [max, setMax] = useState(false);
-  useEffect(() => {
-    if (onClick === null) {
-      setMax(true);
-    } else {
-      setMax(false);
-    }
-  }, [onClick]);
-
-  return (
-    <div
-      className=" d-none d-md-block text-primary-500 fw-bold px-1 cursor-pointer "
-      style={{
-        position: "absolute",
-        left: "41%",
-        bottom: "-35px",
-      }}
-      onClick={onClick}
-    >
-      <button
-        className={`embla__button   d-flex align-items-center justify-content-center  text-primary-500   ${
-          max ? "bg-secondary-200" : "bg-secondary-400"
-        }  radius-8  embla__button--next`}
-      >
-        <ChevronLeftIcon style={{ fontSize: "30px" }} />
-      </button>
-    </div>
-  );
-};
 const CarouselCenter = (props) => {
+  const sliderRef = useRef();
+
   const [settings, setSettings] = useState({
-    className: "center slider variable-width",
+    className: "center ",
     centerMode: true,
     infinite: true,
     // centerPadding: "60px",
@@ -74,26 +15,20 @@ const CarouselCenter = (props) => {
     speed: 500,
     variableWidth: true,
     adaptiveHeight: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
     rows: 1,
-    responsive: [
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 3,
-          variableWidth: true,
-          adaptiveHeight: true,
-          rows: 1,
-          infinite: true,
-        },
-      },
-    ],
+    arrows: false,
   });
+
+  const handleNextClick = () => {
+    sliderRef.current.slickNext();
+  };
+  const handlePrevClick = () => {
+    sliderRef.current.slickPrev();
+  };
+
   return (
-    <div className="w-full">
-      <Slider {...settings}>
+    <div className="w-p-100">
+      <Slider {...settings} ref={sliderRef}>
         {props.content.map((r) => {
           return (
             <div className=" m-8 sm-m-8 md-m-16 " key={Math.random()}>
@@ -102,6 +37,24 @@ const CarouselCenter = (props) => {
           );
         })}
       </Slider>
+      <div className="mt-24 d-flex justify-content-center ">
+        <div className="mr-32">
+          <span
+            className="d-flex cursor-pointer hover-bg-secondary-500 justify-content-center no-border align-items-center w-40 h-40 radius-14 bg-secondary-400"
+            onClick={handlePrevClick}
+          >
+            <ChevronLeftIcon className="text-primary-400 fs-38" />
+          </span>
+        </div>
+        <div className="ml-32">
+          <span
+            className="d-flex cursor-pointer hover-bg-secondary-500 justify-content-center no-border align-items-center w-40 h-40 radius-14 bg-secondary-400"
+            onClick={handleNextClick}
+          >
+            <ChevronRightIcon className="text-primary-400 fs-38" />
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

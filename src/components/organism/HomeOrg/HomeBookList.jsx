@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ProductSlider } from "../../atoms";
+import { Divider, ProductSlider } from "../../atoms";
 import LineIcon from "../../SVG/LineIcon";
 import { BookListSkeleton, ProductYCard } from "../../molecules";
 import { GET, defConfig } from "../../../config/RestAPI";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 const HomeBookList = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const sliderRef = useRef();
+
   useEffect(() => {
     initData();
   }, []);
@@ -31,6 +35,14 @@ const HomeBookList = () => {
       setIsLoading(false);
     }
   };
+
+  const handleNextClick = () => {
+    sliderRef.current.slickNext();
+  };
+  const handlePrevClick = () => {
+    sliderRef.current.slickPrev();
+  };
+
   return (
     <>
       {isLoading ? (
@@ -42,26 +54,44 @@ const HomeBookList = () => {
             style={{ maxWidth: "1440px" }}
           >
             <ProductSlider
-              wDefault={4}
-              w1440={5}
-              w1035={3}
-              w980={3}
-              w768={2}
+              sliderRef={sliderRef}
               header={
-                <>
-                  <div className="d-flex   align-items-center">
-                    <h5 className="mr-24 md-h4 xl-h3">Atlaz Book List</h5>
-                    <Link
-                      to="/shop"
-                      className="mt-1 text-primary-500 hover-text-primary-300 "
-                    >
-                      View all
-                    </Link>
+                <div className="d-flex mb-42  justify-content-between align-items-center">
+                  <div>
+                    <div className="d-flex   align-items-center">
+                      <div>
+                        <h5 className="mr-24 md-h4 xl-h3">Atlaz Book List</h5>
+                        <div className="w-64">
+                          <Divider height="h-2" lineColor={"bg-primary-500"} />
+                        </div>
+                      </div>
+                      <Link
+                        to="/shop"
+                        className="mt-1 text-primary-500 hover-text-primary-300 "
+                      >
+                        View all
+                      </Link>
+                    </div>
                   </div>
-                  <div className="pb-24" style={{ marginTop: "-12px" }}>
-                    <LineIcon />
+                  <div className=" d-none d-xl-flex justify-content-center  ">
+                    <div className="mr-16 ">
+                      <span
+                        className="d-flex cursor-pointer hover-bg-secondary-500 justify-content-center no-border align-items-center w-32 h-32 radius-4 bg-secondary-400"
+                        onClick={handlePrevClick}
+                      >
+                        <ChevronLeftIcon className="text-primary-400 fs-38" />
+                      </span>
+                    </div>
+                    <div className="ml-16">
+                      <span
+                        className="d-flex cursor-pointer hover-bg-secondary-500 justify-content-center no-border align-items-center w-32 h-32 radius-4 bg-secondary-400"
+                        onClick={handleNextClick}
+                      >
+                        <ChevronRightIcon className="text-primary-400 fs-30" />
+                      </span>
+                    </div>
                   </div>
-                </>
+                </div>
               }
               content={data}
             />

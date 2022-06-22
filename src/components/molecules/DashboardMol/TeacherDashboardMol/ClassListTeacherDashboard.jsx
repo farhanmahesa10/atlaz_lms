@@ -10,7 +10,7 @@ const ClassListTeacherDashboard = (props) => {
   const { isLoading, data } = props;
   const [domeWidth, setdDomeWidth] = useState(1);
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: data.length > 1 ? 2 : 1,
