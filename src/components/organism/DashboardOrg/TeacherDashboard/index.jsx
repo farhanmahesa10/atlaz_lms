@@ -5,6 +5,7 @@ import {
   EditProfileBg,
   GradeBg,
 } from "../../../../assets/images";
+import { useTeacherDashboard } from "../../../../services";
 import MainLayout from "../../../Layout/Mainlayout";
 import {
   BoxDashboardCard,
@@ -16,6 +17,7 @@ import {
 } from "../../../molecules";
 
 const TeacherDashboard = () => {
+  const { isLoadingClassList, classListData } = useTeacherDashboard();
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
       <div className="mt-32">
@@ -90,7 +92,10 @@ const TeacherDashboard = () => {
                   />
                 </div>
                 <div className="col-12  mt-24">
-                  <ClassListTeacherDashboard />
+                  <ClassListTeacherDashboard
+                    isLoading={isLoadingClassList}
+                    data={classListData}
+                  />
                 </div>
               </div>
             </div>

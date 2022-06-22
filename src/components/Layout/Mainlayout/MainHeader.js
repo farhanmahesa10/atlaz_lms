@@ -84,6 +84,8 @@ const MainHeader = (props) => {
       label: "Classroom",
       shouldLogin: 1,
       activeTo: "classroom",
+      allowAccess:
+        "superuser,administrator,Headmaster,SCHOOLADMIN,TEACHER,STUDENT",
     },
     {
       icon: <BookIcon />,
@@ -113,31 +115,30 @@ const MainHeader = (props) => {
       label: "Report",
       shouldLogin: 1,
       activeTo: "report",
-      allowAccess:
-        "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,PUBLIC",
+      allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT",
     },
 
-    {
-      icon: <GroupsIcon />,
-      link: "/master",
-      label: "Master Menu",
-      shouldLogin: 1,
-      activeTo: "master",
-      childs: [
-        {
-          link: "/master/1",
-          label: "master 1",
-          // shouldLogin: false,
-          activeTo: "master",
-        },
-        {
-          link: "/master/2",
-          label: "master 2",
-          // shouldLogin: false,
-          activeTo: "master",
-        },
-      ],
-    },
+    // {
+    //   icon: <GroupsIcon />,
+    //   link: "/master",
+    //   label: "Master Menu",
+    //   shouldLogin: 1,
+    //   activeTo: "master",
+    //   childs: [
+    //     {
+    //       link: "/master/1",
+    //       label: "master 1",
+    //       // shouldLogin: false,
+    //       activeTo: "master",
+    //     },
+    //     {
+    //       link: "/master/2",
+    //       label: "master 2",
+    //       // shouldLogin: false,
+    //       activeTo: "master",
+    //     },
+    //   ],
+    // },
   ];
 
   const settings = [

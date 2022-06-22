@@ -1,12 +1,12 @@
 import React from "react";
-import { useLearningSubjectView } from "../../../../services";
+import { useMyBookListDetail } from "../../../../services";
 import { BreadCrumb, Divider, ProgressBar } from "../../../atoms";
-import MainLayout from "../../../Layout/Mainlayout";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import MainLayout from "../../../Layout/Mainlayout";
 import { LearningSubjectViewLoading, TabBar } from "../../../molecules";
-const LearningSubjectViewOrg = () => {
+const DetailBookListOrg = () => {
   const { breadcrumbsData, TabBarData, subjectData, isSubjectLoading } =
-    useLearningSubjectView();
+    useMyBookListDetail();
   return (
     <MainLayout
       maxWidth="1440px"
@@ -74,31 +74,6 @@ const LearningSubjectViewOrg = () => {
                   </div>
                 </div>
               </div>
-
-              {/* progress */}
-
-              {/* <div className="mt-40">
-                <div className="bg-neutral-600 d-md-flex align-items-center md-h-64  px-24 py-16 md-py-0 radius-8">
-                  <h6 className="text-white nowrap mr-64">Progress Overall</h6>
-                  <div className="d-flex w-full align-items-center">
-                    <div className="w-full">
-                      <ProgressBar
-                        bgColor="bg-white"
-                        activeColor="info-500"
-                        height="4"
-                        radius="3"
-                        value="40"
-                      />
-                    </div>
-                    <p className="ml-8 nowrap text-neutral-200 md-mr-24">
-                      65/90 Exercise
-                    </p>
-                  </div>
-                  <button className="btn btn-disable nowrap w-full md-w-auto">
-                    Get Certificate
-                  </button>
-                </div>
-              </div> */}
             </>
           )}
 
@@ -112,4 +87,4 @@ const LearningSubjectViewOrg = () => {
   );
 };
 
-export default LearningSubjectViewOrg;
+export default DetailBookListOrg;

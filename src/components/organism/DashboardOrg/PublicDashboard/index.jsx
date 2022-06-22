@@ -1,5 +1,8 @@
 import React from "react";
 import { AtlazMediaBg, RedeemNewBook } from "../../../../assets/images";
+import { defConfig, GET } from "../../../../config/RestAPI";
+import { usePublicDashboard } from "../../../../services";
+import { GlobalToast } from "../../../atoms";
 import MainLayout from "../../../Layout/Mainlayout";
 import {
   BookListPublicDashboard,
@@ -8,14 +11,30 @@ import {
   ReedemPublicDashboard,
 } from "../../../molecules";
 const PublicDashboard = () => {
+  const {
+    isLoadingRedeem,
+    dataRedeem,
+    dataBookList,
+    isLoadingBookList,
+    redeemBookAction,
+  } = usePublicDashboard();
+
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
+      <GlobalToast />
       <div className="my-32 px-24 md-px-48">
         <div className="row">
           <div className="col-12 col-xl-8">
-            <ReedemPublicDashboard />
+            <ReedemPublicDashboard
+              isLoading={isLoadingRedeem}
+              data={dataRedeem}
+              redeemBookAction={redeemBookAction}
+            />
             <div className="mt-24 ">
-              <BookListPublicDashboard />
+              <BookListPublicDashboard
+                data={dataBookList}
+                isLoading={isLoadingBookList}
+              />
             </div>
           </div>
           <div className="col-12 col-xl-4 h-175">

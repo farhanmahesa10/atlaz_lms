@@ -11,7 +11,7 @@ const ModalRedeemDashboard = (props) => {
     },
     onSubmit: (values) => {
       values = values.code.split(" - ").join("");
-      console.log(values);
+      props.onSubmit(values);
     },
   });
   return (

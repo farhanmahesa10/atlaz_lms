@@ -11,7 +11,9 @@ import {
 } from "../../../molecules";
 import { EditProfileBg } from "../../../../assets/images";
 import { AtlazMediaBg } from "../../../../assets/images";
+import { useStudentDashboard } from "../../../../services";
 const StudentDashboard = () => {
+  const { dataBookList, isLoadingBookList } = useStudentDashboard();
   return (
     <>
       <MainLayout maxWidth="1440px" navbarBg="bg-white">
@@ -71,7 +73,10 @@ const StudentDashboard = () => {
                 </div>
                 <div className="row h-p-48 mt-16 md-mt-24 xl-mt-0">
                   <div className="col-12 h-full">
-                    <MyBookListStudentDashboard />
+                    <MyBookListStudentDashboard
+                      data={dataBookList}
+                      isLoading={isLoadingBookList}
+                    />
                   </div>
                 </div>
               </div>

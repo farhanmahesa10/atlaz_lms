@@ -4,6 +4,7 @@ import { FormikControl } from "../../atoms";
 import BookListDashboardCard from "../../molecules/Cards/BookListDashboardCard";
 import SearchIcon from "@mui/icons-material/Search";
 import { MyBookListContentLoading } from "../../molecules";
+import { Link } from "react-router-dom";
 const MyBookListContent = (props) => {
   const {
     data,
@@ -106,10 +107,12 @@ const MyBookListContent = (props) => {
                         className="col-6 col-sm-4 col-lg-3  mb-24"
                         key={r._id}
                       >
-                        <BookListDashboardCard
-                          className="card-book-sm md-card-book-xl"
-                          data={r}
-                        />
+                        <Link to={`/my-book-list/detail/${r._id}`}>
+                          <BookListDashboardCard
+                            className="card-book-sm md-card-book-xl"
+                            data={r}
+                          />
+                        </Link>
                       </div>
                     );
                   })}

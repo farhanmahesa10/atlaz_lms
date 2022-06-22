@@ -32,7 +32,13 @@ import Security from "./Profile/Security";
 import PurchasedHistory from "./Profile/PurcashedHistory";
 import MyBookList from "./MyBookList";
 import ErrorView from "./ErrorView";
+import DetailBook from "./MyBookList/DetailBook";
+import BookListPractice from "./MyBookList/BookListPractice";
+import LessonPreviewMyBookList from "./MyBookList/LessonPreviewMyBookList";
 export {
+  LessonPreviewMyBookList,
+  BookListPractice,
+  DetailBook,
   ErrorView,
   MyBookList,
   PurchasedHistory,

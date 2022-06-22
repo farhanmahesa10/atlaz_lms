@@ -39,6 +39,9 @@ import {
   PurchasedHistory,
   MyBookList,
   ErrorView,
+  DetailBook,
+  BookListPractice,
+  LessonPreviewMyBookList,
 } from "../../pages";
 const Routing = () => {
   return (
@@ -287,6 +290,31 @@ const Routing = () => {
           </Authenticate>
         }
       />
+      <Route
+        path="/my-book-list/detail/:subjectId"
+        element={
+          <Authenticate>
+            <DetailBook />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/my-book-list/practice/:subjectId/:lessonId/:topicId/:id"
+        element={
+          <Authenticate>
+            <BookListPractice />
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/my-book-list/lesson-preview/:subjectId/:lessonId"
+        element={
+          <Authenticate>
+            <LessonPreviewMyBookList />
+          </Authenticate>
+        }
+      />
+
       <Route path="/carousel" element={<CobaBikinCarousel />} />
 
       {/* nextSpace route fajrul */}

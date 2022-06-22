@@ -39,7 +39,17 @@ import SecurityOrg from "./ProfileOrg/SecurityOrg";
 import PurchasedHistoryOrg from "./ProfileOrg/PurchasedHistoryOrg";
 import MyBookListOrg from "./MyBookListOrg";
 import ErrorViewOrg from "./ErrorViewOrg";
+import DetailBookListOrg from "./MyBookListOrg/DetailBookListOrg";
+import MyBokListDetailContent from "./MyBookListOrg/DetailBookListOrg/MyBookListDetailContent";
+import MyBookListDetailBook from "./MyBookListOrg/DetailBookListOrg/MyBookListDetailBook";
+import BookListPracticeOrg from "./MyBookListOrg/BookListPracticeOrg";
+import LessonPreviewMyBookListOrg from "./MyBookListOrg/LessonPreviewMyBookListOrg";
 export {
+  LessonPreviewMyBookListOrg,
+  BookListPracticeOrg,
+  DetailBookListOrg,
+  MyBokListDetailContent,
+  MyBookListDetailBook,
   ErrorViewOrg,
   MyBookListOrg,
   PurchasedHistoryOrg,
