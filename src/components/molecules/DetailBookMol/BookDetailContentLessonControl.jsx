@@ -37,7 +37,14 @@ const BookDetailContentLessonControl = (props) => {
     }
   };
 
-  // console.log(data);
+  const badgeColor = () => {
+    if (data.countPractice === data.countContent) {
+      return " text-success-600 bg-success-100 border border-success-600 ";
+    } else {
+      return " text-info-500 bg-info-100 border border-info-500 ";
+    }
+  };
+
   return (
     <>
       <BookDetailContentAccordion
@@ -47,9 +54,9 @@ const BookDetailContentLessonControl = (props) => {
         }
         type="LESSON"
         requestId={data._id}
-        badgeColor="info-500"
+        badgeColor={badgeColor()}
         title={data.name}
-        // badgeText={data.progress}
+        badgeText={`${data.countPractice}/${data.countContent} Complete`}
         withExpand
         // redirectTo={`/classroom/lesson-preview/${classId}/${subjectId}/${data._id}`}
         onOpened={requestChild}

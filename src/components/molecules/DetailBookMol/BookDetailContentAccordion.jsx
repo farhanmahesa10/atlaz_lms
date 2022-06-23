@@ -97,7 +97,7 @@ const BookDetailContentAccordion = (props) => {
                 {badgeText && (
                   <p className="font-bold">
                     <span
-                      className={`px-8 py-2  text-${badgeColor} border border-${badgeColor} radius-4 font-xs-medium md-font-sm-medium mr-8 mb-16 md-mr-16`}
+                      className={`px-8 py-2  ${badgeColor} radius-4 font-xs-medium md-font-sm-medium mr-8 mb-16 md-mr-16`}
                     >
                       {badgeText}
                     </span>

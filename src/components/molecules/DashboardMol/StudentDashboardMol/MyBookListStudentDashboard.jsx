@@ -1,3 +1,4 @@
+import React from "react";
 import BookListDashboardCard from "../../Cards/BookListDashboardCard";
 import MyBookListContentLoading from "../../SkeletonLoading/MyBookListLoading/MyBookListContentLoading";
 const MyBookListStudentDashboard = (props) => {
@@ -12,14 +13,11 @@ const MyBookListStudentDashboard = (props) => {
           <div className="mt-24 row ">
             {data.map((r, i) => {
               return (
-                <>
-                  <div
-                    className="mb-24 col-6 col-sm-4 col-md-4 col-xl-4"
-                    key={r._id}
-                  >
+                <React.Fragment key={r._id + "-" + i}>
+                  <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-4">
                     <BookListDashboardCard data={r} className="card-book-xl " />
                   </div>
-                </>
+                </React.Fragment>
               );
             })}
           </div>

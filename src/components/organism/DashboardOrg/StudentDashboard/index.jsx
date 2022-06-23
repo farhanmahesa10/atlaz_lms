@@ -13,7 +13,14 @@ import { EditProfileBg } from "../../../../assets/images";
 import { AtlazMediaBg } from "../../../../assets/images";
 import { useStudentDashboard } from "../../../../services";
 const StudentDashboard = () => {
-  const { dataBookList, isLoadingBookList } = useStudentDashboard();
+  const {
+    dataBookList,
+    isLoadingBookList,
+    continueClassData,
+    continueClassLoading,
+    upcomingData,
+    upcomingLoading,
+  } = useStudentDashboard();
   return (
     <>
       <MainLayout maxWidth="1440px" navbarBg="bg-white">
@@ -34,12 +41,18 @@ const StudentDashboard = () => {
                 </div>
               </div>
               <div className="col-12  col-xl-4 mt-16 md-mt-24 xl-mt-0">
-                <UpcomingClassStudentDashboard />
+                <UpcomingClassStudentDashboard
+                  data={upcomingData}
+                  isLoading={upcomingLoading}
+                />
               </div>
               <div className="col-12 xl- col-xl-5 mt-16 md-mt-24 xl-mt-0 d-flex flex-column justify-content-between">
                 <div className="row   xl-h-p-48 ">
                   <div className="col-12 col-md-7 h-373 xl-h-auto ">
-                    <ContinueClassStudentDashboard />
+                    <ContinueClassStudentDashboard
+                      data={continueClassData}
+                      isLoading={continueClassLoading}
+                    />
                   </div>
                   <div className="d-none d-md-block col-md-5">
                     <div className="row h-full  d-flex flex-column justify-content-between">

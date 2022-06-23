@@ -13,7 +13,6 @@ const useMyBookList = () => {
     setIsLoading(true);
     GET("/booklist", defConfig())
       .then((r) => {
-        console.log(r);
         setData(r.data);
         setOriginalData(r.data);
         setIsLoading(false);

@@ -55,6 +55,7 @@ const HomeBookList = () => {
           >
             <ProductSlider
               sliderRef={sliderRef}
+              wDefault={4}
               header={
                 <div className="d-flex mb-42  justify-content-between align-items-center">
                   <div>
@@ -66,7 +67,7 @@ const HomeBookList = () => {
                         </div>
                       </div>
                       <Link
-                        to="/shop"
+                        to="/search-result"
                         className="mt-1 text-primary-500 hover-text-primary-300 "
                       >
                         View all

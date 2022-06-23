@@ -14,7 +14,7 @@ const ProductSlider = (props) => {
     speed: 500,
     slidesToShow: wDefault,
     slidesToScroll: wDefault,
-    initialSlide: 0,
+    // initialSlide: 0,
     variableWidth: true,
     arrows: false,
     responsive: [

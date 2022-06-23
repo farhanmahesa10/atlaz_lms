@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import validator from "validator";
+import useGlobalFunction from "../GlobalFuntions/useGlobalFunction";
+import { defConfig, POST } from "../../config/RestAPI";
 const useSecurityOrg = () => {
+  const [enableSubmit, setEnableSubmit] = useState(false);
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
+  const { getUserInfo, setFlashMessage } = useGlobalFunction();
+
   const initialValues = {
     currentPassword: "",
     newPassword: "",
@@ -25,13 +31,48 @@ const useSecurityOrg = () => {
         });
         let checkIfSix = spliting.length >= 6 ? true : false;
         if (!checkIfUpper || !checkIfLower || !checkIfNumeric || !checkIfSix) {
+          setEnableSubmit(false);
           return false;
         } else {
+          setEnableSubmit(true);
           return true;
         }
       }
     ),
   });
-  return { initialValues, validationSchema };
+
+  const onSubmit = (values, formik) => {
+    setEnableSubmit(false);
+    setIsLoadingSubmit(true);
+    values = {
+      username: getUserInfo().email,
+      password: values.currentPassword,
+      new_password: values.newPassword,
+    };
+
+    POST("/auth/password/user", values, defConfig())
+      .then((r) => {
+        setFlashMessage("Success Changed", "Your request successfuly changed.");
+        setEnableSubmit(false);
+        setIsLoadingSubmit(false);
+        formik.resetForm();
+      })
+      .catch((err) => {
+        setEnableSubmit(true);
+        setIsLoadingSubmit(false);
+        setFlashMessage(
+          "Failed to Update",
+          "Something went wrong. Please try again later.",
+          false
+        );
+      });
+  };
+  return {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    enableSubmit,
+    isLoadingSubmit,
+  };
 };
 export default useSecurityOrg;

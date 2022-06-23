@@ -1,14 +1,21 @@
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import MainLayout from "../../../Layout/Mainlayout";
-import { Divider, FormikControl } from "../../../atoms";
+import { Divider, FormikControl, GlobalToast } from "../../../atoms";
 import { Form, Formik } from "formik";
 import { useSecurityOrg } from "../../../../services";
 import { Link } from "react-router-dom";
 const SecurityOrg = () => {
-  const { initialValues, validationSchema } = useSecurityOrg();
+  const {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    enableSubmit,
+    isLoadingSubmit,
+  } = useSecurityOrg();
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
+      <GlobalToast />
       <div className="mt-24 px-24 md-px-48">
         <h5 className="md-h4">Security</h5>
         <div className="w-64">
@@ -36,9 +43,7 @@ const SecurityOrg = () => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(val) => {
-                  console.log(val);
-                }}
+                onSubmit={onSubmit}
               >
                 <Form>
                   <div className="mt-16">
@@ -69,15 +74,17 @@ const SecurityOrg = () => {
                     <div>
                       <button
                         className="btn btn-outline w-full md-w-104 md-mr-24 font-xs md-font-sm lg-font-normal "
-                        type="submit"
+                        type="button"
                       >
                         Cancel
                       </button>
                       <button
-                        className="btn mt-8 btn-disable w-full md-w-104  font-xs md-font-sm lg-font-normal"
-                        type="submit"
+                        className={`btn mt-8 ${
+                          !enableSubmit ? "btn-disable" : "btn-primary"
+                        } w-full md-w-104  font-xs md-font-sm lg-font-normal`}
+                        type={!enableSubmit ? "button" : "submit"}
                       >
-                        Update
+                        {!isLoadingSubmit ? "Update" : "Loading..."}
                       </button>
                     </div>
                   </div>

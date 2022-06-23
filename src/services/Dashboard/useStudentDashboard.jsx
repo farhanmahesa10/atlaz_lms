@@ -4,15 +4,24 @@ import { defConfig, GET } from "../../config/RestAPI";
 const useStudentDashboard = () => {
   const [dataBookList, setDataBookList] = useState([]);
   const [isLoadingBookList, setIsLoadingBookList] = useState(true);
+
+  const [continueClassData, setContinueClassData] = useState({});
+  const [continueClassLoading, setContinueClassLoading] = useState(true);
+
+  const [upcomingData, setUpcomingData] = useState([]);
+  const [upcomingLoading, setUpcomingLoading] = useState(true);
+
   useEffect(() => {
     initBookList();
     initContonueLearning();
+    initUpcoming();
   }, []);
 
   const initBookList = () => {
     setIsLoadingBookList(true);
     GET("/client/dashboard/book_list", defConfig())
       .then((r) => {
+        console.log(r);
         setDataBookList(r.data);
         setIsLoadingBookList(false);
       })
@@ -20,17 +29,38 @@ const useStudentDashboard = () => {
         setIsLoadingBookList(false);
       });
   };
+
   const initContonueLearning = () => {
-    GET(`/client/dashboard/recent?latest=classlist`, defConfig())
+    setContinueClassLoading(true);
+    GET(`/client/dashboard/latest_classlist`, defConfig())
       .then((r) => {
-        console.log("tuhu", r);
+        setContinueClassData(r.data);
+        setContinueClassLoading(false);
       })
       .catch((err) => {
-        console.log(err.response);
+        setContinueClassLoading(false);
       });
   };
 
-  return { dataBookList, isLoadingBookList };
+  const initUpcoming = () => {
+    setUpcomingLoading(true);
+    GET(`/client/dashboard/upcoming_event`, defConfig())
+      .then((r) => {
+        setUpcomingData(r.data);
+        setUpcomingLoading(false);
+      })
+      .catch((err) => {
+        setUpcomingLoading(false);
+      });
+  };
+  return {
+    dataBookList,
+    isLoadingBookList,
+    continueClassData,
+    continueClassLoading,
+    upcomingData,
+    upcomingLoading,
+  };
 };
 
 export default useStudentDashboard;
