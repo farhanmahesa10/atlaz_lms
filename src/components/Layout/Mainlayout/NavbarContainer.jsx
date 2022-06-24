@@ -8,9 +8,10 @@ import { NavbarNotification } from "../../molecules";
 import { Divider } from "../../atoms";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useGlobalFunction } from "../../../services";
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
-
+  const { getUserInfo } = useGlobalFunction();
   return (
     <Container fluid className="m-0 pl-24 lg-pl-48 pt-0 pr-12 lg-pr-48">
       <Navbar.Brand
@@ -48,7 +49,7 @@ const NavbarContainer = (props) => {
       </Nav>
       <Nav className=" d-flex gap-3 position-relative" style={{ zIndex: 9 }}>
         <div className="d-flex align-items-center">
-          <NavbarNotification />
+          {/* sementara dihilangkan dulu <NavbarNotification /> */}
           <div
             className="cursor-pointer d-lg-none text-neutral-400  d-flex align-items-center"
             onClick={() => {
@@ -78,7 +79,7 @@ const NavbarContainer = (props) => {
                 aria-expanded="false"
               >
                 <img
-                  src="/images/product.png"
+                  src={getUserInfo()?.avatar}
                   className="h-32 w-32  radius-p-100"
                 />
               </div>
@@ -87,7 +88,7 @@ const NavbarContainer = (props) => {
                   <div className="p-12 radius-8 bg-secondary-500 d-flex align-items-center">
                     <div className="w-40 h-40">
                       <img
-                        src="/images/profile.png"
+                        src={getUserInfo()?.avatar}
                         className="h-40 w-40  radius-p-100"
                       />
                     </div>

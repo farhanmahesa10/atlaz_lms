@@ -44,7 +44,9 @@ import MyBokListDetailContent from "./MyBookListOrg/DetailBookListOrg/MyBookList
 import MyBookListDetailBook from "./MyBookListOrg/DetailBookListOrg/MyBookListDetailBook";
 import BookListPracticeOrg from "./MyBookListOrg/BookListPracticeOrg";
 import LessonPreviewMyBookListOrg from "./MyBookListOrg/LessonPreviewMyBookListOrg";
+import VerifyProfileOrg from "./AuthOrg/VerifyProfileOrg";
 export {
+  VerifyProfileOrg,
   LessonPreviewMyBookListOrg,
   BookListPracticeOrg,
   DetailBookListOrg,

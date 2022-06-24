@@ -1,37 +1,40 @@
 import React from "react";
 import UpcomingCard from "../../Cards/UpcomingCard";
 import { Sports } from "../../../../assets/images";
-const UpcomingTeacherDashboard = () => {
-  const data = [
-    {
-      name: "Unit 1 Unit name",
-      category: "assessment",
-      date: "11",
-      month: "Apr",
-      clock: "10:00 AM",
-    },
-    {
-      name: "Unit 2 Unit name",
-      category: "assessment",
-      date: "12",
-      month: "Mar",
-      clock: "12:00 PM",
-    },
-  ];
+import { Link } from "react-router-dom";
+import moment from "moment";
+import Skeleton from "react-loading-skeleton";
+const UpcomingTeacherDashboard = (props) => {
+  const { data, isLoading } = props;
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const callData = () => {
     if (data.length > 0) {
       return data.map((r, i) => {
         return (
-          <div key={i} className={`${i > 0 && "mt-16"}`}>
-            nyalakan komentar seleteh ada data
-            {/* <UpcomingCard data={r} key={i} /> */}
+          <div key={r._id} className={`${i > 0 && "mt-16"}`}>
+            <Link
+              to={`/classroom/welcome-assessment/${r.classlist._id}/${r.subject._id}/${r.lesson._id}/${r.topic._id}/${r.timelineSubtopic[0].subtopic._id}`}
+            >
+              <UpcomingCard
+                name={r.lesson.name}
+                topic={r.topic.name}
+                event={r.timelineSubtopic[0].event}
+                date={moment(r.timelineSubtopic[0].startDateTime).format(
+                  "D MMM"
+                )}
+                clock={moment(r.timelineSubtopic[0].startDateTime).format("LT")}
+              />
+            </Link>
           </div>
         );
       });
     } else {
       return (
-        <div className="text-center  d-flex flex-column align-items-center justify-content-center">
+        <div className="text-center h-full d-flex flex-column align-items-center justify-content-center">
           <img src={Sports} alt="" className="h-auto" />
           <p className="font-sm-text-neutral-400 w-248">
             There no upcoming event for this week. Enjoy your day!
@@ -42,11 +45,24 @@ const UpcomingTeacherDashboard = () => {
   };
 
   return (
-    <div className="w-full h-p-99 border border-secondary-500 radius-14 d-flex flex-column justify-content-between">
+    <div className="w-full h-full border border-secondary-500 radius-14 d-flex flex-column justify-content-between">
       <div className="pt-16 px-24 ">
         <h6 className="xl-h5"> Upcoming Event</h6>
       </div>
       <div className="h-full py-16 px-24 ">{callData()}</div>
+    </div>
+  );
+};
+
+const Loading = () => {
+  return (
+    <div className="w-full h-full border border-secondary-500 radius-14 d-flex flex-column justify-content-between">
+      <div className="pt-16 px-24 ">
+        <Skeleton height="35px" width="100%" />
+      </div>
+      <div className="h-full py-16 px-24 ">
+        <Skeleton height="78px" width="100%" />
+      </div>
     </div>
   );
 };

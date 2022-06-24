@@ -17,7 +17,8 @@ import {
 } from "../../../molecules";
 
 const TeacherDashboard = () => {
-  const { isLoadingClassList, classListData } = useTeacherDashboard();
+  const { isLoadingClassList, classListData, upcomingData, upcomingLoading } =
+    useTeacherDashboard();
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
       <div className="mt-32">
@@ -37,7 +38,10 @@ const TeacherDashboard = () => {
               </div>
             </div>
             <div className="col-12  col-xl-4 mt-16 md-mt-24 xl-mt-0">
-              <UpcomingTeacherDashboard />
+              <UpcomingTeacherDashboard
+                data={upcomingData}
+                isLoading={upcomingLoading}
+              />
             </div>
             <div className="col-12 col-xl-5 mt-16 md-mt-24 xl-mt-0 d-flex flex-column justify-content-between">
               <div className="row   xl-h-p-48 ">

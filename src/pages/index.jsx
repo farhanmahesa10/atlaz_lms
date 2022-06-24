@@ -35,7 +35,9 @@ import ErrorView from "./ErrorView";
 import DetailBook from "./MyBookList/DetailBook";
 import BookListPractice from "./MyBookList/BookListPractice";
 import LessonPreviewMyBookList from "./MyBookList/LessonPreviewMyBookList";
+import VerifyProfile from "./Auth/VerifyProfile";
 export {
+  VerifyProfile,
   LessonPreviewMyBookList,
   BookListPractice,
   DetailBook,

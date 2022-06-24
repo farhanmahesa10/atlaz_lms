@@ -94,7 +94,13 @@ import OutlineListLessonControlMyBookList from "./OutlineListMyBookList/OutlineL
 import OutlineListLoadingAccordionMyBookList from "./OutlineListMyBookList/OutlineListLoadingAccordionMyBookList";
 import OutlineListSubtopicControlMyBookList from "./OutlineListMyBookList/OutlineListSubtopicControlMyBookList";
 import OutlineListTopicControlMyBookList from "./OutlineListMyBookList/OutlineListTopicControlMyBookList";
+import StudentManageAccountLoading from "./SkeletonLoading/ProfileLoading/StudentManageAccountLoading";
+import ProfileSectionLoading from "./SkeletonLoading/ProfileLoading/ProfileSectionLoading";
+import PublicManageAccountLoading from "./SkeletonLoading/ProfileLoading/PublicManageAccountLoading";
 export {
+  PublicManageAccountLoading,
+  StudentManageAccountLoading,
+  ProfileSectionLoading,
   OutlineListMyBookList,
   OutlineListAccordionMyBookList,
   OutlineListLessonControlMyBookList,

@@ -85,7 +85,8 @@ const ContinueLearning = ({ data }) => {
           </p>
 
           <div
-            className=" font-xs md-font-sm xl-font-normal mt-16 md-h-116"
+            className=" font-xs md-font-sm xl-font-normal mt-16 md-h-116 max-h-498 custom-scroll"
+            style={{ overflow: "auto" }}
             dangerouslySetInnerHTML={createMarkup(data.overview)}
           ></div>
           <div className="d-flex justify-content-md-between justify-content-lg-start flex-column flex-md-row mt-16">

@@ -7,6 +7,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Settings } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import Can from "../../../permission/Can";
+import { useGlobalFunction } from "../../../services";
 
 const Sidebar = (props) => {
   const {
@@ -18,7 +19,7 @@ const Sidebar = (props) => {
     pages,
     auth,
   } = props;
-
+  const { getUserInfo } = useGlobalFunction();
   const handleClose = () => setShowCanvas(false);
   const handleShow = () => setShowCanvas(true);
   return (
@@ -45,7 +46,7 @@ const Sidebar = (props) => {
             <div className="p-12 mb-16 radius-8 bg-secondary-500 d-flex align-items-center">
               <div className="w-40 h-40">
                 <img
-                  src="/images/profile.png"
+                  src={getUserInfo()?.avatar}
                   className="h-40 w-40  radius-p-100"
                 />
               </div>

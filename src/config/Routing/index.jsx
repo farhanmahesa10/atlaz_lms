@@ -41,6 +41,7 @@ import {
   ErrorView,
   DetailBook,
   BookListPractice,
+  VerifyProfile,
   LessonPreviewMyBookList,
 } from "../../pages";
 const Routing = () => {
@@ -68,9 +69,9 @@ const Routing = () => {
         path="/dashboard"
         exac
         element={
-          // <Authenticate> contoh penggunaan middleware harus login
-          <Dashboard />
-          // </Authenticate>
+          <Authenticate>
+            <Dashboard />
+          </Authenticate>
         }
       />
       <Route
@@ -152,6 +153,7 @@ const Routing = () => {
       <Route path="/shop" element={<Home />} />
       <Route path="/product-detail/:id" element={<ProductDetail />} />
       <Route path="/auth/verify" element={<Verify />} />
+      <Route path="/auth/verify/security" element={<VerifyProfile />} />
       <Route
         path="/redirect-google"
         element={<RedirectGoogleAuthenticated />}
@@ -172,7 +174,9 @@ const Routing = () => {
         path="/classroom/class/:classId"
         element={
           <Authenticate>
-            <ClassRoomSubject />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <ClassRoomSubject />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -180,7 +184,9 @@ const Routing = () => {
         path="/classroom/assessment/:classId/:subjectId/:section"
         element={
           <Authenticate>
-            <SubjectPost />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <SubjectPost />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -188,7 +194,9 @@ const Routing = () => {
         path="/classroom/post-detail/:classId/:subjectId/:postId"
         element={
           <Authenticate>
-            <SubjectPostDetail />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <SubjectPostDetail />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -206,7 +214,9 @@ const Routing = () => {
         path="/classroom/timeline/:classId/:subjectId"
         element={
           <Authenticate>
-            <TimelineShow />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <TimelineShow />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -214,7 +224,9 @@ const Routing = () => {
         path="/classroom/start-learning-view/:classId/:subjectId"
         element={
           <Authenticate>
-            <LearningSubjectView />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <LearningSubjectView />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -222,7 +234,9 @@ const Routing = () => {
         path="/classroom/lesson-preview/:classId/:subjectId/:lessonId"
         element={
           <Authenticate>
-            <LessonPreview />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <LessonPreview />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -230,7 +244,9 @@ const Routing = () => {
         path="/classroom/welcome-assessment/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
-            <WelcomeAssessment />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <WelcomeAssessment />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -238,7 +254,9 @@ const Routing = () => {
         path="/classroom/begin-assessment/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
-            <BeginAssessmentOrg />
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+              <BeginAssessmentOrg />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -287,7 +305,9 @@ const Routing = () => {
         path="/my-book-list"
         element={
           <Authenticate>
-            <MyBookList />
+            <CheckRole allowAccess="public">
+              <MyBookList />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -295,7 +315,9 @@ const Routing = () => {
         path="/my-book-list/detail/:subjectId"
         element={
           <Authenticate>
-            <DetailBook />
+            <CheckRole allowAccess="public">
+              <DetailBook />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -303,7 +325,9 @@ const Routing = () => {
         path="/my-book-list/practice/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
-            <BookListPractice />
+            <CheckRole allowAccess="public">
+              <BookListPractice />
+            </CheckRole>
           </Authenticate>
         }
       />
@@ -311,7 +335,9 @@ const Routing = () => {
         path="/my-book-list/lesson-preview/:subjectId/:lessonId"
         element={
           <Authenticate>
-            <LessonPreviewMyBookList />
+            <CheckRole allowAccess="public">
+              <LessonPreviewMyBookList />
+            </CheckRole>
           </Authenticate>
         }
       />

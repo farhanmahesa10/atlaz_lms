@@ -6,6 +6,7 @@ import { ClassRoomHero3 } from "../../../../assets/images";
 import AcademicCard from "../../Cards/AcademicCard";
 import Slider from "react-slick";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
 const ClassListTeacherDashboard = (props) => {
   const { isLoading, data } = props;
   const [domeWidth, setdDomeWidth] = useState(1);
@@ -29,6 +30,7 @@ const ClassListTeacherDashboard = (props) => {
   };
 
   useEffect(() => {
+    setdDomeWidth(domeRef.current.clientWidth);
     window.addEventListener("resize", () => {
       setdDomeWidth(domeRef.current.clientWidth);
     });
@@ -59,12 +61,14 @@ const ClassListTeacherDashboard = (props) => {
                 return (
                   <div className="" key={r._id}>
                     <div className={`px-8 w-${Math.round(domeWidth / 2 - 20)}`}>
-                      <AcademicCard
-                        className={"h-152 xl-h-219"}
-                        bgImage={ClassRoomHero2}
-                        title={"KELAS 1A 1"}
-                        desc={"Academic Year 2021/2022"}
-                      />
+                      <Link to={`/classroom/class/${r._id}`} className="w-full">
+                        <AcademicCard
+                          className={"h-152 xl-h-219"}
+                          bgImage={r.banner.image}
+                          title={r.name}
+                          desc={`Academic Year ${r.academicYear}`}
+                        />
+                      </Link>
                     </div>
                   </div>
                 );

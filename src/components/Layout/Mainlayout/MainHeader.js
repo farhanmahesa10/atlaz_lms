@@ -69,7 +69,7 @@ const MainHeader = (props) => {
       label: "My Books List",
       shouldLogin: 1,
       activeTo: "my-book-list",
-      // allowAccess: "superuser,administrator",
+      allowAccess: "public",
     },
     {
       icon: <StorefrontIcon />,
@@ -158,14 +158,15 @@ const MainHeader = (props) => {
       activeTo: "security",
       allowAccess: "student,teacher,public",
     },
-    {
-      icon: <HistoryToggleOffOutlinedIcon style={{ color: "#C48EEE" }} />,
-      link: "/purchased-history",
-      label: "Purchased history",
-      shouldLogin: true,
-      activeTo: "purchased-history",
-      allowAccess: "student,teacher,public",
-    },
+    // dihilangkan sementara
+    // {
+    //   icon: <HistoryToggleOffOutlinedIcon style={{ color: "#C48EEE" }} />,
+    //   link: "/purchased-history",
+    //   label: "Purchased history",
+    //   shouldLogin: true,
+    //   activeTo: "purchased-history",
+    //   allowAccess: "student,teacher,public",
+    // },
     // {
     //   icon: <ExitToAppRoundedIcon />,
     //   link: "/logout",

@@ -126,12 +126,16 @@ const WelcomeAssessmentOrg = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-12 col-xl-6 mt-40 xl-mt-0">
-                    <div className="border border-secondary-500 radius-14 px-32 py-40">
+                  <div className="col-12 col-xl-6 h-full mt-40 xl-mt-0">
+                    <div className="border  border-secondary-500 radius-14 px-32 py-40">
                       <p className="text-neutral-200 mb-16">
                         Rules & Conditions
                       </p>
-                      <div dangerouslySetInnerHTML={createMarkup()}></div>
+                      <div
+                        dangerouslySetInnerHTML={createMarkup()}
+                        className="h-350 custom-scroll"
+                        style={{ overflow: "auto" }}
+                      ></div>
                     </div>
                   </div>
                 </div>

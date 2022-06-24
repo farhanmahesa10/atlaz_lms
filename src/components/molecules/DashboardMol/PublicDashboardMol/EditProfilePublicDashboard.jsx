@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
-import { useGlobalFunction } from "../../../../services";
-const EditProfilePublicDashboard = () => {
-  const { getUserInfo } = useGlobalFunction();
+
+const EditProfilePublicDashboard = (props) => {
+  const { data, isLoading } = props;
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div
@@ -12,14 +17,18 @@ const EditProfilePublicDashboard = () => {
       <div className="px-32 py-24">
         <div className="d-flex align-items-center">
           <div className="h-48 w-48 radius-p-100 mr-16">
-            <img src="/images/profile.png" alt="" />
+            <img
+              src={data.avatar}
+              alt=""
+              className="w-full h-full  radius-p-100"
+            />
           </div>
           <div>
             <h6 className="xl-h5">
               Welcome,{" "}
-              {getUserInfo().name.length > 15
-                ? getUserInfo().name.substring(0, 15)
-                : getUserInfo().name}
+              {data?.name?.length > 15
+                ? data?.name?.substring(0, 15)
+                : data?.name}
             </h6>
             <p className="font xs xl-font-sm text-neutral-300">
               Keep learning and keep it up!
@@ -33,6 +42,14 @@ const EditProfilePublicDashboard = () => {
           </Link>
         </div>
       </div>
+    </div>
+  );
+};
+
+const Loading = () => {
+  return (
+    <div className="radius-14 h-full">
+      <Skeleton width={"100%"} height="168px" />
     </div>
   );
 };

@@ -7,11 +7,27 @@ const usePublicDashboard = () => {
   const [dataRedeem, setDataRedeem] = useState(null);
   const [dataBookList, setDataBookList] = useState([]);
   const [isLoadingBookList, setIsLoadingBookList] = useState(true);
+  const [isLoadingProfile, setIsLoadingProfile] = useState(true);
+  const [dataProfile, setDataProfile] = useState(null);
+
   const { setFlashMessage } = useGlobalFunction();
   useEffect(() => {
     initBookList();
     initRedeem();
+    initProfile();
   }, []);
+
+  const initProfile = () => {
+    setIsLoadingBookList(true);
+    GET("/users/profile", defConfig())
+      .then((r) => {
+        setDataProfile(r.data);
+        setIsLoadingProfile(false);
+      })
+      .catch((err) => {
+        setIsLoadingProfile(false);
+      });
+  };
 
   const initRedeem = () => {
     setIsLoadingRedeem(true);
@@ -47,7 +63,8 @@ const usePublicDashboard = () => {
         initRedeem();
       })
       .catch((err) => {
-        setFlashMessage("Redeem Failed", "Your code was wrong!", false);
+        // console.log(err.response);
+        setFlashMessage("Redeem Failed", err.response?.data?.message, false);
         setIsLoadingRedeem(false);
       });
   };
@@ -58,6 +75,8 @@ const usePublicDashboard = () => {
     dataBookList,
     isLoadingBookList,
     redeemBookAction,
+    isLoadingProfile,
+    dataProfile,
   };
 };
 

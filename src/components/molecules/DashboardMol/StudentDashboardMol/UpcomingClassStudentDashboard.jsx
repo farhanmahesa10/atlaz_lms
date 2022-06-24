@@ -3,6 +3,7 @@ import { Sports } from "../../../../assets/images";
 import UpcomingCard from "../../Cards/UpcomingCard";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 const UpcomingClassStudentDashboard = (props) => {
   const { data, isLoading } = props;
 
@@ -54,7 +55,16 @@ const UpcomingClassStudentDashboard = (props) => {
 };
 
 const Loading = () => {
-  return "Loading....";
+  return (
+    <div className="w-full h-full border border-secondary-500 radius-14 d-flex flex-column justify-content-between">
+      <div className="pt-16 px-24 ">
+        <Skeleton height="35px" width="100%" />
+      </div>
+      <div className="h-full py-16 px-24 ">
+        <Skeleton height="78px" width="100%" />
+      </div>
+    </div>
+  );
 };
 
 export default UpcomingClassStudentDashboard;

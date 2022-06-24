@@ -21,7 +21,6 @@ const useStudentDashboard = () => {
     setIsLoadingBookList(true);
     GET("/client/dashboard/book_list", defConfig())
       .then((r) => {
-        console.log(r);
         setDataBookList(r.data);
         setIsLoadingBookList(false);
       })

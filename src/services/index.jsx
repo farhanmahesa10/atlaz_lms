@@ -23,7 +23,9 @@ import usePublicDashboard from "./Dashboard/usePublicDashboard";
 import useStudentDashboard from "./Dashboard/useStudentDashboard";
 import useTeacherDashboard from "./Dashboard/useTeacherDashboard";
 import useLessonPreviewMyBookList from "./MyBookList/useLessonPreviewMyBookList";
+import useManageAccount from "./Profile/useManageAccount";
 export {
+  useManageAccount,
   useLessonPreviewMyBookList,
   usePublicDashboard,
   useStudentDashboard,

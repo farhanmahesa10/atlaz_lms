@@ -45,28 +45,32 @@ const useSecurityOrg = () => {
     setEnableSubmit(false);
     setIsLoadingSubmit(true);
     values = {
-      username: getUserInfo().email,
       password: values.currentPassword,
       new_password: values.newPassword,
     };
-
-    POST("/auth/password/user", values, defConfig())
-      .then((r) => {
-        setFlashMessage("Success Changed", "Your request successfuly changed.");
-        setEnableSubmit(false);
-        setIsLoadingSubmit(false);
-        formik.resetForm();
-      })
-      .catch((err) => {
-        setEnableSubmit(true);
-        setIsLoadingSubmit(false);
-        setFlashMessage(
-          "Failed to Update",
-          "Something went wrong. Please try again later.",
-          false
-        );
-      });
+    if (enableSubmit) {
+      POST("/users/password", values, defConfig())
+        .then((r) => {
+          setFlashMessage(
+            "Success Changed",
+            "Your request successfuly changed."
+          );
+          setEnableSubmit(false);
+          setIsLoadingSubmit(false);
+          formik.resetForm();
+        })
+        .catch((err) => {
+          setEnableSubmit(true);
+          setIsLoadingSubmit(false);
+          setFlashMessage(
+            "Failed to Update",
+            "Something went wrong. Please try again later.",
+            false
+          );
+        });
+    }
   };
+
   return {
     initialValues,
     validationSchema,
