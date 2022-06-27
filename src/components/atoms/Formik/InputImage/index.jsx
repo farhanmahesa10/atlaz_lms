@@ -19,6 +19,13 @@ function InputImage(props) {
                 ref={inputRef}
                 onInput={(e) => {
                   let file = e.target.files[0];
+                  if (props.maxSize && file) {
+                    if (file.size > props.maxSize) {
+                      props.onErrorSize(true);
+                    } else {
+                      props.onErrorSize(false);
+                    }
+                  }
                   let reader = new FileReader();
                   reader.onloadend = () => {
                     var result = reader.result;

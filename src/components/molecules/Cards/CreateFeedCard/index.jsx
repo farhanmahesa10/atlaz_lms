@@ -9,8 +9,8 @@ import * as Yup from "yup";
 import CircularProgress from "@mui/material/CircularProgress";
 const CreateFeedCard = (props) => {
   const [canSubmit, setCanSubmit] = useState(false);
+  const [isFileError, setIsFileError] = useState(false);
   const textRef = useRef();
-
   const { isLoading } = props;
   const initialValues = {
     content: {
@@ -37,7 +37,9 @@ const CreateFeedCard = (props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { resetForm }) => {
-          props.onSubmit(values, resetForm);
+          if (canSubmit && !isFileError) {
+            props.onSubmit(values, resetForm);
+          }
         }}
       >
         {(formik) => {
@@ -48,7 +50,10 @@ const CreateFeedCard = (props) => {
                 <div className="px-24 pt-24">
                   <div
                     className="max-h-158 md-max-h-216 xl-max-h-472 radius-14 "
-                    style={{ overflow: "hidden", border: "2px dashed #D4D7DB" }}
+                    style={{
+                      overflow: "hidden",
+                      border: `2px dashed ${isFileError ? "red" : "#D4D7DB"}`,
+                    }}
                   >
                     <div className="w-full position-relative">
                       <div
@@ -73,6 +78,11 @@ const CreateFeedCard = (props) => {
                       className="w-full "
                     />
                   </div>
+                  {isFileError && (
+                    <p className="text-center text-danger-400">
+                      File size must be less than 1mb
+                    </p>
+                  )}
                 </div>
               )}
               {isLoading ? (
@@ -89,6 +99,10 @@ const CreateFeedCard = (props) => {
               <div className="d-flex align-items-end  p-24 ">
                 <div className="cursor-pointer">
                   <FormikControl
+                    maxSize={1000000}
+                    onErrorSize={(condition) => {
+                      condition ? setIsFileError(true) : setIsFileError(false);
+                    }}
                     control="inputImage"
                     fakeName={"content.fakeImage"}
                     imageName="content.image"
@@ -118,9 +132,9 @@ const CreateFeedCard = (props) => {
                   </div>
                 </div>
                 <button
-                  type={canSubmit ? `submit` : "button"}
+                  type={canSubmit && !isFileError ? `submit` : "button"}
                   className={`btn btn-${
-                    canSubmit ? "primary" : "disable"
+                    canSubmit && !isFileError ? "primary" : "disable"
                   } d-flex align-items-center `}
                   style={{ whiteSpace: "nowrap" }}
                 >
