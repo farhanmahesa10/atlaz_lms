@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
 import MainHeaderNoMenu from "./MainHeaderNoMenu";
 import { Helmet } from "react-helmet";
 const MainLayout = (props) => {
-  const {navbarBg,...rest} = props;
+  const { navbarBg, ...rest } = props;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Helmet>
@@ -12,16 +15,14 @@ const MainLayout = (props) => {
       </Helmet>
       <div className="d-flex flex-column gx-0" style={{ minHeight: "100vh" }}>
         {!props.navNoMenu ? (
-          <MainHeader
-            navbarBg={props.navbarBg}
-          />
+          <MainHeader navbarBg={props.navbarBg} />
         ) : (
           <MainHeaderNoMenu
             redirectOnClose={props.redirectOnNavClose}
             isNeedConfirm={props.isNeedConfirm}
             title={props.title}
-            modalMessage= {props.modalMessage}
-            modalTitle= {props.modalTitle}
+            modalMessage={props.modalMessage}
+            modalTitle={props.modalTitle}
           />
         )}
         <main
@@ -43,12 +44,12 @@ const MainLayout = (props) => {
           </div>
         </main>
 
-        <MainFooter bg={props.footerBg}/>
+        <MainFooter bg={props.footerBg} />
       </div>
     </>
   );
 };
 MainLayout.defaultProps = {
-  navbarBg : 'bg-white'
-}
+  navbarBg: "bg-white",
+};
 export default MainLayout;
