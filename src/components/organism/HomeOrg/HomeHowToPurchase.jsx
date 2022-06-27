@@ -9,6 +9,7 @@ const HomeHowToPurchase = () => {
       style={{
         backgroundImage: "url('/images/contour.png')",
         backgroundRepeat: " no-repeat",
+        backgroundPosition: "center",
       }}
     >
       <div className="" style={{ maxWidth: "1440px" }}>
