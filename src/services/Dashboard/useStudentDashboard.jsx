@@ -12,9 +12,16 @@ const useStudentDashboard = () => {
   const [upcomingLoading, setUpcomingLoading] = useState(true);
 
   useEffect(() => {
-    initBookList();
-    initContonueLearning();
-    initUpcoming();
+    let mounted = true;
+    if (mounted) {
+      initBookList();
+      initContonueLearning();
+      initUpcoming();
+    }
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const initBookList = () => {

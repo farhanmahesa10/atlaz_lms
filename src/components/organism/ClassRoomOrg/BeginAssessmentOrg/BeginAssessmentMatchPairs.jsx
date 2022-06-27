@@ -79,6 +79,7 @@ const BeginAssessmentMatchPairs = (props) => {
   };
 
   const getClassAnswered = (formik, name) => {
+    return "none";
     let formikValue = formik.getFieldProps(name).value;
 
     if (formikValue.abjad === formikValue.userAnswer && buttonToggleFooter) {
@@ -95,6 +96,7 @@ const BeginAssessmentMatchPairs = (props) => {
 
   const getClassAnsweredRight = (dataDup, formik) => {
     //ambil yang abjadnya sama cari tau dia index ke berapa
+    return "none";
     let indexKeyOption = null;
     data.options.map((r, i) => {
       if (dataDup.abjad === r.abjad) indexKeyOption = i;
