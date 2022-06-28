@@ -4,6 +4,9 @@ import SingleChoiceModalShow from "./SingleChoiceModalShow";
 import { useSelector, connect } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import MultipleChoiceModalShow from "./MultipleChoiceModalShow";
+import MatchPairsModalShow from "./MatchPairsModalShow";
+import ShortAnswerModalShow from "./ShortAnswerModalShow";
+import EssayModalShow from "./EssayModalShow";
 const ModalViewContent = (props) => {
   const { data } = useSelector((state) => state.modalData);
   // useEffect(() => {
@@ -17,7 +20,11 @@ const ModalViewContent = (props) => {
       case "multiple choice":
         return <MultipleChoiceModalShow data={contentData} nomor={nomor} />;
       case "match pairs":
-        return <MultipleChoiceModalShow data={contentData} nomor={nomor} />;
+        return <MatchPairsModalShow data={contentData} nomor={nomor} />;
+      case "short answer":
+        return <ShortAnswerModalShow data={contentData} nomor={nomor} />;
+      case "essay":
+        return <EssayModalShow data={contentData} nomor={nomor} />;
       default:
         return;
     }

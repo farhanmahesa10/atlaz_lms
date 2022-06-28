@@ -3,10 +3,13 @@ import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import validator from "validator";
-import { FormikControl } from "../../../../atoms";
+import useGlobalFunction from "../../../../../services/GlobalFuntions/useGlobalFunction";
+import { FormikControl, GlobalToast } from "../../../../atoms";
 import RegisterLayout from "../../../../Layout/RegisterLayout";
 import DotIcon from "../../../../SVG/DotIcon";
 const Register4Org = () => {
+  const { setFlashMessage } = useGlobalFunction();
+
   const [isLower, setIsLower] = useState("first");
   const [isUpper, setIsUpper] = useState("first");
   const [isNumeric, setIsNumeric] = useState("first");
@@ -57,8 +60,18 @@ const Register4Org = () => {
         navigate("/register-finish");
       })
       .catch((err) => {
+        console.log(err.response);
         setIsLoading(false);
-        let msg = err.response.data.message;
+        let msg;
+        if (err.response?.data?.message?.email) {
+          msg = err.response.data.message.email;
+        } else if (err.response?.data?.message?.phone) {
+          msg = err.response.data.message.phone;
+        } else {
+          msg = "Something went wrong!";
+        }
+
+        setFlashMessage("Register Failed", msg, false);
       });
 
     // if (allowNext) navigate("/register-finish");
@@ -69,6 +82,7 @@ const Register4Org = () => {
       activeProgress={4}
       title="Let's set this up for your account"
     >
+      <GlobalToast />
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
