@@ -16,6 +16,8 @@ const ModalViewContent = (props) => {
         return <SingleChoiceModalShow data={contentData} nomor={nomor} />;
       case "multiple choice":
         return <MultipleChoiceModalShow data={contentData} nomor={nomor} />;
+      case "match pairs":
+        return <MultipleChoiceModalShow data={contentData} nomor={nomor} />;
       default:
         return;
     }

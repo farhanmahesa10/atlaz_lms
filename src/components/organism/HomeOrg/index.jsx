@@ -17,7 +17,7 @@ const HomeOrg = () => {
         <HomeBookList />
         <HomeRedeem />
         <HomeScore />
-        <HomeOurPartnership />
+        {/* <HomeOurPartnership /> */}
         <HomeWhatTheySay />
       </MainLayout>
     </>
