@@ -8,11 +8,13 @@ const useGlobalFunction = () => {
     let token = localStorage.getItem(
       process.env.REACT_APP_BASE_URL + "/accessToken"
     );
+    let currentDate = new Date();
     if (token) {
       let decode = jwt_decode(token);
-      let dateExp = moment(decode.exp);
+      let dateExp = moment(decode.exp * 1000);
       let dateNow = moment();
-      if (dateNow.diff(dateExp) >= 0) {
+
+      if (dateNow.diff(dateExp) <= 0) {
         let roleData = getRoleData().find((r) => r.level === decode.role);
         decode = { ...decode, roleData };
 
