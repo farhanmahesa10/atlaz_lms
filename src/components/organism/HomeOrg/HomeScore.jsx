@@ -3,10 +3,8 @@ import React from "react";
 const HomeScore = () => {
   return (
     <div className="d-flex justify-content-center">
-      <div
-        className="row gx-0 my-48 md-my-104  w-full xl-my-152 md-px-104 xl-px-304"
-        style={{ maxWidth: "1440px" }}
-      >
+      <div className="row gx-0 mtz-48 w-full" style={{ maxWidth: "1440px" }}>
+        {/* className="row gx-0 my-48 md-my-104  w-full xl-my-152 md-px-104 xl-px-304" */}
         <div className="col-12 col-md-4  mb-40  border-end border-secondary-500 ">
           <div className="text-center">
             <h1 className="h2 md-h1 mb-8">20+</h1>
