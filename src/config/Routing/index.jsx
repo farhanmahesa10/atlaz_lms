@@ -44,9 +44,19 @@ import {
   VerifyProfile,
   LessonPreviewMyBookList,
 } from "../../pages";
+import TesViewContent from "../../pages/TesViewContent";
 const Routing = () => {
   return (
     <Routes>
+      <Route
+        path="/tes-view-content"
+        exac
+        element={
+          // <Authenticate> contoh penggunaan middleware harus login
+          <TesViewContent />
+          // </Authenticate>
+        }
+      />
       <Route
         path="/*"
         exac

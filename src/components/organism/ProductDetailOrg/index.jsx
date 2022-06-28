@@ -218,7 +218,7 @@ const ProductDetailOrg = () => {
                               Buy from e-commerce
                             </button>
                           </div>
-                          <div className="col-12 mt-20 d-md-flex align-items-center">
+                          {/* <div className="col-12 mt-20 d-md-flex align-items-center">
                             <button className="btn-outline  text-neutral-500 font-xs md-font-sm xl-font-normal w-full md-w-185">
                               Contact marketing
                             </button>
@@ -226,7 +226,7 @@ const ProductDetailOrg = () => {
                               <i className="bi bi-exclamation-circle mx-8 text-neutral-300 "></i>
                               Suitable for school curriculum and mass purchase
                             </span>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -345,7 +345,7 @@ const ProductDetailOrg = () => {
                               <i className="bi bi-chevron-right "></i>
                             </div>
                           </button>
-                          <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
+                          {/* <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
                             <img
                               src="/icons/bukalapak.png"
                               alt=""
@@ -358,7 +358,7 @@ const ProductDetailOrg = () => {
                               </p>
                               <i className="bi bi-chevron-right "></i>
                             </div>
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                       <div className="modal-footer"></div>

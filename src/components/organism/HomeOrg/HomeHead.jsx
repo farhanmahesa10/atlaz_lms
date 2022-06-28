@@ -77,9 +77,9 @@ const HomeHead = () => {
               </div>
             </div>
             <div className="row gx-0  text-center justify-content-center">
-              <div className="col h-22 md-h-40 xl-h-45">
+              {/* <div className="col h-22 md-h-40 xl-h-45">
                 <img src={buka} alt="" className="h-p-100" />
-              </div>
+              </div> */}
               <div className="col h-22 md-h-40 xl-h-45">
                 <img src={gram} alt="" className="h-p-100" />
               </div>

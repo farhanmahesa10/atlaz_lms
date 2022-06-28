@@ -97,7 +97,9 @@ import OutlineListTopicControlMyBookList from "./OutlineListMyBookList/OutlineLi
 import StudentManageAccountLoading from "./SkeletonLoading/ProfileLoading/StudentManageAccountLoading";
 import ProfileSectionLoading from "./SkeletonLoading/ProfileLoading/ProfileSectionLoading";
 import PublicManageAccountLoading from "./SkeletonLoading/ProfileLoading/PublicManageAccountLoading";
+import ModalViewContent from "./Modals/Grade/ModalViewContent";
 export {
+  ModalViewContent,
   PublicManageAccountLoading,
   StudentManageAccountLoading,
   ProfileSectionLoading,
