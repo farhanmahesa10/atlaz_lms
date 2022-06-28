@@ -78,7 +78,7 @@ const PublicDashboard = () => {
                     link="/user/edit-profile"
                     title={
                       <span>
-                        Reddem <br /> New Book
+                        Redeem <br /> New Book
                       </span>
                     }
                   />

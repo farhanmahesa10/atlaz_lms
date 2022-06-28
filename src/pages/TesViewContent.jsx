@@ -34,7 +34,7 @@ const TesViewContent = () => {
                         target="viewContent"
                         data={{ data: r, nomor: i + 1 }}
                       >
-                        View
+                        {r.assessmentType.name}
                       </ModalTrigger>
                     </td>
                   </tr>

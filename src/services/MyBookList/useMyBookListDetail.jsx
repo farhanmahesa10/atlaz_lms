@@ -63,10 +63,11 @@ const useMyBookListDetail = () => {
 
   const getBookDetail = () => {
     setIsBookDetailLoading(true);
-    let subjectId = "6230209218e3db54b7785539";
-    // let subjectId = params.subjectId
+    // let subjectId = "6230209218e3db54b7785539";
+    let subjectId = params.subjectId;
     GET(`/client/classrooms/subject/detail/${subjectId}`, defConfig())
       .then((r) => {
+        console.log("res", r.data);
         setbookDetailData(r.data);
         setIsBookDetailLoading(false);
       })
