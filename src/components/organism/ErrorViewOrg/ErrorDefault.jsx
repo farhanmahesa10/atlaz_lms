@@ -24,7 +24,7 @@ const ErrorDefault = () => {
                   We can’t seem to find the page you are looking for.
                 </p>
                 <p className="mt-40 font-sm">Let us take you back:</p>
-                <Link to="/shop">
+                <Link to="/">
                   <button className="btn-primary font-normal mt-8">
                     Back to homepage
                   </button>

@@ -1,583 +1,180 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  CheckCircleOutlineOutlined,
-  HighlightOff,
-  CircleOutlined,
-} from "@mui/icons-material";
-import { Field, Form, Formik } from "formik";
-import { defConfig, POST } from "../../../../../config/RestAPI";
-import Skeleton from "react-loading-skeleton";
+import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import CancelIcon from "@mui/icons-material/Cancel";
 const MatchPairsModalShow = (props) => {
   const { data } = props;
-  const [buttonToggleFooter, setButtonToggleFooter] = useState(false);
-  const [isSubmitting, setSubmitting] = useState(false);
-  const [leftSide, setLeftSide] = useState(true);
-  const [rightSide, setRightSide] = useState(false);
-  const [nextColor, setNextColor] = useState("");
-  const [nextAbjad, setNextAbjad] = useState("");
-  const [dataClicked, setDataClicked] = useState(0);
+  console.log(data);
 
-  const [leftClickedData, setLeftClickedData] = useState([]);
-  const [rightClickedData, setRightClickedData] = useState([]);
-
-  const [nextIndex, setNextIndex] = useState(null);
-  const [clearForm, setClearForm] = useState(null);
-  const [firstInitAnswer, setFirstInitAnswer] = useState(false);
-  const [initAnswer, setInitAnswer] = useState(null);
-  const submitRef = useRef();
-  const maxData = data.options.length * 2;
-
-  useEffect(() => {
-    patternAnswer();
-  }, []);
-  useEffect(() => {
-    if (initAnswer && !firstInitAnswer && data) {
-      onSubmit(initAnswer, true);
-      setFirstInitAnswer(true);
-    }
-  }, [initAnswer]);
-  const handleLeftClicked = (e, r, i) => {
-    let isDataClicked = checkIsbuttonClicked(r.abjad);
-
-    if (leftSide && maxData > dataClicked && isDataClicked === undefined) {
-      let leftCLicked = leftClickedData;
-      leftCLicked.push(r.abjad);
-      setLeftSide(false);
-      setRightSide(true);
-      setNextColor(r.color);
-      setDataClicked(dataClicked + 1);
-      setLeftClickedData(leftCLicked);
-      setNextAbjad(r.abjad);
-      setNextIndex(i);
-      e.currentTarget.style.backgroundColor = r.color;
-    }
+  const getAbjadForOptionDup = (abjad) => {
+    let result = data.options.find((r) => r.userAnswer === abjad);
+    if (!result) return <CircleOutlinedIcon className="fs-17" />;
+    return result.abjad;
+  };
+  const getColorForOptionDup = (abjad) => {
+    let result = data.options.find((r) => r.userAnswer === abjad);
+    if (!result) return "#D4D7DB";
+    return result.color;
   };
 
-  const handleRightClicked = (e, dataDup, formik, i, idAbjad) => {
-    let isDataClicked = checkIsbuttonClickedRight(dataDup.abjad);
-    if (rightSide && maxData > dataClicked && isDataClicked === undefined) {
-      let rightCLicked = rightClickedData;
-      rightCLicked.push(dataDup.abjad);
-      setLeftSide(true);
-      setRightSide(false);
-      setDataClicked(dataClicked + 1);
-      setRightClickedData(rightCLicked);
-
-      document.querySelector(idAbjad).innerHTML = nextAbjad;
-
-      e.currentTarget.style.backgroundColor = nextColor;
-      let name = `[${nextIndex}].userAnswer`;
-
-      formik.setFieldValue(name, dataDup.abjad);
-    }
+  const getBorderColor = (userAnswer, abjad) => {
+    if (userAnswer !== abjad) return "border-danger-400";
+    if (userAnswer === abjad) return "border-success-600";
+    if (!userAnswer) return "border-neutral-100";
   };
 
-  const checkIsbuttonClicked = (value) => {
-    return leftClickedData.find((res) => res === value);
-  };
-
-  const checkIsbuttonClickedRight = (value) => {
-    return rightClickedData.find((res) => res === value);
-  };
-
-  const patternAnswer = () => {
-    if (data) {
-      setInitAnswer(data.options);
-    } else {
-      let init = data.options.map((r) => {
-        return { ...r, userAnswer: "" };
-      });
-      setInitAnswer(init);
-    }
-    let clearedForm = data.options.map((r) => {
-      return { ...r, userAnswer: "" };
-    });
-    setClearForm(clearedForm);
-  };
-
-  const getClassAnswered = (formik, name) => {
-    let formikValue = formik.getFieldProps(name);
-
-    if (formikValue.abjad === formikValue.userAnswer && buttonToggleFooter) {
-      return true;
-    } else if (
-      formikValue.abjad !== formikValue.userAnswer &&
-      buttonToggleFooter
-    ) {
-      return false;
-    } else {
-      return "none";
-    }
-  };
-
-  const getClassAnsweredRight = (dataDup, formik) => {
-    let indexKeyOption = null;
-    data.options.map((r, i) => {
-      if (dataDup.abjad === r.abjad) indexKeyOption = i;
-    });
-    let formikValue = formik.getFieldProps(`[${indexKeyOption}]`).value;
-    if (formikValue.abjad === formikValue.userAnswer && buttonToggleFooter) {
-      return true;
-    } else if (
-      formikValue.abjad !== formikValue.userAnswer &&
-      buttonToggleFooter
-    ) {
-      return false;
-    } else {
-      return "none";
-    }
-  };
-
-  const onSubmit = (values, isFake = false) => {
-    setSubmitting(true);
-    // setButtonToggleFooter(true);
-    let req = {
-      contentId: data._id,
-      assessmentType: data.assessmentType.name,
-      userAnswers: values,
-    };
-
-    setSubmitting(false);
-    setButtonToggleFooter(true);
-  };
-
-  if (!initAnswer) {
-    // handle deleyed formik
+  const handleTextLeftView = (r, i) => {
     return (
-      <div className="p-16">
-        <Skeleton width={"100%"} height="200px" />
+      <div className="col-6 mb-24 d-flex align-items-center">
+        <div
+          className={`w-full radius-bl-4   ${getBorderColor(
+            r.userAnswer,
+            r.abjad
+          )}   border radius-tl-4 font-sm  py-8 px-16 `}
+        >
+          {r.question}
+        </div>
+        <div
+          className={`w-full w-52 h-36  radius-br-4 radius-tr-4 d-flex align-items-center justify-content-center`}
+          style={{
+            border: `1px solid ${r.userAnswer ? r.color : "#D4D7DB"}`,
+            backgroundColor: r.userAnswer ? r.color : "#D4D7DB",
+          }}
+        >
+          {r.userAnswer ? r.abjad : <CircleOutlinedIcon className="fs-17" />}
+        </div>
       </div>
     );
-  }
+  };
+
+  const handleTextRightView = (r, i) => {
+    return (
+      <div className="col-6 d-flex align-items-center mb-24 ">
+        <div
+          className=" w-52 h-36  radius-bl-4 radius-tl-4 d-flex align-items-center justify-content-center"
+          style={{
+            backgroundColor: getColorForOptionDup(data.options_dup[i].abjad),
+            border: `1px solid ${getColorForOptionDup(
+              data.options_dup[i].abjad
+            )}`,
+          }}
+        >
+          {getAbjadForOptionDup(data.options_dup[i].abjad)}
+        </div>
+        <div className="w-full">
+          <div
+            className={`radius-br-4 radius-tr-4 font-sm border py-8 px-16  ${
+              checkAnswer(data.options_dup[i].abjad, r.abjad)
+                ? "border-success-600 "
+                : "border-danger-500"
+            }`}
+          >
+            {data.options_dup[i].answer}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleImageLeftView = (r, i) => {
+    return (
+      <div className="col-6 mb-24 d-flex align-items-center position-relative">
+        <div className={` w-full`}>
+          <img
+            src={r.question}
+            alt=""
+            className={`w-full   radius-16 ${getBorderColor(
+              r.userAnswer,
+              r.abjad
+            )}`}
+            style={{ border: "2px dashed" }}
+          />
+        </div>
+        <div
+          className=" w-52 h-36 ml-4 radius-br-4 radius-tr-4 d-flex align-items-center justify-content-center"
+          style={{
+            border: `1px solid ${r.color}`,
+            backgroundColor: r.color,
+          }}
+        >
+          {r.abjad}
+        </div>
+        <div className={`position-absolute bottom-8`} style={{ left: "40%" }}>
+          {r.abjad !== r.userAnswer ? (
+            <CancelIcon className="fs-20 text-danger-400" />
+          ) : (
+            <CheckCircleOutlineOutlinedIcon className="fs-20 text-success-600" />
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const checkAnswer = (abjad) => {
+    let result = data.options.find((r) => r.userAnswer === abjad);
+    if (result) {
+      if (result.abjad === result.userAnswer) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const handleImageRightView = (r, i) => {
+    return (
+      <div className="col-6 d-flex align-items-center  mb-24 position-relative">
+        <div
+          className=" w-52 h-36  radius-bl-4 radius-tl-4 d-flex align-items-center justify-content-center"
+          style={{
+            backgroundColor: getColorForOptionDup(data.options_dup[i].abjad),
+            border: `1px solid ${getColorForOptionDup(
+              data.options_dup[i].abjad
+            )}`,
+          }}
+        >
+          {getAbjadForOptionDup(data.options_dup[i].abjad)}
+        </div>
+        <div className="w-full">
+          <div>
+            <img
+              src={data.options_dup[i].question}
+              alt=""
+              className={`w-full h-full  radius-16  ${
+                checkAnswer(data.options_dup[i].abjad, r.abjad)
+                  ? "border-success-600 "
+                  : "border-danger-500"
+              }`}
+              style={{ border: "2px dashed" }}
+            />
+          </div>
+        </div>
+        <div className={`position-absolute bottom-8`} style={{ left: "55%" }}>
+          {!checkAnswer(data.options_dup[i].abjad, r.abjad) ? (
+            <CancelIcon className="fs-20 text-danger-400" />
+          ) : (
+            <CheckCircleOutlineOutlinedIcon className="fs-20 text-success-600" />
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <div className="row">
-      <div className="col-12 card-container ">
-        <div className="card-content  px-40 ">
-          {data.instruction ? (
-            <h5 className="mb-16">{data.instruction}</h5>
-          ) : (
-            ""
-          )}
-          <Formik
-            initialValues={initAnswer}
-            onSubmit={(values) => onSubmit(values)}
-            enableReinitialize={true}
-          >
-            {(formik) => {
-              return (
-                <Form className="formFormik ">
-                  <div className="row mb-16">
-                    <div className="col-12">
-                      {data.options.map((r, i) => {
-                        return (
-                          <div className="row  align-items-center" key={i}>
-                            {/* left side */}
-                            <div className={` col-6 pl-12 `}>
-                              {r.question.includes("data:image/") ? (
-                                <div className="d-flex align-items-center mb-16">
-                                  <div
-                                    style={{ maxWidth: "252px" }}
-                                    className={` d-flex align-items-center   position-relative radius-14  ${
-                                      getClassAnswered(formik, `[${i}]`) ===
-                                      "none"
-                                        ? ""
-                                        : getClassAnswered(formik, `[${i}]`) ===
-                                          true
-                                        ? "border-dashed-success"
-                                        : "border-dashed-danger"
-                                    }`}
-                                  >
-                                    <div
-                                      className="position-absolute text-center "
-                                      style={{
-                                        left: "0",
-                                        right: "0",
-                                        bottom: "5px",
-                                      }}
-                                    >
-                                      {getClassAnswered(formik, `[${i}]`) ===
-                                      true ? (
-                                        <CheckCircleOutlineOutlined className="text-success" />
-                                      ) : (
-                                        ""
-                                      )}
-                                      {getClassAnswered(formik, `[${i}]`) ===
-                                      false ? (
-                                        <HighlightOff className="text-danger" />
-                                      ) : (
-                                        ""
-                                      )}
-                                    </div>
-                                    <img
-                                      src={r.question}
-                                      width="100%"
-                                      // height="100%"
-                                      style={{ objectFit: "cover" }}
-                                      className="radius-14"
-                                    />
-                                  </div>
-                                  <div
-                                    className={` ${
-                                      !buttonToggleFooter ? "d-none" : ""
-                                    }  radius-4 ml-16 d-flex justify-content-center align-items-center
-                                   `}
-                                    style={{
-                                      height: "36px",
-                                      backgroundColor: r.color,
-                                      width: "52px",
-                                      border: `1px solid ${r.color}`,
-                                    }}
-                                  >
-                                    {r.abjad}
-                                  </div>
-
-                                  <div
-                                    className={` ${
-                                      buttonToggleFooter ? "d-none" : ""
-                                    }  button-fill-${
-                                      data._id
-                                    }  radius-4 ml-16 d-flex justify-content-center align-items-center ${
-                                      leftSide &&
-                                      checkIsbuttonClicked(r.abjad) !== r.abjad
-                                        ? "cursor-pointer"
-                                        : ""
-                                    }`}
-                                    style={{
-                                      height: "36px",
-                                      width: "52px",
-                                      backgroundColor: "#D4D7DB",
-                                    }}
-                                    onClick={(e) => {
-                                      handleLeftClicked(e, r, i);
-                                    }}
-                                  >
-                                    {checkIsbuttonClicked(r.abjad) !==
-                                    r.abjad ? (
-                                      <CircleOutlined
-                                        style={{
-                                          fontSize: "18px",
-                                        }}
-                                      />
-                                    ) : (
-                                      r.abjad
-                                    )}
-                                  </div>
-                                </div>
-                              ) : (
-                                <div
-                                  className="d-flex align-items-center mb-16 "
-                                  style={{ maxWidth: "320px" }}
-                                >
-                                  <div
-                                    className={`d-flex  align-items-center radius-tl-4 radius-bl-4 pl-16 justify-content-between w-full
-                                   ${
-                                     getClassAnswered(formik, `[${i}]`) ===
-                                     "none"
-                                       ? ""
-                                       : getClassAnswered(formik, `[${i}]`) ===
-                                         true
-                                       ? "border border-success"
-                                       : "border border-danger"
-                                   }`}
-                                    style={{
-                                      minHeight: "36px",
-                                      border: "1px solid #d4d7db",
-                                    }}
-                                  >
-                                    <span>{r.question}</span>
-                                    <span className="mr-16 text-danger"></span>
-                                  </div>
-                                  <div
-                                    className={` ${
-                                      !buttonToggleFooter ? "d-none" : ""
-                                    }   d-flex align-items-center radius-tr-4 radius-br-4 justify-content-center
-                                   `}
-                                    style={{
-                                      height: "36px",
-                                      backgroundColor: r.color,
-                                      width: "60px",
-                                      border: `1px solid ${r.color}`,
-                                    }}
-                                  >
-                                    {r.abjad}
-                                  </div>
-
-                                  <div
-                                    className={` ${
-                                      buttonToggleFooter ? "d-none" : ""
-                                    }  button-fill-${
-                                      data._id
-                                    }  d-flex align-items-center radius-tr-4 radius-br-4 justify-content-center border border-neutral-100 ${
-                                      leftSide &&
-                                      checkIsbuttonClicked(r.abjad) !== r.abjad
-                                        ? "cursor-pointer"
-                                        : ""
-                                    }`}
-                                    style={{
-                                      height: "36px",
-                                      backgroundColor: "#D4D7DB",
-                                      width: "60px",
-                                    }}
-                                    onClick={(e) => {
-                                      handleLeftClicked(e, r, i);
-                                    }}
-                                  >
-                                    {checkIsbuttonClicked(r.abjad) !==
-                                    r.abjad ? (
-                                      <CircleOutlined
-                                        style={{
-                                          fontSize: "18px",
-                                        }}
-                                      />
-                                    ) : (
-                                      r.abjad
-                                    )}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                            {/* right side */}
-                            <div
-                              className={`col-6 d-flex justify-content-end `}
-                            >
-                              {data.options_dup[i].answer.includes(
-                                "data:image/"
-                              ) ? (
-                                <div className="d-flex align-items-center mb-16 ">
-                                  <div
-                                    className={` ${
-                                      !buttonToggleFooter ? "d-none" : ""
-                                    }  radius-4  d-flex justify-content-center align-items-center `}
-                                    style={{
-                                      height: "36px",
-                                      width: "52px",
-                                      backgroundColor:
-                                        data.options_dup[i].color,
-                                      border: `1px solid ${data.options_dup[i].color}`,
-                                    }}
-                                  >
-                                    {/* sini */}
-                                    <span>{data.options_dup[i].abjad}</span>
-                                  </div>
-
-                                  <div
-                                    className={`${
-                                      buttonToggleFooter ? "d-none" : ""
-                                    }  button-fill-${
-                                      data._id
-                                    }    radius-4  d-flex justify-content-center align-items-center ${
-                                      rightSide &&
-                                      checkIsbuttonClickedRight(
-                                        data.options_dup[i].abjad
-                                      ) !== data.options_dup[i].abjad
-                                        ? "cursor-pointer"
-                                        : ""
-                                    }`}
-                                    style={{
-                                      height: "36px",
-                                      width: "52px",
-                                      backgroundColor: "#D4D7DB",
-                                    }}
-                                    onClick={(e) => {
-                                      handleRightClicked(
-                                        e,
-                                        data.options_dup[i],
-                                        formik,
-                                        i,
-                                        `#circle-right-image-${data._id}-${i}`
-                                      );
-                                    }}
-                                  >
-                                    <div
-                                      className={
-                                        checkIsbuttonClickedRight(
-                                          data.options_dup[i].abjad
-                                        ) === data.options_dup[i].abjad
-                                          ? "d-none"
-                                          : "d-flex align-items-center"
-                                      }
-                                    >
-                                      <CircleOutlined
-                                        style={{
-                                          fontSize: "18px",
-                                        }}
-                                      />
-                                    </div>
-                                    <span
-                                      id={`circle-right-image-${data._id}-${i}`}
-                                      className={
-                                        checkIsbuttonClickedRight(
-                                          data.options_dup[i].abjad
-                                        ) !== data.options_dup[i].abjad
-                                          ? "d-none"
-                                          : "d-flex align-items-center"
-                                      }
-                                    ></span>
-                                  </div>
-
-                                  <div
-                                    style={{ maxWidth: "252px" }}
-                                    className={`ml-16 d-flex align-items-center  position-relative radius-14  ${
-                                      getClassAnsweredRight(
-                                        data.options_dup[i],
-                                        formik
-                                      ) === "none"
-                                        ? ""
-                                        : getClassAnsweredRight(
-                                            data.options_dup[i],
-                                            formik
-                                          ) === true
-                                        ? "border-dashed-success"
-                                        : "border-dashed-danger"
-                                    }`}
-                                  >
-                                    <div
-                                      className="position-absolute text-center "
-                                      style={{
-                                        left: "0",
-                                        right: "0",
-                                        bottom: "5px",
-                                      }}
-                                    >
-                                      {getClassAnsweredRight(
-                                        data.options_dup[i],
-                                        formik
-                                      ) === true ? (
-                                        <CheckCircleOutlineOutlined className="text-success" />
-                                      ) : (
-                                        ""
-                                      )}
-                                      {getClassAnsweredRight(
-                                        data.options_dup[i],
-                                        formik
-                                      ) === false ? (
-                                        <HighlightOff className="text-danger" />
-                                      ) : (
-                                        ""
-                                      )}
-                                    </div>
-                                    <img
-                                      src={data.options_dup[i].answer}
-                                      width="100%"
-                                      // height="100%"
-                                      style={{
-                                        // objectFit: "cover",
-                                        borderRadius: "14px",
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              ) : (
-                                <div
-                                  className="d-flex align-items-center mb-16 w-full "
-                                  style={{ maxWidth: "320px" }}
-                                >
-                                  <div
-                                    className={` ${
-                                      !buttonToggleFooter ? "d-none" : ""
-                                    } d-flex align-items-center justify-content-center radius-tl-4 radius-bl-4`}
-                                    style={{
-                                      height: "36px",
-                                      width: "60px",
-                                      backgroundColor:
-                                        data.options_dup[i].color,
-                                      border: `1px solid ${data.options_dup[i].color}`,
-                                    }}
-                                  >
-                                    <span>{data.options_dup[i].abjad}</span>
-                                  </div>
-
-                                  <div
-                                    className={`${
-                                      buttonToggleFooter ? "d-none" : ""
-                                    }  button-fill-${
-                                      data._id
-                                    }  d-flex align-items-center justify-content-center border border-neutral-100 radius-tl-4 radius-bl-4 ${
-                                      rightSide &&
-                                      checkIsbuttonClickedRight(
-                                        data.options_dup[i].abjad
-                                      ) !== data.options_dup[i].abjad
-                                        ? "cursor-pointer"
-                                        : ""
-                                    }`}
-                                    style={{
-                                      height: "36px",
-                                      width: "60px",
-                                      backgroundColor: "#D4D7DB",
-                                    }}
-                                    onClick={(e) => {
-                                      handleRightClicked(
-                                        e,
-                                        data.options_dup[i],
-                                        formik,
-                                        i,
-                                        `#circle-right-input-${data._id}-${i}`
-                                      );
-                                    }}
-                                  >
-                                    <div
-                                      className={
-                                        checkIsbuttonClickedRight(
-                                          data.options_dup[i].abjad
-                                        ) === data.options_dup[i].abjad
-                                          ? "d-none"
-                                          : "d-flex align-items-center"
-                                      }
-                                    >
-                                      <CircleOutlined
-                                        style={{
-                                          fontSize: "18px",
-                                        }}
-                                      />
-                                    </div>
-                                    <span
-                                      id={`circle-right-input-${data._id}-${i}`}
-                                      className={
-                                        checkIsbuttonClickedRight(
-                                          data.options_dup[i].abjad
-                                        ) !== data.options_dup[i].abjad
-                                          ? "d-none"
-                                          : ""
-                                      }
-                                    ></span>
-                                  </div>
-                                  <div
-                                    className={`d-flex  align-items-center radius-tr-4 radius-br-4 pl-16 justify-content-between w-full
-                                   ${
-                                     getClassAnsweredRight(
-                                       data.options_dup[i],
-                                       formik
-                                     ) === "none"
-                                       ? ""
-                                       : getClassAnsweredRight(
-                                           data.options_dup[i],
-                                           formik
-                                         ) === true
-                                       ? "border border-success"
-                                       : "border border-danger"
-                                   }`}
-                                    style={{
-                                      minHeight: "36px",
-                                      border: "1px solid #d4d7db",
-                                    }}
-                                  >
-                                    <span>{data.options_dup[i].answer}</span>
-                                    <span className="mr-16 text-danger"></span>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </Form>
-              );
-            }}
-          </Formik>
-        </div>
+    <div className="card-content   ">
+      <div className="row px-40 gx-0">
+        {data.options.map((r, i) => {
+          return (
+            <div className="col-12" key={"left" + i}>
+              <div className="row">
+                {r.question.includes("data:image/")
+                  ? handleImageLeftView(r, i)
+                  : handleTextLeftView(r, i)}{" "}
+                {data.options_dup[i].question.includes("data:image/")
+                  ? handleImageRightView(r, i)
+                  : handleTextRightView(r, i)}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

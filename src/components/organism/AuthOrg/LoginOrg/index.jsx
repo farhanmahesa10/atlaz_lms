@@ -45,7 +45,7 @@ const LoginOrg = (props) => {
             process.env.REACT_APP_BASE_URL + "/accessToken",
             r.accessToken.token
           );
-          navigate("/");
+          navigate("/dashboard");
         }
         setIsLoading(false);
       })

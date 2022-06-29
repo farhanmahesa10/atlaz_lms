@@ -13,9 +13,12 @@ const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
   const { getUserInfo } = useGlobalFunction();
   return (
-    <Container fluid className="m-0 pl-24 lg-pl-48 pt-0 pr-12 lg-pr-48">
+    <Container
+      fluid
+      className="m-0 pl-12 md-pl-24 lg-pl-48 pt-0 pr-12 lg-pr-48"
+    >
       <Navbar.Brand
-        className="pt-20 pb-24  m-0 position-relative "
+        className="pt-20 pb-24   m-0 position-relative "
         style={{ zIndex: 9 }}
       >
         <Link to="/">
@@ -56,7 +59,7 @@ const NavbarContainer = (props) => {
               setShowCanvas(true);
             }}
           >
-            <MenuIcon className="ml-16" />
+            <MenuIcon className="ml-16 mr-12 md-mr-32" />
           </div>
         </div>
         {!auth ? (
@@ -150,7 +153,7 @@ const NormalMenu = (props) => {
     <Can allowAccess={res.allowAccess}>
       <Link
         to={res.link}
-        className="px-12 d-flex align-items-center flex-column justify-content-center"
+        className="px-24 d-flex align-items-center flex-column justify-content-center"
       >
         {res.label}
         {res.activeTo === props.activeMenu && (
@@ -174,7 +177,7 @@ const DropDownMenu = (props) => {
   }
   return (
     <Can allowAccess={res.allowAccess}>
-      <div className="btn-group dropdown px-12">
+      <div className="btn-group dropdown px-24">
         <div
           type="button"
           className="cursor-pointer dropdown-toggle d-flex align-items-center"

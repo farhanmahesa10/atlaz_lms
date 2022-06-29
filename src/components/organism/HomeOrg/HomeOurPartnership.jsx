@@ -10,7 +10,7 @@ const HomeOurPartnership = () => {
             <div
               className=" row gx-0 mx-24 md-mx-48 px-32 md-px-32   py-48 xl-py-104  align-items-center radius-24"
               style={{
-                border: "1px dashed #AAAFB7",
+                border: "2px dashed #AAAFB7",
                 backgroundImage: `url('${bgPartnership}')`,
                 backgroundSize: "cover",
               }}

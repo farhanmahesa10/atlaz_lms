@@ -24,8 +24,8 @@ const HomeWhatTheySay = () => {
       ) : (
         <div className="d-flex justify-content-center">
           <div className="w-full " style={{ maxWidth: "1440px" }}>
-            <div className=" ">
-              {/* <div className=" mt-48 md-mt-64 xl-mt-104"> */}
+            <div className=" mt-48 md-mt-64 xl-mt-104">
+              {/* */}
               <div className="text-center mb-54">
                 <h3 className="m-0">What they say</h3>
                 <div style={{ marginTop: "-10px" }}>

@@ -14,8 +14,12 @@ const HomeHowToPurchase = () => {
     >
       <div className="" style={{ maxWidth: "1440px" }}>
         <div className=" rounded d-xl-flex  justify-content-between align-items-center">
-          <div className=" d-none d-xl-block  md-w-p-100 xl-h-572 mr-104">
-            <img src="/images/english-book.png" alt="" className="w-p-100" />
+          <div className=" d-none d-xl-block md-w-p-100 xl-h-572 mr-104">
+            <img
+              src="/images/english-book.png"
+              alt=""
+              className="w-p-100  radius-14"
+            />
           </div>
           <div className="xl-w-p-50 w-p-100  ">
             <div className="row  md-w-573 justify-content-center">

@@ -55,7 +55,7 @@ const BeginAssessmentFIleUploader = (props) => {
                 if (
                   extension.toLowerCase() !== "docx" &&
                   extension.toLowerCase() !== "doc" &&
-                  extension.toLowerCase() !== "doc"
+                  extension.toLowerCase() !== "pdf"
                 ) {
                   setValidationFormat(false);
                 } else {

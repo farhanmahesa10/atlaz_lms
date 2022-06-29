@@ -1,118 +1,114 @@
 import React, { useEffect, useState } from "react";
-
+import Slider from "react-slick";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { useRef } from "react";
 const CarouselHero = (props) => {
-  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
-  const [imgPhone, setImgPhone] = useState(props.imgPhone);
   const [img, setImg] = useState(props.img);
+  const [activePage, setActivePage] = useState(0);
+  const [showDirection, setShowDirection] = useState(false);
 
-  const [imgView, setImgView] = useState([]);
-
-  const handleImageView = () => {
-    if (windowWidth < 576) {
-      setImgView(imgPhone);
-    } else {
-      setImgView(img);
-    }
+  const settings = {
+    // dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    afterChange: (index) => {
+      setActivePage(index);
+    },
   };
 
-  useEffect(() => {
-    handleImageView();
-  }, [windowWidth]);
+  const sliderRef = useRef();
 
-  window.addEventListener("resize", (e) => {
-    setwindowWidth(e.target.innerWidth);
-  });
+  const changePage = (page) => {
+    sliderRef.current.slickGoTo(page);
+    setActivePage(page);
+  };
 
-  useEffect(() => {
-    setImg(props.img);
-    setImgPhone(props.imgPhone);
-    handleImageView();
-  }, [props.imgPhone, props.img]);
-
-  const [showArrow, setShowArrow] = useState(false);
+  const nextPage = () => {
+    sliderRef.current.slickNext();
+  };
+  const prevPage = () => {
+    sliderRef.current.slickPrev();
+  };
 
   return (
-    <>
-      <div
-        id="my-carousel"
-        className="carousel slide w-p-100   "
-        data-bs-ride="carousel"
-        onMouseOver={() => setShowArrow(true)}
-        onMouseLeave={() => setShowArrow(false)}
-        // style={{ width: "1440px" }}
-      >
+    <div
+      className="position-relative cursor-pointer"
+      onMouseEnter={() => setShowDirection(true)}
+      onMouseLeave={() => setShowDirection(false)}
+    >
+      <div className={`${!showDirection && "d-none"} `}>
         <div
-          className="carousel-indicators   position-absolute "
-          style={{ bottom: "-12px" }}
+          className="position-absolute d-none d-lg-block"
+          style={{ zIndex: "90", top: "40%", left: "-16px" }}
+          onClick={prevPage}
         >
-          <div className="bg-white radius-14 h-16 px-8 d-flex align-items-center">
-            <button
-              type="button"
-              data-bs-target="#my-carousel"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#my-carousel"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
+          <div
+            className="w-40 h-40 cursor-pointer radius-8 d-flex align-items-center justify-content-center text-white"
+            style={{ background: "rgba(0, 0, 0, 0.5)" }}
+          >
+            <ChevronLeftIcon className="fs-30" />
           </div>
         </div>
-        <div className="carousel-inner ">
-          {imgView.map((r, i) => {
+        <div
+          className="position-absolute d-none d-lg-block"
+          style={{ zIndex: "90", top: "40%", right: "-16px" }}
+          onClick={nextPage}
+        >
+          <div
+            className="w-40 h-40 cursor-pointer radius-8 d-flex align-items-center justify-content-center text-white"
+            style={{ background: "rgba(0, 0, 0, 0.5)" }}
+          >
+            <ChevronRightIcon className="fs-30" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <Slider {...settings} ref={sliderRef}>
+          {img.map((r, i) => {
             return (
-              <div
-                className={`carousel-item ${i === 0 ? "active" : ""}`}
-                data-bs-interval="10000"
-                key={i}
-              >
-                <img src={r} className="d-block " style={{ width: "100%" }} />
+              <div key={i}>
+                <div className="d-none d-sm-block">
+                  <img
+                    src={r.imageLarge}
+                    className="d-block "
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div className="d-sm-none d-block">
+                  <img
+                    src={r.imageSmall}
+                    className="d-block "
+                    style={{ width: "100%" }}
+                  />
+                </div>
               </div>
             );
           })}
+        </Slider>
+        <div className="position-relative bottom-40 ">
+          <div className="d-flex justify-content-center">
+            <div className=" ">
+              <div className="py-5 px-4  w-full radius-14 bg-white d-flex gap-8 justify-content-center">
+                {img.map((res, page) => {
+                  return (
+                    <div
+                      className={`w-8 h-8 bg-neutral-200 radius-p-100 cursor-pointer ${
+                        activePage === page && "bg-neutral-500"
+                      } `}
+                      key={"page" + page}
+                      onClick={() => changePage(page)}
+                    ></div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
-        <button
-          className={` carousel-control-prev cursor-pointer text-white d-none d-md-block`}
-          type="button"
-          data-bs-target="#my-carousel"
-          data-bs-slide="prev"
-        >
-          <span
-            className={`${
-              !showArrow ? "d-none" : ""
-            } radius-8  h-48 w-48  d-flex align-items-center justify-content-center`}
-            aria-hidden="true"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-            }}
-          >
-            <i className="bi bi-chevron-left fw-bold fs-24 text-white"></i>
-          </span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className={`carousel-control-next cursor-pointer d-none d-md-flex justify-content-end  `}
-          type="button"
-          data-bs-target="#my-carousel"
-          data-bs-slide="next"
-        >
-          <span
-            className={`${
-              !showArrow ? "d-none" : ""
-            }  radius-8 h-48 w-48 position-relative end-0 d-flex align-items-center justify-content-center`}
-            aria-hidden="true"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-          >
-            <i className="bi bi-chevron-right fw-bold fs-24 text-white"></i>
-          </span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
-    </>
+    </div>
   );
 };
 
