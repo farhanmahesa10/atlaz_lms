@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/variables';
+@import "../../../../assets/scss/variables";
 
 .Layout-preview-content {
   main {
@@ -184,12 +184,12 @@
   }
 
   /* IMAGE STYLES */
-  .radio-custom+.custom {
+  .radio-custom + .custom {
     cursor: pointer;
   }
 
   /* CHECKED STYLES */
-  .radio-custom:checked+.custom {
+  .radio-custom:checked + .custom {
     outline: 3.5px solid $primary_500;
   }
 
@@ -207,31 +207,41 @@
     width: 100%;
     outline: none;
     resize: none;
-    background-image: -webkit-linear-gradient(transparent,
-        transparent 39px,
-        #000 39px,
-        #000 40px,
-        transparent 40px);
-    background-image: -moz-linear-gradient(transparent,
-        transparent 39px,
-        #000 39px,
-        #000 40px,
-        transparent 40px);
-    background-image: -ms-linear-gradient(transparent,
-        transparent 39px,
-        #000 39px,
-        #000 40px,
-        transparent 40px);
-    background-image: -o-linear-gradient(transparent,
-        transparent 39px,
-        #000 39px,
-        #000 40px,
-        transparent 40px);
-    background-image: linear-gradient(transparent,
-        transparent 39px,
-        #000 39px,
-        #000 40px,
-        transparent 40px);
+    background-image: -webkit-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: -moz-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: -ms-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: -o-linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
+    background-image: linear-gradient(
+      transparent,
+      transparent 39px,
+      #000 39px,
+      #000 40px,
+      transparent 40px
+    );
     background-size: 100% 40px;
     line-height: 40px;
   }

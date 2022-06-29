@@ -145,7 +145,8 @@ const PostFeedCard = (props) => {
               <li>
                 <Divider />
               </li>
-              {getUserInfo().id === data.user._id && (
+              {getUserInfo().id === data.user._id ||
+              getUserInfo().roleData.name.toLowerCase() === "teacher" ? (
                 <li className="py-8 cursor-pointer hover-text-primary-500">
                   <ModalTrigger
                     target={`deletePostedFeed${data._id}`}
@@ -161,6 +162,8 @@ const PostFeedCard = (props) => {
                     Delete
                   </ModalTrigger>
                 </li>
+              ) : (
+                ""
               )}
             </ul>
           </div>
@@ -363,7 +366,7 @@ const PostedAssessment = (props) => {
         </span>
       </div>
       <div className="mt-16">
-        <p className="mb-16">Assessment will splited by:</p>
+        <p className="mb-16">Assessments that will be carried out are:</p>
         {data.assessment.content.subtopic.map((r, i) => {
           return (
             <div

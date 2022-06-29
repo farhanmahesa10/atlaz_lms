@@ -17,6 +17,7 @@ const BeginAssessmentOrg = () => {
     subTopicData,
     redirectLink,
     assessmentData,
+    isSubmiting,
   } = useBeginAssessment();
   let nomor = 0;
   const submitRef = useRef();
@@ -78,11 +79,13 @@ const BeginAssessmentOrg = () => {
                     </div>
                     <div className="text-end  mt-66 mb-44">
                       <button
-                        className="btn-primary font-normal w-160 text-center"
-                        type="submit"
+                        className={` ${
+                          isSubmiting ? "btn-disable" : "btn-primary"
+                        } font-normal w-160 text-center`}
+                        type={isSubmiting ? "button" : "submit"}
                         ref={submitRef}
                       >
-                        Submit
+                        {isSubmiting ? "Loading..." : "Submit"}
                       </button>
                     </div>
                   </div>

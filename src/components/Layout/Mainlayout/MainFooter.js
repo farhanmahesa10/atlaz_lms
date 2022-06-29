@@ -9,7 +9,7 @@ const MainFooter = (props) => {
         } border-top`}
       >
         <div className="container text-center ">
-          <span className="text-neutral-200">
+          <span className="text-neutral-200 font-xs md-font-sm">
             © 2022 PT Atlaz Belajar Bahasa. All Right Reserved
           </span>
         </div>

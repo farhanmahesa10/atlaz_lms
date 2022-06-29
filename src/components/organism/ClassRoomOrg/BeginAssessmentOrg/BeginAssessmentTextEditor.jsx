@@ -13,6 +13,23 @@ const BeginAssessmentTextEditor = (props) => {
       r.setAttribute("height", "100%");
       r.classList.add("radius-4");
     });
+    if (contentRef.current) {
+      let ul = contentRef.current.querySelectorAll("ul");
+      let ol = contentRef.current.querySelectorAll("ol");
+
+      if (ul) {
+        ul.forEach((r) => {
+          // r.style.listStyleType = "inherit";
+          r.style.paddingLeft = "20px";
+        });
+      }
+      if (ol) {
+        ol.forEach((r) => {
+          // r.style.listStyleType = "inherit";
+          r.style.paddingLeft = "20px";
+        });
+      }
+    }
   });
   return (
     <>

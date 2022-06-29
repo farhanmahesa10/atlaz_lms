@@ -187,17 +187,17 @@ function PreviewContentOrg() {
                   <div className="row justify-content-center">
                     <div className="col-4 ">
                       {!pagination.prev ? (
-                        <>
+                        <div className="d-flex">
                           <button className="btn btn-disable d-flex justify-content-center align-items-center w-28 h-28 p-0 m-0">
                             <ArrowBack className="fs-20" />
                           </button>
-                          <div className="ml-8 d-flex justify-content-between flex-column ">
+                          <div className="ml-8 d-flex justify-content-between flex-column  ">
                             <span className="font-xs text-neutral-300">
                               Back
                             </span>
                             <span className="font-xs text-neutral-300">-</span>
                           </div>
-                        </>
+                        </div>
                       ) : (
                         <Link
                           to={`/classroom/content-practice/${classId}/${subjectId}/${lessonId}/${topicId}/${pagination.prev._id}`}

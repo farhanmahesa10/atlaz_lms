@@ -18,7 +18,7 @@ const ErrorDefault = () => {
           <div className="d-flex justify-content-center">
             <div className="max-w-420 xl-max-w-637 w-full d-flex flex-column flex-xl-row justify-content-center align-items-center">
               <img src={page404} alt="" className="mr-52 w-258" />
-              <div className="text-center">
+              <div className="text-center text-xl-start">
                 <h3 className="md-h1">Oops, Something went wrong!</h3>
                 <p className="font-sm-medium mt-16">
                   We can’t seem to find the page you are looking for.

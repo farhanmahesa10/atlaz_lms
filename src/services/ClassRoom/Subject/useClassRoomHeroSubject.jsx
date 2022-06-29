@@ -14,10 +14,6 @@ const useClassRoomHeroSubject = () => {
   const banner = ClassRoomHero1;
   const [breadcrumbsData, setBreadcrumbsData] = useState([
     {
-      link: "/",
-      label: "Home",
-    },
-    {
       link: "/classroom",
       label: "Classroom",
     },

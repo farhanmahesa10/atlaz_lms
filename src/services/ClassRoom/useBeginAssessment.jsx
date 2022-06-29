@@ -19,7 +19,7 @@ const useBeginAssessment = () => {
   const params = useParams();
   const idsubtopic = params.id;
   const { setFlashMessage } = useGlobalFunction();
-
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const [filledQuestions, setFilledQuestions] = useState([]);
   const [initialValues, setInitialValues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -266,6 +266,7 @@ const useBeginAssessment = () => {
   };
 
   const onSubmit = (values) => {
+    setIsSubmiting(true);
     if (!manualValidation) {
       setFlashMessage(
         "Submit Error",
@@ -293,7 +294,8 @@ const useBeginAssessment = () => {
         navigate(redirectLink);
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
+        setIsSubmiting(false);
       });
 
     // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -310,6 +312,7 @@ const useBeginAssessment = () => {
     subTopicData,
     redirectLink,
     assessmentData,
+    isSubmiting,
   };
 };
 

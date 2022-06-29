@@ -5,6 +5,7 @@ import { Divider, FormikControl, GlobalToast } from "../../../atoms";
 import { Form, Formik } from "formik";
 import { useSecurityOrg } from "../../../../services";
 import { Link } from "react-router-dom";
+import { Can } from "../../../../permission";
 const SecurityOrg = () => {
   const {
     initialValues,
@@ -31,7 +32,7 @@ const SecurityOrg = () => {
               </p>
             </div>
           </div>
-          <div className="col-12 col-xl-9 mt-24">
+          <div className="col mt-24">
             <div className="border border-secondary-500 radius-14 px-32 py-24">
               <h5>Password</h5>
               <p className="font-sm text-neutral-300">
@@ -92,22 +93,23 @@ const SecurityOrg = () => {
               </Formik>
             </div>
           </div>
-          <div className="d-none d-xl-block col-xl-3">
-            <div className="h-121 xl-h-72 xl-mt-24 border border-secondary-500  radius-14">
-              <div className="h-full d-flex justify-content-between align-items-center px-16">
-                <div>
-                  <h6>Change your name?</h6>
-                  <p className="font-xs text-neutral-300">
-                    Go to manage account.
-                  </p>
+          <Can allowAccess="public">
+            <div className="d-none d-xl-block col-xl-3">
+              <div className="h-121 xl-h-72 xl-mt-24 border border-secondary-500  radius-14">
+                <div className="h-full d-flex justify-content-between align-items-center px-16">
+                  <div>
+                    <h6>Change your name?</h6>
+                    <p className="font-xs text-neutral-300">
+                      Go to manage account.
+                    </p>
+                  </div>
+                  <Link to="/manage-account" className="cursor-pointer">
+                    <KeyboardArrowRightIcon />
+                  </Link>
                 </div>
-                <Link to="/manage-account" className="cursor-pointer">
-                  <KeyboardArrowRightIcon />
-                </Link>
               </div>
-            </div>
 
-            <div className=" h-121 xl-h-72 mt-16 border border-secondary-500 radius-14">
+              {/* <div className=" h-121 xl-h-72 mt-16 border border-secondary-500 radius-14">
               <div className="d-flex justify-content-between h-full  align-items-center  px-16">
                 <div className="">
                   <h6>See my owned book</h6>
@@ -119,8 +121,9 @@ const SecurityOrg = () => {
                   <KeyboardArrowRightIcon />
                 </Link>
               </div>
+            </div> */}
             </div>
-          </div>
+          </Can>
         </div>
       </div>
     </MainLayout>

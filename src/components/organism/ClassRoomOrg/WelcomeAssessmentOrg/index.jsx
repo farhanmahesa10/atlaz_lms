@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { BreadCrumb, Divider, GlobalToast, ModalTrigger } from "../../../atoms";
 import MainLayout from "../../../Layout/Mainlayout";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -15,6 +15,7 @@ import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined
 import { Link } from "react-router-dom";
 import { useWelcomeAssessment } from "../../../../services";
 import moment from "moment";
+import { Can } from "../../../../permission";
 const WelcomeAssessmentOrg = () => {
   const {
     breadcrumbsData,
@@ -29,6 +30,28 @@ const WelcomeAssessmentOrg = () => {
   const createMarkup = () => {
     return { __html: data.subtopic.preparationText };
   };
+
+  const rulesRef = useRef();
+  useEffect(() => {
+    if (rulesRef.current) {
+      let ul = rulesRef.current.querySelectorAll("ul");
+      let ol = rulesRef.current.querySelectorAll("ol");
+
+      if (ul) {
+        ul.forEach((r) => {
+          // r.style.listStyleType = "inherit";
+          r.style.paddingLeft = "20px";
+        });
+      }
+      if (ol) {
+        ol.forEach((r) => {
+          // r.style.listStyleType = "inherit";
+          r.style.paddingLeft = "20px";
+        });
+      }
+    }
+  });
+
   return (
     <MainLayout navbarBg="bg-white">
       {isLoading ? (
@@ -98,17 +121,19 @@ const WelcomeAssessmentOrg = () => {
                       </div>
                       <div className="mt-40">
                         {data.status.toLowerCase() === "on going" ? (
-                          <Link
-                            to={`/classroom/begin-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${params.id}`}
-                          >
-                            <button
-                              className="font-sm btn-primary d-flex align-items-center"
-                              type="button"
+                          <Can allowAccess="student">
+                            <Link
+                              to={`/classroom/begin-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${params.id}`}
                             >
-                              <span className="mr-16">Begin Assessment</span>{" "}
-                              <ArrowRightAltOutlinedIcon />
-                            </button>
-                          </Link>
+                              <button
+                                className="font-sm btn-primary d-flex align-items-center"
+                                type="button"
+                              >
+                                <span className="mr-16">Begin Assessment</span>{" "}
+                                <ArrowRightAltOutlinedIcon />
+                              </button>
+                            </Link>
+                          </Can>
                         ) : (
                           <ModalTrigger
                             target="modal-begin-assessment"
@@ -133,7 +158,8 @@ const WelcomeAssessmentOrg = () => {
                       </p>
                       <div
                         dangerouslySetInnerHTML={createMarkup()}
-                        className="h-350 custom-scroll"
+                        className="h-350 custom-scroll "
+                        ref={rulesRef}
                         style={{ overflow: "auto" }}
                       ></div>
                     </div>

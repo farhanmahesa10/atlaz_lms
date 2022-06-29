@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { TextareaAutosize } from "@mui/material";
 import * as Yup from "yup";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Can } from "../../../../permission";
 const CreateFeedCard = (props) => {
   const [canSubmit, setCanSubmit] = useState(false);
   const [isFileError, setIsFileError] = useState(false);
@@ -142,13 +143,15 @@ const CreateFeedCard = (props) => {
                   <SendIcon className="fs-18 ml-8" />
                 </button>
               </div>
-              <div className="p-16 d-flex align-items-center text-neutral-300 bg-secondary-100 radius-b-8">
-                <FormikControl
-                  control="checkbox"
-                  name="isAll"
-                  label="Send to the same subject in all classes"
-                />
-              </div>
+              <Can allowAccess="teacher">
+                <div className="p-16 d-flex align-items-center text-neutral-300 bg-secondary-100 radius-b-8">
+                  <FormikControl
+                    control="checkbox"
+                    name="isAll"
+                    label="Send to the same subject in all classes"
+                  />
+                </div>
+              </Can>
             </Form>
           );
         }}

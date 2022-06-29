@@ -47,7 +47,8 @@ const PostCommentCard = (props) => {
               {moment(comment.createdAt).format(" H:m A")}
             </p>
             <FiberManualRecordIcon className="fs-5 text-neutral-100 mx-8" />
-            {getUserInfo().id === comment.user._id && (
+            {getUserInfo().id === comment.user._id ||
+            getUserInfo().roleData.name.toLowerCase() === "teacher" ? (
               <ModalTrigger
                 target={`deleteCommentFeed-${comment._id}`}
                 data={{
@@ -63,6 +64,8 @@ const PostCommentCard = (props) => {
                   Delete
                 </p>
               </ModalTrigger>
+            ) : (
+              ""
             )}
           </div>
         </div>

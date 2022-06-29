@@ -14,7 +14,7 @@ const useSecurityOrg = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    currentPassword: Yup.string().required("This ield is required"),
+    currentPassword: Yup.string().required("This field is required"),
     newPassword: Yup.string().test(
       "newPassword",
       "Validation failure message",

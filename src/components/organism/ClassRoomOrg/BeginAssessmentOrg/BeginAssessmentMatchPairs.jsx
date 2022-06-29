@@ -162,7 +162,7 @@ const BeginAssessmentMatchPairs = (props) => {
                         <div className="d-flex align-items-center mb-16">
                           <div
                             style={{ maxWidth: "252px" }}
-                            className={` d-flex align-items-center   position-relative radius-14  ${
+                            className={` d-flex align-items-center  w-full position-relative radius-14  ${
                               getClassAnswered(formik, `[${i}]`) === "none"
                                 ? ""
                                 : getClassAnswered(formik, `[${i}]`) === true
@@ -389,7 +389,7 @@ const BeginAssessmentMatchPairs = (props) => {
 
                           <div
                             style={{ maxWidth: "252px" }}
-                            className={`ml-16 d-flex align-items-center  position-relative radius-14  ${
+                            className={`ml-16 d-flex align-items-center w-full position-relative radius-14  ${
                               getClassAnsweredRight(
                                 data.options_dup[i],
                                 formik

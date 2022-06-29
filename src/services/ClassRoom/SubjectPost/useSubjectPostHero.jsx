@@ -14,7 +14,7 @@ const useSubjectPostHero = () => {
       label: "Classroom",
     },
     {
-      link: `/classroom/class/${subjectId}`,
+      link: `/classroom/class/${classId}`,
       label: "Class",
     },
   ]);

@@ -34,7 +34,7 @@ const MatchPairsModalShow = (props) => {
           {r.question}
         </div>
         <div
-          className={`w-full w-52 h-36  radius-br-4 radius-tr-4 d-flex align-items-center justify-content-center`}
+          className={` min-w-52 min-h-36   radius-br-4 radius-tr-4 d-flex align-items-center justify-content-center`}
           style={{
             border: `1px solid ${r.userAnswer ? r.color : "#D4D7DB"}`,
             backgroundColor: r.userAnswer ? r.color : "#D4D7DB",
@@ -50,7 +50,7 @@ const MatchPairsModalShow = (props) => {
     return (
       <div className="col-6 d-flex align-items-center mb-24 ">
         <div
-          className=" w-52 h-36  radius-bl-4 radius-tl-4 d-flex align-items-center justify-content-center"
+          className=" min-w-52 min-h-36  radius-bl-4 radius-tl-4 d-flex align-items-center justify-content-center"
           style={{
             backgroundColor: getColorForOptionDup(data.options_dup[i].abjad),
             border: `1px solid ${getColorForOptionDup(
@@ -90,7 +90,7 @@ const MatchPairsModalShow = (props) => {
           />
         </div>
         <div
-          className=" w-52 h-36 ml-4 radius-br-4 radius-tr-4 d-flex align-items-center justify-content-center"
+          className=" min-w-52 min-h-36 ml-4 radius-br-4 radius-tr-4 d-flex align-items-center justify-content-center"
           style={{
             border: `1px solid ${r.color}`,
             backgroundColor: r.color,
@@ -123,7 +123,7 @@ const MatchPairsModalShow = (props) => {
     return (
       <div className="col-6 d-flex align-items-center  mb-24 position-relative">
         <div
-          className=" w-52 h-36  radius-bl-4 radius-tl-4 d-flex align-items-center justify-content-center"
+          className="  min-w-52 min-h-36  radius-bl-4 radius-tl-4 d-flex align-items-center justify-content-center"
           style={{
             backgroundColor: getColorForOptionDup(data.options_dup[i].abjad),
             border: `1px solid ${getColorForOptionDup(

@@ -103,10 +103,17 @@ section {
 body {
   line-height: 1;
 }
-ol,
-ul {
-  list-style: none;
+
+ul::marker {
+  // list-style: none;
+  margin-left: 20px;
 }
+
+ol::marker {
+  // list-style: none;
+  margin-left: 20px;
+}
+
 blockquote,
 q {
   quotes: none;
