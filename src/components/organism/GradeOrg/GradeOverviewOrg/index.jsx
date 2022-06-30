@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import MainLayout from "../../../Layout/Mainlayout";
 import { useGradeOverview } from "../../../../services";
 import { BreadCrumb } from "../../../atoms";
-import { TableMasterGradeOverview, TableTeacherGradeOverview } from "../../../molecules";
+import { TableMasterGradeOverview, TableStudentGradeOverview, TableTeacherGradeOverview } from "../../../molecules";
 import { Can } from "../../../../permission";
 
 const GradeOverviewOrg = () => {
@@ -37,7 +37,7 @@ const GradeOverviewOrg = () => {
             HEADMASTER,SCHOOLADMIN
           </Can>
           <Can allowAccess="STUDENT">
-            STUDENT
+            <TableStudentGradeOverview />
           </Can>
         </div>
       </div>

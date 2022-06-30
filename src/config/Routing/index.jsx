@@ -388,7 +388,18 @@ const Routing = () => {
         path="/grade/grade-overview/detail/:idSubject/:idClass/score/:id"
         element={
           <Authenticate>
-            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,TEACHER">
+            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,TEACHER">
+              <GradeBook />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/grade-overview/score/:idSubject/:idClass"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="STUDENT">
               <GradeBook />
             </CheckRole>
           </Authenticate>

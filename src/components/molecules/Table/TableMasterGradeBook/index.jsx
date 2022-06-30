@@ -76,7 +76,7 @@ function TableMasterGradeBook() {
                                         <td className="py-16 font-sm text-neutral-200">{index2+1}</td>
                                         <td className="py-16 font-sm" style={styleTableTd}>{result2.subtopic.name}</td>
                                         <td className="py-16 font-sm text-center">
-                                            { result2.score ? result2.score : 'On grading' }
+                                            { result2.score ? result2.score.toFixed(1) : 'On grading' }
                                         </td>
                                     </tr>
                                     })

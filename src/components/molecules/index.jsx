@@ -109,10 +109,12 @@ import TableTeacherGradeOverview from "./Table/TableTeacherGradeOverview";
 import TableTeacherGradeDetail from "./Table/TableTeacherGradeDetail";
 import GradeCard from "./Cards/GradeCard";
 import ModalManageDetail from "./Modals/Grades/ModalManageDetail";
+import TableStudentGradeOverview from "./Table/TableStudentGradeOverview";
 
 import ModalViewContent from "./Modals/Grades/ModalViewContent";
 
 export {
+  TableStudentGradeOverview,
   TableMasterGradeOverview,
   TableMasterGradeDetail,
   TableMasterGradeBook,

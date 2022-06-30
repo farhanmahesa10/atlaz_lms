@@ -33,8 +33,10 @@ import useManageInformation from "./Grade/useManageInformation";
 import useManageDetail from "./Grade/useManageDetail";
 import useTeacherGradeOverview from "./Grade/useTeacherGradeOverview";
 import useTeacherGradeDetail from "./Grade/useTeacherGradeDetail";
+import useStudentGradeOverview from "./Grade/useStudentGradeOverview";
 
 export {
+  useStudentGradeOverview,
   useGradeOverview,
   useGradeDetail,
   useGradeBook,

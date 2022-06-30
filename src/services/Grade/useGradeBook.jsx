@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
+import useGlobalFunction from "../GlobalFuntions/useGlobalFunction";
 import { useParams } from "react-router-dom";
 import { defConfig, GET, POST } from "../../config/RestAPI";
 
 function useGradeBook() {
   const { id, idSubject, idClass } = useParams()
+  const { getUserInfo, getRoleData } = useGlobalFunction();
+  const user = getUserInfo();
+  const roles = getRoleData();
+
   const [isLoading, setIsLoading] = useState(true)
   const [dataStudent, setDataStudent] = useState()
   const [dataGradeBook, setDataGradeBook] = useState()
@@ -28,6 +33,21 @@ function useGradeBook() {
     },
   ]);
 
+  const [breadcrumbsDataStudent, setBreadcrumbsDataStudent] = useState([
+    {
+      link: "/dashboard",
+      label: "Dashboard",
+    },
+    {
+      link: "/grade/grade-overview",
+      label: "Grade Overview",
+    },
+    {
+      link: "",
+      label: <span className="text-white">Gradebook</span>,
+    },
+  ]);
+
   const styleShadow = {
     boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.16)'
   }
@@ -40,7 +60,14 @@ function useGradeBook() {
 
   useEffect(() => {
     setIsLoading(true)
-    GET(`/report/teacher/student_detail?classlistId=${idClass}&subjectId=${idSubject}&student=${id}`, defConfig())
+    let userRoleName = roles
+        .find((r) => r.level === user.role)
+        .name.toLowerCase();
+    if(userRoleName === 'student') {
+      setBreadcrumbsData(breadcrumbsDataStudent)
+    }
+
+    GET(`/report/${userRoleName}/student_detail?classlistId=${idClass}&subjectId=${idSubject}&student=${id}`, defConfig())
       .then(res => {
         setDataStudent({
           name: res.data.student.name,

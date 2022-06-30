@@ -4,11 +4,11 @@ import { Field, Form, Formik } from 'formik'
 import { FormikControl, TableThead } from '../../../atoms'
 import { Link } from 'react-router-dom'
 import { Offcanvas } from 'react-bootstrap';
-import { useTeacherGradeOverview } from "../../../../services";
+import { useStudentGradeOverview } from "../../../../services";
 import { Search, TableChart, Launch, ArrowCircleDown, ArrowBack, ArrowForward } from '@mui/icons-material';
 import "../Table.scss"
 
-function TableTeacherGradeOverview() {
+function TableStudentGradeOverview() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -25,7 +25,7 @@ function TableTeacherGradeOverview() {
     pageCount,
     itemOffset,
     handlePageClick,
-  } = useTeacherGradeOverview()
+  } = useStudentGradeOverview()
 
   const resetTableOption = () => {
     console.log('tes')
@@ -87,7 +87,7 @@ function TableTeacherGradeOverview() {
                               <td width="45%">{item.subject.name}</td>
                               <td width="14%">
                                 <div className="d-flex">
-                                  {item.average ? item.average : 'N/A'} <Link to={`detail/${item.subject._id}/${item.classlist._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                  {item.average ? item.average : 'N/A'} <Link to={`score/${item.subject._id}/${item.classlist._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                               </td>
                             </tr>
                           }) : (<tr>
@@ -221,4 +221,4 @@ function TableTeacherGradeOverview() {
   )
 }
 
-export default TableTeacherGradeOverview
+export default TableStudentGradeOverview
