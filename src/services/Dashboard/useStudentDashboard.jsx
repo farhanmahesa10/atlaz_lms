@@ -28,7 +28,14 @@ const useStudentDashboard = () => {
     setIsLoadingBookList(true);
     GET("/client/dashboard/book_list", defConfig())
       .then((r) => {
-        setDataBookList(r.data);
+        let newData = [];
+        r.data.map((res, ind) => {
+          if (ind < 3) {
+            newData.push(res);
+          }
+        });
+
+        setDataBookList(newData);
         setIsLoadingBookList(false);
       })
       .catch((err) => {

@@ -10,6 +10,7 @@ const CarouselHero = (props) => {
 
   const settings = {
     // dots: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
