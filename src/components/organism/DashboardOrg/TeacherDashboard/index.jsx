@@ -54,7 +54,7 @@ const TeacherDashboard = () => {
                         Grade <br /> Student
                       </span>
                     }
-                    link="/user/edit-profile"
+                    link="/grade/grade-overview"
                   />
                 </div>
                 <div className="col-12 col-md-6 h-120 xl-h-173 d-none d-md-block">
@@ -79,7 +79,8 @@ const TeacherDashboard = () => {
                         Create <br /> Subject
                       </span>
                     }
-                    link="/user/edit-profile"
+                    link={process.env.REACT_APP_ADMIN_URL}
+                    isToExternal
                   />
                 </div>
                 <div className="col-12 col-md-6 h-120 xl-h-173 mt-24 d-none d-md-block">

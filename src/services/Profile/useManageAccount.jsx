@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import validator from "validator";
 const useManageAccount = () => {
   const { setFlashMessage } = useGlobalFunction();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingSubmitEmail, setIsLoadingSubmitEmail] = useState(false);
 
@@ -29,6 +29,7 @@ const useManageAccount = () => {
     setIsLoading(true);
     GET("/users/profile", defConfig())
       .then((r) => {
+        console.log(r);
         let newInit = {
           ...initialValuesStudentGeneral,
           fullname: r.data.name,

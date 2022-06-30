@@ -189,7 +189,10 @@ const DropDownMenu = (props) => {
           {res.label}
           <ArrowDropDownIcon className="text-neutral-400" />
         </div>
-        <ul className="dropdown-menu bg-white p-14 radius-8">
+        <ul
+          className="dropdown-menu bg-white p-14 radius-8"
+          style={{ listStyleType: "none" }}
+        >
           {res.childs.map((child, index) => {
             return (
               <li

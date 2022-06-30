@@ -22,7 +22,7 @@ const MyBookListContent = (props) => {
             className=" radius-14 p-8 border-secondary-500"
             style={{ border: "2px solid" }}
           >
-            <ul>
+            <ul style={{ listStyleType: "none" }}>
               <li
                 className={`p-8 my-2 hover-bg-primary-300  cursor-pointer radius-4 ${
                   category === "" && " bg-primary-300"

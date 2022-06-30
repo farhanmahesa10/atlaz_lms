@@ -1,7 +1,12 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { CircularProgress } from "../../../atoms";
 
-const OverviewStudentDashboard = () => {
+const OverviewStudentDashboard = (props) => {
+  const { data, isLoading } = props;
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="w-full radius-14 border border-secondary-500 h-148 xl-h-auto md-h-148 d">
       <div className="h-full md-h-auto  d-flex d-xl-block flex-column  justify-content-between ">
@@ -71,4 +76,11 @@ const Progress = (props) => {
   );
 };
 
+const Loading = () => {
+  return (
+    <div className="w-full radius-14  h-148 xl-h-367 md-h-148 ">
+      <Skeleton width="100%" height={"100%"} />
+    </div>
+  );
+};
 export default OverviewStudentDashboard;

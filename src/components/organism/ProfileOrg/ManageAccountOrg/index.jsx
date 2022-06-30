@@ -25,6 +25,7 @@ const ManageAccountOrg = () => {
     handleSubmitEmail,
     isLoadingSubmitEmail,
   } = useManageAccount();
+
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
       <GlobalToast />
@@ -152,14 +153,14 @@ const ManageAccountOrg = () => {
                       <div className="position-absolute top-0 h-full w-full">
                         <div className="text-center h-full  ">
                           <img
-                            src={data.avatar || "/images/profile.png"}
+                            src={data?.avatar || "/images/profile.png"}
                             alt=""
                             className="w-104 h-104 radius-p-100 mt-48  radius-p-100"
                           />
                           <div className="mt-16">
                             <h5>{data.name}</h5>
                             <p className="font-sm text-neutral-300 mt-8">
-                              {data.role.title} Account
+                              {data?.role?.title} Account
                             </p>
                           </div>
                         </div>

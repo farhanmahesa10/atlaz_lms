@@ -6,7 +6,7 @@ import moment from "moment";
 import Skeleton from "react-loading-skeleton";
 const UpcomingTeacherDashboard = (props) => {
   const { data, isLoading } = props;
-  console.log("sss", data);
+  // console.log("sss", data);
   if (isLoading) {
     return <Loading />;
   }
