@@ -45,7 +45,20 @@ import MyBookListDetailBook from "./MyBookListOrg/DetailBookListOrg/MyBookListDe
 import BookListPracticeOrg from "./MyBookListOrg/BookListPracticeOrg";
 import LessonPreviewMyBookListOrg from "./MyBookListOrg/LessonPreviewMyBookListOrg";
 import VerifyProfileOrg from "./AuthOrg/VerifyProfileOrg";
+
+import GradeOverviewOrg from "./GradeOrg/GradeOverviewOrg";
+import GradeDetailOrg from "./GradeOrg/GradeDetailOrg";
+import GradeBookOrg from "./GradeOrg/GradeBookOrg";
+import ManageGradesOrg from "./GradeOrg/ManageGradesOrg";
+import ManageInformationOrg from "./GradeOrg/ManageInformationOrg";
+import ManageDetailOrg from "./GradeOrg/ManageDetailOrg";
 export {
+  GradeOverviewOrg,
+  GradeDetailOrg,
+  GradeBookOrg,
+  ManageGradesOrg,
+  ManageInformationOrg,
+  ManageDetailOrg,
   VerifyProfileOrg,
   LessonPreviewMyBookListOrg,
   BookListPracticeOrg,

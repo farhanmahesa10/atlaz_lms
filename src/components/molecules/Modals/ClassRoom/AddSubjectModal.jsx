@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { FormikControl, Modal, Table } from "../../../atoms";
 import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
+import { CircularProgress } from "@mui/material";
 const AddSubjectModal = (props) => {
   const { data } = useSelector((state) => state.modalData);
   const [filter, setFilter] = useState("");
@@ -21,11 +23,10 @@ const AddSubjectModal = (props) => {
           subjectName: r.name,
           select: (
             <div className="text-end w-full ">
-              <Field
-                name="subjectId"
-                type="checkbox"
-                className="mr-16 form-check-input"
-                value={r._id}
+              <AddButton
+                subjectId={r._id}
+                isChecked={isChecked}
+                onSubmit={props.onSubmit}
               />
             </div>
           ),
@@ -59,20 +60,20 @@ const AddSubjectModal = (props) => {
       <Formik
         initialValues={{ keyword: "", subjectId: initialSubject }}
         enableReinitialize={true}
-        onSubmit={onSubmit}
+        onSubmit={() => {}}
       >
         <Form>
           <Modal
             className="radius-16  max-w-440 max-h-487 modal-custom bg-white"
             id={props.id}
           >
-            <div className="sm-w-440 sm-h-487 ">
+            <div className=" ">
               <div className="px-24 pt-24 pb-24 border-bottom  ">
                 <h5>Add New Subject</h5>
               </div>
 
               <div
-                className="bg-secondary-100 h-288 p-24 hide-scroll-bar"
+                className="bg-secondary-100 h-288 p-24 hide-scroll-bar radius-b-16 "
                 style={{ overflow: "scroll" }}
               >
                 <FormikControl
@@ -91,7 +92,7 @@ const AddSubjectModal = (props) => {
                   <Table columns={columns} data={dataTable} filter={filter} />
                 </div>
               </div>
-              <div className="h-72 d-flex justify-content-end align-items-center px-24">
+              {/* <div className="h-72 d-flex justify-content-end align-items-center px-24">
                 <button
                   className="btn btn-outline mr-16 font-xs"
                   type="button"
@@ -106,11 +107,56 @@ const AddSubjectModal = (props) => {
                 >
                   Save Change
                 </button>
-              </div>
+              </div> */}
             </div>
           </Modal>
         </Form>
       </Formik>
+    </>
+  );
+};
+
+const AddButton = (props) => {
+  const { subjectId, onSubmit } = props;
+  const [isChecked, setIsChecked] = useState(props.isChecked ? true : false);
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
+  // console.log(subjectId, isChecked);
+  const submit = async () => {
+    if (!isChecked && !isLoadingSubmit) {
+      setIsLoadingSubmit(true);
+      try {
+        let submited = await onSubmit({ subjectId });
+
+        setIsLoadingSubmit(false);
+        setIsChecked(submited);
+
+        // if (submited) {
+        //   setIsLoadingSubmit(false);
+        //   setIsChecked(true);
+        // } else {
+        //   setIsLoadingSubmit(false);
+        //   setIsChecked(false);
+        // }
+      } catch (err) {
+        setIsLoadingSubmit(false);
+        setIsChecked(false);
+      }
+    }
+  };
+  return (
+    <>
+      <button
+        className={` ${isChecked ? "btn-disable" : "btn-primary"} `}
+        type="button"
+        onClick={submit}
+        data-bs-dismiss="modal"
+      >
+        {isLoadingSubmit ? (
+          <CircularProgress color="inherit" size={14} />
+        ) : (
+          <AddIcon className="fs-16 m-0 p-0 lh-0" />
+        )}
+      </button>
     </>
   );
 };

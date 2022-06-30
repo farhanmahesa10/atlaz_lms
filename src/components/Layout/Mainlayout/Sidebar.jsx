@@ -46,7 +46,7 @@ const Sidebar = (props) => {
             <div className="p-12 mb-16 radius-8 bg-secondary-500 d-flex align-items-center">
               <div className="w-40 h-40">
                 <img
-                  src={getUserInfo()?.avatar}
+                  src={getUserInfo()?.avatar || "/images/profile.png"}
                   className="h-40 w-40  radius-p-100"
                 />
               </div>

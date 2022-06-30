@@ -19,7 +19,7 @@ const RedirectGoogleAuthenticated = (props) => {
       })
         .then((response) => {
           if (response.status === 200) return response.json();
-          throw new Error("login gagal brohh");
+          throw new Error("login gagal");
         })
         .then((obj) => {
           setUser(obj.user);

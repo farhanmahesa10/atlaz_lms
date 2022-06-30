@@ -18,7 +18,7 @@ const EditProfilePublicDashboard = (props) => {
         <div className="d-flex align-items-center">
           <div className="h-48 w-48 radius-p-100 mr-16">
             <img
-              src={data.avatar}
+              src={data?.avatar && "/images/profile.png"}
               alt=""
               className="w-full h-full  radius-p-100"
             />

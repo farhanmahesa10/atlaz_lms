@@ -16,7 +16,9 @@ import ModalLink from "../molecules/Modals/ModalLink";
 import ProgressBar from "./ProgressBar";
 import Audio from "./Audio";
 import CircularProgress from "./CircularProgress";
+import TableThead from "./TableThead";
 export {
+  TableThead,
   FormikControl,
   SearchDropdown,
   ProductSlider,

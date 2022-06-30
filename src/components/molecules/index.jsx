@@ -97,8 +97,32 @@ import OutlineListTopicControlMyBookList from "./OutlineListMyBookList/OutlineLi
 import StudentManageAccountLoading from "./SkeletonLoading/ProfileLoading/StudentManageAccountLoading";
 import ProfileSectionLoading from "./SkeletonLoading/ProfileLoading/ProfileSectionLoading";
 import PublicManageAccountLoading from "./SkeletonLoading/ProfileLoading/PublicManageAccountLoading";
-import ModalViewContent from "./Modals/Grade/ModalViewContent";
+// import ModalViewContent from "./Modals/Grade/ModalViewContent";
+
+import TableMasterGradeOverview from "./Table/TableMasterGradeOverview";
+import TableMasterGradeDetail from "./Table/TableMasterGradeDetail";
+import TableMasterGradeBook from "./Table/TableMasterGradeBook";
+import TableTeacherManageGrades from "./Table/TableTeacherManageGrades";
+import TableTeacherManageInformation from "./Table/TableTeacherManageInformation";
+import TableTeacherManageDetail from "./Table/TableTeacherManageDetail";
+import TableTeacherGradeOverview from "./Table/TableTeacherGradeOverview";
+import TableTeacherGradeDetail from "./Table/TableTeacherGradeDetail";
+import GradeCard from "./Cards/GradeCard";
+import ModalManageDetail from "./Modals/Grades/ModalManageDetail";
+
+import ModalViewContent from "./Modals/Grades/ModalViewContent";
+
 export {
+  TableMasterGradeOverview,
+  TableMasterGradeDetail,
+  TableMasterGradeBook,
+  TableTeacherManageGrades,
+  TableTeacherManageInformation,
+  TableTeacherManageDetail,
+  TableTeacherGradeOverview,
+  TableTeacherGradeDetail,
+  GradeCard,
+  ModalManageDetail,
   ModalViewContent,
   PublicManageAccountLoading,
   StudentManageAccountLoading,

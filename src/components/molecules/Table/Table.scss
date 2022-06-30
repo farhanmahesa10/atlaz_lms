@@ -1,0 +1,233 @@
+@import "../../../assets/scss/_variables.scss";
+@import "../../../assets/scss/typography/_body.scss";
+@import "../../../assets/scss/typography/_heading.scss";
+.top-table {
+    height: 72px;
+    border-radius: 8px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-report {
+    font-family: 'Nunito', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 0px;
+    thead {
+        .sortir {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        tr {
+            th {
+                padding: 16px 16px 10px 16px;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                background-color: $secondary_200;
+            }
+            &.header-filtering {
+                th {
+                    padding: 4px 16px 10px 16px;
+                }
+            }
+            &:first-child {
+                th {
+                    &:first-child {
+                        border-top-left-radius: 8px;
+                    }
+                    &:last-child {
+                        border-top-right-radius: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 0.5px solid $secondary_500;
+            td {
+                padding: 16px;
+                background-color: $neutral_50;
+                color: $neutral_500;
+                @include fontSm();
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 140px;
+                .completed {
+                    border: 2px solid $success_600;
+                    background-color: $success_100;
+                    color: $success_600;
+                }
+                .ongoing {
+                    border: 2px solid $info_500;
+                    background-color: $info_100;
+                    color: $info_500;
+                }
+                .incompleted {
+                    border: 2px solid $neutral_300;
+                    background-color: $neutral_100;
+                    color: $neutral_300;
+                }
+                .Complete {
+                    border: 2px solid $success_600;
+                    background-color: $success_100;
+                    color: $success_600;
+                }
+                .Incomplete {
+                    border: 2px solid $neutral_300;
+                    background-color: $neutral_100;
+                    color: $neutral_300;
+                }
+            }
+        }
+    }
+    .datanotfound {
+        padding: 16px;
+    }
+} 
+
+.table-manage {
+    font-family: 'Nunito', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 0px;
+    thead {
+        tr {
+            th {
+                padding: 16px 16px 10px 16px;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                background-color: $secondary_200;
+            }
+            &:first-child {
+                th {
+                    &:first-child {
+                        border-top-left-radius: 8px;
+                    }
+                    &:last-child {
+                        border-top-right-radius: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 0.5px solid $secondary_500;
+            td {
+                padding: 16px;
+                background-color: $neutral_50;
+                color: $neutral_500;
+                @include fontSm();
+            }
+        }
+    }
+} 
+
+.navigation-table {
+    margin-bottom: 80px;
+    background-color: $secondary_200;
+    height: 44px;
+    padding-right: 16px;
+    padding-left: 16px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .pagination-table {
+        display: flex;
+        align-items: center;
+        .divider-nav {
+            margin-left: 32px;
+            margin-right: 32px;
+            background-color: $secondary_500;
+            width: 1px;
+            height: 28px;
+        }
+        .numberpage {
+            background-color: $neutral_50;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            padding: 4px;                                                
+            border: 1px solid $secondary_500;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: $neutral_500;
+            line-height: 20px;
+            outline: none;
+            margin-left: 16px;
+            text-align: center;
+            width: 48px;
+            &::-webkit-inner-spin-button, 
+            &::-webkit-outer-spin-button {  
+                opacity: 1 !important;
+            }
+        }
+        .btn-paginate {
+            background-color: $secondary_100;
+            border: 1px solid $secondary_500;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.offcanvas-report {
+    .report-header {
+        border-bottom: 2px solid $secondary_300;
+        .btn-offcanvas {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+    }
+    .report-options {
+        border-bottom: 2px solid $secondary_300;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+.select-remark {
+    @include fontSm();
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid $neutral_100;
+    color: $neutral_100;
+    cursor: pointer;
+    appearance: none;
+    &:focus {
+        outline: none;
+    }
+    &:active {
+        outline: none;
+    }
+    &.Correct {
+        @include fontSmMedium();
+        color: $success_600;
+    }
+    &.Incorrect {
+        @include fontSmMedium();
+        color: $danger_500;
+    }
+}

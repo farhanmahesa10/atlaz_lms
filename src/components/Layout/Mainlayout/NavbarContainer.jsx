@@ -12,6 +12,8 @@ import { useGlobalFunction } from "../../../services";
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
   const { getUserInfo } = useGlobalFunction();
+  const user = getUserInfo();
+
   return (
     <Container
       fluid
@@ -22,7 +24,7 @@ const NavbarContainer = (props) => {
         style={{ zIndex: 9 }}
       >
         <Link to="/">
-          <img src="/images/logo.png" className=" d-none d-lg-flex " />
+          <img src="/images/logo.png" className=" d-none d-lg-flex h-32" />
           <img src="/images/logo-icon.png" className=" d-flex d-lg-none w-32" />
         </Link>
       </Navbar.Brand>
@@ -82,7 +84,7 @@ const NavbarContainer = (props) => {
                 aria-expanded="false"
               >
                 <img
-                  src={getUserInfo()?.avatar}
+                  src={user?.avatar || "/images/profile.png"}
                   className="h-32 w-32  radius-p-100"
                 />
               </div>
@@ -91,7 +93,7 @@ const NavbarContainer = (props) => {
                   <div className="p-12 radius-8 bg-secondary-500 d-flex align-items-center">
                     <div className="w-40 h-40">
                       <img
-                        src={getUserInfo()?.avatar}
+                        src={user?.avatar || "/images/profile.png"}
                         className="h-40 w-40  radius-p-100"
                       />
                     </div>

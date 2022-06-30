@@ -36,7 +36,20 @@ import DetailBook from "./MyBookList/DetailBook";
 import BookListPractice from "./MyBookList/BookListPractice";
 import LessonPreviewMyBookList from "./MyBookList/LessonPreviewMyBookList";
 import VerifyProfile from "./Auth/VerifyProfile";
+
+import GradeOverview from "./Grade/GradeOverview";
+import GradeDetail from "./Grade/GradeDetail";
+import GradeBook from "./Grade/GradeBook";
+import ManageGrades from "./Grade/ManageGrades";
+import ManageInformation from "./Grade/ManageInformation";
+import ManageDetail from "./Grade/ManageDetail";
 export {
+  GradeOverview,
+  GradeDetail,
+  GradeBook,
+  ManageGrades,
+  ManageInformation,
+  ManageDetail,
   VerifyProfile,
   LessonPreviewMyBookList,
   BookListPractice,

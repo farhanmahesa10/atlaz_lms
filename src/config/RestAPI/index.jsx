@@ -6,10 +6,13 @@ const API = axios.create({
   baseURL: BaseAPIURL,
 });
 
-const defConfig = () => {
+const defConfig = (params) => {
   const tokenAccess = localStorage.getItem(BaseURL + "/accessToken");
   const config = {
     headers: { token: "Bearer " + tokenAccess },
+    params: params && {
+      column: params,
+    },
   };
   return config;
 };

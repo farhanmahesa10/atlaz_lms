@@ -31,11 +31,21 @@ const useClaassRoomContentSubject = (props) => {
       });
   };
 
-  const handleAddSubject = (values) => {
+  const handleAddSubject = async (values) => {
     let req = { ...values, classlistId: params.classId };
-    POST("/client/classrooms/subject", req, defConfig()).then((r) => {
-      getSubjects();
-    });
+    // POST("/client/classrooms/subject", req, defConfig()).then((r) => {
+    //   getSubjects();
+    // });
+
+    try {
+      await POST("/client/classrooms/subject", req, defConfig());
+      await getSubjects();
+      await getClassListModal();
+
+      return true;
+    } catch (err) {
+      return false;
+    }
   };
   return { isLoading, subjects, subjectListModal, handleAddSubject, params };
 };

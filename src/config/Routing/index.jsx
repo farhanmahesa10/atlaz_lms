@@ -43,6 +43,12 @@ import {
   BookListPractice,
   VerifyProfile,
   LessonPreviewMyBookList,
+  GradeOverview,
+  GradeDetail,
+  GradeBook,
+  ManageGrades,
+  ManageInformation,
+  ManageDetail,
 } from "../../pages";
 import TesViewContent from "../../pages/TesViewContent";
 const Routing = () => {
@@ -356,7 +362,71 @@ const Routing = () => {
 
       {/* nextSpace route fajrul */}
 
-      {/* codding disini */}
+      <Route
+        path="/grade/grade-overview"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,TEACHER">
+              <GradeOverview />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/grade-overview/detail/:idSubject/:idClass"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,TEACHER">
+              <GradeDetail />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/grade-overview/detail/:idSubject/:idClass/score/:id"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,TEACHER">
+              <GradeBook />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/manage-grades"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="TEACHER">
+              <ManageGrades />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/manage-grades/information/:idSubject/:idClass"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="TEACHER">
+              <ManageInformation />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/manage-grades/information/:idSubject/:idClass/detail/:id"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="TEACHER">
+              <ManageDetail />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
 
       {/* </nextSpace route fajrul */}
     </Routes>

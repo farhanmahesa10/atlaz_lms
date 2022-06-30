@@ -24,7 +24,25 @@ import useStudentDashboard from "./Dashboard/useStudentDashboard";
 import useTeacherDashboard from "./Dashboard/useTeacherDashboard";
 import useLessonPreviewMyBookList from "./MyBookList/useLessonPreviewMyBookList";
 import useManageAccount from "./Profile/useManageAccount";
+
+import useGradeOverview from "./Grade/useGradeOverview";
+import useGradeDetail from "./Grade/useGradeDetail";
+import useGradeBook from "./Grade/useGradeBook";
+import useManageGrades from "./Grade/useManageGrades";
+import useManageInformation from "./Grade/useManageInformation";
+import useManageDetail from "./Grade/useManageDetail";
+import useTeacherGradeOverview from "./Grade/useTeacherGradeOverview";
+import useTeacherGradeDetail from "./Grade/useTeacherGradeDetail";
+
 export {
+  useGradeOverview,
+  useGradeDetail,
+  useGradeBook,
+  useManageGrades,
+  useManageInformation,
+  useManageDetail,
+  useTeacherGradeOverview,
+  useTeacherGradeDetail,
   useManageAccount,
   useLessonPreviewMyBookList,
   usePublicDashboard,

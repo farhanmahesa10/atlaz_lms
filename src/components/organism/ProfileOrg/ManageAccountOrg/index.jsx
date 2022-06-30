@@ -152,7 +152,7 @@ const ManageAccountOrg = () => {
                       <div className="position-absolute top-0 h-full w-full">
                         <div className="text-center h-full  ">
                           <img
-                            src={data.avatar}
+                            src={data.avatar || "/images/profile.png"}
                             alt=""
                             className="w-104 h-104 radius-p-100 mt-48  radius-p-100"
                           />

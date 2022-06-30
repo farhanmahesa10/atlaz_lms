@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./carousel.scss";
 import { ProductYCard } from "../components/molecules";
+import axios from "axios";
 
 const CobaBikinCarousel = () => {
   const [leftDisable, setLeftDisable] = useState(true);
@@ -162,6 +163,7 @@ const CobaBikinCarousel = () => {
       false
     );
   }, []);
+
   return (
     <div className="w-full h-screen d-flex align-items-center justify-content-center">
       <button
