@@ -98,9 +98,11 @@ function useManageDetail() {
       const checkAnswerCorrect = newRemark.filter(function (value) {
         return value == 'Correct'
       })
-      for (let i = 0; i < checkAnswerCorrect.length; i++) {
-        newScore += 100 / newRemark.length
-      }
+      if(checkAnswerCorrect.length > 0) {
+        for (let i = 0; i < checkAnswerCorrect.length; i++) {
+          newScore += 100 / newRemark.length
+        }
+      }   
       setFinalGrades(newScore)
     }
   }
@@ -291,9 +293,11 @@ function useManageDetail() {
           const checkAnswerCorrect = newRemark.filter(function (value) {
             return value == 'Correct'
           })
-          for (let i = 0; i < checkAnswerCorrect.length; i++) {
-            newScore += 100 / newRemark.length
-          }
+          if(checkAnswerCorrect.length > 0) {
+            for (let i = 0; i < checkAnswerCorrect.length; i++) {
+              newScore += 100 / newRemark.length
+            }
+          } 
           setFinalGrades(newScore)
         }
       } else {

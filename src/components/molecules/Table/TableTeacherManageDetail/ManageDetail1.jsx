@@ -78,13 +78,14 @@ function ManageDetail1() {
                                     <div className='mr-24 text-end'>
                                         <div className="font-sm text-neutral-400 mb-4">Final Grades</div>
                                         <div className='h5'>
+                                            { console.log('finalGrades', finalGrades)}
                                             {
-                                                finalGrades ? finalGrades.toFixed(1) : 'N/A'
+                                                finalGrades !== null ? finalGrades.toFixed(1) : 'N/A'
                                             }
                                         </div>
                                     </div>
                                     {
-                                        finalGrades ? 
+                                        finalGrades !== null ? 
                                         (isLoading ? (<button type='submit' className='btn btn-primary font-normal btn-disable' disabled >Submit</button>) :
                                         (<button type='submit' className='btn btn-primary font-normal' >Submit</button>)
                                         )                                        

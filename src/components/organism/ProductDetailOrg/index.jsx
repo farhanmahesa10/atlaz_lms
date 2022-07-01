@@ -319,33 +319,45 @@ const ProductDetailOrg = () => {
                       </div>
                       <div className="modal-body px-24  ">
                         <div className="">
-                          <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
-                            <img
-                              src="/icons/tokped.png"
-                              alt=""
-                              className="pr-17"
-                            />
-                            <div className="d-flex justify-content-between w-full">
-                              <p className="font-medium mr-48">
-                                Buy from{" "}
-                                <span className="font-bold">Tokopedia</span>
-                              </p>
-                              <i className="bi bi-chevron-right "></i>
-                            </div>
+                          <button className="btn-secondary mb-16  md-py-16 w-full ">
+                            <a
+                              href="https://atlaz-lms.vercel.app/product-detail/62317e0bd2cfb4fe0d32f8f0"
+                              target="_blank"
+                              className="d-flex align-items-center"
+                            >
+                              <img
+                                src="/icons/tokped.png"
+                                alt=""
+                                className="pr-17"
+                              />
+                              <div className="d-flex justify-content-between w-full">
+                                <p className="font-medium mr-48">
+                                  Buy from{" "}
+                                  <span className="font-bold">Tokopedia</span>
+                                </p>
+                                <i className="bi bi-chevron-right "></i>
+                              </div>
+                            </a>
                           </button>
-                          <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
-                            <img
-                              src="/icons/shopee.png"
-                              alt=""
-                              className="pr-17"
-                            />
-                            <div className="d-flex justify-content-between w-full">
-                              <p className="font-medium mr-48">
-                                Buy from{" "}
-                                <span className="font-bold">Shopee</span>
-                              </p>
-                              <i className="bi bi-chevron-right "></i>
-                            </div>
+                          <button className="btn-secondary mb-16  md-py-16 w-full ">
+                            <a
+                              href="https://shopee.co.id/atlazbelajarbahasa?categoryId=100643&itemId=9898394449"
+                              target="_blank"
+                              className="d-flex align-items-center"
+                            >
+                              <img
+                                src="/icons/shopee.png"
+                                alt=""
+                                className="pr-17"
+                              />
+                              <div className="d-flex justify-content-between w-full">
+                                <p className="font-medium mr-48">
+                                  Buy from{" "}
+                                  <span className="font-bold">Shopee</span>
+                                </p>
+                                <i className="bi bi-chevron-right "></i>
+                              </div>
+                            </a>
                           </button>
                           {/* <button className="btn-secondary mb-16  md-py-16 w-full d-flex">
                             <img
