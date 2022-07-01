@@ -8,7 +8,7 @@ import { Settings } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import Can from "../../../permission/Can";
 import { useGlobalFunction } from "../../../services";
-
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const Sidebar = (props) => {
   const {
     menus,
@@ -92,6 +92,14 @@ const Sidebar = (props) => {
               </React.Fragment>
             );
           })}
+          {auth && (
+            <Link
+              to="/logout"
+              className="mt-16 p-8 d-flex align-items-center hover-bg-secondary-200 radius-4 hover-text-neutral-400"
+            >
+              <ExitToAppIcon className="text-neutral-400 pr-18" /> Logout
+            </Link>
+          )}
         </Nav>
       </Offcanvas.Body>
     </Offcanvas>

@@ -15,9 +15,8 @@ const HomeBookList = () => {
     initData();
   }, []);
   const initData = async () => {
-    const r = await GET("/client/landing/booklist?page=1&perPage=10");
-
     try {
+      const r = await GET("/client/landing/booklist?page=1&perPage=10");
       let result = [];
       r.data.map((r, i) => {
         result.push(

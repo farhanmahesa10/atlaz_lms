@@ -1,6 +1,12 @@
 import { Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { Divider, FormikControl, GlobalToast } from "../../../atoms";
+import {
+  Divider,
+  FormikControl,
+  GlobalToast,
+  ModalLink,
+  ModalTrigger,
+} from "../../../atoms";
 import MainLayout from "../../../Layout/Mainlayout";
 import { useActivateAssessment } from "../../../../services";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -173,13 +179,20 @@ const ActivateAssessmentOrg = () => {
                         })
                       )}
 
-                      <div className="col-12 text-end mt-16">
-                        <button
-                          type="submit"
-                          className="btn-outline font-normal mr-24"
+                      <div className="col-12 text-end mt-16 d-flex justify-content-end">
+                        <ModalTrigger
+                          target="cancel"
+                          data={{
+                            redirect: `/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`,
+                          }}
                         >
-                          Cancel
-                        </button>
+                          <button
+                            type="button"
+                            className="btn-outline font-normal mr-24"
+                          >
+                            Cancel
+                          </button>
+                        </ModalTrigger>
                         <button
                           type="submit"
                           className="btn-primary font-normal px-37"
@@ -194,6 +207,7 @@ const ActivateAssessmentOrg = () => {
             )}
           </Formik>
         </div>
+        <ModalLink id="cancel" />
       </>
     </MainLayout>
   );

@@ -21,30 +21,32 @@ const ProductDetailOrg = () => {
 
   const init = () => {
     setIsLoading(true);
-    GET("/client/landing/booklist?page=1&perPage=10").then((r) => {
-      let result = [];
-      r.data.map((r, i) => {
-        if (r._id === id) {
-          setData(r);
-        }
-        result.push(
-          <ProductYCard
-            key={i}
-            data={r}
-            linkGoTo={`/product-detail/${r._id}`}
-            responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
-          />
-        );
-      });
-      GET(`/client/landing/booklist/${id}`).then((r) => {
-        setImgCore(r.data.images[0]);
-        setData(r.data);
-        setImages(r.data.images);
-        setSubjectFocus(r.data.subjectFocus.split(";"));
-      });
-      setRecomendProduct(result);
+    GET(`/client/landing/booklist/${id}`).then((r) => {
+      setImgCore(r.data.images[0]);
+      setData(r.data);
+      setImages(r.data.images);
+      setSubjectFocus(r.data.subjectFocus.split(";"));
       setIsLoading(false);
     });
+    // GET("/client/landing/booklist?page=1&perPage=10").then((r) => {
+    //   let result = [];
+    //   r.data.map((r, i) => {
+    //     if (r._id === id) {
+    //       setData(r);
+    //     }
+    //     result.push(
+    //       <ProductYCard
+    //         key={i}
+    //         data={r}
+    //         linkGoTo={`/product-detail/${r._id}`}
+    //         responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+    //       />
+    //     );
+    //   });
+
+    //   setRecomendProduct(result);
+
+    // });
   };
 
   useEffect(() => {
@@ -280,7 +282,7 @@ const ProductDetailOrg = () => {
                             })}
                           </div>
                         </div>
-                        <div className="mt-48">
+                        {/* <div className="mt-48">
                           <div className="mb-16">
                             <p className="h5 xl-h4 ">Other recommendation</p>
                             <div className="rectangle w-64 bg-primary-500 h-2 "></div>
@@ -292,7 +294,7 @@ const ProductDetailOrg = () => {
                             w768={2}
                             content={recomendProduct}
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
