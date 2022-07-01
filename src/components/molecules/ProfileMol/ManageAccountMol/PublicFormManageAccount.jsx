@@ -11,7 +11,7 @@ const PublicFormManageAccount = (props) => {
   }
   return (
     <>
-      <GlobalToast />
+      {/* <GlobalToast /> */}
       <div className="col-12 border border-secondary-500 radius-14 p-16">
         <Formik
           initialValues={{ username: data.username, name: data.name }}
