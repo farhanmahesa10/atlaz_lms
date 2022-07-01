@@ -1,11 +1,15 @@
 import React, { useRef } from "react";
-import { BeginAssessmentLoading, ProgressNavbar } from "../../../molecules";
+import {
+  BeginAssessmentLoading,
+  ModalConfirmSubmitAssessment,
+  ProgressNavbar,
+} from "../../../molecules";
 import { useBeginAssessment } from "../../../../services";
 import { Form, Formik } from "formik";
 import MainFooter from "../../../Layout/Mainlayout/MainFooter";
 import "./Assessments-preview.scss";
 import moment from "moment";
-import { GlobalToast } from "../../../atoms";
+import { GlobalToast, ModalTrigger } from "../../../atoms";
 const BeginAssessmentOrg = () => {
   const {
     filledQuestions,
@@ -79,16 +83,41 @@ const BeginAssessmentOrg = () => {
                     </div>
                     <div className="text-end  mt-66 mb-44">
                       <button
-                        className={` ${
-                          isSubmiting ? "btn-disable" : "btn-primary"
-                        } font-normal w-160 text-center`}
-                        type={isSubmiting ? "button" : "submit"}
+                        className="d-none"
+                        type={"submit"}
                         ref={submitRef}
-                      >
-                        {isSubmiting ? "Loading..." : "Submit"}
-                      </button>
+                      ></button>
+                      <div className={isSubmiting ? "d-none" : ""}>
+                        <ModalTrigger
+                          target="submitAssessment"
+                          data={{ isSubmiting }}
+                        >
+                          <button
+                            className={`btn-primary  font-normal w-160 text-center`}
+                            type={"button"}
+                            // ref={submitRef}
+                          >
+                            Submit
+                          </button>
+                        </ModalTrigger>
+                      </div>
+                      <div className={!isSubmiting ? "d-none" : ""}>
+                        <button
+                          className={`btn-disable font-normal `}
+                          type={"button"}
+                          // ref={submitRef}
+                        >
+                          Loading...
+                        </button>
+                      </div>
                     </div>
                   </div>
+                  <ModalConfirmSubmitAssessment
+                    id={`submitAssessment`}
+                    onSubmit={() => {
+                      formik.submitForm();
+                    }}
+                  />
                 </Form>
               )}
             </Formik>

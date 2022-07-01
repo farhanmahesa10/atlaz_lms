@@ -22,6 +22,7 @@ const useActivateAssessment = () => {
   const [previewSubjectName, setPreviewSubjectName] = useState("");
   const [previewLessonName, setPreviewLessonName] = useState("");
   const [previewTopicName, setPreviewTopicName] = useState("");
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -269,7 +270,7 @@ const useActivateAssessment = () => {
     });
 
     const request = { ...req, timeline: requestTimeline };
-
+    setIsLoadingSubmit(true);
     POST("/client/classrooms/my_school_assessment/add", request, defConfig())
       .then((r) => {
         setFlashMessage(
@@ -279,9 +280,10 @@ const useActivateAssessment = () => {
         navigate(
           `/classroom/assessment/${params.classId}/${params.subjectId}/dashboard`
         );
+        setIsLoadingSubmit(false);
       })
       .catch((err) => {
-        console.log(err.response);
+        setIsLoadingSubmit(false);
       });
   };
   return {
@@ -303,6 +305,7 @@ const useActivateAssessment = () => {
     setShowPreview,
     publishData,
     params,
+    isLoadingSubmit,
   };
 };
 

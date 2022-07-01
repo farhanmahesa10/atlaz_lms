@@ -110,10 +110,12 @@ import TableTeacherGradeDetail from "./Table/TableTeacherGradeDetail";
 import GradeCard from "./Cards/GradeCard";
 import ModalManageDetail from "./Modals/Grades/ModalManageDetail";
 import TableStudentGradeOverview from "./Table/TableStudentGradeOverview";
+import ModalConfirmSubmitAssessment from "./Modals/ModalConfirmSubmitAssessment";
 
 import ModalViewContent from "./Modals/Grades/ModalViewContent";
 
 export {
+  ModalConfirmSubmitAssessment,
   TableStudentGradeOverview,
   TableMasterGradeOverview,
   TableMasterGradeDetail,

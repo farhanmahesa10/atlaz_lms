@@ -89,7 +89,9 @@ const ProgressNavbar = (props) => {
             ></div>
           </div>
           <div className="d-flex align-items-center ml-32 text-neutral-300 cursor-pointer hover-text-neutral-200">
-            {subTopicData.assessmentType === "Manual Grading" ? (
+            {subTopicData.assessmentType === "Manual Grading" ||
+            subTopicData.assessmentType.toLowerCase() ===
+              "speaking writing assessment" ? (
               <ModalTrigger
                 target="close-assessment"
                 data={{

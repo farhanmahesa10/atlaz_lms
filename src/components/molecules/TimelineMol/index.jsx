@@ -156,7 +156,9 @@ const BoxTimeline = ({ data, parentData, onDelete }) => {
             <div className="mb-16">
               <p className="font-xs text-neutral-300">Start date & time</p>
               {data.subtopic.assessmentType.toLowerCase() ===
-              "automatic grading" ? (
+                "automatic grading" ||
+              data.subtopic.assessmentType.toLowerCase() ===
+                "reading listening assessment" ? (
                 <p className="font-xs-bold ">
                   {moment(data.assessmentDate).format("DD MMM Y")}, &nbsp;
                   {moment(data.startDateTime).format("LT")}
@@ -171,7 +173,9 @@ const BoxTimeline = ({ data, parentData, onDelete }) => {
             <div className="mb-16">
               <p className="font-xs text-neutral-300">End date & time</p>
               {data.subtopic.assessmentType.toLowerCase() ===
-              "automatic grading" ? (
+                "automatic grading" ||
+              data.subtopic.assessmentType.toLowerCase() ===
+                "reading listening assessment" ? (
                 <p className="font-xs-bold ">
                   {moment(data.assessmentDate).format("DD MMM Y")}, &nbsp;
                   {moment(data.endDateTime).format("LT")}
@@ -186,7 +190,9 @@ const BoxTimeline = ({ data, parentData, onDelete }) => {
               <p className="font-xs text-neutral-300">Duration</p>
               <p className="font-xs-bold ">
                 {data.subtopic.assessmentType.toLowerCase() ===
-                "automatic grading"
+                  "automatic grading" ||
+                data.subtopic.assessmentType.toLowerCase() ===
+                  "reading listening assessment"
                   ? getDuration(data.startTime, data.endTime)
                   : getDuration(data.startDateTime, data.endDateTime)}
               </p>

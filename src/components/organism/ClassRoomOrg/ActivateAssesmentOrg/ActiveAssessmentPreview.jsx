@@ -6,7 +6,14 @@ import { Divider } from "../../../atoms";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import moment from "moment";
 const ActiveAssessmentPreview = (props) => {
-  const { data, subjectName, lessonName, topicName, setShowPreview } = props;
+  const {
+    data,
+    subjectName,
+    lessonName,
+    topicName,
+    setShowPreview,
+    isLoadingSubmit,
+  } = props;
   if (data) {
     return (
       <>
@@ -74,8 +81,12 @@ const ActiveAssessmentPreview = (props) => {
                     parentClassName="mb-48 d-block d-md-none"
                   />
                 )}
-                {r.type.toLowerCase() === "manual grading" ? (
-                  <ManualPreview data={r} />
+
+                {r.type.toLowerCase() === "manual grading" ||
+                r.type.toLowerCase() === "speaking writing assessment" ? (
+                  <>
+                    <ManualPreview data={r} />
+                  </>
                 ) : (
                   <AutoPreview data={r} />
                 )}
@@ -94,12 +105,14 @@ const ActiveAssessmentPreview = (props) => {
             Back
           </button>
           <button
-            className="btn btn-primary font-normal w-full md-w-auto mt-8 md-mt-0 px-32"
+            className={`btn ${
+              isLoadingSubmit ? "btn-disable" : "btn-primary"
+            }  font-normal w-full md-w-auto mt-8 md-mt-0 px-32`}
             onClick={() => {
               props.onSubmit(data);
             }}
           >
-            Activate & Publish
+            {isLoadingSubmit ? "Loading..." : "Activate & Publish"}
           </button>
         </div>
       </>

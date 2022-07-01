@@ -41,6 +41,7 @@ const ActivateAssessmentOrg = () => {
     setShowPreview,
     publishData,
     params,
+    isLoadingSubmit,
   } = useActivateAssessment();
 
   return (
@@ -60,6 +61,7 @@ const ActivateAssessmentOrg = () => {
             topicName={previewData.topicName}
             setShowPreview={setShowPreview}
             onSubmit={publishData}
+            isLoadingSubmit={isLoadingSubmit}
           />
         </div>
 
@@ -142,7 +144,11 @@ const ActivateAssessmentOrg = () => {
                         <ActiveAssessmentSubtopicLoading />
                       ) : (
                         subtopicData.map((res, ind) => {
-                          if (res.type.toLowerCase() === "manual grading") {
+                          if (
+                            res.type.toLowerCase() === "manual grading" ||
+                            res.type.toLowerCase() ===
+                              "speaking writing assessment"
+                          ) {
                             return (
                               <DateTimeForm
                                 checkBoxName={`timeline[${ind}].checkbox`}
@@ -233,7 +239,7 @@ const DateTimeForm = (props) => {
   useEffect(() => {
     let formikValues = formik.values;
     let tempCheckStatus = true;
-    console.log(moment());
+    // console.log(moment());
     let trueCase = formikValues.timeline.filter((r) => r.checkbox === true);
     let falseCase = formikValues.timeline.filter((r) => r.checkbox === false);
 
