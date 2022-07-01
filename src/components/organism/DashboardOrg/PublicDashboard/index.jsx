@@ -58,6 +58,7 @@ const PublicDashboard = () => {
                   bgColor="#FCF7ED"
                   link="https://media.hiatlaz.com/media.hiatlaz.com"
                   isToExternal={true}
+                  isCommingSoon
                   title={
                     <span>
                       Atlaz <br /> Media

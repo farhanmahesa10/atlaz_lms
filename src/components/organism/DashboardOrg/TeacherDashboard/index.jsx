@@ -89,6 +89,7 @@ const TeacherDashboard = () => {
                     bgColor="#EAEDFB"
                     link="https://media.hiatlaz.com/"
                     isToExternal
+                    isCommingSoon
                     title={
                       <span>
                         Atlaz <br /> Media
