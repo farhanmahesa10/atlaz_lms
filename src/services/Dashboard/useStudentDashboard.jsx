@@ -59,7 +59,7 @@ const useStudentDashboard = () => {
     setUpcomingLoading(true);
     GET(`/client/dashboard/upcoming_event`, defConfig())
       .then((r) => {
-        setUpcomingData(r.data);
+        setUpcomingData(r.data.splice(0, 5));
         setUpcomingLoading(false);
       })
       .catch((err) => {

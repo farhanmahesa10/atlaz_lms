@@ -60,7 +60,7 @@ const SearchResultOrg = () => {
                       <div className="row align-items-center ">
                         <div className="col-12 col-sm-8 mb-16 md-mb-0">
                           Showing {bookData.length} items for
-                          <span className="font-bold">"{keyword}"</span>
+                          <span className="font-bold"> "{keyword}" </span>
                         </div>
                         <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
                           <button
