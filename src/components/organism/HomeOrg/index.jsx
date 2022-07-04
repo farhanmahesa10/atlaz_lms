@@ -11,7 +11,7 @@ import { ProductYCard } from "../../molecules";
 const HomeOrg = () => {
   return (
     <>
-      <MainLayout navbarBg="secondary-200">
+      <MainLayout navbarBg="secondary-100">
         <HomeHead />
         <HomeHowToPurchase />
         <HomeBookList />

@@ -7,9 +7,12 @@ import { useParams } from "react-router-dom";
 import { GET } from "../../../config/RestAPI";
 import NumberFormat from "react-number-format";
 import { ProductDetailSkeleton } from "../../molecules";
+import Skeleton from "react-loading-skeleton";
 
 const ProductDetailOrg = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [otherRecomendationLoading, setOtherRecomendationLoading] =
+    useState(true);
 
   const [images, setImages] = useState([]);
   const [subjectFocus, setSubjectFocus] = useState([]);
@@ -21,6 +24,7 @@ const ProductDetailOrg = () => {
 
   const init = () => {
     setIsLoading(true);
+    setOtherRecomendationLoading(true);
     GET(`/client/landing/booklist/${id}`).then((r) => {
       setImgCore(r.data.images[0]);
       setData(r.data);
@@ -28,25 +32,26 @@ const ProductDetailOrg = () => {
       setSubjectFocus(r.data.subjectFocus.split(";"));
       setIsLoading(false);
     });
-    // GET("/client/landing/booklist?page=1&perPage=10").then((r) => {
-    //   let result = [];
-    //   r.data.map((r, i) => {
-    //     if (r._id === id) {
-    //       setData(r);
-    //     }
-    //     result.push(
-    //       <ProductYCard
-    //         key={i}
-    //         data={r}
-    //         linkGoTo={`/product-detail/${r._id}`}
-    //         responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
-    //       />
-    //     );
-    //   });
+    GET("/client/landing/booklist?page=1&perPage=10").then((r) => {
+      let result = [];
 
-    //   setRecomendProduct(result);
+      r.data.map((r, i) => {
+        if (r._id === id) {
+          setData(r);
+        }
+        result.push(
+          <ProductYCard
+            key={i}
+            data={r}
+            linkGoTo={`/product-detail/${r._id}`}
+            responsiveClass="card-product-y-mob md-card-product-y-tab xl-card-product-y-desk cursor-pointer"
+          />
+        );
+      });
 
-    // });
+      setRecomendProduct(result);
+      setOtherRecomendationLoading(false);
+    });
   };
 
   useEffect(() => {
@@ -138,11 +143,14 @@ const ProductDetailOrg = () => {
                     <div className="col-xl-1"></div>
                     <div className=" col-12 md-px-104 xl-px-0 mb-56 md-mb-72 col-xl">
                       <div className="mt-5">
-                        <p className="mb-12">
-                          <span className="border radius-4 px-8 py-4 border-neutral-300 text-neutral-300">
-                            Book on promo
-                          </span>
-                        </p>
+                        {data.discountPrice?.discountAmount > 0 && (
+                          <p className="mb-12">
+                            <span className="border radius-4 px-8 py-4 border-neutral-300 text-neutral-300">
+                              Book on promo
+                            </span>
+                          </p>
+                        )}
+
                         <h3 className="h4 md-h3">{data.name}</h3>
 
                         <div className="d-flex mb-30 xl-mb-38 align-items-center  ">
@@ -168,28 +176,32 @@ const ProductDetailOrg = () => {
                           ></p>
                         </div>
                         <div>
-                          <p>Promo Price</p>
+                          <p>Subtotal</p>
                           <div className="d-flex gap-2 align-items-center ">
-                            <h5 className="h5 md-h3 xl-h2 text-success-500 ">
+                            <h5 className="h5 md-h3 xl-h2 text-info-500 ">
                               <NumberFormat
                                 value={data.discountPrice.total}
                                 displayType={"text"}
                                 thousandSeparator={true}
                                 prefix={"Rp"}
                               />
-                              <s className="font-sm text-neutral-300 ml-8">
-                                <NumberFormat
-                                  value={data.originalPrice}
-                                  displayType={"text"}
-                                  thousandSeparator={true}
-                                  prefix={"Rp"}
-                                />
-                              </s>
+                              {data.discountPrice?.discountAmount > 0 && (
+                                <s className="font-sm text-neutral-300 ml-8">
+                                  <NumberFormat
+                                    value={data.originalPrice}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"Rp"}
+                                  />
+                                </s>
+                              )}
                             </h5>
-                            <p className="bg-danger-100 text-danger-500 px-8 py-4 font-xs md-font-sm-medium md-font-medium radius-4 border-danger-500 border ">
-                              {Math.round(data.discountPrice.discountPercent)}%
-                              off
-                            </p>
+                            {data.discountPrice?.discountAmount > 0 && (
+                              <p className="bg-danger-100 text-danger-500 px-8 py-4 font-xs md-font-sm-medium md-font-medium radius-4 border-danger-500 border ">
+                                {Math.round(data.discountPrice.discountPercent)}
+                                % off
+                              </p>
+                            )}
                           </div>
                         </div>
                         <div className="mt-16">
@@ -282,19 +294,30 @@ const ProductDetailOrg = () => {
                             })}
                           </div>
                         </div>
-                        {/* <div className="mt-48">
+                        <div className="mt-48">
                           <div className="mb-16">
                             <p className="h5 xl-h4 ">Other recommendation</p>
                             <div className="rectangle w-64 bg-primary-500 h-2 "></div>
                           </div>
-                          <SliderNoArrow
-                            wDefault={4}
-                            w1035={2}
-                            w980={2}
-                            w768={2}
-                            content={recomendProduct}
-                          />
-                        </div> */}
+                          {otherRecomendationLoading ? (
+                            <div className="d-flex">
+                              <div className="mr-24">
+                                <Skeleton width="150px" height="150px" />
+                              </div>
+                              <div className="">
+                                <Skeleton width="150px" height="150px" />
+                              </div>
+                            </div>
+                          ) : (
+                            <SliderNoArrow
+                              wDefault={4}
+                              w1035={2}
+                              w980={2}
+                              w768={2}
+                              content={recomendProduct}
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>

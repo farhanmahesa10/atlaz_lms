@@ -56,7 +56,7 @@ const useSearchResult = () => {
   const handleChange = (val) => {
     return new Promise((resolve) => {
       GET("/client/landing/booklist/search?keyword=" + val).then((r) => {
-        let result = [{ value: val, label: `"Search ${val}"` }];
+        let result = [{ value: val, label: `${val}` }];
         r.data.map((r) => {
           result.push({ value: r.name, label: r.name });
         });

@@ -47,18 +47,24 @@ const SearchDropdown = (props) => {
         ":active": {
           backgroundColor: "#F3F6FA",
         },
+        marginBottom: "16px",
       };
     },
     indicatorSeparator: (provided, state) => ({
       ...provided,
       backgroundColor: "rgba(0,0,0,0)",
     }),
+    placeholder: (provided, state) => ({
+      ...provided,
+      fontWeight: "400",
+      color: "#AAAFB7",
+    }),
   };
 
   const Control = ({ children, ...props }) => {
     return (
       <components.Control {...props}>
-        <SearchIcon className="text-neutral-300 pl-16" />
+        <SearchIcon className="text-neutral-200 pl-16" />
         {children}
       </components.Control>
     );
@@ -67,11 +73,10 @@ const SearchDropdown = (props) => {
   const NoOptionsMessage = (props) => {
     return (
       <components.NoOptionsMessage {...props}>
-        <span>
+        <p className="text-start ">
           You can search by book name or any keyword here. Try "Simple past
           tense"
-          <hr className="border-secondary-300 mt-16" />
-        </span>
+        </p>
       </components.NoOptionsMessage>
     );
   };
@@ -102,7 +107,7 @@ const SearchDropdown = (props) => {
           <AsyncSelect
             className="basic-single w-p-100 "
             classNamePrefix="select"
-            placeholder="Search anything here"
+            placeholder="Search book name or author"
             loadOptions={props.handleSearchChange}
             formatCreateLabel={() => undefined}
             styles={customStyles}

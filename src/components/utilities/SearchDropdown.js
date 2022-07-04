@@ -41,7 +41,7 @@ const SearchDropdown = (props) => {
         <div className=" ">
           <InputComponent
             labelClassName="font-xs-bold"
-            placeholder="Search anything here"
+            placeholder="Search book name or author"
             icon={<i className="bi bi-search text-neutral-400"></i>}
             onChange={handleChange}
             icon2={

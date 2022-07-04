@@ -58,9 +58,9 @@ const HomeRedeem = () => {
                     backgroundSize: "cover",
                   }}
                 >
-                  <div className="  col-12 px-24  md-px-0">
+                  <div className="  col-12 px-24   md-px-0">
                     <div className="d-xl-flex justify-content-between align-items-center">
-                      <div className="mb-24 xl-w-494 ">
+                      <div className="mb-24 xl-mb-0  xl-w-494  ">
                         <p className="text-white h5 md-h4 xl-h3">
                           Redeem Your E-book Code
                         </p>
@@ -80,7 +80,7 @@ const HomeRedeem = () => {
                             <div className="input-area h-36 md-h-44 h-40 bg-white  ">
                               <input
                                 type="text"
-                                className="w-full input-control radius-8 py-8 pl-16 font-medium "
+                                className="w-full input-control radius-8 py-8 pl-16 "
                                 placeholder="Enter 12 digit of code "
                                 name="code"
                                 maxLength="18"

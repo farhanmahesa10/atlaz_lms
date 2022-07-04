@@ -59,7 +59,7 @@ const ProductYCard = (props) => {
           className={` position-relative d-flex justify-content-between flex-column ${props.responsiveClass}`}
         >
           <div className="p-4">
-            <div className="bg-white radius-bl-14 end-0 text-success-500 radius-rt-14 promo-label">
+            <div className="bg-white radius-bl-14 end-0 text-info-500 radius-rt-14 promo-label">
               Best Seller
             </div>
             <div className="card-product-img d-flex align-items-center  radius-14 ">
@@ -82,14 +82,16 @@ const ProductYCard = (props) => {
                     prefix={"Rp"}
                   />
                 </h5>
-                <s className="font-card-price-scribble text-neutral-300">
-                  <NumberFormat
-                    value={data.originalPrice}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"Rp"}
-                  />
-                </s>
+                {data.discountPrice?.discountAmount > 0 && (
+                  <s className="font-card-price-scribble text-neutral-300">
+                    <NumberFormat
+                      value={data.originalPrice}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"Rp"}
+                    />
+                  </s>
+                )}
               </div>
               <div className="d-flex align-items-center">
                 <i className="bi bi-star-fill text-primary-500 mr-7 fs-14"></i>
@@ -110,7 +112,7 @@ const ProductYCard = (props) => {
         >
           <div
             className="d-flex h-full px-24 py-40 flex-column w-full"
-            style={{ maxHeight: "668px", overflowY: "auto" }}
+            style={{ overflowY: "auto" }}
           >
             <div className=" mb-24 mx-24">
               <div className="d-flex  justify-content-between align-items-center">
