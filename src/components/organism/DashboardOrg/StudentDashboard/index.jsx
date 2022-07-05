@@ -20,6 +20,8 @@ const StudentDashboard = () => {
     continueClassLoading,
     upcomingData,
     upcomingLoading,
+    overviewData,
+    overviewLoading,
   } = useStudentDashboard();
   return (
     <>
@@ -33,7 +35,10 @@ const StudentDashboard = () => {
                     <WelcomeStudentDashboard />
                   </div>
                   <div className=" col-6  col-xl-12 xl-mt-24">
-                    <OverviewStudentDashboard />
+                    <OverviewStudentDashboard
+                      data={overviewData}
+                      isLoading={overviewLoading}
+                    />
                   </div>
                   <div className=" col-12 d-none d-xl-block   mt-24">
                     <GradeStudentDashboard />

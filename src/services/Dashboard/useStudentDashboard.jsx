@@ -11,12 +11,33 @@ const useStudentDashboard = () => {
   const [upcomingData, setUpcomingData] = useState([]);
   const [upcomingLoading, setUpcomingLoading] = useState(true);
 
+  const [overviewData, setOverviewData] = useState({
+    assessment: {
+      doneContent: 0,
+      progress: 0,
+      totalContent: 0,
+    },
+    assessmentGrading: {
+      doneContent: 0,
+      progress: 0,
+      totalContent: 0,
+    },
+    ownedBook: {
+      doneContent: 0,
+      progress: 0,
+      totalContent: 0,
+    },
+  });
+
+  const [overviewLoading, setOverviewLoading] = useState(true);
+
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       initBookList();
       initContonueLearning();
       initUpcoming();
+      initOverview();
     }
 
     return () => {
@@ -66,6 +87,48 @@ const useStudentDashboard = () => {
         setUpcomingLoading(false);
       });
   };
+
+  const initOverview = async () => {
+    // setOverviewLoading(false);
+    let data = {};
+    await GET("/client/dashboard/progress/my_content", defConfig())
+      .then((r) => {
+        data = {
+          ...overviewData,
+          ownedBook: {
+            doneContent: r.data.doneContent || 0,
+            progress: Math.round(r.data.progress || 0),
+            totalContent: r.data.totalContent || 0,
+          },
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    await GET("/client/dashboard/progress/my_assessment", defConfig())
+      .then((r) => {
+        data = {
+          ...data,
+          assessment: {
+            doneContent: r.data.doneAssessment || 0, //
+            progress: Math.round(r.data.progress.student_work || 0),
+            totalContent: r.data.totalAssessment || 0, //1
+          },
+          assessmentGrading: {
+            doneContent: r.data.gradedAssessment || 0, //2
+            progress: Math.round(r.data.progress.graded || 0),
+            totalContent: r.data.totalAssessment || 0, //1
+          },
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setOverviewData(data);
+    await setOverviewLoading(false);
+  };
+
   return {
     dataBookList,
     isLoadingBookList,
@@ -73,6 +136,8 @@ const useStudentDashboard = () => {
     continueClassLoading,
     upcomingData,
     upcomingLoading,
+    overviewData,
+    overviewLoading,
   };
 };
 

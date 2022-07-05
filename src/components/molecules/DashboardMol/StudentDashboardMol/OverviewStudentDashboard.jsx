@@ -27,24 +27,27 @@ const OverviewStudentDashboard = (props) => {
             strokeColor="#1bb184"
             titleColor="success-600"
             subTitle="Assessment"
-            total={120}
-            complete={100}
+            text="Complete"
+            total={data.assessment.totalContent}
+            complete={data.assessment.doneContent}
           />
         </div>
         <div className="d-none d-xl-block ">
           <Progress
+            text="Waiting"
             strokeColor="#8ECFEE"
             titleColor="info-500"
             subTitle="Assessment to grading"
-            total={120}
-            complete={20}
+            total={data.assessmentGrading.totalContent}
+            complete={data.assessmentGrading.doneContent}
           />
           <Progress
+            text="Finished"
             strokeColor="#FDBF47"
             titleColor="primary-500"
             subTitle="Owned book"
-            total={120}
-            complete={50}
+            total={data.ownedBook.totalContent}
+            complete={data.ownedBook.doneContent}
           />
         </div>
       </div>
@@ -53,12 +56,18 @@ const OverviewStudentDashboard = (props) => {
 };
 
 const Progress = (props) => {
-  const { strokeColor, titleColor, subTitle, total, complete } = props;
+  const { strokeColor, titleColor, subTitle, total, complete, text } = props;
+
+  const progresResult = () => {
+    return Math.round((complete / total) * 100)
+      ? Math.round((complete / total) * 100)
+      : 0;
+  };
   return (
     <div className="mt-24 d-flex justify-content-between align-items-center">
       <div>
         <p className={`font-sm-bold md-h6 xl-font-bold text-${titleColor}`}>
-          {complete}/{total} Completed
+          {complete}/{total} &nbsp; {text}
         </p>
         <p className="font-sm-bold md-font-xs-medium xl-font-sm text-neutral-200">
           {subTitle}
@@ -68,7 +77,7 @@ const Progress = (props) => {
         <CircularProgress
           strokeWidth="4"
           sqSize="56"
-          percentage={Math.round((complete / total) * 100)}
+          percentage={progresResult()}
           strokeColor={strokeColor}
         />
       </div>
