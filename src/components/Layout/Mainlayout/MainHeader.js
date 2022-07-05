@@ -87,35 +87,43 @@ const MainHeader = (props) => {
       allowAccess:
         "superuser,administrator,Headmaster,SCHOOLADMIN,TEACHER,STUDENT",
     },
+    // {
+    //   icon: <BookIcon />,
+    //   link: "/grade",
+    //   label: "Grade",
+    //   shouldLogin: 1,
+    //   activeTo: "grade",
+    //   allowAccess: "TEACHER",
+    //   childs: [
+    //     {
+    //       link: "/grade/grade-overview",
+    //       label: "Grade Overview",
+    //       // shouldLogin: false,
+    //       activeTo: "grade",
+    //     },
+    //     {
+    //       link: "/grade/manage-grades",
+    //       label: "Manage Grades",
+    //       // shouldLogin: false,
+    //       activeTo: "grade",
+    //     },
+    //   ],
+    // },
+    // {
+    //   icon: <BookIcon />,
+    //   link: "/grade/grade-overview",
+    //   label: "Grade",
+    //   shouldLogin: 1,
+    //   activeTo: "grade",
+    //   allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT",
+    // },
     {
       icon: <BookIcon />,
-      link: "/grade",
+      link: "/grade/manage-grades",
       label: "Grade",
       shouldLogin: 1,
       activeTo: "grade",
-      allowAccess: "TEACHER",
-      childs: [
-        {
-          link: "/grade/grade-overview",
-          label: "Grade Overview",
-          // shouldLogin: false,
-          activeTo: "grade",
-        },
-        {
-          link: "/grade/manage-grades",
-          label: "Manage Grades",
-          // shouldLogin: false,
-          activeTo: "grade",
-        },
-      ],
-    },
-    {
-      icon: <BookIcon />,
-      link: "/grade/grade-overview",
-      label: "Grade",
-      shouldLogin: 1,
-      activeTo: "grade",
-      allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT",
+      allowAccess: "teacher",
     },
 
     // {
