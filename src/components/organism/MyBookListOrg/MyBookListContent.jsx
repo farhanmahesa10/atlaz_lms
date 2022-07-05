@@ -5,6 +5,7 @@ import BookListDashboardCard from "../../molecules/Cards/BookListDashboardCard";
 import SearchIcon from "@mui/icons-material/Search";
 import { MyBookListContentLoading } from "../../molecules";
 import { Link } from "react-router-dom";
+import NoBookImage from "../../../assets/images/search-no-data.png";
 const MyBookListContent = (props) => {
   const {
     data,
@@ -101,25 +102,53 @@ const MyBookListContent = (props) => {
             ) : (
               <div className="mt-24">
                 <div className="row">
-                  {data.map((r, i) => {
-                    return (
-                      <div
-                        className="col-6 col-sm-4 col-lg-3  mb-24"
-                        key={r._id}
-                      >
-                        <Link to={`/my-book-list/detail/${r._id}`}>
-                          <BookListDashboardCard
-                            className="card-book-sm md-card-book-xl"
-                            data={r}
-                          />
-                        </Link>
-                      </div>
-                    );
-                  })}
+                  {data.length > 0 ? (
+                    data.map((r, i) => {
+                      return (
+                        <div
+                          className="col-6 col-sm-4 col-lg-3  mb-24"
+                          key={r._id}
+                        >
+                          <Link to={`/my-book-list/detail/${r._id}`}>
+                            <BookListDashboardCard
+                              className="card-book-sm md-card-book-xl"
+                              data={r}
+                            />
+                          </Link>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <NoBook />
+                  )}
                 </div>
               </div>
             )}
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NoBook = () => {
+  return (
+    <div className="py-20">
+      <div className="w-full d-flex justify-content-center align-items-center">
+        <div className="text-center">
+          <img
+            src={NoBookImage}
+            alt=""
+            className="h-full w-full max-h-104 max-w-104 md-max-h-143 md-max-w-143"
+          />
+          <p className="font-sm-bold mt-24 sm-h6">No Book Yet</p>
+          <p className="font-xs-medium mt-8 md-font-sm-medium">
+            Try go to{" "}
+            <Link to="/shop" className="text-info-500">
+              shop
+            </Link>{" "}
+            and buy book over there!
+          </p>
         </div>
       </div>
     </div>

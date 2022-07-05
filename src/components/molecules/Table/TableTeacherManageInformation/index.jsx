@@ -88,8 +88,8 @@ function TableTeacherManageInformation() {
                 dataGradesInformation ?
                   (
                     dataGradesInformation.length > 0 ?
-                      dataGradesInformation?.map(item => {
-                        return <tr>
+                      dataGradesInformation?.map((item, index) => {
+                        return <tr key={index}>
                           <td>{item.student.name}</td>
                           <td>{item.lesson.name}</td>
                           <td>

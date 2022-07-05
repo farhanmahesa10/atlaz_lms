@@ -81,8 +81,8 @@ function TableStudentGradeOverview() {
                     dataGradeOverview ?
                       (
                         dataGradeOverview.length > 0 ?
-                          dataGradeOverview?.map(item => {
-                            return <tr>
+                          dataGradeOverview?.map((item, index) => {
+                            return <tr key={index}>
                               <td>{item.classlist.name} - {item.classlist.academicYear}</td>
                               <td width="45%">{item.subject.name}</td>
                               <td width="14%">

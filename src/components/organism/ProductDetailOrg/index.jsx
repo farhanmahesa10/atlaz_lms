@@ -74,13 +74,13 @@ const ProductDetailOrg = () => {
 
   const [feature, setFeature] = useState([
     {
-      title: "Cefr Level",
-      subTitle: "A1",
+      title: "High Order",
+      subTitle: "Thinking Skills",
       color: "#B3FFFF",
     },
     {
-      title: "Completion",
-      subTitle: "Certificate",
+      title: "21st Century ",
+      subTitle: "Skills",
       color: "#B3FFFF",
     },
     {
@@ -163,7 +163,7 @@ const ProductDetailOrg = () => {
                             <StarIcon size="10" />
                             <StarIcon size="10" />
                             <StarIcon size="10" isHalf />
-                            <span className="fs-9">&nbsp; 5.0/5.0</span>
+                            <span className="fs-9">&nbsp; &gt;4.2</span>
                           </div>
                         </div>
                         <div className="mb-30 xl-mb-38">

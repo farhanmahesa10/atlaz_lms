@@ -19,13 +19,13 @@ const ProductYCard = (props) => {
   };
   const [feature, setFeature] = useState([
     {
-      title: "Cefr Level",
-      subTitle: "A1",
+      title: "High Order",
+      subTitle: "Thinking Skills",
       color: "#B3FFFF",
     },
     {
-      title: "Completion ",
-      subTitle: "Certificate",
+      title: "21st Century ",
+      subTitle: "Skills",
       color: "#B3FFFF",
     },
     {
@@ -96,7 +96,7 @@ const ProductYCard = (props) => {
               <div className="d-flex align-items-center">
                 <i className="bi bi-star-fill text-primary-500 mr-7 fs-14"></i>
                 <span className="text-neutral-300 font-card-content">
-                  4.8 | Sold1.1k
+                  &gt;4.2 | Sold1.1k
                 </span>
               </div>
             </div>
@@ -134,11 +134,11 @@ const ProductYCard = (props) => {
                 <p className="  text-neutral-200 font-xs">Lesson</p>
               </div>
               <div className="  text-center col-4 lh-1 border-end">
-                <p className=" font-medium ">1.1K</p>
+                <p className=" font-medium ">1K+</p>
                 <p className="  text-neutral-200 font-xs">Sold</p>
               </div>
               <div className="  text-center col-4 lh-1">
-                <p className=" font-medium ">4.8</p>
+                <p className=" font-medium ">&gt;4.2</p>
                 <p className="   text-neutral-200 font-xs">Ratings</p>
               </div>
             </div>

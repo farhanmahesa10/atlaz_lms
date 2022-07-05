@@ -52,7 +52,7 @@ function ManageDetail2() {
                             {
                                 initialGrades && initialGrades.map((item, index) => {
                                     if(item.isAudio) {
-                                        return <div className="col-md-12">
+                                        return <div className="col-md-12" key={index}>
                                             <div className="d-flex align-items-center justify-content-center mb-24">
                                                 <Audio src={item.answer} />
                                                 <a href={item.answer} className="ms-auto ml-24">

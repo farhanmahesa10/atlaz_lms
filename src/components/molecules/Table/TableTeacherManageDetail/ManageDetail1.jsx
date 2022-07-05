@@ -38,7 +38,7 @@ function ManageDetail1() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
+                                    {   
                                         initialGrades && initialGrades?.map((item, index) => {
                                             return <tr key={index}>
                                                 <td width="5%" className="text-center">{index + 1}</td>

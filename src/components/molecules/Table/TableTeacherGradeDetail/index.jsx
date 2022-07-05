@@ -78,7 +78,7 @@ function TableTeacherGradeDetail() {
                 dataGradeDetail ?
                   (
                     dataGradeDetail.length > 0 ?
-                      dataGradeDetail?.map(item => {
+                      dataGradeDetail?.map((item, index) => {
                         let progress = ''
                         if(item.done > 0 && item.done === item.count) {
                           progress = 'completed'
@@ -87,7 +87,7 @@ function TableTeacherGradeDetail() {
                         } else {
                           progress = 'incompleted'
                         }
-                        return <tr>
+                        return <tr key={index}>
                           <td>{item.user.name}</td>
                           <td width="20%">
                             <div className={`font-xs-medium radius-4 px-8 py-2 d-inline nowrap ${progress}`}>{item.done} / {item.count} Completed</div>

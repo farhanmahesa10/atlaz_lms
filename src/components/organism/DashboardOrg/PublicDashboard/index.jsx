@@ -37,12 +37,6 @@ const PublicDashboard = () => {
               data={dataRedeem}
               redeemBookAction={redeemBookAction}
             />
-            <div className="mt-24 ">
-              <BookListPublicDashboard
-                data={dataBookList}
-                isLoading={isLoadingBookList}
-              />
-            </div>
           </div>
           <div className="col-12 col-xl-4 h-175">
             <div className="row mt-24 xl-mt-0 h-auto ">
@@ -86,6 +80,12 @@ const PublicDashboard = () => {
                 </ModalTrigger>
               </div>
             </div>
+          </div>
+          <div className="mt-24 col-12 col-xl-8 ">
+            <BookListPublicDashboard
+              data={dataBookList}
+              isLoading={isLoadingBookList}
+            />
           </div>
         </div>
       </div>
