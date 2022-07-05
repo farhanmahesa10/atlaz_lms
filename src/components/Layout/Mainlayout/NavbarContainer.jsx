@@ -9,6 +9,7 @@ import { Divider } from "../../atoms";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useGlobalFunction } from "../../../services";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const NavbarContainer = (props) => {
   const { menus, settings, activeMenu, setShowCanvas, auth } = props;
   const { getUserInfo } = useGlobalFunction();
@@ -83,10 +84,17 @@ const NavbarContainer = (props) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img
-                  src={user?.avatar || "/images/profile.png"}
-                  className="h-32 w-32  radius-p-100"
-                />
+                <div className="d-flex align-items-center">
+                  <div>
+                    <img
+                      src={user?.avatar || "/images/profile.png"}
+                      className="h-32 w-32  radius-p-100"
+                    />
+                  </div>
+                  <div>
+                    <KeyboardArrowDownIcon className="fs-20 ml-8 text-secondary-500" />
+                  </div>
+                </div>
               </div>
               <ul className="dropdown-menu bg-white p-16 radius-8 w-318  top-35 right-8">
                 <div className="w-full  ">
