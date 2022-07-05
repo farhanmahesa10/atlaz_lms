@@ -38,7 +38,7 @@ const PublicDashboard = () => {
               redeemBookAction={redeemBookAction}
             />
           </div>
-          <div className="col-12 col-xl-4 h-175">
+          <div className="col-12 col-xl-4 h-full">
             <div className="row mt-24 xl-mt-0 h-auto ">
               <div className="col-6 col-xl-12 d-none d-md-block">
                 <EditProfilePublicDashboard
@@ -46,10 +46,30 @@ const PublicDashboard = () => {
                   isLoading={isLoadingProfile}
                 />
               </div>
+
+              <div className="col-6 col-md-3 col-xl-6 h-148 md-h-auto xl-h-173 xl-mt-22 xl-mt-24 xl-mt-0">
+                <ModalTrigger
+                  target="modal-redeem-dashboard"
+                  data={{}}
+                  className="h-full w-full  md-mt-0"
+                >
+                  <BoxDashboardCard
+                    dontRedirect
+                    bgImage={RedeemNewBook}
+                    bgColor="#FCF7ED"
+                    link="/user/edit-profile"
+                    title={
+                      <span>
+                        Redeem <br /> New Book
+                      </span>
+                    }
+                  />
+                </ModalTrigger>
+              </div>
               <div className="col-6 col-md-3 h-148 md-h-auto xl-h-173 col-xl-6 xl-mt-22 xl-mt-24 xl-mt-0">
                 <BoxDashboardCard
-                  bgImage={RedeemNewBook}
-                  bgColor="#FCF7ED"
+                  bgImage={AtlazMediaBg}
+                  bgColor="#EAEDFB"
                   link="https://media.hiatlaz.com/media.hiatlaz.com"
                   isToExternal={true}
                   isCommingSoon
@@ -59,25 +79,6 @@ const PublicDashboard = () => {
                     </span>
                   }
                 />
-              </div>
-              <div className="col-6 col-md-3 col-xl-6 h-148 md-h-auto xl-h-173 xl-mt-22 xl-mt-24 xl-mt-0">
-                <ModalTrigger
-                  target="modal-redeem-dashboard"
-                  data={{}}
-                  className="h-full w-full  md-mt-0"
-                >
-                  <BoxDashboardCard
-                    dontRedirect
-                    bgImage={AtlazMediaBg}
-                    bgColor="#EAEDFB"
-                    link="/user/edit-profile"
-                    title={
-                      <span>
-                        Redeem <br /> New Book
-                      </span>
-                    }
-                  />
-                </ModalTrigger>
               </div>
             </div>
           </div>

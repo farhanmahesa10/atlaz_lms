@@ -37,14 +37,14 @@ const ReedemPublicDashboard = (props) => {
                   <div className="d-flex justify-content-md-between justify-content-lg-start flex-column flex-md-row mt-16">
                     <Link
                       to="/shop"
-                      className="md-w-p-48 w-full  lg-w-180 lg-mr-16"
+                      className="md-w-p-48 w-full  lg-max-w-180 lg-mr-16"
                     >
                       <button className="btn-primary w-full">Open shop</button>
                     </Link>
                     <ModalTrigger
                       target="modal-redeem-dashboard"
                       data={{}}
-                      className="md-w-p-48 w-full  lg-w-180 lg-mr-16 mt-16 md-mt-0"
+                      className="md-w-p-48 w-full  lg-max-w-180 lg-mr-16 mt-16 md-mt-0"
                     >
                       <button className="btn-outline w-full  ">
                         Redeem book code

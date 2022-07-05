@@ -26,7 +26,7 @@ const Sidebar = (props) => {
     <Offcanvas
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
-      className="radius-tl-8 radius-bl-8 w-306 "
+      className="md-radius-tl-8 md-radius-bl-8 w-full md-w-306 "
       style={{ padding: "0" }}
       placement="end"
       show={showCanvas}

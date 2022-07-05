@@ -14,7 +14,7 @@ const BookListPublicDashboard = (props) => {
           <div>
             <h6 className="md-h5">My Book List</h6>
             <p className="font-xs-medium md-font-sm text-neutral-200">
-              Elementary School
+              List of purchased book
             </p>
           </div>
           <div>

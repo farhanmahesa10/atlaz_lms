@@ -126,7 +126,7 @@ const ManageAccountOrg = () => {
                               placeholder="Enter your active email"
                               readOnly
                               icon2={
-                                <CheckCircleOutlineIcon className="text-neutral-200" />
+                                <CheckCircleOutlineIcon className="text-success-500" />
                               }
                             />
                           </div>
