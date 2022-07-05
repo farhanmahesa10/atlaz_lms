@@ -66,11 +66,11 @@ function TableTeacherManageGrades() {
                     dataManageGrades.length > 0 ?
                       dataManageGrades?.map((item, index) => {
                         return <tr key={index}>
-                          <td>{item.classlist.name} - {item.classlist.academicYear}</td>
-                          <td>{item.subject.name}</td>
+                          <td>{item.classlist?.name} - {item.classlist?.academicYear}</td>
+                          <td>{item.subject?.name}</td>
                           {/* <td width="15%"><div className={`font-xs-medium radius-4 px-8 py-2 d-inline nowrap ${item.status}`}>{item.status}</div></td> */}
                           <td width="8%">
-                            <Link to={`information/${item.subject._id}/${item.classlist._id}`}><Launch className="text-neutral-300 fs-18 ml-6" /></Link>
+                            <Link to={`information/${item.subject?._id}/${item.classlist?._id}`}><Launch className="text-neutral-300 fs-18 ml-6" /></Link>
                           </td>
                         </tr>
                       }) : (<tr>

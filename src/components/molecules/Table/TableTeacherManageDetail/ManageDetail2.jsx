@@ -55,7 +55,7 @@ function ManageDetail2() {
                                         return <div className="col-md-12" key={index}>
                                             <div className="d-flex align-items-center justify-content-center mb-24">
                                                 <Audio src={item.answer} />
-                                                <a href={item.answer} className="ms-auto ml-24">
+                                                <a href={item.answer} className="ms-auto ml-24" download="file.wav">
                                                     <div className="d-flex align-items-center justify-content-center w-40 h-40 radius-8 bg-secondary-500 text-neutral-500">
                                                         <Download />
                                                     </div>
@@ -77,7 +77,7 @@ function ManageDetail2() {
                                                     
                                                 </div>
                                             </div>
-                                            <a href="#" className="ms-auto">
+                                            <a href={item.answer} className="ms-auto" download={item.answer.includes("data:application/pdf") ? "file.pdf" : (item.answer.includes("data:application/docx") ? "file.docx" : "file.doc")}>
                                                 <div className="d-flex align-items-center justify-content-center w-40 h-40 radius-8 bg-secondary-500 text-neutral-500">
                                                     <Download />
                                                 </div>
