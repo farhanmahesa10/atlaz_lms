@@ -3,6 +3,7 @@ import BookListDashboardCard from "../../Cards/BookListDashboardCard";
 import MyBookListContentLoading from "../../SkeletonLoading/MyBookListLoading/MyBookListContentLoading";
 const MyBookListStudentDashboard = (props) => {
   const { data, isLoading } = props;
+  console.log(data);
   return (
     <div className="w-full h-full radius-14 border border-secondary-500">
       <div className="py-24 px-32">
@@ -15,7 +16,10 @@ const MyBookListStudentDashboard = (props) => {
               return (
                 <React.Fragment key={r._id + "-" + i}>
                   <div className="mb-24 col-6 col-sm-4 col-md-4 col-xl-4">
-                    <BookListDashboardCard data={r} className="card-book-xl " />
+                    <BookListDashboardCard
+                      data={r.subject}
+                      className="card-book-xl "
+                    />
                   </div>
                 </React.Fragment>
               );

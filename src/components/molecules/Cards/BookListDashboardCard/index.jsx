@@ -11,7 +11,7 @@ const BookListDashboardCard = (props) => {
           <p>{data.name}</p>
         </div>
         <div className="card-book-footer">
-          {Math.round(data.progress)}%
+          {Math.round(data.progress) || 0}%
           <div className="card-book-progress">
             <div
               className="card-book-progress-value"

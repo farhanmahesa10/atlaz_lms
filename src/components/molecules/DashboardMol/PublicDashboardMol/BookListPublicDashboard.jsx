@@ -37,9 +37,9 @@ const BookListPublicDashboard = (props) => {
                       className="mb-24 col-6 col-sm-4 col-md-4 col-xl-3"
                       key={r._id}
                     >
-                      <Link to={`/my-book-list/detail/${r._id}`}>
+                      <Link to={`/my-book-list/detail/${r.subject._id}`}>
                         <BookListDashboardCard
-                          data={r}
+                          data={r.subject}
                           className="card-book-sm md-card-book-xl"
                         />
                       </Link>
