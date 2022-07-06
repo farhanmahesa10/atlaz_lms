@@ -3,7 +3,6 @@ import BookListDashboardCard from "../../Cards/BookListDashboardCard";
 import MyBookListContentLoading from "../../SkeletonLoading/MyBookListLoading/MyBookListContentLoading";
 const MyBookListStudentDashboard = (props) => {
   const { data, isLoading } = props;
-  console.log(data);
   return (
     <div className="w-full h-full radius-14 border border-secondary-500">
       <div className="py-24 px-32">
