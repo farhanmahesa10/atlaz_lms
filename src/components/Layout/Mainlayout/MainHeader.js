@@ -117,6 +117,14 @@ const MainHeader = (props) => {
       activeTo: "grade",
       allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT",
     },
+    {
+      icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
+      link: "/teacher-resource",
+      label: "Teacher Resource",
+      shouldLogin: true,
+      activeTo: "teacher-resources",
+      allowAccess: "teacher,public,SCHOOLADMIN",
+    },
 
     // {
     //   icon: <GroupsIcon />,
@@ -158,6 +166,7 @@ const MainHeader = (props) => {
       activeTo: "security",
       allowAccess: "student,teacher,public",
     },
+
     // dihilangkan sementara
     // {
     //   icon: <HistoryToggleOffOutlinedIcon style={{ color: "#C48EEE" }} />,

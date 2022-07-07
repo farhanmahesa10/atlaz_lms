@@ -96,7 +96,7 @@ const ProductYCard = (props) => {
               <div className="d-flex align-items-center">
                 <i className="bi bi-star-fill text-primary-500 mr-7 fs-14"></i>
                 <span className="text-neutral-300 font-card-content">
-                  &gt;4.2 | Sold1.1k
+                  4.5 | 100+
                 </span>
               </div>
             </div>
@@ -134,11 +134,11 @@ const ProductYCard = (props) => {
                 <p className="  text-neutral-200 font-xs">Lesson</p>
               </div>
               <div className="  text-center col-4 lh-1 border-end">
-                <p className=" font-medium ">1K+</p>
+                <p className=" font-medium ">100+</p>
                 <p className="  text-neutral-200 font-xs">Sold</p>
               </div>
               <div className="  text-center col-4 lh-1">
-                <p className=" font-medium ">&gt;4.2</p>
+                <p className=" font-medium ">4.5</p>
                 <p className="   text-neutral-200 font-xs">Ratings</p>
               </div>
             </div>

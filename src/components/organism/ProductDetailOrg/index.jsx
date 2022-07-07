@@ -163,7 +163,7 @@ const ProductDetailOrg = () => {
                             <StarIcon size="10" />
                             <StarIcon size="10" />
                             <StarIcon size="10" isHalf />
-                            <span className="fs-9">&nbsp; &gt;4.2</span>
+                            <span className="fs-9">&nbsp; 4.2</span>
                           </div>
                         </div>
                         <div className="mb-30 xl-mb-38">
