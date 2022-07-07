@@ -43,7 +43,10 @@ import GradeBook from "./Grade/GradeBook";
 import ManageGrades from "./Grade/ManageGrades";
 import ManageInformation from "./Grade/ManageInformation";
 import ManageDetail from "./Grade/ManageDetail";
+
+import TeacherResource from "./TeacherResource";
 export {
+  TeacherResource,
   GradeOverview,
   GradeDetail,
   GradeBook,

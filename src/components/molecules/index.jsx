@@ -114,7 +114,22 @@ import ModalConfirmSubmitAssessment from "./Modals/ModalConfirmSubmitAssessment"
 
 import ModalViewContent from "./Modals/Grades/ModalViewContent";
 
+import TeacherResourceLessonPlan from "./TeacherResourceMol/TeacherResourceLessonPlan";
+import TeacherResourceTraining from "./TeacherResourceMol/TeacherResourceTraining";
+import TeacherResourceWorksheet from "./TeacherResourceMol/TeacherResourceWorksheet";
+
+import LessonPlanCard from "./Cards/LessonPlanCard";
+import WorksheetCard from "./Cards/WorksheetCard";
+import TeacherResourceOffCanvas from "./TeacherResourceMol/TeacherResourceOffCanvas";
+import TeacherTrainingCard from "./Cards/TeacherTrainingCard";
 export {
+  TeacherTrainingCard,
+  WorksheetCard,
+  TeacherResourceOffCanvas,
+  LessonPlanCard,
+  TeacherResourceLessonPlan,
+  TeacherResourceTraining,
+  TeacherResourceWorksheet,
   ModalConfirmSubmitAssessment,
   TableStudentGradeOverview,
   TableMasterGradeOverview,

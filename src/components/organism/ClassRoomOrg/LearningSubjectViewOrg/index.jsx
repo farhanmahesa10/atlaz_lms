@@ -104,7 +104,7 @@ const LearningSubjectViewOrg = () => {
 
           {/* book content and detail */}
           <div className="mt-40">
-            <TabBar data={TabBarData} />
+            <TabBar data={TabBarData} activeDefault="Book Content" />
           </div>
         </div>
       </div>

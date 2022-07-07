@@ -52,7 +52,10 @@ import GradeBookOrg from "./GradeOrg/GradeBookOrg";
 import ManageGradesOrg from "./GradeOrg/ManageGradesOrg";
 import ManageInformationOrg from "./GradeOrg/ManageInformationOrg";
 import ManageDetailOrg from "./GradeOrg/ManageDetailOrg";
+
+import TeacherResourceOrg from "./TeacherResourceOrg";
 export {
+  TeacherResourceOrg,
   GradeOverviewOrg,
   GradeDetailOrg,
   GradeBookOrg,

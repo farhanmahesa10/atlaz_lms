@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Divider } from "../../atoms";
 import "./tabBar.scss";
 const TabBar = (props) => {
-  const [active, setActive] = useState("Book Content");
+  const [active, setActive] = useState(props.activeDefault);
 
   const { data } = props;
 

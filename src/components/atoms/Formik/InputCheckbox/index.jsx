@@ -21,7 +21,10 @@ const InputCheckbox = (props) => {
               {...field}
             />
             {props.label && (
-              <label htmlFor={props.name} className="ml-11 cursor-pointer">
+              <label
+                htmlFor={props.name}
+                className={`ml-8 cursor-pointer  ${props.labelClassName}`}
+              >
                 {props.label}
               </label>
             )}

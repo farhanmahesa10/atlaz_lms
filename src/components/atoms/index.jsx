@@ -17,7 +17,9 @@ import ProgressBar from "./ProgressBar";
 import Audio from "./Audio";
 import CircularProgress from "./CircularProgress";
 import TableThead from "./TableThead";
+import InputSeach from "./InputSearch";
 export {
+  InputSeach,
   TableThead,
   FormikControl,
   SearchDropdown,

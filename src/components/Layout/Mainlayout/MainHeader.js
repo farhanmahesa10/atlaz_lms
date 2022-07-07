@@ -119,8 +119,8 @@ const MainHeader = (props) => {
     },
     {
       icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
-      link: "/teacher-resource",
-      label: "Teacher Resource",
+      link: "/teacher-resources",
+      label: "Teacher Resources",
       shouldLogin: true,
       activeTo: "teacher-resources",
       allowAccess: "teacher,public,SCHOOLADMIN",

@@ -49,6 +49,7 @@ import {
   ManageGrades,
   ManageInformation,
   ManageDetail,
+  TeacherResource,
 } from "../../pages";
 import TesViewContent from "../../pages/TesViewContent";
 const Routing = () => {
@@ -434,6 +435,16 @@ const Routing = () => {
           <Authenticate>
             <CheckRole allowAccess="TEACHER">
               <ManageDetail />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/teacher-resources"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="TEACHER,public,schooladmin">
+              <TeacherResource />
             </CheckRole>
           </Authenticate>
         }

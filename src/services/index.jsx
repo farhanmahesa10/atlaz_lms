@@ -35,7 +35,10 @@ import useTeacherGradeOverview from "./Grade/useTeacherGradeOverview";
 import useTeacherGradeDetail from "./Grade/useTeacherGradeDetail";
 import useStudentGradeOverview from "./Grade/useStudentGradeOverview";
 
+import useTeacherResource from "./TeacherResource/useTeacherResource";
+
 export {
+  useTeacherResource,
   useStudentGradeOverview,
   useGradeOverview,
   useGradeDetail,
