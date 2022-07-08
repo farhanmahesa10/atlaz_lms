@@ -46,7 +46,7 @@ const BeginAssessmentOrg = () => {
               submitRef.current.click();
             }}
           />
-          <div className=" justify-content-center w-full bg-secondary-100 ">
+          <div className=" justify-content-center w-full bg-secondary-100 mt-55">
             <Formik
               initialValues={initialValues}
               // validationSchema={validationSchema}

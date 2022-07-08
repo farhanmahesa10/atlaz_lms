@@ -1,7 +1,9 @@
-
 @import "../../../../assets/scss/variables";
 
 .begin-assessments {
+  .assessments-content-preview {
+    padding: 8px 0px 8px 0px;
+  }
   padding: 16px 24px;
   img {
     border-radius: 4px;
@@ -150,7 +152,6 @@
       display: none;
     }
   }
-
 
   .form-control {
     &:active {

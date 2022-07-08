@@ -40,8 +40,14 @@ const useWelcomeAssessment = () => {
         break;
     }
   };
+  const backToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
 
   useEffect(() => {
+    backToTop();
     initData();
   }, [params]);
 

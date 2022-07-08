@@ -5,7 +5,7 @@ import { TabBar } from "../../molecules";
 
 const TeacherResourceOrg = () => {
   const { TabBarData } = useTeacherResource();
-
+  // const title = "Find out our resource to teaching expert".split(" ")
   return (
     <MainLayout navbarBg="bg-white">
       <div className="h-136 md-h-168 xl-h-232 bg-secondary-100 d-flex justify-content-center align-items-center">
@@ -14,14 +14,37 @@ const TeacherResourceOrg = () => {
             Get knowledge to teaching
           </p>
 
-          <div
-            style={{ textDecoration: "underline  #FDCC6C 8px" }}
-            className="mt-8 h5 md-h4 xl-h3 "
-          >
-            <h3 className="h5 md-h4 xl-h3">Find out our resource </h3>
-            <h3 className=" mt-8 md-mt-0 h5 md-h4 xl-h3">
-              &nbsp;to teaching expert
-            </h3>
+          <div className="mt-8 h5 md-h4 xl-h3 ">
+            <div className="position-relative">
+              <h3
+                className="h5 md-h4 xl-h3 position-relative"
+                style={{ zIndex: "2" }}
+              >
+                Find out our resource{" "}
+              </h3>
+              <div
+                className="position-absolute w-full h-8 bg-primary-500"
+                style={{ bottom: "8px", zIndex: "1" }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="mt-8 h5 md-h4 xl-h3 ">
+            <div className="position-relative">
+              <h3
+                className="h5 md-h4 xl-h3 position-relative d-inline-flex"
+                style={{ zIndex: "2" }}
+              >
+                <span className="position-abosulute" style={{ zIndex: "5" }}>
+                  {" "}
+                  to teaching expert
+                </span>
+                <div
+                  className="position-absolute  w-full h-8 bg-primary-500"
+                  style={{ bottom: "8px", zIndex: "1" }}
+                ></div>
+              </h3>
+            </div>
           </div>
         </div>
       </div>

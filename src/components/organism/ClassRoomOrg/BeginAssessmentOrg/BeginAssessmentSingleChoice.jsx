@@ -10,7 +10,7 @@ const BeginAssessmentSingleChoice = (props) => {
     <div className="assessment-single-choice ">
       {data.questions.map((r, i) => {
         return (
-          <React.Fragment key={i}>
+          <div key={i} className="py-8">
             {r.image ? (
               <div className="text-center mb-24">
                 <img src={r.image} alt="" width="100%" className="radius-4" />
@@ -27,11 +27,11 @@ const BeginAssessmentSingleChoice = (props) => {
                   <React.Fragment key={ind}>
                     <div className=" col-12">
                       <div
-                        className={`${
+                        className={` ${
                           r.options.length !== ind + 1 ? "mb-8 " : ""
                         } ${props.index}.questions[${i}].userAnswer`}
                       >
-                        <label className=" rounded mr-8 w-full">
+                        <label className=" d-inline-block rounded mr-8 w-full">
                           <Field
                             type="radio"
                             name={`${props.index}.questions[${i}].userAnswer`}
@@ -64,7 +64,7 @@ const BeginAssessmentSingleChoice = (props) => {
                 );
               })}
             </div>
-          </React.Fragment>
+          </div>
         );
       })}
     </div>

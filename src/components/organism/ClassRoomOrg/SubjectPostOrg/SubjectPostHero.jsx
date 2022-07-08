@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useSubjectPostHero } from "../../../../services";
 import { BreadCrumb, Divider } from "../../../atoms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Skeleton from "react-loading-skeleton";
+import DownloadIcon from "@mui/icons-material/Download";
 import { SubjectPostHeroLoading } from "../../../molecules";
+import { Can } from "../../../../permission";
 const SubjectPostHero = () => {
   const {
     banner,
@@ -59,13 +60,22 @@ const SubjectPostHero = () => {
                 <p className="text-neutral-400 mt-4 text-white font-xs md-font-medium mb-8 md-mb-20">
                   {data.author}
                 </p>
-                <Link
-                  to={`/classroom/start-learning-view/${classId}/${subjectId}`}
-                >
-                  <button className="btn btn-primary font-xs md-font-sm xl-font-normal">
-                    Start Learning
-                  </button>
-                </Link>
+                <div className="d-flex">
+                  <Link
+                    to={`/classroom/start-learning-view/${classId}/${subjectId}`}
+                  >
+                    <button className="btn btn-primary font-xs md-font-sm xl-font-normal">
+                      Start Learning
+                    </button>
+                  </Link>
+                  <Can allowAccess="teacher">
+                    <a href="" download="lesson.pdf" className="ml-8">
+                      <button className="btn-secondary font-normal d-flex align-items-center ">
+                        <DownloadIcon className="fs-20 mr-8" /> Lesson Plan
+                      </button>
+                    </a>
+                  </Can>
+                </div>
               </div>
             </div>
           )}

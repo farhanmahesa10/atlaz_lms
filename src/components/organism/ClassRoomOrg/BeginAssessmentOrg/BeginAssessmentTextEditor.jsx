@@ -33,7 +33,7 @@ const BeginAssessmentTextEditor = (props) => {
   });
   return (
     <>
-      <div className="">
+      <div className="assessments-content-preview">
         <div ref={contentRef} dangerouslySetInnerHTML={createMarkup()}></div>
       </div>
     </>

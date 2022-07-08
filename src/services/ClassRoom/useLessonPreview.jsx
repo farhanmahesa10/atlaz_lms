@@ -9,9 +9,14 @@ const useLessonPreview = () => {
   const [pagination, setPagination] = useState({ next: null, prev: null });
 
   const [breadcrumbsData, setBreadcrumbsData] = useState([]);
+  const backToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
 
   useEffect(() => {
-    initData();
+    backToTop();
   }, [params]);
 
   const initData = () => {

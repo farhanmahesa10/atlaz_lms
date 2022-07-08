@@ -31,7 +31,7 @@ const InputDateTime = (props) => {
             selected={startDate}
             showTimeSelect
             autoComplete="off"
-            timeFormat="HH:mm"
+            // timeFormat="HH:mm"
             timeIntervals={15}
             timeCaption="time"
             minDate={minDate ? minDate : null}

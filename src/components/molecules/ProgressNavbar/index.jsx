@@ -16,6 +16,10 @@ const ProgressNavbar = (props) => {
   } = props;
   const [timertStr, setTimertStr] = useState("00:00");
   const [progress, setProgress] = useState(0);
+
+  const [expanded, setExpanded] = useState(false);
+  const [almostUp, setAlmostUp] = useState(false);
+
   const timer = useMemo(() => {
     return timertStr;
   }, [timertStr]);
@@ -48,6 +52,9 @@ const ProgressNavbar = (props) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     let result = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (!almostUp && minutes < 3) {
+      setAlmostUp(true);
+    }
     setTimertStr(result);
   };
 
@@ -78,7 +85,7 @@ const ProgressNavbar = (props) => {
         className=" position-fixed  pb-24 w-full bg-white"
         style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)", zIndex: "9" }}
       >
-        <div className="d-flex align-items-center py-24 px-48">
+        <div className="d-flex align-items-center py-24 px-48 ">
           <div>
             <h6 className=" mr-32 nowrap">{subTopicData.name}</h6>
           </div>
@@ -110,6 +117,17 @@ const ProgressNavbar = (props) => {
             )}
           </div>
         </div>
+        {almostUp && (
+          <div className=" mb-24 mx-48">
+            <div className="px-24 py-8 bg-warning-200 radius-4">
+              <h6>Your time is almost up</h6>
+              <p className="mt-8">
+                Please check your answers again and make sure to Submit before
+                time runs out.
+              </p>
+            </div>
+          </div>
+        )}
         <div className=" pb-24 px-48">
           <Divider lineColor="bg-secondary-500" height="h-1" />
         </div>
@@ -137,15 +155,21 @@ const ProgressNavbar = (props) => {
             </div>
           </div>
         </div>
-        <div
-          className="d-flex justify-content-center cursor-pointer text-neutral-200 hover-text-neutral-300 cursor-pointer"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
-          <ExpandMoreIcon />
-        </div>
+        {subTopicData.assessmentType !== "Manual Grading" &&
+          subTopicData.assessmentType !== "Speaking Writing Assessment" && (
+            <div
+              className={`d-flex justify-content-center ${
+                expanded && "transform-180-deg"
+              } cursor-pointer text-neutral-200 hover-text-neutral-300 cursor-pointer`}
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+              onClick={() => setExpanded(!expanded)}
+            >
+              <ExpandMoreIcon />
+            </div>
+          )}
       </div>
     </>
   );

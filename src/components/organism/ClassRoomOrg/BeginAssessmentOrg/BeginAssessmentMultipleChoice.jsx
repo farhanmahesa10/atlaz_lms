@@ -84,11 +84,10 @@ const BeginAssessmentMultipleChoice = (props) => {
                               />
                               <div className="custom align-items-center text-center rounded ps-2">
                                 <div className="mr-3 text-center">
-                                  {abjads[i]}.
+                                  {abjads[i]}. {r.text}
                                 </div>
                               </div>
                             </label>
-                            {r.text}
                           </div>
                         );
                       })}
