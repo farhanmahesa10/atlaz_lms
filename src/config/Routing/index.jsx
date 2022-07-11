@@ -386,6 +386,28 @@ const Routing = () => {
       />
 
       <Route
+        path="/grade/grade-overview/detail/subject/:idSubject"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,TEACHER">
+              <GradeDetail />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
+        path="/grade/grade-overview/detail/class/:idClass"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT,TEACHER">
+              <GradeDetail />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+
+      <Route
         path="/grade/grade-overview/detail/:idSubject/:idClass/score/:id"
         element={
           <Authenticate>

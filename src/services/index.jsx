@@ -34,10 +34,12 @@ import useManageDetail from "./Grade/useManageDetail";
 import useTeacherGradeOverview from "./Grade/useTeacherGradeOverview";
 import useTeacherGradeDetail from "./Grade/useTeacherGradeDetail";
 import useStudentGradeOverview from "./Grade/useStudentGradeOverview";
+import useExportExcel from "./Grade/useExportExcel";
 
 import useTeacherResource from "./TeacherResource/useTeacherResource";
 
 export {
+  useExportExcel,
   useTeacherResource,
   useStudentGradeOverview,
   useGradeOverview,

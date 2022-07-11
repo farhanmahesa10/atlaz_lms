@@ -3,6 +3,7 @@ import { defConfig, GET, POST } from "../../config/RestAPI";
 
 function useTeacherGradeOverview() {
   const [isLoading, setIsLoading] = useState(true)
+  const [showRow, setShowRow] = useState(['subject', 'class'])
   const [dataHeader, setDataHeader] = useState([
     {
       title: 'Class',
@@ -81,7 +82,9 @@ function useTeacherGradeOverview() {
 
   const setTableOption = (values) => {
     const dataTables = []
+    const newRow = []
     if (initialValuesTableOption.selectClass) {
+      newRow.push('class')
       dataTables.push({
         name: 'class',
         title: 'Class',
@@ -93,6 +96,7 @@ function useTeacherGradeOverview() {
       })
     }
     if (initialValuesTableOption.selectSubject) {
+      newRow.push('subject')
       dataTables.push({
         name: 'subject',
         title: 'Subject',
@@ -103,46 +107,90 @@ function useTeacherGradeOverview() {
         detail: 'Data Subject'
       })
     }
+    setShowRow(newRow)
+    initData()
     localStorage.setItem("GRADE_TABLE_OPTION", JSON.stringify(initialValuesTableOption))
     localStorage.setItem("GRADE_DETAIL_TABLE_OPTION", JSON.stringify(dataTables))
   }
 
   const [dataGradeOverview, setDataGradeOverview] = useState()
   const [dataGradeOverviewAll, setDataGradeOverviewAll] = useState()
+  const [dataExcel, setDataExcel] = useState()
+  const csvDataName = ["data"]
 
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const handlePageClick = (event) => {
       setCurrentPage(event)
-      const newOffset = (event * itemsPerPage) % dataGradeOverviewAll.length;
+      const newOffset = (event * parseInt(initialValuesTableOption.showing)) % dataGradeOverviewAll.length;
       setItemOffset(newOffset);
-      const endOffset = newOffset + itemsPerPage;
+      const endOffset = newOffset + parseInt(initialValuesTableOption.showing);
       setDataGradeOverview(dataGradeOverviewAll.slice(newOffset, endOffset))
-      setPageCount(Math.ceil(dataGradeOverviewAll.length / itemsPerPage));
+      setPageCount(Math.ceil(dataGradeOverviewAll.length / parseInt(initialValuesTableOption.showing)));
   };
 
-  useEffect(() => {
+  const initData = (row) => {
     setIsLoading(true)
-    GET(`/report/teacher/grade_overview`, defConfig(['class', 'subject']))
+    GET(`/report/teacher/grade_overview`, defConfig(row))
     .then(
       (res) => {
-        const endOffset = itemOffset + itemsPerPage;
+        const endOffset = itemOffset + parseInt(initialValuesTableOption.showing);
         setDataGradeOverview(res.data.slice(itemOffset, endOffset))
-        setPageCount(Math.ceil(res.data.length / itemsPerPage));
+        setPageCount(Math.ceil(res.data.length / parseInt(initialValuesTableOption.showing)));
         setDataGradeOverviewAll(res.data)
         setIsLoading(false)
+
+        let newDataExcel = []
+        res.data?.map((item, index) => {
+          if(item.classlist && item.subject) {
+            newDataExcel.push({
+              no: index+1,
+              class: item.classlist ? `${item.classlist?.name} - ${item.classlist?.academicYear}` : '',
+              subject: item.subject ? item.subject?.name : '',
+              average: item.score ? item.score.toFixed(2) : 'N/A'
+            })
+          } else if(item.classlist && !item.subject) {
+            newDataExcel.push({
+              no: index+1,
+              class: item.classlist ? `${item.classlist?.name} - ${item.classlist?.academicYear}` : '',
+              average: item.score ? item.score.toFixed(2) : 'N/A'
+            })
+          } else if(!item.classlist && item.subject) {
+            newDataExcel.push({
+              no: index+1,
+              subject: item.subject ? item.subject?.name : '',
+              average: item.score ? item.score.toFixed(2) : 'N/A'
+            })            
+          }
+        })
+        setDataExcel(newDataExcel)
       }
     )
     .catch(err => {
       setIsLoading(false)
       console.log('error', err)
-    })
+    })    
+  }
+
+  useEffect(() => {
+    initData(showRow)
   }, [])
 
-  const onSubmitTableOption = (values) => {
+  const onSubmitTableOption = (values) => {    
+    let newRow = []
+    if(values.selectSubject) {
+      newRow.push("subject")
+    }
+    if(values.selectClass) {
+      newRow.push("class")
+    }
+    if(newRow.length > 0) {
+      setShowRow(newRow)
+      initData(newRow)
+    }
+    
     setInitialValuesTableOption(values)
     let newHeader = []
     dataHeader.map((item, index) => {
@@ -171,6 +219,9 @@ function useTeacherGradeOverview() {
     pageCount,
     itemOffset,
     handlePageClick,
+    initData,
+    dataExcel,
+    csvDataName,
   }
 }
 

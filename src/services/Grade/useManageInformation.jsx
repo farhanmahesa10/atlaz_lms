@@ -202,6 +202,10 @@ function useManageInformation() {
     setInitialValuesTableOption(values)
   }
 
+  const onSubmitNumberPage = (values) => {
+    console.log(values)
+  }
+
   return {
     isLoading,
     breadcrumbsData,
@@ -215,6 +219,7 @@ function useManageInformation() {
     pageCount,
     itemOffset,
     handlePageClick,
+    onSubmitNumberPage,
   }
 }
 

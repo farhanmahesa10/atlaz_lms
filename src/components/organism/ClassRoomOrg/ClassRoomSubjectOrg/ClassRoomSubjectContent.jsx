@@ -37,19 +37,21 @@ const ClassRoomSubjectContent = () => {
             </Can>
             <div className="row mt-24">
               {subjects.map((r, i) => {
-                return (
-                  <Link
-                    to={`/classroom/assessment/${params.classId}/${r.subject._id}/dashboard`}
-                    className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
-                    key={i}
-                  >
-                    <SubjectCard
-                      image={r.subject.imageCover}
-                      title={r.subject.name}
-                      creator={r.subject.author}
-                    />
-                  </Link>
-                );
+                if (r.subject) {
+                  return (
+                    <Link
+                      to={`/classroom/assessment/${params.classId}/${r.subject._id}/dashboard`}
+                      className="mb-24 col-12 col-md-6 col-lg-4 col-xl-3"
+                      key={i}
+                    >
+                      <SubjectCard
+                        image={r.subject.imageCover}
+                        title={r.subject.name}
+                        creator={r.subject.author}
+                      />
+                    </Link>
+                  );
+                }
               })}
             </div>
           </div>

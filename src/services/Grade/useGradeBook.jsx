@@ -12,6 +12,7 @@ function useGradeBook() {
   const [isLoading, setIsLoading] = useState(true)
   const [dataStudent, setDataStudent] = useState()
   const [dataGradeBook, setDataGradeBook] = useState()
+  const [detailAverageGrade, setDetailAverageGrade] = useState()
   const [averageGrade, setAverageGrade] = useState()
 
   const [breadcrumbsData, setBreadcrumbsData] = useState([
@@ -67,22 +68,41 @@ function useGradeBook() {
       setBreadcrumbsData(breadcrumbsDataStudent)
     }
 
-    GET(`/report/${userRoleName}/student_detail?classlistId=${idClass}&subjectId=${idSubject}&student=${id}`, defConfig())
+    let endpoint = ''
+    if(userRoleName === 'student') {
+      endpoint = `/report/student/student_detail?classlistId=${idClass}&subjectId=${idSubject}`
+    } else if(userRoleName === 'teacher') {
+      endpoint = `/report/teacher/student_detail?classlistId=${idClass}&subjectId=${idSubject}&student=${id}`
+    }
+
+    GET(endpoint, defConfig())
       .then(res => {
         setDataStudent({
-          name: res.data.student.name,
-          detail: `${res.data.school.name} - ${res.data.subject.name}`,
+          name: res.data.student?.name,
+          detail: `${res.data.school?.name} - ${res.data.subject?.name}`,
         })
         setDataGradeBook(res.data)
+        
+        let newDetailAvg = []
+        res.data.lessons?.map(item => {
+          let score = 0
+          item.subtopics?.map(r => {
+            score += parseFloat(r.score) ? parseFloat(r.score) : 0
+          })
+          newDetailAvg.push({
+            lesson: item.name,
+            average: item.subtopics.length > 0 ? score/item.subtopics.length : 0
+          })
+        })
+        setDetailAverageGrade(newDetailAvg)
 
-        let totalGrade = 0
-        res.data.lessons.map(item => {
-          const count = parseFloat(item.lesson.average) ? parseFloat(item.lesson.average) : 0
-          totalGrade += count 
+        let total = 0
+        newDetailAvg.map(item => {
+          total += parseFloat(item.average)
         })
         setAverageGrade({
-          totalGrade: totalGrade,
-          avgGrade: totalGrade/res.data.lessons.length
+          totalGrade: total,
+          avgGrade: total/newDetailAvg.length
         })
         setIsLoading(false)
       }
@@ -100,6 +120,7 @@ function useGradeBook() {
     styleTableTd,
     dataStudent,
     dataGradeBook,
+    detailAverageGrade,
     averageGrade,
   }
 }

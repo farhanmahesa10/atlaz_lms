@@ -8,6 +8,7 @@ import { Search, TableChart, ArrowCircleDown, ArrowBack, ArrowForward, FindInPag
 import "../Table.scss"
 import GradeCard from '../../Cards/GradeCard';
 import moment from 'moment';
+import Skeleton from 'react-loading-skeleton';
 
 function TableTeacherManageInformation() {
   const {
@@ -21,6 +22,7 @@ function TableTeacherManageInformation() {
     currentPage,
     pageCount,
     handlePageClick,
+    onSubmitNumberPage,
   } = useManageInformation()
 
   const [show, setShow] = useState(false);
@@ -41,114 +43,128 @@ function TableTeacherManageInformation() {
 
   return (
     <>
-      <div className="cards-grade-all mb-24">
-        <div className="row">
-          <GradeCard tableOption={tableOption} />
-        </div>
-      </div>
-      {/* <div className="top-table bg-secondary-300">
-        <Formik
-          initialValues={{ keyword: '' }}
-          onSubmit={onSubmit}
-        >
-          <Form>
-            <div className='w-312'>
-              <FormikControl size="xs" control="input" name="keyword" placeholder="Search anything here" icon={<Search className="text-neutral-200 fs-16" />} />
+      {
+        !isLoading ?
+          (<>
+            <div className="cards-grade-all mb-24">
+              <div className="row">
+                <GradeCard tableOption={tableOption} />
+              </div>
             </div>
-          </Form>
-        </Formik>
-        <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
-      </div> */}
-      <div className="show-datatable">
-        <div className="table-responsive">
-          <table className="table-report">
-            <thead>
-              <tr>
-                {
-                  dataHeader.map((item, index) => {
-                    if (item.status) {
-                      return <th key={index}>
-                        <TableThead
-                          title={item.title}
-                          placeholder={item.placeholder}
-                          sortir={item.sortir}
-                          isSorted={item.isSorted}
-                          isSortedDesc={item.isSortedDesc}
-                          onClick={() => { sortirHeader(index) }}
-                          onInput={(e) => { console.log(e.target.value) }}
-                        />
-                      </th>
-                    }
-                  })
-                }
-              </tr>
-            </thead>
-            <tbody>
-              {
-                dataGradesInformation ?
-                  (
-                    dataGradesInformation.length > 0 ?
-                      dataGradesInformation?.map((item, index) => {
-                        return <tr key={index}>
-                          <td>{item.student.name}</td>
-                          <td>{item.lesson.name}</td>
-                          <td>
-                            {item.subtopic.name} <br />
-                            {moment(item.timeline.startDateTime).format('Y-MM-DD LT')}
-                          </td>
-                          <td width="10%">{item.score}</td>
-                          <td width="10%">
-                            <Link to={`detail/${item._id}`}><FindInPage className="text-neutral-300 fs-18" /></Link>
-                          </td>
-                        </tr>
-                      }) : (<tr>
-                        <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                          No data available
-                        </td>
-                      </tr>)
-                  )
-                  :
-                  (<tr>
-                    <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
+            <div className="top-table bg-secondary-300">
+              {/* <Formik
+                initialValues={{ keyword: '' }}
+                onSubmit={onSubmit}
+              >
+                <Form>
+                  <div className='w-312'>
+                    <FormikControl size="xs" control="input" name="keyword" placeholder="Search anything here" icon={<Search className="text-neutral-200 fs-16" />} />
+                  </div>
+                </Form>
+              </Formik> */}
+              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex ms-auto' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
+            </div>
+            <div className="show-datatable">
+              <div className="table-responsive">
+                <table className="table-report">
+                  <thead>
+                    <tr>
                       {
-                        isLoading ? (<>Loading data...</>)
-                        : (<>No data available</>)
+                        dataHeader.map((item, index) => {
+                          if (item.status) {
+                            return <th key={index}>
+                              <TableThead
+                                title={item.title}
+                                placeholder={item.placeholder}
+                                sortir={item.sortir}
+                                isSorted={item.isSorted}
+                                isSortedDesc={item.isSortedDesc}
+                                onClick={() => { sortirHeader(index) }}
+                                onInput={(e) => { console.log(e.target.value) }}
+                              />
+                            </th>
+                          }
+                        })
                       }
-                    </td>
-                  </tr>)
-              }
-            </tbody>
-          </table>
-        </div>
-        <div className="navigation-table">
-          <div className="font-sm text-neutral-300 d-none d-md-block">
-            { pageCount !== 0 ? currentPage + 1 : pageCount } of {pageCount}
-          </div>
-          <div className="pagination-table">
-            {/* <div className="font-sm text-neutral-300 your-page">
-              You're in page {' '}
-              <input type="number" value={1} className="numberpage" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      dataGradesInformation ?
+                        (
+                          dataGradesInformation.length > 0 ?
+                            dataGradesInformation?.map((item, index) => {
+                              return <tr key={index}>
+                                <td>{item.student.name}</td>
+                                <td>{item.lesson.name}</td>
+                                <td>
+                                  {item.subtopic.name} <br />
+                                  {moment(item.timeline.startDateTime).format('Y-MM-DD LT')}
+                                </td>
+                                <td width="10%">{item.score}</td>
+                                <td width="10%">
+                                  <Link to={`detail/${item._id}`}><FindInPage className="text-neutral-300 fs-18" /></Link>
+                                </td>
+                              </tr>
+                            }) : (<tr>
+                              <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
+                                No data available
+                              </td>
+                            </tr>)
+                        )
+                        :
+                        (<tr>
+                          <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
+                            {
+                              isLoading ? (<>Loading data...</>)
+                                : (<>No data available</>)
+                            }
+                          </td>
+                        </tr>)
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <div className="navigation-table">
+                <div className="font-sm text-neutral-300 d-none d-md-block">
+                  {pageCount !== 0 ? currentPage + 1 : pageCount} of {pageCount}
+                </div>
+                <div className="pagination-table">
+                  <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
+                    You're in page {' '}
+                    <Formik
+                      initialValues={{ numberpage: 1 }}
+                      onSubmit={onSubmitNumberPage}
+                    >
+                      <Form>
+                        <div className="w-48 ml-16">
+                          <FormikControl size="xs" control="input" type="number" name="numberpage" />
+                        </div>
+                      </Form>
+                    </Formik>
+                  </div>
+                  <div className="divider-nav"></div>
+                  <div style={{ marginRight: '24px' }}>
+                    {
+                      currentPage > 0 ?
+                        (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                        : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                    }
+                  </div>
+                  <div>
+                    {
+                      currentPage < pageCount - 1 ?
+                        (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                        : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="divider-nav"></div> */}
-            <div style={{ marginRight: '24px' }}>
-              {
-                currentPage > 0 ?
-                  (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                  : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
-              }
-            </div>
-            <div>
-              {
-                currentPage < pageCount - 1 ?
-                  (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                  : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+          </>)
+          :
+          <Skeleton count={2} height={50} />
+      }
 
       <Offcanvas
         show={show}

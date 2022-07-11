@@ -37,7 +37,7 @@ function TableStudentGradeOverview() {
 
   return (
     <>
-      {/* <div className="top-table bg-secondary-300">
+      <div className="top-table bg-secondary-300">
         <Formik
           initialValues={{ keyword: '' }}
           onSubmit={onSubmit}
@@ -49,7 +49,7 @@ function TableStudentGradeOverview() {
           </Form>
         </Formik>
         <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
-      </div> */}
+      </div>
       {
         (initialValuesTableOption.selectSchool || initialValuesTableOption.selectTeacher || initialValuesTableOption.selectClass || initialValuesTableOption.selectSubject) ?
           <div className="show-datatable">
@@ -87,7 +87,7 @@ function TableStudentGradeOverview() {
                               <td width="45%">{item.subject.name}</td>
                               <td width="14%">
                                 <div className="d-flex">
-                                  {item.average ? item.average : 'N/A'} <Link to={`score/${item.subject._id}/${item.classlist._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                  {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`score/${item.subject._id}/${item.classlist._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                               </td>
                             </tr>
                           }) : (<tr>
@@ -166,27 +166,6 @@ function TableStudentGradeOverview() {
                 <button type='reset' className="btn btn-offcanvas font-sm text-neutral-200" onClick={resetTableOption}>
                   Reset
                 </button>
-              </div>
-            </div>
-            <div className="report-options ml-24 mr-48 py-16">
-              <div className="font-normal text-neutral-300 mb-24">Data select</div>
-              <div className="d-flex align-items-center mb-24">
-                <Field
-                  name="selectClass"
-                  id="selectClass"
-                  type="checkbox"
-                  className="mr-10 form-check-input"
-                />
-                <label htmlFor="selectClass" className="font-sm cursor-pointer">Class</label>
-              </div>
-              <div className="d-flex align-items-center mb-8">
-                <Field
-                  name="selectSubject"
-                  id="selectSubject"
-                  type="checkbox"
-                  className="mr-10 form-check-input"
-                />
-                <label htmlFor="selectSubject" className="font-sm cursor-pointer">Subject</label>
               </div>
             </div>
             <div className="report-options ml-24 mr-48 py-16">

@@ -62,27 +62,27 @@
                 text-overflow: ellipsis;
                 max-width: 140px;
                 .completed {
-                    border: 2px solid $success_600;
+                    border: 1px solid $success_600;
                     background-color: $success_100;
                     color: $success_600;
                 }
                 .ongoing {
-                    border: 2px solid $info_500;
+                    border: 1px solid $info_500;
                     background-color: $info_100;
                     color: $info_500;
                 }
                 .incompleted {
-                    border: 2px solid $neutral_300;
+                    border: 1px solid $neutral_300;
                     background-color: $neutral_100;
                     color: $neutral_300;
                 }
                 .Complete {
-                    border: 2px solid $success_600;
+                    border: 1px solid $success_600;
                     background-color: $success_100;
                     color: $success_600;
                 }
                 .Incomplete {
-                    border: 2px solid $neutral_300;
+                    border: 1px solid $neutral_300;
                     background-color: $neutral_100;
                     color: $neutral_300;
                 }

@@ -38,15 +38,6 @@ function useTeacherGradeDetail() {
             status: true,
         },
         {
-            title: 'Subject Progress',
-            placeholder: '',
-            search: '',
-            sortir: false,
-            isSorted: false,
-            isSortedDesc: false,
-            status: true,
-        },
-        {
             title: 'Avg. Grade',
             placeholder: '',
             search: '',
@@ -155,16 +146,24 @@ function useTeacherGradeDetail() {
         })
         setDataHeader(newHeader)
 
-        GET(`/report/teacher/student_details?subjectId=${idSubject}&classlistId=${idClass}`, defConfig())
+        let endpoint = ''
+        if(idClass && idSubject) {
+            endpoint = `/report/teacher/student_details?subjectId=${idSubject}&classlistId=${idClass}`
+        } else if(idClass && !idSubject) {
+            endpoint = `/report/teacher/student_details?classlistId=${idClass}`
+        } else if(!idClass && idSubject) {
+            endpoint = `/report/teacher/student_details?subjectId=${idSubject}`
+        }
+        GET(endpoint, defConfig())
             .then(res => {
                 let newTableOption = []
-                getTableOptions.map((item, index) => {
-                    if (index === 0) {
+                getTableOptions.map(item => {
+                    if (item.name === 'class' && res.data.classlist) {
                         newTableOption.push({
                             ...item,
                             detail: `${res.data.classlist.name} - ${res.data.classlist.academicYear}`
                         })
-                    } else if (index === 1) {
+                    } else if (item.name === 'subject' && res.data.subject) {
                         newTableOption.push({
                             ...item,
                             detail: res.data.subject.name
@@ -187,6 +186,10 @@ function useTeacherGradeDetail() {
             })
     }, [])
 
+    const onSubmitNumberPage = (values) => {
+        console.log(values)
+    }
+
     return {
         isLoading,
         tableOption,
@@ -201,6 +204,7 @@ function useTeacherGradeDetail() {
         pageCount,
         itemOffset,
         handlePageClick,
+        onSubmitNumberPage,
     }
 }
 

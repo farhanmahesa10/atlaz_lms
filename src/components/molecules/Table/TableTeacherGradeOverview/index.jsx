@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import zoey from '../../../../assets/images/zoey.png'
+import Skeleton from 'react-loading-skeleton'
 import { Field, Form, Formik } from 'formik'
 import { FormikControl, TableThead } from '../../../atoms'
 import { Link } from 'react-router-dom'
 import { Offcanvas } from 'react-bootstrap';
-import { useTeacherGradeOverview } from "../../../../services";
+import { useTeacherGradeOverview, useExportExcel } from "../../../../services";
 import { Search, TableChart, Launch, ArrowCircleDown, ArrowBack, ArrowForward } from '@mui/icons-material';
 import "../Table.scss"
 
@@ -25,7 +26,12 @@ function TableTeacherGradeOverview() {
     pageCount,
     itemOffset,
     handlePageClick,
+    onSubmitNumberPage,
+    initData,
+    dataExcel,
+    csvDataName,
   } = useTeacherGradeOverview()
+  const { exportToExcel } = useExportExcel()
 
   const resetTableOption = () => {
     console.log('tes')
@@ -37,8 +43,11 @@ function TableTeacherGradeOverview() {
 
   return (
     <>
-      {/* <div className="top-table bg-secondary-300">
-        <Formik
+      {
+        !isLoading ?
+          (<>
+            <div className="top-table bg-secondary-300">
+              {/* <Formik
           initialValues={{ keyword: '' }}
           onSubmit={onSubmit}
         >
@@ -47,107 +56,141 @@ function TableTeacherGradeOverview() {
               <FormikControl size="xs" control="input" name="keyword" placeholder="Search anything here" icon={<Search className="text-neutral-200 fs-16" />} />
             </div>
           </Form>
-        </Formik>
-        <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
-      </div> */}
-      {
-        (initialValuesTableOption.selectSchool || initialValuesTableOption.selectTeacher || initialValuesTableOption.selectClass || initialValuesTableOption.selectSubject) ?
-          <div className="show-datatable">
-            <div className="table-responsive">
-              <table className="table-report">
-                <thead>
-                  <tr>
-                    {
-                      dataHeader.map((item, index) => {
-                        if (item.status) {
-                          return <th key={index}>
-                            <TableThead
-                              title={item.title}
-                              placeholder={item.placeholder}
-                              sortir={item.sortir}
-                              isSorted={item.isSorted}
-                              isSortedDesc={item.isSortedDesc}
-                              onClick={() => { sortirHeader(index) }}
-                              onInput={(e) => { console.log(e.target.value) }}
-                            />
-                          </th>
-                        }
-                      })
-                    }
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    dataGradeOverview ?
-                      (
-                        dataGradeOverview.length > 0 ?
-                          dataGradeOverview?.map((item, index) => {
-                            return <tr key={index}>
-                              <td>{item.classlist.name} - {item.classlist.academicYear}</td>
-                              <td width="45%">{item.subject.name}</td>
-                              <td width="14%">
-                                <div className="d-flex">
-                                  {item.average ? item.average : 'N/A'} <Link to={`detail/${item.subject._id}/${item.classlist._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
-                              </td>
-                            </tr>
-                          }) : (<tr>
-                            <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                              No data available
-                            </td>
-                          </tr>)
-                      )
-                      :
-                      (<tr>
-                        <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
+        </Formik> */}
+              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex ms-auto' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
+            </div>
+            {
+              (initialValuesTableOption.selectSchool || initialValuesTableOption.selectTeacher || initialValuesTableOption.selectClass || initialValuesTableOption.selectSubject) ?
+                <div className="show-datatable">
+                  <div className="table-responsive">
+                    <table className="table-report">
+                      <thead>
+                        <tr>
                           {
-                            isLoading ? (<>Loading data...</>)
-                              : (<>No data available</>)
+                            dataHeader.map((item, index) => {
+                              if (item.status) {
+                                return <th key={index}>
+                                  <TableThead
+                                    title={item.title}
+                                    placeholder={item.placeholder}
+                                    sortir={item.sortir}
+                                    isSorted={item.isSorted}
+                                    isSortedDesc={item.isSortedDesc}
+                                    onClick={() => { sortirHeader(index) }}
+                                    onInput={(e) => { console.log(e.target.value) }}
+                                  />
+                                </th>
+                              }
+                            })
                           }
-                        </td>
-                      </tr>)
-                  }
-                </tbody>
-              </table>
-            </div>
-            <div className="navigation-table">
-              <div className="font-sm text-neutral-300 d-none d-md-block">
-                {pageCount !== 0 ? currentPage + 1 : pageCount} of {pageCount}
-              </div>
-              <div className="pagination-table">
-                {/* <div className="font-sm text-neutral-300 your-page">
-                        You're in page {' '}
-                        <input type="number" value={1} className="numberpage" />
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          dataGradeOverview ?
+                            (
+                              dataGradeOverview.length > 0 ?
+                                dataGradeOverview?.map((item, index) => {
+                                  return <tr key={index}>
+                                    {
+                                      item.classlist && (
+                                        <td width="43%">{item.classlist?.name} - {item.classlist?.academicYear}</td>
+                                      )
+                                    }
+                                    {
+                                      item.subject && (
+                                        <td width="43%">{item.subject?.name}</td>
+                                      )
+                                    }
+                                    {
+                                      item.subject && item.classlist ?
+                                        (<td width="14%">
+                                          <div className="d-flex">
+                                            {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/${item.subject?._id}/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                        </td>)
+                                        : (
+                                          item.subject && !item.classlist ?
+                                            (<td width="14%">
+                                              <div className="d-flex">
+                                                {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/subject/${item.subject?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                            </td>)
+                                            : (
+                                              !item.subject && item.classlist ?
+                                                (<td width="14%">
+                                                  <div className="d-flex">
+                                                    {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/class/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                                </td>)
+                                                : (<td width="14%"></td>)
+                                            )
+                                        )
+                                    }
+
+                                  </tr>
+                                }) : (<tr>
+                                  <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
+                                    No data available
+                                  </td>
+                                </tr>)
+                            )
+                            :
+                            (<tr>
+                              <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
+                                No data available
+                              </td>
+                            </tr>)
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="navigation-table">
+                    <div className="font-sm text-neutral-300 d-none d-md-block">
+                      {pageCount !== 0 ? currentPage + 1 : pageCount} of {pageCount}
                     </div>
-                    <div className="divider-nav"></div> */}
-                <div style={{ marginRight: '24px' }}>
-                  {
-                    currentPage > 0 ?
-                      (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                      : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                  }
+                    <div className="pagination-table">
+                      <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
+                        You're in page {' '}
+                        <Formik
+                          initialValues={{ numberpage: 1 }}
+                          onSubmit={onSubmitNumberPage}
+                        >
+                          <Form>
+                            <div className="w-48 ml-16">
+                              <FormikControl size="xs" control="input" type="number" name="numberpage" />
+                            </div>
+                          </Form>
+                        </Formik>
+                      </div>
+                      <div className="divider-nav"></div>
+                      <div style={{ marginRight: '24px' }}>
+                        {
+                          currentPage > 0 ?
+                            (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                            : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                        }
+                      </div>
+                      <div>
+                        {
+                          currentPage < pageCount - 1 ?
+                            (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                            : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                        }
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  {
-                    currentPage < pageCount - 1 ?
-                      (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                      : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
 
-          :
-          <div className="text-center">
-            <img src={zoey} alt="" className="w-174 mb-24" />
-            <div className="font-normal text-neutral-500">
-              Please select "Select Data" button <br />
-              to display the data.
-            </div>
-          </div>
+                :
+                <div className="text-center">
+                  <img src={zoey} alt="" className="w-174 mb-24" />
+                  <div className="font-normal text-neutral-500">
+                    Please select "Data Select" button <br />
+                    to display the data.
+                  </div>
+                </div>
+            }
+          </>)
+          : (<Skeleton count={2} height={50} />)
       }
-
-
 
       <Offcanvas
         show={show}
@@ -210,7 +253,7 @@ function TableTeacherGradeOverview() {
             </div>
             <div className="report-options ml-24 mr-48 py-16">
               <div className="font-normal text-neutral-300 mb-16">Action</div>
-              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex'>
+              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex' onClick={() => exportToExcel([dataExcel], csvDataName, "Grade-Oveview")}>
                 <ArrowCircleDown className="text-neutral-500 fs-18 mr-6" /> Export table
               </button>
             </div>

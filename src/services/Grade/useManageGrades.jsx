@@ -33,15 +33,15 @@ function useManageGrades() {
       isSortedDesc: false,
       status: true,
     },
-    // {
-    //   title: 'Status',
-    //   placeholder: '',
-    //   search: '',
-    //   sortir: false,
-    //   isSorted: false,
-    //   isSortedDesc: false,
-    //   status: true,
-    // },
+    {
+      title: 'Status',
+      placeholder: '',
+      search: '',
+      sortir: false,
+      isSorted: false,
+      isSortedDesc: false,
+      status: true,
+    },
     {
       title: 'Detail',
       placeholder: '',
@@ -128,6 +128,10 @@ function useManageGrades() {
     })
   }, [])
 
+  const onSubmitNumberPage = (values) => {
+    console.log(values)
+  }
+
   return {
     isLoading,
     breadcrumbsData,
@@ -138,6 +142,7 @@ function useManageGrades() {
     pageCount,
     itemOffset,
     handlePageClick,
+    onSubmitNumberPage,
   }
 }
 

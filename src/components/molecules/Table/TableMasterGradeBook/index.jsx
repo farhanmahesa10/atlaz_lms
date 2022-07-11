@@ -7,6 +7,7 @@ function TableMasterGradeBook() {
         styleShadow, 
         styleTableTd,
         dataGradeBook,
+        detailAverageGrade,
         averageGrade,
     } = useGradeBook()
 
@@ -26,10 +27,10 @@ function TableMasterGradeBook() {
                         </thead>
                         <tbody>
                             {
-                                dataGradeBook && dataGradeBook.lessons?.map((result1, index1) => {
+                                detailAverageGrade && detailAverageGrade?.map((result1, index1) => {
                                     return <tr key={index1}>
-                                    <td className="py-8" style={styleTableTd}>{result1.lesson.name}</td>
-                                    <td className="py-8 text-center">{result1.lesson.average}</td>
+                                    <td className="py-8" style={styleTableTd}>{result1.lesson}</td>
+                                    <td className="py-8 text-center">{result1.average.toFixed(1)}</td>
                                 </tr>
                                 })
                             }
@@ -44,7 +45,7 @@ function TableMasterGradeBook() {
                             </tr>
                             <tr>
                                 <td className="pt-8 font-medium">Average Grade</td>
-                                <td className="pt-8 font-medium text-center">{averageGrade?.avgGrade.toFixed(1)}</td>
+                                <td className="pt-8 font-medium text-center">{ parseFloat(averageGrade?.avgGrade) ? averageGrade?.avgGrade.toFixed(1) : '0.0'}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -58,7 +59,7 @@ function TableMasterGradeBook() {
                             <div className="icons mr-16 radius-p-50 w-48 h-48 bg-secondary-300 d-flex align-items-center justify-content-center">
                                 <LocalLibrary />
                             </div>
-                            <div className="font-bold">{result1.lesson.name}</div>
+                            <div className="font-bold">{result1?.name}</div>
                         </div>
                         <div className="body-grader bg-neutral-50 radius-4 px-24 py-8" style={styleShadow}>
                         <table className="w-100 my-8">
@@ -71,15 +72,21 @@ function TableMasterGradeBook() {
                             </thead>
                             <tbody>
                                 {
-                                    result1.lesson.subtopics?.map((result2, index2) => {
-                                        return <tr key={index2} className="border-top border-secondary-500">
-                                        <td className="py-16 font-sm text-neutral-200">{index2+1}</td>
-                                        <td className="py-16 font-sm" style={styleTableTd}>{result2.subtopic.name}</td>
+                                    result1.subtopics.length > 0 ?
+                                    result1.subtopics?.map((item, index) => {
+                                        return <tr key={index} className="border-top border-secondary-500">
+                                        <td className="py-16 font-sm text-neutral-200">{index+1}</td>
+                                        <td className="py-16 font-sm" style={styleTableTd}>{item?.name}</td>
                                         <td className="py-16 font-sm text-center">
-                                            { result2.score ? result2.score.toFixed(1) : 'On grading' }
+                                            { item.score ? item.score.toFixed(1) : 'On grading' }
                                         </td>
                                     </tr>
                                     })
+                                    : (<tr>
+                                        <td className="datanotfound font-sm text-neutral-200 border-top border-secondary-500 pt-8" colSpan="3">
+                                          No data available
+                                        </td>
+                                      </tr>)
                                 }
                             </tbody>
                         </table>

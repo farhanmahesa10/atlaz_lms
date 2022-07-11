@@ -6,27 +6,27 @@ function useStudentGradeOverview() {
   const [dataHeader, setDataHeader] = useState([
     {
       title: 'Class',
-      placeholder: '',
+      placeholder: 'e.g. Class 01',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Subject',
-      placeholder: '',
+      placeholder: 'e.g. Subject 01',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Avg. Grade',
-      placeholder: '',
+      placeholder: 'e.g. 90',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
@@ -109,6 +109,8 @@ function useStudentGradeOverview() {
 
   const [dataGradeOverview, setDataGradeOverview] = useState()
   const [dataGradeOverviewAll, setDataGradeOverviewAll] = useState()
+  const [dataExcel, setDataExcel] = useState()
+  const csvDataName = ["Grade-Overview"]
 
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -134,6 +136,17 @@ function useStudentGradeOverview() {
         setPageCount(Math.ceil(res.data.length / itemsPerPage));
         setDataGradeOverviewAll(res.data)
         setIsLoading(false)
+
+        let newDataExcel = []
+        res.data?.map((item, index) => {
+          newDataExcel.push({
+            no: index+1,
+            class: `${item.classlist?.name} - ${item.classlist?.academicYear}`,
+            subject: item.subject?.name,
+            average: item.score ? item.score : 'N/A'
+          })
+        })
+        setDataExcel(newDataExcel)
       }
     )
     .catch(err => {
@@ -159,6 +172,10 @@ function useStudentGradeOverview() {
     setDataHeader(newHeader)
   }
 
+  const onSubmitNumberPage = (values) => {
+    console.log(values)
+  }
+
   return {
     isLoading,
     dataHeader,
@@ -171,6 +188,9 @@ function useStudentGradeOverview() {
     pageCount,
     itemOffset,
     handlePageClick,
+    onSubmitNumberPage,
+    dataExcel,
+    csvDataName,
   }
 }
 
