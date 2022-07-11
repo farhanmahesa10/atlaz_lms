@@ -241,27 +241,15 @@ const useActivateAssessment = () => {
     let requestTimeline = timeline.map((r) => {
       if (r.type.toLowerCase() === "automatic grading") {
         let assDate = r.assessmentDate;
-        let year = moment(assDate).format("Y");
-        let month = moment(assDate).format("M");
-        let date = moment(assDate).format("D");
+        let initialDate = moment(assDate).format("Y-MM-DD");
+        let initialStartTime = moment(r.startTime).format("hh:mm:ss");
+        let initialEndTime = moment(r.endTime).format("hh:mm:ss");
 
-        let startDateTime = moment(r.startTime)
-          .set({
-            year,
-            month: month - 1,
-            date: date,
-          })
-          .utc()
-          .format();
+        let startDateTime = moment(
+          initialDate + " " + initialStartTime
+        ).format();
 
-        let endDateTime = moment(r.endTime)
-          .set({
-            year,
-            month: month - 1,
-            date: date,
-          })
-          .utc()
-          .format();
+        let endDateTime = moment(initialDate + " " + initialEndTime).format();
 
         return { ...r, startDateTime, endDateTime };
       } else {
