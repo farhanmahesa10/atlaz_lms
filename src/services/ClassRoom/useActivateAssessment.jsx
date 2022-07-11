@@ -251,6 +251,7 @@ const useActivateAssessment = () => {
             month: month - 1,
             date: date,
           })
+          .utc()
           .format();
 
         let endDateTime = moment(r.endTime)
@@ -259,6 +260,7 @@ const useActivateAssessment = () => {
             month: month - 1,
             date: date,
           })
+          .utc()
           .format();
 
         return { ...r, startDateTime, endDateTime };
@@ -270,6 +272,8 @@ const useActivateAssessment = () => {
     });
 
     const request = { ...req, timeline: requestTimeline };
+    console.log(request);
+
     setIsLoadingSubmit(true);
     POST("/client/classrooms/my_school_assessment/add", request, defConfig())
       .then((r) => {
