@@ -1,6 +1,5 @@
-import { red } from "@mui/material/colors";
 import moment from "moment";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { defConfig, GET, POST } from "../../config/RestAPI";
@@ -100,7 +99,10 @@ const useActivateAssessment = () => {
     GET(`/subtopic/find?topicId=${value}&isAssessment=true`, defConfig()).then(
       (r) => {
         let newSubTopicData = r.data.map((res) => {
-          if (res.assessmentType.toLowerCase() === "manual grading") {
+          if (
+            res.assessmentType.toLowerCase() === "manual grading" ||
+            r.type.toLowerCase() === "speaking writing assessment"
+          ) {
             return {
               type: res.assessmentType,
               subtopic: res._id,
@@ -239,17 +241,52 @@ const useActivateAssessment = () => {
   const publishData = (req) => {
     let timeline = req.timeline;
     let requestTimeline = timeline.map((r) => {
-      if (r.type.toLowerCase() === "automatic grading") {
+      // alternative condition
+      //if (
+      //   r.type.toLowerCase() === "automatic grading" ||
+      //   r.type.toLowerCase() === "reading listening assessment"
+      // ) {
+      //   let assDate = r.assessmentDate;
+      //   let initialDate = moment(assDate).format("Y-MM-DD");
+      //   let initialStartTime = moment(r.startTime).format("hh:mm:ss");
+      //   let initialEndTime = moment(r.endTime).format("hh:mm:ss");
+
+      //   let startDateTime = moment(
+      //     initialDate + " " + initialStartTime
+      //   ).format();
+
+      //   let endDateTime = moment(initialDate + " " + initialEndTime).format();
+
+      //   return { ...r, startDateTime, endDateTime };
+      // } else {
+      //   let startDateTime = moment(r.startDateTime).format();
+      //   let endDateTime = moment(r.endDateTime).format();
+      //   return { ...r, startDateTime, endDateTime };
+      // }
+      if (
+        r.type.toLowerCase() === "automatic grading" ||
+        r.type.toLowerCase() === "reading listening assessment"
+      ) {
         let assDate = r.assessmentDate;
-        let initialDate = moment(assDate).format("Y-MM-DD");
-        let initialStartTime = moment(r.startTime).format("hh:mm:ss");
-        let initialEndTime = moment(r.endTime).format("hh:mm:ss");
+        let year = moment(assDate).format("Y");
+        let month = moment(assDate).format("M");
+        let date = moment(assDate).format("D");
 
-        let startDateTime = moment(
-          initialDate + " " + initialStartTime
-        ).format();
+        let startDateTime = moment(r.startTime)
+          .set({
+            year,
+            month: month - 1,
+            date: date,
+          })
+          .format();
 
-        let endDateTime = moment(initialDate + " " + initialEndTime).format();
+        let endDateTime = moment(r.endTime)
+          .set({
+            year,
+            month: month - 1,
+            date: date,
+          })
+          .format();
 
         return { ...r, startDateTime, endDateTime };
       } else {
@@ -261,7 +298,7 @@ const useActivateAssessment = () => {
 
     const request = { ...req, timeline: requestTimeline };
     console.log(request);
-
+    return;
     setIsLoadingSubmit(true);
     POST("/client/classrooms/my_school_assessment/add", request, defConfig())
       .then((r) => {
