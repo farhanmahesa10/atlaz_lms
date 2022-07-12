@@ -101,7 +101,7 @@ const useActivateAssessment = () => {
         let newSubTopicData = r.data.map((res) => {
           if (
             res.assessmentType.toLowerCase() === "manual grading" ||
-            r.type.toLowerCase() === "speaking writing assessment"
+            res.assessmentType.toLowerCase() === "speaking writing assessment"
           ) {
             return {
               type: res.assessmentType,
@@ -297,8 +297,7 @@ const useActivateAssessment = () => {
     });
 
     const request = { ...req, timeline: requestTimeline };
-    console.log(request);
-    return;
+
     setIsLoadingSubmit(true);
     POST("/client/classrooms/my_school_assessment/add", request, defConfig())
       .then((r) => {
