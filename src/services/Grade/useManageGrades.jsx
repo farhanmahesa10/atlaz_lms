@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useFormik } from 'formik';
 import { defConfig, GET, POST } from "../../config/RestAPI";
 
 function useManageGrades() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingTable, setIsLoadingTable] = useState(true)
   const [breadcrumbsData, setBreadcrumbsData] = useState([
     {
       link: "/dashboard",
@@ -13,37 +15,44 @@ function useManageGrades() {
       label: "Manage Grades",
     },
   ]);
-
   const [dataHeader, setDataHeader] = useState([
     {
       title: 'Class',
+      rowName: 'classlist',
+      width: "35%",
       placeholder: '',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Subject',
+      rowName: 'subject',
+      width: "35%",
       placeholder: '',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Status',
+      rowName: 'status',
+      width: "20%",
       placeholder: '',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Detail',
+      rowName: 'score',
+      width: "10%",
       placeholder: '',
       search: '',
       sortir: false,
@@ -64,6 +73,9 @@ function useManageGrades() {
             isSortedDesc: true
           }
           newHeader.push(data)
+          setSortType('ASC')
+          setSortBy(item.rowName)
+          initData(page, perPage, 'ASC', item.rowName, showRow)
         }
         if (item.isSorted && item.isSortedDesc) {
           let data = {
@@ -72,6 +84,9 @@ function useManageGrades() {
             isSortedDesc: false
           }
           newHeader.push(data)
+          setSortType('DESC')
+          setSortBy(item.rowName)
+          initData(page, perPage, 'DESC', item.rowName, showRow)
         }
         if (item.isSorted && !item.isSortedDesc) {
           let data = {
@@ -80,6 +95,9 @@ function useManageGrades() {
             isSortedDesc: false
           }
           newHeader.push(data)
+          setSortType('DESC')
+          setSortBy('score')
+          initData(page, perPage, 'DESC', 'score', showRow)
         }
       } else {
         let data = {
@@ -94,55 +112,90 @@ function useManageGrades() {
   }
 
   const [dataManageGrades, setDataManageGrades] = useState()
-  const [dataManageGradesAll, setDataManageGradesAll] = useState()
 
-  const [pageCount, setPageCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [showRow, setShowRow] = useState(['subject', 'class'])
+  const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(10)
+  const [sortType, setSortType] = useState('DESC')
+  const [sortBy, setSortBy] = useState('score')
+  
+  const [pagination, setPagination] = useState({
+    current_page: 0,
+    per_page: 10,
+    next_page: false,
+    prev_page: false,
+    total: 0,
+    total_page: 0
+  })
+  const formik = useFormik({
+    initialValues: { topage: 0 },
+    onSubmit: values => {
+      if (parseInt(values.topage) > 0 && parseInt(values.topage) <= pagination.total_page) {
+        setPage(parseInt(values.topage))
+        initData(parseInt(values.topage), perPage, sortType, sortBy, showRow)
+      }
+    },
+  });
 
-  const handlePageClick = (event) => {
-      setCurrentPage(event)
-      const newOffset = (event * itemsPerPage) % dataManageGradesAll.length;
-      setItemOffset(newOffset);
-      const endOffset = newOffset + itemsPerPage;
-      setDataManageGrades(dataManageGradesAll.slice(newOffset, endOffset))
-      setPageCount(Math.ceil(dataManageGradesAll.length / itemsPerPage));
+  const handlePageClick = (toPage) => {
+    setPage(toPage)
+    formik.setFieldValue("topage", toPage)
+    initData(toPage, perPage, sortType, sortBy, showRow)
   };
+
+  const onSubmit = () => {
+    console.log('first')
+  }
+
+  const initData = (dataPage, dataPerPage, dataSortType, dataSortBy, dataRow) => {
+    setIsLoadingTable(true)
+    setDataManageGrades([])
+    GET(`/report/teacher/grade_overview?page=${dataPage}&per_page=${dataPerPage}&sort_type=${dataSortType}&sort_by=${dataSortBy}`, defConfig(dataRow))
+      .then(
+        (res) => {
+          setDataManageGrades(res.data)
+          formik.setFieldValue("topage", res.pagintion.current_page ? res.pagintion.current_page : 0)
+          setPagination({
+            current_page: res.pagintion.current_page ? res.pagintion.current_page : 0,
+            per_page: res.pagintion.per_page ? res.pagintion.per_page : 10,
+            next_page: res.pagintion.next_page ? res.pagintion.next_page : false,
+            prev_page: res.pagintion.prev_page ? res.pagintion.prev_page : false,
+            total: res.pagintion.total ? res.pagintion.total : 0,
+            total_page: res.pagintion.total_page ? res.pagintion.total_page : 0
+          })
+          setIsLoading(false)
+          setIsLoadingTable(false)
+        }
+      )
+      .catch(err => {
+        setIsLoading(false)
+        setIsLoadingTable(false)
+        console.log('error', err.message)
+      })
+  }
 
   useEffect(() => {
     setIsLoading(true)
-    GET(`/report/teacher/grade_overview`, defConfig(['class', 'subject']))
-    .then(
-      (res) => {
-        const endOffset = itemOffset + itemsPerPage;
-        setDataManageGrades(res.data.slice(itemOffset, endOffset))
-        setPageCount(Math.ceil(res.data.length / itemsPerPage));
-        setDataManageGradesAll(res.data)
-        setIsLoading(false)
-      }
-    )
-    .catch(err => {
-      setIsLoading(false)
-      console.log('error', err)
-    })
+    setIsLoadingTable(true)
+    initData(page, perPage, sortType, sortBy, showRow)
   }, [])
-
-  const onSubmitNumberPage = (values) => {
-    console.log(values)
-  }
 
   return {
     isLoading,
+    isLoadingTable,
     breadcrumbsData,
     dataHeader,
     sortirHeader,
     dataManageGrades,
-    currentPage,
-    pageCount,
-    itemOffset,
     handlePageClick,
-    onSubmitNumberPage,
+    initData,
+    formik,
+    onSubmit,
+    page,
+    perPage,
+    sortType,
+    sortBy,
+    pagination,
   }
 }
 

@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik'
 import { FormikControl, TableThead } from '../../../atoms'
 import { Link } from 'react-router-dom'
 import { Offcanvas } from 'react-bootstrap';
-import { useTeacherGradeDetail } from '../../../../services'
+import { useTeacherGradeDetail, useExportExcel } from '../../../../services'
 import { Search, TableChart, Launch, ArrowCircleDown, ArrowBack, ArrowForward, School } from '@mui/icons-material';
 import "../Table.scss"
 
@@ -16,20 +16,22 @@ function TableTeacherGradeDetail() {
 
   const {
     isLoading,
-    tableOption,
+    isLoadingTable,
     dataHeader,
     sortirHeader,
     initialValuesTableOption,
-    dataGradeDetail,
-    currentPage,
-    pageCount,
-    itemOffset,
-    handlePageClick,
-    resetTableOption,
-    onSubmit,
-    onSubmitNumberPage,
+    tableOption,
+    setTableOption,
     onSubmitTableOption,
+    dataGradeDetail,
+    handlePageClick,
+    formik,
+    onSubmit,
+    pagination,
+    dataExcel,
+    csvDataName,
   } = useTeacherGradeDetail()
+  const { exportToExcel } = useExportExcel()
 
   return (
     <>
@@ -41,8 +43,8 @@ function TableTeacherGradeDetail() {
                 <GradeCard tableOption={tableOption} />
               </div>
             </div>
-            {/* <div className="top-table bg-secondary-300">
-              <Formik
+            <div className="top-table bg-secondary-300">
+              {/* <Formik
                 initialValues={{ keyword: '' }}
                 onSubmit={onSubmit}
               >
@@ -51,9 +53,9 @@ function TableTeacherGradeDetail() {
                     <FormikControl size="xs" control="input" name="keyword" placeholder="Search anything here" icon={<Search className="text-neutral-200 fs-16" />} />
                   </div>
                 </Form>
-              </Formik>
-              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
-            </div> */}
+              </Formik> */}
+              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex ms-auto' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
+            </div>
             <div className="show-datatable">
               <div className="table-responsive">
                 <table className="table-report">
@@ -62,7 +64,7 @@ function TableTeacherGradeDetail() {
                       {
                         dataHeader.map((item, index) => {
                           if (item.status) {
-                            return <th key={index}>
+                            return <th key={index} width={item.width} >
                               <TableThead
                                 title={item.title}
                                 placeholder={item.placeholder}
@@ -107,14 +109,16 @@ function TableTeacherGradeDetail() {
                                 {/* <td width="20%">
                                   <div className={`font-xs-medium radius-4 px-8 py-2 d-inline nowrap ${progress}`}>{item.done} / {item.count} Completed</div>
                                 </td> */}
-                                <td width="14%">
+                                <td>
                                   <div className="d-flex">
-                                    {item.average ? item.average.toFixed(1) : 'N/A'} <Link to={`score/${item.student._id}`}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                    {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`score/${item.student._id}`}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                 </td>
                               </tr>
                             }) : (<tr>
                               <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                                No data available
+                                {
+                                  isLoadingTable ? (<>Loading data...</>) : (<>No data available</>)
+                                }
                               </td>
                             </tr>)
                         )
@@ -129,40 +133,43 @@ function TableTeacherGradeDetail() {
                 </table>
               </div>
               <div className="navigation-table">
-                <div className="font-sm text-neutral-300 d-none d-md-block">
-                  {pageCount !== 0 ? currentPage + 1 : pageCount} of {pageCount}
-                </div>
-                <div className="pagination-table">
-                  <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
-                    You're in page {' '}
-                    <Formik
-                      initialValues={{ numberpage: 1 }}
-                      onSubmit={onSubmitNumberPage}
-                    >
-                      <Form>
-                        <div className="w-48 ml-16">
-                          <FormikControl size="xs" control="input" type="number" name="numberpage" />
-                        </div>
-                      </Form>
-                    </Formik>
+                    <div className="font-sm text-neutral-300 d-none d-md-block">
+                      {pagination.current_page} of {pagination.total_page}
+                    </div>
+                    <div className="pagination-table">
+                      <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
+                        You're in page
+                        <form onSubmit={formik.handleSubmit}>
+                          <div className="w-48 ml-16">
+                            <div className="form-input text-start">
+                              <div className="input-area h-32 font-xs bg-white">
+                                <input type="number" id="topage" name="topage"
+                                  className="w-full input-control radius-8 py-8 pl-16 pr-16 font-xs"
+                                  onChange={formik.handleChange}
+                                  value={formik.values.topage}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div className="divider-nav"></div>
+                      <div style={{ marginRight: '24px' }}>
+                        {
+                          pagination.prev_page ?
+                            (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                            : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                        }
+                      </div>
+                      <div>
+                        {
+                          pagination.next_page ?
+                            (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                            : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                        }
+                      </div>
+                    </div>
                   </div>
-                  <div className="divider-nav"></div>
-                  <div style={{ marginRight: '24px' }}>
-                    {
-                      currentPage > 0 ?
-                        (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                        : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                    }
-                  </div>
-                  <div>
-                    {
-                      currentPage < pageCount - 1 ?
-                        (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                        : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                    }
-                  </div>
-                </div>
-              </div>
             </div>
           </>)
           :
@@ -183,7 +190,7 @@ function TableTeacherGradeDetail() {
                 <button type='submit' className="btn btn-offcanvas font-sm text-info-500 mr-16">
                   Apply
                 </button>
-                <button type='reset' className="btn btn-offcanvas font-sm text-neutral-200" onClick={resetTableOption}>
+                <button type='reset' className="btn btn-offcanvas font-sm text-neutral-200">
                   Reset
                 </button>
               </div>
@@ -209,7 +216,7 @@ function TableTeacherGradeDetail() {
             </div>
             <div className="report-options ml-24 mr-48 py-16">
               <div className="font-normal text-neutral-300 mb-16">Action</div>
-              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex'>
+              <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex' onClick={() => exportToExcel([dataExcel], csvDataName, "Grade-Detail")}>
                 <ArrowCircleDown className="text-neutral-500 fs-18 mr-6" /> Export table
               </button>
             </div>

@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { useFormik } from 'formik';
 import { defConfig, GET, POST } from "../../config/RestAPI";
 
 function useTeacherGradeOverview() {
   const [isLoading, setIsLoading] = useState(true)
-  const [showRow, setShowRow] = useState(['subject', 'class'])
+  const [isLoadingTable, setIsLoadingTable] = useState(true)
   const [dataHeader, setDataHeader] = useState([
     {
       title: 'Class',
+      rowName: 'classlist',
+      width: "43%",
       placeholder: '',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Subject',
+      rowName: 'subject',
+      width: "43%",
       placeholder: '',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
     },
     {
       title: 'Avg. Grade',
+      rowName: 'score',
+      width: "14%",
       placeholder: '',
       search: '',
-      sortir: false,
+      sortir: true,
       isSorted: false,
       isSortedDesc: false,
       status: true,
@@ -45,6 +52,9 @@ function useTeacherGradeOverview() {
             isSortedDesc: true
           }
           newHeader.push(data)
+          setSortType('ASC')
+          setSortBy(item.rowName)
+          initData(page, perPage, 'ASC', item.rowName, showRow)
         }
         if (item.isSorted && item.isSortedDesc) {
           let data = {
@@ -53,6 +63,9 @@ function useTeacherGradeOverview() {
             isSortedDesc: false
           }
           newHeader.push(data)
+          setSortType('DESC')
+          setSortBy(item.rowName)
+          initData(page, perPage, 'DESC', item.rowName, showRow)
         }
         if (item.isSorted && !item.isSortedDesc) {
           let data = {
@@ -61,6 +74,9 @@ function useTeacherGradeOverview() {
             isSortedDesc: false
           }
           newHeader.push(data)
+          setSortType('DESC')
+          setSortBy('score')
+          initData(page, perPage, 'DESC', 'score', showRow)
         }
       } else {
         let data = {
@@ -108,75 +124,49 @@ function useTeacherGradeOverview() {
       })
     }
     setShowRow(newRow)
-    initData()
+    initData(page, perPage, sortType, sortBy, newRow)
     localStorage.setItem("GRADE_TABLE_OPTION", JSON.stringify(initialValuesTableOption))
     localStorage.setItem("GRADE_DETAIL_TABLE_OPTION", JSON.stringify(dataTables))
   }
 
   const [dataGradeOverview, setDataGradeOverview] = useState()
-  const [dataGradeOverviewAll, setDataGradeOverviewAll] = useState()
   const [dataExcel, setDataExcel] = useState()
   const csvDataName = ["data"]
 
-  const [pageCount, setPageCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [showRow, setShowRow] = useState(['subject', 'class'])
+  const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(10)
+  const [sortType, setSortType] = useState('DESC')
+  const [sortBy, setSortBy] = useState('score')
 
-  const handlePageClick = (event) => {
-      setCurrentPage(event)
-      const newOffset = (event * parseInt(initialValuesTableOption.showing)) % dataGradeOverviewAll.length;
-      setItemOffset(newOffset);
-      const endOffset = newOffset + parseInt(initialValuesTableOption.showing);
-      setDataGradeOverview(dataGradeOverviewAll.slice(newOffset, endOffset))
-      setPageCount(Math.ceil(dataGradeOverviewAll.length / parseInt(initialValuesTableOption.showing)));
+  const [pagination, setPagination] = useState({
+      current_page: 0,
+      per_page: 10,
+      next_page: false,
+      prev_page: false,
+      total: 0,
+      total_page: 0
+  })
+
+  const formik = useFormik({
+    initialValues: { topage: 0 },
+    onSubmit: values => {
+      if (parseInt(values.topage) > 0 && parseInt(values.topage) <= pagination.total_page) {
+        setPage(parseInt(values.topage))
+        initData(parseInt(values.topage), perPage, sortType, sortBy, showRow)
+      }
+    },
+  });
+
+  const handlePageClick = (toPage) => {
+    setPage(toPage)
+    formik.setFieldValue("topage", toPage)
+    initData(toPage, perPage, sortType, sortBy, showRow)
   };
 
-  const initData = (row) => {
-    setIsLoading(true)
-    GET(`/report/teacher/grade_overview`, defConfig(row))
-    .then(
-      (res) => {
-        const endOffset = itemOffset + parseInt(initialValuesTableOption.showing);
-        setDataGradeOverview(res.data.slice(itemOffset, endOffset))
-        setPageCount(Math.ceil(res.data.length / parseInt(initialValuesTableOption.showing)));
-        setDataGradeOverviewAll(res.data)
-        setIsLoading(false)
-
-        let newDataExcel = []
-        res.data?.map((item, index) => {
-          if(item.classlist && item.subject) {
-            newDataExcel.push({
-              no: index+1,
-              class: item.classlist ? `${item.classlist?.name} - ${item.classlist?.academicYear}` : '',
-              subject: item.subject ? item.subject?.name : '',
-              average: item.score ? item.score.toFixed(2) : 'N/A'
-            })
-          } else if(item.classlist && !item.subject) {
-            newDataExcel.push({
-              no: index+1,
-              class: item.classlist ? `${item.classlist?.name} - ${item.classlist?.academicYear}` : '',
-              average: item.score ? item.score.toFixed(2) : 'N/A'
-            })
-          } else if(!item.classlist && item.subject) {
-            newDataExcel.push({
-              no: index+1,
-              subject: item.subject ? item.subject?.name : '',
-              average: item.score ? item.score.toFixed(2) : 'N/A'
-            })            
-          }
-        })
-        setDataExcel(newDataExcel)
-      }
-    )
-    .catch(err => {
-      setIsLoading(false)
-      console.log('error', err)
-    })    
+  const onSubmit = () => {
+      console.log('first')
   }
-
-  useEffect(() => {
-    initData(showRow)
-  }, [])
 
   const onSubmitTableOption = (values) => {    
     let newRow = []
@@ -188,7 +178,8 @@ function useTeacherGradeOverview() {
     }
     if(newRow.length > 0) {
       setShowRow(newRow)
-      initData(newRow)
+      setPerPage(parseInt(values.showing))
+      initData(page, parseInt(values.showing), sortType, sortBy, newRow)
     }
     
     setInitialValuesTableOption(values)
@@ -207,21 +198,85 @@ function useTeacherGradeOverview() {
     setDataHeader(newHeader)
   }
 
+  const initData = (dataPage, dataPerPage, dataSortType, dataSortBy, dataRow) => {
+    setIsLoadingTable(true)
+    setDataGradeOverview([])
+    GET(`/report/teacher/grade_overview?page=${dataPage}&per_page=${dataPerPage}&sort_type=${dataSortType}&sort_by=${dataSortBy}`, defConfig(dataRow))
+    .then(
+      (res) => {
+        console.log('tes', res.data)
+        setDataGradeOverview(res.data)
+        formik.setFieldValue("topage", res.pagintion.current_page ? res.pagintion.current_page : 0)
+        setPagination({
+            current_page: res.pagintion.current_page ? res.pagintion.current_page : 0,
+            per_page: res.pagintion.per_page ? res.pagintion.per_page : 10,
+            next_page: res.pagintion.next_page ? res.pagintion.next_page : false,
+            prev_page: res.pagintion.prev_page ? res.pagintion.prev_page : false,
+            total: res.pagintion.total ? res.pagintion.total : 0,
+            total_page: res.pagintion.total_page ? res.pagintion.total_page : 0
+        })
+        setIsLoading(false)
+        setIsLoadingTable(false)
+
+        let newDataExcel = []
+        res.data?.map((item, index) => {
+          if(item.classlist && item.subject) {
+            newDataExcel.push({
+              no: index+1,
+              class: item.classlist ? `${item.classlist?.name} - ${item.classlist?.academicYear}` : '',
+              subject: item.subject ? item.subject?.name : '',
+              average: item.score ? item.score.toFixed(1) : 'N/A'
+            })
+          } else if(item.classlist && !item.subject) {
+            newDataExcel.push({
+              no: index+1,
+              class: item.classlist ? `${item.classlist?.name} - ${item.classlist?.academicYear}` : '',
+              average: item.score ? item.score.toFixed(1) : 'N/A'
+            })
+          } else if(!item.classlist && item.subject) {
+            newDataExcel.push({
+              no: index+1,
+              subject: item.subject ? item.subject?.name : '',
+              average: item.score ? item.score.toFixed(1) : 'N/A'
+            })            
+          }
+        })
+        setDataExcel(newDataExcel)
+      }
+    )
+    .catch(err => {
+      setIsLoading(false)
+      setIsLoadingTable(false)
+      console.log('error', err.message)
+    })    
+  }
+
+  useEffect(() => {
+    setIsLoading(true)
+    setIsLoadingTable(true)
+    initData(page, perPage, sortType, sortBy, showRow)
+  }, [])
+
   return {
     isLoading,
+    isLoadingTable,
     dataHeader,
     sortirHeader,
     initialValuesTableOption,
     setTableOption,
     onSubmitTableOption,
     dataGradeOverview,
-    currentPage,
-    pageCount,
-    itemOffset,
     handlePageClick,
     initData,
+    formik,
     dataExcel,
     csvDataName,
+    onSubmit,
+    page,
+    perPage,
+    sortType,
+    sortBy,
+    pagination,
   }
 }
 

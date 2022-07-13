@@ -16,30 +16,21 @@ function TableTeacherGradeOverview() {
 
   const {
     isLoading,
+    isLoadingTable,
     dataHeader,
     sortirHeader,
     initialValuesTableOption,
     setTableOption,
     onSubmitTableOption,
     dataGradeOverview,
-    currentPage,
-    pageCount,
-    itemOffset,
     handlePageClick,
-    onSubmitNumberPage,
-    initData,
+    formik,
+    onSubmit,
+    pagination,
     dataExcel,
     csvDataName,
   } = useTeacherGradeOverview()
   const { exportToExcel } = useExportExcel()
-
-  const resetTableOption = () => {
-    console.log('tes')
-  }
-
-  const onSubmit = () => {
-    console.log('first')
-  }
 
   return (
     <>
@@ -48,15 +39,15 @@ function TableTeacherGradeOverview() {
           (<>
             <div className="top-table bg-secondary-300">
               {/* <Formik
-          initialValues={{ keyword: '' }}
-          onSubmit={onSubmit}
-        >
-          <Form>
-            <div className='w-312'>
-              <FormikControl size="xs" control="input" name="keyword" placeholder="Search anything here" icon={<Search className="text-neutral-200 fs-16" />} />
-            </div>
-          </Form>
-        </Formik> */}
+                  initialValues={{ keyword: '' }}
+                  onSubmit={onSubmit}
+                >
+                  <Form>
+                    <div className='w-312'>
+                      <FormikControl size="xs" control="input" name="keyword" placeholder="Search anything here" icon={<Search className="text-neutral-200 fs-16" />} />
+                    </div>
+                  </Form>
+                </Formik> */}
               <button className='btn btn-outline bg-white fs-14 text-neutral-500 d-flex ms-auto' onClick={handleShow}><TableChart className="text-neutral-500 fs-16 mr-6" /> Table option</button>
             </div>
             {
@@ -69,7 +60,7 @@ function TableTeacherGradeOverview() {
                           {
                             dataHeader.map((item, index) => {
                               if (item.status) {
-                                return <th key={index}>
+                                return <th key={index} width={item.width}>
                                   <TableThead
                                     title={item.title}
                                     placeholder={item.placeholder}
@@ -94,41 +85,43 @@ function TableTeacherGradeOverview() {
                                   return <tr key={index}>
                                     {
                                       item.classlist && (
-                                        <td width="43%">{item.classlist?.name} - {item.classlist?.academicYear}</td>
+                                        <td>{item.classlist?.name} - {item.classlist?.academicYear}</td>
                                       )
                                     }
                                     {
                                       item.subject && (
-                                        <td width="43%">{item.subject?.name}</td>
+                                        <td>{item.subject?.name}</td>
                                       )
                                     }
                                     {
                                       item.subject && item.classlist ?
-                                        (<td width="14%">
+                                        (<td>
                                           <div className="d-flex">
                                             {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/${item.subject?._id}/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                         </td>)
                                         : (
                                           item.subject && !item.classlist ?
-                                            (<td width="14%">
+                                            (<td>
                                               <div className="d-flex">
                                                 {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/subject/${item.subject?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                             </td>)
                                             : (
                                               !item.subject && item.classlist ?
-                                                (<td width="14%">
+                                                (<td>
                                                   <div className="d-flex">
                                                     {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/class/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                                 </td>)
-                                                : (<td width="14%"></td>)
+                                                : (<td></td>)
                                             )
                                         )
                                     }
 
                                   </tr>
                                 }) : (<tr>
-                                  <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                                    No data available
+                                  <td className="datanotfound text-center font-sm text-neutral-200" colSpan={dataHeader.length}>
+                                    {
+                                      isLoadingTable ? (<>Loading data...</>) : (<>No data available</>)
+                                    }
                                   </td>
                                 </tr>)
                             )
@@ -144,34 +137,37 @@ function TableTeacherGradeOverview() {
                   </div>
                   <div className="navigation-table">
                     <div className="font-sm text-neutral-300 d-none d-md-block">
-                      {pageCount !== 0 ? currentPage + 1 : pageCount} of {pageCount}
+                      {pagination.current_page} of {pagination.total_page}
                     </div>
                     <div className="pagination-table">
                       <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
-                        You're in page {' '}
-                        <Formik
-                          initialValues={{ numberpage: 1 }}
-                          onSubmit={onSubmitNumberPage}
-                        >
-                          <Form>
-                            <div className="w-48 ml-16">
-                              <FormikControl size="xs" control="input" type="number" name="numberpage" />
+                        You're in page
+                        <form onSubmit={formik.handleSubmit}>
+                          <div className="w-48 ml-16">
+                            <div className="form-input text-start">
+                              <div className="input-area h-32 font-xs bg-white">
+                                <input type="number" id="topage" name="topage"
+                                  className="w-full input-control radius-8 py-8 pl-16 pr-16 font-xs"
+                                  onChange={formik.handleChange}
+                                  value={formik.values.topage}
+                                />
+                              </div>
                             </div>
-                          </Form>
-                        </Formik>
+                          </div>
+                        </form>
                       </div>
                       <div className="divider-nav"></div>
                       <div style={{ marginRight: '24px' }}>
                         {
-                          currentPage > 0 ?
-                            (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                          pagination.prev_page ?
+                            (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
                             : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
                         }
                       </div>
                       <div>
                         {
-                          currentPage < pageCount - 1 ?
-                            (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                          pagination.next_page ?
+                            (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
                             : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
                         }
                       </div>
@@ -206,7 +202,7 @@ function TableTeacherGradeOverview() {
                 <button type='submit' className="btn btn-offcanvas font-sm text-info-500 mr-16">
                   Apply
                 </button>
-                <button type='reset' className="btn btn-offcanvas font-sm text-neutral-200" onClick={resetTableOption}>
+                <button type='reset' className="btn btn-offcanvas font-sm text-neutral-200">
                   Reset
                 </button>
               </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Formik } from 'formik'
-import { FormikControl, TableThead } from '../../../atoms'
+import { TableThead } from '../../../atoms'
 import { Link } from 'react-router-dom'
 import { Search, Launch, ArrowBack, ArrowForward } from '@mui/icons-material';
 import { useManageGrades } from "../../../../services";
@@ -10,18 +9,14 @@ import Skeleton from 'react-loading-skeleton';
 function TableTeacherManageGrades() {
   const {
     isLoading,
+    isLoadingTable,
     dataHeader,
     sortirHeader,
     dataManageGrades,
-    currentPage,
-    pageCount,
     handlePageClick,
-    onSubmitNumberPage,
+    formik,
+    pagination,
   } = useManageGrades()
-
-  const onSubmit = () => {
-    console.log('first')
-  }
 
   return (
     <>
@@ -48,7 +43,7 @@ function TableTeacherManageGrades() {
                       {
                         dataHeader.map((item, index) => {
                           if (item.status) {
-                            return <th key={index}>
+                            return <th key={index} width={item.width}>
                               <TableThead
                                 title={item.title}
                                 placeholder={item.placeholder}
@@ -71,26 +66,37 @@ function TableTeacherManageGrades() {
                           dataManageGrades.length > 0 ?
                             dataManageGrades?.map((item, index) => {
                               return <tr key={index}>
-                                <td>{item.classlist?.name} - {item.classlist?.academicYear}</td>
-                                <td>{item.subject?.name}</td>
-                                <td width="15%"><div className={`font-xs-medium radius-4 px-8 py-2 d-inline nowrap ${item.status}`}>{item.status}</div></td>
-                                <td width="8%">
+                                {
+                                  item.classlist && (
+                                    <td>{item.classlist?.name} - {item.classlist?.academicYear}</td>
+                                  )
+                                }
+                                {
+                                  item.subject && (
+                                    <td>{item.subject?.name}</td>
+                                  )
+                                }
+                                {
+                                  item.status && (
+                                    <td><div className={`font-xs-medium radius-4 px-8 py-2 d-inline nowrap ${item.status}`}>{item.status}</div></td>
+                                  )
+                                }
+                                <td>
                                   <Link to={`information/${item.subject?._id}/${item.classlist?._id}`}><Launch className="text-neutral-300 fs-18 ml-6" /></Link>
                                 </td>
                               </tr>
                             }) : (<tr>
                               <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                                No data available
+                                {
+                                  isLoadingTable ? (<>Loading data...</>) : (<>No data available</>)
+                                }
                               </td>
                             </tr>)
                         )
                         :
                         (<tr>
                           <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                            {
-                              isLoading ? (<>Loading data...</>)
-                                : (<>No data available</>)
-                            }
+                            No data available
                           </td>
                         </tr>)
                     }
@@ -99,34 +105,37 @@ function TableTeacherManageGrades() {
               </div>
               <div className="navigation-table">
                 <div className="font-sm text-neutral-300 d-none d-md-block">
-                  {pageCount !== 0 ? currentPage + 1 : pageCount} of {pageCount}
+                  {pagination.current_page} of {pagination.total_page}
                 </div>
                 <div className="pagination-table">
                   <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
-                    You're in page {' '}
-                    <Formik
-                      initialValues={{ numberpage: 1 }}
-                      onSubmit={onSubmitNumberPage}
-                    >
-                      <Form>
-                        <div className="w-48 ml-16">
-                          <FormikControl size="xs" control="input" type="number" name="numberpage" />
+                    You're in page
+                    <form onSubmit={formik.handleSubmit}>
+                      <div className="w-48 ml-16">
+                        <div className="form-input text-start">
+                          <div className="input-area h-32 font-xs bg-white">
+                            <input type="number" id="topage" name="topage"
+                              className="w-full input-control radius-8 py-8 pl-16 pr-16 font-xs"
+                              onChange={formik.handleChange}
+                              value={formik.values.topage}
+                            />
+                          </div>
                         </div>
-                      </Form>
-                    </Formik>
+                      </div>
+                    </form>
                   </div>
                   <div className="divider-nav"></div>
                   <div style={{ marginRight: '24px' }}>
                     {
-                      currentPage > 0 ?
-                        (<button className="btn-paginate" onClick={() => handlePageClick(currentPage - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                      pagination.prev_page ?
+                        (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
                         : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
                     }
                   </div>
                   <div>
                     {
-                      currentPage < pageCount - 1 ?
-                        (<button className="btn-paginate" onClick={() => handlePageClick(currentPage + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                      pagination.next_page ?
+                        (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
                         : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
                     }
                   </div>

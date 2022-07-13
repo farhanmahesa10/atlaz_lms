@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useFormik } from 'formik';
 import { defConfig, GET, POST } from "../../config/RestAPI";
 
 function useStudentGradeOverview() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingTable, setIsLoadingTable] = useState(true)
   const [dataHeader, setDataHeader] = useState([
     {
       title: 'Class',
-      placeholder: 'e.g. Class 01',
+      rowName: 'classlist',
+      width: "43%",
+      placeholder: '',
       search: '',
       sortir: true,
       isSorted: false,
@@ -15,7 +19,9 @@ function useStudentGradeOverview() {
     },
     {
       title: 'Subject',
-      placeholder: 'e.g. Subject 01',
+      rowName: 'subject',
+      width: "43%",
+      placeholder: '',
       search: '',
       sortir: true,
       isSorted: false,
@@ -24,7 +30,9 @@ function useStudentGradeOverview() {
     },
     {
       title: 'Avg. Grade',
-      placeholder: 'e.g. 90',
+      rowName: 'score',
+      width: "14%",
+      placeholder: '',
       search: '',
       sortir: true,
       isSorted: false,
@@ -44,6 +52,9 @@ function useStudentGradeOverview() {
             isSortedDesc: true
           }
           newHeader.push(data)
+          setSortType('ASC')
+          setSortBy(item.rowName)
+          initData(page, perPage, 'ASC', item.rowName, showRow)
         }
         if (item.isSorted && item.isSortedDesc) {
           let data = {
@@ -52,6 +63,9 @@ function useStudentGradeOverview() {
             isSortedDesc: false
           }
           newHeader.push(data)
+          setSortType('DESC')
+          setSortBy(item.rowName)
+          initData(page, perPage, 'DESC', item.rowName, showRow)
         }
         if (item.isSorted && !item.isSortedDesc) {
           let data = {
@@ -60,6 +74,9 @@ function useStudentGradeOverview() {
             isSortedDesc: false
           }
           newHeader.push(data)
+          setSortType('DESC')
+          setSortBy('score')
+          initData(page, perPage, 'DESC', 'score', showRow)
         }
       } else {
         let data = {
@@ -108,34 +125,83 @@ function useStudentGradeOverview() {
   }
 
   const [dataGradeOverview, setDataGradeOverview] = useState()
-  const [dataGradeOverviewAll, setDataGradeOverviewAll] = useState()
   const [dataExcel, setDataExcel] = useState()
-  const csvDataName = ["Grade-Overview"]
+  const csvDataName = ["data"]
 
-  const [pageCount, setPageCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [showRow, setShowRow] = useState(['subject', 'class'])
+  const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(10)
+  const [sortType, setSortType] = useState('DESC')
+  const [sortBy, setSortBy] = useState('score')
 
-  const handlePageClick = (event) => {
-      setCurrentPage(event)
-      const newOffset = (event * itemsPerPage) % dataGradeOverviewAll.length;
-      setItemOffset(newOffset);
-      const endOffset = newOffset + itemsPerPage;
-      setDataGradeOverview(dataGradeOverviewAll.slice(newOffset, endOffset))
-      setPageCount(Math.ceil(dataGradeOverviewAll.length / itemsPerPage));
+  const [pagination, setPagination] = useState({
+      current_page: 0,
+      per_page: 10,
+      next_page: false,
+      prev_page: false,
+      total: 0,
+      total_page: 0
+  })
+
+  const formik = useFormik({
+    initialValues: { topage: 0 },
+    onSubmit: values => {
+      if (parseInt(values.topage) > 0 && parseInt(values.topage) <= pagination.total_page) {
+        setPage(parseInt(values.topage))
+        initData(parseInt(values.topage), perPage, sortType, sortBy, showRow)
+      }
+    },
+  });
+
+  const handlePageClick = (toPage) => {
+    setPage(toPage)
+    formik.setFieldValue("topage", toPage)
+    initData(toPage, perPage, sortType, sortBy, showRow)
   };
 
-  useEffect(() => {
-    setIsLoading(true)
+  const onSubmit = () => {
+      console.log('first')
+  }
+
+  const onSubmitTableOption = (values) => {
+    setPerPage(parseInt(values.showing))
+    initData(page, parseInt(values.showing), sortType, sortBy, showRow)
+
+    setInitialValuesTableOption(values)
+    let newHeader = []
+    dataHeader.map((item, index) => {
+      if (index < 4) {
+        let data = {
+          ...item,
+          status: Object.values(values)[index]
+        }
+        newHeader.push(data)
+      } else {
+        newHeader.push(item)
+      }
+    })
+    setDataHeader(newHeader)
+  }
+
+  const initData = (dataPage, dataPerPage, dataSortType, dataSortBy, dataRow) => {
+    setIsLoadingTable(true)
+    setDataGradeOverview([])
     GET(`/report/student/grade_overview`, defConfig())
     .then(
       (res) => {
-        const endOffset = itemOffset + itemsPerPage;
-        setDataGradeOverview(res.data.slice(itemOffset, endOffset))
-        setPageCount(Math.ceil(res.data.length / itemsPerPage));
-        setDataGradeOverviewAll(res.data)
+        console.log('tes', res.data)
+        setDataGradeOverview(res.data)
+        formik.setFieldValue("topage", res.pagintion.current_page ? res.pagintion.current_page : 0)
+        setPagination({
+            current_page: res.pagintion.current_page ? res.pagintion.current_page : 0,
+            per_page: res.pagintion.per_page ? res.pagintion.per_page : 10,
+            next_page: res.pagintion.next_page ? res.pagintion.next_page : false,
+            prev_page: res.pagintion.prev_page ? res.pagintion.prev_page : false,
+            total: res.pagintion.total ? res.pagintion.total : 0,
+            total_page: res.pagintion.total_page ? res.pagintion.total_page : 0
+        })
         setIsLoading(false)
+        setIsLoadingTable(false)
 
         let newDataExcel = []
         res.data?.map((item, index) => {
@@ -153,44 +219,34 @@ function useStudentGradeOverview() {
       setIsLoading(false)
       console.log('error', err)
     })
+  }
+
+  useEffect(() => {
+    setIsLoading(true)
+    setIsLoadingTable(true)
+    initData(page, perPage, sortType, sortBy, showRow)    
   }, [])
-
-  const onSubmitTableOption = (values) => {
-    setInitialValuesTableOption(values)
-    let newHeader = []
-    dataHeader.map((item, index) => {
-      if (index < 4) {
-        let data = {
-          ...item,
-          status: Object.values(values)[index]
-        }
-        newHeader.push(data)
-      } else {
-        newHeader.push(item)
-      }
-    })
-    setDataHeader(newHeader)
-  }
-
-  const onSubmitNumberPage = (values) => {
-    console.log(values)
-  }
 
   return {
     isLoading,
+    isLoadingTable,
     dataHeader,
     sortirHeader,
     initialValuesTableOption,
     setTableOption,
     onSubmitTableOption,
     dataGradeOverview,
-    currentPage,
-    pageCount,
-    itemOffset,
     handlePageClick,
-    onSubmitNumberPage,
+    initData,
+    formik,
     dataExcel,
     csvDataName,
+    onSubmit,
+    page,
+    perPage,
+    sortType,
+    sortBy,
+    pagination,
   }
 }
 

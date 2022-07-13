@@ -11,12 +11,11 @@ function TableThead(props) {
             <div className="sortir mb-16" onClick={onClick} >
                 {title}
                 {   
-                    placeholder !== '' &&
-                    (sortir && 
-                    (isSorted) ? 
+                    sortir && 
+                    isSorted ? 
                     (isSortedDesc ? <Sort style={{ transform: 'rotate(180deg)', fontSize: '14px' }} /> : 
                     <Sort style={{ fontSize: '14px' }} />)
-                    : <Sort style={{ opacity: '0.3', fontSize: '14px' }} />)
+                    : (sortir ? <Sort style={{ opacity: '0.3', fontSize: '14px' }} /> : '')
                 }
             </div>
             {
