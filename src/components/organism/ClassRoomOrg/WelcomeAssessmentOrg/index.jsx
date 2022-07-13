@@ -135,18 +135,20 @@ const WelcomeAssessmentOrg = () => {
                             </Link>
                           </Can>
                         ) : (
-                          <ModalTrigger
-                            target="modal-begin-assessment"
-                            data={modalText}
-                          >
-                            <button
-                              className="font-sm btn-primary d-flex align-items-center"
-                              type="button"
+                          <Can allowAccess="student">
+                            <ModalTrigger
+                              target="modal-begin-assessment"
+                              data={modalText}
                             >
-                              <span className="mr-16">Begin Assessment</span>
-                              <ArrowRightAltOutlinedIcon />
-                            </button>
-                          </ModalTrigger>
+                              <button
+                                className="font-sm btn-primary d-flex align-items-center"
+                                type="button"
+                              >
+                                <span className="mr-16">Begin Assessment</span>
+                                <ArrowRightAltOutlinedIcon />
+                              </button>
+                            </ModalTrigger>
+                          </Can>
                         )}
                       </div>
                     </div>
