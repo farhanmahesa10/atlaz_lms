@@ -1,6 +1,12 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { CircularProgress } from "../../../atoms";
-const OverviewTeacherDashboard = () => {
+const OverviewTeacherDashboard = (props) => {
+  const { overviewData, isOverviewLoading } = props;
+
+  if (isOverviewLoading) {
+    return <Loading />;
+  }
   return (
     <div className="w-full radius-14 border border-secondary-500 h-148 xl-h-auto md-h-148 d">
       <div className="h-full md-h-auto  d-flex d-xl-block flex-column  justify-content-between ">
@@ -16,30 +22,30 @@ const OverviewTeacherDashboard = () => {
         </div>
       </div>
       <div className=" px-32 pb-24">
-        <div className="d-none d-md-block md-pb-12 ">
+        <div className="d-none d-md-block md-pb-6 ">
           <Progress
             strokeColor="#1bb184"
             titleColor="success-600"
             subTitle="Assessment"
-            total={120}
-            complete={100}
+            total={overviewData.assessment.countAllAssessment}
+            complete={overviewData.assessment.countSetAssessment}
           />
         </div>
-        <div className="d-none d-xl-block ">
-          <Progress
+        <div className="d-none d-xl-block md-pb-6">
+          {/* <Progress
             strokeColor="#8ECFEE"
             titleColor="info-500"
             subTitle="Assessment to grading"
-            total={120}
-            complete={20}
+            total={0}
+            complete={0}
           />
           <Progress
             strokeColor="#FDBF47"
             titleColor="primary-500"
             subTitle="Owned book"
-            total={120}
-            complete={50}
-          />
+            total={0}
+            complete={0}
+          /> */}
         </div>
       </div>
     </div>
@@ -62,11 +68,15 @@ const Progress = (props) => {
         <CircularProgress
           strokeWidth="3"
           sqSize="50"
-          percentage={Math.round((complete / total) * 100)}
+          percentage={Math.round((complete / total) * 100) || 0}
           strokeColor={strokeColor}
         />
       </div>
     </div>
   );
+};
+
+const Loading = () => {
+  return <Skeleton width="100%" height="179px" />;
 };
 export default OverviewTeacherDashboard;

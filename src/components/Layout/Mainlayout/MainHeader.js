@@ -117,14 +117,14 @@ const MainHeader = (props) => {
       activeTo: "grade",
       allowAccess: "SUPERUSER,ADMINISTRATOR,HEADMASTER,SCHOOLADMIN,STUDENT",
     },
-    {
-      icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
-      link: "/teacher-resources",
-      label: "Teacher Resources",
-      shouldLogin: true,
-      activeTo: "teacher-resources",
-      allowAccess: "teacher,public,SCHOOLADMIN",
-    },
+    // {
+    //   icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
+    //   link: "/teacher-resources",
+    //   label: "Teacher Resources",
+    //   shouldLogin: true,
+    //   activeTo: "teacher-resources",
+    //   allowAccess: "teacher,public,SCHOOLADMIN",
+    // },
 
     // {
     //   icon: <GroupsIcon />,

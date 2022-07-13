@@ -70,9 +70,9 @@ const PublicDashboard = () => {
                 <BoxDashboardCard
                   bgImage={AtlazMediaBg}
                   bgColor="#EAEDFB"
-                  link="https://media.hiatlaz.com/media.hiatlaz.com"
+                  link="https://media.hiatlaz.com"
                   isToExternal={true}
-                  isCommingSoon
+                  // isCommingSoon
                   title={
                     <span>
                       Atlaz <br /> Media

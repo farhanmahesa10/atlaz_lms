@@ -17,8 +17,14 @@ import {
 } from "../../../molecules";
 
 const TeacherDashboard = () => {
-  const { isLoadingClassList, classListData, upcomingData, upcomingLoading } =
-    useTeacherDashboard();
+  const {
+    isLoadingClassList,
+    classListData,
+    upcomingData,
+    upcomingLoading,
+    overviewData,
+    isOverviewLoading,
+  } = useTeacherDashboard();
   return (
     <MainLayout maxWidth="1440px" navbarBg="bg-white">
       <div className="mt-32">
@@ -30,10 +36,13 @@ const TeacherDashboard = () => {
                   <WelcomeTeacherDashboard />
                 </div>
                 <div className=" col-6  col-xl-12 xl-mt-24">
-                  <OverviewTeacherDashboard />
+                  <OverviewTeacherDashboard
+                    overviewData={overviewData}
+                    isOverviewLoading={isOverviewLoading}
+                  />
                 </div>
                 <div className=" col-12 d-none d-xl-block   mt-24">
-                  <GradeTeacherDashboard />
+                  {/* <GradeTeacherDashboard /> */}
                 </div>
               </div>
             </div>
@@ -89,7 +98,7 @@ const TeacherDashboard = () => {
                     bgColor="#EAEDFB"
                     link="https://media.hiatlaz.com/"
                     isToExternal
-                    isCommingSoon
+                    // isCommingSoon
                     title={
                       <span>
                         Atlaz <br /> Media

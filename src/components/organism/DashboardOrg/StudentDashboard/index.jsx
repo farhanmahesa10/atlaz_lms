@@ -79,7 +79,7 @@ const StudentDashboard = () => {
                           bgColor="#EAEDFB"
                           link="https://media.hiatlaz.com/"
                           isToExternal
-                          isCommingSoon
+                          // isCommingSoon
                           title={
                             <span>
                               Atlaz <br /> Media
