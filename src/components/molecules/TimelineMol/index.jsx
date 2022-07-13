@@ -160,7 +160,7 @@ const BoxTimeline = ({ data, parentData, onDelete }) => {
               data.subtopic.assessmentType.toLowerCase() ===
                 "reading listening assessment" ? (
                 <p className="font-xs-bold ">
-                  {moment(data.assessmentDate).format("DD MMM Y")}, &nbsp;
+                  {moment(data.startDateTime).format("DD MMM Y")}, &nbsp;
                   {moment(data.startDateTime).format("LT")}
                 </p>
               ) : (
@@ -177,7 +177,7 @@ const BoxTimeline = ({ data, parentData, onDelete }) => {
               data.subtopic.assessmentType.toLowerCase() ===
                 "reading listening assessment" ? (
                 <p className="font-xs-bold ">
-                  {moment(data.assessmentDate).format("DD MMM Y")}, &nbsp;
+                  {moment(data.endDateTime).format("DD MMM Y")}, &nbsp;
                   {moment(data.endDateTime).format("LT")}
                 </p>
               ) : (
@@ -193,7 +193,7 @@ const BoxTimeline = ({ data, parentData, onDelete }) => {
                   "automatic grading" ||
                 data.subtopic.assessmentType.toLowerCase() ===
                   "reading listening assessment"
-                  ? getDuration(data.startTime, data.endTime)
+                  ? getDuration(data.startDateTime, data.endDateTime)
                   : getDuration(data.startDateTime, data.endDateTime)}
               </p>
             </div>
