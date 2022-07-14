@@ -74,7 +74,7 @@ const useSearchResult = () => {
     setIsLoading(true);
     let url = `${BaseAPIURL}/client/landing/booklist/filter`;
     let req = {
-      keyword: keyword,
+      keyword: keyword || "",
       minPrice: minPrice,
       maxPrice: maxPrice,
       sort: sortChoosen,
