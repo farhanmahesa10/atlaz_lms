@@ -59,7 +59,6 @@ const useTeacherDashboard = () => {
   const initOverview = () => {
     GET("/client/dashboard/progress/assessment_set", defConfig())
       .then((r) => {
-        console.log(r);
         setOverviewData({ ...overviewData, assessment: r.data });
         setIsOverviewLoading(false);
       })
