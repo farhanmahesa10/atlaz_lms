@@ -128,7 +128,7 @@ function PreviewContentOrg() {
           <div className="d-flex h-full justify-content-center align-items-center">
             <div className="text-center">
               <img src={searchNoData} alt="" className="max-w-143" />
-              <h6 className="mt-24">No Book Cotent Yet</h6>
+              <h6 className="mt-24">No Book Content Yet</h6>
               <p className="max-w-297 font-sm">
                 The author hasn't put content on this page yet. Please wait to
                 enjoy this page!
