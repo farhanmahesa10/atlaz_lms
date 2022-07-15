@@ -86,29 +86,41 @@ function TableTeacherManageInformation() {
                           dataGradesInformation.length > 0 ?
                             dataGradesInformation?.map((item, index) => {
                               return <tr key={index}>
-                                <td>{item.student.name}</td>
-                                <td>{item.lesson.name}</td>
                                 <td>
-                                  {item.subtopic.name} <br />
-                                  {moment(item.timeline.startDateTime).format('Y-MM-DD LT')}
+                                  {
+                                    item.student && item.student?.name
+                                  }
                                 </td>
-                                <td width="10%">{item.score}</td>
-                                <td width="10%">
+                                <td>
+                                  {
+                                    item.lesson && item.lesson?.name
+                                  }
+                                </td>
+                                <td>
+                                  {
+                                    item.subtopic && (<>
+                                      {item.subtopic.name} <br />
+                                      {moment(item.timeline.startDateTime).format('Y-MM-DD LT')}
+                                    </>)
+                                  }
+                                </td>
+                                <td>{parseFloat(item.score) ? parseFloat(item.score).toFixed(1) : 'N/A'}</td>
+                                <td>
                                   <Link to={`detail/${item._id}`}><FindInPage className="text-neutral-300 fs-18" /></Link>
                                 </td>
                               </tr>
                             }) : (<tr>
                               <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                              {
-                                      isLoadingTable ? (<>Loading data...</>) : (<>No data available</>)
-                                    }
+                                {
+                                  isLoadingTable ? (<>Loading data...</>) : (<>No data available</>)
+                                }
                               </td>
                             </tr>)
                         )
                         :
                         (<tr>
                           <td className="datanotfound text-center font-sm text-neutral-200" colSpan="5">
-                          No data available
+                            No data available
                           </td>
                         </tr>)
                     }
@@ -116,43 +128,43 @@ function TableTeacherManageInformation() {
                 </table>
               </div>
               <div className="navigation-table">
-                    <div className="font-sm text-neutral-300 d-none d-md-block">
-                      {pagination.current_page} of {pagination.total_page}
-                    </div>
-                    <div className="pagination-table">
-                      <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
-                        You're in page
-                        <form onSubmit={formik.handleSubmit}>
-                          <div className="w-48 ml-16">
-                            <div className="form-input text-start">
-                              <div className="input-area h-32 font-xs bg-white">
-                                <input type="number" id="topage" name="topage"
-                                  className="w-full input-control radius-8 py-8 pl-16 pr-16 font-xs"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.topage}
-                                />
-                              </div>
-                            </div>
+                <div className="font-sm text-neutral-300 d-none d-md-block">
+                  {pagination.current_page} of {pagination.total_page}
+                </div>
+                <div className="pagination-table">
+                  <div className="font-sm text-neutral-300 your-page d-flex align-items-center">
+                    You're in page
+                    <form onSubmit={formik.handleSubmit}>
+                      <div className="w-48 ml-16">
+                        <div className="form-input text-start">
+                          <div className="input-area h-32 font-xs bg-white">
+                            <input type="number" id="topage" name="topage"
+                              className="w-full input-control radius-8 py-8 pl-16 pr-16 font-xs"
+                              onChange={formik.handleChange}
+                              value={formik.values.topage}
+                            />
                           </div>
-                        </form>
+                        </div>
                       </div>
-                      <div className="divider-nav"></div>
-                      <div style={{ marginRight: '24px' }}>
-                        {
-                          pagination.prev_page ?
-                            (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                            : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
-                        }
-                      </div>
-                      <div>
-                        {
-                          pagination.next_page ?
-                            (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                            : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
-                        }
-                      </div>
-                    </div>
+                    </form>
                   </div>
+                  <div className="divider-nav"></div>
+                  <div style={{ marginRight: '24px' }}>
+                    {
+                      pagination.prev_page ?
+                        (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page - 1)} ><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                        : (<button className="btn-paginate btn-disable" disabled><ArrowBack style={{ fontSize: "16px" }} /></button>)
+                    }
+                  </div>
+                  <div>
+                    {
+                      pagination.next_page ?
+                        (<button className="btn-paginate" onClick={() => handlePageClick(pagination.current_page + 1)}><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                        : (<button className="btn-paginate btn-disable" disabled><ArrowForward style={{ fontSize: "16px" }} /></button>)
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
           </>)
           :

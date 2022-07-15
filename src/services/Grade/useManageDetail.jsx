@@ -135,7 +135,6 @@ function useManageDetail() {
       ).then((r) => {
         setFlashMessage('Success', 'Submit data success.')
         setIsLoading(false)
-        console.log('success', r)
         
       }).catch( err => {
         setFlashMessage('Failed', 'Submit data failed.', false)
@@ -169,7 +168,6 @@ function useManageDetail() {
       ).then((r) => {
         setFlashMessage('Success', 'Submit data success.')
         setIsLoading(false)
-        console.log('success', r)
       }).catch( err => {
         setFlashMessage('Failed', 'Submit data failed.', false)
         setIsLoading(false)
