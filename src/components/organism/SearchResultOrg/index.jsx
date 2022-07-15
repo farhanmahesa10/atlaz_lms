@@ -180,7 +180,7 @@ const SearchResultOrg = () => {
                     {bookData.map((r, i) => {
                       return (
                         <div
-                          className="col-6  col-md-4 col-xl-2 col-xl-2 d-flex justify-content-center mb-20 "
+                          className="col-6  col-sm-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-20 "
                           key={i}
                         >
                           <ProductYCard
