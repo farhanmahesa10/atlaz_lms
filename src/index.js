@@ -1,9 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "./mysass.scss";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment-timezone";
-import "./assets/scss/main.scss";
+
+//dari note? paster disini
+
+import "./assets/scss/setup/nomedia.scss";
+import "./assets/scss/setup/bootstrap_setup.scss";
+// import "./assets/scss/main.scss";
+import "./main-utils.css";
+// dari note? berhenti disini
+
 import "./index.css";
 import "./assets/css/embla.css";
 import App from "./App";

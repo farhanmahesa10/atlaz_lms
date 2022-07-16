@@ -1,0 +1,40 @@
+// bootstrap
+@import "bootstrap/scss/functions";
+
+// Default variable overrides
+$body-bg: #000;
+$body-color: #111;
+$carousel-indicator-width: 8px;
+$carousel-indicator-height: 8px;
+$carousel-indicator-active-bg: black;
+$carousel-indicator-bg: #aaafb7;
+$dropdown-border-color: white;
+$dropdown-border: none;
+$dropdown-min-width: 2rem;
+
+// Required
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// Optional Bootstrap components here
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/bootstrap-grid";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/bootstrap-utilities";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/transitions.scss";
+
+// tidak dipakai
+// @import "bootstrap/scss/containers";
+// // </boorstrap
+
+// @import "bootstrap/dist/css/bootstrap.min.css";
