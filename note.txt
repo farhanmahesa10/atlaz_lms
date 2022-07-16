@@ -1,7 +1,7 @@
 Langkah sebelum push
 1. jalan di terminal 
     --  sass --watch src/assets/scss/main.scss:src/fake-style.css
-    --  yarn postbuild 
+    --  yarn buildcss 
 2. ganti import scss di src/index.js  
     DARI import "./assets/scss/main.scss";
     MENJADI import "./main-utils.css";

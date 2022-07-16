@@ -59,7 +59,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "postbuild": "purgecss --config ./purgecss.config.js --output src/main-utils.css",
+    "buildcss": "purgecss --config ./purgecss.config.js --output src/main-utils.css",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
