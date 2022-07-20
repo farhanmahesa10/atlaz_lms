@@ -1460,6 +1460,14 @@ h6 {
   height: 373px;
 }
 
+.h-450 {
+  height: 450px;
+}
+
+.w-800 {
+  width: 800px;
+}
+
 .min-h-36 {
   min-height: 36px;
 }
