@@ -2,7 +2,13 @@ import React from "react";
 import NoteBookIcon from "../../../../assets/images/notebook-icon.png";
 import SchoolIcon from "@mui/icons-material/School";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-const LessonPlanCard = () => {
+import { useGlobalFunction } from "../../../../services";
+
+const LessonPlanCard = (props) => {
+  const { data } = props
+  const { getUserInfo } = useGlobalFunction();
+  const user = getUserInfo();
+
   return (
     <div
       className="p-16 border-secondary-500 bg-secondary-100 radius-8"
@@ -19,23 +25,23 @@ const LessonPlanCard = () => {
             </div>
           </div>
           <div className="md-ml-16 ">
-            <h6>English Play - 01</h6>
+            <h6>{data.subject.name ? data.subject.name : ''}</h6>
             <div className="d-flex flex-column flex-md-row mt-16 md-mt-0">
               <p className="d-flex align-items-center text-neutral-300 ">
                 <SchoolIcon className="fs-20" />
-                <span className="pl-8">Elementary school</span>
+                <span className="pl-8">{data.subject.level ? data.subject.level : ''}</span>
               </p>
               <p className="d-flex align-items-center text-neutral-300 md-ml-24 mt-8 md-mt-0">
                 <SupervisorAccountIcon className="fs-20" />
-                <span className="pl-8">Atlaz Belajar Bahasa</span>
+                <span className="pl-8">{data.subject.author ? data.subject.author : ''}</span>
               </p>
             </div>
           </div>
         </div>
         <div className="mt-16 xl-mt-0">
-          <button className="btn-primary font-normal w-full xl-w-auto">
+          <a href={user.role <=5 ? data.subject.lessonPlanSchool : (user.role === 7 ? data.subject.lessonPlanPublic : '')} target="_blank" className="btn-primary font-normal w-full xl-w-auto">
             Download
-          </button>
+          </a>
         </div>
       </div>
     </div>

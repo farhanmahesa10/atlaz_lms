@@ -7,7 +7,7 @@ import moment from "moment-timezone";
 import "./assets/scss/setup/nomedia.scss";
 import "./assets/scss/setup/bootstrap_setup.scss";
 // import "./assets/scss/main.scss";
-import "./main-utils.css";
+import "./fake-style.css";
 // dari note? berhenti disini
 
 import "./index.css";

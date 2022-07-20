@@ -12,6 +12,7 @@ const defConfig = (params) => {
     headers: { token: "Bearer " + tokenAccess },
     params: params && {
       column: params,
+      filter: params,
     },
   };
   return config;

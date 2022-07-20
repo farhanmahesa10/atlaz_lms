@@ -4,6 +4,7 @@ import { Offcanvas } from "react-bootstrap";
 import { Divider, FormikControl } from "../../atoms";
 import FilterListIcon from "@mui/icons-material/FilterList";
 const TeacherResourceOffCanvas = (props) => {
+  const { isSelect } = props
   const [showCanvas, setShowCanvas] = useState(0);
 
   const handleClose = () => setShowCanvas(false);
@@ -60,61 +61,68 @@ const TeacherResourceOffCanvas = (props) => {
                     </p>
                   </div>
                 </div>
-                <div className="mt-32">
-                  <div className="px-24 ">
-                    <p className="text-neutral-300">Data select</p>
+                {
+                  isSelect &&
+                  (
+                    <>
+                      <div className="mt-32">
+                        <div className="px-24 ">
+                          <p className="text-neutral-300">Data select</p>
 
-                    <div className="p-8 mt-16">
-                      <div>
-                        <FormikControl
-                          control="checkbox"
-                          name="general"
-                          value="General"
-                          label="General"
-                          labelClassName="font-sm-medium text-neutral-500 pt-4"
-                          defaultChecked={true}
-                        />
+                          <div className="p-8 mt-16">
+                            <div>
+                              <FormikControl
+                                control="checkbox"
+                                name="general"
+                                value="General"
+                                label="General"
+                                labelClassName="font-sm-medium text-neutral-500 pt-4"
+                                defaultChecked={true}
+                              />
+                            </div>
+                          </div>
+                          <div className="p-8 mt-8">
+                            <div>
+                              <FormikControl
+                                control="checkbox"
+                                name="elementarySchool"
+                                value="Elementary School"
+                                label="Elementary School"
+                                labelClassName="font-sm-medium text-neutral-500 pt-4"
+                              />
+                            </div>
+                          </div>
+                          <div className="p-8 mt-8">
+                            <div>
+                              <FormikControl
+                                control="checkbox"
+                                name="juniorHighSchool"
+                                value="Junior High School"
+                                label="Junior High School"
+                                labelClassName="font-sm-medium text-neutral-500 pt-4"
+                              />
+                            </div>
+                          </div>
+                          <div className="p-8 mt-8">
+                            <div>
+                              <FormikControl
+                                control="checkbox"
+                                name="seniorHighSchool"
+                                value="Senior High School"
+                                label="Senior High School"
+                                labelClassName="font-sm-medium text-neutral-500 pt-4"
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="p-8 mt-8">
-                      <div>
-                        <FormikControl
-                          control="checkbox"
-                          name="elementarySchool"
-                          value="Elementary School"
-                          label="Elementary School"
-                          labelClassName="font-sm-medium text-neutral-500 pt-4"
-                        />
+                      <div className="mt-16 px-24">
+                        <Divider height="h-2" />
                       </div>
-                    </div>
-                    <div className="p-8 mt-8">
-                      <div>
-                        <FormikControl
-                          control="checkbox"
-                          name="juniorHighSchool"
-                          value="Junior High School"
-                          label="Junior High School"
-                          labelClassName="font-sm-medium text-neutral-500 pt-4"
-                        />
-                      </div>
-                    </div>
-                    <div className="p-8 mt-8">
-                      <div>
-                        <FormikControl
-                          control="checkbox"
-                          name="seniorHighSchool"
-                          value="Senior High School"
-                          label="Senior High School"
-                          labelClassName="font-sm-medium text-neutral-500 pt-4"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-16">
-                  <Divider height="h-2" />
-                </div>
-                <div className="mt-16 pb-24">
+                    </>
+                  )
+                }
+                <div className={isSelect ? 'mt-16 pb-24' : 'mt-32 pb-24'}>
                   <div className="px-24 pb-24">
                     <p className="text-neutral-300">Data select</p>
 

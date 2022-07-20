@@ -38,8 +38,15 @@ import useMasterGradeOverview from "./Grade/useMasterGradeOverview";
 import useExportExcel from "./Grade/useExportExcel";
 
 import useTeacherResource from "./TeacherResource/useTeacherResource";
+import useTeacherResourceLessonPlan from "./TeacherResource/useTeacherResourceLessonPlan";
+import useTeacherResourceTraining from "./TeacherResource/useTeacherResourceTraining";
+import useTeacherResourceWorksheet from "./TeacherResource/useTeacherResourceWorksheet";
 
 export {
+  useTeacherResourceWorksheet,
+  useTeacherResourceTraining,
+  useTeacherResourceLessonPlan,
+  
   useMasterGradeOverview,
   useExportExcel,
   useTeacherResource,
