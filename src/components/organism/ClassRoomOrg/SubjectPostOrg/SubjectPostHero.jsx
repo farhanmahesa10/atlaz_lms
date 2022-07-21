@@ -68,13 +68,13 @@ const SubjectPostHero = () => {
                       Start Learning
                     </button>
                   </Link>
-                  {/* <Can allowAccess="teacher">
-                    <a href="" download="lesson.pdf" className="ml-8">
-                      <button className="btn-secondary font-normal d-flex align-items-center ">
+                  <Can allowAccess="teacher">
+                    {
+                      (data.lessonPlanSchool || data.lessonPlanSchool !== '') && (<a href={data.lessonPlanSchool} target="_blank" className="ml-8 btn-secondary font-normal d-flex align-items-center">
                         <DownloadIcon className="fs-20 mr-8" /> Lesson Plan
-                      </button>
-                    </a>
-                  </Can> */}
+                    </a>)
+                    }
+                  </Can>
                 </div>
               </div>
             </div>
