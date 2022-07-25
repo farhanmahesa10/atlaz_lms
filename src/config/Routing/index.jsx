@@ -461,11 +461,22 @@ const Routing = () => {
           </Authenticate>
         }
       />
+
       <Route
         path="/teacher-resources"
         element={
           <Authenticate>
-            <CheckRole allowAccess="TEACHER,public,schooladmin">
+            <CheckRole allowAccess="TEACHER,schooladmin">
+              <TeacherResource />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/resources"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="PUBLIC">
               <TeacherResource />
             </CheckRole>
           </Authenticate>

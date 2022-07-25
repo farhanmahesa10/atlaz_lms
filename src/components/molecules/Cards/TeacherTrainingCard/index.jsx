@@ -60,7 +60,7 @@ const TeacherTrainingCard = (props) => {
           <iframe
             className="embed-responsive-item w-800 h-450 radius-16 position-relative"
             style={{ maxHeight: "80vh", maxWidth: "100%" }}
-            src={embed ? `https://www.youtube.com/embed/${thumbnail}` : ''} allowfullscreen autoplay></iframe>
+            src={embed ? `https://www.youtube.com/embed/${thumbnail}` : ''} allowFullScreen ></iframe>
         </Modal.Body>
       </Modal>
     </>

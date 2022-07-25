@@ -123,7 +123,15 @@ const MainHeader = (props) => {
       label: "Teacher Resources",
       shouldLogin: true,
       activeTo: "teacher-resources",
-      allowAccess: "teacher,public,SCHOOLADMIN",
+      allowAccess: "teacher,SCHOOLADMIN",
+    },
+    {
+      icon: <LockOutlinedIcon style={{ color: "#8E98EE" }} />,
+      link: "/resources",
+      label: "Resources",
+      shouldLogin: true,
+      activeTo: "teacher-resources",
+      allowAccess: "PUBLIC",
     },
 
     // {
