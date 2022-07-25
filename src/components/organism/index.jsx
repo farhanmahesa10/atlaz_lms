@@ -22,6 +22,7 @@ import LearningBookDetail from "./ClassRoomOrg/LearningSubjectViewOrg/LearningBo
 import LessonPreviewOrg from "./ClassRoomOrg/LessonPreviewOrg";
 import WelcomeAssessmentOrg from "./ClassRoomOrg/WelcomeAssessmentOrg";
 import BeginAssessmentOrg from "./ClassRoomOrg/BeginAssessmentOrg";
+import TryAssessmentOrg from "./ClassRoomOrg/BeginAssessmentOrg/TryAssessmentOrg";
 import BeginAssessmentSingleChoice from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentSingleChoice";
 import BeginAssessmentDivider from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentDivider";
 import BeginAssessmentTextEditor from "./ClassRoomOrg/BeginAssessmentOrg/BeginAssessmentTextEditor";
@@ -101,6 +102,7 @@ export {
   LessonPreviewOrg,
   WelcomeAssessmentOrg,
   BeginAssessmentOrg,
+  TryAssessmentOrg,
   BeginAssessmentSingleChoice,
   BeginAssessmentDivider,
   BeginAssessmentTextEditor,

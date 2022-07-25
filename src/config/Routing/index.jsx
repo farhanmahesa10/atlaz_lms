@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { RegisterMail } from "../../components/Mail";
-import { BeginAssessmentOrg } from "../../components/organism";
+import { BeginAssessmentOrg, TryAssessmentOrg } from "../../components/organism";
 import Authenticate from "../../midlewares/Authenticate";
 import CheckRole from "../../midlewares/CheckRole";
 import RedirectIfAuthenticated from "../../midlewares/RedirectIfAuthenticated";
@@ -271,8 +271,18 @@ const Routing = () => {
         path="/classroom/begin-assessment/:classId/:subjectId/:lessonId/:topicId/:id"
         element={
           <Authenticate>
-            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,teacher,student">
+            <CheckRole allowAccess="STUDENT">
               <BeginAssessmentOrg />
+            </CheckRole>
+          </Authenticate>
+        }
+      />
+      <Route
+        path="/classroom/preview-assessment/:classId/:subjectId/:lessonId/:topicId/:id"
+        element={
+          <Authenticate>
+            <CheckRole allowAccess="ADMINISTRATOR,SCHOOLADMIN,TEACHER">
+              <TryAssessmentOrg />
             </CheckRole>
           </Authenticate>
         }

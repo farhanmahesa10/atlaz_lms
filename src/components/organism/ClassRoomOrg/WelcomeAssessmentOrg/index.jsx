@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import { useWelcomeAssessment } from "../../../../services";
 import moment from "moment";
 import { Can } from "../../../../permission";
-const WelcomeAssessmentOrg = () => {
+const  WelcomeAssessmentOrg = () => {
   const {
     breadcrumbsData,
     modalText,
@@ -68,13 +68,15 @@ const WelcomeAssessmentOrg = () => {
               <div className="mt-20 md-mt-32 xl-max-w-888 md-max-w-500 w-full">
                 <div className="row">
                   <div className="col-12 col-xl-6">
-                    <span
-                      className={`nowrap d-inline-block border ${handleBadgeColor(
-                        data.status
-                      )} px-8 py-2 radius-4 font-xs `}
-                    >
-                      {data.status}
-                    </span>
+                    <Can allowAccess="STUDENT">
+                      <span
+                        className={`nowrap d-inline-block border ${handleBadgeColor(
+                          data.status
+                        )} px-8 py-2 radius-4 font-xs `}
+                      >
+                        {data.status}
+                      </span>
+                    </Can>
                     <div className="mt-8">
                       <h2 className="md-fs-60 " style={{ lineHeight: "72px" }}>
                         {data.subtopic.name}
@@ -120,6 +122,19 @@ const WelcomeAssessmentOrg = () => {
                         </span>
                       </div>
                       <div className="mt-40">
+                        <Can allowAccess="TEACHER">
+                            <Link
+                              to={`/classroom/preview-assessment/${params.classId}/${params.subjectId}/${params.lessonId}/${params.topicId}/${params.id}`}
+                            >
+                              <button
+                                className="font-sm btn-primary d-flex align-items-center"
+                                type="button"
+                              >
+                                <span className="mr-16">Preview Assessment</span>{" "}
+                                <ArrowRightAltOutlinedIcon />
+                              </button>
+                            </Link>
+                          </Can>
                         {data.status.toLowerCase() === "on going" ? (
                           <Can allowAccess="student">
                             <Link
