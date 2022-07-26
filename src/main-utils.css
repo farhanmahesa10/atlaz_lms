@@ -1080,6 +1080,22 @@ h6 {
   color: #aaafb7;
 }
 
+.form-input-error .input-area {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  color: #2a384c;
+  border: 1px solid #dc3545;
+}
+.form-input-error .input-area .input-control {
+  outline: none;
+  border: none;
+}
+.form-input-error .input-area .input-control:focus {
+  outline: none;
+  border: none;
+}
+
 .h-p-47 {
   height: 47%;
 }
