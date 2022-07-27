@@ -17,16 +17,16 @@ const UpcomingTeacherDashboard = (props) => {
         return (
           <div key={r._id} className={`${i > 0 && "mt-16"}`}>
             <Link
-              to={`/classroom/welcome-assessment/${r.classlist[0]._id}/${r.subject._id}/${r.lesson._id}/${r.topic._id}/${r.timelineSubtopic[0].subtopic._id}`}
+              to={`/classroom/welcome-assessment/${r.classlist}/${r.subject}/${r.lesson._id}/${r.topic}/${r.subtopic._id}`}
             >
               <UpcomingCard
                 name={r.lesson.name}
-                topic={r.topic.name}
-                event={r.timelineSubtopic[0].event}
-                date={moment(r.timelineSubtopic[0].startDateTime).format(
+                topic={r.subtopic.name}
+                event={r.event}
+                date={moment(r.startDateTime).format(
                   "D MMM"
                 )}
-                clock={moment(r.timelineSubtopic[0].startDateTime).format("LT")}
+                clock={moment(r.startDateTime).format("LT")}
               />
             </Link>
           </div>

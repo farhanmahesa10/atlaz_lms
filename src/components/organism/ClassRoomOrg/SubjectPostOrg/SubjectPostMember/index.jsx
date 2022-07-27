@@ -14,7 +14,8 @@ const SubjectPostMember = () => {
             <SubjectPostMemberLoading />
           ) : (
             <>
-              {data.teachers.map((r, i) => {
+              {data?.teachers?.map((r, i) => {
+                if(r === null) return;
                 return (
                   <div
                     className="col-12 col-md-6 col-xl-4  mb-16"
@@ -40,7 +41,8 @@ const SubjectPostMember = () => {
             <SubjectPostMemberLoading />
           ) : (
             <>
-              {data.students.map((r, i) => {
+              {data?.students?.map((r, i) => {
+                if(r === null) return;
                 return (
                   <div
                     className="col-12 col-md-6 col-xl-4  mb-16"

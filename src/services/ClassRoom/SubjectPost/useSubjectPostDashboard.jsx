@@ -34,7 +34,7 @@ const useSubjectPostDashboard = () => {
 
   const addUpcomingData = () => {
     GET(
-      `/client/classrooms/my_school_assessment/find?subject=${params.subjectId}&classlist=${params.classId}&show=2`,
+      `/client/classrooms/my_school_assessment/get_event?subject=${params.subjectId}&classlist=${params.classId}&show=2`,
       defConfig()
     ).then((r) => {
       let tempSidebarData = { ...sideBarData };

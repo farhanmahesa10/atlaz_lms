@@ -58,13 +58,13 @@ const SubjectPostDashboardSidebar = (props) => {
                 return (
                   <div className="mt-16" key={i}>
                     <UpcomingCard
-                      name={r.lesson.name}
-                      topic={r.topic.name}
-                      event={r.timelineSubtopic[0].event}
-                      date={moment(r.timelineSubtopic[0].startDateTime).format(
+                      name={r.lesson.name ? r.lesson.name : ''}
+                      topic={r.subtopic.name ? r.subtopic.name : ''}
+                      event={r.event ? r.event : ''}
+                      date={moment(r.startDateTime).format(
                         "D MMM"
                       )}
-                      clock={moment(r.timelineSubtopic[0].startDateTime).format(
+                      clock={moment(r.startDateTime).format(
                         "LT"
                       )}
                     />
