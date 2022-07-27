@@ -34,7 +34,7 @@ const useTeacherDashboard = () => {
   }, []);
   const initUpcoming = () => {
     setUpcomingLoading(true);
-    GET(`/client/dashboard/upcoming_event`, defConfig())
+    GET(`/client/dashboard/get_events`, defConfig())
       .then((r) => {
         setUpcomingData(r.data.splice(0, 5));
         setUpcomingLoading(false);
