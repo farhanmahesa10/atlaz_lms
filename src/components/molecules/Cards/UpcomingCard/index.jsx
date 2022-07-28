@@ -49,8 +49,8 @@ const UpcomingCard = (props) => {
           </p>
         </div>
       </div>
-      <div className=" nowrap">
-        <div className="d-flex align-items-center mt-16 xl-mt-0 justify-content-xl-end w-full">
+      <div className=" nowrap text-end">
+        <div className="d-flex align-items-center mt-16 xl-mt-0 justify-content-end w-full">
           <AccessTimeIcon className="fs-16 text-neutral-300" />
           <p className="font-xs-bold ml-4 ">{clock}</p>
         </div>

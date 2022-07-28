@@ -27,7 +27,7 @@ const TimelineMol = (props) => {
           <Skeleton width={"100%"} height="50px" />
         </div>
       ) : (
-        data.map((r, i) => {
+        data && data.map((r, i) => {
           return (
             <React.Fragment key={r._id}>
               <TimelineBlock

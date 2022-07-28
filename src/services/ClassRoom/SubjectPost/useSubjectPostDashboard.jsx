@@ -41,6 +41,9 @@ const useSubjectPostDashboard = () => {
       let newSidebarData = { ...tempSidebarData, upcomingData: r.data };
       setSideBarData(newSidebarData);
       setIsUpcomingLoading(false);
+    })
+    .catch((err) => {
+      setIsUpcomingLoading(false);
     });
   };
 

@@ -29,11 +29,17 @@ const TimelineOrg = () => {
           </div>
         </div>
         <div className="mt-24 md-mx-32 ">
-          <TimelineMol
-            data={data}
-            isLoading={isLoading}
-            onDelete={handleDetedTimeline}
-          />
+          {
+            data.length > 0 ?
+            (<TimelineMol
+              data={data}
+              isLoading={isLoading}
+              onDelete={handleDetedTimeline}
+            />)
+            : (
+              <div className="mx-12">No Event Available</div>
+            )
+          }
         </div>
       </MainLayout>
     </>
