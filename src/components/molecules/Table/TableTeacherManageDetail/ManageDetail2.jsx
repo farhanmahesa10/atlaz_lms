@@ -88,10 +88,10 @@ function ManageDetail2() {
                                 })
                             }                           
                             
-                            <div className="col-md-3">
-                                <div className="d-flex align-items-end radius-8 px-24 py-16" style={borderStyle}>
-                                    <div className='mr-24'>
-                                        <div className="font-sm text-neutral-300 mb-4 w-120">Final Grades</div>
+                            <div className="col-md-6 col-lg-4">
+                                <div className="d-flex align-items-end justify-content-between radius-8 px-24 py-16" style={borderStyle}>
+                                    <div className='mr-24 w-full'>
+                                        <div className="font-sm text-neutral-300 mb-4 ">Final Grades</div>
                                         <div>
                                             <FormikControl control="input" type="number" name="totalGrades" placeholder="Input grades" />
                                         </div>
