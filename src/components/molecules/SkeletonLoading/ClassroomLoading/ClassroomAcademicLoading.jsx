@@ -11,16 +11,16 @@ const ClassroomAcademicLoading = () => {
             textClassName={"px-4 text-neutral-300 font-xs "}
           />
           <div className="h-162 w-full col-12 col-md-6 col-lg-4 col-xl-3 radius-8 cursor-pointer">
-            <Skeleton width={"100%"} height="160px" />,
+            <Skeleton width={"100%"} height="160px" />
           </div>
           <div className="h-162 w-full col-12 col-md-6 col-lg-4 col-xl-3 radius-8 cursor-pointer">
-            <Skeleton width={"100%"} height="160px" />,
+            <Skeleton width={"100%"} height="160px" />
           </div>
           <div className="h-162 w-full col-12 col-md-6 col-lg-4 col-xl-3 radius-8 cursor-pointer">
-            <Skeleton width={"100%"} height="160px" />,
+            <Skeleton width={"100%"} height="160px" />
           </div>
           <div className="h-162 w-full col-12 col-md-6 col-lg-4 col-xl-3 radius-8 cursor-pointer">
-            <Skeleton width={"100%"} height="160px" />,
+            <Skeleton width={"100%"} height="160px" />
           </div>
         </div>
       </div>

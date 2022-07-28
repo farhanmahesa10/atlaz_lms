@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LessonPlanCard from "../Cards/LessonPlanCard";
+import zoey from '../../../assets/images/zoey.png'
 import { Offcanvas } from "react-bootstrap";
 import { Field, Form, Formik } from "formik";
 import { useTeacherResourceLessonPlan } from "../../../services";
@@ -68,6 +69,16 @@ const TeacherResourceLessonPlan = () => {
                       <LessonPlanCard data={item} />
                     </div>
                   })
+                }
+                {
+                  data.length === 0 && (
+                    <div className="text-center">
+                      <img src={zoey} alt="" className="w-174" />
+                      <div className="font-normal text-neutral-500">
+                        Data not found.
+                      </div>
+                    </div>
+                  )
                 }
               </div>
               <div className="text-center mt-32">

@@ -16,15 +16,15 @@ const ClassRoomAcademic = () => {
         <div className="bg-white radius-t-14 ">
           <div className="px-24 md-px-48 pt-16 md-pt-24">
             <div className="row ">
-              {data.map((r, i) => {
+              {data && data.map((r, i) => {
                 return (
                   <React.Fragment key={i}>
                     <Divider
-                      text={"Academic Year" + r.academicYear}
+                      text={r.academicYear ? "Academic Year " + r.academicYear : "Academic Year -"}
                       parentClassName={"mb-23"}
                       textClassName={"px-4 text-neutral-300 font-xs "}
                     />
-                    {r.classLists.map((res, ind) => {
+                    {r && r.classLists && r.classLists.map((res, ind) => {
                       return (
                         <Link
                           to={`/classroom/class/${res._id}`}
@@ -34,7 +34,7 @@ const ClassRoomAcademic = () => {
                           <AcademicCard
                             bgImage={res.banner.image}
                             title={res.name}
-                            desc={"Academic Year" + r.academicYear}
+                            desc={"Academic Year " + r.academicYear}
                           />
                         </Link>
                       );

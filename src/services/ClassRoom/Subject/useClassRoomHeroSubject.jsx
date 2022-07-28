@@ -27,6 +27,7 @@ const useClassRoomHeroSubject = () => {
   const getBackground = () => {
     setIsBgLoading(true);
     GET("/client/classrooms/banner", defConfig()).then((r) => {
+      console.log(r.data)
       setBgData(r.data);
       setIsBgLoading(false);
     });

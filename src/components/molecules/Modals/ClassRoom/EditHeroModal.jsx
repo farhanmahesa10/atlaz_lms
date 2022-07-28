@@ -45,7 +45,7 @@ const EditHeroModal = (props) => {
                     <img
                       src={r.image}
                       alt=""
-                      className="h-86 radius-8 mb-16 "
+                      className="w-full h-86 radius-8 mb-16 "
                     />
                   </div>
                 </label>
