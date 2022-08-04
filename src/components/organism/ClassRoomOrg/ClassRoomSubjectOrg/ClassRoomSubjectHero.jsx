@@ -31,7 +31,7 @@ const ClassRoomSubjectHero = () => {
           <div
             style={{
               backgroundImage: `url("${data.banner && data.banner.image}")`,
-              backgroundColor: "rgba(0,0,0,0.7)",
+              backgroundColor: "rgba(0,0,0,0.3)",
               backgroundPosition: "50% 50%",
               backgroundSize: "cover",
               backgroundBlendMode: "darken",
