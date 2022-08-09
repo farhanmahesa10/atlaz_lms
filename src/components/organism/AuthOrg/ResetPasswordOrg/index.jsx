@@ -20,23 +20,22 @@ const ResetPasswordOrg = () => {
   const navigate = useNavigate();
   const validate = (val) => {
     let spliting = val.split("");
-    let checkIfUpper = spliting.find((r) => {
-      if (!validator.isNumeric(r)) return validator.isUppercase(r);
-    });
-    let checkIfLower = spliting.find((r) => {
-      if (!validator.isNumeric(r)) return validator.isLowercase(r);
-    });
-    let checkIfNumeric = spliting.find((r) => {
-      return validator.isNumeric(r);
-    });
+    // let checkIfUpper = spliting.find((r) => {
+    //   if (!validator.isNumeric(r)) return validator.isUppercase(r);
+    // });
+    // let checkIfLower = spliting.find((r) => {
+    //   if (!validator.isNumeric(r)) return validator.isLowercase(r);
+    // });
+    // let checkIfNumeric = spliting.find((r) => {
+    //   return validator.isNumeric(r);
+    // });
     let checkIfSix = spliting.length >= 6 ? true : false;
-    checkIfUpper ? setIsUpper(true) : setIsUpper(false);
-    checkIfLower ? setIsLower(true) : setIsLower(false);
-    checkIfNumeric ? setIsNumeric(true) : setIsNumeric(false);
+    // checkIfUpper ? setIsUpper(true) : setIsUpper(false);
+    // checkIfLower ? setIsLower(true) : setIsLower(false);
+    // checkIfNumeric ? setIsNumeric(true) : setIsNumeric(false);
     checkIfSix ? setIsSix(true) : setIsSix(false);
-    !checkIfUpper || !checkIfLower || !checkIfNumeric || !checkIfSix
-      ? setAllowNext(false)
-      : setAllowNext(true);
+    // !checkIfUpper || !checkIfLower || !checkIfNumeric || !checkIfSix
+    !checkIfSix ? setAllowNext(false) : setAllowNext(true);
   };
   const initialValues = {
     password: "",
@@ -107,7 +106,7 @@ const ResetPasswordOrg = () => {
                     />
 
                     <div className="row mt-16 mb-48 text-neutral-400">
-                      <div className="col-sm-6 d-flex align-items-center">
+                      {/* <div className="col-sm-6 d-flex align-items-center">
                         <DotIcon
                           status={
                             isLower === true
@@ -149,7 +148,7 @@ const ResetPasswordOrg = () => {
                             One uppercase characters
                           </small>
                         </DotIcon>
-                      </div>
+                      </div> */}
                       <div className="col-sm-6 d-flex align-items-center">
                         <DotIcon
                           status={

@@ -14,19 +14,19 @@ const InputPassword = (props) => {
 
   const validate = (val) => {
     let spliting = val ? val.split("") : [];
-    let checkIfUpper = spliting.find((r) => {
-      if (!validator.isNumeric(r)) return validator.isUppercase(r);
-    });
-    let checkIfLower = spliting.find((r) => {
-      if (!validator.isNumeric(r)) return validator.isLowercase(r);
-    });
-    let checkIfNumeric = spliting.find((r) => {
-      return validator.isNumeric(r);
-    });
+    // let checkIfUpper = spliting.find((r) => {
+    //   if (!validator.isNumeric(r)) return validator.isUppercase(r);
+    // });
+    // let checkIfLower = spliting.find((r) => {
+    //   if (!validator.isNumeric(r)) return validator.isLowercase(r);
+    // });
+    // let checkIfNumeric = spliting.find((r) => {
+    //   return validator.isNumeric(r);
+    // });
     let checkIfSix = val.length >= 6 ? true : false;
-    checkIfUpper ? setIsUpper(true) : setIsUpper(false);
-    checkIfLower ? setIsLower(true) : setIsLower(false);
-    checkIfNumeric ? setIsNumeric(true) : setIsNumeric(false);
+    // checkIfUpper ? setIsUpper(true) : setIsUpper(false);
+    // checkIfLower ? setIsLower(true) : setIsLower(false);
+    // checkIfNumeric ? setIsNumeric(true) : setIsNumeric(false);
     checkIfSix ? setIsSix(true) : setIsSix(false);
   };
 
@@ -165,7 +165,7 @@ const InputPassword = (props) => {
               {props.withTemplateValidation ? (
                 <>
                   <div className="row mt-16  text-neutral-400">
-                    <div className="col-sm-6 d-flex align-items-center text-neutral-300 font-xs">
+                    {/* <div className="col-sm-6 d-flex align-items-center text-neutral-300 font-xs">
                       <DotIcon
                         status={
                           isLower === true
@@ -203,7 +203,7 @@ const InputPassword = (props) => {
                       >
                         <small className="ps-2">One uppercase characters</small>
                       </DotIcon>
-                    </div>
+                    </div> */}
                     <div className="col-sm-6 d-flex align-items-center text-neutral-300 font-xs">
                       <DotIcon
                         status={

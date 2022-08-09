@@ -3,7 +3,7 @@ import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import Pace from "react-pace-progress";
 import { connect, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 import { FormikControl, GlobalToast, GoogleButton } from "../../../atoms";
 import AuthLayout from "../../../Layout/AuthLayout";
@@ -11,6 +11,11 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { POST } from "../../../../config/RestAPI";
 const LoginOrg = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  if(searchParams.get("redirect")) {
+    localStorage.setItem("redirect", atob(searchParams.get("redirect")));
+  }
 
   const initialValues = {
     email: "",
@@ -27,7 +32,6 @@ const LoginOrg = (props) => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
 
   const loginGoogle = () => {
     window.open(process.env.REACT_APP_GOOGLE_AUTH_PAGE_URL, "_self");
@@ -45,7 +49,12 @@ const LoginOrg = (props) => {
             process.env.REACT_APP_BASE_URL + "/accessToken",
             r.accessToken.token
           );
-          navigate("/dashboard");
+          if(searchParams.get("redirect")) {
+            let toLink = `${atob(searchParams.get("redirect"))}/login?key=${r.accessToken.token}`
+            window.location.href = toLink
+          } else {
+            navigate("/dashboard");
+          }
         }
         setIsLoading(false);
       })
