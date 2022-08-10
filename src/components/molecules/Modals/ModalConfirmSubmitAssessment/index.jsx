@@ -4,6 +4,8 @@ import { Divider, Modal } from "../../../atoms";
 import { useSelector, connect } from "react-redux";
 const ModalConfirmSubmitAssessment = (props) => {
   const { data } = useSelector((state) => state.modalData);
+  const { isSubmiting } = props;
+  console.log(isSubmiting);
   return (
     <Modal
       className="radius-16 postition-relative bg-danger max-w-440   modal-custom bg-white"
@@ -30,20 +32,19 @@ const ModalConfirmSubmitAssessment = (props) => {
             </button>
           </div>
           <div className="col-6">
-            <button
-              type="button"
-              className={`btn font-normal ${
-                data.isLoading ? "btn-disable" : "btn-primary "
-              }w-full `}
+            <span
+              className={`btn d-flex justify-content-center items-content-center   font-normal ${
+                isSubmiting ? "btn-disable" : "btn-primary "
+              }  `}
               data-bs-dismiss="modal"
               onClick={() => {
-                if (!data.isLoading) {
+                if (!isSubmiting) {
                   props.onSubmit();
                 }
               }}
             >
-              {data.isLoading ? "Loading..." : "Submit"}
-            </button>
+              {isSubmiting ? "Loading..." : "Submit"}
+            </span>
           </div>
         </div>
       </div>

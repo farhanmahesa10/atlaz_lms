@@ -267,6 +267,7 @@ const useBeginAssessment = () => {
 
   const onSubmit = (values) => {
     setIsSubmiting(true);
+    // return;
     if (!manualValidation) {
       setFlashMessage(
         "Submit Error",

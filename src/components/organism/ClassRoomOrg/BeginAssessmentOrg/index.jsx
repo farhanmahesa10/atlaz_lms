@@ -114,6 +114,7 @@ const BeginAssessmentOrg = () => {
                   </div>
                   <ModalConfirmSubmitAssessment
                     id={`submitAssessment`}
+                    isSubmiting={isSubmiting}
                     onSubmit={() => {
                       formik.submitForm();
                     }}
