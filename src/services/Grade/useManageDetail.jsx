@@ -215,8 +215,8 @@ function useManageDetail() {
           if(item.assessmentType.path === 'single-choice') {
             newUserAnswer.push({
               id: item._id,
-              answer: item.questions[0].userAnswer !== '' ? item.questions[0].options[parseInt(item.questions[0].userAnswer)].text : '',
-              answerKey: item.questions[0].answer !== '' ? item.questions[0].options[parseInt(item.questions[0].answer)].text : '',
+              answer: item.questions[0].userAnswer !== '' ? item.questions[0].options[parseInt(item.questions[0].userAnswer)]?.text : '',
+              answerKey: item.questions[0].answer !== '' ? item.questions[0].options[parseInt(item.questions[0].answer)]?.text : '',
               remarkId: r.data.corrections[index]._id,
               remark: r.data.corrections[index].correction,
               modal: item
@@ -226,7 +226,7 @@ function useManageDetail() {
             const userAnswer = []
             item.questions[0].options.map(option => {
               if(option.isAnswer) {
-                userAnswer.push(option.text)
+                userAnswer.push(option?.text)
               }
             })
             newUserAnswer.push({
