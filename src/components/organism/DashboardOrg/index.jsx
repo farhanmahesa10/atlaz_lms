@@ -4,13 +4,10 @@ import PublicDashboard from "./PublicDashboard";
 import SchoolAdminDashboard from "./SchoolAdminDashboard";
 import StudentDashboard from "./StudentDashboard";
 import TeacherDashboard from "./TeacherDashboard";
+import AdminDashboard from "./AdminDashboard";
 const DashboardOrg = () => {
   return (
     <>
-      {/* <PublicDashboard /> */}
-      {/* <TeacherDashboard /> */}
-      {/* <SchoolAdminDashboard /> */}
-      {/* <StudentDashboard /> */}
       <Can allowAccess="public">
         <PublicDashboard />
       </Can>
@@ -22,6 +19,9 @@ const DashboardOrg = () => {
       </Can>
       <Can allowAccess="teacher">
         <TeacherDashboard />
+      </Can>
+      <Can allowAccess="superuser,administrator">
+        <AdminDashboard />
       </Can>
     </>
   );

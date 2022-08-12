@@ -33,7 +33,7 @@ const useBeginAssessment = () => {
   useEffect(() => {
     setIsLoading(true);
     GET(
-      `/client/classrooms/student_assessment/content/${idsubtopic}`,
+      `/client/classrooms/student_assessment/content/${params.classId}/${params.subjectId}/${idsubtopic}`,
       defConfig()
     )
       .then((response) => {

@@ -98,7 +98,7 @@ const useStudentDashboard = () => {
           ownedBook: {
             doneContent: r.data.doneContent || 0,
             progress: Math.round(r.data.progress || 0),
-            totalContent: r.data.totalContent || 0,
+            totalContent: r?.data?.totalContent || 0,
           },
         };
       })
