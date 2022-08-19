@@ -7,7 +7,6 @@ const GA_ID = process.env.REACT_APP_ID_GA
 function App() {
   ReactGA.initialize(GA_ID);
   ReactGA.pageview(window.location.pathname + window.location.search);
-  console.log(GA_ID)
   return (
     <>
       <Routing />

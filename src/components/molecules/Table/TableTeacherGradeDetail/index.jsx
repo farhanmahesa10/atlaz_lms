@@ -111,7 +111,7 @@ function TableTeacherGradeDetail() {
                                 </td> */}
                                 <td>
                                   <div className="d-flex">
-                                    {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`score/${item.student._id}`}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                    {item.score ? item.score : 'N/A'} <Link to={`score/${item.student._id}`}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                 </td>
                               </tr>
                             }) : (<tr>

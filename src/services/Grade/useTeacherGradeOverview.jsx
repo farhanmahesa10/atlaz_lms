@@ -135,7 +135,7 @@ function useTeacherGradeOverview() {
 
   const [showRow, setShowRow] = useState(['subject', 'class'])
   const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(10)
+  const [perPage, setPerPage] = useState(5)
   const [sortType, setSortType] = useState('DESC')
   const [sortBy, setSortBy] = useState('score')
 
@@ -204,12 +204,12 @@ function useTeacherGradeOverview() {
     GET(`/report/teacher/grade_overview?page=${dataPage}&per_page=${dataPerPage}&sort_type=${dataSortType}&sort_by=${dataSortBy}`, defConfig(dataRow))
     .then(
       (res) => {
-        console.log('tes', res.data)
+        console.log('res.data', res.data)
         setDataGradeOverview(res.data)
         formik.setFieldValue("topage", res.pagintion.current_page ? res.pagintion.current_page : 0)
         setPagination({
             current_page: res.pagintion.current_page ? res.pagintion.current_page : 0,
-            per_page: res.pagintion.per_page ? res.pagintion.per_page : 10,
+            per_page: res.pagintion.per_page ? res.pagintion.per_page : 5,
             next_page: res.pagintion.next_page ? res.pagintion.next_page : false,
             prev_page: res.pagintion.prev_page ? res.pagintion.prev_page : false,
             total: res.pagintion.total ? res.pagintion.total : 0,

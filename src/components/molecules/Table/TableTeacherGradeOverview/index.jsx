@@ -97,19 +97,19 @@ function TableTeacherGradeOverview() {
                                       item.subject && item.classlist ?
                                         (<td>
                                           <div className="d-flex">
-                                            {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/${item.subject?._id}/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                            {item.avg ? item.avg : 'N/A'} <Link to={`detail/${item.subject?._id}/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                         </td>)
                                         : (
                                           item.subject && !item.classlist ?
                                             (<td>
                                               <div className="d-flex">
-                                                {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/subject/${item.subject?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                                {item.avg ? item.avg : 'N/A'} <Link to={`detail/subject/${item.subject?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                             </td>)
                                             : (
                                               !item.subject && item.classlist ?
                                                 (<td>
                                                   <div className="d-flex">
-                                                    {item.score ? item.score.toFixed(1) : 'N/A'} <Link to={`detail/class/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
+                                                    {item.avg ? item.avg : 'N/A'} <Link to={`detail/class/${item.classlist?._id}`} onClick={() => setTableOption()}><Launch className="text-neutral-100 fs-18 ml-6" /></Link></div>
                                                 </td>)
                                                 : (<td></td>)
                                             )

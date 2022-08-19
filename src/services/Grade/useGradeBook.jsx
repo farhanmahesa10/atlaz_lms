@@ -61,17 +61,18 @@ function useGradeBook() {
 
   useEffect(() => {
     setIsLoading(true)
+    setDataGradeBook([])
     let userRoleName = roles
-        .find((r) => r.level === user.role)
-        .name.toLowerCase();
-    if(userRoleName === 'student') {
+      .find((r) => r.level === user.role)
+      .name.toLowerCase();
+    if (userRoleName === 'student') {
       setBreadcrumbsData(breadcrumbsDataStudent)
     }
 
     let endpoint = ''
-    if(userRoleName === 'student') {
+    if (userRoleName === 'student') {
       endpoint = `/report/student/student_detail?classlistId=${idClass}&subjectId=${idSubject}`
-    } else if(userRoleName === 'teacher') {
+    } else if (userRoleName === 'teacher') {
       endpoint = `/report/teacher/student_detail?classlistId=${idClass}&subjectId=${idSubject}&student=${id}`
     }
 
@@ -81,17 +82,34 @@ function useGradeBook() {
           name: res.data.student?.name,
           detail: `${res.data.school?.name} - ${res.data.subject?.name}`,
         })
+        console.log(res.data)
         setDataGradeBook(res.data)
-        
+
         let newDetailAvg = []
-        res.data.lessons?.map(item => {
-          let score = 0
-          item.subtopics?.map(r => {
-            score += parseFloat(r.score) ? parseFloat(r.score) : 0
+        res.data.lessons?.map(res1 => {
+          let avgLessons = 0
+          let totalScore = 0
+          let countSubtopics = 0
+          res1.topics?.map(res2 => {
+            res2.subtopics?.map(res3 => {
+              let scoreGrades = 0
+              res3.timelines?.map(res4 => {
+                if (res4.grades.length > 0 && res4.grades[0].score) {
+                  if (res4.grades[0].score > scoreGrades) {
+                    scoreGrades = res4.grades[0].score
+                  }
+                }
+              })
+              totalScore += scoreGrades
+              countSubtopics += 1
+            })
           })
+          if (totalScore > 0) {
+            avgLessons = totalScore / countSubtopics
+          }
           newDetailAvg.push({
-            lesson: item.name,
-            average: item.subtopics.length > 0 ? score/item.subtopics.length : 0
+            lesson: res1.name,
+            average: avgLessons
           })
         })
         setDetailAverageGrade(newDetailAvg)

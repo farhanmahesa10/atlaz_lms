@@ -210,7 +210,9 @@ function useTeacherGradeDetail() {
                 })
                 setTableOption(newTableOption)
 
-                setDataGradeDetail(res.data.results)
+                console.log('res', res.data)
+                setDataGradeDetail(res.data)
+                // setDataGradeDetail(res.data.results)
                 formik.setFieldValue("topage", res.data.pagintion.current_page ? res.data.pagintion.current_page : 0)
                 setPagination({
                     current_page: res.data.pagintion.current_page ? res.data.pagintion.current_page : 0,
